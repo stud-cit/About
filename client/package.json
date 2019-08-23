@@ -1,0 +1,41 @@
+{
+  "name": "client",
+  "version": "0.0.0",
+  "description": "Nuxt.js TypeScript project",
+  "author": "H6LSIS",
+  "private": true,
+  "scripts": {
+    "build": "nuxt-ts build",
+    "start": "nuxt-ts start",
+    "start:dev": "nuxt-ts",
+    "start:prod": "nuxt-ts generate",
+    "prestart:prod": "rimraf dist .nuxt && npm run build",
+    "format": "prettier --write --loglevel warn \"**/*.{ts,vue}\"",
+    "lint": "tslint -p tsconfig.json -c tslint.json"
+  },
+  "dependencies": {
+    "@mdi/font": "latest",
+    "@nuxt/typescript-runtime": "latest",
+    "@nuxtjs/auth": "latest",
+    "@nuxtjs/axios": "latest",
+    "dotenv": "latest",
+    "nuxt": "latest",
+    "nuxt-i18n": "latest",
+    "vee-validate": "latest",
+    "vue-property-decorator": "latest",
+    "vuetify": "latest",
+    "vuetify-loader": "latest",
+    "vuex-class": "latest"
+  },
+  "devDependencies": {
+    "@nuxt/typescript-build": "latest",
+    "@types/dotenv": "latest",
+    "@types/fibers": "latest",
+    "@types/sass": "latest",
+    "deepmerge": "latest",
+    "fibers": "latest",
+    "prettier": "latest",
+    "sass": "latest",
+    "sass-loader": "latest"
+  }
+}

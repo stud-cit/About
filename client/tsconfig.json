@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "noEmit": true,
+    "noLib": false,
+    "allowJs": true,
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./*"]
+    },
+    "lib": [
+      "esnext",
+      "esnext.asynciterable",
+      "dom"
+    ],
+    "types": [
+      "@types/node",
+      "@nuxt/types"
+    ]
+  },
+  "exclude": ["node_modules"]
+}
