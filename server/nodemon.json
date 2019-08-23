@@ -1,0 +1,13 @@
+{
+  "watch": ["src"],
+  "ext": "ts",
+  "ignore": ["src/**/**/*.spec.ts"],
+  "exec": "ts-node -r tsconfig-paths/register src/main.ts",
+  "events": {
+    "restart": "prettier --write --loglevel warn \"src/**/*.ts\"",
+    "start": "prettier --write --loglevel warn \"src/**/*.ts\""
+  },
+  "env": {
+    "NODE_ENV": "development"
+  }
+}

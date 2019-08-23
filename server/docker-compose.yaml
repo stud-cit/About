@@ -1,0 +1,25 @@
+version: '3'
+services:
+  database:
+    image: mysql:5.7.23
+    container_name: database
+    ports:
+      - ${TYPEORM_PORT}:${TYPEORM_PORT}
+    volumes:
+      - /sessions
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+      MYSQL_DATABASE: ${TYPEORM_DATABASE}
+      MYSQL_USER: ${TYPEORM_USERNAME}
+      MYSQL_PASSWORD: ${TYPEORM_PASSWORD}
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: PHPMyAdmin
+    depends_on:
+      - database
+    links:
+      - database
+    ports:
+      - ${MYADMIN_PORT}:80
+    environment:
+      PMA_HOSTS: database

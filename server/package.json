@@ -1,0 +1,82 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "description": "description",
+  "author": "Helsis",
+  "license": "MIT",
+  "engines": {
+    "node": "10.15.1",
+    "npm": "6.10.2"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "start": "ts-node -r tsconfig-paths/register src/main.ts",
+    "start:dev": "nodemon",
+    "start:debug": "nodemon --config nodemon-debug.json",
+    "start:prod": "node dist/main.js",
+    "prestart:prod": "rimraf dist && npm run build",
+    "postinstall": "npm run prestart:prod && npm run doc",
+    "database:up": "npm run database:down && docker-compose up -V 2>&1 | grep -m 1 GENERATED",
+    "database:down": "docker-compose down -v",
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "format": "prettier --write --loglevel warn \"{src,test}/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "doc": "npx compodoc -p tsconfig.json -d public",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json --watchAll --coverage"
+  },
+  "dependencies": {
+    "@nestjs/common": "latest",
+    "@nestjs/core": "latest",
+    "@nestjs/swagger": "latest",
+    "@nestjs/typeorm": "latest",
+    "@nestjs/platform-express": "latest",
+    "class-transformer": "latest",
+    "class-validator": "latest",
+    "dotenv": "latest",
+    "mysql": "latest",
+    "reflect-metadata": "latest",
+    "rimraf": "latest",
+    "rxjs": "latest",
+    "swagger-ui-express": "latest",
+    "typeorm": "latest",
+    "typescript": "latest"
+  },
+  "devDependencies": {
+    "@compodoc/compodoc": "latest",
+    "@nestjs/testing": "latest",
+    "@types/dotenv": "latest",
+    "@types/express": "latest",
+    "@types/faker": "latest",
+    "@types/jest": "latest",
+    "@types/node": "latest",
+    "@types/supertest": "latest",
+    "faker": "latest",
+    "jest": "latest",
+    "nodemon": "latest",
+    "prettier": "latest",
+    "supertest": "latest",
+    "ts-jest": "latest",
+    "ts-loader": "latest",
+    "ts-node": "latest",
+    "tsconfig-paths": "latest",
+    "tslint": "latest"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}
