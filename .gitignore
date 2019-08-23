@@ -58,11 +58,17 @@ package-lock.json
 # Typeorm model generator
 .tomg-config
 
-# dotenv environment variables file
+# Dotenv environment variables file
 .env
 
-# next.js build output
+# Next.js build output
 .next
 
-# nuxt.js build output
+# Nuxt.js build output
 .nuxt
+
+# Nest.js build output
+dist
+
+# Compiled documentation
+public/
