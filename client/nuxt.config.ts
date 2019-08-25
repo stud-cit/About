@@ -52,7 +52,8 @@ const config: Configuration = {
 	*/
 	buildModules: [
 		'@nuxt/typescript-build',
-    'nuxt-i18n'
+    'nuxt-i18n',
+    'nuxt-validate',
   ],
 
 	build: {

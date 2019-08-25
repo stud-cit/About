@@ -21,10 +21,11 @@
     "dotenv": "latest",
     "nuxt": "latest",
     "nuxt-i18n": "latest",
-    "vee-validate": "latest",
+    "nuxt-validate": "^1.0.1",
     "vue-property-decorator": "latest",
     "vuetify": "latest",
     "vuetify-loader": "latest",
+    "vuex": "^3.1.1",
     "vuex-class": "latest"
   },
   "devDependencies": {
