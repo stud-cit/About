@@ -44,16 +44,15 @@ const config: Configuration = {
 	 */
 	plugins: [
     '~/mixins',
-    '~/plugins/vee-validate',
     '~/plugins/vuetify'
   ],
 	/*
 	** Modules to load before mounting the App
 	*/
 	buildModules: [
-		'@nuxt/typescript-build',
+	'@nuxt/typescript-build',
     'nuxt-i18n',
-    'nuxt-validate',
+    // 'nuxt-validate',
   ],
 
 	build: {
