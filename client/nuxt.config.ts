@@ -44,7 +44,8 @@ const config: Configuration = {
 	 */
 	plugins: [
     '~/mixins',
-    '~/plugins/vuetify'
+    '~/plugins/vuetify',
+    { src: '~/plugins/swiper', ssr: false },
   ],
 	/*
 	** Modules to load before mounting the App
