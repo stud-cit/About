@@ -1,7 +1,12 @@
 <template>
   <v-app>
-    <v-app-bar app flat>
-      <v-toolbar-title>Page title</v-toolbar-title>
+    <v-app-bar app flat class="px-10 pt-5" color="transparent">
+      <v-toolbar-title>
+        <p class="headline text-uppercase mb-0">
+          Choose What you are interested
+        </p>
+        <p class="grey--text mb-0">Drag or scroll to move block</p>
+      </v-toolbar-title>
       <v-spacer/>
       <v-speed-dial
         v-model="changeLocale"
@@ -9,7 +14,7 @@
         transition="slide-x-reverse-transition"
       >
         <template v-slot:activator>
-          <v-btn v-model="changeLocale" icon>
+          <v-btn v-model="changeLocale" outlined icon>
             <v-icon v-if="changeLocale">mdi-close</v-icon>
             <span v-else>{{ $i18n.locale }}</span>
           </v-btn>
@@ -26,7 +31,7 @@
     </v-app-bar>
 
     <v-content>
-      <v-container fluid class="fill-height">
+      <v-container class="fill-height pa-0">
         <nuxt/>
       </v-container>
     </v-content>
