@@ -31,7 +31,7 @@
     </v-app-bar>
 
     <v-content>
-      <v-container class="fill-height pa-0">
+      <v-container fluid class="fill-height pa-0">
         <nuxt/>
       </v-container>
     </v-content>

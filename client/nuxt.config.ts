@@ -35,6 +35,7 @@ const config: Configuration = {
 		],
 		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }],
 	},
+  css: ["~/assets/style/app.sass"],
 	/*
 	 ** Customize the progress bar color
 	 */
