@@ -8,7 +8,7 @@
       >
         <v-card :href="page.to" :link="true">
           <v-img
-            :src="page.img"
+            :src="getDynamicAssets(page.img)"
             :gradient="imagePageGradient"
             :lazy-src="page.lazyImg"
             height="60vh"
