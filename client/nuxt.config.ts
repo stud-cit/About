@@ -56,20 +56,20 @@ const config: Configuration = {
     'nuxt-i18n',
     // 'nuxt-validate',
   ],
-
 	build: {
 		transpile: ['vuetify/lib'],
-    plugins: [new VuetifyLoaderPlugin()],
-    loaders: {
-      sass: {
-        fiber: fiber,
-        implementation: sass,
-        indentedSyntax: true,
-        import: ['~assets/style/app.sass'],
-      },
-    }
+		plugins: [new VuetifyLoaderPlugin()],
+		loaders: {
+		sass: {
+			fiber: fiber,
+			implementation: sass,
+			sassOptions: { 
+			indentedSyntax: true
+			},
+			import: ['~assets/style/app.sass'],
+		},
+		}
 	},
-
 	typescript: {
 		typeCheck: false,
 		ignoreNotFoundWarnings: true
