@@ -224,6 +224,43 @@ export const state = (): State => ({
       }
     ]
   }
+],
+ourStaff: [
+  {
+    "id": 1,
+    "name": "Kirk Philips",
+    "position": "Frontend developer",
+    "stack": "Proficient in HTML + CSS, JS",
+    "img_src": "",
+  },
+  {
+    "id": 2,
+    "name": "Kirk Philips2",
+    "position": "Designer",
+    "stack": "Proficient in HTML + CSS, JS",
+    "img_src": "",
+  },
+  {
+    "id": 3,
+    "name": "Kirk Philip3",
+    "position": "Designer",
+    "stack": "Proficient in HTML + CSS, JS",
+    "img_src": "",
+  },
+  {
+    "id": 4,
+    "name": "Kirk Philips4",
+    "position": "Designer",
+    "stack": "Proficient in HTML + CSS, JS",
+    "img_src": "",
+  },
+  {
+    "id": 5,
+    "name": "Kirk Philips5",
+    "position": "Designer",
+    "stack": "Proficient in HTML + CSS, JS",
+    "img_src": "",
+  },
 ]
 });
 
