@@ -65,7 +65,6 @@ const config: Configuration = {
         fiber: fiber,
         implementation: sass,
         indentedSyntax: true,
-        import: ['~assets/style/app.sass'],
       },
     }
 	},

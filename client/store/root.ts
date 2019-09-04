@@ -224,19 +224,28 @@ export const state = (): State => ({
       }
     ]
   }
-]
+],
+  pageCover: undefined
 });
 
 export const getters: GetterTree<RootState, RootState> = {
-  getPageStage(stage) {
-    return stage.pages
+  getPageStage(state: State) {
+    return state.pages
   },
 
-  getProjectsStage(stage) {
-    return stage.projects
-  }
+  getProjectsStage(state: State) {
+    return state.projects
+  },
+
+  getPageCover(state: State) {
+    return state.pageCover
+  },
 };
 
 export const actions: ActionTree<RootState, RootState> = {};
 
-export const mutations: MutationTree<RootState> = {};
+export const mutations: MutationTree<RootState> = {
+  changePageCover(state: RootState, page: string | undefined): void {
+    state.pageCover = (page) ? `/image/background/${page}.png` : undefined
+  }
+};

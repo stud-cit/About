@@ -26,6 +26,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { Mutation } from 'vuex-class'
 
 @Component({
   layout: 'immediate',
@@ -33,5 +34,11 @@ import { Component, Vue } from 'vue-property-decorator'
     title: 'Offers'
   }
 })
-export default class OffersPage extends Vue {}
+export default class OffersPage extends Vue {
+  @Mutation('changePageCover') changePageCover
+
+  created() {
+    this.changePageCover('offers')
+  }
+}
 </script>

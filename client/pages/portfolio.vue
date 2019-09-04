@@ -49,7 +49,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { Getter } from 'vuex-class'
+import { Getter, Mutation } from 'vuex-class'
 
 @Component({
   layout: 'immediate',
@@ -59,6 +59,11 @@ import { Getter } from 'vuex-class'
 })
 export default class PortfolioPage extends Vue {
   @Getter('getProjectsStage') projects;
+  @Mutation('changePageCover') changePageCover
+
+  created() {
+    this.changePageCover()
+  }
 }
 </script>
 
