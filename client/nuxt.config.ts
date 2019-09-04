@@ -58,17 +58,14 @@ const config: Configuration = {
   ],
 	build: {
 		transpile: ['vuetify/lib'],
-		plugins: [new VuetifyLoaderPlugin()],
-		loaders: {
-		sass: {
-			fiber: fiber,
-			implementation: sass,
-			sassOptions: { 
-			indentedSyntax: true
-			},
-			import: ['~assets/style/app.sass'],
-		},
-		}
+    plugins: [new VuetifyLoaderPlugin()],
+    loaders: {
+      sass: {
+        fiber: fiber,
+        implementation: sass,
+        indentedSyntax: true,
+      },
+    }
 	},
 	typescript: {
 		typeCheck: false,

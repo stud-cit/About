@@ -39,6 +39,6 @@
     "fibers": "latest",
     "prettier": "latest",
     "sass": "latest",
-    "sass-loader": "latest"
+    "sass-loader": "^7.0.0"
   }
 }
