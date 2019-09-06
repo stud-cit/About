@@ -8,18 +8,19 @@
         sm="6"
         xs="12"
       >
-        <v-card class="mx-auto" max-width="400">
+        <v-card class="card-img mx-auto" max-width="400">
           <v-img
             class="white--text"
-            height="200px"
+            height="250px"
             src="https://images.pexels.com/photos/1181373/pexels-photo-1181373.jpeg"
           >
           </v-img>
         </v-card>
-        <div class="card-addition">
-          <p class="employee-name">{{person.name}}</p>
-          <p class="employee-position">{{person.position}}</p>
-        </div>
+          <div class="card-addition">
+            <div class="employee-name">{{person.name}}</div>
+            <div class="employee-position-short">{{person.position}}</div>
+            <div class="employee-position-full">{{person.stack}}</div>
+          </div>
       </v-col>
     </v-row>
   </v-container>
@@ -45,21 +46,43 @@ export default class OurStaffPage extends Vue {
 </script>
 
 <style lang="sass">
-  .card-addition
-    display: flex
-    flex-direction: column
-    color: #ffffff
-    margin-top: 25px
+.card-addition
+  display: flex
+  flex-direction: column
+  color: #ffffff
+  margin-top: 25px
 
-  .employee-name
-    font-size: 1.5rem
-    font-weight: 900
-    text-align: center
-    margin-bottom: 0
+.employee-name
+  font-size: 1.5rem
+  font-weight: 900
+  text-align: center
+  margin-bottom: 0
 
-  .employee-position
-    font-size: .9rem
-    font-weight: 400
-    text-align: center
+.employee-position-short, .employee-position-full
+  font-size: .9rem
+  font-weight: 400
+  text-align: center
 
+.card-img
+  border-radius: 50px
+  filter: brightness(35%)
+  max-height: 350px
+    
+.employee-position-full
+  display: none
+
+.card-img:hover
+  transform: scale(1.25)
+  filter: brightness(100%)
+  transition: 1s
+  ~ .card-addition
+    .employee-name
+      opacity: 0
+      transition: 0.5s
+    .employee-position-full
+      display: block
+    .employee-position-short
+      display: none
+	
+		
 </style>
