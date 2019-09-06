@@ -2,7 +2,6 @@ import { Configuration } from '@nuxt/types';
 import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin';
 
 import sass from 'sass'
-import fiber from 'fibers';
 
 import { ConfigService } from './utils/config/config.service';
 const configService = new ConfigService();
@@ -61,7 +60,6 @@ const config: Configuration = {
     plugins: [new VuetifyLoaderPlugin()],
     loaders: {
       sass: {
-        fiber: fiber,
         implementation: sass,
         indentedSyntax: true,
       },
