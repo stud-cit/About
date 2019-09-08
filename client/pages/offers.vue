@@ -11,7 +11,7 @@
     </v-img>
 
     <v-card-text>
-      <span>Number 10</span><br>
+      <span>Number 10</span>
       <span class="text--primary">
         <span>{{ $t('welcome') }}</span>
       </span>
@@ -25,20 +25,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { Mutation } from 'vuex-class'
+import { Component, Vue } from 'vue-property-decorator';
+import { Mutation } from 'vuex-class';
 
 @Component({
   layout: 'immediate',
   head: {
-    title: 'Offers'
-  }
+    title: 'Offers',
+  },
 })
 export default class OffersPage extends Vue {
-  @Mutation('changePageCover') changePageCover
+  @Mutation('changePageCover') changePageCover;
 
   created() {
-    this.changePageCover('offers')
+    this.changePageCover('offers');
   }
 }
 </script>

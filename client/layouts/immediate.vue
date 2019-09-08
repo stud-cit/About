@@ -2,11 +2,15 @@
   <v-app>
     <v-app-bar app flat color="transparent">
       <v-toolbar-title class="white px-2">Logotype</v-toolbar-title>
-      <v-spacer/>
-      <v-toolbar-items >
+      <v-spacer />
+      <v-toolbar-items>
         <v-btn
-          v-for="(page, i) in pages" :key="i"
-          :to="page.to" dark exact text
+          v-for="(page, i) in pages"
+          :key="i"
+          :to="page.to"
+          exact
+          dark
+          text
         >
           <span>{{ page.title }}</span>
         </v-btn>
@@ -16,11 +20,11 @@
       </v-toolbar-items>
     </v-app-bar>
 
-    <v-img :src="this.getDynamicAssets(cover)" class="imageCover"/>
+    <v-img :src="this.getDynamicAssets(cover)" class="imageCover" />
 
     <v-content>
       <v-container fluid class="fill-height pa-0">
-        <nuxt/>
+        <nuxt />
       </v-container>
     </v-content>
   </v-app>
@@ -28,7 +32,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { Getter } from 'vuex-class'
+import { Getter } from 'vuex-class';
 
 @Component
 export default class ImmediatetLayout extends Vue {
@@ -38,8 +42,8 @@ export default class ImmediatetLayout extends Vue {
 </script>
 
 <style lang="sass">
-  .imageCover
-    position: fixed !important
-    height: 100vh
-    width: 100vw
+.imageCover
+  position: fixed !important
+  height: 100vh
+  width: 100vw
 </style>

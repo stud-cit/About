@@ -19,7 +19,7 @@
 
       <v-window-item>
         <v-col md="8">
-          <v-row class="font-weight-bold ma-2">
+          <v-row class="font-weight-bold ma-2 white--text">
             Student centr of information technology
           </v-row>
           <v-textarea
@@ -33,7 +33,7 @@
 
       <v-window-item>
         <v-col md="8">
-          <v-row class="font-weight-bold ma-2">
+          <v-row class="font-weight-bold ma-2 white--text">
             Student centr of information technology
           </v-row>
           <v-textarea
@@ -50,8 +50,10 @@
       <v-col md="8">
         <v-slider
           v-model="model"
-          :max="3" step="1"
-          ticks="always" tick-size="4"
+          :max="3"
+          step="1"
+          ticks="always"
+          tick-size="4"
           dark
         />
       </v-col>
@@ -60,21 +62,21 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { Mutation } from 'vuex-class'
+import { Component, Vue } from 'vue-property-decorator';
+import { Mutation } from 'vuex-class';
 
 @Component({
   layout: 'immediate',
   head: {
-    title: 'About us'
-  }
+    title: 'About us',
+  },
 })
 export default class AboutPage extends Vue {
-  @Mutation('changePageCover') changePageCover
+  @Mutation('changePageCover') changePageCover;
   model: number = 0;
 
   created() {
-    this.changePageCover('about')
+    this.changePageCover('about');
   }
 }
 </script>

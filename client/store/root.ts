@@ -33,253 +33,253 @@ export const state = (): State => ({
   ],
   projects: [
     {
-      "title": "Section0",
-      "cover": "https://picsum.photos/id/0/1980",
-      "lazyCover": "https://picsum.photos/id/0/250",
-      "link": "https://picsum.photos/id/0/1980",
-      "team": [
+      title: 'Section0',
+      cover: 'https://picsum.photos/id/0/1980',
+      lazyCover: 'https://picsum.photos/id/0/250',
+      link: 'https://picsum.photos/id/0/1980',
+      team: [
         {
-          "name": "fullName0",
-          "avatar": "https://picsum.photos/id/0/60"
+          name: 'fullName0',
+          avatar: 'https://picsum.photos/id/0/60',
         },
         {
-          "name": "fullName1",
-          "avatar": "https://picsum.photos/id/0/60"
+          name: 'fullName1',
+          avatar: 'https://picsum.photos/id/0/60',
         },
         {
-          "name": "fullName2",
-          "avatar": "https://picsum.photos/id/0/60"
+          name: 'fullName2',
+          avatar: 'https://picsum.photos/id/0/60',
         },
         {
-          "name": "fullName3",
-          "avatar": "https://picsum.photos/id/0/60"
+          name: 'fullName3',
+          avatar: 'https://picsum.photos/id/0/60',
         },
         {
-          "name": "fullName4",
-          "avatar": "https://picsum.photos/id/0/60"
+          name: 'fullName4',
+          avatar: 'https://picsum.photos/id/0/60',
         },
         {
-          "name": "fullName5",
-          "avatar": "https://picsum.photos/id/0/60"
-        }
-      ]
+          name: 'fullName5',
+          avatar: 'https://picsum.photos/id/0/60',
+        },
+      ],
     },
     {
-      "title": "Section1",
-      "cover": "https://picsum.photos/id/10/1980",
-      "lazyCover": "https://picsum.photos/id/10/250",
-      "link": "https://picsum.photos/id/10/1980",
-      "team": [
+      title: 'Section1',
+      cover: 'https://picsum.photos/id/10/1980',
+      lazyCover: 'https://picsum.photos/id/10/250',
+      link: 'https://picsum.photos/id/10/1980',
+      team: [
         {
-          "name": "fullName0",
-          "avatar": "https://picsum.photos/id/10/60"
+          name: 'fullName0',
+          avatar: 'https://picsum.photos/id/10/60',
         },
         {
-          "name": "fullName1",
-          "avatar": "https://picsum.photos/id/10/60"
+          name: 'fullName1',
+          avatar: 'https://picsum.photos/id/10/60',
         },
         {
-          "name": "fullName2",
-          "avatar": "https://picsum.photos/id/10/60"
+          name: 'fullName2',
+          avatar: 'https://picsum.photos/id/10/60',
         },
         {
-          "name": "fullName3",
-          "avatar": "https://picsum.photos/id/10/60"
+          name: 'fullName3',
+          avatar: 'https://picsum.photos/id/10/60',
         },
         {
-          "name": "fullName4",
-          "avatar": "https://picsum.photos/id/10/60"
+          name: 'fullName4',
+          avatar: 'https://picsum.photos/id/10/60',
         },
         {
-          "name": "fullName5",
-          "avatar": "https://picsum.photos/id/10/60"
-        }
-      ]
+          name: 'fullName5',
+          avatar: 'https://picsum.photos/id/10/60',
+        },
+      ],
     },
     {
-      "title": "Section2",
-      "cover": "https://picsum.photos/id/20/1980",
-      "lazyCover": "https://picsum.photos/id/20/250",
-      "link": "https://picsum.photos/id/20/1980",
-      "team": [
+      title: 'Section2',
+      cover: 'https://picsum.photos/id/20/1980',
+      lazyCover: 'https://picsum.photos/id/20/250',
+      link: 'https://picsum.photos/id/20/1980',
+      team: [
         {
-          "name": "fullName0",
-          "avatar": "https://picsum.photos/id/20/60"
+          name: 'fullName0',
+          avatar: 'https://picsum.photos/id/20/60',
         },
         {
-          "name": "fullName1",
-          "avatar": "https://picsum.photos/id/20/60"
+          name: 'fullName1',
+          avatar: 'https://picsum.photos/id/20/60',
         },
         {
-          "name": "fullName2",
-          "avatar": "https://picsum.photos/id/20/60"
+          name: 'fullName2',
+          avatar: 'https://picsum.photos/id/20/60',
         },
         {
-          "name": "fullName3",
-          "avatar": "https://picsum.photos/id/20/60"
+          name: 'fullName3',
+          avatar: 'https://picsum.photos/id/20/60',
         },
         {
-          "name": "fullName4",
-          "avatar": "https://picsum.photos/id/20/60"
+          name: 'fullName4',
+          avatar: 'https://picsum.photos/id/20/60',
         },
         {
-          "name": "fullName5",
-          "avatar": "https://picsum.photos/id/20/60"
-        }
-      ]
+          name: 'fullName5',
+          avatar: 'https://picsum.photos/id/20/60',
+        },
+      ],
     },
     {
-      "title": "Section3",
-      "cover": "https://picsum.photos/id/30/1980",
-      "lazyCover": "https://picsum.photos/id/30/250",
-      "link": "https://picsum.photos/id/30/1980",
-      "team": [
+      title: 'Section3',
+      cover: 'https://picsum.photos/id/30/1980',
+      lazyCover: 'https://picsum.photos/id/30/250',
+      link: 'https://picsum.photos/id/30/1980',
+      team: [
         {
-          "name": "fullName0",
-          "avatar": "https://picsum.photos/id/30/60"
+          name: 'fullName0',
+          avatar: 'https://picsum.photos/id/30/60',
         },
         {
-          "name": "fullName1",
-          "avatar": "https://picsum.photos/id/30/60"
+          name: 'fullName1',
+          avatar: 'https://picsum.photos/id/30/60',
         },
         {
-          "name": "fullName2",
-          "avatar": "https://picsum.photos/id/30/60"
+          name: 'fullName2',
+          avatar: 'https://picsum.photos/id/30/60',
         },
         {
-          "name": "fullName3",
-          "avatar": "https://picsum.photos/id/30/60"
+          name: 'fullName3',
+          avatar: 'https://picsum.photos/id/30/60',
         },
         {
-          "name": "fullName4",
-          "avatar": "https://picsum.photos/id/30/60"
+          name: 'fullName4',
+          avatar: 'https://picsum.photos/id/30/60',
         },
         {
-          "name": "fullName5",
-          "avatar": "https://picsum.photos/id/30/60"
-        }
-      ]
+          name: 'fullName5',
+          avatar: 'https://picsum.photos/id/30/60',
+        },
+      ],
     },
     {
-      "title": "Section4",
-      "cover": "https://picsum.photos/id/40/1980",
-      "lazyCover": "https://picsum.photos/id/40/250",
-      "link": "https://picsum.photos/id/40/1980",
-      "team": [
+      title: 'Section4',
+      cover: 'https://picsum.photos/id/40/1980',
+      lazyCover: 'https://picsum.photos/id/40/250',
+      link: 'https://picsum.photos/id/40/1980',
+      team: [
         {
-          "name": "fullName0",
-          "avatar": "https://picsum.photos/id/40/60"
+          name: 'fullName0',
+          avatar: 'https://picsum.photos/id/40/60',
         },
         {
-          "name": "fullName1",
-          "avatar": "https://picsum.photos/id/40/60"
+          name: 'fullName1',
+          avatar: 'https://picsum.photos/id/40/60',
         },
         {
-          "name": "fullName2",
-          "avatar": "https://picsum.photos/id/40/60"
+          name: 'fullName2',
+          avatar: 'https://picsum.photos/id/40/60',
         },
         {
-          "name": "fullName3",
-          "avatar": "https://picsum.photos/id/40/60"
+          name: 'fullName3',
+          avatar: 'https://picsum.photos/id/40/60',
         },
         {
-          "name": "fullName4",
-          "avatar": "https://picsum.photos/id/40/60"
+          name: 'fullName4',
+          avatar: 'https://picsum.photos/id/40/60',
         },
         {
-          "name": "fullName5",
-          "avatar": "https://picsum.photos/id/40/60"
-        }
-      ]
+          name: 'fullName5',
+          avatar: 'https://picsum.photos/id/40/60',
+        },
+      ],
     },
     {
-      "title": "Section5",
-      "cover": "https://picsum.photos/id/50/1980",
-      "lazyCover": "https://picsum.photos/id/50/250",
-      "link": "https://picsum.photos/id/50/1980",
-      "team": [
+      title: 'Section5',
+      cover: 'https://picsum.photos/id/50/1980',
+      lazyCover: 'https://picsum.photos/id/50/250',
+      link: 'https://picsum.photos/id/50/1980',
+      team: [
         {
-          "name": "fullName0",
-          "avatar": "https://picsum.photos/id/50/60"
+          name: 'fullName0',
+          avatar: 'https://picsum.photos/id/50/60',
         },
         {
-          "name": "fullName1",
-          "avatar": "https://picsum.photos/id/50/60"
+          name: 'fullName1',
+          avatar: 'https://picsum.photos/id/50/60',
         },
         {
-          "name": "fullName2",
-          "avatar": "https://picsum.photos/id/50/60"
+          name: 'fullName2',
+          avatar: 'https://picsum.photos/id/50/60',
         },
         {
-          "name": "fullName3",
-          "avatar": "https://picsum.photos/id/50/60"
+          name: 'fullName3',
+          avatar: 'https://picsum.photos/id/50/60',
         },
         {
-          "name": "fullName4",
-          "avatar": "https://picsum.photos/id/50/60"
+          name: 'fullName4',
+          avatar: 'https://picsum.photos/id/50/60',
         },
         {
-          "name": "fullName5",
-          "avatar": "https://picsum.photos/id/50/60"
-        }
-      ]
-    }
+          name: 'fullName5',
+          avatar: 'https://picsum.photos/id/50/60',
+        },
+      ],
+    },
   ],
   ourStaff: [
     {
-      "id": 1,
-      "name": "Kirk Philips",
-      "position": "Frontend developer",
-      "stack": "Proficient in HTML + CSS, JS",
-      "img_src": "",
+      id: 1,
+      name: 'Kirk Philips',
+      position: 'Frontend developer',
+      stack: 'Proficient in HTML + CSS, JS',
+      img_src: '',
     },
     {
-      "id": 2,
-      "name": "Kirk Philips2",
-      "position": "Designer",
-      "stack": "Proficient in HTML + CSS, JS",
-      "img_src": "",
+      id: 2,
+      name: 'Kirk Philips2',
+      position: 'Designer',
+      stack: 'Proficient in HTML + CSS, JS',
+      img_src: '',
     },
     {
-      "id": 3,
-      "name": "Kirk Philip3",
-      "position": "Designer",
-      "stack": "Proficient in HTML + CSS, JS",
-      "img_src": "",
+      id: 3,
+      name: 'Kirk Philip3',
+      position: 'Designer',
+      stack: 'Proficient in HTML + CSS, JS',
+      img_src: '',
     },
     {
-      "id": 4,
-      "name": "Kirk Philips4",
-      "position": "Designer",
-      "stack": "Proficient in HTML + CSS, JS",
-      "img_src": "",
+      id: 4,
+      name: 'Kirk Philips4',
+      position: 'Designer',
+      stack: 'Proficient in HTML + CSS, JS',
+      img_src: '',
     },
     {
-      "id": 5,
-      "name": "Kirk Philips5",
-      "position": "Designer",
-      "stack": "Proficient in HTML + CSS, JS",
-      "img_src": "",
+      id: 5,
+      name: 'Kirk Philips5',
+      position: 'Designer',
+      stack: 'Proficient in HTML + CSS, JS',
+      img_src: '',
     },
   ],
-  pageCover: undefined
+  pageCover: undefined,
 });
 
 export const getters: GetterTree<RootState, RootState> = {
   getPageStage(state: State) {
-    return state.pages
+    return state.pages;
   },
 
   getProjectsStage(state: State) {
-    return state.projects
+    return state.projects;
   },
 
   getStaffStage(state: State) {
-    return state.projects
+    return state.projects;
   },
 
   getPageCover(state: State) {
-    return state.pageCover
+    return state.pageCover;
   },
 };
 
@@ -287,6 +287,6 @@ export const actions: ActionTree<RootState, RootState> = {};
 
 export const mutations: MutationTree<RootState> = {
   changePageCover(state: RootState, page: string | undefined): void {
-    state.pageCover = (page) ? `/image/background/${page}.png` : undefined
-  }
+    state.pageCover = page ? `/image/background/${page}.png` : undefined;
+  },
 };

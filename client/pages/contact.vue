@@ -11,7 +11,7 @@
     </v-img>
 
     <v-card-text>
-      <span>Number 10</span><br>
+      <span>Number 10</span><br />
       <span class="text--primary">
         <span>{{ $t('welcome') }}</span>
       </span>
@@ -25,13 +25,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
   layout: 'immediate',
   head: {
-    title: 'Contact'
-  }
+    title: 'Contact',
+  },
 })
 export default class ContactPage extends Vue {}
 </script>

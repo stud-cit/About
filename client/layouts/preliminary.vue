@@ -5,9 +5,11 @@
         <p class="headline text-uppercase mb-0">
           Choose What you are interested
         </p>
-        <p class="grey--text mb-0">Drag or scroll to move block</p>
+        <p class="grey--text mb-0">
+          Drag or scroll to move block
+        </p>
       </v-toolbar-title>
-      <v-spacer/>
+      <v-spacer />
       <v-speed-dial
         v-model="changeLocale"
         direction="left"
@@ -26,13 +28,13 @@
           :to="switchLocalePath(locale.code)"
           icon
         />
-        <v-divider vertical/>
+        <v-divider vertical />
       </v-speed-dial>
     </v-app-bar>
 
     <v-content>
       <v-container fluid class="fill-height pa-0">
-        <nuxt/>
+        <nuxt />
       </v-container>
     </v-content>
   </v-app>
@@ -45,8 +47,8 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class PreliminaryLayout extends Vue {
   changeLocale: boolean = false;
 
-  availableLocales () {
-    return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
+  availableLocales() {
+    return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale);
   }
 }
 </script>
