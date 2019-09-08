@@ -1,16 +1,16 @@
 <template>
   <v-app>
-    <v-app-bar app dark flat color="transparent">
-      <v-toolbar-title>Logotype</v-toolbar-title>
+    <v-app-bar app flat color="transparent">
+      <v-toolbar-title class="white px-2">Logotype</v-toolbar-title>
       <v-spacer/>
-      <v-toolbar-items>
+      <v-toolbar-items >
         <v-btn
           v-for="(page, i) in pages" :key="i"
-          :to="page.to" exact text
+          :to="page.to" dark exact text
         >
           <span>{{ page.title }}</span>
         </v-btn>
-        <v-btn icon to="/">
+        <v-btn icon dark to="/">
           <v-icon>mdi-fullscreen-exit</v-icon>
         </v-btn>
       </v-toolbar-items>
