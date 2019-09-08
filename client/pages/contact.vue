@@ -33,5 +33,5 @@ import { Component, Vue } from 'vue-property-decorator'
     title: 'Contact'
   }
 })
-export default class ContacPage extends Vue {}
+export default class ContactPage extends Vue {}
 </script>

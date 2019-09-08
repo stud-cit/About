@@ -23,6 +23,7 @@
           </div>
       </v-col>
     </v-row>
+    <ScrollBar /> 
   </v-container>
 </template>
 
@@ -30,11 +31,16 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { Mutation } from 'vuex-class'
 
+import ScrollBar from '@/components/ScrollBar.vue'
+
 @Component({
   layout: 'immediate',
   head: {
     title: 'Our staff'
   },
+  components: {
+    ScrollBar
+  }
 })
 export default class OurStaffPage extends Vue {
   @Mutation('changePageCover') changePageCover
