@@ -1,9 +1,9 @@
 <template>
   <v-container>
     <v-row justify="space-around">
-      <v-col 
-        v-for="person in $store.state.ourStaff"
-        :key="person.id"
+      <v-col
+        v-for="(person, i) in ourStaff"
+        :key="i"
         lg="4"
         sm="6"
         xs="12"
@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { Mutation } from 'vuex-class'
+import { Getter, Mutation } from 'vuex-class'
 
 import ScrollBar from '@/components/ScrollBar.vue'
 
@@ -43,6 +43,7 @@ import ScrollBar from '@/components/ScrollBar.vue'
   }
 })
 export default class OurStaffPage extends Vue {
+  @Getter('getStaffStage') ourStaff
   @Mutation('changePageCover') changePageCover
 
   created() {
@@ -73,7 +74,7 @@ export default class OurStaffPage extends Vue {
   border-radius: 50px
   filter: brightness(35%)
   max-height: 350px
-    
+
 .employee-position-full
   display: none
 
@@ -89,6 +90,6 @@ export default class OurStaffPage extends Vue {
       display: block
     .employee-position-short
       display: none
-	
-		
+
+
 </style>
