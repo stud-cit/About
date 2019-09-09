@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app > 
     <v-app-bar app dark flat color="transparent">
       <v-toolbar-title>Logotype</v-toolbar-title>
       <v-spacer/>
@@ -18,8 +18,8 @@
 
     <v-img :src="this.getDynamicAssets(cover)" class="imageCover"/>
 
-    <v-content>
-      <v-container fluid class="fill-height pa-0">
+    <v-content class="pt-0 ">
+      <v-container  fluid class="fill-height pa-0">
         <nuxt/>
       </v-container>
     </v-content>
@@ -42,4 +42,5 @@ export default class ImmediatetLayout extends Vue {
     position: fixed !important
     height: 100vh
     width: 100vw
+
 </style>
