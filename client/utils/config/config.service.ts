@@ -18,7 +18,7 @@ export class ConfigService {
   getSetting(key: string): any {
     const variable = this.envConfig[key];
 
-    if ( variable === undefined ) {
+    if (variable === undefined) {
       return undefined;
     }
 
@@ -29,7 +29,7 @@ export class ConfigService {
     if (!Number.isNaN(+variable)) {
       return +variable;
     }
-    
+
     return this.envConfig[key];
   }
 }

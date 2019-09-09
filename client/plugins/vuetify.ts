@@ -1,12 +1,12 @@
-import Vue from 'vue'
-import Vuetify from 'vuetify/lib'
+import Vue from 'vue';
+import Vuetify from 'vuetify/lib';
 
-import colors from 'vuetify/lib/util/colors'
-import '@mdi/font/css/materialdesignicons.css'
+import colors from 'vuetify/lib/util/colors';
+import '@mdi/font/css/materialdesignicons.css';
 
-Vue.use(Vuetify)
+Vue.use(Vuetify);
 
-export default (ctx) => {
+export default ctx => {
   const vuetify = new Vuetify({
     icons: {
       iconfont: 'mdi',
@@ -16,7 +16,7 @@ export default (ctx) => {
         minifyTheme: css => {
           return process.env.NODE_ENV === 'production'
             ? css.replace(/[\r\n|\r|\n]/g, '')
-            : css
+            : css;
         },
       },
       themes: {
@@ -28,10 +28,10 @@ export default (ctx) => {
         dark: {
           primary: colors.blue.lighten3,
         },
-      }
-    }
-  })
+      },
+    },
+  });
 
-  ctx.app.vuetify = vuetify
-  ctx.$vuetify = vuetify.framework
-}
+  ctx.app.vuetify = vuetify;
+  ctx.$vuetify = vuetify.framework;
+};

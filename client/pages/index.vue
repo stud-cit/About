@@ -2,8 +2,10 @@
   <div v-swiper:mySwiper="swiperOption">
     <div class="swiper-wrapper">
       <v-col
-        v-for="(page, i) in pages" :key="i"
-        cols="8" :offset="(!i) ? 0:1"
+        v-for="(page, i) in pages"
+        :key="i"
+        cols="8"
+        :offset="!i ? 0 : 1"
         class="swiper-slide"
       >
         <v-card :href="page.to" :link="true">
@@ -15,7 +17,7 @@
             :aspect-ratio="16 / 9"
           >
             <v-card-title class="title white--text fill-height">
-              <v-row justify="center" align="center" class="fill-height" >
+              <v-row justify="center" align="center" class="fill-height">
                 <span class="headline font-weight-bold font-italic px-4">
                   0{{ ++i }}
                 </span>
@@ -33,14 +35,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { Getter } from 'vuex-class'
+import { Component, Vue } from 'vue-property-decorator';
+import { Getter } from 'vuex-class';
 
 @Component({
   layout: 'preliminary',
   head: {
-    title: 'Home'
-  }
+    title: 'Home',
+  },
 })
 export default class HomePage extends Vue {
   @Getter('getPageStage') pages;
@@ -49,15 +51,14 @@ export default class HomePage extends Vue {
     mousewheel: true,
     centeredSlides: true,
     slidesPerView: 'auto',
-  }
+  };
 
   imagePageGradient: string =
-    "to top right, rgba(115, 115, 115, .33), rgba(32, 32, 72, .7)";
+    'to top right, rgba(115, 115, 115, .33), rgba(32, 32, 72, .7)';
 }
 </script>
 
 <style lang="sass">
-  .swiper-container
-    width: inherit
-
+.swiper-container
+  width: inherit
 </style>

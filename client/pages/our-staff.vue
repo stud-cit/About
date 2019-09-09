@@ -1,13 +1,7 @@
 <template>
   <v-container>
     <v-row justify="space-around">
-      <v-col 
-        v-for="person in $store.state.ourStaff"
-        :key="person.id"
-        lg="4"
-        sm="6"
-        xs="12"
-      >
+      <v-col v-for="(person, i) in ourStaff" :key="i" lg="4" sm="6" xs="12">
         <v-card class="card-img mx-auto" max-width="400">
           <v-img
             class="white--text"
@@ -16,31 +10,38 @@
           >
           </v-img>
         </v-card>
-          <div class="card-addition">
-            <div class="employee-name">{{person.name}}</div>
-            <div class="employee-position-short">{{person.position}}</div>
-            <div class="employee-position-full">{{person.stack}}</div>
-          </div>
+        <div class="card-addition">
+          <div class="employee-name">{{ person.name }}</div>
+          <div class="employee-position-short">{{ person.position }}</div>
+          <div class="employee-position-full">{{ person.stack }}</div>
+        </div>
       </v-col>
     </v-row>
+    <ScrollBar />
   </v-container>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { Mutation } from 'vuex-class'
+import { Component, Vue } from 'vue-property-decorator';
+import { Getter, Mutation } from 'vuex-class';
+
+import ScrollBar from '@/components/ScrollBar.vue';
 
 @Component({
   layout: 'immediate',
   head: {
-    title: 'Our staff'
+    title: 'Our staff',
+  },
+  components: {
+    ScrollBar,
   },
 })
 export default class OurStaffPage extends Vue {
-  @Mutation('changePageCover') changePageCover
+  @Getter('getStaffStage') ourStaff;
+  @Mutation('changePageCover') changePageCover;
 
   created() {
-    this.changePageCover('our-staff')
+    this.changePageCover('our-staff');
   }
 }
 </script>
@@ -67,7 +68,7 @@ export default class OurStaffPage extends Vue {
   border-radius: 50px
   filter: brightness(35%)
   max-height: 350px
-    
+
 .employee-position-full
   display: none
 
@@ -83,6 +84,4 @@ export default class OurStaffPage extends Vue {
       display: block
     .employee-position-short
       display: none
-	
-		
 </style>
