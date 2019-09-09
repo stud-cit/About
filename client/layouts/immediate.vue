@@ -5,8 +5,8 @@
       <v-spacer/>
       <v-toolbar-items>
         <v-btn
-          v-for="(page, i) in pages"
-          :key="i"
+          v-for="page in pages"
+          :key="page.id"
           :to="page.to"
           exact
           dark

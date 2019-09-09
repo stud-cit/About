@@ -21,7 +21,7 @@
             <v-card-action class="bottom_card_action">{{offer.bottom_action}}</v-card-action>
           </v-card>
         </section>
-        <section class="representation" v-for="preview in offer.representation" :key="preview">
+        <section class="representation" v-for="preview in offer.representation" :key="preview.id">
           <v-row  align="center" :justify="preview.positionCard">
             <img  class="preview_image" src="~/assets/image/weOffer/1.jpg"> 
             <v-card class="preview_card" :class="preview.positionCard">
@@ -30,7 +30,7 @@
             </v-card>
           </v-row>
       </section>
-      <footer  v-for="info in offer.footer" :key="info">
+      <footer v-for="info in offer.footer" :key="info">
         
       </footer>
     </v-column>
