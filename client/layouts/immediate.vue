@@ -1,8 +1,8 @@
 <template>
-  <v-app>
-    <v-app-bar app flat color="transparent">
-      <v-toolbar-title class="white px-2">Logotype</v-toolbar-title>
-      <v-spacer />
+  <v-app > 
+    <v-app-bar app dark flat color="transparent">
+      <v-toolbar-title>Logotype</v-toolbar-title>
+      <v-spacer/>
       <v-toolbar-items>
         <v-btn
           v-for="(page, i) in pages"

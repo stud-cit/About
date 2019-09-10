@@ -225,6 +225,44 @@ export const state = (): State => ({
       ],
     },
   ],
+  weOffers:[
+    {
+      "h1":"Do you know what we can?",
+      "h2":"What we do? What we support?",
+      "description":"Our possibilities are limited only by our imagination.",
+      "bottom_title":"Do you have some questions?",
+      "bottom_action":"USE OUR CONTACTS",
+      "representation":[
+        {
+          "title":"DEVELOPMENT OF WEB ",
+          "text":"A Web developer is a kind of programmer who specializes in the development of applications relating to the World Wide Web or distributed network applications, which typically run protocols like HTTP from a Web server to a client browser using associated programming languages like HTML/CSS, C#, Ruby and PHP to name a few.",
+          "img":"~/assets/image/weOffer/1.jpg",
+          "positionCard":"start"
+        },
+        {
+          "title":"CREATING SOFTWARE FOR REAL-WORLD TASKS",
+          "text":"Programming software is a software which helps the programmer in developing other software. Compilers, assemblers, debuggers, interpreters etc. are examples of programming software. Integrated development environments (IDEs) are combinations of all these software.",
+          "img":".~/assets/image/weOffer/2.jpg",
+          "positionCard":"end"
+        },
+        {
+          "title":"DESIGNING INFORMATION SYSTEMS OF VARIOUS COMPLEXITY",
+          "text":"Information system is a system composed of people and computers that processes or interprets information. The term is also sometimes used in more restricted senses to refer to only the software used to run a computerized database or to refer to only a computer system.",
+          "img":"~/assets/image/weOffer/3.jpg",
+          "positionCard":"end"
+        },
+      ],
+      "footer":[
+        {
+        "motto":"Speed, quality, simplicity",
+        "email":"STUDCITMAIL@GMAIL.COM",
+        "phone":"+380 98 43 70 202",
+        "street":"Ukraine, Sumy, st. Rimsky-Korsakov, 2",
+        "office":"Sumy State University, Electrotechnical Corps, cab. ET-504"
+        }
+      ]
+    },
+  ],
   ourStaff: [
     {
       id: 1,
