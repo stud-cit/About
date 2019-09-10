@@ -319,8 +319,12 @@ export const getters: GetterTree<RootState, RootState> = {
     return state.projects;
   },
 
+  getOffersStage(state: State) {
+    return state.weOffers
+  },
+
   getStaffStage(state: State) {
-    return state.projects;
+    return state.ourStaff;
   },
 
   getPageCover(state: State) {

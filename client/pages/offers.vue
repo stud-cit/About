@@ -1,6 +1,6 @@
 <template>
   <v-container class="wrapper" >  
-    <v-column v-for="offer in $store.state.weOffers"
+    <v-column v-for="offer in weOffers"
         :key="offer">
         <section class="question">
      
@@ -39,7 +39,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { Mutation } from 'vuex-class';
+import { Getter, Mutation } from 'vuex-class';
 
 @Component({
   layout: 'immediate',
@@ -49,6 +49,7 @@ import { Mutation } from 'vuex-class';
 })
 
 export default class OffersPage extends Vue {
+  @Getter('getOffersStage') weOffers;
   @Mutation('changePageCover') changePageCover;
 
   created() {
