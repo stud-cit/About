@@ -28,16 +28,14 @@
             </v-card>
           </v-row>
       </section>
-      <footer  >
-        
-      </footer>
+      <footer></footer>
     </v-column>
   </v-container>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { Mutation } from 'vuex-class';
+import { Getter, Mutation } from 'vuex-class';
 
 @Component({
   layout: 'immediate',
@@ -48,6 +46,7 @@ import { Mutation } from 'vuex-class';
 })
 
 export default class OffersPage extends Vue {
+  @Getter('getOffersStage') weOffers;
   @Mutation('changePageCover') changePageCover;
 
   data(){
