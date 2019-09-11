@@ -22,7 +22,7 @@
 
     <v-img :src="this.getDynamicAssets(cover)" class="imageCover" />
 
-    <v-content>
+    <v-content class="pt-0">
       <v-container fluid class="fill-height pa-0">
         <nuxt />
       </v-container>
