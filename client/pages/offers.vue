@@ -64,7 +64,7 @@ export default class OffersPage extends Vue {
 <style  lang="sass">    
     .wrapper
       width: 80%
-      color:white
+      color: white
 
     .question
       position: relative
@@ -73,11 +73,11 @@ export default class OffersPage extends Vue {
       flex-direction: column
       align-items: flex-start
       justify-content: flex-end
-      color:#ffffff
+      color: #ffffff
     
     h1,h2
       font-size: 4rem
-      color:white
+      color: white
     
     .navigation
       display: flex
