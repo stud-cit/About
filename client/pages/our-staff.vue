@@ -68,6 +68,7 @@ export default class OurStaffPage extends Vue {
   border-radius: 50px
   filter: brightness(35%)
   max-height: 350px
+  transition: 1s
 
 .employee-position-full
   display: none
