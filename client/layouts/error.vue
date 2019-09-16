@@ -9,6 +9,6 @@
 <script lang="ts">
 export default {
   props: ['error'],
-  layout: 'immediate'
+  layout: 'default'
 }
 </script>
