@@ -1,5 +1,6 @@
 <template>
-  <v-container class="wrapper" >  
+  <v-container class="wrapper" >
+    <ScrollBar />  
     <v-column >
         <section class="question">
             <h1>{{offer.h1}}</h1>
@@ -37,10 +38,15 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
 
+import ScrollBar from '@/components/ScrollBar.vue';
+
 @Component({
   layout: 'immediate',
   head: {
     title: 'Offers',
+  },
+  components: {
+    ScrollBar,
   },
   
 })
