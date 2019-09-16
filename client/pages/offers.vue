@@ -14,7 +14,6 @@
             </div>
             <p class="description">{{$store.state.weOffers.description}}</p>
             <p class="scroll_text">Scroll for more information</p>
-         
           <v-card class="bottom_card">
             <v-card-title class="bottom_card_title">{{$store.state.weOffers.bottom_title}}</v-card-title>
             <v-card-action class="bottom_card_action">{{$store.state.weOffers.bottom_action}}</v-card-action>

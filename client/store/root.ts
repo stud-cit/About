@@ -257,15 +257,6 @@ export const state = (): State => ({
           positionCard:'end'
         },
       ],
-      footer:
-        {
-        motto:'Speed, quality, simplicity',
-        email:'STUDCITMAIL@GMAIL.COM',
-        phone:'+380 98 43 70 202',
-        street:'Ukraine, Sumy, st. Rimsky-Korsakov, 2',
-        office:'Sumy State University, Electrotechnical Corps, cab. ET-504'
-        }
-      
     },
   
   ourStaff: [
@@ -306,6 +297,13 @@ export const state = (): State => ({
     },
   ],
   pageCover: undefined,
+  footer: {
+    motto:'Speed, quality, simplicity',
+    email:'STUDCITMAIL@GMAIL.COM',
+    phone:'+380 98 43 70 202',
+    street:'Ukraine, Sumy, st. Rimsky-Korsakov, 2',
+    office:'Sumy State University, Electrotechnical Corps, cab. ET-504'
+  }
 });
 
 export const getters: GetterTree<RootState, RootState> = {
