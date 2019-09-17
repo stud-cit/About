@@ -41,8 +41,7 @@ import { Getter, Mutation } from 'vuex-class';
   layout: 'immediate',
   head: {
     title: 'Offers',
-  },
-  
+  },  
 })
 
 export default class OffersPage extends Vue {
@@ -64,7 +63,8 @@ export default class OffersPage extends Vue {
 <style  lang="sass">    
     .wrapper
       width: 80%
-      color:white
+      color: #ffffff
+    
 
     .question
       position: relative
@@ -77,7 +77,8 @@ export default class OffersPage extends Vue {
     
     h1,h2
       font-size: 4rem
-      color:white
+      color:#ffffff
+    
     
     .navigation
       display: flex

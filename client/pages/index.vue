@@ -13,8 +13,9 @@
             :src="getDynamicAssets(page.img)"
             :gradient="imagePageGradient"
             :lazy-src="page.lazyImg"
-            height="60vh"
+            height="55vh"
             :aspect-ratio="16 / 9"
+      
           >
             <v-card-title class="title white--text fill-height">
               <v-row justify="center" align="center" class="fill-height">
@@ -51,6 +52,7 @@ export default class HomePage extends Vue {
     mousewheel: true,
     centeredSlides: true,
     slidesPerView: 'auto',
+    spaceBetween: 100 ,
   };
 
   imagePageGradient: string =
@@ -60,5 +62,8 @@ export default class HomePage extends Vue {
 
 <style lang="sass">
 .swiper-container
-  width: inherit
+  width: 100%
+
+.swiper-wrapper
+  width: 80%  
 </style>

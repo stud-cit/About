@@ -1,11 +1,11 @@
 <template>
   <v-app>
-    <v-app-bar app flat class="px-10 pt-5" color="transparent">
+    <v-app-bar app flat class="px-10 pt-10" color="transparent">
       <v-toolbar-title>
-        <p class="headline text-uppercase mb-0">
+        <p class="text-uppercase mb-0 choose font-weight-bold">
           Choose What you are interested
         </p>
-        <p class="grey--text mb-0">
+        <p class="grey--text mb-0 drag">
           Drag or scroll to move block
         </p>
       </v-toolbar-title>
@@ -33,7 +33,7 @@
     </v-app-bar>
 
     <v-content>
-      <v-container fluid class="fill-height pa-0">
+      <v-container fluid class="fill-height pa-0  swiperBlock" :class="{moveSwiper:moveSwiper}" >
         <nuxt />
       </v-container>
     </v-content>
@@ -46,11 +46,38 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component
 export default class PreliminaryLayout extends Vue {
   changeLocale: boolean = false;
+  moveSwiper: boolean = false;
 
   availableLocales() {
     return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale);
   }
+
+  goSwiper(){
+    setTimeout(() => {
+       this.moveSwiper = true;
+    }, 5000);
+  }
+
+  mounted(){
+    this.goSwiper();
+  }
 }
 </script>
+
+<style lang="sass">
+  .swiperBlock
+    transform: translateX(300%)
+
+  .moveSwiper
+      transform: translateX(0%)
+      transition: 2s
+
+  .choose
+    font-size: 1.8rem
+
+  .drag
+    font-size: 1.5rem  
+    font-weight: lighter
+</style>
 
 
