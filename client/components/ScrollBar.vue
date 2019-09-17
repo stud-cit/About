@@ -1,21 +1,52 @@
 <template>
-  <v-row>
-    <v-col class="scroll-bar">
-      Please move me to right side of this page. I'm bad scoll bar.
-    </v-col>
-  </v-row>
+    <div class="scrollbar-track" v-scroll="handleScroll">
+      <div class="scrollbar-thumb" v-bind:style="{top: top}"></div>
+    </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
+Vue.directive('scroll', {
+  inserted: function (el, binding) {
+    let f = function (evt) {
+      if (binding.value(evt, el)) {
+        window.removeEventListener('scroll', f)
+      }
+    }
+    window.addEventListener('scroll', f)
+  }
+})
+
 @Component
-export default class ScrollBar extends Vue {}
+export default class ScrollBar extends Vue {
+   el: 'scrollbar-track';
+   targ: 'scrollbar-thumb';
+   top : string = '';
+
+    handleScroll (evt, targ , el) : void { 
+        this.top= (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100 + '%';
+    }
+}
 </script>
 
 <style lang="sass">
-.scroll-bar
-  width: 20px
-  height: 100px
-  background: red
+.scrollbar-track 
+    position: fixed
+    top: 20%
+    right: 50px
+    bottom: 20%
+    width: 3px
+    background-color: rgba(0,0,0,1)
+
+.scrollbar-thumb 
+    cursor: pointer
+    position: absolute
+    top: 0
+    width: 12px
+    height: 12px
+    border-radius: 50%
+    right: -4px
+    background-color: rgba(255,255,255,1)
+
 </style>

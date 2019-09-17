@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <ScrollBar />
     <v-row justify="space-around">
       <v-col v-for="(person, i) in ourStaff" :key="i" lg="4" sm="6" xs="12">
         <v-card class="card-img mx-auto" max-width="400">
@@ -17,7 +18,6 @@
         </div>
       </v-col>
     </v-row>
-    <ScrollBar />
   </v-container>
 </template>
 
@@ -43,6 +43,7 @@ export default class OurStaffPage extends Vue {
   created() {
     this.changePageCover('our-staff');
   }
+
 }
 </script>
 
@@ -68,6 +69,7 @@ export default class OurStaffPage extends Vue {
   border-radius: 50px
   filter: brightness(35%)
   max-height: 350px
+  transition: 1s
 
 .employee-position-full
   display: none

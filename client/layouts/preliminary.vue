@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app flat class="px-10 pt-10" color="transparent">
+    <v-app-bar app flat class="px-10 ptop" color="transparent">
       <v-toolbar-title>
         <p class="text-uppercase mb-0 choose font-weight-bold">
           Choose What you are interested
@@ -65,6 +65,9 @@ export default class PreliminaryLayout extends Vue {
 </script>
 
 <style lang="sass">
+  .ptop
+    padding-top: 5rem
+
   .swiperBlock
     transform: translateX(300%)
 
@@ -78,6 +81,9 @@ export default class PreliminaryLayout extends Vue {
   .drag
     font-size: 1.5rem  
     font-weight: lighter
+
+  .ptop
+    padding-top: 4rem  
 </style>
 
 

@@ -35,200 +35,6 @@ export const state = (): State => ({
       lazyImg: `https://picsum.photos/id/5/60`,
     },
   ],
-  projects: [
-    {
-      title: 'Section0',
-      cover: 'https://picsum.photos/id/0/1980',
-      lazyCover: 'https://picsum.photos/id/0/250',
-      link: 'https://picsum.photos/id/0/1980',
-      team: [
-        {
-          name: 'fullName0',
-          avatar: 'https://picsum.photos/id/0/60',
-        },
-        {
-          name: 'fullName1',
-          avatar: 'https://picsum.photos/id/0/60',
-        },
-        {
-          name: 'fullName2',
-          avatar: 'https://picsum.photos/id/0/60',
-        },
-        {
-          name: 'fullName3',
-          avatar: 'https://picsum.photos/id/0/60',
-        },
-        {
-          name: 'fullName4',
-          avatar: 'https://picsum.photos/id/0/60',
-        },
-        {
-          name: 'fullName5',
-          avatar: 'https://picsum.photos/id/0/60',
-        },
-      ],
-    },
-    {
-      title: 'Section1',
-      cover: 'https://picsum.photos/id/10/1980',
-      lazyCover: 'https://picsum.photos/id/10/250',
-      link: 'https://picsum.photos/id/10/1980',
-      team: [
-        {
-          name: 'fullName0',
-          avatar: 'https://picsum.photos/id/10/60',
-        },
-        {
-          name: 'fullName1',
-          avatar: 'https://picsum.photos/id/10/60',
-        },
-        {
-          name: 'fullName2',
-          avatar: 'https://picsum.photos/id/10/60',
-        },
-        {
-          name: 'fullName3',
-          avatar: 'https://picsum.photos/id/10/60',
-        },
-        {
-          name: 'fullName4',
-          avatar: 'https://picsum.photos/id/10/60',
-        },
-        {
-          name: 'fullName5',
-          avatar: 'https://picsum.photos/id/10/60',
-        },
-      ],
-    },
-    {
-      title: 'Section2',
-      cover: 'https://picsum.photos/id/20/1980',
-      lazyCover: 'https://picsum.photos/id/20/250',
-      link: 'https://picsum.photos/id/20/1980',
-      team: [
-        {
-          name: 'fullName0',
-          avatar: 'https://picsum.photos/id/20/60',
-        },
-        {
-          name: 'fullName1',
-          avatar: 'https://picsum.photos/id/20/60',
-        },
-        {
-          name: 'fullName2',
-          avatar: 'https://picsum.photos/id/20/60',
-        },
-        {
-          name: 'fullName3',
-          avatar: 'https://picsum.photos/id/20/60',
-        },
-        {
-          name: 'fullName4',
-          avatar: 'https://picsum.photos/id/20/60',
-        },
-        {
-          name: 'fullName5',
-          avatar: 'https://picsum.photos/id/20/60',
-        },
-      ],
-    },
-    {
-      title: 'Section3',
-      cover: 'https://picsum.photos/id/30/1980',
-      lazyCover: 'https://picsum.photos/id/30/250',
-      link: 'https://picsum.photos/id/30/1980',
-      team: [
-        {
-          name: 'fullName0',
-          avatar: 'https://picsum.photos/id/30/60',
-        },
-        {
-          name: 'fullName1',
-          avatar: 'https://picsum.photos/id/30/60',
-        },
-        {
-          name: 'fullName2',
-          avatar: 'https://picsum.photos/id/30/60',
-        },
-        {
-          name: 'fullName3',
-          avatar: 'https://picsum.photos/id/30/60',
-        },
-        {
-          name: 'fullName4',
-          avatar: 'https://picsum.photos/id/30/60',
-        },
-        {
-          name: 'fullName5',
-          avatar: 'https://picsum.photos/id/30/60',
-        },
-      ],
-    },
-    {
-      title: 'Section4',
-      cover: 'https://picsum.photos/id/40/1980',
-      lazyCover: 'https://picsum.photos/id/40/250',
-      link: 'https://picsum.photos/id/40/1980',
-      team: [
-        {
-          name: 'fullName0',
-          avatar: 'https://picsum.photos/id/40/60',
-        },
-        {
-          name: 'fullName1',
-          avatar: 'https://picsum.photos/id/40/60',
-        },
-        {
-          name: 'fullName2',
-          avatar: 'https://picsum.photos/id/40/60',
-        },
-        {
-          name: 'fullName3',
-          avatar: 'https://picsum.photos/id/40/60',
-        },
-        {
-          name: 'fullName4',
-          avatar: 'https://picsum.photos/id/40/60',
-        },
-        {
-          name: 'fullName5',
-          avatar: 'https://picsum.photos/id/40/60',
-        },
-      ],
-    },
-    {
-      title: 'Section5',
-      cover: 'https://picsum.photos/id/50/1980',
-      lazyCover: 'https://picsum.photos/id/50/250',
-      link: 'https://picsum.photos/id/50/1980',
-      team: [
-        {
-          name: 'fullName0',
-          avatar: 'https://picsum.photos/id/50/60',
-        },
-        {
-          name: 'fullName1',
-          avatar: 'https://picsum.photos/id/50/60',
-        },
-        {
-          name: 'fullName2',
-          avatar: 'https://picsum.photos/id/50/60',
-        },
-        {
-          name: 'fullName3',
-          avatar: 'https://picsum.photos/id/50/60',
-        },
-        {
-          name: 'fullName4',
-          avatar: 'https://picsum.photos/id/50/60',
-        },
-        {
-          name: 'fullName5',
-          avatar: 'https://picsum.photos/id/50/60',
-        },
-      ],
-    },
-  ],
   weOffers:
     {
       h1:'Do you know what we can?',
@@ -236,7 +42,7 @@ export const state = (): State => ({
       description:'Our possibilities are limited only by our imagination.',
       bottom_title:'Do you have some questions?',
       bottom_action:'USE OUR CONTACTS',
-      representation:[
+      representation: [
         {
 
           title:'DEVELOPMENT OF WEB ',
@@ -257,15 +63,6 @@ export const state = (): State => ({
           positionCard:'end'
         },
       ],
-      footer:
-        {
-        motto:'Speed, quality, simplicity',
-        email:'STUDCITMAIL@GMAIL.COM',
-        phone:'+380 98 43 70 202',
-        street:'Ukraine, Sumy, st. Rimsky-Korsakov, 2',
-        office:'Sumy State University, Electrotechnical Corps, cab. ET-504'
-        }
-      
     },
   
   ourStaff: [
@@ -305,7 +102,213 @@ export const state = (): State => ({
       img_src: '',
     },
   ],
+  portfolio: {
+    h1:'Do you know what we can?',
+    h2:'What we have made?',
+    description:'Our projects is one of the best',
+    projects: [
+      {
+        title: 'Section0',
+        cover: 'https://picsum.photos/id/0/1980',
+        lazyCover: 'https://picsum.photos/id/0/250',
+        link: 'https://picsum.photos/id/0/1980',
+        team: [
+          {
+            name: 'fullName0',
+            avatar: 'https://picsum.photos/id/0/60',
+          },
+          {
+            name: 'fullName1',
+            avatar: 'https://picsum.photos/id/0/60',
+          },
+          {
+            name: 'fullName2',
+            avatar: 'https://picsum.photos/id/0/60',
+          },
+          {
+            name: 'fullName3',
+            avatar: 'https://picsum.photos/id/0/60',
+          },
+          {
+            name: 'fullName4',
+            avatar: 'https://picsum.photos/id/0/60',
+          },
+          {
+            name: 'fullName5',
+            avatar: 'https://picsum.photos/id/0/60',
+          },
+        ],
+      },
+      {
+        title: 'Section1',
+        cover: 'https://picsum.photos/id/10/1980',
+        lazyCover: 'https://picsum.photos/id/10/250',
+        link: 'https://picsum.photos/id/10/1980',
+        team: [
+          {
+            name: 'fullName0',
+            avatar: 'https://picsum.photos/id/10/60',
+          },
+          {
+            name: 'fullName1',
+            avatar: 'https://picsum.photos/id/10/60',
+          },
+          {
+            name: 'fullName2',
+            avatar: 'https://picsum.photos/id/10/60',
+          },
+          {
+            name: 'fullName3',
+            avatar: 'https://picsum.photos/id/10/60',
+          },
+          {
+            name: 'fullName4',
+            avatar: 'https://picsum.photos/id/10/60',
+          },
+          {
+            name: 'fullName5',
+            avatar: 'https://picsum.photos/id/10/60',
+          },
+        ],
+      },
+      {
+        title: 'Section2',
+        cover: 'https://picsum.photos/id/20/1980',
+        lazyCover: 'https://picsum.photos/id/20/250',
+        link: 'https://picsum.photos/id/20/1980',
+        team: [
+          {
+            name: 'fullName0',
+            avatar: 'https://picsum.photos/id/20/60',
+          },
+          {
+            name: 'fullName1',
+            avatar: 'https://picsum.photos/id/20/60',
+          },
+          {
+            name: 'fullName2',
+            avatar: 'https://picsum.photos/id/20/60',
+          },
+          {
+            name: 'fullName3',
+            avatar: 'https://picsum.photos/id/20/60',
+          },
+          {
+            name: 'fullName4',
+            avatar: 'https://picsum.photos/id/20/60',
+          },
+          {
+            name: 'fullName5',
+            avatar: 'https://picsum.photos/id/20/60',
+          },
+        ],
+      },
+      {
+        title: 'Section3',
+        cover: 'https://picsum.photos/id/30/1980',
+        lazyCover: 'https://picsum.photos/id/30/250',
+        link: 'https://picsum.photos/id/30/1980',
+        team: [
+          {
+            name: 'fullName0',
+            avatar: 'https://picsum.photos/id/30/60',
+          },
+          {
+            name: 'fullName1',
+            avatar: 'https://picsum.photos/id/30/60',
+          },
+          {
+            name: 'fullName2',
+            avatar: 'https://picsum.photos/id/30/60',
+          },
+          {
+            name: 'fullName3',
+            avatar: 'https://picsum.photos/id/30/60',
+          },
+          {
+            name: 'fullName4',
+            avatar: 'https://picsum.photos/id/30/60',
+          },
+          {
+            name: 'fullName5',
+            avatar: 'https://picsum.photos/id/30/60',
+          },
+        ],
+      },
+      {
+        title: 'Section4',
+        cover: 'https://picsum.photos/id/40/1980',
+        lazyCover: 'https://picsum.photos/id/40/250',
+        link: 'https://picsum.photos/id/40/1980',
+        team: [
+          {
+            name: 'fullName0',
+            avatar: 'https://picsum.photos/id/40/60',
+          },
+          {
+            name: 'fullName1',
+            avatar: 'https://picsum.photos/id/40/60',
+          },
+          {
+            name: 'fullName2',
+            avatar: 'https://picsum.photos/id/40/60',
+          },
+          {
+            name: 'fullName3',
+            avatar: 'https://picsum.photos/id/40/60',
+          },
+          {
+            name: 'fullName4',
+            avatar: 'https://picsum.photos/id/40/60',
+          },
+          {
+            name: 'fullName5',
+            avatar: 'https://picsum.photos/id/40/60',
+          },
+        ],
+      },
+      {
+        title: 'Section5',
+        cover: 'https://picsum.photos/id/50/1980',
+        lazyCover: 'https://picsum.photos/id/50/250',
+        link: 'https://picsum.photos/id/50/1980',
+        team: [
+          {
+            name: 'fullName0',
+            avatar: 'https://picsum.photos/id/50/60',
+          },
+          {
+            name: 'fullName1',
+            avatar: 'https://picsum.photos/id/50/60',
+          },
+          {
+            name: 'fullName2',
+            avatar: 'https://picsum.photos/id/50/60',
+          },
+          {
+            name: 'fullName3',
+            avatar: 'https://picsum.photos/id/50/60',
+          },
+          {
+            name: 'fullName4',
+            avatar: 'https://picsum.photos/id/50/60',
+          },
+          {
+            name: 'fullName5',
+            avatar: 'https://picsum.photos/id/50/60',
+          },
+        ],
+      },
+    ],
+  },
   pageCover: undefined,
+  footer: {
+    motto:'Speed, quality, simplicity',
+    email:'STUDCITMAIL@GMAIL.COM',
+    phone:'+380 98 43 70 202',
+    street:'Ukraine, Sumy, st. Rimsky-Korsakov, 2',
+    office:'Sumy State University, Electrotechnical Corps, cab. ET-504'
+  }
 });
 
 export const getters: GetterTree<RootState, RootState> = {
@@ -314,7 +317,7 @@ export const getters: GetterTree<RootState, RootState> = {
   },
 
   getProjectsStage(state: State) {
-    return state.projects;
+    return state.portfolio.projects;
   },
 
   getOffersStage(state: State) {
@@ -323,6 +326,10 @@ export const getters: GetterTree<RootState, RootState> = {
 
   getStaffStage(state: State) {
     return state.ourStaff;
+  },
+
+  getPortfolioStage(state: State) {
+    return state.portfolio;
   },
 
   getPageCover(state: State) {
