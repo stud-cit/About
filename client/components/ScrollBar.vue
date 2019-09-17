@@ -1,5 +1,5 @@
 <template>
-    <div class="scrollbar-track" v-scroll="handleScroll">
+    <div class="scrollbar-track" v-bind:class="{ displayNone: displays}" v-scroll="handleScroll">
       <div class="scrollbar-thumb" v-bind:style="{top: top}"></div>
     </div>
 </template>
@@ -20,12 +20,18 @@ Vue.directive('scroll', {
 
 @Component
 export default class ScrollBar extends Vue {
-   el: 'scrollbar-track';
-   targ: 'scrollbar-thumb';
-   top : string = '';
-
+  el: 'scrollbar-track';
+  targ: 'scrollbar-thumb';
+  top: string = '';
+  displays: boolean = false;
+  
     handleScroll (evt, targ , el) : void { 
-        this.top= (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100 + '%';
+      if (document.body.scrollHeight <= window.innerHeight) {
+        this.displays = true;
+      } else {
+        this.displays = false;
+        this.top = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100 + '%';
+      }
     }
 }
 </script>
@@ -48,5 +54,8 @@ export default class ScrollBar extends Vue {
     border-radius: 50%
     right: -4px
     background-color: rgba(255,255,255,1)
+
+.displayNone
+    display: none
 
 </style>
