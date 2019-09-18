@@ -15,7 +15,6 @@
             :lazy-src="page.lazyImg"
             height="55vh"
             :aspect-ratio="16 / 9"
-      
           >
             <v-card-title class="title white--text fill-height">
               <v-row justify="center" align="center" class="fill-height">
