@@ -78,8 +78,9 @@ export default class OurStaffPage extends Vue {
     color: #ffffff
   
   h1
-    font-size: 4rem
+    font-size: 5rem
     color: white
+    width: 85%
   
   .navigation
     display: flex
@@ -134,6 +135,7 @@ export default class OurStaffPage extends Vue {
     font-size: 1.3rem  
 
   .bottom-card-action
+    justify-content: center
     text-decoration: underline
     font-weight: 100
 
