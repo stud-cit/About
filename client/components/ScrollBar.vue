@@ -33,8 +33,13 @@ export default class ScrollBar extends Vue {
         this.top = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100 + '%';
       }
     }
+  mounted(){
+      if (document.body.scrollHeight <= window.innerHeight) {
+        this.displays = true;
+      }
+  }
 }
-</script>
+</script> 
 
 <style lang="sass">
 .scrollbar-track 
