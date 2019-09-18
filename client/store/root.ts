@@ -35,13 +35,29 @@ export const state = (): State => ({
       lazyImg: `https://picsum.photos/id/5/60`,
     },
   ],
+  about: {
+    previewTitle: 'Student centr of information technology',
+    previewSubtitle: 'We can make this world better.',
+    slides: [
+      {
+        title: 'Student centr of information technology',
+        content: 'The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through.'
+      },
+      {
+        title: 'Student centr of information technology',
+        content: 'The Woodman. Lorem'
+      },
+      {
+        title: 'Student centr of information technology',
+        content: 'The Woodman. Lorem'
+      },
+    ]
+  },
   weOffers:
     {
-      h1:'Do you know what we can?',
-      h2:'What we do? What we support?',
-      description:'Our possibilities are limited only by our imagination.',
-      bottom_title:'Do you have some questions?',
-      bottom_action:'USE OUR CONTACTS',
+      previewTitle:'Do you know what we can?',
+      previewSubtitle:'What we do? What we support?',
+      previewDescription:'Our possibilities are limited only by our imagination.',
       representation: [
         {
 
@@ -71,35 +87,35 @@ export const state = (): State => ({
       name: 'Kirk Philips',
       position: 'Frontend developer',
       stack: 'Proficient in HTML + CSS, JS',
-      img_src: '',
+      img_src: 'https://images.pexels.com/photos/1181373/pexels-photo-1181373.jpeg"',
     },
     {
       id: 2,
       name: 'Kirk Philips2',
       position: 'Designer',
       stack: 'Proficient in HTML + CSS, JS',
-      img_src: '',
+      img_src: 'https://images.pexels.com/photos/1181373/pexels-photo-1181373.jpeg"',
     },
     {
       id: 3,
       name: 'Kirk Philip3',
       position: 'Designer',
       stack: 'Proficient in HTML + CSS, JS',
-      img_src: '',
+      img_src: 'https://images.pexels.com/photos/1181373/pexels-photo-1181373.jpeg"',
     },
     {
       id: 4,
       name: 'Kirk Philips4',
       position: 'Designer',
       stack: 'Proficient in HTML + CSS, JS',
-      img_src: '',
+      img_src: 'https://images.pexels.com/photos/1181373/pexels-photo-1181373.jpeg"',
     },
     {
       id: 5,
       name: 'Kirk Philips5',
       position: 'Designer',
       stack: 'Proficient in HTML + CSS, JS',
-      img_src: '',
+      img_src: 'https://images.pexels.com/photos/1181373/pexels-photo-1181373.jpeg"',
     },
   ],
   portfolio: {
@@ -318,6 +334,10 @@ export const getters: GetterTree<RootState, RootState> = {
 
   getProjectsStage(state: State) {
     return state.portfolio.projects;
+  },
+
+  getAboutStage(state: State) {
+    return state.about
   },
 
   getOffersStage(state: State) {

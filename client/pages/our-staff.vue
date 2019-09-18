@@ -7,7 +7,7 @@
           <v-img
             class="white--text"
             height="250px"
-            src="https://images.pexels.com/photos/1181373/pexels-photo-1181373.jpeg"
+            :src="person.img_src"
           >
           </v-img>
         </v-card>
@@ -75,6 +75,7 @@ export default class OurStaffPage extends Vue {
   display: none
 
 .card-img:hover
+  z-index: 10
   transform: scale(1.25)
   filter: brightness(100%)
   transition: 1s

@@ -1,10 +1,10 @@
 <template>
   <v-container class="wrapper">
-    <ScrollBar />  
+    <ScrollBar/>  
     <v-column>
         <section class="question">
-            <h1>{{weOffers.h1}}</h1>
-            <h2>{{weOffers.h2}}</h2>
+            <h1>{{weOffers.previewTitle}}</h1>
+            <h2>{{weOffers.previewSubtitle}}</h2>
             <div class="navigation">
               <div class="arrow">&#8592;</div>
               <div class="arrow">&#8594;</div>
@@ -12,18 +12,18 @@
               <div class="squareTwo square"></div>
               <div class="squareThree square"></div>
             </div>
-            <p class="description">{{weOffers.description}}</p>
-            <p class="scroll_text">Scroll for more information</p>
-          <v-card class="bottom_card">
-            <v-card-title class="bottom_card_title">{{weOffers.bottom_title}}</v-card-title>
-            <v-card-actions class="bottom_card_action">{{weOffers.bottom_action}}</v-card-actions>
+            <p class="description">{{weOffers.previewDescription}}</p>
+            <p class="scroll-text">Scroll for more information</p>
+          <v-card class="bottom-card">
+            <v-card-title class="bottom-card-title">Do you have some questions?</v-card-title>
+            <v-card-actions class="bottom-card-action">USE OUR CONTACTS</v-card-actions>
           </v-card>
         </section>
         <section class="representation" v-for="(preview,index) in weOffers.representation" :key="index">
           <v-row align="center" :justify="preview.positionCard">
-            <img class="preview_image" src="~/assets/image/weOffer/1.jpg"> 
-            <v-card class="preview_card" :class="preview.positionCard">
-              <v-card-title class="preview_title">{{preview.title}}</v-card-title>
+            <img class="preview-image" src="~/assets/image/weOffer/1.jpg"> 
+            <v-card class="preview-card" :class="preview.positionCard">
+              <v-card-title class="preview-title">{{preview.title}}</v-card-title>
               <v-card-text>{{preview.text}}</v-card-text>
             </v-card>
           </v-row>
@@ -107,11 +107,11 @@ export default class OffersPage extends Vue {
   .description
     font-size: 2rem
 
-  .scroll_text
+  .scroll-text
     opacity: 0.5
     font-size: 1.3rem  
 
-  .bottom_card
+  .bottom-card
     color: black
     font-size: 2rem
     font-weight: 100
@@ -126,12 +126,12 @@ export default class OffersPage extends Vue {
     align-self: flex-end
     margin-bottom: 1rem   
 
-  .bottom_card_title
+  .bottom-card-title
     text-align: center
     justify-content: center
     font-size: 1.3rem  
 
-  .bottom_card_action
+  .bottom-card-action
     text-decoration: underline
     font-weight: 100
   
@@ -144,7 +144,7 @@ export default class OffersPage extends Vue {
     align-items: center
     overflow: hidden
     
-  .preview_card
+  .preview-card
     width: 35rem
     padding: 3rem 2rem
     position: absolute
@@ -157,7 +157,7 @@ export default class OffersPage extends Vue {
       height: 100%
       left: 0
 
-  .preview_title
+  .preview-title
     margin-bottom: 2rem
 
   .adress
