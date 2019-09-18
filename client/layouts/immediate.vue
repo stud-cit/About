@@ -1,7 +1,7 @@
 <template>
   <v-app> 
     <v-app-bar app dark flat color="transparent">
-      <v-toolbar-title>Logotype</v-toolbar-title>
+      <img class="logo" src="/logo.svg" />
       <v-spacer/>
       <v-toolbar-items>
         <v-btn
@@ -42,6 +42,8 @@ export default class ImmediatetLayout extends Vue {
 </script>
 
 <style lang="sass">
+  .logo 
+    width: 85px
   .imageCover
     position: fixed !important
     height: 100vh

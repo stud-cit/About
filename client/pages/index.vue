@@ -56,6 +56,9 @@ export default class HomePage extends Vue {
 
   imagePageGradient: string =
     'to top right, rgba(115, 115, 115, .33), rgba(32, 32, 72, .7)';
+  mounted() {
+    console.log(this.$router)
+  }
 }
 </script>
 
