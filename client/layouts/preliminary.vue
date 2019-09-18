@@ -53,9 +53,17 @@ export default class PreliminaryLayout extends Vue {
   }
 
   goSwiper(){
-    setTimeout(() => {
-       this.moveSwiper = true;
-    }, 5000);
+    console.log(document.referrer)
+    if(document.referrer == 'http://localhost:8080/'){
+      setTimeout(() => {
+        this.moveSwiper = true;
+       }, 100);
+    } else{
+       setTimeout(() => {
+        this.moveSwiper = true;
+       }, 5000);
+    }
+    
   }
 
   mounted(){
