@@ -5,13 +5,13 @@
                 <div class="description">Not F<img src="@/static/not-found.svg" alt="">und</div>
             </section>
             <section v-else>An error occurred</section>
-            <a href="/" class="link">
+            <nuxt-link to="/" class="link">
                 <div class="back">
                 </div>
                 <div class="text">
                     Return to Home Page
                 </div>
-            </a>
+            </nuxt-link>
         </div>
 </template>
 
@@ -32,19 +32,20 @@ export default {
 	position: absolute
 	top: 50%
 	transform: translateY(-50%)
-	~ .number
+	.number
 		font-size: 250px
 		color: rgba(206, 206, 206, 1)
-	~ .description
+	.description
 		font-size: 150px
 		display: inline
 		color: rgba(218, 218, 218, 1)
-	~ img
+	img
 		width: auto
 		height: 250px
+		vertical-align: text-top
 
 .link
-	~ .back
+	.back
 		background: rgba(242, 242, 242, 1)
 		height: 100vh
 		width: 100px
@@ -56,14 +57,21 @@ export default {
 		position: absolute
 		transform: rotate(-90deg)
 		font-size: 60px
-		right: 260px
-		top: 0
-		bottom: 0
-		display: flex
-		flex-direction: row-reverse
-		align-items: flex-end
-	:link, :visited, :active, :hover
+		right: -15rem
+		height: 100px
 		text-decoration: none
 		color: rgba(227, 227, 227, 1)
+		:link
+			text-decoration: none
+			color: rgba(227, 227, 227, 1)
+		:visited
+			text-decoration: none
+			color: rgba(227, 227, 227, 1)
+		:active
+			text-decoration: none
+			color: rgba(227, 227, 227, 1)
+		:hover
+			text-decoration: none
+			color: rgba(227, 227, 227, 1)
 
 </style>
