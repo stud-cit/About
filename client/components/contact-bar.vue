@@ -1,17 +1,24 @@
 <template>
   <v-container fluid class="contact-bar" :class="{active: isActive}">
       <p>Contact bar</p>
+
+      <span @click="onCloseContactBar">X</span>
   </v-container>
 </template>
 
 
 <script lang="ts">
   import {Vue, Component} from 'vue-property-decorator';
-  import { Getter } from 'vuex-class';
+  import { Getter, Mutation } from 'vuex-class';
 
   @Component({})
   export default class ContactBar extends Vue {
     @Getter('getContactBarVisibility') isActive;
+    @Mutation('changeContactBar') changeContactBar;
+
+    onCloseContactBar() {
+      this.changeContactBar(false);
+    }
   }
 </script>
 

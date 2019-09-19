@@ -25,15 +25,16 @@ export default class ScrollBar extends Vue {
   top: string = '';
   displays: boolean = false;
   
-    handleScroll (evt, targ , el) : void { 
-      if (document.body.scrollHeight <= window.innerHeight) {
-        this.displays = true;
-      } else {
-        this.displays = false;
-        this.top = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100 + '%';
-      }
+  handleScroll(evt, targ, el) : void { 
+    if (document.body.scrollHeight <= window.innerHeight) {
+      this.displays = true;
+    } else {
+      this.displays = false;
+      this.top = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100 + '%';
     }
-  mounted(){
+  }
+
+  mounted() {
       if (document.body.scrollHeight <= window.innerHeight) {
         this.displays = true;
       }
@@ -62,5 +63,4 @@ export default class ScrollBar extends Vue {
 
 .displayNone
     display: none
-
 </style>

@@ -62,8 +62,6 @@ export default class OurStaffPage extends Vue {
   showContactBar() {
     this.changeContactBar(true);
   }
-  
-
 }
 </script>
 
