@@ -23,7 +23,7 @@
           <v-img
             class="white--text"
             height="250px"
-            :src="person.img_src"
+            :src="getDynamicAssets(person.img_src)"
           >
           </v-img>
         </v-card>

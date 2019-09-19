@@ -21,7 +21,7 @@
         </section>
         <section class="representation" v-for="(preview,index) in weOffers.representation" :key="index">
           <v-row align="center" :justify="preview.positionCard">
-            <img class="preview-image" src="~/assets/image/weOffer/1.jpg"> 
+            <img class="preview-image" src="~/assets/images/weOffer/1.jpg"> 
             <v-card class="preview-card" :class="preview.positionCard">
               <v-card-title class="preview-title">{{preview.title}}</v-card-title>
               <v-card-text>{{preview.text}}</v-card-text>

@@ -29,6 +29,7 @@ export default class ScrollBar extends Vue {
     if (document.body.scrollHeight <= window.innerHeight) {
       this.displays = true;
     } else {
+      console.log('finish?');
       this.displays = false;
       this.top = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100 + '%';
     }
