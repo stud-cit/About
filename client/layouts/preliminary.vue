@@ -33,7 +33,7 @@
     </v-app-bar>
 
     <v-content>
-      <v-container fluid class="fill-height pa-0  swiperBlock" :class="{moveSwiper:moveSwiper}" >
+      <v-container fluid class="fill-height pa-0 swiperBlock" :class="{moveSwiper:moveSwiper}" >
         <nuxt />
       </v-container>
     </v-content>
