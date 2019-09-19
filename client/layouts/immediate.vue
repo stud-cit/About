@@ -1,6 +1,6 @@
 <template>
   <v-app> 
-    <v-app-bar app dark flat color="transparent">
+    <v-app-bar app dark flat color="transparent" id="header">
       <img class="logo" src="/logo.svg" />
       <v-spacer/>
       <v-toolbar-items>
@@ -48,6 +48,8 @@ export default class ImmediatetLayout extends Vue {
 </script>
 
 <style lang="sass">
+  #header
+    z-index: 30
   .logo 
     width: 85px
   .imageCover
