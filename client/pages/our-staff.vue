@@ -11,7 +11,7 @@
             </div>
             <p class="description">{{ourStaff.previewDescription}}</p>
             <p class="scroll-text">Scroll for more information</p>
-          <v-card class="bottom-card">
+          <v-card class="bottom-card" @click="showContactBar">
             <v-card-title class="bottom-card-title">Do you have some questions?</v-card-title>
             <v-card-actions class="bottom-card-action">USE OUR CONTACTS</v-card-actions>
           </v-card>
@@ -41,7 +41,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
 
-import ScrollBar from '@/components/ScrollBar.vue';
+import ScrollBar from '@/components/scroll-bar.vue';
 
 @Component({
   layout: 'immediate',
@@ -55,10 +55,14 @@ import ScrollBar from '@/components/ScrollBar.vue';
 export default class OurStaffPage extends Vue {
   @Getter('getStaffStage') ourStaff;
   @Mutation('changePageCover') changePageCover;
-
+  @Mutation('changeContactBar') changeContactBar;
   created() {
     this.changePageCover('our-staff');
   }
+  showContactBar() {
+    this.changeContactBar(true);
+  }
+  
 
 }
 </script>

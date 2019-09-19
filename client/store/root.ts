@@ -322,7 +322,8 @@ export const state = (): State => ({
     ],
   },
   pageCover: undefined,
-  footer: {
+  showContactBar: false,
+  concacts: {
     motto:'Speed, quality, simplicity',
     email:'STUDCITMAIL@GMAIL.COM',
     phone:'+380 98 43 70 202',
@@ -332,6 +333,10 @@ export const state = (): State => ({
 });
 
 export const getters: GetterTree<RootState, RootState> = {
+  getContactBarVisibility(state: State) {
+    return state.showContactBar;
+  },
+
   getPageStage(state: State) {
     return state.pages;
   },
@@ -366,5 +371,9 @@ export const actions: ActionTree<RootState, RootState> = {};
 export const mutations: MutationTree<RootState> = {
   changePageCover(state: RootState, page: string | undefined): void {
     state.pageCover = page ? `/image/background/${page}.png` : undefined;
+  },
+  changeContactBar(state: RootState, visibility: boolean): void {
+
+    state.showContactBar = visibility;
   },
 };

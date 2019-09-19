@@ -23,8 +23,9 @@
     <v-img :src="this.getDynamicAssets(cover)" class="imageCover" />
 
     <v-content class="pt-0">
-      <v-container  fluid class="fill-height pa-0">
+      <v-container fluid class="fill-height pa-0">
         <nuxt/>
+        <contact-bar />
       </v-container>
     </v-content>
   </v-app>
@@ -33,8 +34,13 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Getter } from 'vuex-class';
+import ContactBar from '@/components/contact-bar.vue';
 
-@Component
+@Component({
+  components: {
+    'contact-bar': ContactBar,
+  }
+})
 export default class ImmediatetLayout extends Vue {
   @Getter('getPageStage') pages;
   @Getter('getPageCover') cover;
