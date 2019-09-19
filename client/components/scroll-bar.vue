@@ -1,11 +1,12 @@
 <template>
     <div class="scrollbar-track" v-bind:class="{ displayNone: displays}" v-scroll="handleScroll">
-      <div class="scrollbar-thumb" v-bind:style="{top: top}"></div>
+      <div class="scrollbar-thumb" v-bind:style="{top: `${currScroll}%`}"></div>
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Mutation } from 'vuex-class';
 
 Vue.directive('scroll', {
   inserted: function (el, binding) {
@@ -20,18 +21,19 @@ Vue.directive('scroll', {
 
 @Component
 export default class ScrollBar extends Vue {
+  @Mutation('changeContactBar') changeContactBar;
+
   el: 'scrollbar-track';
   targ: 'scrollbar-thumb';
-  top: string = '';
+  currScroll: number = 0;
   displays: boolean = false;
   
   handleScroll(evt, targ, el) : void { 
     if (document.body.scrollHeight <= window.innerHeight) {
       this.displays = true;
     } else {
-      console.log('finish?');
       this.displays = false;
-      this.top = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100 + '%';
+      this.currScroll = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
     }
   }
 
@@ -39,6 +41,13 @@ export default class ScrollBar extends Vue {
       if (document.body.scrollHeight <= window.innerHeight) {
         this.displays = true;
       }
+  }
+
+  @Watch('currScroll')
+  onChangeScroll(value: number) {
+    if(value === 100) {
+      this.changeContactBar(true);
+    }
   }
 }
 </script> 
