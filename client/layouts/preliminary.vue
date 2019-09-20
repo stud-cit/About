@@ -53,7 +53,6 @@ export default class PreliminaryLayout extends Vue {
   }
 
   goSwiper(){
-    console.log(document.referrer)
     if(document.referrer == 'http://localhost:8080/'){
       setTimeout(() => {
         this.moveSwiper = true;

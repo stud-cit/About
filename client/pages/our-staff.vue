@@ -1,6 +1,6 @@
 <template>
   <v-container class="wrapper">
-    <PreviewPage v-bind:title="ourStaff.previewTitle" v-bind:subtitle="ourStaff.previewSubtitle" v-bind:description="ourStaff.previewDescription" />
+    <PreviewPage :title="ourStaff.previewTitle" :subtitle="ourStaff.previewSubtitle" :description="ourStaff.previewDescription" />
     <ScrollBar />
     <v-row justify="space-around">
       <v-col v-for="(person, i) in ourStaff.representation" :key="i" lg="4" sm="6" xs="12">

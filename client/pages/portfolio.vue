@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div class="wrapper">
-      <PreviewPage v-bind:title="portfolio.previewTitle" v-bind:subtitle="portfolio.previewSubtitle" v-bind:description="portfolio.previewDescription" />
+      <PreviewPage :title="portfolio.previewTitle" :subtitle="portfolio.previewSubtitle" :description="portfolio.previewDescription" />
     </div>
     <v-col class="pa-0">
       <v-row v-for="(project, i) in projects" :key="i" align="center">
