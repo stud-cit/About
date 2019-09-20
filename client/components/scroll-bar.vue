@@ -63,4 +63,7 @@ export default class ScrollBar extends Vue {
 .displayNone
     display: none
 
+.v-slider__tick
+  height: 5rem
+  width: 5rem  
 </style>
