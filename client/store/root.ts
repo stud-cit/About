@@ -38,6 +38,7 @@ export const state = (): State => ({
   about: {
     previewTitle: 'Student centr of information technology',
     previewSubtitle: 'We can make this world better.',
+    previewDescription:'',
     slides: [
       {
         title: 'Student centr of information technology',
@@ -83,6 +84,7 @@ export const state = (): State => ({
   
   ourStaff: {
     previewTitle:'Many people who can easily realize all things which you wish.',
+    previewSubtitle:'',
     previewDescription:'Together we can more than one by one.',
     representation:[
       {
@@ -123,9 +125,9 @@ export const state = (): State => ({
     ],
   },
   portfolio: {
-    h1:'Do you know what we can?',
-    h2:'What we have made?',
-    description:'Our projects is one of the best',
+    previewTitle:'Do you know what we can?',
+    previewSubtitle:'What we have made?',
+    previewDescription:'Our projects is one of the best',
     projects: [
       {
         title: 'Section0',

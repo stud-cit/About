@@ -1,24 +1,8 @@
 <template>
   <v-container class="wrapper">
+    <PreviewPage v-bind:title="weOffers.previewTitle" v-bind:subtitle="weOffers.previewSubtitle" v-bind:description="weOffers.previewDescription" />
     <ScrollBar/>  
     <v-row>
-        <section class="question">
-            <h1>{{weOffers.previewTitle}}</h1>
-            <h2>{{weOffers.previewSubtitle}}</h2>
-            <div class="navigation">
-              <div class="arrow">&#8592;</div>
-              <div class="arrow">&#8594;</div>
-              <div class="squareOne square"></div>
-              <div class="squareTwo square"></div>
-              <div class="squareThree square"></div>
-            </div>
-            <p class="description">{{weOffers.previewDescription}}</p>
-            <p class="scroll-text">Scroll for more information</p>
-          <v-card class="bottom-card">
-            <v-card-title class="bottom-card-title">Do you have some questions?</v-card-title>
-            <v-card-actions class="bottom-card-action">USE OUR CONTACTS</v-card-actions>
-          </v-card>
-        </section>
         <section class="representation" v-for="(preview,index) in weOffers.representation" :key="index">
           <v-row align="center" :justify="preview.positionCard">
             <img class="preview-image" src="~/assets/images/weOffer/1.jpg"> 
@@ -37,6 +21,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
 
 import ScrollBar from '@/components/scroll-bar.vue';
+import PreviewPage from '@/components/preview-page.vue';
 
 @Component({
   layout: 'immediate',
@@ -46,6 +31,7 @@ import ScrollBar from '@/components/scroll-bar.vue';
   },
   components: {
     ScrollBar,
+    PreviewPage,
   },
   
 })
