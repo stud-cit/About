@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="loading" :class="{complit:complit}">
+  <v-container fluid class="loading" :class="{complit}">
     <section class="loader" :class="{activeLoader:isActive}">
       <p class="stud" v-show="isActive">Stud</p>
       <div class="circle" :class="{activeCircle:isActive}">
@@ -13,22 +13,21 @@
 <script lang="ts">
   import {Vue, Component} from 'vue-property-decorator';
 
-  @Component
+  @Component({})
   export default class Loader extends Vue {
     isActive: boolean = false;
     complit: boolean = false;
-
-    start():void {
+    start(): void {
       this.isActive = false
     }
-    finish():void {
+    finish(): void {
       this.isActive = true
       setTimeout(() => {
         this.complit = true
       }, 3000);
     }
     mounted(){
-      this.finish()
+      this.finish();
     }
   }
 </script>
@@ -109,6 +108,14 @@
 
 .activeCircle
     transform: translateX(3rem) 
-    color:   #81C255
+    color: #81C255
     transition: 1s 
+
+.loading-process
+    background: green
+    z-index: 1000
+    top: 0
+    position: absolute
+
+  
 </style>
