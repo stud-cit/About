@@ -31,7 +31,8 @@ export default {
 	width: 100%
 	position: absolute
 	top: 50%
-	transform: translateY(-50%)
+	left: 50%
+	transform: translate(-50% , -50%)
 	.number
 		font-size: 250px
 		color: rgba(206, 206, 206, 1)
