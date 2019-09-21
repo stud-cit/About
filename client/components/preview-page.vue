@@ -1,21 +1,23 @@
 <template>
-      <section class="question">
-            <div class="pretitle">{{ title }}</div>
-						<div class="pretitle">{{ subtitle }}</div>
-            <div class="navigation">
-              <div class="arrow">&#8592;</div>
-              <div class="arrow">&#8594;</div>
-              <div class="squareOne square"></div>
-              <div class="squareTwo square"></div>
-              <div class="squareThree square"></div>
-            </div>
-            <p class="description">{{ description }}</p>
-            <p class="scroll-text">Scroll for more information</p>
-          <v-card class="bottom-card" @click="showContactBar">
-            <v-card-title class="bottom-card-title">Do you have some questions?</v-card-title>
-            <v-card-actions class="bottom-card-action">USE OUR CONTACTS</v-card-actions>
-          </v-card>
-        </section>
+	<section class="question">
+		<div class="pretitle">{{ title }}</div>
+		<div class="pretitle">{{ subtitle }}</div>
+		<div class="navigation">
+			<div class="arrow" @click="handleNavigatingPage('left')">&#8592;</div>
+			<div class="arrow" @click="handleNavigatingPage('right')">&#8594;</div>
+			<nuxt-link class="square-container" to="/">
+				<div class="square squareOne"></div>
+				<div class="square squareTwo"></div>
+				<div class="square squareThree"></div>
+			</nuxt-link>
+		</div>
+		<p class="description">{{ description }}</p>
+		<p class="scroll-text">Scroll for more information</p>
+		<v-card class="bottom-card" @click="showContactBar">
+		<v-card-title class="bottom-card-title">Do you have some questions?</v-card-title>
+		<v-card-actions class="bottom-card-action">USE OUR CONTACTS</v-card-actions>
+		</v-card>
+	</section>
 </template>
 
 <script lang="ts">
@@ -23,15 +25,26 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
 
 @Component({
-		props: ['title', 'subtitle' , 'description'],
+	props: ['title', 'subtitle', 'description'],
 })
-export default class PreviewPage extends Vue{
-@Mutation('changeContactBar') changeContactBar;
 
+export default class PreviewPage extends Vue {
+@Getter('getPageByRoute') getPageByRoute;
+@Getter('getPageById') getPageById;
+@Mutation('changeContactBar') changeContactBar;
   showContactBar() {
-		this.changeContactBar(true);
+	this.changeContactBar(true);
+  }
+
+  handleNavigatingPage(direction: 'left' | 'right') {
+	const route = this.$route.path.replace('/', '');
+	const pageIndex = this.getPageByRoute(route);
+	const newPageIndex = direction === 'left' ? pageIndex - 1 : pageIndex + 1;
+	const nextPage = this.getPageById(newPageIndex);
+	this.$router.push(nextPage);
   }
 }
+
 </script>
 
 <style lang="sass">
@@ -67,7 +80,11 @@ export default class PreviewPage extends Vue{
 .arrow
 	font-size: 1.8rem
 	text-align: center
+	cursor: pointer
  
+.square-container
+	display: flex
+
 .square
 	height: 2.5rem
 	width: 2.5rem

@@ -1,6 +1,6 @@
 <template>
   <v-container class="wrapper">
-    <PreviewPage v-bind:title="weOffers.previewTitle" v-bind:subtitle="weOffers.previewSubtitle" v-bind:description="weOffers.previewDescription" />
+    <PreviewPage :title="weOffers.previewTitle" :subtitle="weOffers.previewSubtitle" :description="weOffers.previewDescription" />
     <ScrollBar/>  
     <v-row>
         <section class="representation" v-for="(preview,index) in weOffers.representation" :key="index">

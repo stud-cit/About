@@ -4,35 +4,44 @@ import { RootState } from 'store';
 export interface State {
   [x: string]: any;
 }
+
+interface PageModel {
+  id: number;
+  title: string
+  to: string;
+  img: string;
+  lazyImg: string;
+}
+
 export const state = (): State => ({
   pages: [
     { 
       id: 1,
       title: 'About Us',
-      to: `about`,
-      img: `/images/background/about.png`,
-      lazyImg: `https://picsum.photos/id/1/60`,
+      to: 'about',
+      img: '/images/background/about.png',
+      lazyImg: 'https://picsum.photos/id/1/60',
     },
     {
       id: 2,
       title: 'Offers',
-      to: `offers`,
-      img: `/images/background/offers.png`,
-      lazyImg: `https://picsum.photos/id/3/60`,
+      to: 'offers',
+      img: '/images/background/offers.png',
+      lazyImg: 'https://picsum.photos/id/3/60',
     },
     {
       id: 3,
       title: 'Our Staff',
-      to: `our-staff`,
-      img: `/images/background/our-staff.png`,
-      lazyImg: `https://picsum.photos/id/4/60`,
+      to: 'our-staff',
+      img: '/images/background/our-staff.png',
+      lazyImg: 'https://picsum.photos/id/4/60',
     },
     {
       id: 4,
       title: 'Portfolio',
-      to: `portfolio`,
-      img: `/images/background/portfolio.png`,
-      lazyImg: `https://picsum.photos/id/5/60`,
+      to: 'portfolio',
+      img: '/images/background/portfolio.png',
+      lazyImg: 'https://picsum.photos/id/5/60',
     },
   ],
   about: {
@@ -341,6 +350,17 @@ export const getters: GetterTree<RootState, RootState> = {
 
   getPageStage(state: State) {
     return state.pages;
+  },
+
+  getPageByRoute(state: State) {
+    return (page: string) => state.pages.find( ({to}: PageModel) => to === page).id;
+  },
+  getPageById(state: State) {
+    return (index: number) => {
+      const changedIndex = index > 4 ? 1 : index < 1 ? 4 : index;
+
+      return state.pages.find( ({id}: PageModel) => id === changedIndex).to;
+    }
   },
 
   getProjectsStage(state: State) {
