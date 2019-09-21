@@ -334,7 +334,7 @@ export const state = (): State => ({
   },
   pageCover: undefined,
   showContactBar: false,
-  concacts: {
+  contacts: {
     motto:'Speed, quality, simplicity',
     email:'STUDCITMAIL@GMAIL.COM',
     phone:'+380 98 43 70 202',
@@ -379,8 +379,13 @@ export const getters: GetterTree<RootState, RootState> = {
     return state.ourStaff;
   },
 
+
   getPortfolioStage(state: State) {
     return state.portfolio;
+  },
+
+  getContactStage(state: State) {
+    return state.contacts
   },
 
   getPageCover(state: State) {

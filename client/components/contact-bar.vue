@@ -1,8 +1,17 @@
 <template>
-  <v-container fluid class="contact-bar" :class="{active: isActive}">
-      <p>Contact bar</p>
+  <v-container fluid class="contact-bar flex row align-center justify-space-around" :class="{active: isActive}">
+      <div class="address">
+        <section class="flex row pl-10 ">
+          <v-row >{{contacts.email}}</v-row>
+          <v-row>{{contacts.phone}}</v-row>
+        </section>
+        <div class="line"></div>
+        <v-row class="pl-10">{{contacts.street}}</v-row>
+        <v-row class="pl-10">{{contacts.office}}</v-row>
+      </div>
+      <div class="map"></div>
 
-      <span @click="onCloseContactBar">X</span>
+      <!-- <span @click="onCloseContactBar">X</span> -->
   </v-container>
 </template>
 
@@ -14,6 +23,7 @@
   @Component({})
   export default class ContactBar extends Vue {
     @Getter('getContactBarVisibility') isActive;
+    @Getter('getContactStage') contacts;
     @Mutation('changeContactBar') changeContactBar;
 
     onCloseContactBar() {
@@ -26,10 +36,10 @@
 <style lang="sass"> 
   .contact-bar
     width: 100%
-    height: 80px
+    
     position: fixed
-    bottom: -80px
-    background: red
+    bottom: -8rem
+    background: white
     opacity: 0
     transition: opacity, bottom .5s ease
     z-index: 10
@@ -38,4 +48,22 @@
     opacity: 1
     bottom: 0
 
+  .address
+    width: 50%
+    display: flex
+    flex-direction: column
+    color: black
+    margin: 0 3rem
+    padding: 1rem
+    font-size: 1.4rem
+
+  .line
+     width: 100%
+     background: black
+     height: .2rem 
+
+  .map
+    height: 10rem
+    width: 10rem
+    background: grey   
 </style>
