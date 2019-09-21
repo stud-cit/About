@@ -2,7 +2,7 @@
         <div class="container">
             <section class="errors" v-if="error.statusCode === 404">
                 <div class="number">404</div>
-                <div class="description">Not F<img src="@/static/not-found.svg" alt="">und</div>
+                <div class="description">NOT F<img src="@/static/not-found.svg" alt="">UND</div>
             </section>
             <section v-else>An error occurred</section>
             <nuxt-link to="/" class="link">
@@ -31,7 +31,8 @@ export default {
 	width: 100%
 	position: absolute
 	top: 50%
-	transform: translateY(-50%)
+	left: 50%
+	transform: translate(-50% , -50%)
 	.number
 		font-size: 250px
 		color: rgba(206, 206, 206, 1)
@@ -41,8 +42,8 @@ export default {
 		color: rgba(218, 218, 218, 1)
 	img
 		width: auto
-		height: 250px
-		vertical-align: text-top
+		height: 140px
+		vertical-align: middle
 
 .link
 	.back

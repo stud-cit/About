@@ -15,11 +15,11 @@
 
   @Component
   export default class Loader extends Vue {
-    isActive: boolean =  false;
+    isActive: boolean = false;
     complit: boolean = false;
 
     start():void {
-        this.isActive = false
+      this.isActive = false
     }
     finish():void {
       this.isActive = true
@@ -36,13 +36,14 @@
 
 <style lang="sass">
 .loading
-    position: absolute
-    height: 100vh
-    background-color: white
+    position: fixed
+    top: 0
     z-index: 50
+    background-color: white
     display: flex
     justify-content: center
     align-items: center
+    height: 100vh
 
 .complit
   z-index: 0
@@ -81,7 +82,6 @@
 .activeLoader , .activeLoader:after , .activeLoader:before
   background-color: #81C255 
   transition: 1s 
-
 
 .stud
   font-size: 2.8rem

@@ -1,10 +1,12 @@
 <template>
   <v-app> 
+
     <v-app-bar app dark flat color="transparent">     
       <figure class="breakpoint">
         <img class="logo" src="/logo.svg" />
         <figcaption>{{pathName}} </figcaption>
       </figure>
+
       <v-spacer/>
       <v-toolbar-items>
         <v-btn
@@ -65,6 +67,8 @@ export default class ImmediatetLayout extends Vue {
 </script>
 
 <style lang="sass">
+  #header
+    z-index: 30
   .logo 
     width: 85px
     margin-right: 1rem

@@ -1,12 +1,12 @@
 <template>
     <div class="scrollbar-track" v-bind:class="{ displayNone: displays}" v-scroll="handleScroll">
-      <div class="scrollbar-thumb" v-bind:style="{top: top}"></div>
+      <div class="scrollbar-thumb" v-bind:style="{top: `${currScroll}%`}"></div>
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-
+import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Mutation } from 'vuex-class';
 Vue.directive('scroll', {
   inserted: function (el, binding) {
     let f = function (evt) {
@@ -17,26 +17,32 @@ Vue.directive('scroll', {
     window.addEventListener('scroll', f)
   }
 })
-
 @Component
 export default class ScrollBar extends Vue {
+  @Mutation('changeContactBar') changeContactBar;
   el: 'scrollbar-track';
   targ: 'scrollbar-thumb';
-  top: string = '';
+  currScroll: number = 0;
   displays: boolean = false;
   
-    handleScroll (evt, targ , el) : void { 
-      if (document.body.scrollHeight <= window.innerHeight) {
-        this.displays = true;
-      } else {
-        this.displays = false;
-        this.top = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100 + '%';
-      }
+  handleScroll(evt, targ, el) : void { 
+    if (document.body.scrollHeight <= window.innerHeight) {
+      this.displays = true;
+    } else {
+      this.displays = false;
+      this.currScroll = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
     }
-  mounted(){
+  }
+  mounted() {
       if (document.body.scrollHeight <= window.innerHeight) {
         this.displays = true;
       }
+  }
+  @Watch('currScroll')
+  onChangeScroll(value: number) {
+    if(value === 100) {
+      this.changeContactBar(true);
+    }
   }
 }
 </script> 
@@ -49,7 +55,6 @@ export default class ScrollBar extends Vue {
     bottom: 20%
     width: 3px
     background-color: rgba(0,0,0,1)
-
 .scrollbar-thumb 
     cursor: pointer
     position: absolute
@@ -59,11 +64,6 @@ export default class ScrollBar extends Vue {
     border-radius: 50%
     right: -4px
     background-color: rgba(255,255,255,1)
-
 .displayNone
     display: none
-
-.v-slider__tick
-  height: 5rem
-  width: 5rem  
 </style>

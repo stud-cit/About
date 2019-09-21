@@ -10,34 +10,35 @@ export const state = (): State => ({
       id: 1,
       title: 'About Us',
       to: `about`,
-      img: `/image/background/about.png`,
+      img: `/images/background/about.png`,
       lazyImg: `https://picsum.photos/id/1/60`,
     },
     {
       id: 2,
       title: 'Offers',
       to: `offers`,
-      img: `/image/background/offers.png`,
+      img: `/images/background/offers.png`,
       lazyImg: `https://picsum.photos/id/3/60`,
     },
     {
       id: 3,
       title: 'Our Staff',
       to: `our-staff`,
-      img: `/image/background/our-staff.png`,
+      img: `/images/background/our-staff.png`,
       lazyImg: `https://picsum.photos/id/4/60`,
     },
     {
       id: 4,
       title: 'Portfolio',
       to: `portfolio`,
-      img: `/image/background/portfolio.png`,
+      img: `/images/background/portfolio.png`,
       lazyImg: `https://picsum.photos/id/5/60`,
     },
   ],
   about: {
     previewTitle: 'Student centr of information technology',
     previewSubtitle: 'We can make this world better.',
+    previewDescription:'',
     slides: [
       {
         title: 'Student centr of information technology',
@@ -63,19 +64,19 @@ export const state = (): State => ({
 
           title:'DEVELOPMENT OF WEB ',
           text:'A Web developer is a kind of programmer who specializes in the development of applications relating to the World Wide Web or distributed network applications, which typically run protocols like HTTP from a Web server to a client browser using associated programming languages like HTML/CSS, C#, Ruby and PHP to name a few.',
-          img:'~/assets/image/weOffer/1.jpg',
+          img:'~/assets/images/weOffer/1.jpg',
           positionCard:'start'
         },
         {
           title:'CREATING SOFTWARE FOR REAL-WORLD TASKS',
           text:'Programming software is a software which helps the programmer in developing other software. Compilers, assemblers, debuggers, interpreters etc. are examples of programming software. Integrated development environments (IDEs) are combinations of all these software.',
-          img:'.~/assets/image/weOffer/2.jpg',
+          img:'.~/assets/images/weOffer/2.jpg',
           positionCard:'end'
         },
         {
           title:'DESIGNING INFORMATION SYSTEMS OF VARIOUS COMPLEXITY',
           text:'Information system is a system composed of people and computers that processes or interprets information. The term is also sometimes used in more restricted senses to refer to only the software used to run a computerized database or to refer to only a computer system.',
-          img:'~/assets/image/weOffer/3.jpg',
+          img:'~/assets/images/weOffer/3.jpg',
           positionCard:'end'
         },
       ],
@@ -83,6 +84,7 @@ export const state = (): State => ({
   
   ourStaff: {
     previewTitle:'Many people who can easily realize all things which you wish.',
+    previewSubtitle:'',
     previewDescription:'Together we can more than one by one.',
     representation:[
       {
@@ -90,42 +92,42 @@ export const state = (): State => ({
         name: 'Kirk Philips',
         position: 'Frontend developer',
         stack: 'Proficient in HTML + CSS, JS',
-        img_src: 'https://images.pexels.com/photos/1181373/pexels-photo-1181373.jpeg"',
+        img_src: '/images/ourStaff/team.jpg',
       },
       {
         id: 2,
         name: 'Kirk Philips2',
         position: 'Designer',
         stack: 'Proficient in HTML + CSS, JS',
-        img_src: 'https://images.pexels.com/photos/1181373/pexels-photo-1181373.jpeg"',
+        img_src: '/images/ourStaff/team.jpg',
       },
       {
         id: 3,
         name: 'Kirk Philip3',
         position: 'Designer',
         stack: 'Proficient in HTML + CSS, JS',
-        img_src: 'https://images.pexels.com/photos/1181373/pexels-photo-1181373.jpeg"',
+        img_src: '/images/ourStaff/team.jpg',
       },
       {
         id: 4,
         name: 'Kirk Philips4',
         position: 'Designer',
         stack: 'Proficient in HTML + CSS, JS',
-        img_src: 'https://images.pexels.com/photos/1181373/pexels-photo-1181373.jpeg"',
+        img_src: '/images/ourStaff/team.jpg',
       },
       {
         id: 5,
         name: 'Kirk Philips5',
         position: 'Designer',
         stack: 'Proficient in HTML + CSS, JS',
-        img_src: 'https://images.pexels.com/photos/1181373/pexels-photo-1181373.jpeg"',
+        img_src: '/images/ourStaff/team.jpg',
       },
     ],
   },
   portfolio: {
-    h1:'Do you know what we can?',
-    h2:'What we have made?',
-    description:'Our projects is one of the best',
+    previewTitle:'Do you know what we can?',
+    previewSubtitle:'What we have made?',
+    previewDescription:'Our projects is one of the best',
     projects: [
       {
         title: 'Section0',
@@ -323,7 +325,7 @@ export const state = (): State => ({
   },
   pageCover: undefined,
   showContactBar: false,
-  concacts: {
+  contacts: {
     motto:'Speed, quality, simplicity',
     email:'STUDCITMAIL@GMAIL.COM',
     phone:'+380 98 43 70 202',
@@ -357,8 +359,13 @@ export const getters: GetterTree<RootState, RootState> = {
     return state.ourStaff;
   },
 
+
   getPortfolioStage(state: State) {
     return state.portfolio;
+  },
+
+  getContactStage(state: State) {
+    return state.contacts
   },
 
   getPageCover(state: State) {
@@ -370,7 +377,7 @@ export const actions: ActionTree<RootState, RootState> = {};
 
 export const mutations: MutationTree<RootState> = {
   changePageCover(state: RootState, page: string | undefined): void {
-    state.pageCover = page ? `/image/background/${page}.png` : undefined;
+    state.pageCover = page ? `/images/background/${page}.png` : undefined;
   },
   changeContactBar(state: RootState, visibility: boolean): void {
 
