@@ -81,7 +81,7 @@ export default class HomePage extends Vue {
     mousewheel: true,
     centeredSlides: true,
     slidesPerView: 'auto',
-    spaceBetween: 100 ,
+    spaceBetween: 100,
   };
 
   showSwiper() {
@@ -89,7 +89,7 @@ export default class HomePage extends Vue {
       setTimeout(() => {
         this.isShowSwiper = true;
        }, 100);
-    } else{
+    } else {
        setTimeout(() => {
         this.isShowSwiper = true;
        }, 5000);
@@ -99,8 +99,6 @@ export default class HomePage extends Vue {
   mounted(){
     this.showSwiper();
   }
-
-
 
   imagePageGradient: string =
     'to top right, rgba(115, 115, 115, .33), rgba(32, 32, 72, .7)';

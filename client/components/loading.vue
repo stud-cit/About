@@ -50,35 +50,36 @@
   opacity: 0
 
 .loader
+  position: absolute
+  left: calc(50% - 65px)
   background-color: #C25555
-  height: 8rem
   width: 4rem
+  height: 130px
   display: flex
   align-items: center
 
-
 .loader:after
-  width: 8rem
+  width: 130px
   background-color: #C25555
   content: ''
   position: absolute
-  height: 8rem
+  height: 130px
   transform: translateX(-5rem)
   border-top-left-radius: 50%
   border-bottom-left-radius: 50%
   z-index: 1
 
 .loader:before
-  width: 8rem
+  width: 130px
   background-color: #C25555
   content: ''
   position: absolute
-  height: 8rem
+  height: 130px
   transform: translateX(4rem)
   border-top-right-radius: 50%
   border-bottom-right-radius: 50%
 
-.activeLoader , .activeLoader:after , .activeLoader:before
+.activeLoader, .activeLoader:after, .activeLoader:before
   background-color: #81C255 
   transition: 1s 
 

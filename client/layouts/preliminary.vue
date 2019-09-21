@@ -43,8 +43,8 @@
         <nuxt />
       </v-container>
     </v-content>
-    <v-btn 
-      class="mobile-icon burger-icon"
+    <v-btn
+      class="d-flex d-sm-none mobile-icon burger-icon"
       @click="toggleVisibilityLocales"
       icon
     >
