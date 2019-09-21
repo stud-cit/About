@@ -37,7 +37,7 @@
           v-for="(page, i) in pages"
           :key="i"
           cols="12"
-        >
+      >
         <v-card :href="page.to" :link="true">
           <v-img
             :src="getDynamicAssets(page.img)"
