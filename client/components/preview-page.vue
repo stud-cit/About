@@ -1,7 +1,7 @@
 <template>
 	<section class="question">
-		<div class="pretitle">{{ title }}</div>
-		<div class="pretitle">{{ subtitle }}</div>
+		<div class="font-weight-bold" :class="titleSize">{{ title }}</div>
+		<div class="font-weight-bold" :class="titleSize">{{ subtitle }}</div>
 		<div class="navigation">
 			<div class="arrow" @click="handleNavigatingPage('left')">&#8592;</div>
 			<div class="arrow" @click="handleNavigatingPage('right')">&#8594;</div>
@@ -11,8 +11,13 @@
 				<div class="square squareThree"></div>
 			</nuxt-link>
 		</div>
-		<p class="description">{{ description }}</p>
-		<p class="scroll-text">Scroll for more information</p>
+		<p :class="$vuetify.breakpoint.smAndUp ? 'headline' : 'title'">{{ description }}</p>
+		<p 
+			:class="$vuetify.breakpoint.smAndUp ? 'title' : 'subtitle-1'"
+			class="gray"
+		>
+			Scroll for more information
+		</p>
 		<v-card class="bottom-card" @click="showContactBar">
 		<v-card-title class="bottom-card-title">Do you have some questions?</v-card-title>
 		<v-card-actions class="bottom-card-action">USE OUR CONTACTS</v-card-actions>
@@ -32,17 +37,40 @@ export default class PreviewPage extends Vue {
 @Getter('getPageByRoute') getPageByRoute;
 @Getter('getPageById') getPageById;
 @Mutation('changeContactBar') changeContactBar;
-  showContactBar() {
-	this.changeContactBar(true);
-  }
+	rendered: boolean = false;
 
-  handleNavigatingPage(direction: 'left' | 'right') {
-	const route = this.$route.path.replace('/', '');
-	const pageIndex = this.getPageByRoute(route);
-	const newPageIndex = direction === 'left' ? pageIndex - 1 : pageIndex + 1;
-	const nextPage = this.getPageById(newPageIndex);
-	this.$router.push(nextPage);
-  }
+	showContactBar() {
+		this.changeContactBar(true);
+	}
+
+	// TODO: get rid of this
+	get titleSize() {
+		if(this.rendered) {
+			const {mdAndUp, lgAndUp} = this.$vuetify.breakpoint;
+			if(lgAndUp) {
+				return 'display-3';
+			}
+			else if(mdAndUp) {
+				return 'display-2';
+			}
+			else {
+				return 'display-1';
+			}
+		}
+		return null;
+	}
+
+	public mounted() {
+		this.rendered = true;
+	}
+
+	handleNavigatingPage(direction: 'left' | 'right') {
+		const route = this.$route.path.replace('/', '');
+		const pageIndex = this.getPageByRoute(route);
+		const newPageIndex = direction === 'left' ? pageIndex - 1 : pageIndex + 1;
+		const nextPage = this.getPageById(newPageIndex);
+		this.$router.push(nextPage);
+	}
 }
 
 </script>
@@ -62,12 +90,7 @@ export default class PreviewPage extends Vue {
 	align-items: flex-start
 	justify-content: flex-end
 	color: #ffffff
- 
-.pretitle
-	font-size: 4rem
-	color: white
-	width: 90%
- 
+
 .navigation
 	display: flex
 	flex-direction: row
@@ -96,13 +119,6 @@ export default class PreviewPage extends Vue {
 	
 .squareThree
 	clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
- 
-.description
-	font-size: 2rem
-
-.scroll-text
-	opacity: 0.5
-	font-size: 1.3rem 
 
 .bottom-card
 	color: black
@@ -128,4 +144,7 @@ export default class PreviewPage extends Vue {
 	justify-content: center
 	text-decoration: underline
 	font-weight: 100	
+
+.gray
+	color: gray
 </style>

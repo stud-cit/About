@@ -1,13 +1,13 @@
 <template>
   <v-app> 
-    <v-app-bar app dark flat color="transparent" id="header">   
+    <v-app-bar id="header" color="transparent" app dark flat>   
       <figure class="breakpoint">
         <img class="logo" src="/logo.svg" />
       </figure>
 
       <v-spacer/>
       <v-toolbar-items>
-        <div class="d-none d-md-flex">
+        <div class="d-none d-md-flex nav-links">
           <v-btn
             v-for="(page, index) in pages"
             :key="index"
@@ -69,9 +69,9 @@
           >
             <v-btn 
               class="text-center display-2 page-link"
-              active-class="page-link-active"
+              exact-active-class="page-link-active"
               :to="page.to" 
-              flat
+              exact
               nuxt
             >
               <span class="page-link-title">{{page.title}}</span>
@@ -112,6 +112,8 @@ export default class ImmediatetLayout extends Vue {
     width: 85px
     margin-right: 1rem
 
+  .nav-links
+    align-items: center
   #pages-list-container
     height: 100vh
     display: flex
