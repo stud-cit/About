@@ -32,7 +32,7 @@ const config: Configuration = {
         content: configService.getSetting('APP_DESC'),
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   css: ['~/assets/style/app.sass'],
   /*
