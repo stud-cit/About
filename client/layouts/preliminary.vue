@@ -1,11 +1,17 @@
 <template>
   <v-app>
-    <v-app-bar app flat class="px-10 ptop" color="transparent">
+    <v-app-bar app flat class="app-bar px-10 pt-6 d-none d-sm-flex" color="transparent">
       <v-toolbar-title>
-        <p class="text-uppercase mb-0 choose font-weight-bold">
+        <p 
+          class="text-uppercase mb-0 font-weight-bold"
+          :class="$vuetify.breakpoint.smAndDown ? 'headline' : 'display-1'"
+        >
           Choose What you are interested
         </p>
-        <p class="grey--text mb-0 drag">
+        <p 
+          class="grey--text mb-0"
+          :class="$vuetify.breakpoint.smAndDown ? 'title' : 'headline'"
+        >
           Drag or scroll to move block
         </p>
       </v-toolbar-title>
@@ -32,8 +38,8 @@
       </v-speed-dial>
     </v-app-bar>
 
-    <v-content>
-      <v-container fluid class="fill-height pa-0 swiperBlock" :class="{moveSwiper:moveSwiper}" >
+    <v-content class="pt-2 pt-sm-12">
+      <v-container fluid class="fill-height pa-0">
         <nuxt />
       </v-container>
     </v-content>
@@ -46,51 +52,16 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component
 export default class PreliminaryLayout extends Vue {
   changeLocale: boolean = false;
-  moveSwiper: boolean = false;
 
   availableLocales() {
     return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale);
-  }
-
-  goSwiper(){
-    if(document.referrer == 'http://localhost:8080/'){
-      setTimeout(() => {
-        this.moveSwiper = true;
-       }, 100);
-    } else{
-       setTimeout(() => {
-        this.moveSwiper = true;
-       }, 5000);
-    }
-    
-  }
-
-  mounted(){
-    this.goSwiper();
   }
 }
 </script>
 
 <style lang="sass">
-  .ptop
-    padding-top: 5rem
-
-  .swiperBlock
-    transform: translateX(300%)
-
-  .moveSwiper
-      transform: translateX(0%)
-      transition: 2s
-
-  .choose
-    font-size: 1.8rem
-
-  .drag
-    font-size: 1.5rem  
-    font-weight: lighter
-
-  .ptop
-    padding-top: 4rem  
+  .app-bar .v-toolbar__content
+    width: 100%
 </style>
 
 
