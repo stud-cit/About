@@ -50,36 +50,37 @@
     >
       <v-icon size="25" color="black">mdi-menu</v-icon>
     </v-btn>
-    <v-row class="ma-0 mobile-locales-bar"
-      v-if="isShowMobileLocales"
-    >
-      <v-btn 
-        class="mobile-icon close-icon"
-        @click="toggleVisibilityLocales"
-        icon
-        large
-      >
-        <v-icon size="30" color="black">
-          mdi-close
-        </v-icon>
-      </v-btn>
-      <div class="half-round"/>
-      <div class="locales-container">
-        <div class="locales-list">
-          <v-btn
-            v-for="(locale, i) in $i18n.locales"
-            :key="i"
-            :to="switchLocalePath(locale.code)"
-            class="locale-btn"
-            active-class="active-locale"
-            x-large
+
+    <v-bottom-sheet v-model="isShowMobileLocales">
+        <div class="relative">
+          <v-btn 
+            class="mobile-icon close-icon"
+            @click="toggleVisibilityLocales"
             icon
+            large
           >
-            <span class="display-1">{{locale.code}}</span>
+            <v-icon size="30" color="black">
+              mdi-close
+            </v-icon>
           </v-btn>
+          <div class="half-round" />
+          <div class="locales-container">
+            <div class="locales-list">
+              <v-btn
+                v-for="(locale, i) in $i18n.locales"
+                :key="i"
+                :to="switchLocalePath(locale.code)"
+                class="locale-btn"
+                active-class="active-locale"
+                x-large
+                icon
+              >
+                <span class="display-1">{{locale.code}}</span>
+              </v-btn>
+            </div>
+          </div>
         </div>
-      </div>
-    </v-row>
+    </v-bottom-sheet>
   </v-app>
 </template>
 
@@ -118,41 +119,38 @@ export default class PreliminaryLayout extends Vue {
     position: absolute
     left: calc(50vw - 18px)
     top: -18px
-    
-  .mobile-locales-bar
-    position: fixed
+  .relative
+    position: relative  
+  
+  .half-round
     width: 100%
-    bottom: 0
+    height: 30px
+    background: white
+    clip-path: ellipse(50% 100% at 50% 100%)
 
-    .half-round
-      width: 100%
-      height: 30px
-      background: white
-      clip-path: ellipse(50% 100% at 50% 100%)
+  .locales-container
+    width: 100%
+    height: 10vh
+    display: flex
+    justify-content: center
+    align-items: center
+    background: white
 
-    .locales-container
-      width: 100%
-      height: 10vh
-      display: flex
-      justify-content: center
-      align-items: center
-      background: white
+  .locales-list
+    width: 60%
+    display: flex
+    justify-content: space-between
+    color: white
 
-    .locales-list
-      width: 60%
-      display: flex
-      justify-content: space-between
+    .locale-btn
       color: white
 
-      .locale-btn
-        color: white
+    span
+      color: black
+      font-weight: normal
 
-      span
-        color: black
-        font-weight: normal
-
-      .active-locale span
-        font-weight: bold
+    .active-locale span
+      font-weight: bold
 </style>
 
 

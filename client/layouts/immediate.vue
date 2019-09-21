@@ -1,27 +1,34 @@
 <template>
   <v-app> 
-
-    <v-app-bar app dark flat color="transparent">     
+    <v-app-bar app dark flat color="transparent" id="header">   
       <figure class="breakpoint">
         <img class="logo" src="/logo.svg" />
-        <figcaption>{{pathName}} </figcaption>
       </figure>
 
       <v-spacer/>
       <v-toolbar-items>
+        <div class="d-none d-md-flex">
+          <v-btn
+            v-for="(page, index) in pages"
+            :key="index"
+            :to="page.to"
+            exact
+            dark
+            text
+          >
+            <span>{{ page.title }}</span>
+          </v-btn>
+          <v-btn icon dark to="/">
+            <v-icon>mdi-fullscreen-exit</v-icon>
+          </v-btn>
+        </div>
+                  
         <v-btn
-          v-on:click="editPath()"
-          v-for="page in pages"
-          :key="page.id"
-          :to="page.to"
-          exact
-          dark
-          text
+          class="d-flex d-md-none"
+          @click="toggleVisibilityMobileMenu"
+          icon
         >
-          <span>{{ page.title }}</span>
-        </v-btn>
-        <v-btn icon dark to="/">
-          <v-icon>mdi-fullscreen-exit</v-icon>
+          <v-icon size="25">mdi-menu</v-icon>
         </v-btn>
       </v-toolbar-items>
     </v-app-bar>
@@ -34,6 +41,45 @@
         <contact-bar />
       </v-container>
     </v-content>
+
+    <v-dialog
+      v-model="isShowMobileMenu"
+      fullscreen
+      hide-overlay
+      transition="dialog-bottom-transition"
+      scrollable
+    >
+      <v-btn 
+        @click="toggleVisibilityMobileMenu"
+        icon
+        large
+        fixed
+        right
+      >
+        <v-icon size="30" color="black">
+          mdi-close
+        </v-icon>
+      </v-btn>
+      <v-list id="pages-list-container">
+        <v-list-item-group class="pages-list">
+          <v-list-item
+            v-for="(page, index) in pages"
+            class="px-0"
+            :key="index"
+          >
+            <v-btn 
+              class="text-center display-2 page-link"
+              active-class="page-link-active"
+              :to="page.to" 
+              flat
+              nuxt
+            >
+              <span class="page-link-title">{{page.title}}</span>
+            </v-btn>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-dialog>
   </v-app>
 </template>
 
@@ -48,20 +94,13 @@ import ContactBar from '@/components/contact-bar.vue';
   }
 })
 export default class ImmediatetLayout extends Vue {
-  pathName = 'standart' ;
   @Getter('getPageStage') pages;
   @Getter('getPageCover') cover;
 
-  editPath():void{
-    setTimeout(() => {
-      this.pathName = window.location.pathname
-      this.pathName = this.pathName.substring(1)
-    }, 500);
-   
-  }
+  isShowMobileMenu: boolean = false;
 
-  mounted(){
-    this.editPath()
+  toggleVisibilityMobileMenu() {
+    this.isShowMobileMenu = !this.isShowMobileMenu;
   }
 }
 </script>
@@ -72,6 +111,33 @@ export default class ImmediatetLayout extends Vue {
   .logo 
     width: 85px
     margin-right: 1rem
+
+  #pages-list-container
+    height: 100vh
+    display: flex
+    align-items: flex-end
+
+    .pages-list
+      width: 100vh
+      height: 90vh
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+    
+    .page-link
+      width: 100%
+      height: 100%
+      background: white
+      color: white
+      box-shadow: none
+
+      .page-link-title
+        color: black
+
+    .page-link-active .page-link-title
+      border-bottom: 2px solid black
+
+    
   .imageCover
     position: fixed !important
     height: 100vh
@@ -82,5 +148,4 @@ export default class ImmediatetLayout extends Vue {
     flex-direction: row
     align-items: center
     font-size: 1.8rem
-
 </style>
