@@ -1,6 +1,9 @@
 <template>
-    <div class="scrollbar-track" v-bind:class="{ displayNone: displays}" v-scroll="handleScroll">
-      <div class="scrollbar-thumb" v-bind:style="{top: `${currScroll}%`}"></div>
+    <div 
+      class="d-none d-sm-flex scrollbar-track"
+      :class="{ displayNone: displays}" v-scroll="handleScroll"
+    >
+      <div class="scrollbar-thumb" :style="{top: `${currScroll}%`}"></div>
     </div>
 </template>
 

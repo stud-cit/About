@@ -1,22 +1,26 @@
 <template>
-  <v-container class="wrapper">
-    <PreviewPage :title="ourStaff.previewTitle" :subtitle="ourStaff.previewSubtitle" :description="ourStaff.previewDescription" />
-    <ScrollBar />
-    <v-row justify="space-around">
-      <v-col v-for="(person, i) in ourStaff.representation" :key="i" lg="4" sm="6" xs="12">
-        <v-card class="card-img mx-auto" max-width="400">
-          <v-img
-            class="white--text"
-            height="250px"
-            :src="getDynamicAssets(person.img_src)"
-          >
-          </v-img>
-        </v-card>
-        <div class="card-addition">
-          <div class="employee-name">{{ person.name }}</div>
-          <div class="employee-position-short">{{ person.position }}</div>
-          <div class="employee-position-full">{{ person.stack }}</div>
-        </div>
+  <v-container fluid>
+    <v-row justify="center">
+      <v-col cols="12" sm="10">
+        <PreviewPage :title="ourStaff.previewTitle" :subtitle="ourStaff.previewSubtitle" :description="ourStaff.previewDescription" />
+        <ScrollBar />
+        <v-row justify="space-around">
+          <v-col v-for="(person, i) in ourStaff.representation" :key="i" lg="4" sm="6" xs="12">
+            <v-card class="card-img mx-auto" max-width="400">
+              <v-img
+                class="white--text"
+                height="250px"
+                :src="getDynamicAssets(person.img_src)"
+              >
+              </v-img>
+            </v-card>
+            <div class="card-addition">
+              <div class="employee-name">{{ person.name }}</div>
+              <div class="employee-position-short">{{ person.position }}</div>
+              <div class="employee-position-full">{{ person.stack }}</div>
+            </div>
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </v-container>

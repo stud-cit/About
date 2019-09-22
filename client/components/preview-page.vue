@@ -1,28 +1,68 @@
 <template>
-	<section class="question">
-		<div class="font-weight-bold" :class="titleSize">{{ title }}</div>
-		<div class="font-weight-bold" :class="titleSize">{{ subtitle }}</div>
-		<div class="navigation">
-			<div class="arrow" @click="handleNavigatingPage('left')">&#8592;</div>
-			<div class="arrow" @click="handleNavigatingPage('right')">&#8594;</div>
-			<nuxt-link class="square-container" to="/">
-				<div class="square squareOne"></div>
-				<div class="square squareTwo"></div>
-				<div class="square squareThree"></div>
-			</nuxt-link>
-		</div>
-		<p :class="$vuetify.breakpoint.smAndUp ? 'headline' : 'title'">{{ description }}</p>
-		<p 
-			:class="$vuetify.breakpoint.smAndUp ? 'title' : 'subtitle-1'"
-			class="gray"
+	<v-row class="preview-section" justify="center" align="center" align-sm="center">
+		<v-row class="preview-wrapper" 
+			justify="space-around"
+			align="end"
+			align-sm="start"
 		>
-			Scroll for more information
-		</p>
-		<v-card class="bottom-card" @click="showContactBar">
-		<v-card-title class="bottom-card-title">Do you have some questions?</v-card-title>
-		<v-card-actions class="bottom-card-action">USE OUR CONTACTS</v-card-actions>
-		</v-card>
-	</section>
+			<v-col cols="12" order="1" order-sm="1">
+				<div class="d-none d-sm-block">
+					<p class="font-weight-bold" :class="$vuetify.breakpoint.mdAndUp ? 'display-2' : 'display-1'">{{ title }}</p>
+					<p class="font-weight-bold" :class="$vuetify.breakpoint.mdAndUp ? 'display-2' : 'display-1'">{{ subtitle }}</p>
+				</div>
+				<div class="d-block d-sm-none">
+					<p class="headline font-weight-bold text-center">{{ title }}</p>
+					<p class="headline font-weight-bold text-center">{{ subtitle }}</p>
+				</div>
+			</v-col>
+			<v-col cols="12" order="3" order-sm="2">
+				<v-row justify="space-around" justify-sm="start">
+					<v-col cols="auto" order="1" order-sm="1">
+						<div class="arrow mr-3" @click="handleNavigatingPage('left')">&#8592;</div>
+					</v-col>
+					<v-col cols="auto" order="3" order-sm="2">
+						<div class="arrow mr-3" @click="handleNavigatingPage('right')">&#8594;</div>
+					</v-col>
+					<v-col cols="auto" order="2" order-sm="3" :class="{rotate: $vuetify.breakpoint.xsOnly}">
+						<nuxt-link class="square-container" to="/">
+							<div class="square mr-3 squareOne"></div>
+							<div class="square mr-3 squareTwo"></div>
+							<div class="square squareThree"></div>
+						</nuxt-link>	
+					</v-col>					
+				</v-row>
+			</v-col>
+
+			<v-col cols="12" order="2" order-sm="3">
+				<v-row class="d-none d-sm-flex">
+					<span :class="$vuetify.breakpoint.smAndUp ? 'headline' : 'title'">
+						{{ description }}
+					</span>
+				</v-row>
+				<v-row justify="center" class="d-flex d-sm-none pl-0">
+					<img class="pointer-icon" src="/pointer-mobile.svg" />
+				</v-row>
+				<v-row justify="center" justify-sm="start" class="mt-4">
+					<span
+						:class="$vuetify.breakpoint.smAndUp ? 'title' : 'subtitle-1'"
+						class="gray"
+					>
+						Scroll for more information
+					</span>
+				</v-row>
+			</v-col>
+		</v-row>
+
+		<v-row class="pa-0 use-contacts-container" justify="end" no-gutters>
+			<v-col cols="12" sm="auto">
+				<v-card class="pa-4 pt-0" @click="showContactBar">
+					<v-card-title class="title justify-center">Do you have some questions?</v-card-title>
+					<v-card-actions class="title contacts-action justify-center pa-0">Use our contacts</v-card-actions>
+				</v-card>
+			</v-col>
+			<v-col sm="1"></v-col>
+		</v-row>
+	</v-row>
 </template>
 
 <script lang="ts">
@@ -37,31 +77,8 @@ export default class PreviewPage extends Vue {
 @Getter('getPageByRoute') getPageByRoute;
 @Getter('getPageById') getPageById;
 @Mutation('changeContactBar') changeContactBar;
-	rendered: boolean = false;
-
 	showContactBar() {
 		this.changeContactBar(true);
-	}
-
-	// TODO: get rid of this
-	get titleSize() {
-		if(this.rendered) {
-			const {mdAndUp, lgAndUp} = this.$vuetify.breakpoint;
-			if(lgAndUp) {
-				return 'display-3';
-			}
-			else if(mdAndUp) {
-				return 'display-2';
-			}
-			else {
-				return 'display-1';
-			}
-		}
-		return null;
-	}
-
-	public mounted() {
-		this.rendered = true;
 	}
 
 	handleNavigatingPage(direction: 'left' | 'right') {
@@ -76,30 +93,13 @@ export default class PreviewPage extends Vue {
 </script>
 
 <style lang="sass">
-.wrapper
-	width: 80%
-	color: white
-	margin-left: auto
-	margin-right: auto
-
-.question
-	position: relative
+.preview-section
 	height: 100vh
-	display: flex
-	flex-direction: column
-	align-items: flex-start
-	justify-content: flex-end
-	color: #ffffff
 
-.navigation
-	display: flex
-	flex-direction: row
+.preview-wrapper
+	height: 60vh
 	color: white
-	margin: 5rem 0 
 
-.navigation div
-	margin-right: .8rem
- 
 .arrow
 	font-size: 1.8rem
 	text-align: center
@@ -109,8 +109,8 @@ export default class PreviewPage extends Vue {
 	display: flex
 
 .square
-	height: 2.5rem
-	width: 2.5rem
+	height: 40px
+	width: 40px
 	border-radius: 20%
 	border: 2px solid white
  
@@ -120,30 +120,18 @@ export default class PreviewPage extends Vue {
 .squareThree
 	clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
 
-.bottom-card
-	color: black
-	font-size: 2rem
-	font-weight: 100
-	text-align: center
-	display: flex
-	justify-content: center
-	flex-direction: column
-	width: 25rem
-	padding-top: 1rem
-	padding-bottom: 1rem
-	justify-self: flex-end
-	align-self: flex-end
-	margin-bottom: 1rem	
+.use-contacts-container
+	width: 100vw
+	position: fixed
+	bottom: 0
+	z-index: 10
 
-.bottom-card-title
-	text-align: center
-	justify-content: center
-	font-size: 1.3rem 
+	.contacts-action
+		text-transform: uppercase
+		text-decoration: underline
 
-.bottom-card-action
-	justify-content: center
-	text-decoration: underline
-	font-weight: 100	
+.rotate
+	transform: rotate(90deg)
 
 .gray
 	color: gray

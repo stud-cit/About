@@ -1,8 +1,10 @@
 <template>
-  <v-container>
-    <div class="wrapper">
+  <v-container fluid>
+    <v-row justify="center">
+      <v-col cols="12" sm="10">
       <PreviewPage :title="portfolio.previewTitle" :subtitle="portfolio.previewSubtitle" :description="portfolio.previewDescription" />
-    </div>
+      </v-col>
+    </v-row>
     <v-col class="pa-0">
       <v-row v-for="(project, i) in projects" :key="i" align="center">
         <v-parallax :src="project.cover" class="fullscreen pa-0">
