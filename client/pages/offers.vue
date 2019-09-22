@@ -4,7 +4,7 @@
       <v-col cols="12" sm="10">
         <PreviewPage :title="weOffers.previewTitle" :subtitle="weOffers.previewSubtitle" :description="weOffers.previewDescription" />
         <ScrollBar/>  
-        <v-row>
+        <v-row justify="center">
             <section class="representation" v-for="(preview,index) in weOffers.representation" :key="index">
               <v-row align="center" :justify="preview.positionCard">
                 <img class="preview-image" src="~/assets/images/weOffer/1.jpg"> 
