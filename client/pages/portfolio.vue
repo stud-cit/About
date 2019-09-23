@@ -9,39 +9,25 @@
       <v-row v-for="(project, i) in projects" :key="i" align="center">
         <v-parallax :src="project.cover" class="fullscreen pa-0">
           <v-row justify="center" align="center" class="section">
-            <v-col md="4">
+            <v-col md="5">
               <v-card dark flat color="transparent">
                 <v-list-item>
                   <v-list-item-content>
                     <v-list-item-title
                       v-text="project.title"
-                      class="display-3 text-center mb-5"
+                      class="display-3 mb-5"
                     />
-                    <v-btn :to="project.link" target="_blank" large dark text>
-                      <v-icon left>mdi-open-in-app</v-icon> View project
-                    </v-btn>
                     <v-divider />
-                    <v-list-item-title class="headline mt-5">
-                      Team:
-                    </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
-
-                <v-card-text align="center" class="mx-5">
-                  <v-chip
-                    v-for="(employee, j) in project.team"
-                    :key="j"
-                    pill
-                    color="transparent"
-                    class="ma-1"
-                  >
-                    <v-avatar left>
-                      <v-img :src="employee.avatar" />
-                    </v-avatar>
-                    <span v-text="employee.name" class="title" />
-                  </v-chip>
-                </v-card-text>
               </v-card>
+            </v-col>
+            <v-col md="5" class="d-flex justify-end">
+              <v-btn :to="project.link" target="_blank" large dark text>
+                View project 
+                <v-icon>mdi-arrow-right-circle-outline</v-icon>
+                <!-- <div class="arrow">&#8594;</div> -->
+              </v-btn>
             </v-col>
           </v-row>
         </v-parallax>
@@ -82,5 +68,11 @@ export default class PortfolioPage extends Vue {
   width: 101vw !important
   .section
     background: rgba(0,0,0,0.7)
+
+.arrow
+  border-radius: 50%
+  padding: 25px
+  border: 1px solid #ffffff
+  margin: 10px
 
 </style>

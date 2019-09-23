@@ -141,194 +141,32 @@ export const state = (): State => ({
       {
         title: 'Section0',
         cover: 'https://picsum.photos/id/0/1980',
-        lazyCover: 'https://picsum.photos/id/0/250',
         link: 'https://picsum.photos/id/0/1980',
-        team: [
-          {
-            name: 'fullName0',
-            avatar: 'https://picsum.photos/id/0/60',
-          },
-          {
-            name: 'fullName1',
-            avatar: 'https://picsum.photos/id/0/60',
-          },
-          {
-            name: 'fullName2',
-            avatar: 'https://picsum.photos/id/0/60',
-          },
-          {
-            name: 'fullName3',
-            avatar: 'https://picsum.photos/id/0/60',
-          },
-          {
-            name: 'fullName4',
-            avatar: 'https://picsum.photos/id/0/60',
-          },
-          {
-            name: 'fullName5',
-            avatar: 'https://picsum.photos/id/0/60',
-          },
-        ],
       },
       {
         title: 'Section1',
         cover: 'https://picsum.photos/id/10/1980',
-        lazyCover: 'https://picsum.photos/id/10/250',
         link: 'https://picsum.photos/id/10/1980',
-        team: [
-          {
-            name: 'fullName0',
-            avatar: 'https://picsum.photos/id/10/60',
-          },
-          {
-            name: 'fullName1',
-            avatar: 'https://picsum.photos/id/10/60',
-          },
-          {
-            name: 'fullName2',
-            avatar: 'https://picsum.photos/id/10/60',
-          },
-          {
-            name: 'fullName3',
-            avatar: 'https://picsum.photos/id/10/60',
-          },
-          {
-            name: 'fullName4',
-            avatar: 'https://picsum.photos/id/10/60',
-          },
-          {
-            name: 'fullName5',
-            avatar: 'https://picsum.photos/id/10/60',
-          },
-        ],
       },
       {
         title: 'Section2',
         cover: 'https://picsum.photos/id/20/1980',
-        lazyCover: 'https://picsum.photos/id/20/250',
         link: 'https://picsum.photos/id/20/1980',
-        team: [
-          {
-            name: 'fullName0',
-            avatar: 'https://picsum.photos/id/20/60',
-          },
-          {
-            name: 'fullName1',
-            avatar: 'https://picsum.photos/id/20/60',
-          },
-          {
-            name: 'fullName2',
-            avatar: 'https://picsum.photos/id/20/60',
-          },
-          {
-            name: 'fullName3',
-            avatar: 'https://picsum.photos/id/20/60',
-          },
-          {
-            name: 'fullName4',
-            avatar: 'https://picsum.photos/id/20/60',
-          },
-          {
-            name: 'fullName5',
-            avatar: 'https://picsum.photos/id/20/60',
-          },
-        ],
       },
       {
         title: 'Section3',
         cover: 'https://picsum.photos/id/30/1980',
-        lazyCover: 'https://picsum.photos/id/30/250',
         link: 'https://picsum.photos/id/30/1980',
-        team: [
-          {
-            name: 'fullName0',
-            avatar: 'https://picsum.photos/id/30/60',
-          },
-          {
-            name: 'fullName1',
-            avatar: 'https://picsum.photos/id/30/60',
-          },
-          {
-            name: 'fullName2',
-            avatar: 'https://picsum.photos/id/30/60',
-          },
-          {
-            name: 'fullName3',
-            avatar: 'https://picsum.photos/id/30/60',
-          },
-          {
-            name: 'fullName4',
-            avatar: 'https://picsum.photos/id/30/60',
-          },
-          {
-            name: 'fullName5',
-            avatar: 'https://picsum.photos/id/30/60',
-          },
-        ],
       },
       {
         title: 'Section4',
         cover: 'https://picsum.photos/id/40/1980',
-        lazyCover: 'https://picsum.photos/id/40/250',
         link: 'https://picsum.photos/id/40/1980',
-        team: [
-          {
-            name: 'fullName0',
-            avatar: 'https://picsum.photos/id/40/60',
-          },
-          {
-            name: 'fullName1',
-            avatar: 'https://picsum.photos/id/40/60',
-          },
-          {
-            name: 'fullName2',
-            avatar: 'https://picsum.photos/id/40/60',
-          },
-          {
-            name: 'fullName3',
-            avatar: 'https://picsum.photos/id/40/60',
-          },
-          {
-            name: 'fullName4',
-            avatar: 'https://picsum.photos/id/40/60',
-          },
-          {
-            name: 'fullName5',
-            avatar: 'https://picsum.photos/id/40/60',
-          },
-        ],
       },
       {
         title: 'Section5',
         cover: 'https://picsum.photos/id/50/1980',
-        lazyCover: 'https://picsum.photos/id/50/250',
         link: 'https://picsum.photos/id/50/1980',
-        team: [
-          {
-            name: 'fullName0',
-            avatar: 'https://picsum.photos/id/50/60',
-          },
-          {
-            name: 'fullName1',
-            avatar: 'https://picsum.photos/id/50/60',
-          },
-          {
-            name: 'fullName2',
-            avatar: 'https://picsum.photos/id/50/60',
-          },
-          {
-            name: 'fullName3',
-            avatar: 'https://picsum.photos/id/50/60',
-          },
-          {
-            name: 'fullName4',
-            avatar: 'https://picsum.photos/id/50/60',
-          },
-          {
-            name: 'fullName5',
-            avatar: 'https://picsum.photos/id/50/60',
-          },
-        ],
       },
     ],
   },
