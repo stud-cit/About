@@ -23,10 +23,11 @@
               </v-card>
             </v-col>
             <v-col md="5" class="d-flex justify-end">
-              <v-btn :to="project.link" target="_blank" large dark text>
-                View project 
-                <v-icon>mdi-arrow-right-circle-outline</v-icon>
-                <!-- <div class="arrow">&#8594;</div> -->
+              <v-btn :to="project.link" large dark text>
+                <span class="headline">View project</span> 
+                <v-icon class="ml-6 pa-3 arrow-right" color="white" large>
+                  mdi-chevron-right
+                </v-icon>
               </v-btn>
             </v-col>
           </v-row>
@@ -68,11 +69,10 @@ export default class PortfolioPage extends Vue {
   width: 101vw !important
   .section
     background: rgba(0,0,0,0.7)
-
-.arrow
+.arrow-right
+  // width: 50px
+  // height: 50px
   border-radius: 50%
-  padding: 25px
-  border: 1px solid #ffffff
-  margin: 10px
-
+  color: white
+  border: 1px solid white
 </style>

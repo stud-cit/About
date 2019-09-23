@@ -54,7 +54,6 @@
   }
 </script>
 
-
 <style lang="sass"> 
   .contact-bar
     position: fixed

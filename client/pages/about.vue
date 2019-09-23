@@ -22,7 +22,6 @@
             </v-row>
           </v-col>
         </v-row>
-         <v-row class="speed"><p>speed,quality , vodka</p></v-row>
       </v-window-item>
 
       <v-window-item v-for="(slide, index) in about.slides" :key="index">
@@ -31,15 +30,12 @@
             {{ slide.title }}
           </v-row>
           <div class="textArea">{{slide.content}}
-           <!-- / <div class="textAreaBack"></div> -->
           </div>
         </v-col>  
-        <v-row class="speed"><p>speed,quality , vodka</p></v-row>
       </v-window-item>
       <v-window-item>
       </v-window-item>
     </v-window>
-
     <v-footer absolute color="transparent">
       <v-col md="8">
         <v-slider
@@ -52,6 +48,9 @@
         />
       </v-col>
     </v-footer>
+    <!-- <div class="slogan"> -->
+    <p class="slogan">speed, quality, work</p>
+    <!-- </div> -->
   </v-container>
 </template>
 
@@ -150,14 +149,16 @@ export default class AboutPage extends Vue {
     color: white
     font-weight: 200
     position: relative
-    
 
-  // .textAreaBack
-  //   position: absolute
-  //   background-color: grey
-  //   opacity: .3
-  //   height: 100%
-  //   width: 100%
+  .slogan
+      position: fixed
+      // top: 0
+      // right: 0
+      color: white
+      transform: rotate(-90deg)
+      transform-origin: 45vh 50vh
+
+
 
   .titleSize  
     font-size: 3rem
