@@ -1,11 +1,13 @@
 <template>
   <v-container fluid class="contact-bar pa-1 pa-sm-3" v-if="isActive">
-    <v-row justify="end" class="pr-2">
-        <v-icon class="close-icon" size="30" color="black">
-          mdi-close
-        </v-icon>
-    </v-row>
-    <v-row justify="space-around" align="center">
+    <v-row class="relative" justify="space-around" align="center">
+      <div class="pa-1 pa-sm-0" :class="$vuetify.breakpoint.smAndUp ? 'close-icon-container' : 'mobile-close-icon'">
+        <v-btn icon @click="onCloseContactBar">
+          <v-icon size="30" color="black">
+            mdi-close
+          </v-icon>
+        </v-btn>
+      </div>
       <v-row class="underline mb-4 d-flex d-sm-none" justify="space-around">
           <v-col class="subtitle-1 font-weight-bold" cols="auto">{{contacts.email}}</v-col>
           <v-col class="subtitle-1 font-weight-bold" cols="auto">{{contacts.phone}}</v-col>
@@ -61,16 +63,25 @@
     background: white
     z-index: 15
 
-
-    .close-icon
-      position: static
-
   .underline
     border-bottom: 3px solid black
 
   .map
     background: gray
     height: 100px
+  
+  .close-icon-container
+    position: absolute
+    top: 0
+    right: 10px
+
+  .mobile-close-icon
+    position: absolute
+    top: -21px
+    left: calc(50vw - 21px)
+    
+    button
+      background: white
 
   .relative
     position: relative

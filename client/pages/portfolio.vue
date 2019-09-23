@@ -67,11 +67,11 @@ export default class PortfolioPage extends Vue {
 .fullscreen
   height: 100vh !important
   width: 101vw !important
+  
   .section
     background: rgba(0,0,0,0.7)
+
 .arrow-right
-  // width: 50px
-  // height: 50px
   border-radius: 50%
   color: white
   border: 1px solid white
