@@ -2,7 +2,57 @@
   <v-container>
     <v-window v-model="curStage" continuous dark>
       <v-window-item>
-        <v-row align="stretch">
+        <v-row class="preview-wrapper" 
+          justify="space-around"
+          align="end"
+          align-sm="start"
+        >
+          <v-col cols="12" order="1" order-sm="1">
+            <div class="d-none d-sm-block">
+              <p class="font-weight-bold" :class="$vuetify.breakpoint.mdAndUp ? 'display-2' : 'display-1'">{{ about.previewTitle }}</p>
+            </div>
+            <div class="d-block d-sm-none">
+              <p class="headline font-weight-bold text-center">{{ about.previewTitle }}</p>
+            </div>
+          </v-col>
+          <v-col cols="12" order="3" order-sm="2">
+            <v-row justify="space-around" justify-sm="start">
+              <v-col cols="auto" order="1" order-sm="1">
+                <div class="arrow mr-3" @click="handleNavigatingPage('left')">&#8592;</div>
+              </v-col>
+              <v-col cols="auto" order="3" order-sm="2">
+                <div class="arrow mr-3" @click="handleNavigatingPage('right')">&#8594;</div>
+              </v-col>
+              <v-col cols="auto" order="2" order-sm="3" :class="{rotate: $vuetify.breakpoint.xsOnly}">
+                <nuxt-link class="square-container" to="/">
+                  <div class="square mr-3 squareOne"></div>
+                  <div class="square mr-3 squareTwo"></div>
+                  <div class="square squareThree"></div>
+                </nuxt-link>	
+              </v-col>					
+            </v-row>
+          </v-col>
+
+          <v-col cols="12" order="2" order-sm="3">
+            <v-row class="d-none d-sm-flex">
+              <span :class="$vuetify.breakpoint.smAndUp ? 'headline' : 'title'">
+                {{ about.previewSubtitle }}
+              </span>
+            </v-row>
+            <v-row justify="center" class="d-flex d-sm-none pl-0">
+              <img class="pointer-icon" src="/pointer-mobile.svg" />
+            </v-row>
+            <v-row justify="center" justify-sm="start" class="mt-4">
+              <span
+                :class="$vuetify.breakpoint.smAndUp ? 'title' : 'subtitle-1'"
+                class="gray"
+              >
+                Swipe for more information
+              </span>
+            </v-row>
+          </v-col>
+        </v-row>
+        <!-- <v-row align="stretch">
           <v-col md="8" class="font-weight-bold white--text">
             <v-row class="display-2 text-uppercase">
               {{ about.previewTitle }}
@@ -21,7 +71,7 @@
               Scroll for more information
             </v-row>
           </v-col>
-        </v-row>
+        </v-row> -->
       </v-window-item>
 
       <v-window-item v-for="(slide, index) in about.slides" :key="index">
@@ -29,28 +79,40 @@
           <v-row class="font-weight-bold ma-2 white--text">
             {{ slide.title }}
           </v-row>
-          <div class="textArea">{{slide.content}}
+          <div class="textArea">
+            {{slide.content}}
           </div>
         </v-col>  
       </v-window-item>
       <v-window-item>
       </v-window-item>
     </v-window>
-    <v-footer absolute color="transparent">
-      <v-col md="8">
-        <v-slider
-          v-model="curStage"
-          :max="about.slides.length + 1"
-          step="1"
-          ticks="always"
-          tick-size="4"
-          dark
-        />
-      </v-col>
+    <v-footer absolute color="transparent" class="pb-0" :class="$vuetify.breakpoint.xsOnly && 'px-0'">
+      
+      <v-row justify="center">
+        <v-col sm="10" md="12" class="pb-0">
+          <v-row justify-sm="end" justify-md="space-around" align="center">
+            <v-col sm="12" md="8" class="px-0 d-none d-sm-flex">
+              <v-slider
+                v-model="curStage"
+                :max="about.slides.length + 1"
+                step="1"
+                ticks="always"
+                tick-size="4"
+                hide-details
+                dark
+              />
+            </v-col>
+            <v-col xs="12" sm="auto" class="pb-0">
+              <v-card class="pa-4 pt-0 use-contacts-container" @click="() => changeContactBar(true)">
+                <v-card-title class="subtitle-1 justify-center">Do you have some questions?</v-card-title>
+                <v-card-actions class="subtitle-1 contacts-action justify-center pa-0">Use our contacts</v-card-actions>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
     </v-footer>
-    <!-- <div class="slogan"> -->
-    <p class="slogan">speed, quality, work</p>
-    <!-- </div> -->
   </v-container>
 </template>
 
@@ -75,6 +137,7 @@ export default class AboutPage extends Vue {
       this.changeContactBar(true);
     }
   }
+
   @Watch('isShowContactBar')
   onChangeContactBar(curValue: boolean, prevValue: boolean) {
     // when we close contact bar - show prev stage
@@ -90,53 +153,30 @@ export default class AboutPage extends Vue {
 </script>
 
 <style lang="sass">
-  .wrapper
-    margin-top: -5%
-
-  .speed
-    position: absolute
-    width: 100vw
+  .preview-section
     height: 100vh
-    display: flex
-    justify-content: flex-end
-    top: 0
-    font-size: 3rem
+
+  .preview-wrapper
+    height: 60vh
     color: white
-    align-items: center
-    overflow: hidden
-    margin-top: -15%
-    
-  .speed p
-    transform: rotate(-90deg)
 
-  .title
-    font-size: 3rem
-
-  .body-2
-    opacity: .5
-
-  .navigation
-    display: flex
-    flex-direction: row
-    color: white
-    margin: 5rem 0 
-
-  .navigation div
-    margin-right: .8rem
-  
   .arrow
     font-size: 1.8rem
     text-align: center
+    cursor: pointer
   
+  .square-container
+    display: flex
+
   .square
-    height: 2.5rem
-    width: 2.5rem
+    height: 40px
+    width: 40px
     border-radius: 20%
     border: 2px solid white
   
   .squareOne
     clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)
-      
+    
   .squareThree
     clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
 
@@ -150,20 +190,15 @@ export default class AboutPage extends Vue {
     font-weight: 200
     position: relative
 
-  .slogan
-      position: fixed
-      // top: 0
-      // right: 0
-      color: white
-      transform: rotate(-90deg)
-      transform-origin: 45vh 50vh
+  .use-contacts-container
+    width: auto
+    border-bottom-left-radius: 0
+    border-bottom-right-radius: 0
 
-
-
-  .titleSize  
-    font-size: 3rem
+  .contacts-action  
+    text-transform: uppercase
+    text-decoration: underline
+  
+  .rotate
+    transform: rotate(90deg)
 </style>
-
-
-
-
