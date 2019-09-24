@@ -64,7 +64,7 @@
             <v-row class="font-weight-bold ma-2 white--text">
               {{ slide.title }}
             </v-row>
-            <div class="textArea">
+            <div class="px-8 py-12 headline slide-content">
               {{slide.content}}
             </div>
           </v-col>  
@@ -73,7 +73,7 @@
       <v-window-item>
       </v-window-item>
     </v-window>
-    <div class="slogan">Speed, quality, simplicity</div>
+    <div class="d-none d-md-block display-1 slogan">Speed, quality, simplicity</div>
     <v-footer absolute color="transparent" class="pb-0" :class="$vuetify.breakpoint.xsOnly && 'px-0'">
       
       <v-row justify="center">
@@ -142,7 +142,6 @@ export default class AboutPage extends Vue {
     // when we close contact bar - show prev stage
     if(prevValue === true) {
       this.curStage = this.curStage - 1;
-     
     }
   }
   created() {
@@ -187,14 +186,10 @@ export default class AboutPage extends Vue {
   .squareThree
     clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
 
-  .textArea
-    border: .3rem white solid  
-    border-right:  1rem white solid
-    padding: 3rem 2rem
-    text-align: left
-    font-size: 1.5rem
+  .slide-content
+    border: 5px solid white   
+    border-right: 16px solid white
     color: white
-    font-weight: 200
     position: relative
 
   .use-contacts-container
@@ -205,7 +200,15 @@ export default class AboutPage extends Vue {
   .contacts-action  
     text-transform: uppercase
     text-decoration: underline
-  
+
+  .slogan
+    position: fixed
+    top: calc(50vh - 188px)
+    right: 2vw
+    color: white
+    writing-mode: vertical-rl
+    transform: scaleX(-1) scaleY(-1)
+
   .rotate
     transform: rotate(90deg)
 </style>
