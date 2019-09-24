@@ -2,91 +2,78 @@
   <v-container>
     <v-window v-model="curStage" continuous dark>
       <v-window-item>
-        <v-row class="preview-wrapper" 
-          justify="space-around"
-          align="end"
-          align-sm="start"
-        >
-          <v-col cols="12" order="1" order-sm="1">
-            <div class="d-none d-sm-block">
-              <p class="font-weight-bold" :class="$vuetify.breakpoint.mdAndUp ? 'display-2' : 'display-1'">{{ about.previewTitle }}</p>
-            </div>
-            <div class="d-block d-sm-none">
-              <p class="headline font-weight-bold text-center">{{ about.previewTitle }}</p>
-            </div>
-          </v-col>
-          <v-col cols="12" order="3" order-sm="2">
-            <v-row justify="space-around" justify-sm="start">
-              <v-col cols="auto" order="1" order-sm="1">
-                <div class="arrow mr-3" @click="handleNavigatingPage('left')">&#8592;</div>
+        <v-row justify="center">
+          <v-col cols="10" md="12">
+            <v-row class="slide-container" 
+              justify="space-around"
+              align="end"
+              align-sm="start"
+            >
+              <v-col cols="12" order="1" order-sm="1">
+                <div class="d-none d-sm-block">
+                  <p class="font-weight-bold" :class="$vuetify.breakpoint.mdAndUp ? 'display-2' : 'display-1'">{{ about.previewTitle }}</p>
+                </div>
+                <div class="d-block d-sm-none">
+                  <p class="headline font-weight-bold text-center">{{ about.previewTitle }}</p>
+                </div>
               </v-col>
-              <v-col cols="auto" order="3" order-sm="2">
-                <div class="arrow mr-3" @click="handleNavigatingPage('right')">&#8594;</div>
+              <v-col cols="12" order="3" order-sm="2">
+                <v-row justify="space-around" justify-sm="start">
+                  <v-col cols="auto" order="1" order-sm="1">
+                    <div class="arrow mr-3" @click="handleChangeStage(false)">&#8592;</div>
+                  </v-col>
+                  <v-col cols="auto" order="3" order-sm="2">
+                    <div class="arrow mr-3" @click="handleChangeStage(true)">&#8594;</div>
+                  </v-col>
+                  <v-col cols="auto" order="2" order-sm="3" :class="{rotate: $vuetify.breakpoint.xsOnly}">
+                    <nuxt-link class="square-container" to="/">
+                      <div class="square mr-3 squareOne"></div>
+                      <div class="square mr-3 squareTwo"></div>
+                      <div class="square squareThree"></div>
+                    </nuxt-link>	
+                  </v-col>					
+                </v-row>
               </v-col>
-              <v-col cols="auto" order="2" order-sm="3" :class="{rotate: $vuetify.breakpoint.xsOnly}">
-                <nuxt-link class="square-container" to="/">
-                  <div class="square mr-3 squareOne"></div>
-                  <div class="square mr-3 squareTwo"></div>
-                  <div class="square squareThree"></div>
-                </nuxt-link>	
-              </v-col>					
-            </v-row>
-          </v-col>
 
-          <v-col cols="12" order="2" order-sm="3">
-            <v-row class="d-none d-sm-flex">
-              <span :class="$vuetify.breakpoint.smAndUp ? 'headline' : 'title'">
-                {{ about.previewSubtitle }}
-              </span>
-            </v-row>
-            <v-row justify="center" class="d-flex d-sm-none pl-0">
-              <img class="pointer-icon" src="/pointer-mobile.svg" />
-            </v-row>
-            <v-row justify="center" justify-sm="start" class="mt-4">
-              <span
-                :class="$vuetify.breakpoint.smAndUp ? 'title' : 'subtitle-1'"
-                class="gray"
-              >
-                Swipe for more information
-              </span>
+              <v-col cols="12" order="2" order-sm="3">
+                <v-row class="d-none d-sm-flex">
+                  <span :class="$vuetify.breakpoint.smAndUp ? 'headline' : 'title'">
+                    {{ about.previewSubtitle }}
+                  </span>
+                </v-row>
+                <v-row justify="center" class="d-flex d-sm-none pl-0">
+                  <img class="pointer-icon" src="/pointer-mobile.svg" />
+                </v-row>
+                <v-row justify="center" justify-sm="start" class="mt-4">
+                  <span
+                    :class="$vuetify.breakpoint.smAndUp ? 'title' : 'subtitle-1'"
+                    class="gray"
+                  >
+                    Swipe for more information
+                  </span>
+                </v-row>
+              </v-col>
             </v-row>
           </v-col>
         </v-row>
-        <!-- <v-row align="stretch">
-          <v-col md="8" class="font-weight-bold white--text">
-            <v-row class="display-2 text-uppercase">
-              {{ about.previewTitle }}
-            </v-row>
-             <div class="navigation">
-              <div class="arrow">&#8592;</div>
-              <div class="arrow">&#8594;</div>
-              <div class="squareOne square"></div>
-              <div class="squareTwo square"></div>
-              <div class="squareThree square"></div>
-            </div>
-            <v-row class="title mt-5">
-              {{ about.previewSubtitle }}
-            </v-row>
-            <v-row class="body-2">
-              Scroll for more information
-            </v-row>
-          </v-col>
-        </v-row> -->
       </v-window-item>
 
       <v-window-item v-for="(slide, index) in about.slides" :key="index">
-        <v-col md="8">
-          <v-row class="font-weight-bold ma-2 white--text">
-            {{ slide.title }}
-          </v-row>
-          <div class="textArea">
-            {{slide.content}}
-          </div>
-        </v-col>  
+        <v-row justify="center" align="center" class="slide-container">
+          <v-col cols="12" sm="10" md="8">
+            <v-row class="font-weight-bold ma-2 white--text">
+              {{ slide.title }}
+            </v-row>
+            <div class="textArea">
+              {{slide.content}}
+            </div>
+          </v-col>  
+        </v-row>
       </v-window-item>
       <v-window-item>
       </v-window-item>
     </v-window>
+    <div class="slogan">Speed, quality, simplicity</div>
     <v-footer absolute color="transparent" class="pb-0" :class="$vuetify.breakpoint.xsOnly && 'px-0'">
       
       <v-row justify="center">
@@ -96,11 +83,13 @@
               <v-slider
                 v-model="curStage"
                 :max="about.slides.length + 1"
+                class="slider"
                 step="1"
                 ticks="always"
-                tick-size="4"
+                tick-size="10"
                 hide-details
                 dark
+
               />
             </v-col>
             <v-col xs="12" sm="auto" class="pb-0">
@@ -131,6 +120,16 @@ export default class AboutPage extends Vue {
   @Mutation('changePageCover') changePageCover;
   @Mutation('changeContactBar') changeContactBar;
   curStage: number = 0;
+
+  handleChangeStage(isNextStage) {
+    if(isNextStage) {
+      this.curStage = 2
+    }
+    else {
+      this.curStage = this.about.slides.length + 1; 
+    }
+  }
+
   @Watch('curStage')
   onChangeCurStage(value: number) {
     if(value === this.about.slides.length + 1) {
@@ -153,10 +152,18 @@ export default class AboutPage extends Vue {
 </script>
 
 <style lang="sass">
+  .slider
+    .v-slider__tick
+      border-radius: 50%
+      background: #363636
+    
+    .v-slider__tick--filled
+      background: white
+
   .preview-section
     height: 100vh
 
-  .preview-wrapper
+  .slide-container
     height: 60vh
     color: white
 
