@@ -15,7 +15,7 @@
                   <v-list-item-content>
                     <v-list-item-title
                       v-text="project.title"
-                      class="display-3 mb-5"
+                      class="display-3 mb-5 text-underline"
                     />
                     <v-divider />
                   </v-list-item-content>
@@ -24,7 +24,7 @@
             </v-col>
             <v-col md="5" class="d-flex justify-end">
               <v-btn :to="project.link" large dark text>
-                <span class="headline">View project</span> 
+                <span class="headline">View Case Study</span> 
                 <v-icon class="ml-6 pa-3 arrow-right" color="white" large>
                   mdi-chevron-right
                 </v-icon>
@@ -67,7 +67,6 @@ export default class PortfolioPage extends Vue {
 .fullscreen
   height: 100vh !important
   width: 101vw !important
-  
   .section
     background: rgba(0,0,0,0.7)
 
@@ -75,4 +74,7 @@ export default class PortfolioPage extends Vue {
   border-radius: 50%
   color: white
   border: 1px solid white
+
+.text-underline
+  text-decoration: underline
 </style>
