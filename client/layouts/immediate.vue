@@ -3,8 +3,8 @@
     <v-app-bar id="header" color="transparent" app dark flat>   
       <figure class="breakpoint">
         <img class="logo" src="/logo.svg" />
+        <figcaption>Student centr of Information Technology</figcaption>
       </figure>
-
       <v-spacer/>
       <v-toolbar-items>
         <div class="d-none d-md-flex nav-links">
@@ -32,6 +32,7 @@
         </v-btn>
       </v-toolbar-items>
     </v-app-bar>
+    <p v-show="$vuetify.breakpoint.smAndDown">02/04</p>
 
     <v-img :src="this.getDynamicAssets(cover)" class="imageCover" />
 
@@ -141,6 +142,13 @@ export default class ImmediatetLayout extends Vue {
       border-bottom: 2px solid black
 
     
+  .number
+    color: white
+    position: absolute
+    margin: 5vh 2vh
+    z-index: 5
+    font-size:2rem
+
   .imageCover
     position: fixed !important
     height: 100vh
@@ -151,4 +159,8 @@ export default class ImmediatetLayout extends Vue {
     flex-direction: row
     align-items: center
     font-size: 1.8rem
+
+    figcaption
+      width: 50%
+      font-size: 1rem
 </style>

@@ -1,14 +1,14 @@
 <template>
   <v-container fluid>
     <v-row justify="center">
-      <v-col cols="12" sm="10">
-        <PreviewPage :title="weOffers.previewTitle" :subtitle="weOffers.previewSubtitle" :description="weOffers.previewDescription" />
+      <v-col cols="12" sm="9">
+        <PreviewPage :title="weOffers.previewTitle"  :subtitle="weOffers.previewSubtitle" :description="weOffers.previewDescription" />
         <ScrollBar/>  
         <v-row justify="center">
             <section class="representation" v-for="(preview,index) in weOffers.representation" :key="index">
-              <v-row align="center" :justify="preview.positionCard">
+              <v-row class="center d-sm-flex " :class="$vuetify.breakpoint.smAndDown ? 'representationtablet' : ''" :justify="preview.positionCard">
                 <img class="preview-image" src="~/assets/images/weOffer/1.jpg"> 
-                <v-card class="preview-card" :class="preview.positionCard">
+                <v-card :class="$vuetify.breakpoint.lgAndUp ? preview.positionCard : 'preview-card'">
                   <v-card-title class="preview-title">{{preview.title}}</v-card-title>
                   <v-card-text>{{preview.text}}</v-card-text>
                 </v-card>
@@ -59,19 +59,38 @@ export default class OffersPage extends Vue {
     position: relative
     align-items: center
     overflow: hidden
+
+  .representationtablet
+    flex-direction: column
+    align-items: flex-start
+    justify-content: flex-start 
+    img
+      object-fit: cover
+       height: 100%
+      width: 100%
+    
     
   .preview-card
+    position: relative
+    padding: 1rem
+    width: 100%
+    transform: translateX(0%)
+    
+
+  .start
+    right: 0
     width: 35rem
     padding: 3rem 2rem
     position: absolute
-    transform: translateY(50%)
-  
-  .start
-    right: 0
+    transform: translateY(95%)
   
   .end
       height: 100%
       left: 0
+      width: 35rem
+      padding: 3rem 2rem
+      position: absolute
+      transform: translateY(40%)
 
   .preview-title
     margin-bottom: 2rem
