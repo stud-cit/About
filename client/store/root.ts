@@ -139,34 +139,19 @@ export const state = (): State => ({
     previewDescription:'Our projects is one of the best',
     projects: [
       {
-        title: 'Section0',
-        cover: 'https://picsum.photos/id/0/1980',
-        link: 'https://picsum.photos/id/0/1980',
+        title: 'Department of Social Work of Sumy State University',
+        cover: '/images/portfolio/SOC.png',
+        link: 'http://soc.sumdu.edu.ua/',
       },
       {
-        title: 'Section1',
-        cover: 'https://picsum.photos/id/10/1980',
-        link: 'https://picsum.photos/id/10/1980',
+        title: 'Practice and internship search platform of Sumy State University',
+        cover: '/images/portfolio/JOB.png',
+        link: 'http://job-test.sumdu.edu.ua/',
       },
       {
-        title: 'Section2',
-        cover: 'https://picsum.photos/id/20/1980',
-        link: 'https://picsum.photos/id/20/1980',
-      },
-      {
-        title: 'Section3',
-        cover: 'https://picsum.photos/id/30/1980',
-        link: 'https://picsum.photos/id/30/1980',
-      },
-      {
-        title: 'Section4',
-        cover: 'https://picsum.photos/id/40/1980',
-        link: 'https://picsum.photos/id/40/1980',
-      },
-      {
-        title: 'Section5',
-        cover: 'https://picsum.photos/id/50/1980',
-        link: 'https://picsum.photos/id/50/1980',
+        title: 'Online assessment of the quality of the educational process at Sumy State University',
+        cover: '/images/portfolio/AC.png',
+        link: 'http://ac.sumdu.edu.ua/',
       },
     ],
   },
