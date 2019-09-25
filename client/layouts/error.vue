@@ -5,7 +5,7 @@
                 <div class="description">NOT F<img src="@/static/not-found.svg" alt="">UND</div>
             </section>
             <section v-else>An error occurred</section>
-            <nuxt-link to="/" :class="$vuetify.breakpoint.lgAndUp ? 'link-full' : 'link-mobile'">
+            <nuxt-link to="/" :class="$vuetify.breakpoint.mdAndUp ? 'link-full' : 'link-mobile'">
                 <div class="text">Return to Home Page</div>
             </nuxt-link>
         </v-container>
@@ -55,7 +55,7 @@ export default {
 		font-size: 60px
 		right: -15rem
 		white-space: nowrap
-		top: 40vw
+		top: 50%
 	
 .link-mobile
 	background: rgba(242, 242, 242, 1)
