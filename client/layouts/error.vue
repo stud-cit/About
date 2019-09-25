@@ -1,18 +1,14 @@
 <template>
-        <div class="container">
+        <v-container>
             <section class="errors" v-if="error.statusCode === 404">
                 <div class="number">404</div>
                 <div class="description">NOT F<img src="@/static/not-found.svg" alt="">UND</div>
             </section>
             <section v-else>An error occurred</section>
-            <nuxt-link to="/" class="link">
-                <div class="back">
-                </div>
-                <div class="text">
-                    Return to Home Page
-                </div>
+            <nuxt-link to="/" :class="$vuetify.breakpoint.mdAndUp ? 'link-full' : 'link-mobile'">
+                <div class="text">Return to Home Page</div>
             </nuxt-link>
-        </div>
+        </v-container>
 </template>
 
 <script lang="ts">
@@ -34,45 +30,62 @@ export default {
 	left: 50%
 	transform: translate(-50% , -50%)
 	.number
-		font-size: 250px
+		font-size: 15vw
 		color: rgba(206, 206, 206, 1)
 	.description
-		font-size: 150px
+		font-size: 11vw
 		display: inline
 		color: rgba(218, 218, 218, 1)
 	img
 		width: auto
-		height: 140px
+		height: 10vw
 		vertical-align: middle
 
-.link
-	.back
-		background: rgba(242, 242, 242, 1)
-		height: 100vh
-		width: 100px
-		position: absolute
-		right: 0
-		top: 0
-		bottom: 0
+.link-full
+	background: rgba(242, 242, 242, 1)
+	height: 100vh
+	width: 100px
+	position: absolute
+	right: 0
+	top: 0
+	bottom: 0
 	.text
 		position: absolute
 		transform: rotate(-90deg)
 		font-size: 60px
 		right: -15rem
-		height: 100px
+		white-space: nowrap
+		top: 50%
+	
+.link-mobile
+	background: rgba(242, 242, 242, 1)
+	width: 100vw
+	height: 8vh
+	position: absolute
+	right: 0
+	left: 0
+	bottom: 0
+	display: flex
+	align-items: center
+	.text
+		position: absolute
+		font-size: 5vw
+		left: 50%
+		transform: translate(-50%)
+	
+.text
+	text-decoration: none
+	color: rgba(227, 227, 227, 1)
+	:link
 		text-decoration: none
 		color: rgba(227, 227, 227, 1)
-		:link
-			text-decoration: none
-			color: rgba(227, 227, 227, 1)
-		:visited
-			text-decoration: none
-			color: rgba(227, 227, 227, 1)
-		:active
-			text-decoration: none
-			color: rgba(227, 227, 227, 1)
-		:hover
-			text-decoration: none
-			color: rgba(227, 227, 227, 1)
-
+	:visited
+		text-decoration: none
+		color: rgba(227, 227, 227, 1)
+	:active
+		text-decoration: none
+		color: rgba(227, 227, 227, 1)
+	:hover
+		text-decoration: none
+		color: rgba(227, 227, 227, 1)
 </style>
