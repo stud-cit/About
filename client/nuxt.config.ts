@@ -45,6 +45,7 @@ const config: Configuration = {
   plugins: [
     '~/mixins',
     '~/plugins/vuetify',
+    '~/plugins/vue-google-maps',
     { src: '~/plugins/swiper', ssr: false },
   ],
   /*
@@ -53,10 +54,9 @@ const config: Configuration = {
   buildModules: [
     '@nuxt/typescript-build',
     'nuxt-i18n',
-    // 'nuxt-validate',
   ],
   build: {
-    transpile: ['vuetify/lib'],
+    transpile: ['vuetify/lib', /^vue2-google-maps($|\/)/],
     plugins: [new VuetifyLoaderPlugin()],
     loaders: {
       sass: {

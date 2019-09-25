@@ -1,5 +1,5 @@
 <template>
-	<v-row class="preview-section" justify="center" align="center" align-sm="center">
+	<v-row class="preview-section" justify="center" align="center">
 		<v-row class="preview-wrapper" 
 			justify="space-around"
 			align="end"
@@ -55,7 +55,7 @@
 
 		<v-row class="pa-0 use-contacts-container" justify="end" no-gutters>
 			<v-col cols="12" sm="auto">
-				<v-card class="pa-4 pt-0" @click="showContactBar">
+				<v-card class="pa-4 pt-0 card-contacts" @click="showContactBar">
 					<v-card-title class="title justify-center">Do you have some questions?</v-card-title>
 					<v-card-actions class="title contacts-action justify-center pa-0">Use our contacts</v-card-actions>
 				</v-card>
@@ -125,6 +125,10 @@ export default class PreviewPage extends Vue {
 	position: fixed
 	bottom: 0
 	z-index: 10
+	
+	.card-contacts
+		border-bottom-left-radius: 0
+		border-bottom-right-radius: 0
 
 	.contacts-action
 		text-transform: uppercase
