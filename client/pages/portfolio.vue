@@ -9,23 +9,24 @@
       <v-row v-for="(project, i) in projects" :key="i" align="center">
         <v-parallax :src="project.cover" class="fullscreen pa-0">
           <v-row justify="center" align="center" class="section">
-            <v-col md="5">
+            <v-col lg="7" md="7" sm="12">
               <v-card dark flat color="transparent">
                 <v-list-item>
                   <v-list-item-content>
                     <v-list-item-title
                       v-text="project.title"
-                      class="display-3 mb-5 text-underline"
+                      class="ma-5 display-3 text-underline"
+                      :class="$vuetify.breakpoint.mdAndUp ? '' : 'text-center'"
                     />
                     <v-divider />
                   </v-list-item-content>
                 </v-list-item>
               </v-card>
             </v-col>
-            <v-col md="5" class="d-flex justify-end">
+            <v-col lg="3" md="4" sm="12" class="ma-3 d-flex" :class="$vuetify.breakpoint.mdAndUp ? 'justify-end' : 'justify-center'">
               <v-btn :to="project.link" large dark text>
-                <span class="headline">View Case Study</span> 
-                <v-icon class="ml-6 pa-3 arrow-right" color="white" large>
+                <span class="headline d-none d-md-block">View Case Study</span> 
+                <v-icon class="arrow-right" color="white" :class="$vuetify.breakpoint.mdAndUp ? 'display-3' : 'display-4'">
                   mdi-chevron-right
                 </v-icon>
               </v-btn>
@@ -74,6 +75,7 @@ export default class PortfolioPage extends Vue {
   border-radius: 50%
   color: white
   border: 1px solid white
+  margin: 10px
 
 .text-underline
   text-decoration: underline
