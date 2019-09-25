@@ -1,3 +1,20 @@
 export default {
-  welcome: 'Ня кавай, пацаны'
+  general: {
+    deleteMe: 'Видали мое иснування не мае сенсу',
+  },
+  home: {
+
+  },
+  about: {
+
+  },
+  weOffers: {
+
+  },
+  ourStaff: {
+
+  },
+  portfolio: {
+
+  },
 }
