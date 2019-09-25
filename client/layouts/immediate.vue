@@ -70,7 +70,7 @@
             <v-btn 
               class="text-center display-2 page-link"
               exact-active-class="page-link-active"
-              @click="toggleVisibilityMobileMenu"
+              @click="toggleVisibilityMobileMenu()"
               :to="page.to" 
               exact
               nuxt
