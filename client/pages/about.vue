@@ -8,7 +8,7 @@
               justify="space-around"
               align="end"
               align-sm="start"
-            >20
+            >
               <v-col cols="12" order="1" order-sm="1">
                 <div class="d-none d-sm-block">
                   <p class="font-weight-bold" :class="$vuetify.breakpoint.mdAndUp ? 'display-2' : 'display-1'">{{ about.previewTitle }}</p>

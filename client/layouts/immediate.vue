@@ -34,7 +34,7 @@
     </v-app-bar>
     <p class="number d-mdAndUp-none d-smAndDown-flex">02/04</p>
 
-    <v-img :src="this.getDynamicAssets(cover)" class="imageCover" />
+    <v-img :src="getDynamicAssets(cover)" class="imageCover" />
 
     <v-content class="pt-0">
       <v-container fluid class="fill-height pa-0">
@@ -71,6 +71,7 @@
             <v-btn 
               class="text-center display-2 page-link"
               exact-active-class="page-link-active"
+              @click="toggleVisibilityMobileMenu()"
               :to="page.to" 
               exact
               nuxt
@@ -109,12 +110,14 @@ export default class ImmediatetLayout extends Vue {
 <style lang="sass">
   #header
     z-index: 30
+
   .logo 
     width: 85px
     margin-right: 1rem
 
   .nav-links
     align-items: center
+
   #pages-list-container
     height: 100vh
     display: flex
@@ -139,14 +142,13 @@ export default class ImmediatetLayout extends Vue {
 
     .page-link-active .page-link-title
       border-bottom: 2px solid black
-
-    
+      
   .number
     color: white
     position: absolute
     margin: 6vh 2vh
     z-index: 5
-    font-size:2rem
+    font-size: 2rem
 
   .imageCover
     position: fixed !important

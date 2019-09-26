@@ -43,7 +43,7 @@
           >
             <GmapMarker
               :position="{lat: 50.892796, lng: 34.840445}"
-              icon="/marker.png"
+              icon="/marker.svg"
             />
           </GmapMap>
         </v-row>
@@ -319,7 +319,7 @@
     border-bottom: 3px solid black
 
   .map
-    width: 150px
+    width: 500px
     height: 130px
 
     .gmnoprint

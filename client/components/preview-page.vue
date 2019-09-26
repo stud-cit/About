@@ -2,8 +2,7 @@
 	<v-row class="preview-section" justify="center" align="center">
 		<v-row class="preview-wrapper" 
 			justify="space-around"
-			align="end"
-			align-sm="start"
+			align="start"
 		>
 			<v-col cols="12" order="1" order-sm="1">
 				<div class="d-none d-sm-block">
@@ -93,50 +92,50 @@ export default class PreviewPage extends Vue {
 </script>
 
 <style lang="sass">
-.preview-section
-	height: 100vh
+	.preview-section
+		height: 100vh
 
-.preview-wrapper
-	height: 60vh
-	color: white
+		.use-contacts-container
+			width: 100vw
+			position: fixed
+			right: 0
+			bottom: 0
+			z-index: 10
+		
+			.card-contacts
+				border-bottom-left-radius: 0
+				border-bottom-right-radius: 0
 
-.arrow
-	font-size: 1.8rem
-	text-align: center
-	cursor: pointer
- 
-.square-container
-	display: flex
+			.contacts-action
+				text-transform: uppercase
+				text-decoration: underline
 
-.square
-	height: 40px
-	width: 40px
-	border-radius: 20%
-	border: 2px solid white
- 
-.squareOne
-	clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)
+	.preview-wrapper
+		height: 60vh
+		color: white
+
+	.arrow
+		font-size: 1.8rem
+		text-align: center
+		cursor: pointer
 	
-.squareThree
-	clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
+	.square-container
+		display: flex
 
-.use-contacts-container
-	width: 100vw
-	position: fixed
-	bottom: 0
-	z-index: 10
+	.square
+		height: 40px
+		width: 40px
+		border-radius: 20%
+		border: 2px solid white
 	
-	.card-contacts
-		border-bottom-left-radius: 0
-		border-bottom-right-radius: 0
+	.squareOne
+		clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)
+		
+	.squareThree
+		clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
 
-	.contacts-action
-		text-transform: uppercase
-		text-decoration: underline
-
-.rotate
-	transform: rotate(90deg)
-
-.gray
-	color: gray
+	.rotate
+		transform: rotate(90deg)
+	.gray
+		color: gray
 </style>

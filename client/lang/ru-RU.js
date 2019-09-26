@@ -1,3 +1,20 @@
 export default {
-  welcome: 'Привет'
+  general: {
+    deleteMe: 'Делете ме плеас бро',
+  },
+  home: {
+
+  },
+  about: {
+
+  },
+  weOffers: {
+
+  },
+  ourStaff: {
+
+  },
+  portfolio: {
+
+  },
 }

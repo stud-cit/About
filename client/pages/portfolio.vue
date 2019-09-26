@@ -7,7 +7,7 @@
     </v-row>
     <v-col class="pa-0">
       <v-row v-for="(project, i) in projects" :key="i" align="center">
-        <v-parallax :src="project.cover" class="fullscreen pa-0">
+        <v-parallax :src="getDynamicAssets(project.cover)" class="fullscreen pa-0">
           <v-row justify="center" align="center" class="section">
             <v-col lg="7" md="7" sm="12">
               <v-card dark flat color="transparent">
