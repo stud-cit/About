@@ -32,7 +32,7 @@
         </v-btn>
       </v-toolbar-items>
     </v-app-bar>
-    <p v-show="$vuetify.breakpoint.smAndDown">02/04</p>
+    <p class="number d-mdAndUp-none d-smAndDown-flex">02/04</p>
 
     <v-img :src="this.getDynamicAssets(cover)" class="imageCover" />
 
@@ -144,7 +144,7 @@ export default class ImmediatetLayout extends Vue {
   .number
     color: white
     position: absolute
-    margin: 5vh 2vh
+    margin: 6vh 2vh
     z-index: 5
     font-size:2rem
 
