@@ -20,10 +20,10 @@
               <v-col cols="12" order="3" order-sm="2">
                 <v-row justify="space-around" justify-sm="start">
                   <v-col cols="auto" order="1" order-sm="1">
-                    <div class="arrow mr-3" @click="handleChangeStage(false)">&#8592;</div>
+                    <div class="arrow mr-3" @click="handleNavigatingPage(false)">&#8592;</div>
                   </v-col>
                   <v-col cols="auto" order="3" order-sm="2">
-                    <div class="arrow mr-3" @click="handleChangeStage(true)">&#8594;</div>
+                    <div class="arrow mr-3" @click="handleNavigatingPage(true)">&#8594;</div>
                   </v-col>
                   <v-col cols="auto" order="2" order-sm="3" :class="{rotate: $vuetify.breakpoint.xsOnly}">
                     <nuxt-link class="square-container" to="/">
@@ -116,19 +116,20 @@ import { Getter, Mutation } from 'vuex-class';
 })
 export default class AboutPage extends Vue {
   @Getter('getAboutStage') about;
+  @Getter('getPageByRoute') getPageByRoute;
+  @Getter('getPageById') getPageById;
   @Getter('getContactBarVisibility') isShowContactBar;
   @Mutation('changePageCover') changePageCover;
   @Mutation('changeContactBar') changeContactBar;
   curStage: number = 0;
 
-  handleChangeStage(isNextStage) {
-    if(isNextStage) {
-      this.curStage = 2
-    }
-    else {
-      this.curStage = this.about.slides.length + 1; 
-    }
-  }
+  handleNavigatingPage(toRight: boolean) {
+		const route = this.$route.path.replace('/', '');
+		const pageIndex = this.getPageByRoute(route);
+		const newPageIndex = toRight ? pageIndex + 1 : pageIndex - 1;
+		const nextPage = this.getPageById(newPageIndex);
+		this.$router.push(nextPage);
+	}
 
   @Watch('curStage')
   onChangeCurStage(value: number) {

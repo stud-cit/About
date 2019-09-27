@@ -8,27 +8,29 @@
           :cols="$vuetify.breakpoint.mdAndDown ? 10 : 8"
           class="swiper-slide"
         >
-          <v-card :href="page.to" :link="true">
-            <v-img
-              :src="getDynamicAssets(page.img)"
-              :gradient="imagePageGradient"
-              :lazy-src="page.lazyImg"
-              :height="$vuetify.breakpoint.mdAndDown ? '45vh' : '55vh'"
-              :aspect-ratio="16 / 9"
-            >
-              <v-card-title class="title white--text fill-height">
-                <v-row justify="center" align="center" class="fill-height">
-                  <span class="headline font-weight-bold font-italic pr-4">
-                    0{{ ++i }}
-                  </span>
-                  <span class="font-weight-bold" :class="$vuetify.breakpoint.mdAndDown ? 'display-2' : 'display-3'">
-                    {{ page.title }}
-                  </span>
-                </v-row>
-              </v-card-title>
-              <div class="fill-height bottom-gradient"></div>
-            </v-img>
-          </v-card>
+          <nuxt-link :to="page.to" class="disable-underline">
+            <v-card>
+              <v-img
+                :src="getDynamicAssets(page.img)"
+                :gradient="imagePageGradient"
+                :lazy-src="page.lazyImg"
+                :height="$vuetify.breakpoint.mdAndDown ? '45vh' : '55vh'"
+                :aspect-ratio="16 / 9"
+              >
+                <v-card-title class="title white--text fill-height">
+                  <v-row justify="center" align="center" class="fill-height">
+                    <span class="headline font-weight-bold font-italic pr-4">
+                      0{{ ++i }}
+                    </span>
+                    <span class="font-weight-bold" :class="$vuetify.breakpoint.mdAndDown ? 'display-2' : 'display-3'">
+                      {{ page.title }}
+                    </span>
+                  </v-row>
+                </v-card-title>
+                <div class="fill-height bottom-gradient"></div>
+              </v-img>
+            </v-card>
+          </nuxt-link>
         </v-col>
       </div>
     </div>
@@ -38,27 +40,29 @@
           :key="i"
           cols="12"
       >
-        <v-card :href="page.to" :link="true">
-          <v-img
-            :src="getDynamicAssets(page.img)"
-            :gradient="imagePageGradient"
-            :lazy-src="page.lazyImg"
-            height="30vh"
-            :aspect-ratio="16 / 9"
-          >
-            <v-card-title class="title white--text fill-height">
-              <v-row justify="center" align="center" class="fill-height">
-                <span class="headline font-weight-bold font-italic pr-4">
-                  0{{ ++i }}
-                </span>
-                <span class="display-2 font-weight-bold">
-                  {{ page.title }}
-                </span>
-              </v-row>
-            </v-card-title>
-            <div class="fill-height bottom-gradient"></div>
-          </v-img>
-        </v-card>
+        <nuxt-link :to="page.to" class="disable-underline">
+          <v-card :href="page.to" :link="true">
+            <v-img
+              :src="getDynamicAssets(page.img)"
+              :gradient="imagePageGradient"
+              :lazy-src="page.lazyImg"
+              height="30vh"
+              :aspect-ratio="16 / 9"
+            >
+              <v-card-title class="title white--text fill-height">
+                <v-row justify="center" align="center" class="fill-height">
+                  <span class="headline font-weight-bold font-italic pr-4">
+                    0{{ ++i }}
+                  </span>
+                  <span class="display-2 font-weight-bold">
+                    {{ page.title }}
+                  </span>
+                </v-row>
+              </v-card-title>
+              <div class="fill-height bottom-gradient"></div>
+            </v-img>
+          </v-card>
+        </nuxt-link>
       </v-col>
     </v-row>
   </v-container>
@@ -106,13 +110,16 @@ export default class HomePage extends Vue {
 </script>
 
 <style lang="sass">
-.swiper-wrapper
-  width: 80%  
+  .swiper-wrapper
+    width: 80%  
 
-.swiper-inactive
-  transform: translateX(300%)
+  .swiper-inactive
+    transform: translateX(300%)
 
-.swiper-active
-    transform: translateX(0%)
-    transition: 2s
+  .swiper-active
+      transform: translateX(0%)
+      transition: 2s
+
+  .disable-underline
+    text-decoration: none
 </style>

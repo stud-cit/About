@@ -6,7 +6,7 @@
         <ScrollBar/>  
         <v-row justify="center">
             <section class="representation" v-for="(preview,index) in weOffers.representation" :key="index">
-              <v-row class="center d-sm-flex " :class="$vuetify.breakpoint.smAndDown ? 'representationtablet' : ''" :justify="preview.positionCard">
+              <v-row class="center d-sm-flex " :class="{representationtablet: $vuetify.breakpoint.smAndDown}" :justify="preview.positionCard">
                 <img class="preview-image" src="~/assets/images/weOffer/1.jpg"> 
                 <v-card :class="$vuetify.breakpoint.lgAndUp ? preview.positionCard : 'preview-card'">
                   <v-card-title class="preview-title">{{preview.title}}</v-card-title>
@@ -76,6 +76,9 @@ export default class OffersPage extends Vue {
     width: 100%
     transform: translateX(0%)
     
+  .preview-image
+    height:100%
+    width:100%  
 
   .start
     right: 0
