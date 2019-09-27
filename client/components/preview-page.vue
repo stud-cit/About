@@ -46,7 +46,7 @@
 						:class="$vuetify.breakpoint.smAndUp ? 'title' : 'subtitle-1'"
 						class="gray"
 					>
-						Scroll for more information
+						{{$t('weOffers.scroll')}}
 					</span>
 				</v-row>
 			</v-col>
@@ -55,8 +55,8 @@
 		<v-row class="pa-0 use-contacts-container" justify="end" no-gutters>
 			<v-col cols="12" sm="auto">
 				<v-card class="pa-4 pt-0 card-contacts" @click="showContactBar">
-					<v-card-title class="title justify-center">Do you have some questions?</v-card-title>
-					<v-card-actions class="title contacts-action justify-center pa-0">Use our contacts</v-card-actions>
+					<v-card-title class="title justify-center">{{$t('contact.titleShort')}}</v-card-title>
+					<v-card-actions class="title contacts-action justify-center pa-0">{{$t('contact.preTitleShort')}}</v-card-actions>
 				</v-card>
 			</v-col>
 			<v-col sm="1"></v-col>

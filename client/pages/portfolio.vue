@@ -15,7 +15,7 @@
                   <v-list-item-content>
                     <v-list-item-title
                       v-text="project.title"
-                      class="ma-5 display-3 text-underline"
+                      class="ma-5 display-3 text-underline text-wrap"
                       :class="$vuetify.breakpoint.mdAndUp ? '' : 'text-center'"
                     />
                     <v-divider />
@@ -25,7 +25,7 @@
             </v-col>
             <v-col lg="3" md="4" sm="12" class="ma-3 d-flex" :class="$vuetify.breakpoint.mdAndUp ? 'justify-end' : 'justify-center'">
               <v-btn :to="project.link" large dark text>
-                <span class="headline d-none d-md-block">View Case Study</span> 
+                <span class="headline d-none d-md-block">{{$t('portfolio.link')}}</span> 
                 <v-icon class="arrow-right" color="white" :class="$vuetify.breakpoint.mdAndUp ? 'display-3' : 'display-4'">
                   mdi-chevron-right
                 </v-icon>
@@ -66,7 +66,7 @@ export default class PortfolioPage extends Vue {
 
 <style lang="sass">
 .fullscreen
-  height: 100vh !important
+  height: 90vh !important
   width: 101vw !important
   .section
     background: rgba(0,0,0,0.7)
