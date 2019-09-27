@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid class="pb-0">
     <v-row justify="center">
       <v-col cols="12" sm="9">
         <PreviewPage :title="weOffers.previewTitle"  :subtitle="weOffers.previewSubtitle" :description="weOffers.previewDescription" />
@@ -14,10 +14,10 @@
                 </v-card>
               </v-row>
           </section>
-          <product-footer />
         </v-row>
       </v-col>
     </v-row>
+    <product-footer />
   </v-container>
 </template>
 
@@ -46,6 +46,7 @@ import ScrollBar from '@/components/scroll-bar.vue';
 export default class OffersPage extends Vue {
   @Getter('getOffersStage') weOffers;
   @Mutation('changePageCover') changePageCover;
+
 
   created() {
     this.changePageCover('offers');

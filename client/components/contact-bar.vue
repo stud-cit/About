@@ -1,7 +1,11 @@
 <template>
   <v-container fluid class="contact-bar pa-1 pa-sm-3" :class="{static: isStatic}" v-if="isStatic || isActive">
     <v-row class="relative" justify="space-around" align="center">
-      <div class="pa-1 pa-sm-0" :class="$vuetify.breakpoint.smAndUp ? 'close-icon-container' : 'mobile-close-icon'">
+      <div
+        :class="$vuetify.breakpoint.smAndUp ? 'close-icon-container' : 'mobile-close-icon'" 
+        v-if="!isStatic" 
+        class="pa-1 pa-sm-0" 
+      >
         <v-btn icon @click="onCloseContactBar">
           <v-icon size="30" color="black">
             mdi-close
@@ -63,7 +67,9 @@
     @Getter('getContactStage') contacts;
     @Mutation('changeContactBar') changeContactBar;
 
-    @Prop({ default: false }) readonly isStatic!: boolean
+    @Prop({ default: false }) readonly isStatic: boolean
+
+
 
     mapOptions = {
         zoomControl: false,
@@ -315,7 +321,9 @@
     position: fixed
     bottom: 0
     background: white
+    color: black
     z-index: 15
+
 
   
   .static
@@ -324,7 +332,7 @@
     border-bottom: 3px solid black
 
   .map
-    width: 150px
+    width: 250px
     height: 130px
 
     .gmnoprint
