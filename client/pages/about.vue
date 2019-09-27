@@ -49,7 +49,7 @@
                     :class="$vuetify.breakpoint.smAndUp ? 'title' : 'subtitle-1'"
                     class="gray"
                   >
-                    Swipe for more information
+                    {{$t('about.swipe')}}
                   </span>
                 </v-row>
               </v-col>
@@ -73,7 +73,7 @@
       <v-window-item>
       </v-window-item>
     </v-window>
-    <div class="d-none d-md-block display-1 slogan">Speed, quality, simplicity</div>
+    <div class="d-none d-md-block display-1 slogan">{{$t('about.tagLine')}}</div>
     <v-footer absolute color="transparent" class="pb-0" :class="$vuetify.breakpoint.xsOnly && 'px-0'">
       
       <v-row justify="center">
@@ -94,8 +94,8 @@
             </v-col>
             <v-col xs="12" sm="auto" class="pb-0">
               <v-card class="pa-4 pt-0 use-contacts-container" @click="() => changeContactBar(true)">
-                <v-card-title class="subtitle-1 justify-center">Do you have some questions?</v-card-title>
-                <v-card-actions class="subtitle-1 contacts-action justify-center pa-0">Use our contacts</v-card-actions>
+                <v-card-title class="subtitle-1 justify-center">{{$t('contact.titleShort')}}</v-card-title>
+                <v-card-actions class="subtitle-1 contacts-action justify-center pa-0">{{$t('contact.preTitleShort')}}</v-card-actions>
               </v-card>
             </v-col>
           </v-row>

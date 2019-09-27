@@ -3,7 +3,7 @@
     <v-app-bar id="header" color="transparent" app dark flat>   
       <figure class="breakpoint">
         <img class="logo" src="/logo.svg" />
-        <figcaption>Student centr of Information Technology</figcaption>
+        <figcaption>{{$t('immediate.logo')}}</figcaption>
       </figure>
       <v-spacer/>
       <v-toolbar-items>
