@@ -31,7 +31,8 @@ export default class ScrollBar extends Vue {
   handleScroll(evt, targ, el) : void { 
     if (document.body.scrollHeight <= window.innerHeight) {
       this.displays = true;
-    } else {
+    } 
+    else {
       this.displays = false;
       this.currScroll = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
     }
@@ -40,12 +41,6 @@ export default class ScrollBar extends Vue {
       if (document.body.scrollHeight <= window.innerHeight) {
         this.displays = true;
       }
-  }
-  @Watch('currScroll')
-  onChangeScroll(value: number) {
-    if(value === 100) {
-      this.changeContactBar(true);
-    }
   }
 }
 </script> 

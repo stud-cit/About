@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="contact-bar pa-1 pa-sm-3" v-if="isActive">
+  <v-container fluid class="contact-bar pa-1 pa-sm-3" :class="{static: isStatic}" v-if="isStatic || isActive">
     <v-row class="relative" justify="space-around" align="center">
       <div class="pa-1 pa-sm-0" :class="$vuetify.breakpoint.smAndUp ? 'close-icon-container' : 'mobile-close-icon'">
         <v-btn icon @click="onCloseContactBar">
@@ -34,7 +34,7 @@
       </v-col>
       <v-col cols="6" sm="2" class="pb-0">
         <v-row class="pb-0" justify="center" align="end">
-          <GmapMap 
+          <GmapMap
             class="map"
             :center="{lat: 50.892796, lng: 34.840445}"
             :zoom="13"
@@ -54,7 +54,7 @@
 
 
 <script lang="ts">
-  import {Vue, Component} from 'vue-property-decorator';
+  import {Vue, Component, Prop} from 'vue-property-decorator';
   import { Getter, Mutation } from 'vuex-class';
 
   @Component({})
@@ -62,6 +62,8 @@
     @Getter('getContactBarVisibility') isActive;
     @Getter('getContactStage') contacts;
     @Mutation('changeContactBar') changeContactBar;
+
+    @Prop({ default: false }) readonly isStatic!: boolean
 
     mapOptions = {
         zoomControl: false,
@@ -315,11 +317,14 @@
     background: white
     z-index: 15
 
+  
+  .static
+    position: static
   .underline
     border-bottom: 3px solid black
 
   .map
-    width: 500px
+    width: 150px
     height: 130px
 
     .gmnoprint

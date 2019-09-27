@@ -14,6 +14,7 @@
                 </v-card>
               </v-row>
           </section>
+          <product-footer />
         </v-row>
       </v-col>
     </v-row>
@@ -24,8 +25,9 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
 
-import ScrollBar from '@/components/scroll-bar.vue';
+import PruductFooter from "@/components/product-footer.vue";
 import PreviewPage from '@/components/preview-page.vue';
+import ScrollBar from '@/components/scroll-bar.vue';
 
 @Component({
   layout: 'immediate',
@@ -34,8 +36,9 @@ import PreviewPage from '@/components/preview-page.vue';
   
   },
   components: {
-    ScrollBar,
+    'product-footer': PruductFooter,
     PreviewPage,
+    ScrollBar,
   },
   
 })
