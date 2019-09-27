@@ -32,7 +32,7 @@
         </v-btn>
       </v-toolbar-items>
     </v-app-bar>
-    <p class="number d-mdAndUp-none d-smAndDown-flex">02/04</p>
+    <p class="number d-mdAndUp-none d-smAndDown-flex">{{pageInfo}}</p>
 
     <v-img :src="getDynamicAssets(cover)" class="imageCover" />
 
@@ -96,8 +96,16 @@ import ContactBar from '@/components/contact-bar.vue';
   }
 })
 export default class ImmediatetLayout extends Vue {
+  @Getter('getPageByRoute') getPageByRoute;
   @Getter('getPageStage') pages;
   @Getter('getPageCover') cover;
+
+  get pageInfo() {
+    const route = this.$route.path.replace('/', '');
+    const pageIndex = this.getPageByRoute(route);
+    
+    return `${pageIndex}/${this.pages.length}`;
+  }
 
   isShowMobileMenu: boolean = false;
 
