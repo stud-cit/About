@@ -51,9 +51,6 @@ export default class OurStaffPage extends Vue {
   created() {
     this.changePageCover('our-staff');
   }
-  showContactBar() {
-    this.changeContactBar(true);
-  }
 }
 </script>
 
