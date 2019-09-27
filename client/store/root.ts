@@ -14,6 +14,7 @@ interface PageModel {
 }
 
 export const state = (): State => ({
+  isShowLoader: true,
   pages: [
     { 
       id: 1,
@@ -219,6 +220,9 @@ export const getters: GetterTree<RootState, RootState> = {
 export const actions: ActionTree<RootState, RootState> = {};
 
 export const mutations: MutationTree<RootState> = {
+  hideLoader(state: RootState): void {
+    state.isShowLoader = false;
+  },
   changePageCover(state: RootState, page: string | undefined): void {
     state.pageCover = page ? `/images/background/${page}.png` : undefined;
   },
