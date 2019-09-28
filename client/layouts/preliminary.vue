@@ -4,13 +4,13 @@
       <v-toolbar-title>
         <p 
           class="text-uppercase mb-0 font-weight-bold"
-          :class="$vuetify.breakpoint.smAndDown ? 'headline' : 'display-1'"
+          :style="getPageTitleFont"
         >
           {{$t('home.title')}}
         </p>
         <p 
           class="grey--text mb-0"
-          :class="$vuetify.breakpoint.smAndDown ? 'title' : 'headline'"
+          :style="getPageSubTitleFont"
         >
           {{$t('home.preTitle')}}
         </p>
@@ -75,7 +75,7 @@
                 x-large
                 icon
               >
-                <span class="display-1">{{locale.code}}</span>
+                <span class="locale">{{locale.code}}</span>
               </v-btn>
             </div>
           </div>
@@ -95,6 +95,14 @@ export default class PreliminaryLayout extends Vue {
   availableLocales() {
     return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale);
   }
+
+  get getPageTitleFont() {
+    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 12, sm: 20, md: 20, lg: 30})}px`};
+  }
+  get getPageSubTitleFont() {
+    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 10, sm: 20, md: 15, lg: 25})}px`};
+  }
+
 
   toggleVisibilityLocales() {
     this.isShowMobileLocales = !this.isShowMobileLocales;
@@ -127,6 +135,9 @@ export default class PreliminaryLayout extends Vue {
     height: 30px
     background: white
     clip-path: ellipse(50% 100% at 50% 100%)
+    
+  .locale
+    font-size: 25px
 
   .locales-container
     width: 100%

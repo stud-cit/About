@@ -19,10 +19,13 @@
               >
                 <v-card-title class="title white--text fill-height">
                   <v-row justify="center" align="center" class="fill-height">
-                    <span class="headline font-weight-bold font-italic pr-4">
+                    <span 
+                      class="font-weight-bold font-italic pr-4" 
+                      :style="getSlideNumberFont"
+                    >
                       0{{ ++i }}
                     </span>
-                    <span class="font-weight-bold" :class="$vuetify.breakpoint.mdAndDown ? 'display-2' : 'display-3'">
+                    <span class="font-weight-bold" :style="getSlideTitleFont">
                       {{ page.title }}
                     </span>
                   </v-row>
@@ -51,10 +54,10 @@
             >
               <v-card-title class="title white--text fill-height">
                 <v-row justify="center" align="center" class="fill-height">
-                  <span class="headline font-weight-bold font-italic pr-4">
+                  <span class="font-weight-bold font-italic pr-4" :style="getSlideNumberFont">
                     0{{ ++i }}
                   </span>
-                  <span class="display-2 font-weight-bold">
+                  <span class="font-weight-bold" :style="getSlideTitleFont">
                     {{ page.title }}
                   </span>
                 </v-row>
@@ -89,7 +92,7 @@ export default class HomePage extends Vue {
   };
 
   showSwiper() {
-    if(document.referrer == 'http://localhost:8080/'){
+    if(document.referrer == 'http://localhost:8080/') {
       setTimeout(() => {
         this.isShowSwiper = true;
        }, 100);
@@ -98,6 +101,13 @@ export default class HomePage extends Vue {
         this.isShowSwiper = true;
        }, 5000);
     }
+  }
+
+  get getSlideTitleFont() {
+    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 40, sm: 31, md: 31, lg: 60})}px`};
+  }
+  get getSlideNumberFont() {
+    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 20, sm: 14, md: 14, lg: 32})}px`};
   }
 
   mounted(){
