@@ -11,10 +11,10 @@
             >
               <v-col cols="12" order="1" order-sm="1">
                 <div class="d-none d-sm-block">
-                  <p class="font-weight-bold" :class="$vuetify.breakpoint.mdAndUp ? 'display-2' : 'display-1'">{{ about.previewTitle }}</p>
+                  <p class="font-weight-bold" :style="getPreviewTitleFont">{{ about.previewTitle }}</p>
                 </div>
                 <div class="d-block d-sm-none">
-                  <p class="headline font-weight-bold text-center">{{ about.previewTitle }}</p>
+                  <p class="font-weight-bold text-center" :style="getPreviewTitleFont">{{ about.previewTitle }}</p>
                 </div>
               </v-col>
               <v-col cols="12" order="3" order-sm="2">
@@ -37,7 +37,7 @@
 
               <v-col cols="12" order="2" order-sm="3">
                 <v-row class="d-none d-sm-flex">
-                  <span :class="$vuetify.breakpoint.smAndUp ? 'headline' : 'title'">
+                  <span :style="getPreviewSubTitleFont">
                     {{ about.previewSubtitle }}
                   </span>
                 </v-row>
@@ -46,8 +46,8 @@
                 </v-row>
                 <v-row justify="center" justify-sm="start" class="mt-4">
                   <span
-                    :class="$vuetify.breakpoint.smAndUp ? 'title' : 'subtitle-1'"
                     class="gray"
+                    :style="getPreviewInfoFont"
                   >
                     {{$t('about.swipe')}}
                   </span>
@@ -61,10 +61,10 @@
       <v-window-item v-for="(slide, index) in about.slides" :key="index">
         <v-row justify="center" align="center" class="slide-container">
           <v-col cols="12" sm="10" md="8">
-            <v-row class="font-weight-bold ma-2 white--text">
+            <v-row class="font-weight-bold ma-2 white--text" :style="getSlideTitleFont">
               {{ slide.title }}
             </v-row>
-            <div class="px-8 py-12 headline slide-content">
+            <div class="px-8 py-12 slide-content" :style="getSlideContentFont">
               {{slide.content}}
             </div>
           </v-col>  
@@ -73,8 +73,12 @@
       <v-window-item>
       </v-window-item>
     </v-window>
-    <div class="d-none d-md-block display-1 slogan">{{$t('about.tagLine')}}</div>
-    <v-footer absolute color="transparent" class="pb-0" :class="$vuetify.breakpoint.xsOnly && 'px-0'">
+    <p class="d-none d-md-block slogan"
+      :class="$vuetify.breakpoint.lgAndUp ? 'slogan-lg' : 'slogan-md'"
+    >
+      {{$t('about.tagLine')}}
+    </p>
+    <v-footer absolute color="transparent" class="pb-0 px-0 px-sm-auto">
       
       <v-row justify="center">
         <v-col sm="10" md="12" class="pb-0">
@@ -89,13 +93,12 @@
                 tick-size="10"
                 hide-details
                 dark
-
               />
             </v-col>
             <v-col xs="12" sm="auto" class="pb-0">
               <v-card class="pa-4 pt-0 use-contacts-container" @click="() => changeContactBar(true)">
-                <v-card-title class="subtitle-1 justify-center">{{$t('contact.titleShort')}}</v-card-title>
-                <v-card-actions class="subtitle-1 contacts-action justify-center pa-0">{{$t('contact.preTitleShort')}}</v-card-actions>
+                <v-card-title class="justify-center" :style="getUseContactsTitleFont">{{$t('contact.titleShort')}}</v-card-title>
+                <v-card-actions class="pa-0 contacts-action justify-center" :style="getUseContactsActionFont">{{$t('contact.preTitleShort')}}</v-card-actions>
               </v-card>
             </v-col>
           </v-row>
@@ -131,6 +134,29 @@ export default class AboutPage extends Vue {
 		this.$router.push(nextPage);
 	}
 
+
+  get getSlideTitleFont() {
+    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 12, sm: 20, md: 20, lg: 30})}px`};
+  }
+  get getSlideContentFont() {
+    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 10, sm: 20, md: 20, lg: 30})}px`};
+  }
+  get getPreviewTitleFont() {
+    return { fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px`};
+  }
+  get getPreviewSubTitleFont() {
+    return { fontSize: `${this.getCommonAdaptiveFontSize('previewSubtitle')}px`};
+  }
+  get getPreviewInfoFont() {
+    return { fontSize: `${this.getCommonAdaptiveFontSize('previewInfo')}px`};
+  }
+  get getUseContactsTitleFont() {
+    return { fontSize: `${this.getCommonAdaptiveFontSize('useContactsTitle')}px`};
+  }
+  get getUseContactsActionFont() {
+    return { fontSize: `${this.getCommonAdaptiveFontSize('useContactsAction')}px`};
+  }
+
   @Watch('curStage')
   onChangeCurStage(value: number) {
     if(value === this.about.slides.length + 1) {
@@ -145,6 +171,7 @@ export default class AboutPage extends Vue {
       this.curStage = this.curStage - 1;
     }
   }
+
   created() {
     this.changePageCover('about');
   }
@@ -198,17 +225,24 @@ export default class AboutPage extends Vue {
     border-bottom-left-radius: 0
     border-bottom-right-radius: 0
 
-  .contacts-action  
+  .contacts-action
     text-transform: uppercase
     text-decoration: underline
 
   .slogan
     position: fixed
-    top: calc(50vh - 188px)
     right: 2vw
     color: white
     writing-mode: vertical-rl
     transform: scaleX(-1) scaleY(-1)
+
+  .slogan-md
+    top: calc(50vh - 163px)
+    font-size: 30px
+
+  .slogan-lg
+    top: calc(50vh - 272px)
+    font-size: 50px
 
   .rotate
     transform: rotate(90deg)

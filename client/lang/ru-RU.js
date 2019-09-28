@@ -12,7 +12,7 @@ export default {
     },
     weOffers: {
         scroll: 'Прокрутите для получения дополнительной информации',
-
+        backToTop: 'Вверх',
     },
     ourStaff: {
 

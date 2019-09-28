@@ -3,18 +3,18 @@
         <v-col cols="10" class="d-flex d-lg-none">
             <v-row justify="center" align="center" class="return-section" @click="scollTop">
                 <!-- TODO: add icon -->
-                <p class="display-1">Back to the top</p>
+                <p :class="$vuetify.breakpoint.smAndUp ? 'text-sm' : 'text-xs'">{{$t('weOffers.backToTop')}}</p>
             </v-row>
 
             <v-col cols="12">
-                <p class="display-2">Speed, quality, simplicity</p>
+                <p :style="getTagLineFont">{{$t('about.tagLine')}}</p>
             </v-col>
         </v-col>
         <p 
-            class="d-none d-lg-block display-1 rotated-return-bar" 
+            class="d-none d-lg-block rotated-return-bar" 
             @click="scollTop"
         >
-            Back to the top
+            {{$t('weOffers.backToTop')}}
         </p>
         <contact-bar :isStatic="true" />
     </v-row>
@@ -32,6 +32,10 @@ import ContactBar from './contact-bar';
 export default class PruductFooter extends Vue {
     scollTop() {
         window.scrollTo({left: 0, top: 0, behavior: 'smooth'});
+    }
+
+    get getTagLineFont() {
+        return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 25, sm: 50, md: 65, lg: 125})}px`};
     }
 }
 </script> 
@@ -52,10 +56,17 @@ export default class PruductFooter extends Vue {
     p
         color: #2f2f2f
 
+    .text-sm
+        font-size: 30px
+
+    .text-xs
+        font-size: 25px
+
 .rotated-return-bar
     position: absolute
     top: calc(25vh)
     right: 5vw
     writing-mode: vertical-rl
     transform: scaleX(-1) scaleY(-1)
+    font-size: 35px
 </style>

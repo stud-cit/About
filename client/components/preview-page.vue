@@ -6,12 +6,22 @@
 		>
 			<v-col cols="12" order="1" order-sm="1">
 				<div class="d-none d-sm-block">
-					<p class="font-weight-bold" :class="$vuetify.breakpoint.mdAndUp ? 'display-2' : 'display-1'">{{ title }}</p>
-					<p class="font-weight-bold" :class="$vuetify.breakpoint.mdAndUp ? 'display-2' : 'display-1'">{{ subtitle }}</p>
+					<p class="font-weight-bold" :style="getPreviewTitleFont">{{ title }}</p>
+					<p class="font-weight-bold" :style="getPreviewTitleFont">{{ subtitle }}</p>
 				</div>
 				<div class="d-block d-sm-none">
-					<p class="headline font-weight-bold text-center">{{ title }}</p>
-					<p class="headline font-weight-bold text-center">{{ subtitle }}</p>
+					<p 
+						class="font-weight-bold text-center"
+						:style="getPreviewTitleFont"
+					>
+						{{ title }}
+					</p>
+					<p 
+						class="font-weight-bold text-center"
+						:style="getPreviewTitleFont"
+					>
+						{{ subtitle }}
+					</p>
 				</div>
 			</v-col>
 			<v-col cols="12" order="3" order-sm="2">
@@ -34,7 +44,7 @@
 
 			<v-col cols="12" order="2" order-sm="3">
 				<v-row class="d-none d-sm-flex">
-					<span :class="$vuetify.breakpoint.smAndUp ? 'headline' : 'title'">
+					<span :style="getPreviewSubTitleFont">
 						{{ description }}
 					</span>
 				</v-row>
@@ -43,8 +53,8 @@
 				</v-row>
 				<v-row justify="center" justify-sm="start" class="mt-4">
 					<span
-						:class="$vuetify.breakpoint.smAndUp ? 'title' : 'subtitle-1'"
 						class="gray"
+						:style="getPreviewInfoFont"
 					>
 						{{$t('weOffers.scroll')}}
 					</span>
@@ -61,8 +71,18 @@
 		>
 			<v-col cols="12" sm="auto">
 				<v-card class="pa-4 pt-0 card-contacts" @click="moveToFooter">
-					<v-card-title class="title justify-center">{{$t('contact.titleShort')}}</v-card-title>
-					<v-card-actions class="title contacts-action justify-center pa-0">{{$t('contact.preTitleShort')}}</v-card-actions>
+					<v-card-title 
+						class="justify-center" 
+						:style="getUseContactsTitleFont"
+					>
+						{{$t('contact.titleShort')}}
+					</v-card-title>
+					<v-card-actions 
+						class="pa-0 contacts-action justify-center"
+						:style="getUseContactsActionFont"
+					>
+						{{$t('contact.preTitleShort')}}
+					</v-card-actions>
 				</v-card>
 			</v-col>
 			<v-col sm="1"></v-col>
@@ -105,6 +125,22 @@ export default class PreviewPage extends Vue {
 		const newPageIndex = toRight ? pageIndex + 1 : pageIndex - 1;
 		const nextPage = this.getPageById(newPageIndex);
 		this.$router.push(nextPage);
+	}
+
+	get getPreviewTitleFont() {
+		return { fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px`};
+	}
+	get getPreviewSubTitleFont() {
+		return { fontSize: `${this.getCommonAdaptiveFontSize('previewSubtitle')}px`};
+	}
+	get getPreviewInfoFont() {
+		return { fontSize: `${this.getCommonAdaptiveFontSize('previewInfo')}px`};
+	}
+	get getUseContactsTitleFont() {
+		return { fontSize: `${this.getCommonAdaptiveFontSize('useContactsTitle')}px`};
+	}
+	get getUseContactsActionFont() {
+		return { fontSize: `${this.getCommonAdaptiveFontSize('useContactsAction')}px`};
 	}
 
 	mounted() {

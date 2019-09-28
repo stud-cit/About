@@ -13,25 +13,48 @@
         </v-btn>
       </div>
       <v-row class="underline mb-4 d-flex d-sm-none" justify="space-around">
-          <v-col class="subtitle-1 font-weight-bold" cols="auto">{{contacts.email}}</v-col>
-          <v-col class="subtitle-1 font-weight-bold" cols="auto">{{contacts.phone}}</v-col>
+          <v-col 
+            class="font-weight-bold" cols="auto" 
+            :style="getCreadentialsFont"
+          >
+            {{contacts.email}}
+          </v-col>
+          <v-col 
+            class="font-weight-bold"
+            cols="auto"
+            :style="getCreadentialsFont"
+          >
+            {{contacts.phone}}
+          </v-col>
       </v-row>
       <v-col cols="6" sm="7">
         <v-row class="underline mb-4 d-none d-sm-flex" justify="space-between">
-            <v-col class="title font-weight-bold" cols="auto">{{contacts.email}}</v-col>
-            <v-col class="title font-weight-bold" cols="auto">{{contacts.phone}}</v-col>
+            <v-col 
+              class="font-weight-bold"
+              cols="auto"
+              :style="getCreadentialsFont"
+            >
+              {{contacts.email}}
+            </v-col>
+            <v-col
+              class="font-weight-bold"
+              cols="auto"
+              :style="getCreadentialsFont"
+            >
+              {{contacts.phone}}
+            </v-col>
         </v-row>
         <v-col
           cols="12"
-          :class="$vuetify.breakpoint.mdAndUp ? 'healine' : 'subtitle-1'"
           class="font-weight-bold px-0 py-0 py-sm-2"
+          :style="getLocationFont"
         >
           {{contacts.street}}
         </v-col>
         <v-col
           cols="12"
-          :class="$vuetify.breakpoint.mdAndUp ? 'healine' : 'subtitle-1'"
           class="font-weight-bold px-0 py-0 py-sm-2"
+          :style="getLocationFont"
         >
           {{contacts.office}}
         </v-col>
@@ -70,7 +93,12 @@
     @Prop({ default: false }) readonly isStatic: boolean
 
 
-
+    get getCreadentialsFont() {
+      return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 10, sm: 15, md: 15, lg: 30})}px`};
+    }
+    get getLocationFont() {
+      return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 12, sm: 20, md: 20, lg: 40})}px`};
+    }
     mapOptions = {
         zoomControl: false,
         mapTypeControl: false,

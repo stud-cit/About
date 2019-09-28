@@ -15,7 +15,7 @@ export default {  
     },
     weOffers: {      
         scroll: 'Прокрутіть для отримання додаткової інформації',
-          
+        backToTop: 'Повернутись',
     },
     ourStaff: {
 

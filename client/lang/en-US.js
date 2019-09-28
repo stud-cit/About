@@ -11,8 +11,8 @@ export default {
         tagLine: 'Speed, quality, simplicity'
     },
     weOffers: {
-        scroll: 'Scroll for ,ore information',
-
+        scroll: 'Scroll for, more information',
+        backToTop: 'Back to the top',
     },
     ourStaff: {
 

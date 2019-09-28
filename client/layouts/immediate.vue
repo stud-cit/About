@@ -15,7 +15,12 @@
             dark
             text
           >
-            <span>{{ page.title }}</span>
+            <span
+              class="capitalize"
+              :class="$vuetify.breakpoint.lgAndUp ? 'nav-link-desktop' : 'nav-link'"
+            >
+              {{ page.title }}
+            </span>
           </v-btn>
           <v-btn icon dark to="/">
             <v-icon>mdi-fullscreen-exit</v-icon>
@@ -32,7 +37,10 @@
       </v-toolbar-items>
     </v-app-bar>
 
-    <p class="number d-md-none d-smAndDown-flex">{{pageInfo}}</p>
+    <p class="page-info">
+      <span :style="getPageIndexFont">{{pageIndex}}</span>
+      <span :style="getTotalPagesFont"> / 4</span>
+    </p>
 
     <v-img :src="getDynamicAssets(cover)" class="imageCover" />
 
@@ -100,12 +108,20 @@ export default class ImmediatetLayout extends Vue {
   @Getter('getPageStage') pages;
   @Getter('getPageCover') cover;
 
-  get pageInfo() {
+  get pageIndex() {
     const route = this.$route.path.replace('/', '');
-    const pageIndex = this.getPageByRoute(route);
-    
-    return `${pageIndex}/${this.pages.length}`;
+    return this.getPageByRoute(route);
   }
+
+
+  get getPageIndexFont() {
+    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 25, sm: 40, md: 40, lg: 45})}px`};
+  }
+
+  get getTotalPagesFont() {
+    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 13, sm: 20, md: 20, lg: 25})}px`};
+  }
+
 
   isShowMobileMenu: boolean = false;
 
@@ -124,10 +140,23 @@ export default class ImmediatetLayout extends Vue {
 
   .logo 
     width: 80%
-    margin:2rem 2rem 1rem 0rem
+    margin: 2rem 2rem 1rem 0rem
 
   .nav-links
     align-items: center
+
+  .nav-link
+    font-size: 15px
+
+  .nav-link-desktop
+    font-size: 25px
+
+  .page-info
+    position: fixed
+    top: 8vh
+    left: 5%
+    z-index: 5
+    color: white
 
   #pages-list-container
     height: 100vh
@@ -149,17 +178,11 @@ export default class ImmediatetLayout extends Vue {
       box-shadow: none
 
       .page-link-title
+        font-size: 35px
         color: black
 
     .page-link-active .page-link-title
       border-bottom: 2px solid black
-      
-  .number
-    color: white
-    position: absolute
-    margin: 8vh 8vw
-    z-index: 5
-    font-size: 2rem
 
   .imageCover
     position: fixed !important
@@ -170,6 +193,6 @@ export default class ImmediatetLayout extends Vue {
     display: flex
     flex-direction: row
     align-items: center
-    font-size: 1.8rem
-
+  .capitalize
+    text-transform: capitalize
 </style>

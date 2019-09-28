@@ -1,6 +1,6 @@
 <template>
 
-  <v-container  >
+  <v-container class="pb-0">
     <v-row  justify="center">
       <v-col cols="12" sm="10">
         <PreviewPage :title="weOffers.previewTitle" cols='12' sm='9' :subtitle="weOffers.previewSubtitle" :description="weOffers.previewDescription" />
@@ -8,11 +8,15 @@
         <ScrollBar/>  
         <v-row justify="center">
             <section class="representation" v-for="(preview,index) in weOffers.representation" :key="index">
-              <v-row class="center d-sm-flex " :class="{representationtablet: $vuetify.breakpoint.smAndDown}" :justify="preview.positionCard">
+              <v-row 
+                class="center d-sm-flex" 
+                :class="{'representation-tablet': $vuetify.breakpoint.smAndDown}" 
+                :justify="preview.positionCard"
+              >
                 <img class="preview-image" src="~/assets/images/weOffer/1.jpg"> 
                 <v-card :class="$vuetify.breakpoint.lgAndUp ? preview.positionCard : 'preview-card'">
-                  <v-card-title class="preview-title">{{preview.title}}</v-card-title>
-                  <v-card-text>{{preview.text}}</v-card-text>
+                  <v-card-title class="preview-title" :style="getCardTitleFont">{{preview.title}}</v-card-title>
+                  <v-card-text :style="getCardContentFont">{{preview.text}}</v-card-text>
                 </v-card>
               </v-row>
           </section>
@@ -50,6 +54,14 @@ export default class OffersPage extends Vue {
   @Mutation('changePageCover') changePageCover;
 
 
+
+  get getCardTitleFont() {
+    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 15, sm: 20, md: 20, lg: 30})}px`};
+  }
+  get getCardContentFont() {
+    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 12, sm: 20, md: 12, lg: 25})}px`};
+  }
+
   created() {
     this.changePageCover('offers');
   }
@@ -67,7 +79,7 @@ export default class OffersPage extends Vue {
     overflow: hidden
     width: 100%
 
-  .representationtablet
+  .representation-tablet
     flex-direction: column
     align-items: flex-start
     justify-content: flex-start 

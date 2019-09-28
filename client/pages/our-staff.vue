@@ -15,9 +15,18 @@
               </v-img>
             </v-card>
             <div class="card-addition">
-              <div class="employee-name my-3">{{ person.name }}</div>
-              <div class="employee-position-short">{{ person.position }}</div>
-              <div class="employee-position-full">{{ person.stack }}</div>
+              <div class="employee-name my-3" :style="getStaffNameFont">{{ person.name }}</div>
+              <div class="employee-position-short" 
+                :style="getStaffPositionFont"
+              >
+                {{ person.position }}
+              </div>
+              <div 
+                class="employee-position-full" 
+                :style="getStaffPositionFont"
+              >
+                {{ person.stack }}
+              </div>
             </div>
           </v-col>
         </v-row>
@@ -47,6 +56,14 @@ export default class OurStaffPage extends Vue {
   @Getter('getStaffStage') ourStaff;
   @Mutation('changePageCover') changePageCover;
 
+
+  get getStaffNameFont() {
+    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 25, sm: 40, md: 20, lg: 30})}px`};
+  }
+  get getStaffPositionFont() {
+    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 12, sm: 27, md: 12, lg: 25})}px`};
+  }
+
   created() {
     this.changePageCover('our-staff');
   }
@@ -60,14 +77,12 @@ export default class OurStaffPage extends Vue {
   color: #ffffff
 
 .employee-name
-  font-size: 1.5rem
   font-weight: 900
   text-align: center
   margin-bottom: 0
   display: block
 
 .employee-position-short, .employee-position-full
-  font-size: .9rem
   font-weight: 400
   text-align: center
 
