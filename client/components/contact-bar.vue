@@ -12,7 +12,7 @@
           <v-col class="subtitle-1 font-weight-bold" cols="auto">{{contacts.email}}</v-col>
           <v-col class="subtitle-1 font-weight-bold" cols="auto">{{contacts.phone}}</v-col>
       </v-row>
-      <v-col cols="6" sm="9">
+      <v-col cols="6" sm="7">
         <v-row class="underline mb-4 d-none d-sm-flex" justify="space-between">
             <v-col class="title font-weight-bold" cols="auto">{{contacts.email}}</v-col>
             <v-col class="title font-weight-bold" cols="auto">{{contacts.phone}}</v-col>
@@ -316,7 +316,7 @@
     z-index: 15
 
   .underline
-    border-bottom: 3px solid black
+    border-bottom: 6px solid black
 
   .map
     width: 500px

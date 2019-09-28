@@ -2,8 +2,7 @@
   <v-app> 
     <v-app-bar id="header" color="transparent" app dark flat>   
       <figure class="breakpoint">
-        <img class="logo" src="/logo.svg" />
-        <figcaption>Student centr of Information Technology</figcaption>
+        <img class="logo" src="/StudCIT_LogoText.svg" />
       </figure>
       <v-spacer/>
       <v-toolbar-items>
@@ -28,11 +27,12 @@
           @click="toggleVisibilityMobileMenu"
           icon
         >
-          <v-icon size="25">mdi-menu</v-icon>
+          <v-icon size="50">mdi-menu</v-icon>
         </v-btn>
       </v-toolbar-items>
     </v-app-bar>
-    <p class="number d-mdAndUp-none d-smAndDown-flex">{{pageInfo}}</p>
+
+    <p class="number d-md-none d-smAndDown-flex">{{pageInfo}}</p>
 
     <v-img :src="getDynamicAssets(cover)" class="imageCover" />
 
@@ -119,9 +119,12 @@ export default class ImmediatetLayout extends Vue {
   #header
     z-index: 30
 
+  .pad-0
+    padding-top: 0 !important
+
   .logo 
-    width: 85px
-    margin-right: 1rem
+    width: 80%
+    margin:2rem 2rem 1rem 0rem
 
   .nav-links
     align-items: center
@@ -129,7 +132,7 @@ export default class ImmediatetLayout extends Vue {
   #pages-list-container
     height: 100vh
     display: flex
-    align-items: flex-end
+    align-items: center
 
     .pages-list
       width: 100vh
@@ -154,7 +157,7 @@ export default class ImmediatetLayout extends Vue {
   .number
     color: white
     position: absolute
-    margin: 6vh 2vh
+    margin: 8vh 8vw
     z-index: 5
     font-size: 2rem
 
@@ -169,7 +172,4 @@ export default class ImmediatetLayout extends Vue {
     align-items: center
     font-size: 1.8rem
 
-    figcaption
-      width: 50%
-      font-size: 1rem
 </style>
