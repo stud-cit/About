@@ -1,6 +1,6 @@
 export default {
     immediate: {
-        logo: 'Student centr of Information Technology',
+        logo: 'Student Сentr of Information Technology',
     },
     home: {
         title: 'Choose What you are interested',
