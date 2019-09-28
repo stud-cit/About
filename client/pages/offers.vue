@@ -1,8 +1,10 @@
 <template>
-  <v-container fluid class="pb-0">
-    <v-row justify="center">
-      <v-col cols="12" sm="9">
-        <PreviewPage :title="weOffers.previewTitle"  :subtitle="weOffers.previewSubtitle" :description="weOffers.previewDescription" />
+
+  <v-container  >
+    <v-row  justify="center">
+      <v-col cols="12" sm="10">
+        <PreviewPage :title="weOffers.previewTitle" cols='12' sm='9' :subtitle="weOffers.previewSubtitle" :description="weOffers.previewDescription" />
+
         <ScrollBar/>  
         <v-row justify="center">
             <section class="representation" v-for="(preview,index) in weOffers.representation" :key="index">
@@ -63,6 +65,7 @@ export default class OffersPage extends Vue {
     position: relative
     align-items: center
     overflow: hidden
+    width: 100%
 
   .representationtablet
     flex-direction: column
@@ -80,13 +83,9 @@ export default class OffersPage extends Vue {
     width: 100%
     transform: translateX(0%)
     
-  .preview-image
-    height:100%
-    width:100%  
-
   .start
     right: 0
-    width: 35rem
+    width: 40rem
     padding: 3rem 2rem
     position: absolute
     transform: translateY(95%)
@@ -94,7 +93,7 @@ export default class OffersPage extends Vue {
   .end
       height: 100%
       left: 0
-      width: 35rem
+      width: 40rem
       padding: 3rem 2rem
       position: absolute
       transform: translateY(40%)
