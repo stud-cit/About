@@ -6,13 +6,13 @@
           class="text-uppercase mb-0 font-weight-bold"
           :class="$vuetify.breakpoint.smAndDown ? 'headline' : 'display-1'"
         >
-          Choose What you are interested
+          {{$t('home.title')}}
         </p>
         <p 
           class="grey--text mb-0"
           :class="$vuetify.breakpoint.smAndDown ? 'title' : 'headline'"
         >
-          Drag or scroll to move block
+          {{$t('home.preTitle')}}
         </p>
       </v-toolbar-title>
       <v-spacer />

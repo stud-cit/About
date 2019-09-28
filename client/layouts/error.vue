@@ -1,7 +1,7 @@
 <template>
         <v-container>
             <section class="errors" v-if="error.statusCode === 404">
-                <div class="number">404</div>
+                <div class="numbers">404</div>
                 <div class="description">NOT F<img src="@/static/not-found.svg" alt="">UND</div>
             </section>
             <section v-else>An error occurred</section>
@@ -29,7 +29,7 @@ export default {
 	top: 50%
 	left: 50%
 	transform: translate(-50% , -50%)
-	.number
+	.numbers
 		font-size: 15vw
 		color: rgba(206, 206, 206, 1)
 	.description

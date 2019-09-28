@@ -46,17 +46,23 @@
 						:class="$vuetify.breakpoint.smAndUp ? 'title' : 'subtitle-1'"
 						class="gray"
 					>
-						Scroll for more information
+						{{$t('weOffers.scroll')}}
 					</span>
 				</v-row>
 			</v-col>
 		</v-row>
 
-		<v-row class="pa-0 use-contacts-container" justify="end" no-gutters>
+		<v-row 
+			v-show="isShowUseContacts"
+			v-scroll="handleScroll"
+			class="pa-0 use-contacts-container" 
+			justify="end"
+			no-gutters
+		>
 			<v-col cols="12" sm="auto">
-				<v-card class="pa-4 pt-0 card-contacts" @click="showContactBar">
-					<v-card-title class="title justify-center">Do you have some questions?</v-card-title>
-					<v-card-actions class="title contacts-action justify-center pa-0">Use our contacts</v-card-actions>
+				<v-card class="pa-4 pt-0 card-contacts" @click="moveToFooter">
+					<v-card-title class="title justify-center">{{$t('contact.titleShort')}}</v-card-title>
+					<v-card-actions class="title contacts-action justify-center pa-0">{{$t('contact.preTitleShort')}}</v-card-actions>
 				</v-card>
 			</v-col>
 			<v-col sm="1"></v-col>
@@ -73,11 +79,24 @@ import { Getter, Mutation } from 'vuex-class';
 })
 
 export default class PreviewPage extends Vue {
-@Getter('getPageByRoute') getPageByRoute;
-@Getter('getPageById') getPageById;
-@Mutation('changeContactBar') changeContactBar;
-	showContactBar() {
-		this.changeContactBar(true);
+	@Getter('getPageByRoute') getPageByRoute;
+	@Getter('getPageById') getPageById;
+	isShowUseContacts: boolean = true;
+	handleScroll() : void {
+		const windowHeight = window.innerHeight;
+		const scrollHeight = document.body.scrollHeight;
+		const scrollToFooter = scrollHeight - (windowHeight * 2);
+		
+		if(window.scrollY > scrollToFooter) {
+			this.isShowUseContacts = false;
+		}
+		else {
+			this.isShowUseContacts = true;
+		}
+	}
+	
+	moveToFooter() {
+        window.scrollTo({left: 0, top: document.body.scrollHeight, behavior: 'smooth'});
 	}
 
 	handleNavigatingPage(toRight: boolean) {
@@ -86,6 +105,11 @@ export default class PreviewPage extends Vue {
 		const newPageIndex = toRight ? pageIndex + 1 : pageIndex - 1;
 		const nextPage = this.getPageById(newPageIndex);
 		this.$router.push(nextPage);
+	}
+
+	mounted() {
+		// initial check
+		this.handleScroll();
 	}
 }
 

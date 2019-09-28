@@ -1,8 +1,10 @@
 <template>
+
   <v-container  >
     <v-row  justify="center">
       <v-col cols="12" sm="10">
         <PreviewPage :title="weOffers.previewTitle" cols='12' sm='9' :subtitle="weOffers.previewSubtitle" :description="weOffers.previewDescription" />
+
         <ScrollBar/>  
         <v-row justify="center">
             <section class="representation" v-for="(preview,index) in weOffers.representation" :key="index">
@@ -17,6 +19,7 @@
         </v-row>
       </v-col>
     </v-row>
+    <product-footer />
   </v-container>
 </template>
 
@@ -24,8 +27,9 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
 
-import ScrollBar from '@/components/scroll-bar.vue';
+import PruductFooter from "@/components/product-footer.vue";
 import PreviewPage from '@/components/preview-page.vue';
+import ScrollBar from '@/components/scroll-bar.vue';
 
 @Component({
   layout: 'immediate',
@@ -34,8 +38,9 @@ import PreviewPage from '@/components/preview-page.vue';
   
   },
   components: {
-    ScrollBar,
+    'product-footer': PruductFooter,
     PreviewPage,
+    ScrollBar,
   },
   
 })
@@ -43,6 +48,7 @@ import PreviewPage from '@/components/preview-page.vue';
 export default class OffersPage extends Vue {
   @Getter('getOffersStage') weOffers;
   @Mutation('changePageCover') changePageCover;
+
 
   created() {
     this.changePageCover('offers');

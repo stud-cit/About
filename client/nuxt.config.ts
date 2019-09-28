@@ -44,6 +44,7 @@ const config: Configuration = {
   */
   plugins: [
     '~/mixins',
+    '~/plugins/directives',
     '~/plugins/vuetify',
     '~/plugins/vue-google-maps',
     { src: '~/plugins/swiper', ssr: false },

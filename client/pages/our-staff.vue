@@ -5,17 +5,17 @@
         <PreviewPage :title="ourStaff.previewTitle" :subtitle="ourStaff.previewSubtitle" :description="ourStaff.previewDescription" />
         <ScrollBar />
         <v-row justify="space-around">
-          <v-col v-for="(person, i) in ourStaff.representation" :key="i" lg="4" sm="6" xs="12">
-            <v-card class="card-img mx-auto" max-width="400">
+          <v-col v-for="(person, i) in ourStaff.representation" :key="i" lg="4" md="6" sm="12" class="my-4">
+            <v-card class="mx-auto" :width="$vuetify.breakpoint.mdAndUp ? '400px' : '100%'" :class="$vuetify.breakpoint.lgAndUp ? 'card-img-hover' : 'card-img'">
               <v-img
                 class="white--text"
-                height="250px"
+                :height="$vuetify.breakpoint.mdAndUp ? '250px' : '40%'"
                 :src="getDynamicAssets(person.img_src)"
               >
               </v-img>
             </v-card>
             <div class="card-addition">
-              <div class="employee-name">{{ person.name }}</div>
+              <div class="employee-name my-3">{{ person.name }}</div>
               <div class="employee-position-short">{{ person.position }}</div>
               <div class="employee-position-full">{{ person.stack }}</div>
             </div>
@@ -47,11 +47,9 @@ export default class OurStaffPage extends Vue {
   @Getter('getStaffStage') ourStaff;
   @Mutation('changePageCover') changePageCover;
   @Mutation('changeContactBar') changeContactBar;
+
   created() {
     this.changePageCover('our-staff');
-  }
-  showContactBar() {
-    this.changeContactBar(true);
   }
 }
 </script>
@@ -61,39 +59,47 @@ export default class OurStaffPage extends Vue {
   display: flex
   flex-direction: column
   color: #ffffff
-  margin-top: 25px
 
 .employee-name
   font-size: 1.5rem
   font-weight: 900
   text-align: center
   margin-bottom: 0
+  display: block
 
 .employee-position-short, .employee-position-full
   font-size: .9rem
   font-weight: 400
   text-align: center
 
-.card-img
+.card-img-hover
   border-radius: 50px
   filter: brightness(35%)
-  max-height: 350px
   transition: 1s
 
-.employee-position-full
-  display: none
+.card-img
+  border-radius: 50px
+  transition: 1s
+  margin: 15px 0
+  ~ .card-addition
+    .employee-position-full
+      opacity: 1
 
-.card-img:hover
+.employee-position-full
+  opacity: 0
+
+.card-img-hover:hover
   z-index: 10
-  transform: scale(1.25)
+  transform: scale(1.15)
   filter: brightness(100%)
   transition: 1s
   ~ .card-addition
     .employee-name
       opacity: 0
       transition: 0.5s
-    .employee-position-full
-      display: block
-    .employee-position-short
       display: none
+    .employee-position-full
+      opacity: 1
+    .employee-position-short
+      opacity: 0
 </style>
