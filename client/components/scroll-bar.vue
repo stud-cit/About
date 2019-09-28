@@ -13,7 +13,6 @@ import { Component, Vue, Watch } from 'vue-property-decorator';
 import { Mutation } from 'vuex-class';
 @Component
 export default class ScrollBar extends Vue {
-  @Mutation('changeContactBar') changeContactBar;
   el: 'scrollbar-track';
   targ: 'scrollbar-thumb';
   currScroll: number = 0;

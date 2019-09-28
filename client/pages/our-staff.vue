@@ -46,7 +46,6 @@ import PreviewPage from '@/components/preview-page.vue';
 export default class OurStaffPage extends Vue {
   @Getter('getStaffStage') ourStaff;
   @Mutation('changePageCover') changePageCover;
-  @Mutation('changeContactBar') changeContactBar;
 
   created() {
     this.changePageCover('our-staff');
