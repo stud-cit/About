@@ -1,11 +1,11 @@
 <template>
-    <div 
-      class="d-none d-md-flex scrollbar-track"
-      v-if="visibility" 
-      v-scroll="handleScroll"
-    >
-      <div class="scrollbar-thumb" :style="{top: `${currScroll}%`}"></div>
-    </div>
+  <div
+    class="d-none d-md-flex scrollbar-track"
+    v-if="visibility"
+    v-scroll="handleScroll"
+  >
+    <div class="scrollbar-thumb" :style="{ top: `${currScroll}%` }"></div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -17,33 +17,31 @@ export default class ScrollBar extends Vue {
   targ: 'scrollbar-thumb';
   currScroll: number = 0;
   visibility: boolean = true;
-  
-  
-  handleScroll() : void { 
+
+  handleScroll(): void {
     const windowHeight = window.innerHeight;
     const scrollHeight = document.body.scrollHeight;
-    const scrollToFooter = scrollHeight - (windowHeight * 2);
-    
-    if(window.scrollY > scrollToFooter) {
+    const scrollToFooter = scrollHeight - windowHeight * 2;
+
+    if (window.scrollY > scrollToFooter) {
       this.visibility = false;
-    }
-    else {
+    } else {
       this.visibility = true;
       this.currScroll = (window.scrollY / (scrollHeight - windowHeight)) * 100;
     }
   }
 
   mounted() {
-      if (document.body.scrollHeight <= window.innerHeight) {
-        this.visibility = false;
-      }
-      this.handleScroll();
+    if (document.body.scrollHeight <= window.innerHeight) {
+      this.visibility = false;
+    }
+    this.handleScroll();
   }
 }
-</script> 
+</script>
 
 <style lang="sass">
-.scrollbar-track 
+.scrollbar-track
     position: fixed
     top: 20%
     right: 50px
@@ -51,7 +49,7 @@ export default class ScrollBar extends Vue {
     width: 3px
     background-color: rgba(0,0,0,1)
 
-.scrollbar-thumb 
+.scrollbar-thumb
     cursor: pointer
     position: absolute
     top: 0

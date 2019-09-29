@@ -1,12 +1,12 @@
 <template>
-  <v-app> 
-    <v-app-bar id="header" color="transparent" app dark flat>   
+  <v-app>
+    <v-app-bar id="header" color="transparent" app dark flat>
       <figure class="breakpoint">
         <nuxt-link to="/">
           <img class="logo" src="/logo.svg" />
         </nuxt-link>
       </figure>
-      <v-spacer/>
+      <v-spacer />
       <v-toolbar-items>
         <div class="d-none d-md-flex nav-links">
           <v-btn
@@ -28,7 +28,7 @@
             <v-icon>mdi-fullscreen-exit</v-icon>
           </v-btn>
         </div>
-                  
+
         <v-btn
           class="d-flex d-md-none"
           @click="toggleVisibilityMobileMenu"
@@ -40,7 +40,7 @@
     </v-app-bar>
 
     <p class="page-info">
-      <span :style="getPageIndexFont">{{pageId}}</span>
+      <span :style="getPageIndexFont">{{ pageId }}</span>
       <span :style="getTotalPagesFont"> / 4</span>
     </p>
 
@@ -48,7 +48,7 @@
 
     <v-content class="pt-0">
       <v-container fluid class="fill-height pa-0">
-        <nuxt/>
+        <nuxt />
         <contact-bar />
       </v-container>
     </v-content>
@@ -60,33 +60,23 @@
       transition="dialog-bottom-transition"
       scrollable
     >
-      <v-btn 
-        @click="toggleVisibilityMobileMenu"
-        icon
-        large
-        fixed
-        right
-      >
+      <v-btn @click="toggleVisibilityMobileMenu" icon large fixed right>
         <v-icon size="30" color="black">
           mdi-close
         </v-icon>
       </v-btn>
       <v-list id="pages-list-container">
         <v-list-item-group class="pages-list">
-          <v-list-item
-            v-for="(page, index) in pages"
-            class="px-0"
-            :key="index"
-          >
-            <v-btn 
+          <v-list-item v-for="(page, index) in pages" class="px-0" :key="index">
+            <v-btn
               class="text-center display-2 page-link"
               exact-active-class="page-link-active"
               @click="toggleVisibilityMobileMenu()"
-              :to="page.to" 
+              :to="page.to"
               exact
               nuxt
             >
-              <span class="page-link-title">{{page.title}}</span>
+              <span class="page-link-title">{{ page.title }}</span>
             </v-btn>
           </v-list-item>
         </v-list-item-group>
@@ -103,7 +93,7 @@ import ContactBar from '@/components/contact-bar.vue';
 @Component({
   components: {
     'contact-bar': ContactBar,
-  }
+  },
 })
 export default class ImmediatetLayout extends Vue {
   @Getter('getPageByRoute') getPageByRoute;
@@ -111,16 +101,30 @@ export default class ImmediatetLayout extends Vue {
   @Getter('getPageStage') pages;
   @Getter('getPageCover') cover;
 
-  get isLgAndUp () {
+  get isLgAndUp() {
     return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
   }
-  
+
   get getPageIndexFont() {
-    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 25, sm: 40, md: 40, lg: 45})}px`};
+    return {
+      fontSize: `${this.getCustomAdaptiveFontSize({
+        xs: 25,
+        sm: 40,
+        md: 40,
+        lg: 45,
+      })}px`,
+    };
   }
 
   get getTotalPagesFont() {
-    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 13, sm: 20, md: 20, lg: 25})}px`};
+    return {
+      fontSize: `${this.getCustomAdaptiveFontSize({
+        xs: 13,
+        sm: 20,
+        md: 20,
+        lg: 25,
+      })}px`,
+    };
   }
 
   isShowMobileMenu: boolean = false;
@@ -132,64 +136,64 @@ export default class ImmediatetLayout extends Vue {
 </script>
 
 <style lang="sass">
-  #header
-    z-index: 30
+#header
+  z-index: 30
 
-  .logo 
-    width: 80%
-    margin: 2rem 2rem 1rem 0rem
+.logo
+  width: 80%
+  margin: 2rem 2rem 1rem 0rem
 
-  .nav-links
-    align-items: center
+.nav-links
+  align-items: center
 
-  .nav-link
-    font-size: 15px
+.nav-link
+  font-size: 15px
 
-  .nav-link-desktop
-    font-size: 25px
+.nav-link-desktop
+  font-size: 25px
 
-  .page-info
-    position: fixed
-    top: 8vh
-    left: 5%
-    z-index: 5
+.page-info
+  position: fixed
+  top: 8vh
+  left: 5%
+  z-index: 5
+  color: white
+
+#pages-list-container
+  height: 100vh
+  display: flex
+  align-items: center
+
+  .pages-list
+    width: 100vh
+    height: 90vh
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+
+  .page-link
+    width: 100%
+    height: 100%
+    background: white
     color: white
+    box-shadow: none
 
-  #pages-list-container
-    height: 100vh
-    display: flex
-    align-items: center
+    .page-link-title
+      font-size: 35px
+      color: black
 
-    .pages-list
-      width: 100vh
-      height: 90vh
-      display: flex
-      flex-direction: column
-      justify-content: space-between
-    
-    .page-link
-      width: 100%
-      height: 100%
-      background: white
-      color: white
-      box-shadow: none
+  .page-link-active .page-link-title
+    border-bottom: 2px solid black
 
-      .page-link-title
-        font-size: 35px
-        color: black
+.imageCover
+  position: fixed !important
+  height: 100vh
+  width: 100vw
 
-    .page-link-active .page-link-title
-      border-bottom: 2px solid black
-
-  .imageCover
-    position: fixed !important
-    height: 100vh
-    width: 100vw
-  
-  .breakpoint
-    display: flex
-    flex-direction: row
-    align-items: center
-  .capitalize
-    text-transform: capitalize
+.breakpoint
+  display: flex
+  flex-direction: row
+  align-items: center
+.capitalize
+  text-transform: capitalize
 </style>

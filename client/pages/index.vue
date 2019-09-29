@@ -1,6 +1,10 @@
 <template>
   <v-container fluid class="pa-0">
-    <div v-swiper:mySwiper="swiperOption" class="swiper-inactive d-none d-sm-flex" :class="isShowSwiper && 'swiper-active'"> 
+    <div
+      v-swiper:mySwiper="swiperOption"
+      class="swiper-inactive d-none d-sm-flex"
+      :class="isShowSwiper && 'swiper-active'"
+    >
       <div class="swiper-wrapper">
         <v-col
           v-for="(page, i) in pages"
@@ -20,8 +24,8 @@
               >
                 <v-card-title class="title white--text fill-height">
                   <v-row justify="center" align="center" class="fill-height">
-                    <span 
-                      class="font-weight-bold font-italic pr-4" 
+                    <span
+                      class="font-weight-bold font-italic pr-4"
                       :style="getSlideNumberFont"
                     >
                       0{{ ++i }}
@@ -39,11 +43,7 @@
       </div>
     </div>
     <v-row class="d-flex d-sm-none">
-      <v-col
-          v-for="(page, i) in pages"
-          :key="i"
-          cols="12"
-      >
+      <v-col v-for="(page, i) in pages" :key="i" cols="12">
         <nuxt-link :to="page.to" class="disable-underline">
           <client-only>
             <v-card :href="page.to" :link="true">
@@ -56,7 +56,10 @@
               >
                 <v-card-title class="title white--text fill-height">
                   <v-row justify="center" align="center" class="fill-height">
-                    <span class="font-weight-bold font-italic pr-4" :style="getSlideNumberFont">
+                    <span
+                      class="font-weight-bold font-italic pr-4"
+                      :style="getSlideNumberFont"
+                    >
                       0{{ ++i }}
                     </span>
                     <span class="font-weight-bold" :style="getSlideTitleFont">
@@ -95,28 +98,42 @@ export default class HomePage extends Vue {
   };
 
   showSwiper() {
-    if(document.referrer == 'http://localhost:8080/') {
+    if (document.referrer == 'http://localhost:8080/') {
       setTimeout(() => {
         this.isShowSwiper = true;
-       }, 100);
+      }, 100);
     } else {
-       setTimeout(() => {
+      setTimeout(() => {
         this.isShowSwiper = true;
-       }, 5000);
+      }, 5000);
     }
   }
 
-  get isMdAndDown () {
+  get isMdAndDown() {
     return this.$breakpoint ? this.$breakpoint.is.mdAndDown : false;
   }
   get getSlideTitleFont() {
-    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 40, sm: 31, md: 31, lg: 60})}px`};
+    return {
+      fontSize: `${this.getCustomAdaptiveFontSize({
+        xs: 40,
+        sm: 31,
+        md: 31,
+        lg: 60,
+      })}px`,
+    };
   }
   get getSlideNumberFont() {
-    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 20, sm: 14, md: 14, lg: 32})}px`};
+    return {
+      fontSize: `${this.getCustomAdaptiveFontSize({
+        xs: 20,
+        sm: 14,
+        md: 14,
+        lg: 32,
+      })}px`,
+    };
   }
 
-  mounted(){
+  mounted() {
     this.showSwiper();
   }
 
@@ -126,16 +143,16 @@ export default class HomePage extends Vue {
 </script>
 
 <style lang="sass">
-  .swiper-wrapper
-    width: 80%  
+.swiper-wrapper
+  width: 80%
 
-  .swiper-inactive
-    transform: translateX(300%)
+.swiper-inactive
+  transform: translateX(300%)
 
-  .swiper-active
-      transform: translateX(0%)
-      transition: 2s
+.swiper-active
+    transform: translateX(0%)
+    transition: 2s
 
-  .disable-underline
-    text-decoration: none
+.disable-underline
+  text-decoration: none
 </style>

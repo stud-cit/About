@@ -2,14 +2,26 @@
   <v-container fluid>
     <v-row justify="center">
       <v-col cols="12" sm="10">
-        <PreviewPage :title="ourStaff.previewTitle" :subtitle="ourStaff.previewSubtitle" :description="ourStaff.previewDescription" />
+        <PreviewPage
+          :title="ourStaff.previewTitle"
+          :subtitle="ourStaff.previewSubtitle"
+          :description="ourStaff.previewDescription"
+        />
         <ScrollBar />
         <v-row justify="space-around" class="d-none d-sm-flex">
-          <v-col v-for="(person, i) in ourStaff.representation" :key="i" lg="4" md="6" sm="12" class="my-4">
-            <v-card 
-              class="mx-auto" 
-              :width="isMdAndUp ? '400px' : '100%'" 
-              :class="isLgAndUp ? 'card-img-hover' : 'card-img'">
+          <v-col
+            v-for="(person, i) in ourStaff.representation"
+            :key="i"
+            lg="4"
+            md="6"
+            sm="12"
+            class="my-4"
+          >
+            <v-card
+              class="mx-auto"
+              :width="isMdAndUp ? '400px' : '100%'"
+              :class="isLgAndUp ? 'card-img-hover' : 'card-img'"
+            >
               <v-img
                 :height="isMdAndUp ? '250px' : '40%'"
                 :src="getDynamicAssets(person.img_src)"
@@ -17,22 +29,26 @@
               </v-img>
             </v-card>
             <div class="card-addition">
-              <div class="employee-name my-3" :style="getStaffNameFont">{{ person.name }}</div>
-              <div class="employee-position-short" 
+              <div class="employee-name my-3" :style="getStaffNameFont">
+                {{ person.name }}
+              </div>
+              <div
+                class="employee-position-short"
                 :style="getStaffPositionFont"
               >
                 {{ person.position }}
               </div>
-              <div 
-                class="employee-position-full" 
-                :style="getStaffPositionFont"
-              >
+              <div class="employee-position-full" :style="getStaffPositionFont">
                 {{ person.stack }}
               </div>
             </div>
           </v-col>
         </v-row>
-        <v-row class="d-flex d-sm-none staff-slider" justify="center" align="center">
+        <v-row
+          class="d-flex d-sm-none staff-slider"
+          justify="center"
+          align="center"
+        >
           <v-col cols="10">
             <v-window v-model="curStaff">
               <v-window-item
@@ -42,18 +58,21 @@
                 <v-card class="mx-auto staff-card" color="transparent" flat>
                   <v-img
                     :src="getDynamicAssets(person.img_src)"
-                    :aspect-ratio="4/3"
+                    :aspect-ratio="4 / 3"
                     class="staff-image"
                   />
                   <div class="card-addition">
-                    <div class="employee-name my-3" :style="getStaffNameFont">{{ person.name }}</div>
-                    <div class="employee-position-short" 
+                    <div class="employee-name my-3" :style="getStaffNameFont">
+                      {{ person.name }}
+                    </div>
+                    <div
+                      class="employee-position-short"
                       :style="getStaffPositionFont"
                     >
                       {{ person.position }}
                     </div>
-                    <div 
-                      class="employee-position-full" 
+                    <div
+                      class="employee-position-full"
                       :style="getStaffPositionFont"
                     >
                       {{ person.stack }}
@@ -61,7 +80,11 @@
                   </div>
                 </v-card>
               </v-window-item>
-              <p class="text-center white--text font-italic font-italic subtitle-2">{{ sliderInfo }}</p>
+              <p
+                class="text-center white--text font-italic font-italic subtitle-2"
+              >
+                {{ sliderInfo }}
+              </p>
             </v-window>
           </v-col>
         </v-row>
@@ -90,23 +113,37 @@ import PreviewPage from '@/components/preview-page.vue';
 export default class OurStaffPage extends Vue {
   @Getter('getStaffStage') ourStaff;
   @Mutation('changePageId') changePageId;
-  curStaff: number = 0
+  curStaff: number = 0;
 
   get sliderInfo() {
     return `${this.curStaff + 1} / ${this.ourStaff.representation.length}`;
   }
 
-  get isLgAndUp () {
+  get isLgAndUp() {
     return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
   }
-  get isMdAndUp () {
-      return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
+  get isMdAndUp() {
+    return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
   }
   get getStaffNameFont() {
-    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 25, sm: 40, md: 20, lg: 30})}px`};
+    return {
+      fontSize: `${this.getCustomAdaptiveFontSize({
+        xs: 25,
+        sm: 40,
+        md: 20,
+        lg: 30,
+      })}px`,
+    };
   }
   get getStaffPositionFont() {
-    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 12, sm: 27, md: 12, lg: 25})}px`};
+    return {
+      fontSize: `${this.getCustomAdaptiveFontSize({
+        xs: 12,
+        sm: 27,
+        md: 12,
+        lg: 25,
+      })}px`,
+    };
   }
 
   created() {
@@ -140,7 +177,7 @@ export default class OurStaffPage extends Vue {
   border-radius: 50px
   transition: all 1s
   margin: 15px 0
-  
+
   ~ .card-addition
     .employee-position-full
       opacity: 1
@@ -169,7 +206,7 @@ export default class OurStaffPage extends Vue {
   .staff-card
     width: 100%
 
-    .staff-image 
+    .staff-image
       filter: brightness(35%)
       transition: all 1s
       .v-image__image

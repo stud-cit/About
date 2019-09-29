@@ -6,17 +6,14 @@
           <v-row justify="space-between">
             <v-col cols="auto">
               <v-toolbar-title>
-                <p 
+                <p
                   class="text-uppercase mb-0 font-weight-bold"
                   :style="getPageTitleFont"
                 >
-                  {{$t('home.title')}}
+                  {{ $t('home.title') }}
                 </p>
-                <p 
-                  class="grey--text mb-0"
-                  :style="getPageSubTitleFont"
-                >
-                  {{$t('home.preTitle')}}
+                <p class="grey--text mb-0" :style="getPageSubTitleFont">
+                  {{ $t('home.preTitle') }}
                 </p>
               </v-toolbar-title>
             </v-col>
@@ -61,34 +58,34 @@
     </v-btn>
 
     <v-bottom-sheet v-model="isShowMobileLocales">
-        <div class="relative">
-          <v-btn 
-            class="mobile-icon close-icon"
-            @click="toggleVisibilityLocales"
-            icon
-            large
-          >
-            <v-icon size="30" color="black">
-              mdi-close
-            </v-icon>
-          </v-btn>
-          <div class="half-round" />
-          <div class="locales-container">
-            <div class="locales-list">
-              <v-btn
-                v-for="(locale, i) in $i18n.locales"
-                :key="i"
-                :to="switchLocalePath(locale.code)"
-                class="locale-btn"
-                active-class="active-locale"
-                x-large
-                icon
-              >
-                <span class="locale">{{locale.code}}</span>
-              </v-btn>
-            </div>
+      <div class="relative">
+        <v-btn
+          class="mobile-icon close-icon"
+          @click="toggleVisibilityLocales"
+          icon
+          large
+        >
+          <v-icon size="30" color="black">
+            mdi-close
+          </v-icon>
+        </v-btn>
+        <div class="half-round" />
+        <div class="locales-container">
+          <div class="locales-list">
+            <v-btn
+              v-for="(locale, i) in $i18n.locales"
+              :key="i"
+              :to="switchLocalePath(locale.code)"
+              class="locale-btn"
+              active-class="active-locale"
+              x-large
+              icon
+            >
+              <span class="locale">{{ locale.code }}</span>
+            </v-btn>
           </div>
         </div>
+      </div>
     </v-bottom-sheet>
   </v-app>
 </template>
@@ -106,12 +103,25 @@ export default class PreliminaryLayout extends Vue {
   }
 
   get getPageTitleFont() {
-    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 12, sm: 20, md: 20, lg: 30})}px`};
+    return {
+      fontSize: `${this.getCustomAdaptiveFontSize({
+        xs: 12,
+        sm: 20,
+        md: 20,
+        lg: 30,
+      })}px`,
+    };
   }
   get getPageSubTitleFont() {
-    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 10, sm: 20, md: 15, lg: 25})}px`};
+    return {
+      fontSize: `${this.getCustomAdaptiveFontSize({
+        xs: 10,
+        sm: 20,
+        md: 15,
+        lg: 25,
+      })}px`,
+    };
   }
-
 
   toggleVisibilityLocales() {
     this.isShowMobileLocales = !this.isShowMobileLocales;
@@ -120,67 +130,65 @@ export default class PreliminaryLayout extends Vue {
 </script>
 
 <style lang="sass">
-  .app .v-application--wrap
-    flex-direction: row
-    flex-wrap: wrap
-    align-items: flex-start
+.app .v-application--wrap
+  flex-direction: row
+  flex-wrap: wrap
+  align-items: flex-start
 
-    .app-bar
-      position: sticky
-      height: 90px
-      background: rgba(250, 250, 250, .85)
-      .v-toolbar__content
-        width: 100vw
-        padding-bottom: 0
+  .app-bar
+    position: sticky
+    height: 90px
+    background: rgba(250, 250, 250, .85)
+    .v-toolbar__content
+      width: 100vw
+      padding-bottom: 0
 
-  .mobile-icon
-    background: white
+.mobile-icon
+  background: white
 
-  .burger-icon
-    position: fixed
-    left: calc(50vw - 18px)
-    bottom: 2vh
+.burger-icon
+  position: fixed
+  left: calc(50vw - 18px)
+  bottom: 2vh
 
-  .close-icon
-    z-index: 20
-    position: absolute
-    left: calc(50vw - 18px)
-    top: -18px
-  .relative
-    position: relative 
-  
-  .half-round
-    width: 100%
-    height: 30px
-    background: white
-    clip-path: ellipse(50% 100% at 50% 100%)
-    
-  .locale
-    font-size: 25px
+.close-icon
+  z-index: 20
+  position: absolute
+  left: calc(50vw - 18px)
+  top: -18px
+.relative
+  position: relative
 
-  .locales-container
-    width: 100%
-    height: 10vh
-    display: flex
-    justify-content: center
-    align-items: center
-    background: white
+.half-round
+  width: 100%
+  height: 30px
+  background: white
+  clip-path: ellipse(50% 100% at 50% 100%)
 
-  .locales-list
-    width: 60%
-    display: flex
-    justify-content: space-between
+.locale
+  font-size: 25px
+
+.locales-container
+  width: 100%
+  height: 10vh
+  display: flex
+  justify-content: center
+  align-items: center
+  background: white
+
+.locales-list
+  width: 60%
+  display: flex
+  justify-content: space-between
+  color: white
+
+  .locale-btn
     color: white
 
-    .locale-btn
-      color: white
+  span
+    color: black
+    font-weight: normal
 
-    span
-      color: black
-      font-weight: normal
-
-    .active-locale span
-      font-weight: bold
+  .active-locale span
+    font-weight: bold
 </style>
-
-

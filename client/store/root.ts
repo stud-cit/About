@@ -7,7 +7,7 @@ export interface State {
 
 interface PageModel {
   id: number;
-  title: string
+  title: string;
   to: string;
   img: string;
   lazyImg: string;
@@ -17,7 +17,7 @@ export const state = (): State => ({
   isShowLoader: true,
   pageId: 0,
   pages: [
-    { 
+    {
       id: 1,
       title: 'About Us',
       to: 'about',
@@ -53,55 +53,59 @@ export const state = (): State => ({
   about: {
     previewTitle: 'Student centr of information technology',
     previewSubtitle: 'We can make this world better.',
-    previewDescription:'',
+    previewDescription: '',
     slides: [
       {
         title: 'Student centr of information technology',
-        content: 'The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through.'
+        content:
+          'The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through.',
       },
       {
         title: 'Student centr of information technology',
-        content: 'The Woodman. Lorem'
+        content: 'The Woodman. Lorem',
       },
       {
         title: 'Student centr of information technology',
-        content: 'The Woodman. Lorem'
+        content: 'The Woodman. Lorem',
       },
-    ]
+    ],
   },
-  weOffers:
-    {
-      previewTitle:'Do you know what we can?',
-      previewSubtitle:'What we do? What we support?',
-      previewDescription:'Our possibilities are limited only by our imagination.',
-      representation: [
-        {
+  weOffers: {
+    previewTitle: 'Do you know what we can?',
+    previewSubtitle: 'What we do? What we support?',
+    previewDescription:
+      'Our possibilities are limited only by our imagination.',
+    representation: [
+      {
+        title: 'DEVELOPMENT OF WEB ',
+        text:
+          'A Web developer is a kind of programmer who specializes in the development of applications relating to the World Wide Web or distributed network applications, which typically run protocols like HTTP from a Web server to a client browser using associated programming languages like HTML/CSS, C#, Ruby and PHP to name a few.',
+        img: '~/assets/images/weOffer/1.jpg',
+        positionCard: 'start',
+      },
+      {
+        title: 'CREATING SOFTWARE FOR REAL-WORLD TASKS',
+        text:
+          'Programming software is a software which helps the programmer in developing other software. Compilers, assemblers, debuggers, interpreters etc. are examples of programming software. Integrated development environments (IDEs) are combinations of all these software.',
+        img: '.~/assets/images/weOffer/2.jpg',
+        positionCard: 'end',
+      },
+      {
+        title: 'DESIGNING INFORMATION SYSTEMS OF VARIOUS COMPLEXITY',
+        text:
+          'Information system is a system composed of people and computers that processes or interprets information. The term is also sometimes used in more restricted senses to refer to only the software used to run a computerized database or to refer to only a computer system.',
+        img: '~/assets/images/weOffer/3.jpg',
+        positionCard: 'end',
+      },
+    ],
+  },
 
-          title:'DEVELOPMENT OF WEB ',
-          text:'A Web developer is a kind of programmer who specializes in the development of applications relating to the World Wide Web or distributed network applications, which typically run protocols like HTTP from a Web server to a client browser using associated programming languages like HTML/CSS, C#, Ruby and PHP to name a few.',
-          img:'~/assets/images/weOffer/1.jpg',
-          positionCard:'start'
-        },
-        {
-          title:'CREATING SOFTWARE FOR REAL-WORLD TASKS',
-          text:'Programming software is a software which helps the programmer in developing other software. Compilers, assemblers, debuggers, interpreters etc. are examples of programming software. Integrated development environments (IDEs) are combinations of all these software.',
-          img:'.~/assets/images/weOffer/2.jpg',
-          positionCard:'end'
-        },
-        {
-          title:'DESIGNING INFORMATION SYSTEMS OF VARIOUS COMPLEXITY',
-          text:'Information system is a system composed of people and computers that processes or interprets information. The term is also sometimes used in more restricted senses to refer to only the software used to run a computerized database or to refer to only a computer system.',
-          img:'~/assets/images/weOffer/3.jpg',
-          positionCard:'end'
-        },
-      ],
-    },
-  
   ourStaff: {
-    previewTitle:'Many people who can easily realize all things which you wish.',
-    previewSubtitle:'',
-    previewDescription:'Together we can more than one by one.',
-    representation:[
+    previewTitle:
+      'Many people who can easily realize all things which you wish.',
+    previewSubtitle: '',
+    previewDescription: 'Together we can more than one by one.',
+    representation: [
       {
         id: 1,
         name: 'Kirk Philips',
@@ -140,9 +144,9 @@ export const state = (): State => ({
     ],
   },
   portfolio: {
-    previewTitle:'Do you know what we can?',
-    previewSubtitle:'What we have made?',
-    previewDescription:'Our projects is one of the best',
+    previewTitle: 'Do you know what we can?',
+    previewSubtitle: 'What we have made?',
+    previewDescription: 'Our projects is one of the best',
     projects: [
       {
         title: 'Department of Social Work of Sumy State University',
@@ -150,12 +154,14 @@ export const state = (): State => ({
         link: 'http://soc.sumdu.edu.ua/',
       },
       {
-        title: 'Practice and internship search platform of Sumy State University',
+        title:
+          'Practice and internship search platform of Sumy State University',
         cover: '/images/portfolio/JOB.png',
         link: 'http://job-test.sumdu.edu.ua/',
       },
       {
-        title: 'Online assessment of the quality of the educational process at Sumy State University',
+        title:
+          'Online assessment of the quality of the educational process at Sumy State University',
         cover: '/images/portfolio/AC.png',
         link: 'http://ac.sumdu.edu.ua/',
       },
@@ -163,12 +169,12 @@ export const state = (): State => ({
   },
   showContactBar: false,
   contacts: {
-    motto:'Speed, quality, simplicity',
-    email:'STUDCITMAIL@GMAIL.COM',
-    phone:'+380 98 43 70 202',
-    street:'Ukraine, Sumy, st. Rimsky-Korsakov, 2',
-    office:'Sumy State University, Electrotechnical Corps, cab. ET-504'
-  }
+    motto: 'Speed, quality, simplicity',
+    email: 'STUDCITMAIL@GMAIL.COM',
+    phone: '+380 98 43 70 202',
+    street: 'Ukraine, Sumy, st. Rimsky-Korsakov, 2',
+    office: 'Sumy State University, Electrotechnical Corps, cab. ET-504',
+  },
 });
 
 export const getters: GetterTree<RootState, RootState> = {
@@ -176,7 +182,9 @@ export const getters: GetterTree<RootState, RootState> = {
     return state.showContactBar;
   },
   getPageCover(state: State) {
-    const currentPage = state.pages.find( ({id}: PageModel) => id === state.pageId);
+    const currentPage = state.pages.find(
+      ({ id }: PageModel) => id === state.pageId,
+    );
     return currentPage ? currentPage.cover : null;
   },
   getPageStage(state: State) {
@@ -188,9 +196,11 @@ export const getters: GetterTree<RootState, RootState> = {
   getPageRouteById(state: State) {
     return (index: number) => {
       const changedIndex = index > 4 ? 1 : index < 1 ? 4 : index;
-      const currentPage = state.pages.find( ({id}: PageModel) => id === changedIndex)
+      const currentPage = state.pages.find(
+        ({ id }: PageModel) => id === changedIndex,
+      );
       return currentPage ? currentPage.to : '';
-    }
+    };
   },
   getProjectsStage(state: State) {
     return state.portfolio.projects;

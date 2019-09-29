@@ -28,5 +28,5 @@ export default {
     sm: 20,
     md: 20,
     lg: 25,
-  }
+  },
 };

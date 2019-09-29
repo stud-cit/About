@@ -4,34 +4,54 @@
       <v-window-item>
         <v-row justify="center">
           <v-col cols="10" md="12">
-            <v-row class="slide-container" 
+            <v-row
+              class="slide-container"
               justify="space-around"
               align="end"
               align-sm="start"
             >
               <v-col cols="12" order="1" order-sm="1">
                 <div class="d-none d-sm-block">
-                  <p class="font-weight-bold" :style="getPreviewTitleFont">{{ about.previewTitle }}</p>
+                  <p class="font-weight-bold" :style="getPreviewTitleFont">
+                    {{ about.previewTitle }}
+                  </p>
                 </div>
                 <div class="d-block d-sm-none">
-                  <p class="font-weight-bold text-center" :style="getPreviewTitleFont">{{ about.previewTitle }}</p>
+                  <p
+                    class="font-weight-bold text-center"
+                    :style="getPreviewTitleFont"
+                  >
+                    {{ about.previewTitle }}
+                  </p>
                 </div>
               </v-col>
               <v-col cols="12" order="3" order-sm="2">
                 <v-row justify="space-around" justify-sm="start">
                   <v-col cols="auto" order="1" order-sm="1">
-                    <div class="arrow mr-3" @click="handleNavigatingPage(false)">&#8592;</div>
+                    <div
+                      class="arrow mr-3"
+                      @click="handleNavigatingPage(false)"
+                    >
+                      &#8592;
+                    </div>
                   </v-col>
                   <v-col cols="auto" order="3" order-sm="2">
-                    <div class="arrow mr-3" @click="handleNavigatingPage(true)">&#8594;</div>
+                    <div class="arrow mr-3" @click="handleNavigatingPage(true)">
+                      &#8594;
+                    </div>
                   </v-col>
-                  <v-col cols="auto" order="2" order-sm="3" :class="{rotate: isXsOnly}">
+                  <v-col
+                    cols="auto"
+                    order="2"
+                    order-sm="3"
+                    :class="{ rotate: isXsOnly }"
+                  >
                     <nuxt-link class="square-container" to="/">
                       <div class="square mr-3 squareOne"></div>
                       <div class="square mr-3 squareTwo"></div>
                       <div class="square squareThree"></div>
-                    </nuxt-link>	
-                  </v-col>					
+                    </nuxt-link>
+                  </v-col>
                 </v-row>
               </v-col>
 
@@ -45,11 +65,8 @@
                   <img class="pointer-icon" src="/pointer-mobile.svg" />
                 </v-row>
                 <v-row justify="center" justify-sm="start" class="mt-4">
-                  <span
-                    class="gray"
-                    :style="getPreviewInfoFont"
-                  >
-                    {{$t( isXsOnly ? 'about.swipe' : 'weOffers.scroll')}}
+                  <span class="gray" :style="getPreviewInfoFont">
+                    {{ $t(isXsOnly ? 'about.swipe' : 'weOffers.scroll') }}
                   </span>
                 </v-row>
               </v-col>
@@ -61,25 +78,27 @@
       <v-window-item v-for="(slide, index) in about.slides" :key="index">
         <v-row justify="center" align="center" class="slide-container">
           <v-col cols="12" sm="10" md="8">
-            <v-row class="font-weight-bold ma-2 white--text" :style="getSlideTitleFont">
+            <v-row
+              class="font-weight-bold ma-2 white--text"
+              :style="getSlideTitleFont"
+            >
               {{ slide.title }}
             </v-row>
             <div class="px-8 py-12 slide-content" :style="getSlideContentFont">
-              {{slide.content}}
+              {{ slide.content }}
             </div>
-          </v-col>  
+          </v-col>
         </v-row>
       </v-window-item>
-      <v-window-item>
-      </v-window-item>
+      <v-window-item> </v-window-item>
     </v-window>
-    <p class="d-none d-md-block slogan"
+    <p
+      class="d-none d-md-block slogan"
       :class="isLgAndUp ? 'slogan-lg' : 'slogan-md'"
     >
-      {{$t('about.tagLine')}}
+      {{ $t('about.tagLine') }}
     </p>
     <v-footer absolute color="transparent" class="pb-0 px-0 px-sm-auto">
-      
       <v-row justify="center">
         <v-col sm="10" md="12" class="pb-0">
           <v-row justify-sm="end" justify-md="space-around" align="center">
@@ -96,9 +115,20 @@
               />
             </v-col>
             <v-col xs="12" sm="auto" class="pb-0">
-              <v-card class="pa-4 pt-0 use-contacts-container" @click="() => changeContactBar(true)">
-                <v-card-title class="justify-center" :style="getUseContactsTitleFont">{{$t('contact.titleShort')}}</v-card-title>
-                <v-card-actions class="pa-0 contacts-action justify-center" :style="getUseContactsActionFont">{{$t('contact.preTitleShort')}}</v-card-actions>
+              <v-card
+                class="pa-4 pt-0 use-contacts-container"
+                @click="() => changeContactBar(true)"
+              >
+                <v-card-title
+                  class="justify-center"
+                  :style="getUseContactsTitleFont"
+                  >{{ $t('contact.titleShort') }}</v-card-title
+                >
+                <v-card-actions
+                  class="pa-0 contacts-action justify-center"
+                  :style="getUseContactsActionFont"
+                  >{{ $t('contact.preTitleShort') }}</v-card-actions
+                >
               </v-card>
             </v-col>
           </v-row>
@@ -119,7 +149,7 @@ import { Getter, Mutation } from 'vuex-class';
 })
 export default class AboutPage extends Vue {
   @Getter('getAboutStage') about;
-	@Getter('getPageId') pageId;
+  @Getter('getPageId') pageId;
   @Getter('getPageRouteById') getPageRouteById;
   @Getter('getContactBarVisibility') isShowContactBar;
   @Mutation('changePageId') changePageId;
@@ -127,43 +157,63 @@ export default class AboutPage extends Vue {
   curStage: number = 0;
 
   handleNavigatingPage(toRight: boolean) {
-		const newPageIndex = toRight ? this.pageId + 1 : this.pageId - 1;
-		const nextPage = this.getPageRouteById(newPageIndex);
-		this.$router.push(nextPage);
+    const newPageIndex = toRight ? this.pageId + 1 : this.pageId - 1;
+    const nextPage = this.getPageRouteById(newPageIndex);
+    this.$router.push(nextPage);
   }
 
-  get isXsOnly () {
+  get isXsOnly() {
     return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
   }
-  get isLgAndUp () {
+  get isLgAndUp() {
     return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
   }
 
   get getSlideTitleFont() {
-    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 12, sm: 20, md: 20, lg: 30})}px`};
+    return {
+      fontSize: `${this.getCustomAdaptiveFontSize({
+        xs: 12,
+        sm: 20,
+        md: 20,
+        lg: 30,
+      })}px`,
+    };
   }
   get getSlideContentFont() {
-    return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 10, sm: 20, md: 20, lg: 30})}px`};
+    return {
+      fontSize: `${this.getCustomAdaptiveFontSize({
+        xs: 10,
+        sm: 20,
+        md: 20,
+        lg: 30,
+      })}px`,
+    };
   }
   get getPreviewTitleFont() {
-    return { fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px`};
+    return { fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px` };
   }
   get getPreviewSubTitleFont() {
-    return { fontSize: `${this.getCommonAdaptiveFontSize('previewSubtitle')}px`};
+    return {
+      fontSize: `${this.getCommonAdaptiveFontSize('previewSubtitle')}px`,
+    };
   }
   get getPreviewInfoFont() {
-    return { fontSize: `${this.getCommonAdaptiveFontSize('previewInfo')}px`};
+    return { fontSize: `${this.getCommonAdaptiveFontSize('previewInfo')}px` };
   }
   get getUseContactsTitleFont() {
-    return { fontSize: `${this.getCommonAdaptiveFontSize('useContactsTitle')}px`};
+    return {
+      fontSize: `${this.getCommonAdaptiveFontSize('useContactsTitle')}px`,
+    };
   }
   get getUseContactsActionFont() {
-    return { fontSize: `${this.getCommonAdaptiveFontSize('useContactsAction')}px`};
+    return {
+      fontSize: `${this.getCommonAdaptiveFontSize('useContactsAction')}px`,
+    };
   }
 
   @Watch('curStage')
   onChangeCurStage(value: number) {
-    if(value === this.about.slides.length + 1) {
+    if (value === this.about.slides.length + 1) {
       this.changeContactBar(true);
     }
   }
@@ -171,7 +221,7 @@ export default class AboutPage extends Vue {
   @Watch('isShowContactBar')
   onChangeContactBar(curValue: boolean, prevValue: boolean) {
     // when we close contact bar - show prev stage
-    if(prevValue === true) {
+    if (prevValue === true) {
       this.curStage = this.curStage - 1;
     }
   }
@@ -180,77 +230,76 @@ export default class AboutPage extends Vue {
     this.changePageId(1);
   }
 
-  mounted() {
-  }
+  mounted() {}
 }
 </script>
 
 <style lang="sass">
-  .slider
-    .v-slider__tick
-      border-radius: 50%
-      background: #363636
-    
-    .v-slider__tick--filled
-      background: white
+.slider
+  .v-slider__tick
+    border-radius: 50%
+    background: #363636
 
-  .preview-section
-    height: 100vh
+  .v-slider__tick--filled
+    background: white
 
-  .slide-container
-    height: 60vh
-    color: white
+.preview-section
+  height: 100vh
 
-  .arrow
-    font-size: 1.8rem
-    text-align: center
-    cursor: pointer
-  
-  .square-container
-    display: flex
+.slide-container
+  height: 60vh
+  color: white
 
-  .square
-    height: 40px
-    width: 40px
-    border-radius: 20%
-    border: 2px solid white
-  
-  .squareOne
-    clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)
-    
-  .squareThree
-    clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
+.arrow
+  font-size: 1.8rem
+  text-align: center
+  cursor: pointer
 
-  .slide-content
-    border: 5px solid white   
-    border-right: 16px solid white
-    color: white
-    position: relative
+.square-container
+  display: flex
 
-  .use-contacts-container
-    width: auto
-    border-bottom-left-radius: 0
-    border-bottom-right-radius: 0
+.square
+  height: 40px
+  width: 40px
+  border-radius: 20%
+  border: 2px solid white
 
-  .contacts-action
-    text-transform: uppercase
-    text-decoration: underline
+.squareOne
+  clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)
 
-  .slogan
-    position: fixed
-    right: 2vw
-    color: white
-    writing-mode: vertical-rl
-    transform: scaleX(-1) scaleY(-1)
+.squareThree
+  clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
 
-  .slogan-md
-    top: calc(50vh - 163px)
-    font-size: 30px
+.slide-content
+  border: 5px solid white
+  border-right: 16px solid white
+  color: white
+  position: relative
 
-  .slogan-lg
-    top: calc(50vh - 272px)
-    font-size: 50px
+.use-contacts-container
+  width: auto
+  border-bottom-left-radius: 0
+  border-bottom-right-radius: 0
 
-  .rotate
-    transform: rotate(90deg)
+.contacts-action
+  text-transform: uppercase
+  text-decoration: underline
+
+.slogan
+  position: fixed
+  right: 2vw
+  color: white
+  writing-mode: vertical-rl
+  transform: scaleX(-1) scaleY(-1)
+
+.slogan-md
+  top: calc(50vh - 163px)
+  font-size: 30px
+
+.slogan-lg
+  top: calc(50vh - 272px)
+  font-size: 50px
+
+.rotate
+  transform: rotate(90deg)
 </style>

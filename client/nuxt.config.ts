@@ -8,15 +8,15 @@ const configService = new ConfigService();
 
 const config: Configuration = {
   /*
-  ** Server options
-  */
+   ** Server options
+   */
   server: {
     port: configService.getSetting('APP_PORT'),
     timing: configService.getSetting('APP_TIMG'),
   },
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
     titleTemplate: `%s - ${configService.getSetting('npm_package_name')}`,
     meta: [
@@ -36,26 +36,23 @@ const config: Configuration = {
   },
   css: ['~/assets/style/app.sass'],
   /*
-  ** Customize the progress bar color
-  */
+   ** Customize the progress bar color
+   */
   loading: 'components/loading.vue',
   /*
-  ** Plugins to load before mounting the App
-  */
+   ** Plugins to load before mounting the App
+   */
   plugins: [
     '~/mixins',
     '~/plugins/directives',
     '~/plugins/vuetify',
-    { src: '~/plugins/vuetify-breakpoints', ssr: false},
+    { src: '~/plugins/vuetify-breakpoints', ssr: false },
     { src: '~/plugins/swiper', ssr: false },
   ],
   /*
-  ** Modules to load before mounting the App
-  */
-  buildModules: [
-    '@nuxt/typescript-build',
-    'nuxt-i18n',
-  ],
+   ** Modules to load before mounting the App
+   */
+  buildModules: ['@nuxt/typescript-build', 'nuxt-i18n'],
   build: {
     transpile: ['vuetify/lib', /^vue2-google-maps($|\/)/],
     plugins: [new VuetifyLoaderPlugin()],

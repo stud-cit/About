@@ -24,36 +24,38 @@ Vue.mixin({
         'useContactsTitle',
         'useContactsAction',
       ];
-      
-      if(allowedElementNames.includes(elementName)) {
+
+      if (allowedElementNames.includes(elementName)) {
         const currentFontDimensions = commonFontSizeList[elementName];
         const currentBreakpoint = this.$vuetify.breakpoint.name;
-        
-        if(currentBreakpoint === 'xl') {
+
+        if (currentBreakpoint === 'xl') {
           return currentFontDimensions.lg;
         }
         return currentFontDimensions[currentBreakpoint];
       }
       return null;
     },
-    getCustomAdaptiveFontSize({xs, sm, md, lg}: getCustomAdaptiveFontSizeModel) {
+    getCustomAdaptiveFontSize({
+      xs,
+      sm,
+      md,
+      lg,
+    }: getCustomAdaptiveFontSizeModel) {
       const { $breakpoint } = this;
-      if($breakpoint) {
+      if ($breakpoint) {
         const is = $breakpoint.is;
-        if(is.lgAndUp) {
+        if (is.lgAndUp) {
           return lg;
-        }
-        else if(is.mdAndUp) {
+        } else if (is.mdAndUp) {
           return md;
-        }
-        else if(is.smAndUp) {
+        } else if (is.smAndUp) {
           return sm;
-        }
-        else {
+        } else {
           return xs;
         }
       }
       return xs;
-    }
+    },
   },
 });

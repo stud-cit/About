@@ -1,33 +1,34 @@
 <template>
-        <v-container>
-            <section class="errors" v-if="error.statusCode === 404">
-                <div class="numbers">404</div>
-                <div class="description">NOT F<img src="@/static/not-found.svg" alt="">UND</div>
-            </section>
-            <section v-else>An error occurred</section>
-            <nuxt-link to="/" :class="isMdAndUp ? 'link-full' : 'link-mobile'">
-                <div class="text">Return to Home Page</div>
-            </nuxt-link>
-        </v-container>
+  <v-container>
+    <section class="errors" v-if="error.statusCode === 404">
+      <div class="numbers">404</div>
+      <div class="description">
+        NOT F<img src="@/static/not-found.svg" alt="" />UND
+      </div>
+    </section>
+    <section v-else>An error occurred</section>
+    <nuxt-link to="/" :class="isMdAndUp ? 'link-full' : 'link-mobile'">
+      <div class="text">Return to Home Page</div>
+    </nuxt-link>
+  </v-container>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
 
-
 @Component({
-	layout: 'default',
-	head: {
-		title: 'Error page'
-	}
+  layout: 'default',
+  head: {
+    title: 'Error page',
+  },
 })
 export default class ErrorPage extends Vue {
-	@Prop() public error: object
+  @Prop() public error: object;
 
-	get isMdAndUp () {
-    	return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
-  	}
+  get isMdAndUp() {
+    return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
+  }
 }
 </script>
 
@@ -66,7 +67,7 @@ export default class ErrorPage extends Vue {
 		right: -15rem
 		white-space: nowrap
 		top: 50%
-	
+
 .link-mobile
 	background: rgba(242, 242, 242, 1)
 	width: 100vw
@@ -82,7 +83,7 @@ export default class ErrorPage extends Vue {
 		font-size: 5vw
 		left: 50%
 		transform: translate(-50%)
-	
+
 .text
 	text-decoration: none
 	color: rgba(227, 227, 227, 1)
