@@ -2,7 +2,9 @@
   <v-app> 
     <v-app-bar id="header" color="transparent" app dark flat>   
       <figure class="breakpoint">
-        <img class="logo" src="/StudCIT_LogoText.svg" />
+        <nuxt-link to="/">
+          <img class="logo" src="/logo.svg" />
+        </nuxt-link>
       </figure>
       <v-spacer/>
       <v-toolbar-items>
