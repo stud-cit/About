@@ -178,47 +178,47 @@ export const state = (): State => ({
 });
 
 export const getters: GetterTree<RootState, RootState> = {
-  getContactBarVisibility(state: State) {
-    return state.showContactBar;
+  getContactBarVisibility({showContactBar}: State) {
+    return showContactBar;
   },
-  getPageCover(state: State) {
-    const currentPage = state.pages.find(
-      ({ id }: PageModel) => id === state.pageId,
+  getPageCover({pages, pageId}: State) {
+    const currentPage = pages.find(
+      ({ id }: PageModel) => id === pageId,
     );
     return currentPage ? currentPage.cover : null;
   },
-  getPageStage(state: State) {
-    return state.pages;
+  getPageStage({pages}: State) {
+    return pages;
   },
-  getPageId(state: State) {
-    return state.pageId;
+  getPageId({pageId}: State) {
+    return pageId;
   },
-  getPageRouteById(state: State) {
+  getPageRouteById({pages}: State) {
     return (index: number) => {
       const changedIndex = index > 4 ? 1 : index < 1 ? 4 : index;
-      const currentPage = state.pages.find(
+      const currentPage = pages.find(
         ({ id }: PageModel) => id === changedIndex,
       );
       return currentPage ? currentPage.to : '';
     };
   },
-  getProjectsStage(state: State) {
-    return state.portfolio.projects;
+  getProjectsStage({portfolio}: State) {
+    return portfolio.projects;
   },
-  getAboutStage(state: State) {
-    return state.about;
+  getAboutStage({about}: State) {
+    return about;
   },
-  getOffersStage(state: State) {
-    return state.weOffers;
+  getOffersStage({weOffers}: State) {
+    return weOffers;
   },
-  getStaffStage(state: State) {
-    return state.ourStaff;
+  getStaffStage({ourStaff}: State) {
+    return ourStaff;
   },
-  getPortfolioStage(state: State) {
-    return state.portfolio;
+  getPortfolioStage({portfolio}: State) {
+    return portfolio;
   },
-  getContactStage(state: State) {
-    return state.contacts;
+  getContactStage({contacts}: State) {
+    return contacts;
   },
 };
 
