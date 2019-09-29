@@ -5,7 +5,8 @@
         <v-col
           v-for="(page, i) in pages"
           :key="i"
-          :cols="$vuetify.breakpoint.mdAndDown ? 10 : 8"
+          cols="10"
+          lg="8"
           class="swiper-slide"
         >
           <nuxt-link :to="page.to" class="disable-underline">
@@ -14,7 +15,7 @@
                 :src="getDynamicAssets(page.img)"
                 :gradient="imagePageGradient"
                 :lazy-src="page.lazyImg"
-                :height="$vuetify.breakpoint.mdAndDown ? '45vh' : '55vh'"
+                :height="isMdAndDown ? '45vh' : '55vh'"
                 :aspect-ratio="16 / 9"
               >
                 <v-card-title class="title white--text fill-height">
@@ -103,6 +104,9 @@ export default class HomePage extends Vue {
     }
   }
 
+  get isMdAndDown () {
+    return this.$breakpoint ? this.$breakpoint.is.mdAndDown : false;
+  }
   get getSlideTitleFont() {
     return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 40, sm: 31, md: 31, lg: 60})}px`};
   }

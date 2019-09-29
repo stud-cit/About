@@ -16,17 +16,17 @@
                     <v-list-item-title
                       v-text="project.title"
                       class="ma-5 display-3 text-underline text-wrap"
-                      :class="$vuetify.breakpoint.mdAndUp ? '' : 'text-center'"
+                      :class="!isMdAndUp && 'text-center'"
                     />
                     <v-divider />
                   </v-list-item-content>
                 </v-list-item>
               </v-card>
             </v-col>
-            <v-col lg="3" md="4" sm="12" class="ma-3 d-flex" :class="$vuetify.breakpoint.mdAndUp ? 'justify-end' : 'justify-center'">
+            <v-col lg="3" md="4" sm="12" class="ma-3 d-flex" :class="isMdAndUp ? 'justify-end' : 'justify-center'">
               <v-btn :to="project.link" large dark text>
                 <span class="headline d-none d-md-block">{{$t('portfolio.link')}}</span> 
-                <v-icon class="arrow-right" color="white" :class="$vuetify.breakpoint.mdAndUp ? 'display-3' : 'display-4'">
+                <v-icon class="arrow-right" color="white" :class="isMdAndUp ? 'display-3' : 'display-4'">
                   mdi-chevron-right
                 </v-icon>
               </v-btn>
@@ -58,6 +58,10 @@ export default class PortfolioPage extends Vue {
   @Getter('getPortfolioStage') portfolio;
   @Mutation('changePageCover') changePageCover;
 
+
+  get isMdAndUp () {
+    return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
+  }
   created() {
     this.changePageCover('portfolio');
   }

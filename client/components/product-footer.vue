@@ -3,7 +3,7 @@
         <v-col cols="10" class="d-flex d-lg-none">
             <v-row justify="center" align="center" class="return-section" @click="scollTop">
                 <!-- TODO: add icon -->
-                <p :class="$vuetify.breakpoint.smAndUp ? 'text-sm' : 'text-xs'">{{$t('weOffers.backToTop')}}</p>
+                <p :class="isSmAndUp ? 'text-sm' : 'text-xs'">{{$t('weOffers.backToTop')}}</p>
             </v-row>
 
             <v-col cols="12">
@@ -32,6 +32,10 @@ import ContactBar from './contact-bar';
 export default class PruductFooter extends Vue {
     scollTop() {
         window.scrollTo({left: 0, top: 0, behavior: 'smooth'});
+    }
+
+    get isSmAndUp () {
+        return this.$breakpoint ? this.$breakpoint.is.smAndUp : false;
     }
 
     get getTagLineFont() {

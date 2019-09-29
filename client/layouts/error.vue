@@ -5,19 +5,29 @@
                 <div class="description">NOT F<img src="@/static/not-found.svg" alt="">UND</div>
             </section>
             <section v-else>An error occurred</section>
-            <nuxt-link to="/" :class="$vuetify.breakpoint.mdAndUp ? 'link-full' : 'link-mobile'">
+            <nuxt-link to="/" :class="isMdAndUp ? 'link-full' : 'link-mobile'">
                 <div class="text">Return to Home Page</div>
             </nuxt-link>
         </v-container>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
 
-export default {
-    props: ['error'],
-    layout: 'default'
+
+@Component({
+	layout: 'default',
+	head: {
+		title: 'Error page'
+	}
+})
+export default class ErrorPage extends Vue {
+	@Prop() public error: object
+
+	get isMdAndUp () {
+    	return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
+  	}
 }
 </script>
 
@@ -28,7 +38,7 @@ export default {
 	position: absolute
 	top: 50%
 	left: 50%
-	transform: translate(-50% , -50%)
+	transform: translate(-50%, -50%)
 	.numbers
 		font-size: 15vw
 		color: rgba(206, 206, 206, 1)

@@ -32,7 +32,7 @@
 					<v-col cols="auto" order="3" order-sm="2">
 						<div class="arrow mr-3" @click="handleNavigatingPage(true)">&#8594;</div>
 					</v-col>
-					<v-col cols="auto" order="2" order-sm="3" :class="{rotate: $vuetify.breakpoint.xsOnly}">
+					<v-col cols="auto" order="2" order-sm="3" :class="{rotate: isXsOnly}">
 						<nuxt-link class="square-container" to="/">
 							<div class="square mr-3 squareOne"></div>
 							<div class="square mr-3 squareTwo"></div>
@@ -127,6 +127,9 @@ export default class PreviewPage extends Vue {
 		this.$router.push(nextPage);
 	}
 
+	get isXsOnly () {
+        return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+	}
 	get getPreviewTitleFont() {
 		return { fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px`};
 	}

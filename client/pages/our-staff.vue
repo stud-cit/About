@@ -6,10 +6,13 @@
         <ScrollBar />
         <v-row justify="space-around">
           <v-col v-for="(person, i) in ourStaff.representation" :key="i" lg="4" md="6" sm="12" class="my-4">
-            <v-card class="mx-auto" :width="$vuetify.breakpoint.mdAndUp ? '400px' : '100%'" :class="$vuetify.breakpoint.lgAndUp ? 'card-img-hover' : 'card-img'">
+            <v-card 
+              class="mx-auto" 
+              :width="isMdAndUp ? '400px' : '100%'" 
+              :class="isLgAndUp ? 'card-img-hover' : 'card-img'">
               <v-img
                 class="white--text"
-                :height="$vuetify.breakpoint.mdAndUp ? '250px' : '40%'"
+                :height="isMdAndUp ? '250px' : '40%'"
                 :src="getDynamicAssets(person.img_src)"
               >
               </v-img>
@@ -57,6 +60,12 @@ export default class OurStaffPage extends Vue {
   @Mutation('changePageCover') changePageCover;
 
 
+  get isLgAndUp () {
+    return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
+  }
+  get isMdAndUp () {
+      return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
+  }
   get getStaffNameFont() {
     return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 25, sm: 40, md: 20, lg: 30})}px`};
   }

@@ -17,7 +17,7 @@
           >
             <span
               class="capitalize"
-              :class="$vuetify.breakpoint.lgAndUp ? 'nav-link-desktop' : 'nav-link'"
+              :class="isLgAndUp ? 'nav-link-desktop' : 'nav-link'"
             >
               {{ page.title }}
             </span>
@@ -113,7 +113,10 @@ export default class ImmediatetLayout extends Vue {
     return this.getPageByRoute(route);
   }
 
-
+  get isLgAndUp () {
+    return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
+  }
+  
   get getPageIndexFont() {
     return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 25, sm: 40, md: 40, lg: 45})}px`};
   }

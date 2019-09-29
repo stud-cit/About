@@ -2,7 +2,7 @@
   <v-container fluid class="contact-bar pa-1 pa-sm-3" :class="{static: isStatic}" v-if="isStatic || isActive">
     <v-row class="relative" justify="space-around" align="center">
       <div
-        :class="$vuetify.breakpoint.smAndUp ? 'close-icon-container' : 'mobile-close-icon'" 
+        :class="isSmAndUp ? 'close-icon-container' : 'mobile-close-icon'" 
         v-if="!isStatic" 
         class="pa-1 pa-sm-0" 
       >
@@ -92,7 +92,9 @@
 
     @Prop({ default: false }) readonly isStatic: boolean
 
-
+    get isSmAndUp () {
+        return this.$breakpoint ? this.$breakpoint.is.smAndUp : false;
+	  }
     get getCreadentialsFont() {
       return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 10, sm: 15, md: 15, lg: 30})}px`};
     }

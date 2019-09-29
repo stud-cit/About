@@ -25,7 +25,7 @@
                   <v-col cols="auto" order="3" order-sm="2">
                     <div class="arrow mr-3" @click="handleNavigatingPage(true)">&#8594;</div>
                   </v-col>
-                  <v-col cols="auto" order="2" order-sm="3" :class="{rotate: $vuetify.breakpoint.xsOnly}">
+                  <v-col cols="auto" order="2" order-sm="3" :class="{rotate: isXsOnly}">
                     <nuxt-link class="square-container" to="/">
                       <div class="square mr-3 squareOne"></div>
                       <div class="square mr-3 squareTwo"></div>
@@ -74,7 +74,7 @@
       </v-window-item>
     </v-window>
     <p class="d-none d-md-block slogan"
-      :class="$vuetify.breakpoint.lgAndUp ? 'slogan-lg' : 'slogan-md'"
+      :class="isLgAndUp ? 'slogan-lg' : 'slogan-md'"
     >
       {{$t('about.tagLine')}}
     </p>
@@ -132,8 +132,14 @@ export default class AboutPage extends Vue {
 		const newPageIndex = toRight ? pageIndex + 1 : pageIndex - 1;
 		const nextPage = this.getPageById(newPageIndex);
 		this.$router.push(nextPage);
-	}
+  }
 
+  get isXsOnly () {
+    return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+  }
+  get isLgAndUp () {
+    return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
+  }
 
   get getSlideTitleFont() {
     return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 12, sm: 20, md: 20, lg: 30})}px`};
@@ -174,6 +180,9 @@ export default class AboutPage extends Vue {
 
   created() {
     this.changePageCover('about');
+  }
+
+  mounted() {
   }
 }
 </script>

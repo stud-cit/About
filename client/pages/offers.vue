@@ -10,11 +10,11 @@
             <section class="representation" v-for="(preview,index) in weOffers.representation" :key="index">
               <v-row 
                 class="center d-sm-flex" 
-                :class="{'representation-tablet': $vuetify.breakpoint.smAndDown}" 
+                :class="{'representation-tablet': isSmAndDown}"
                 :justify="preview.positionCard"
               >
                 <img class="preview-image" src="~/assets/images/weOffer/1.jpg"> 
-                <v-card :class="$vuetify.breakpoint.lgAndUp ? preview.positionCard : 'preview-card'">
+                <v-card :class="isLgAndUp ? preview.positionCard : 'preview-card'">
                   <v-card-title class="preview-title" :style="getCardTitleFont">{{preview.title}}</v-card-title>
                   <v-card-text :style="getCardContentFont">{{preview.text}}</v-card-text>
                 </v-card>
@@ -53,8 +53,12 @@ export default class OffersPage extends Vue {
   @Getter('getOffersStage') weOffers;
   @Mutation('changePageCover') changePageCover;
 
-
-
+  get isLgAndUp () {
+      return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
+  }
+  get isSmAndDown () {
+      return this.$breakpoint ? this.$breakpoint.is.smAndDown : false;
+  }
   get getCardTitleFont() {
     return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 15, sm: 20, md: 20, lg: 30})}px`};
   }

@@ -35,19 +35,23 @@ Vue.mixin({
       return null;
     },
     getCustomAdaptiveFontSize({xs, sm, md, lg}: getCustomAdaptiveFontSizeModel) {
-      const { smAndUp, mdAndUp, lgAndUp } = this.$vuetify.breakpoint;
-      if(lgAndUp) {
-        return lg;
+      const { $breakpoint } = this;
+      if($breakpoint) {
+        const is = $breakpoint.is;
+        if(is.lgAndUp) {
+          return lg;
+        }
+        else if(is.mdAndUp) {
+          return md;
+        }
+        else if(is.smAndUp) {
+          return sm;
+        }
+        else {
+          return xs;
+        }
       }
-      else if(mdAndUp) {
-        return md;
-      }
-      else if(smAndUp) {
-        return sm;
-      }
-      else {
-        return xs;
-      }
+      return xs;
     }
   },
 });
