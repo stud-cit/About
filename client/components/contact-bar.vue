@@ -61,18 +61,9 @@
       </v-col>
       <v-col cols="6" sm="2" class="pb-0">
         <v-row class="pb-0" justify="center" align="end">
-          <GmapMap
-            class="map"
-            :center="{lat: 50.892796, lng: 34.840445}"
-            :zoom="13"
-            map-type-id="roadmap"
-            :options="mapOptions"
-          >
-            <GmapMarker
-              :position="{lat: 50.892796, lng: 34.840445}"
-              icon="/marker.svg"
-            />
-          </GmapMap>
+          <a class="map" href="https://www.google.com.ua/maps/place/Department+of+General+and+Theoretical+Physics+of+SSU/@50.8918344,34.8410504,17z/data=!4m9!1m3!11m2!2sfL29wECLWo3E0vp-J1Rb4QPskla8Pg!3e3!3m4!1s0x0:0x33afc095aa39b815!8m2!3d50.8929585!4d34.8404856?hl=ru">
+            <v-img src="/map.png"></v-img>
+          </a>
         </v-row>
       </v-col>
     </v-row>
@@ -101,245 +92,6 @@
     get getLocationFont() {
       return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 12, sm: 20, md: 20, lg: 40})}px`};
     }
-    mapOptions = {
-        zoomControl: false,
-        mapTypeControl: false,
-        scaleControl: false,
-        streetViewControl: false,
-        rotateControl: false,
-        fullscreenControl: false,
-        disableDefaultUi: false,
-        styles: [
-          {
-            elementType: "geometry",
-            stylers: [
-              {
-                color: "#212121"
-              }
-            ]
-          },
-          {
-            elementType: "labels",
-            stylers: [
-              {
-                visibility: "off"
-              }
-            ]
-          },
-          {
-            elementType: "labels.icon",
-            stylers: [
-              {
-                visibility: "off"
-              }
-            ]
-          },
-          {
-            elementType: "labels.text.fill",
-            stylers: [
-              {
-                color: "#757575"
-              }
-            ]
-          },
-          {
-            elementType: "labels.text.stroke",
-            stylers: [
-              {
-                color: "#212121"
-              }
-            ]
-          },
-          {
-            featureType: "administrative",
-            elementType: "geometry",
-            stylers: [
-              {
-                color: "#757575"
-              },
-              {
-                visibility: "off"
-              }
-            ]
-          },
-          {
-            featureType: "administrative.country",
-            elementType: "labels.text.fill",
-            stylers: [
-              {
-                color: "#9e9e9e"
-              }
-            ]
-          },
-          {
-            featureType: "administrative.land_parcel",
-            stylers: [
-              {
-                visibility: "off"
-              }
-            ]
-          },
-          {
-            featureType: "administrative.locality",
-            elementType: "labels.text.fill",
-            stylers: [
-              {
-                color: "#bdbdbd"
-              }
-            ]
-          },
-          {
-            featureType: "administrative.neighborhood",
-            stylers: [
-              {
-                visibility: "off"
-              }
-            ]
-          },
-          {
-            featureType: "poi",
-            stylers: [
-              {
-                visibility: "off"
-              }
-            ]
-          },
-          {
-            featureType: "poi",
-            elementType: "labels.text.fill",
-            stylers: [
-              {
-                color: "#757575"
-              }
-            ]
-          },
-          {
-            featureType: "poi.park",
-            elementType: "geometry",
-            stylers: [
-              {
-                color: "#181818"
-              }
-            ]
-          },
-          {
-            featureType: "poi.park",
-            elementType: "labels.text.fill",
-            stylers: [
-              {
-                color: "#616161"
-              }
-            ]
-          },
-          {
-            featureType: "poi.park",
-            elementType: "labels.text.stroke",
-            stylers: [
-              {
-                color: "#1b1b1b"
-              }
-            ]
-          },
-          {
-            featureType: "road",
-            elementType: "geometry.fill",
-            stylers: [
-              {
-                color: "#2c2c2c"
-              }
-            ]
-          },
-          {
-            featureType: "road",
-            elementType: "labels.icon",
-            stylers: [
-              {
-                visibility: "off"
-              }
-            ]
-          },
-          {
-            featureType: "road",
-            elementType: "labels.text.fill",
-            stylers: [
-              {
-                color: "#8a8a8a"
-              }
-            ]
-          },
-          {
-            featureType: "road.arterial",
-            elementType: "geometry",
-            stylers: [
-              {
-                color: "#373737"
-              }
-            ]
-          },
-          {
-            featureType: "road.highway",
-            elementType: "geometry",
-            stylers: [
-              {
-                color: "#3c3c3c"
-              }
-            ]
-          },
-          {
-            featureType: "road.highway.controlled_access",
-            elementType: "geometry",
-            stylers: [
-              {
-                color: "#4e4e4e"
-              }
-            ]
-          },
-          {
-            featureType: "road.local",
-            elementType: "labels.text.fill",
-            stylers: [
-              {
-                color: "#616161"
-              }
-            ]
-          },
-          {
-            featureType: "transit",
-            stylers: [
-              {
-                visibility: "off"
-              }
-            ]
-          },
-          {
-            featureType: "transit",
-            elementType: "labels.text.fill",
-            stylers: [
-              {
-                color: "#757575"
-              }
-            ]
-          },
-          {
-            featureType: "water",
-            elementType: "geometry",
-            stylers: [
-              {
-                color: "#000000"
-              }
-            ]
-          },
-          {
-            featureType: "water",
-            elementType: "labels.text.fill",
-            stylers: [
-              {
-                color: "#3d3d3d"
-              }
-            ]
-          }
-        ]
-      }
     onCloseContactBar() {
       this.changeContactBar(false);
     }
@@ -354,23 +106,12 @@
     color: black
     z-index: 15
 
-
-  
   .static
     position: static
   .underline
     border-bottom: 6px solid black
-
   .map
-    width: 250px
-    height: 130px
-
-    .gmnoprint
-        display: none    
-
-    img[src="https://maps.gstatic.com/mapfiles/api-3/images/google_white5_hdpi.png"]
-        display: none
- 
+    width: 100%
   .close-icon-container
     position: absolute
     top: 0

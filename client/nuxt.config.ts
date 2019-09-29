@@ -46,7 +46,6 @@ const config: Configuration = {
     '~/mixins',
     '~/plugins/directives',
     '~/plugins/vuetify',
-    '~/plugins/vue-google-maps',
     { src: '~/plugins/vuetify-breakpoints', ssr: false},
     { src: '~/plugins/swiper', ssr: false },
   ],
