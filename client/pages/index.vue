@@ -98,15 +98,14 @@ export default class HomePage extends Vue {
   };
 
   showSwiper() {
-    if (document.referrer == 'http://localhost:8080/') {
-      setTimeout(() => {
-        this.isShowSwiper = true;
-      }, 100);
-    } else {
-      setTimeout(() => {
-        this.isShowSwiper = true;
-      }, 5000);
-    }
+    if (!this.$nuxt.$store.state.isShowLoader) {
+    	this.isShowSwiper = true;
+		}
+		else {
+			setTimeout(() => {
+				this.isShowSwiper = true;
+			}, 250);
+		}
   }
 
   get isMdAndDown() {
