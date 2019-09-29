@@ -7,7 +7,7 @@
     </v-row>
     <v-col class="pa-0">
       <v-row v-for="(project, i) in projects" :key="i" align="center">
-        <v-parallax :src="getDynamicAssets(project.cover)" class="fullscreen pa-0">
+        <v-parallax :src="getDynamicAssets(project.cover)" class="pa-0 fullscreen">
           <v-row justify="center" align="center" class="section">
             <v-col lg="7" md="7" sm="12">
               <v-card dark flat color="transparent">
@@ -16,7 +16,6 @@
                     <v-list-item-title
                       v-text="project.title"
                       class="ma-5 display-3 text-underline text-wrap"
-                      :class="!isMdAndUp && 'text-center'"
                     />
                     <v-divider />
                   </v-list-item-content>
@@ -58,7 +57,6 @@ export default class PortfolioPage extends Vue {
   @Getter('getPortfolioStage') portfolio;
   @Mutation('changePageId') changePageId;
 
-
   get isMdAndUp () {
     return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
   }
@@ -75,12 +73,14 @@ export default class PortfolioPage extends Vue {
   .section
     background: rgba(0,0,0,0.7)
 
+    .text-underline
+      line-height: normal
+      text-decoration: underline
+      text-underline-position: under
+
 .arrow-right
   border-radius: 50%
   color: white
   border: 1px solid white
   margin: 10px
-
-.text-underline
-  text-decoration: underline
 </style>
