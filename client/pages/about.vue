@@ -49,7 +49,7 @@
                     class="gray"
                     :style="getPreviewInfoFont"
                   >
-                    {{$t('about.swipe')}}
+                    {{$t( isXsOnly ? 'about.swipe' : 'weOffers.scroll')}}
                   </span>
                 </v-row>
               </v-col>
