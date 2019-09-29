@@ -1,44 +1,53 @@
 <template>
-  <v-app>
-    <v-app-bar app flat class="app-bar px-10 pt-6 d-none d-sm-flex" color="transparent">
-      <v-toolbar-title>
-        <p 
-          class="text-uppercase mb-0 font-weight-bold"
-          :style="getPageTitleFont"
-        >
-          {{$t('home.title')}}
-        </p>
-        <p 
-          class="grey--text mb-0"
-          :style="getPageSubTitleFont"
-        >
-          {{$t('home.preTitle')}}
-        </p>
-      </v-toolbar-title>
-      <v-spacer />
-      <v-speed-dial
-        v-model="changeLocale"
-        direction="left"
-        transition="slide-x-reverse-transition"
-      >
-        <template v-slot:activator>
-          <v-btn v-model="changeLocale" outlined icon>
-            <v-icon v-if="changeLocale">mdi-close</v-icon>
-            <span v-else>{{ $i18n.locale }}</span>
-          </v-btn>
-        </template>
-        <v-btn
-          v-for="(locale, i) in availableLocales()"
-          v-text="locale.code"
-          :key="i"
-          :to="switchLocalePath(locale.code)"
-          icon
-        />
-        <v-divider vertical />
-      </v-speed-dial>
+  <v-app class="app">
+    <v-app-bar app flat class="pt-6 app-bar">
+      <v-row justify="center">
+        <v-col cols="10">
+          <v-row justify="space-between">
+            <v-col cols="auto">
+              <v-toolbar-title>
+                <p 
+                  class="text-uppercase mb-0 font-weight-bold"
+                  :style="getPageTitleFont"
+                >
+                  {{$t('home.title')}}
+                </p>
+                <p 
+                  class="grey--text mb-0"
+                  :style="getPageSubTitleFont"
+                >
+                  {{$t('home.preTitle')}}
+                </p>
+              </v-toolbar-title>
+            </v-col>
+            <v-col cols="auto" class="d-none d-sm-flex">
+              <v-speed-dial
+                v-model="changeLocale"
+                direction="left"
+                transition="slide-x-reverse-transition"
+              >
+                <template v-slot:activator>
+                  <v-btn v-model="changeLocale" outlined icon>
+                    <v-icon v-if="changeLocale">mdi-close</v-icon>
+                    <span v-else>{{ $i18n.locale }}</span>
+                  </v-btn>
+                </template>
+                <v-btn
+                  v-for="(locale, i) in availableLocales()"
+                  v-text="locale.code"
+                  :key="i"
+                  :to="switchLocalePath(locale.code)"
+                  icon
+                />
+                <v-divider vertical />
+              </v-speed-dial>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
     </v-app-bar>
 
-    <v-content class="pt-2 pt-sm-12">
+    <v-content class="pt-2">
       <v-container fluid class="fill-height pa-0">
         <nuxt />
       </v-container>
@@ -111,8 +120,18 @@ export default class PreliminaryLayout extends Vue {
 </script>
 
 <style lang="sass">
-  .app-bar .v-toolbar__content
-    width: 100%
+  .app .v-application--wrap
+    flex-direction: row
+    flex-wrap: wrap
+    align-items: flex-start
+
+    .app-bar
+      position: sticky
+      height: 90px
+      background: rgba(250, 250, 250, .85)
+      .v-toolbar__content
+        width: 100vw
+        padding-bottom: 0
 
   .mobile-icon
     background: white
@@ -128,7 +147,7 @@ export default class PreliminaryLayout extends Vue {
     left: calc(50vw - 18px)
     top: -18px
   .relative
-    position: relative  
+    position: relative 
   
   .half-round
     width: 100%
