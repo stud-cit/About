@@ -51,7 +51,7 @@ import ScrollBar from '@/components/scroll-bar.vue';
 
 export default class OffersPage extends Vue {
   @Getter('getOffersStage') weOffers;
-  @Mutation('changePageCover') changePageCover;
+  @Mutation('changePageId') changePageId;
 
   get isLgAndUp () {
       return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
@@ -67,7 +67,7 @@ export default class OffersPage extends Vue {
   }
 
   created() {
-    this.changePageCover('offers');
+    this.changePageId(2);
   }
 }
 </script>

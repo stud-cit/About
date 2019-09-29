@@ -61,7 +61,6 @@
 				</v-row>
 			</v-col>
 		</v-row>
-
 		<v-row 
 			v-show="isShowUseContacts"
 			v-scroll="handleScroll"
@@ -70,7 +69,7 @@
 			no-gutters
 		>
 			<v-col cols="12" sm="auto">
-				<v-card class="pa-4 pt-0 card-contacts" @click="moveToFooter">
+				<v-card class="pa-4 pt-0 card-contacts" @click="scrollToFooter">
 					<v-card-title 
 						class="justify-center" 
 						:style="getUseContactsTitleFont"
@@ -87,6 +86,16 @@
 			</v-col>
 			<v-col sm="1"></v-col>
 		</v-row>
+		<v-row justify="center">
+            <v-btn
+				icon
+				color="white"
+				@click="scollToContent"
+				class="scroll-bottom-icon"
+			>
+				<v-icon size="50">mdi-chevron-down</v-icon>
+			</v-btn>
+		</v-row>
 	</v-row>
 </template>
 
@@ -100,8 +109,10 @@ import { Getter, Mutation } from 'vuex-class';
 
 export default class PreviewPage extends Vue {
 	@Getter('getPageByRoute') getPageByRoute;
-	@Getter('getPageById') getPageById;
+	@Getter('getPageId') pageId;
+	@Getter('getPageRouteById') getPageRouteById;
 	isShowUseContacts: boolean = true;
+
 	handleScroll() : void {
 		const windowHeight = window.innerHeight;
 		const scrollHeight = document.body.scrollHeight;
@@ -115,15 +126,16 @@ export default class PreviewPage extends Vue {
 		}
 	}
 	
-	moveToFooter() {
+	scollToContent(): void {
+		window.scrollTo({left: 0, top: window.innerHeight, behavior: 'smooth'});
+	}
+	scrollToFooter() {
         window.scrollTo({left: 0, top: document.body.scrollHeight, behavior: 'smooth'});
 	}
 
 	handleNavigatingPage(toRight: boolean) {
-		const route = this.$route.path.replace('/', '');
-		const pageIndex = this.getPageByRoute(route);
-		const newPageIndex = toRight ? pageIndex + 1 : pageIndex - 1;
-		const nextPage = this.getPageById(newPageIndex);
+		const newPageIndex = toRight ? this.pageId + 1 : this.pageId - 1;
+		const nextPage = this.getPageRouteById(newPageIndex);
 		this.$router.push(nextPage);
 	}
 
@@ -197,6 +209,8 @@ export default class PreviewPage extends Vue {
 	.squareThree
 		clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
 
+	.scroll-bottom-icon
+		z-index: 10
 	.rotate
 		transform: rotate(90deg)
 	.gray

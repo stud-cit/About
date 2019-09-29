@@ -38,7 +38,7 @@
     </v-app-bar>
 
     <p class="page-info">
-      <span :style="getPageIndexFont">{{pageIndex}}</span>
+      <span :style="getPageIndexFont">{{pageId}}</span>
       <span :style="getTotalPagesFont"> / 4</span>
     </p>
 
@@ -105,13 +105,9 @@ import ContactBar from '@/components/contact-bar.vue';
 })
 export default class ImmediatetLayout extends Vue {
   @Getter('getPageByRoute') getPageByRoute;
+  @Getter('getPageId') pageId;
   @Getter('getPageStage') pages;
   @Getter('getPageCover') cover;
-
-  get pageIndex() {
-    const route = this.$route.path.replace('/', '');
-    return this.getPageByRoute(route);
-  }
 
   get isLgAndUp () {
     return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
@@ -125,7 +121,6 @@ export default class ImmediatetLayout extends Vue {
     return {fontSize: `${this.getCustomAdaptiveFontSize({xs: 13, sm: 20, md: 20, lg: 25})}px`};
   }
 
-
   isShowMobileMenu: boolean = false;
 
   toggleVisibilityMobileMenu() {
@@ -137,9 +132,6 @@ export default class ImmediatetLayout extends Vue {
 <style lang="sass">
   #header
     z-index: 30
-
-  .pad-0
-    padding-top: 0 !important
 
   .logo 
     width: 80%

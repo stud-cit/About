@@ -45,27 +45,29 @@
           cols="12"
       >
         <nuxt-link :to="page.to" class="disable-underline">
-          <v-card :href="page.to" :link="true">
-            <v-img
-              :src="getDynamicAssets(page.img)"
-              :gradient="imagePageGradient"
-              :lazy-src="page.lazyImg"
-              height="30vh"
-              :aspect-ratio="16 / 9"
-            >
-              <v-card-title class="title white--text fill-height">
-                <v-row justify="center" align="center" class="fill-height">
-                  <span class="font-weight-bold font-italic pr-4" :style="getSlideNumberFont">
-                    0{{ ++i }}
-                  </span>
-                  <span class="font-weight-bold" :style="getSlideTitleFont">
-                    {{ page.title }}
-                  </span>
-                </v-row>
-              </v-card-title>
-              <div class="fill-height bottom-gradient"></div>
-            </v-img>
-          </v-card>
+          <client-only>
+            <v-card :href="page.to" :link="true">
+              <v-img
+                :src="getDynamicAssets(page.img)"
+                :gradient="imagePageGradient"
+                :lazy-src="page.lazyImg"
+                height="30vh"
+                :aspect-ratio="16 / 9"
+              >
+                <v-card-title class="title white--text fill-height">
+                  <v-row justify="center" align="center" class="fill-height">
+                    <span class="font-weight-bold font-italic pr-4" :style="getSlideNumberFont">
+                      0{{ ++i }}
+                    </span>
+                    <span class="font-weight-bold" :style="getSlideTitleFont">
+                      {{ page.title }}
+                    </span>
+                  </v-row>
+                </v-card-title>
+                <div class="fill-height bottom-gradient"></div>
+              </v-img>
+            </v-card>
+          </client-only>
         </nuxt-link>
       </v-col>
     </v-row>

@@ -89,7 +89,7 @@ import PreviewPage from '@/components/preview-page.vue';
 })
 export default class OurStaffPage extends Vue {
   @Getter('getStaffStage') ourStaff;
-  @Mutation('changePageCover') changePageCover;
+  @Mutation('changePageId') changePageId;
   curStaff: number = 0
 
   get sliderInfo() {
@@ -110,7 +110,7 @@ export default class OurStaffPage extends Vue {
   }
 
   created() {
-    this.changePageCover('our-staff');
+    this.changePageId(3);
   }
 }
 </script>
@@ -164,7 +164,7 @@ export default class OurStaffPage extends Vue {
       opacity: 0
 
 .staff-slider
-  height: 80vh
+  height: 100vh
 
   .staff-card
     width: 100%

@@ -15,6 +15,7 @@ interface PageModel {
 
 export const state = (): State => ({
   isShowLoader: true,
+  pageId: 0,
   pages: [
     { 
       id: 1,
@@ -22,6 +23,7 @@ export const state = (): State => ({
       to: 'about',
       img: '/images/background/about.png',
       lazyImg: 'https://picsum.photos/id/1/60',
+      cover: '/images/background/about.png',
     },
     {
       id: 2,
@@ -29,6 +31,7 @@ export const state = (): State => ({
       to: 'offers',
       img: '/images/background/offers.png',
       lazyImg: 'https://picsum.photos/id/3/60',
+      cover: '/images/background/offers.png',
     },
     {
       id: 3,
@@ -36,6 +39,7 @@ export const state = (): State => ({
       to: 'our-staff',
       img: '/images/background/our-staff.png',
       lazyImg: 'https://picsum.photos/id/4/60',
+      cover: '/images/background/our-staff.png',
     },
     {
       id: 4,
@@ -43,6 +47,7 @@ export const state = (): State => ({
       to: 'portfolio',
       img: '/images/background/portfolio.png',
       lazyImg: 'https://picsum.photos/id/5/60',
+      cover: '/images/background/portfolio.png',
     },
   ],
   about: {
@@ -156,7 +161,6 @@ export const state = (): State => ({
       },
     ],
   },
-  pageCover: undefined,
   showContactBar: false,
   contacts: {
     motto:'Speed, quality, simplicity',
@@ -171,49 +175,40 @@ export const getters: GetterTree<RootState, RootState> = {
   getContactBarVisibility(state: State) {
     return state.showContactBar;
   },
-
+  getPageCover(state: State) {
+    const currentPage = state.pages.find( ({id}: PageModel) => id === state.pageId);
+    return currentPage ? currentPage.cover : null;
+  },
   getPageStage(state: State) {
     return state.pages;
   },
-
-  getPageByRoute(state: State) {
-    return (page: string) => state.pages.find( ({to}: PageModel) => to === page).id;
+  getPageId(state: State) {
+    return state.pageId;
   },
-  getPageById(state: State) {
+  getPageRouteById(state: State) {
     return (index: number) => {
       const changedIndex = index > 4 ? 1 : index < 1 ? 4 : index;
-
-      return state.pages.find( ({id}: PageModel) => id === changedIndex).to;
+      const currentPage = state.pages.find( ({id}: PageModel) => id === changedIndex)
+      return currentPage ? currentPage.to : '';
     }
   },
-
   getProjectsStage(state: State) {
     return state.portfolio.projects;
   },
-
   getAboutStage(state: State) {
-    return state.about
+    return state.about;
   },
-
   getOffersStage(state: State) {
-    return state.weOffers
+    return state.weOffers;
   },
-
   getStaffStage(state: State) {
     return state.ourStaff;
   },
-
-
   getPortfolioStage(state: State) {
     return state.portfolio;
   },
-
   getContactStage(state: State) {
-    return state.contacts
-  },
-
-  getPageCover(state: State) {
-    return state.pageCover;
+    return state.contacts;
   },
 };
 
@@ -223,11 +218,10 @@ export const mutations: MutationTree<RootState> = {
   hideLoader(state: RootState): void {
     state.isShowLoader = false;
   },
-  changePageCover(state: RootState, page: string | undefined): void {
-    state.pageCover = page ? `/images/background/${page}.png` : undefined;
+  changePageId(state: RootState, pageId: number): void {
+    state.pageId = pageId;
   },
   changeContactBar(state: RootState, visibility: boolean): void {
-
     state.showContactBar = visibility;
   },
 };

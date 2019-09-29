@@ -119,18 +119,16 @@ import { Getter, Mutation } from 'vuex-class';
 })
 export default class AboutPage extends Vue {
   @Getter('getAboutStage') about;
-  @Getter('getPageByRoute') getPageByRoute;
-  @Getter('getPageById') getPageById;
+	@Getter('getPageId') pageId;
+  @Getter('getPageRouteById') getPageRouteById;
   @Getter('getContactBarVisibility') isShowContactBar;
-  @Mutation('changePageCover') changePageCover;
+  @Mutation('changePageId') changePageId;
   @Mutation('changeContactBar') changeContactBar;
   curStage: number = 0;
 
   handleNavigatingPage(toRight: boolean) {
-		const route = this.$route.path.replace('/', '');
-		const pageIndex = this.getPageByRoute(route);
-		const newPageIndex = toRight ? pageIndex + 1 : pageIndex - 1;
-		const nextPage = this.getPageById(newPageIndex);
+		const newPageIndex = toRight ? this.pageId + 1 : this.pageId - 1;
+		const nextPage = this.getPageRouteById(newPageIndex);
 		this.$router.push(nextPage);
   }
 
@@ -179,7 +177,7 @@ export default class AboutPage extends Vue {
   }
 
   created() {
-    this.changePageCover('about');
+    this.changePageId(1);
   }
 
   mounted() {

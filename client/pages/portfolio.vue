@@ -56,14 +56,14 @@ import PreviewPage from '@/components/preview-page.vue';
 export default class PortfolioPage extends Vue {
   @Getter('getProjectsStage') projects;
   @Getter('getPortfolioStage') portfolio;
-  @Mutation('changePageCover') changePageCover;
+  @Mutation('changePageId') changePageId;
 
 
   get isMdAndUp () {
     return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
   }
   created() {
-    this.changePageCover('portfolio');
+    this.changePageId(4);
   }
 }
 </script>
