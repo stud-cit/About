@@ -1,10 +1,6 @@
 <template>
   <v-app class="app">
-<<<<<<< HEAD
     <v-app-bar app flat class="pt-6 mt-sm-12 app-bar">
-=======
-    <v-app-bar app flat class="pt-6 app-bar">
->>>>>>> c76310a47b5d140443512737ddc0f252e0472d4c
       <v-row justify="center">
         <v-col cols="10">
           <v-row justify="space-between">
