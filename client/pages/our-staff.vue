@@ -55,13 +55,14 @@
                 v-for="(person, i) in ourStaff.representation"
                 :key="i"
               >
-                <v-card class="mx-auto" color="transparent" 
-                  width="100%" 
+                <v-card class="mx-auto" color="transparent"
+                  width="100%"
                   flat>
                   <v-img
                     height="40%"
                     class="card-img"
                     :src="getDynamicAssets(person.img_src)"
+										lazy-src="/cover.jpg"
                     :aspect-ratio="4 / 3"
                   />
                   <div class="card-addition">
@@ -70,7 +71,7 @@
 											color="white"
 											class="scroll-icon-left"
 										>
-											<v-icon size="200">mdi-chevron-left</v-icon>
+											<v-icon size="200" @click="() => switchSlide(false)">mdi-chevron-left</v-icon>
 										</v-btn>
                     <div class="employee-name my-3" :style="getStaffNameFont">
                       {{ person.name }}
@@ -92,7 +93,7 @@
 											color="white"
 											class="scroll-icon-right"
 										>
-											<v-icon size="200">mdi-chevron-right</v-icon>
+											<v-icon size="200" @click="() => switchSlide(true)">mdi-chevron-right</v-icon>
 										</v-btn>
                   </div>
                 </v-card>
@@ -131,6 +132,20 @@ export default class OurStaffPage extends Vue {
   @Getter('getStaffStage') ourStaff;
   @Mutation('changePageId') changePageId;
   curStaff: number = 0;
+
+
+	switchSlide(nextSlide) {
+		const {curStaff, ourStaff} = this;
+		const totalStaff = ourStaff.representation.length;
+		let newIndex;
+		if(nextSlide) {
+			newIndex = curStaff + 1 < totalStaff ? curStaff + 1 : 0;
+		}
+		else {
+			newIndex = curStaff - 1 < 0 ? totalStaff -1 : curStaff - 1;
+		}
+		this.curStaff = newIndex;
+	}
 
   get sliderInfo() {
     return `${this.curStaff + 1} / ${this.ourStaff.representation.length}`;
