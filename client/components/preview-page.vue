@@ -1,6 +1,6 @@
 <template>
-  <v-row class="preview-section" justify="center" align="center">
-    <v-row class="preview-wrapper" justify="space-around" align="start">
+  <v-row class="preview-section" justify="center" align="end">
+    <v-row class="preview-wrapper" justify="space-around" align="end">
       <v-col cols="12" order="1" order-sm="1">
         <div class="d-none d-sm-block">
           <p class="font-weight-bold" :style="getPreviewTitleFont">
@@ -191,7 +191,7 @@ export default class PreviewPage extends Vue {
 			text-decoration: underline
 
 .preview-wrapper
-	height: 60vh
+	height: 70vh
 	color: white
 
 .arrow
@@ -214,8 +214,11 @@ export default class PreviewPage extends Vue {
 .squareThree
 	clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
 
-.scroll-bottom-icon
+.scroll-bottom-icon 
+	position: absolute
+	top: 95vh
 	z-index: 10
+
 .rotate
 	transform: rotate(90deg)
 .gray
