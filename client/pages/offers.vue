@@ -9,7 +9,6 @@
           :subtitle="weOffers.previewSubtitle"
           :description="weOffers.previewDescription"
         />
-
         <ScrollBar />
         <v-row justify="center">
           <section
@@ -115,7 +114,7 @@ export default class OffersPage extends Vue {
   justify-content: flex-start
   img
     object-fit: cover
-     height: 100%
+    height: 100%
     width: 100%
 
 

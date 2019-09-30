@@ -150,7 +150,7 @@ export default class ImmediatetLayout extends Vue {
 #header
 	z-index: 30
 	.desktop-link
-		font-family: 'Avenir Black Oblique'
+		font-weight: 600
 		&::before
 			opacity: 0
 	.active-desktop-link

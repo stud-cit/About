@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center" align="end" class="footer-section">
-    <v-col cols="10" class="d-flex d-lg-none">
+    <v-col cols="12" class="d-flex d-lg-none">
       <v-row
         justify="center"
         align="center"
