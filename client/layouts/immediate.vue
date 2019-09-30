@@ -49,11 +49,10 @@
 				</v-col>
 			</v-row>
     </v-app-bar>
-
-    <p class="page-info">
-      <span :style="getPageIndexFont">{{ pageId }}</span>
-      <span :style="getTotalPagesFont"> / 4</span>
-    </p>
+		<p class="page-info ml-12 pl-4 pl-sm-3 pl-md-4 pl-lg-2">
+			<span :style="getPageIndexFont">{{ pageId }}</span>
+			<span :style="getTotalPagesFont"> / 4</span>
+		</p>
 
     <v-img :src="getDynamicAssets(cover)" class="imageCover" />
 
@@ -114,7 +113,7 @@ export default class ImmediatetLayout extends Vue {
 
   get isLgAndUp() {
     return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
-  }
+	}
 
   get getPageIndexFont() {
     return {
@@ -169,7 +168,6 @@ export default class ImmediatetLayout extends Vue {
 .page-info
 	position: fixed
 	top: 8vh
-	left: 5%
 	z-index: 5
 	color: white
 
