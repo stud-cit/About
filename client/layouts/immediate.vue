@@ -1,42 +1,53 @@
 <template>
   <v-app>
-    <v-app-bar id="header" color="transparent" app dark flat>
-      <figure class="breakpoint">
-        <nuxt-link to="/">
-          <img class="logo" src="/logo.svg" />
-        </nuxt-link>
-      </figure>
-      <v-spacer />
-      <v-toolbar-items>
-        <div class="d-none d-md-flex nav-links">
-          <v-btn
-            v-for="(page, index) in pages"
-            :key="index"
-            :to="page.to"
-            exact
-            dark
-            text
-          >
-            <span
-              class="capitalize"
-              :class="isLgAndUp ? 'nav-link-desktop' : 'nav-link'"
-            >
-              {{ page.title }}
-            </span>
-          </v-btn>
-          <v-btn icon dark to="/">
-            <v-icon>mdi-fullscreen-exit</v-icon>
-          </v-btn>
-        </div>
-
-        <v-btn
-          class="d-flex d-md-none"
-          @click="toggleVisibilityMobileMenu"
-          icon
-        >
-          <v-icon size="50">mdi-menu</v-icon>
-        </v-btn>
-      </v-toolbar-items>
+    <v-app-bar id="header" class="pt-3 pt-lg-4" color="transparent" app dark flat>
+			<v-row justify="space-between" align="center">
+				<v-col cols="auto">
+					<figure class="breakpoint">
+						<nuxt-link to="/">
+							<v-img src="/logo.svg" />
+						</nuxt-link>
+					</figure>
+				</v-col>
+				<v-col cols="6" class="d-none d-md-flex">
+					<v-row justify="space-between">
+						<v-col
+							class="nav-links"
+							cols="auto"
+							v-for="(page, index) in pages"
+							:key="index"
+						>
+							<v-btn
+								class="pb-3 desktop-link"
+								active-class="active-desktop-link"
+								:to="page.to"
+								exact
+								dark
+								text
+							>
+								<span
+									class="capitalize"
+									:class="isLgAndUp ? 'nav-link-desktop' : 'nav-link'"
+								>
+									{{ page.title }}
+								</span>
+							</v-btn>
+						</v-col>
+					</v-row>
+				</v-col>
+				<v-col cols="auto">
+					<v-btn icon dark to="/" class="d-none d-md-flex">
+						<v-icon>mdi-fullscreen-exit</v-icon>
+					</v-btn>
+					<v-btn
+						class="d-flex d-md-none"
+						@click="toggleVisibilityMobileMenu"
+						icon
+					>
+						<v-icon size="50">mdi-menu</v-icon>
+					</v-btn>
+				</v-col>
+			</v-row>
     </v-app-bar>
 
     <p class="page-info">
@@ -137,63 +148,68 @@ export default class ImmediatetLayout extends Vue {
 
 <style lang="sass">
 #header
-  z-index: 30
-
-.logo
-  width: 80%
-  margin: 2rem 2rem 1rem 0rem
+	z-index: 30
+	.desktop-link
+		font-family: 'Avenir Black Oblique'
+		&::before
+			opacity: 0
+	.active-desktop-link
+		border-bottom: 4px solid white
+		border-radius: unset
 
 .nav-links
-  align-items: center
+	align-items: center
 
 .nav-link
-  font-size: 15px
+	font-size: 15px
 
 .nav-link-desktop
-  font-size: 25px
+	font-size: 25px
 
 .page-info
-  position: fixed
-  top: 8vh
-  left: 5%
-  z-index: 5
-  color: white
+	position: fixed
+	top: 8vh
+	left: 5%
+	z-index: 5
+	color: white
 
 #pages-list-container
-  height: 100vh
-  display: flex
-  align-items: center
+	height: 100vh
+	display: flex
+	align-items: center
 
-  .pages-list
-    width: 100vh
-    height: 90vh
-    display: flex
-    flex-direction: column
-    justify-content: space-between
+	.pages-list
+		width: 100vh
+		height: 90vh
+		display: flex
+		flex-direction: column
+		justify-content: space-between
 
-  .page-link
-    width: 100%
-    height: 100%
-    background: white
-    color: white
-    box-shadow: none
+	.page-link
+		width: 100%
+		height: 100%
+		background: white
+		color: white
+		box-shadow: none
 
-    .page-link-title
-      font-size: 35px
-      color: black
+		.page-link-title
+			font-size: 35px
+			color: black
 
-  .page-link-active .page-link-title
-    border-bottom: 2px solid black
+	.page-link-active .page-link-title
+		border-bottom: 2px solid black
 
 .imageCover
-  position: fixed !important
-  height: 100vh
-  width: 100vw
+	position: fixed !important
+	width: 100vw
+	height: 100vh
+
 
 .breakpoint
-  display: flex
-  flex-direction: row
-  align-items: center
+	display: flex
+	flex-direction: row
+	align-items: center
+
 .capitalize
-  text-transform: capitalize
+	text-transform: capitalize
 </style>
