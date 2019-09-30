@@ -91,7 +91,7 @@
         @click="scollToContent"
         class="scroll-bottom-icon"
       >
-        <v-icon size="50">mdi-chevron-down</v-icon>
+        <v-icon size="50" class="icon-down">mdi-chevron-double-down</v-icon>
       </v-btn>
     </v-row>
   </v-row>
@@ -218,6 +218,15 @@ export default class PreviewPage extends Vue {
 	position: absolute
 	top: 95vh
 	z-index: 10
+	opacity: 0.5
+	border-radius: 50%
+	border: 1px solid rgba(255, 255, 255, 0.5)
+	padding: 30px
+
+.icon-down 
+	position: absolute
+	top: 50%
+	transform: translateY(-50%)
 
 .rotate
 	transform: rotate(90deg)
