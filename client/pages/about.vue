@@ -82,10 +82,10 @@
               class="font-weight-bold ma-2 white--text"
               :style="getSlideTitleFont"
             >
-              {{ slide.title }}
+							Student centr of information technology
             </v-row>
             <div class="px-8 py-12 slide-content" :style="getSlideContentFont">
-              {{ slide.content }}
+              {{ slide }}
             </div>
           </v-col>
         </v-row>

@@ -51,7 +51,7 @@
     </v-app-bar>
 		<p class="page-info ml-12 pl-4 pl-sm-3 pl-md-4 pl-lg-2">
 			<span :style="getPageIndexFont">{{ pageId }}</span>
-			<span :style="getTotalPagesFont"> / 4</span>
+			<span class="total-pages" :style="getTotalPagesFont"> / 4</span>
 		</p>
 
     <v-img :src="getDynamicAssets(cover)" class="imageCover" />
@@ -170,6 +170,8 @@ export default class ImmediatetLayout extends Vue {
 	top: 8vh
 	z-index: 5
 	color: white
+	.total-pages
+		vertical-align: super
 
 #pages-list-container
 	height: 100vh
