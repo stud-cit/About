@@ -8,7 +8,7 @@
           :description="ourStaff.previewDescription"
         />
         <ScrollBar />
-        <v-row justify="space-around" class="d-none d-md-flex">
+        <v-row justify="start" class="d-none d-md-flex">
           <v-col
             v-for="(person, i) in ourStaff.representation"
             :key="i"
@@ -99,7 +99,8 @@
                 </v-card>
               </v-window-item>
               <p
-                class="text-center white--text font-italic font-italic subtitle-2"
+                class="text-center white--text font-italic font-italic"
+								:class="isXsOnly ? 'subtitle-2': 'heading'"
               >
                 {{ sliderInfo }}
               </p>
@@ -133,7 +134,6 @@ export default class OurStaffPage extends Vue {
   @Mutation('changePageId') changePageId;
   curStaff: number = 0;
 
-
 	switchSlide(nextSlide) {
 		const {curStaff, ourStaff} = this;
 		const totalStaff = ourStaff.representation.length;
@@ -156,6 +156,9 @@ export default class OurStaffPage extends Vue {
   }
   get isMdAndUp() {
     return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
+	}
+	get isXsOnly() {
+    return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
   }
   get getStaffNameFont() {
     return {
