@@ -2,50 +2,54 @@
   <v-app>
     <v-app-bar id="header" class="pt-3 pt-lg-4" color="transparent" app dark flat>
 			<v-row justify="space-between" align="center">
-				<v-col cols="auto" class="pa-0 pa-sm-3">
+				<v-col cols="3" class="pa-0 pa-sm-3">
 					<figure class="breakpoint">
 						<nuxt-link to="/">
 							<v-img src="/logo.svg" />
 						</nuxt-link>
 					</figure>
 				</v-col>
-				<v-col cols="6" class="d-none d-md-flex">
-					<v-row justify="space-between">
-						<v-col
-							class="nav-links"
-							cols="auto"
-							v-for="(page, index) in pages"
-							:key="index"
-						>
-							<v-btn
-								class="pb-3 desktop-link"
-								active-class="active-desktop-link"
-								:to="page.to"
-								exact
-								dark
-								text
-							>
-								<span
-									class="capitalize"
-									:class="isLgAndUp ? 'nav-link-desktop' : 'nav-link'"
+				<v-col cols="6" md="8" lg="7" xl="6">
+					<v-row justify="end">
+						<v-col class="d-none d-md-flex">
+							<v-row justify="space-between">
+								<v-col
+									class="nav-links"
+									cols="auto"
+									v-for="(page, index) in pages"
+									:key="index"
 								>
-									{{ page.title }}
-								</span>
+									<v-btn
+										class="pb-3 desktop-link"
+										active-class="active-desktop-link"
+										:to="page.to"
+										exact
+										dark
+										text
+									>
+										<span
+											class="capitalize font-weight-thin"
+											:class="isLgAndUp ? 'nav-link-desktop' : 'nav-link'"
+										>
+											{{ page.title }}
+										</span>
+									</v-btn>
+								</v-col>
+							</v-row>
+						</v-col>
+						<v-col cols="auto" class="pa-0 pa-sm-3">
+							<v-btn icon dark to="/" class="d-none d-md-flex">
+								<v-icon size="50">mdi-fullscreen-exit</v-icon>
+							</v-btn>
+							<v-btn
+								class="d-flex d-md-none"
+								@click="toggleVisibilityMobileMenu"
+								icon
+							>
+								<v-icon size="50">mdi-menu</v-icon>
 							</v-btn>
 						</v-col>
 					</v-row>
-				</v-col>
-				<v-col cols="auto" class="pa-0 pa-sm-3">
-					<v-btn icon dark to="/" class="d-none d-md-flex">
-						<v-icon>mdi-fullscreen-exit</v-icon>
-					</v-btn>
-					<v-btn
-						class="d-flex d-md-none"
-						@click="toggleVisibilityMobileMenu"
-						icon
-					>
-						<v-icon size="50">mdi-menu</v-icon>
-					</v-btn>
 				</v-col>
 			</v-row>
     </v-app-bar>
@@ -71,7 +75,7 @@
       scrollable
     >
       <v-btn @click="toggleVisibilityMobileMenu" icon large fixed right>
-        <v-icon size="30" color="black">
+        <v-icon size="50" color="black">
           mdi-close
         </v-icon>
       </v-btn>
@@ -212,4 +216,7 @@ export default class ImmediatetLayout extends Vue {
 
 .capitalize
 	text-transform: capitalize
+
+.desktop-link:hover
+	opacity: 0.5
 </style>

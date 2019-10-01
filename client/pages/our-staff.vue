@@ -6,6 +6,7 @@
           :title="ourStaff.previewTitle"
           :subtitle="ourStaff.previewSubtitle"
           :description="ourStaff.previewDescription"
+          :icon-down="false"
         />
         <ScrollBar />
         <v-row justify="start" class="d-none d-md-flex">
@@ -29,16 +30,16 @@
               </v-img>
             </v-card>
             <div class="card-addition">
-              <div class="employee-name my-3" :style="getStaffNameFont">
+              <div class="employee-name my-3 font-weight-thin" :style="getStaffNameFont">
                 {{ person.name }}
               </div>
               <div
-                class="employee-position-short"
+                class="employee-position-short font-weight-regular"
                 :style="getStaffPositionFont"
               >
                 {{ person.position }}
               </div>
-              <div class="employee-position-full" :style="getStaffPositionFont">
+              <div class="employee-position-full font-weight-regular" :style="getStaffPositionFont">
                 {{ person.stack }}
               </div>
             </div>
@@ -73,17 +74,17 @@
 										>
 											<v-icon size="200" @click="() => switchSlide(false)">mdi-chevron-left</v-icon>
 										</v-btn>
-                    <div class="employee-name my-3" :style="getStaffNameFont">
+                    <div class="employee-name my-3 font-weight-thin" :style="getStaffNameFont">
                       {{ person.name }}
                     </div>
                     <div
-                      class="employee-position-short"
+                      class="employee-position-short font-weight-regular"
                       :style="getStaffPositionFont"
                     >
                       {{ person.position }}
                     </div>
                     <div
-                      class="employee-position-full"
+                      class="employee-position-full font-weight-regular"
                       :style="getStaffPositionFont"
                     >
                       {{ person.stack }}
@@ -99,7 +100,7 @@
                 </v-card>
               </v-window-item>
               <p
-                class="text-center white--text font-italic font-italic"
+                class="text-center white--text font-italic"
 								:class="isXsOnly ? 'subtitle-2': 'heading'"
               >
                 {{ sliderInfo }}

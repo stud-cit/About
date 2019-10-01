@@ -47,7 +47,7 @@
       </v-col>
 
       <v-col cols="12" order="2" order-sm="3">
-        <v-row class="d-none d-sm-flex">
+        <v-row class="d-none d-sm-flex font-weight-regular">
           <span :style="getPreviewSubTitleFont">
             {{ description }}
           </span>
@@ -56,7 +56,7 @@
           <img class="pointer-icon" src="/pointer-mobile.svg" />
         </v-row>
         <v-row justify="center" justify-sm="start" class="mt-4">
-          <span class="gray" :style="getPreviewInfoFont">
+          <span class="gray font-weight-regular" :style="getPreviewInfoFont">
             {{ $t('weOffers.scroll') }}
           </span>
         </v-row>
@@ -71,11 +71,11 @@
     >
       <v-col cols="12" sm="auto">
         <v-card class="pa-4 pt-0 card-contacts" @click="scrollToFooter">
-          <v-card-title class="justify-center" :style="getUseContactsTitleFont">
+          <v-card-title class="justify-center font-weight-thin" :style="getUseContactsTitleFont">
             {{ $t('contact.titleShort') }}
           </v-card-title>
           <v-card-actions
-            class="pa-0 contacts-action justify-center"
+            class="pa-0 contacts-action justify-center font-weight-regular"
             :style="getUseContactsActionFont"
           >
             {{ $t('contact.preTitleShort') }}
@@ -84,7 +84,7 @@
       </v-col>
       <v-col sm="1"></v-col>
     </v-row>
-    <v-row justify="center">
+    <v-row justify="center" v-show="arrowDown()">
       <v-btn
         icon
         color="white"
@@ -102,7 +102,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
 
 @Component({
-  props: ['title', 'subtitle', 'description'],
+  props: ['title', 'subtitle', 'description', 'iconDown'],
 })
 export default class PreviewPage extends Vue {
   @Getter('getPageByRoute') getPageByRoute;
@@ -163,7 +163,9 @@ export default class PreviewPage extends Vue {
       fontSize: `${this.getCommonAdaptiveFontSize('useContactsAction')}px`,
     };
   }
-
+	arrowDown(){
+		return this.iconDown;
+	}
   mounted() {
     // initial check
     this.handleScroll();
@@ -173,7 +175,7 @@ export default class PreviewPage extends Vue {
 
 <style lang="sass">
 .preview-section
-	height: 100vh
+	height: 97vh !important
 
 	.use-contacts-container
 		width: 100vw
@@ -193,6 +195,7 @@ export default class PreviewPage extends Vue {
 .preview-wrapper
 	height: 70vh
 	color: white
+	margin-bottom: 10vh
 
 .arrow
 	font-size: 1.8rem
@@ -216,7 +219,7 @@ export default class PreviewPage extends Vue {
 
 .scroll-bottom-icon 
 	position: absolute
-	top: 95vh
+	top: 90vh
 	z-index: 10
 	opacity: 0.5
 	border-radius: 50%

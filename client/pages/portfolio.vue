@@ -6,6 +6,7 @@
           :title="portfolio.previewTitle"
           :subtitle="portfolio.previewSubtitle"
           :description="portfolio.previewDescription"
+          :icon-down="true"
         />
       </v-col>
     </v-row>

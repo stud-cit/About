@@ -8,6 +8,7 @@
           sm="9"
           :subtitle="weOffers.previewSubtitle"
           :description="weOffers.previewDescription"
+          :icon-down="false"
         />
         <ScrollBar />
         <v-row justify="center">
@@ -27,10 +28,10 @@
                 :class="isLgAndUp ? preview.positionCard : 'preview-card'"
 
               >
-                <v-card-title class="preview-title" :style="getCardTitleFont">{{
+                <v-card-title class="preview-title font-weight-bold" :style="getCardTitleFont">{{
                   preview.title
                 }}</v-card-title>
-                <v-card-text :style="getCardContentFont">{{
+                <v-card-text class="font-weight-regular" :style="getCardContentFont">{{
                   preview.text
                 }}</v-card-text>
               </v-card>
