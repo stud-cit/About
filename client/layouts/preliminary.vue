@@ -164,6 +164,7 @@ export default class PreliminaryLayout extends Vue {
   height: 30px
   background: white
   clip-path: ellipse(50% 100% at 50% 100%)
+  margin-bottom: -1px
 
 .locale
   font-size: 25px

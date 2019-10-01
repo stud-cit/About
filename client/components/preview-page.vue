@@ -1,5 +1,5 @@
 <template>
-  <v-row class="preview-section" justify="center" align="end">
+  <v-row class="preview-section" justify="center" :align="isAbout ? 'center' : 'end'">
     <v-row class="preview-wrapper" justify="space-around" align="end">
       <v-col cols="12" order="1" order-sm="1">
         <div class="d-none d-sm-block">
@@ -102,7 +102,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
 
 @Component({
-  props: ['title', 'subtitle', 'description', 'iconDown'],
+  props: ['title', 'subtitle', 'description', 'iconDown', 'isAbout'],
 })
 export default class PreviewPage extends Vue {
   @Getter('getPageByRoute') getPageByRoute;
@@ -217,7 +217,7 @@ export default class PreviewPage extends Vue {
 .squareThree
 	clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
 
-.scroll-bottom-icon 
+.scroll-bottom-icon
 	position: absolute
 	top: 90vh
 	z-index: 10
@@ -226,7 +226,7 @@ export default class PreviewPage extends Vue {
 	border: 1px solid rgba(255, 255, 255, 0.5)
 	padding: 30px
 
-.icon-down 
+.icon-down
 	position: absolute
 	top: 50%
 	transform: translateY(-50%)

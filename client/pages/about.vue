@@ -4,7 +4,6 @@
   <v-col cols="12" sm="10">
     <v-window v-model="curStage" continuous dark>
       <v-window-item>
-				<v-row align="start">
 					<PreviewPage
 						:title="about.previewTitle"
 						cols="12"
@@ -12,8 +11,8 @@
 						:subtitle="about.previewSubtitle"
 						:description="about.previewDescription"
 						:icon-down="false"
+						:isAbout="true"
 					/>
-				</v-row>
       </v-window-item>
 
       <v-window-item v-for="(slide, index) in about.slides" :key="index">
@@ -202,7 +201,7 @@ export default class AboutPage extends Vue {
 	height: 100vh
 
 .slide-container
-	height: 60vh
+	height: 97vh
 	color: white
 
 .arrow
