@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar id="header" class="pt-3 pt-lg-4" color="transparent" app dark flat>
 			<v-row justify="space-between" align="center">
-				<v-col cols="auto">
+				<v-col cols="auto" class="pa-0 pa-sm-3">
 					<figure class="breakpoint">
 						<nuxt-link to="/">
 							<v-img src="/logo.svg" />
@@ -35,7 +35,7 @@
 						</v-col>
 					</v-row>
 				</v-col>
-				<v-col cols="auto">
+				<v-col cols="auto" class="pa-0 pa-sm-3">
 					<v-btn icon dark to="/" class="d-none d-md-flex">
 						<v-icon>mdi-fullscreen-exit</v-icon>
 					</v-btn>

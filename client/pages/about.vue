@@ -182,7 +182,7 @@ export default class AboutPage extends Vue {
   get getSlideContentFont() {
     return {
       fontSize: `${this.getCustomAdaptiveFontSize({
-        xs: 10,
+        xs: 15,
         sm: 20,
         md: 20,
         lg: 30,
@@ -236,70 +236,71 @@ export default class AboutPage extends Vue {
 
 <style lang="sass">
 .slider
-  .v-slider__tick
-    border-radius: 50%
-    background: #363636
+	.v-slider__tick
+		border-radius: 50%
+		background: #363636
 
-  .v-slider__tick--filled
-    background: white
+	.v-slider__tick--filled
+		background: white
 
 .preview-section
-  height: 100vh
+	height: 100vh
 
 .slide-container
-  height: 60vh
-  color: white
+	height: 60vh
+	color: white
 
 .arrow
-  font-size: 1.8rem
-  text-align: center
-  cursor: pointer
+	font-size: 1.8rem
+	text-align: center
+	cursor: pointer
 
 .square-container
-  display: flex
+	display: flex
 
 .square
-  height: 40px
-  width: 40px
-  border-radius: 20%
-  border: 2px solid white
+	height: 40px
+	width: 40px
+	border-radius: 20%
+	border: 2px solid white
 
 .squareOne
-  clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)
+	clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)
 
 .squareThree
-  clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
+	clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
 
 .slide-content
-  border: 5px solid white
-  border-right: 16px solid white
-  color: white
-  position: relative
+	border: 5px solid white
+	border-right: 16px solid white
+	background-color: rgba(78, 79, 80, 0.3)
+	color: white
+	position: relative
 
 .use-contacts-container
-  width: auto
-  border-bottom-left-radius: 0
-  border-bottom-right-radius: 0
+	width: auto
+	border-bottom-left-radius: 0
+	border-bottom-right-radius: 0
 
 .contacts-action
-  text-transform: uppercase
-  text-decoration: underline
+	text-transform: uppercase
+	text-decoration: underline
 
 .slogan
-  position: fixed
-  right: 2vw
-  color: white
-  writing-mode: vertical-rl
-  transform: scaleX(-1) scaleY(-1)
+	position: fixed
+	right: 2vw
+	color: white
+	writing-mode: vertical-rl
+	transform: scaleX(-1) scaleY(-1)
 
 .slogan-md
-  top: calc(50vh - 163px)
-  font-size: 30px
+	top: calc(50vh - 163px)
+	font-size: 30px
 
 .slogan-lg
-  top: calc(50vh - 272px)
-  font-size: 50px
+	top: calc(50vh - 272px)
+	font-size: 50px
 
 .rotate
-  transform: rotate(90deg)
+	transform: rotate(90deg)
 </style>
