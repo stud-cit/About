@@ -52,8 +52,8 @@ export const state = (): State => ({
   ],
   about: {
     previewTitle: 'Student centr of information technology',
-    previewSubtitle: 'We can make this world better.',
-    previewDescription: '',
+    previewSubtitle: '',
+    previewDescription: 'We can make this world better.',
     slides: [
 					 `StudCIT – это команда из талантливых специалистов, для которых изготовление сайтов не работа,
 					а часть жизни. Возможность постоянно совершенствоваться,
