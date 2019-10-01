@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import commonFontSizeList from '@/utils/font-size.models';
 
-interface GetCustomAdaptiveFontSizeModel {
+interface GetCustomAdaptiveSizeModel {
   xs: number;
   sm: number;
   md: number;
@@ -36,12 +36,12 @@ Vue.mixin({
       }
       return null;
     },
-    getCustomAdaptiveFontSize({
+    getCustomAdaptiveSize({
       xs,
       sm,
       md,
       lg,
-    }: GetCustomAdaptiveFontSizeModel) {
+    }: GetCustomAdaptiveSizeModel) {
       const { $breakpoint } = this;
       if ($breakpoint) {
         const is = $breakpoint.is;

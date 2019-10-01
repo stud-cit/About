@@ -96,7 +96,7 @@ export default class ContactBar extends Vue {
   }
   get getCreadentialsFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 10,
         sm: 15,
         md: 15,
@@ -106,7 +106,7 @@ export default class ContactBar extends Vue {
   }
   get getLocationFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 12,
         sm: 20,
         md: 20,

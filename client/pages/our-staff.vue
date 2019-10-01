@@ -163,7 +163,7 @@ export default class OurStaffPage extends Vue {
   }
   get getStaffNameFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 25,
         sm: 40,
         md: 20,
@@ -173,7 +173,7 @@ export default class OurStaffPage extends Vue {
   }
   get getStaffPositionFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 12,
         sm: 27,
         md: 12,

@@ -44,7 +44,7 @@ export default class PruductFooter extends Vue {
 
   get getTagLineFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 25,
         sm: 50,
         md: 65,

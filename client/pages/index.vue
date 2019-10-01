@@ -113,7 +113,7 @@ export default class HomePage extends Vue {
   }
   get getSlideTitleFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 40,
         sm: 31,
         md: 31,
@@ -123,7 +123,7 @@ export default class HomePage extends Vue {
   }
   get getSlideNumberFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 20,
         sm: 14,
         md: 14,

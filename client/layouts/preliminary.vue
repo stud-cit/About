@@ -104,7 +104,7 @@ export default class PreliminaryLayout extends Vue {
 
   get getPageTitleFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 12,
         sm: 20,
         md: 20,
@@ -114,7 +114,7 @@ export default class PreliminaryLayout extends Vue {
   }
   get getPageSubTitleFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 10,
         sm: 20,
         md: 15,
