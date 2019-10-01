@@ -10,7 +10,7 @@
               align="end"
               align-sm="start"
             >
-              <v-col cols="12" order="1" order-sm="1">
+              <v-col cols="12" order="1" order-sm="1" align-self="end">
                 <div class="d-none d-sm-block">
                   <p class="font-weight-bold" :style="getPreviewTitleFont">
                     {{ about.previewTitle }}
@@ -25,7 +25,7 @@
                   </p>
                 </div>
               </v-col>
-              <v-col cols="12" order="3" order-sm="2">
+              <v-col cols="12" order="3" order-sm="2" align-self="center">
                 <v-row justify="space-around" justify-sm="start">
                   <v-col cols="auto" order="1" order-sm="1">
                     <div
@@ -55,7 +55,7 @@
                 </v-row>
               </v-col>
 
-              <v-col cols="12" order="2" order-sm="3">
+              <v-col cols="12" order="2" order-sm="3" align-self="start">
                 <v-row class="d-none d-sm-flex">
                   <span :style="getPreviewSubTitleFont">
                     {{ about.previewSubtitle }}
@@ -90,7 +90,7 @@
           </v-col>
         </v-row>
       </v-window-item>
-      <v-window-item> </v-window-item>
+      <v-window-item class="slide-container"></v-window-item>
     </v-window>
     <p
       class="d-none d-md-block slogan"
