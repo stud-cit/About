@@ -28,7 +28,7 @@
 										text
 									>
 										<span
-											class="capitalize"
+											class="capitalize font-weight-thin"
 											:class="isLgAndUp ? 'nav-link-desktop' : 'nav-link'"
 										>
 											{{ page.title }}
