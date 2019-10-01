@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pb-0">
+  
     <v-row justify="center">
       <v-col cols="12" sm="10">
         <PreviewPage
@@ -37,9 +37,10 @@
           </section>
         </v-row>
       </v-col>
+      <product-footer />
     </v-row>
-    <product-footer />
-  </v-container>
+    
+ 
 </template>
 
 <script lang="ts">

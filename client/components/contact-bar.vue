@@ -17,7 +17,7 @@
           </v-icon>
         </v-btn>
       </div>
-      <v-row class="underline mb-4 d-flex d-sm-none" justify="space-around">
+      <v-col class=" mb-4 d-flex d-sm-none" :class="isXs ? 'mobUnderline' : 'underline'" justify="space-around">
         <v-col
           class="font-weight-bold"
           cols="auto"
@@ -32,9 +32,9 @@
         >
           {{ contacts.phone }}
         </v-col>
-      </v-row>
-      <v-col cols="6" sm="7">
-        <v-row class="underline mb-4 d-none d-sm-flex" justify="space-between">
+      </v-col>
+      <v-col cols="6" sm="7" :class="{ 'plf': isXs }" >
+        <v-row class=" underline mb-4 d-none d-sm-flex" justify="space-between">
           <v-col
             class="font-weight-bold"
             cols="auto"
@@ -97,7 +97,7 @@ export default class ContactBar extends Vue {
   get getCreadentialsFont() {
     return {
       fontSize: `${this.getCustomAdaptiveFontSize({
-        xs: 10,
+        xs: 12,
         sm: 15,
         md: 15,
         lg: 30,
@@ -110,10 +110,26 @@ export default class ContactBar extends Vue {
         xs: 12,
         sm: 20,
         md: 20,
-        lg: 40,
+        lg: 32,
       })}px`,
     };
   }
+
+  get getTagLineFont() {
+    return {
+      fontSize: `${this.getCustomAdaptiveFontSize({
+        xs: 25,
+        sm: 50,
+        md: 65,
+        lg: 85,
+      })}px`,
+    };
+  }
+
+  get isXs() {
+    return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+  }
+
   onCloseContactBar() {
     this.changeContactBar(false);
   }
@@ -132,6 +148,9 @@ export default class ContactBar extends Vue {
   position: static
 .underline
   border-bottom: 6px solid black
+.mobUnderline
+  border-bottom: 2px solid black  
+  padding-left: 15%
 .map
   width: 100%
 .close-icon-container
@@ -149,4 +168,10 @@ export default class ContactBar extends Vue {
 
 .relative
   position: relative
+
+.plf
+  padding-left: 10vw  
+  font-weight: bold
+  font-style:normal
+  
 </style>

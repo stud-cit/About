@@ -53,6 +53,7 @@
         </v-parallax>
       </v-row>
     </v-col>
+    <product-footer/>
   </v-container>
 </template>
 
@@ -61,6 +62,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
 
 import PreviewPage from '@/components/preview-page.vue';
+import PruductFooter from '@/components/product-footer.vue';
 
 @Component({
   layout: 'immediate',
@@ -69,6 +71,7 @@ import PreviewPage from '@/components/preview-page.vue';
   },
   components: {
     PreviewPage,
+    'product-footer': PruductFooter,
   },
 })
 export default class PortfolioPage extends Vue {

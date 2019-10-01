@@ -1,26 +1,27 @@
 <template>
   <v-row justify="center" align="end" class="footer-section">
-    <v-col cols="10" class="d-flex d-lg-none">
+    <v-col cols="10" class="d-flex ">
       <v-row
         justify="center"
         align="center"
-        class="return-section"
+        class="return-section d-lg-none flex-column"
         @click="scollTop"
       >
         <!-- TODO: add icon -->
+        <p class="arrowUp">&#8593;</p>
         <p :class="isSmAndUp ? 'text-sm' : 'text-xs'">
-          {{ $t('weOffers.backToTop') }}
+          {{ $t('weOffers.backToTop') }} 
         </p>
       </v-row>
 
-      <v-col cols="12">
-        <p :style="getTagLineFont">{{ $t('about.tagLine') }}</p>
+      <v-col cols="12" :class="isSmAndDown ? 'sqsMob' : 'sqs'">
+        <p :style="getTagLineFont" class=" ">{{ $t('about.tagLine') }}</p>
       </v-col>
     </v-col>
     <p class="d-none d-lg-block rotated-return-bar" @click="scollTop">
       {{ $t('weOffers.backToTop') }}
     </p>
-    <contact-bar :isStatic="true" />
+    <contact-bar id="contact" :isStatic="true" />
   </v-row>
 </template>
 
@@ -42,16 +43,22 @@ export default class PruductFooter extends Vue {
     return this.$breakpoint ? this.$breakpoint.is.smAndUp : false;
   }
 
+  get isSmAndDown(){
+     return this.$breakpoint ? this.$breakpoint.is.smAndDown : false;
+  }
+
   get getTagLineFont() {
     return {
       fontSize: `${this.getCustomAdaptiveFontSize({
         xs: 25,
         sm: 50,
         md: 65,
-        lg: 125,
+        lg: 85,
       })}px`,
     };
   }
+
+
 }
 </script>
 
@@ -62,20 +69,36 @@ export default class PruductFooter extends Vue {
     color: white
 
 .return-section
-    width: 100%
-    height: 60vh
-    background: #ffffff
-    opacity: .05
+    width: 90%
+    height: 40vh
+    background: #282828
+    opacity: .5
     cursor: pointer
+    font-weight: bold
+    font-style: normal
 
     p
-        color: #2f2f2f
+        color: #696969
+       
 
     .text-sm
         font-size: 30px
 
     .text-xs
         font-size: 25px
+
+.sqs
+    position: absolute
+    top: 50vh
+    font-weight: bold
+    font-style: normal
+
+
+.sqsMob
+  position: absolute
+  top: 70vh
+  font-weight: bold
+  font-style: normal
 
 .rotated-return-bar
     position: absolute
@@ -84,4 +107,8 @@ export default class PruductFooter extends Vue {
     writing-mode: vertical-rl
     transform: scaleX(-1) scaleY(-1)
     font-size: 35px
+
+.arrowUp
+      color: #2f2f2f
+      font-size: 50px
 </style>
