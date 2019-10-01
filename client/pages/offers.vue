@@ -17,13 +17,15 @@
             :key="index"
           >
             <v-row
-              class="center d-sm-flex"
+              class="d-sm-flex reperesentation-card"
               :class="{ 'representation-tablet': isSmAndDown }"
               :justify="preview.positionCard"
             >
               <img class="preview-image" src="~/assets/images/weOffer/1.jpg" />
               <v-card
+								class="content-card pa-4 px-lg-8 py-lg-12"
                 :class="isLgAndUp ? preview.positionCard : 'preview-card'"
+
               >
                 <v-card-title class="preview-title" :style="getCardTitleFont">{{
                   preview.title
@@ -99,63 +101,68 @@ export default class OffersPage extends Vue {
 
 <style lang="sass">
 .representation
-  height: 100vh
-  display: flex
-  justify-content: flex-start
-  flex-direction: row
-  position: relative
-  align-items: center
-  overflow: hidden
-  width: 100%
+	width: 100%
+	height: 100vh
+	display: flex
+	justify-content: flex-start
+	flex-direction: row
+	position: relative
+	align-items: center
+	overflow: hidden
+
+	.reperesentation-card
+		width: 100%
+
+	.preview-card
+		width: 100%
+		position: relative
+		padding: 1rem
+		transform: translateX(0%)
 
 .representation-tablet
-  flex-direction: column
-  align-items: flex-start
-  justify-content: flex-start
-  img
-    object-fit: cover
-    height: 100%
-    width: 100%
+	flex-direction: column
+	align-items: flex-start
+	justify-content: flex-start
+	img
+		object-fit: cover
+		width: 100%
+		height: 100%
 
 
-.preview-card
-  position: relative
-  padding: 1rem
-  width: 100%
-  transform: translateX(0%)
+
+
+.content-card
+	width: 40rem
+	height: 100%
+	padding: 3rem 2rem
+	position: absolute
 
 .start
-  right: 0
-  width: 40rem
-  padding: 3rem 2rem
-  position: absolute
-  transform: translateY(95%)
+	right: 0
+	transform: translateY(95%)
 
 .end
-    height: 100%
-    left: 0
-    width: 40rem
-    padding: 3rem 2rem
-    position: absolute
-    transform: translateY(40%)
+		left: 0
+		transform: translateY(40%)
 
 .preview-title
-  margin-bottom: 2rem
+	word-break: break-word
+	margin-bottom: 2rem
 
 .adress
-  background-color: white
-  width: 100%
-  display: flex
-  flex-direction: row
-  justify-content: space-between
-  align-items: center
+	background-color: white
+	width: 100%
+	display: flex
+	flex-direction: row
+	justify-content: space-between
+	align-items: center
 
 .adress img
-  height: 10rem
-  width: 10rem
+	height: 10rem
+	width: 10rem
 
 
 .line
-  border: 3px solid black
-  width: 50%
+	border: 3px solid black
+	width: 50%
 </style>
