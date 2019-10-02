@@ -68,7 +68,7 @@
               {{ contacts.office }}
             </v-col>
           </v-col>
-          <v-col cols="6" sm="3" >
+          <v-col cols="6" sm="3" md="2" >
             <v-row class="pb-0" justify="center" align="end">
               <a
                 class="map"

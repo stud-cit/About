@@ -93,7 +93,7 @@ export default class PruductFooter extends Vue {
   position: absolute
   font-weight: normal
   font-style: normal
-  top: 47vh
+  top: 54%
 
 .sqsMob
   position: absolute
