@@ -1,26 +1,25 @@
 <template>
   <v-app>
     <v-app-bar id="header" class="pt-3 pt-lg-4" color="transparent" app dark flat>
-			<v-row justify="space-between" align="center">
-				<v-col cols="3" class="pa-0 pa-sm-3">
-					<figure class="breakpoint">
-						<nuxt-link to="/">
-							<v-img src="/logo.svg" />
-						</nuxt-link>
-					</figure>
-				</v-col>
-				<v-col cols="6" md="8" lg="7" xl="6">
-					<v-row justify="end">
-						<v-col class="d-none d-md-flex">
+			<v-row class="mx-1 mx-sm-0" justify="center" align="center">
+				<v-col cols="12" sm="10" class="pa-0">
+					<v-row justify="space-between" align="center">
+						<v-col cols="auto" class="pa-0">
+							<nuxt-link to="/">
+								<v-img src="/logo.svg"/>
+							</nuxt-link>
+						</v-col>
+						<v-spacer />
+						<v-col cols="6" md="6" lg="6" xl="6" class="d-none d-md-flex">
 							<v-row justify="space-between">
 								<v-col
-									class="nav-links"
+									class="pa-0 nav-links"
 									cols="auto"
 									v-for="(page, index) in pages"
 									:key="index"
 								>
 									<v-btn
-										class="pb-3 desktop-link"
+										class="px-0 desktop-link"
 										active-class="active-desktop-link"
 										:to="page.to"
 										exact
@@ -37,7 +36,8 @@
 								</v-col>
 							</v-row>
 						</v-col>
-						<v-col cols="auto" class="pa-0 pa-sm-3">
+						<v-spacer/>
+						<v-col cols="auto" class="pa-0">
 							<v-btn icon dark to="/" class="d-none d-md-flex">
 								<v-icon size="50">mdi-fullscreen-exit</v-icon>
 							</v-btn>
@@ -53,11 +53,14 @@
 				</v-col>
 			</v-row>
     </v-app-bar>
-		<p class="page-info ml-12 pl-4 pl-sm-3 pl-md-4 pl-lg-2">
-			<span :style="getPageIndexFont">{{ pageId }}</span>
-			<span class="total-pages" :style="getTotalPagesFont"> / 4</span>
-		</p>
-
+		<v-row class="mx-2 mx-sm-0 page-info" justify="start">
+			<v-col cols="auto" offset="0" offset-sm="1">
+				<p>
+					<span :style="getPageIndexFont">{{ pageId }}</span>
+					<span class="total-pages" :style="getTotalPagesFont"> / 4</span>
+				</p>
+			</v-col>
+		</v-row>
     <v-img :src="getDynamicAssets(cover)" class="imageCover" />
 
     <v-content class="pt-0">
@@ -171,9 +174,11 @@ export default class ImmediatetLayout extends Vue {
 
 .page-info
 	position: fixed
+	width: 100%
 	top: 8vh
 	z-index: 5
 	color: white
+
 	.total-pages
 		vertical-align: super
 
@@ -207,12 +212,6 @@ export default class ImmediatetLayout extends Vue {
 	position: fixed !important
 	width: 100vw
 	height: 100vh
-
-
-.breakpoint
-	display: flex
-	flex-direction: row
-	align-items: center
 
 .capitalize
 	text-transform: capitalize
