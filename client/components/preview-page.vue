@@ -1,5 +1,5 @@
 <template>
-  <v-row class="preview-section" justify="center" :align="isAbout ? 'center' : 'end'">
+  <v-row class="preview-section" justify="center" :align="pageId === aboutPageId ? 'center' : 'end'">
     <v-row class="preview-wrapper" justify="space-around" align="end">
       <v-col cols="12" order="1" order-sm="1">
         <div class="d-none d-sm-block">
@@ -45,7 +45,6 @@
           </v-col>
         </v-row>
       </v-col>
-
       <v-col cols="12" order="2" order-sm="3">
         <v-row class="d-none d-sm-flex font-weight-regular">
           <span :style="getPreviewSubTitleFont">
@@ -86,10 +85,10 @@
     </v-row>
     <v-row justify="center" v-show="arrowDown()">
       <v-btn
-        icon
         color="white"
         @click="scollToContent"
         class="scroll-bottom-icon"
+				icon
       >
         <v-icon size="50" class="icon-down">mdi-chevron-double-down</v-icon>
       </v-btn>
@@ -102,20 +101,27 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
 
 @Component({
-  props: ['title', 'subtitle', 'description', 'iconDown', 'isAbout'],
+  props: ['title', 'subtitle', 'description', 'iconDown'],
 })
 export default class PreviewPage extends Vue {
   @Getter('getPageByRoute') getPageByRoute;
   @Getter('getPageId') pageId;
   @Getter('getPageRouteById') getPageRouteById;
   isShowUseContacts: boolean = true;
+	aboutPageId = 1;
+	portfolioPageId = 4;
 
   handleScroll(): void {
     const windowHeight = window.innerHeight;
     const scrollHeight = document.body.scrollHeight;
-    const scrollToFooter = scrollHeight - windowHeight * 2;
+		const scrollToFooter = scrollHeight - windowHeight * 2;
+		const isPortolioPage = this.pageId === this.portfolioPageId;
 
-    if (window.scrollY > scrollToFooter) {
+		// on porfolio page we have to hide if any scroll we have
+		if(isPortolioPage && window.scrollY > 0) {
+			this.isShowUseContacts = false;
+		}
+    else if (window.scrollY > scrollToFooter) {
       this.isShowUseContacts = false;
     } else {
       this.isShowUseContacts = true;

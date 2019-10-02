@@ -12,11 +12,12 @@
         <!-- TODO: add icon -->
         <p class="arrowUp">&#8593;</p>
         <p :class="isSmAndUp ? 'text-sm' : 'text-xs'">
-          {{ $t('weOffers.backToTop') }} 
+          {{ $t('weOffers.backToTop') }}
         </p>
       </v-row>
 
-      <v-col cols="12" class="mt-xs-12" :class="isSmAndDown ? 'sqsMob' : 'sqs'">
+			<!-- FIXME: fix positioning this tag line -->
+      <v-col cols="12" class="mt-xs-12 d-none" :class="isSmAndDown ? 'sqsMob' : 'sqs'">
         <p :style="getTagLineFont">{{ $t('about.tagLine') }}</p>
       </v-col>
     </v-col>
@@ -81,7 +82,7 @@ export default class PruductFooter extends Vue {
 
     p
         color: #696969
-       
+
 
     .text-sm
         font-size: 30px

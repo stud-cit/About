@@ -11,7 +11,6 @@
 						:subtitle="about.previewSubtitle"
 						:description="about.previewDescription"
 						:icon-down="false"
-						:isAbout="true"
 					/>
       </v-window-item>
 
@@ -38,7 +37,6 @@
     </v-window>
   </v-col>
   </v-row>
-
     <p
       class="d-none d-md-block slogan font-weight-light"
       :class="isLgAndUp ? 'slogan-lg' : 'slogan-md'"
@@ -82,7 +80,6 @@
         </v-col>
       </v-row>
     </v-footer>
-
   </v-container>
 </template>
 

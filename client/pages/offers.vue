@@ -19,7 +19,7 @@
 			<v-col cols="12" md="10" xl="12">
 				<v-row
 					class="ma-0 representation-section"
-					:class="isXsOnly ? 'autoHeight' : 'fullHeight'"
+					:class="heightClass"
 					justify="center"
 					align="center"
 					v-for="(preview, index) in weOffers.representation"
@@ -29,6 +29,7 @@
 						<v-col
 							cols="12"
 							md="10"
+							lg="8"
 							class="representation-image"
 							:class="contentPosition(index, 'top', false)"
 						>
@@ -54,7 +55,7 @@
       </v-col>
       <product-footer />
     </v-row>
-    
+
  </div>
 </template>
 
@@ -97,17 +98,30 @@ export default class OffersPage extends Vue {
 			}
 		}
 	};
-  	get isXsOnly() {
+
+  get isXsOnly() {
     	return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 	};
+	get isMdAndDown() {
+    	return this.$breakpoint ? this.$breakpoint.is.mdAndDown : false;
+	};
 
+	get heightClass() {
+		if(this.isXsOnly) {
+			return 'auto-height';
+		}
+		else if (this.isMdAndDown) {
+			return 'h-70';
+		}
+		return 'full-height';
+	}
 	get getHeightContainer(){
 		return {
 		height: `${this.getCustomAdaptiveSize({
-			xs: 60,
-			sm: 75,
+			xs: 50,
+			sm: 65,
 			md: 60,
-			lg: 80,
+			lg: 95,
 		})}vh`,
 		};
 	}
@@ -150,7 +164,7 @@ export default class OffersPage extends Vue {
 			position: absolute
 
 		.representation-content
-			height: 40vh
+			height: auto
 			position: absolute
 			overflow: hidden
 
@@ -169,9 +183,12 @@ export default class OffersPage extends Vue {
 .position-bottom
 	bottom: 0
 
-.fullHeight
+.full-height
 	height: 100vh
 
-.autoHeight
+.h-70
+	height: 70vh
+
+.auto-height
 	height: auto
 </style>
