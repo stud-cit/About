@@ -16,8 +16,8 @@
         </p>
       </v-row>
 
-      <v-col cols="12" class="mt-12" :class="isSmAndDown ? 'sqsMob' : 'sqs'">
-        <p :style="getTagLineFont" class=" ">{{ $t('about.tagLine') }}</p>
+      <v-col cols="12" class="mt-xs-12" :class="isSmAndDown ? 'sqsMob' : 'sqs'">
+        <p :style="getTagLineFont">{{ $t('about.tagLine') }}</p>
       </v-col>
     </v-col>
     <p class="d-none d-lg-block rotated-return-bar" @click="scollTop">
@@ -46,12 +46,12 @@ export default class PruductFooter extends Vue {
   }
 
   get isSmAndDown(){
-     return this.$breakpoint ? this.$breakpoint.is.smAndDown : false;
+     return this.$breakpoint ? this.$breakpoint.is.sm : false;
   }
 
   get getTagLineFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 25,
         sm: 50,
         md: 65,
@@ -76,7 +76,7 @@ export default class PruductFooter extends Vue {
     background: #282828
     opacity: .5
     cursor: pointer
-    font-weight: bold
+    font-weight: normal
     font-style: normal
 
     p
@@ -90,17 +90,16 @@ export default class PruductFooter extends Vue {
         font-size: 25px
 
 .sqs
-    position: absolute
-    font-weight: bold
-    font-style: normal
-    z-index: 16
-
+  position: absolute
+  font-weight: normal
+  font-style: normal
+  top: 47vh
 
 .sqsMob
   position: absolute
-  z-index: 16
   font-weight: bold
   font-style: normal
+  top: 69.5vh
 
 .rotated-return-bar
     position: absolute

@@ -4,88 +4,15 @@
   <v-col cols="12" sm="10">
     <v-window v-model="curStage" continuous dark>
       <v-window-item>
-        <!-- <v-row justify="center">
-          <v-col cols="12">
-            <v-row
-              class="slide-container"
-              justify="space-around"
-              align="end"
-              align-sm="start"
-            >
-              <v-col cols="12" align-self="end">
-                <div class="d-none d-sm-block">
-                  <p class="font-weight-bold" :style="getPreviewTitleFont">
-                    {{ about.previewTitle }}
-                  </p>
-                </div>
-                <div class="d-block d-sm-none">
-                  <p
-                    class="font-weight-bold text-center"
-                    :style="getPreviewTitleFont"
-                  >
-                    {{ about.previewTitle }}
-                  </p>
-                </div>
-              </v-col>
-              <v-col cols="12" align-self="center">
-                <v-row justify="space-around" justify-sm="start">
-                  <v-col cols="auto" order="1" order-sm="1">
-                    <div
-                      class="arrow mr-3"
-                      @click="handleNavigatingPage(false)"
-                    >
-                      &#8592;
-                    </div>
-                  </v-col>
-                  <v-col cols="auto">
-                    <div class="arrow mr-3" @click="handleNavigatingPage(true)">
-                      &#8594;
-                    </div>
-                  </v-col>
-                  <v-col
-                    cols="auto"
-                    order="2"
-                    order-sm="3"
-                    :class="{ rotate: isXsOnly }"
-                  >
-                    <nuxt-link class="square-container" to="/">
-                      <div class="square mr-3 squareOne"></div>
-                      <div class="square mr-3 squareTwo"></div>
-                      <div class="square squareThree"></div>
-                    </nuxt-link>
-                  </v-col>
-                </v-row>
-              </v-col>
-
-              <v-col cols="12" align-self="start">
-                <v-row class="d-none d-sm-flex">
-                  <span :style="getPreviewSubTitleFont">
-                    {{ about.previewSubtitle }}
-                  </span>
-                </v-row>
-                <v-row justify="center" class="d-flex d-sm-none pl-0">
-                  <img class="pointer-icon" src="/pointer-mobile.svg" />
-                </v-row>
-                <v-row justify="center" justify-sm="start" class="mt-4">
-                  <span class="gray" :style="getPreviewInfoFont">
-                    {{ $t(isXsOnly ? 'about.swipe' : 'weOffers.scroll') }}
-                  </span>
-                </v-row>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row> -->
-
-                <PreviewPage
-                  :title="about.previewTitle"
-                  cols="12"
-                  sm="9"
-                  :subtitle="about.previewSubtitle"
-                  :description="about.previewDescription"
-                  :icon-down="false"
-                />
-
-
+					<PreviewPage
+						:title="about.previewTitle"
+						cols="12"
+						sm="9"
+						:subtitle="about.previewSubtitle"
+						:description="about.previewDescription"
+						:icon-down="false"
+						:isAbout="true"
+					/>
       </v-window-item>
 
       <v-window-item v-for="(slide, index) in about.slides" :key="index">
@@ -155,7 +82,7 @@
         </v-col>
       </v-row>
     </v-footer>
-    
+
   </v-container>
 </template>
 
@@ -198,7 +125,7 @@ export default class AboutPage extends Vue {
 
   get getSlideTitleFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 12,
         sm: 20,
         md: 20,
@@ -208,7 +135,7 @@ export default class AboutPage extends Vue {
   }
   get getSlideContentFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 15,
         sm: 20,
         md: 20,
@@ -274,7 +201,7 @@ export default class AboutPage extends Vue {
 	height: 100vh
 
 .slide-container
-	height: 60vh
+	height: 97vh
 	color: white
 
 .arrow

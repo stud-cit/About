@@ -28,7 +28,7 @@
 										text
 									>
 										<span
-											class="capitalize font-weight-thin"
+											class="capitalize"
 											:class="isLgAndUp ? 'nav-link-desktop' : 'nav-link'"
 										>
 											{{ page.title }}
@@ -121,7 +121,7 @@ export default class ImmediatetLayout extends Vue {
 
   get getPageIndexFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 25,
         sm: 40,
         md: 40,
@@ -132,7 +132,7 @@ export default class ImmediatetLayout extends Vue {
 
   get getTotalPagesFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 13,
         sm: 20,
         md: 20,

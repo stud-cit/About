@@ -1,7 +1,7 @@
 <template>
   <v-container
     fluid
-    class="contact-bar pa-1 pa-sm-3"
+    class="contact-bar pa-1 pa-sm-1"
     :class="{ static: isStatic }"
     v-if="isStatic || isActive"
   >
@@ -68,7 +68,7 @@
               {{ contacts.office }}
             </v-col>
           </v-col>
-          <v-col cols="6" sm="4" class="pb-0 pr-6">
+          <v-col cols="6" sm="3" >
             <v-row class="pb-0" justify="center" align="end">
               <a
                 class="map"
@@ -104,21 +104,21 @@ export default class ContactBar extends Vue {
   }
   get getCreadentialsFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 12,
-        sm: 15,
-        md: 15,
-        lg: 30,
+        sm: 14,
+        md: 14,
+        lg: 22,
       })}px`,
     };
   }
   get getLocationFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 12,
         sm: 20,
         md: 20,
-        lg: 32,
+        lg: 25,
       })}px`,
     };
   }

@@ -19,15 +19,15 @@ export default class ScrollBar extends Vue {
   visibility: boolean = true;
 
   handleScroll(): void {
+		const currentScroll = window.scrollY;
     const windowHeight = window.innerHeight;
     const scrollHeight = document.body.scrollHeight;
-    const scrollToFooter = scrollHeight - windowHeight * 2;
-
-    if (window.scrollY > scrollToFooter) {
+		const scrollToFooter = scrollHeight - windowHeight * 2;
+    if (currentScroll > scrollToFooter) {
       this.visibility = false;
     } else {
       this.visibility = true;
-      this.currScroll = (window.scrollY / (scrollHeight - windowHeight)) * 100;
+      this.currScroll = (currentScroll / (scrollHeight - windowHeight)) * 100;
     }
   }
 

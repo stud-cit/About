@@ -1,5 +1,5 @@
 <template>
-  
+  <div>
     <v-row justify="center">
       <v-col cols="12" sm="10">
         <PreviewPage
@@ -11,36 +11,51 @@
           :icon-down="false"
         />
         <ScrollBar />
-        <v-row justify="center">
-          <section
-            class="representation"
-            v-for="(preview, index) in weOffers.representation"
-            :key="index"
-          >
-            <v-row
-              class="center d-sm-flex"
-              :class="{ 'representation-tablet': isSmAndDown }"
-              :justify="preview.positionCard"
-            >
-              <img class="preview-image" src="~/assets/images/weOffer/1.jpg" />
-              <v-card
-                :class="isLgAndUp ? preview.positionCard : 'preview-card'"
-              >
-                <v-card-title class="preview-title font-weight-bold" :style="getCardTitleFont">{{
-                  preview.title
-                }}</v-card-title>
-                <v-card-text class="font-weight-regular" :style="getCardContentFont">{{
-                  preview.text
-                }}</v-card-text>
-              </v-card>
-            </v-row>
-          </section>
-        </v-row>
+      </v-col>
+    </v-row>
+		<v-row
+			justify="center"
+		>
+			<v-col cols="12" md="10" xl="12">
+				<v-row
+					class="ma-0 representation-section"
+					:class="isXsOnly ? 'autoHeight' : 'fullHeight'"
+					justify="center"
+					align="center"
+					v-for="(preview, index) in weOffers.representation"
+					:key="index"
+				>
+					<v-row class="representation-container" :style="getHeightContainer">
+						<v-col
+							cols="12"
+							md="10"
+							class="representation-image"
+							:class="contentPosition(index, 'top', false)"
+						>
+							<v-img :src="getDynamicAssets('/images/weOffer/1.jpg')" />
+						</v-col>
+						<v-col
+							cols="12"
+							md="8"
+							class="representation-content"
+							:class="contentPosition(index, 'bottom', true)"
+						>
+							<v-card class="pa-4 px-lg-8 py-lg-12">
+								<v-card-title class="mb-6 font-weight-bold card-title" :style="getCardTitleFont">
+									{{preview.title}}
+								</v-card-title>
+								<v-card-text class="font-weight-regular card-content" :style="getCardContentFont">
+									<span>{{preview.text}}</span>
+								</v-card-text>
+							</v-card>
+						</v-col>
+					</v-row>
+				</v-row>
       </v-col>
       <product-footer />
     </v-row>
     
- 
+ </div>
 </template>
 
 <script lang="ts">
@@ -66,15 +81,40 @@ export default class OffersPage extends Vue {
   @Getter('getOffersStage') weOffers;
   @Mutation('changePageId') changePageId;
 
-  get isLgAndUp() {
-    return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
-  }
-  get isSmAndDown() {
-    return this.$breakpoint ? this.$breakpoint.is.smAndDown : false;
-  }
+
+	get contentPosition() {
+		return (index, positionX, reveresePositionY) => {
+			const isSmAndDown = this.$breakpoint ? this.$breakpoint.is.smAndDown : false;
+			if(isSmAndDown) {
+				return positionX === 'top' ? 'position-top' : 'position-bottom';
+			}
+			else if(reveresePositionY) {
+				return index % 2 === 0 ? 'position-right position-top' : 'position-left position-bottom';
+			}
+			else {
+				return index % 2 === 0 ? 'position-left position-bottom' : 'position-right position-top';
+
+			}
+		}
+	};
+  	get isXsOnly() {
+    	return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+	};
+
+	get getHeightContainer(){
+		return {
+		height: `${this.getCustomAdaptiveSize({
+			xs: 60,
+			sm: 75,
+			md: 60,
+			lg: 80,
+		})}vh`,
+		};
+	}
+
   get getCardTitleFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 15,
         sm: 20,
         md: 20,
@@ -84,7 +124,7 @@ export default class OffersPage extends Vue {
   }
   get getCardContentFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 12,
         sm: 20,
         md: 12,
@@ -100,64 +140,38 @@ export default class OffersPage extends Vue {
 </script>
 
 <style lang="sass">
-.representation
-  height: 100vh
-  display: flex
-  justify-content: flex-start
-  flex-direction: row
-  position: relative
-  align-items: center
-  overflow: hidden
-  width: 100%
+.representation-section
+	width: 100%
 
-.representation-tablet
-  flex-direction: column
-  align-items: flex-start
-  justify-content: flex-start
-  img
-    object-fit: cover
-    height: 100%
-    width: 100%
+	.representation-container
+		position: relative
 
+		.representation-image
+			position: absolute
 
-.preview-card
-  position: relative
-  padding: 1rem
-  width: 100%
-  transform: translateX(0%)
+		.representation-content
+			height: 40vh
+			position: absolute
+			overflow: hidden
 
-.start
-  right: 0
-  width: 40rem
-  padding: 3rem 2rem
-  position: absolute
-  transform: translateY(95%)
+	.card-title
+		word-break: break-word
 
-.end
-    height: 100%
-    left: 0
-    width: 40rem
-    padding: 3rem 2rem
-    position: absolute
-    transform: translateY(40%)
+.position-right
+	right: 0
 
-.preview-title
-  margin-bottom: 2rem
+.position-left
+	left: 0
 
-.adress
-  background-color: white
-  width: 100%
-  display: flex
-  flex-direction: row
-  justify-content: space-between
-  align-items: center
+.position-top
+	top: 0
 
-.adress img
-  height: 10rem
-  width: 10rem
+.position-bottom
+	bottom: 0
 
+.fullHeight
+	height: 100vh
 
-.line
-  border: 3px solid black
-  width: 50%
+.autoHeight
+	height: auto
 </style>

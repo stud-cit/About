@@ -65,6 +65,7 @@ export default class Loader extends Vue {
   border-top-left-radius: 50%
   border-bottom-left-radius: 50%
   z-index: 1
+  margin-left: -1px
 
 .loader:before
   width: 130px
@@ -75,6 +76,7 @@ export default class Loader extends Vue {
   transform: translateX(4rem)
   border-top-right-radius: 50%
   border-bottom-right-radius: 50%
+  margin-left: -1px
 
 .activeLoader, .activeLoader:after, .activeLoader:before
   background-color: #81C255

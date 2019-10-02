@@ -104,7 +104,7 @@ export default class PreliminaryLayout extends Vue {
 
   get getPageTitleFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 12,
         sm: 20,
         md: 20,
@@ -114,7 +114,7 @@ export default class PreliminaryLayout extends Vue {
   }
   get getPageSubTitleFont() {
     return {
-      fontSize: `${this.getCustomAdaptiveFontSize({
+      fontSize: `${this.getCustomAdaptiveSize({
         xs: 10,
         sm: 20,
         md: 15,
@@ -164,6 +164,7 @@ export default class PreliminaryLayout extends Vue {
   height: 30px
   background: white
   clip-path: ellipse(50% 100% at 50% 100%)
+  margin-bottom: -1px
 
 .locale
   font-size: 25px
