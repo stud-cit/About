@@ -5,76 +5,84 @@
     :class="{ static: isStatic }"
     v-if="isStatic || isActive"
   >
-    <v-row class="relative" justify="space-around" align="center">
-      <div
-        :class="isSmAndUp ? 'close-icon-container' : 'mobile-close-icon'"
-        v-if="!isStatic"
-        class="pa-1 pa-sm-0"
-      >
-        <v-btn icon @click="onCloseContactBar">
-          <v-icon size="30" color="black">
-            mdi-close
-          </v-icon>
-        </v-btn>
-      </div>
-      <v-col class=" mb-4 d-flex d-sm-none" :class="isXs ? 'mobUnderline' : 'underline'" justify="space-around">
-        <v-col
-          class="font-weight-bold"
-          cols="auto"
-          :style="getCreadentialsFont"
-        >
-          {{ contacts.email }}
-        </v-col>
-        <v-col
-          class="font-weight-bold"
-          cols="auto"
-          :style="getCreadentialsFont"
-        >
-          {{ contacts.phone }}
-        </v-col>
-      </v-col>
-      <v-col cols="6" sm="7" :class="{ 'plf': isXs }" >
-        <v-row class=" underline mb-4 d-none d-sm-flex" justify="space-between">
-          <v-col
-            class="font-weight-bold"
-            cols="auto"
-            :style="getCreadentialsFont"
+    <v-row class="relative" justify="center" align="center">
+      <v-row justify="space-around">
+        <v-col cols="10" >
+          <div
+            :class="isSmAndUp ? 'close-icon-container' : 'mobile-close-icon'"
+            v-if="!isStatic"
+            class="pa-1 pa-sm-0"
           >
-            {{ contacts.email }}
+            <v-btn icon @click="onCloseContactBar">
+              <v-icon size="30" color="black">
+                mdi-close
+              </v-icon>
+            </v-btn>
+          </div>
+          <v-col class="mb-4 d-flex d-sm-none justify-space-between" :class="isXs ? 'mobUnderline' : 'underline'" >
+            <v-col
+              class="font-weight-bold"
+              cols="auto"
+              :style="getCreadentialsFont"
+            >
+              {{ contacts.email }}
+            </v-col>
+            <v-col
+              class="font-weight-bold"
+              cols="auto"
+              :style="getCreadentialsFont"
+            >
+              {{ contacts.phone }}
+            </v-col>
           </v-col>
-          <v-col
-            class="font-weight-bold"
-            cols="auto"
-            :style="getCreadentialsFont"
-          >
-            {{ contacts.phone }}
+          <v-row align="center" justify="space-between">
+            <v-col cols="6" sm="7" >
+            <v-row class=" underline mb-4 d-none d-sm-flex" justify="space-between">
+              <v-col
+                
+                cols="auto"
+                :style="getCreadentialsFont"
+              >
+                {{ contacts.email }}
+              </v-col>
+              <v-col
+                
+                cols="auto"
+                :style="getCreadentialsFont"
+              >
+                {{ contacts.phone }}
+              </v-col>
+            </v-row>
+            <v-col
+              cols="12"
+              class="font-weight-bold px-0 py-0 py-sm-2"
+              :style="getLocationFont"
+            >
+              {{ contacts.street }}
+            </v-col>
+            <v-col
+              cols="12"
+              class="font-weight-bold px-0 py-0 py-sm-2"
+              :style="getLocationFont"
+            >
+              {{ contacts.office }}
+            </v-col>
           </v-col>
-        </v-row>
-        <v-col
-          cols="12"
-          class="font-weight-bold px-0 py-0 py-sm-2"
-          :style="getLocationFont"
-        >
-          {{ contacts.street }}
+          <v-col cols="6" sm="4" class="pb-0 pr-6">
+            <v-row class="pb-0" justify="center" align="end">
+              <a
+                class="map"
+                href="https://www.google.com.ua/maps/place/Department+of+General+and+Theoretical+Physics+of+SSU/@50.8918344,34.8410504,17z/data=!4m9!1m3!11m2!2sfL29wECLWo3E0vp-J1Rb4QPskla8Pg!3e3!3m4!1s0x0:0x33afc095aa39b815!8m2!3d50.8929585!4d34.8404856?hl=ru"
+              >
+                <v-img src="/map.png"></v-img>
+              </a>
+            </v-row>
+          </v-col>
+          </v-row>
+          
         </v-col>
-        <v-col
-          cols="12"
-          class="font-weight-bold px-0 py-0 py-sm-2"
-          :style="getLocationFont"
-        >
-          {{ contacts.office }}
-        </v-col>
-      </v-col>
-      <v-col cols="6" sm="2" class="pb-0">
-        <v-row class="pb-0" justify="center" align="end">
-          <a
-            class="map"
-            href="https://www.google.com.ua/maps/place/Department+of+General+and+Theoretical+Physics+of+SSU/@50.8918344,34.8410504,17z/data=!4m9!1m3!11m2!2sfL29wECLWo3E0vp-J1Rb4QPskla8Pg!3e3!3m4!1s0x0:0x33afc095aa39b815!8m2!3d50.8929585!4d34.8404856?hl=ru"
-          >
-            <v-img src="/map.png"></v-img>
-          </a>
-        </v-row>
-      </v-col>
+      </v-row>
+      
     </v-row>
   </v-container>
 </template>
@@ -150,7 +158,6 @@ export default class ContactBar extends Vue {
   border-bottom: 6px solid black
 .mobUnderline
   border-bottom: 2px solid black  
-  padding-left: 15%
 .map
   width: 100%
 .close-icon-container
@@ -169,9 +176,6 @@ export default class ContactBar extends Vue {
 .relative
   position: relative
 
-.plf
-  padding-left: 10vw  
-  font-weight: bold
-  font-style:normal
+
   
 </style>

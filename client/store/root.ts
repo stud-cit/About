@@ -52,22 +52,20 @@ export const state = (): State => ({
   ],
   about: {
     previewTitle: 'Student centr of information technology',
-    previewSubtitle: 'We can make this world better.',
-    previewDescription: '',
+    previewSubtitle: '',
+    previewDescription: 'We can make this world better.',
     slides: [
-      {
-        title: 'Student centr of information technology',
-        content:
-          'The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through.',
-      },
-      {
-        title: 'Student centr of information technology',
-        content: 'The Woodman. Lorem',
-      },
-      {
-        title: 'Student centr of information technology',
-        content: 'The Woodman. Lorem',
-      },
+					 `StudCIT – это команда из талантливых специалистов, для которых изготовление сайтов не работа,
+					а часть жизни. Возможность постоянно совершенствоваться,
+					решать нетривиальные задачи и использовать способности на благо клиента.
+					Специализируемся на разработке интернет ресурсов вариативного предназначения
+					и сложности. Также способны решать нестандартные задачи, в рамках индивидуальных проектов.`,
+
+				 `Детально изучим каждый случай, спроектируем модель решения,
+					создадим подходящий дизайн и функциональный прототип, реализуем заказ и
+					закончим проект презентацией готового продукта. Необычный и свежий подход
+					к поставленной задаче, гибкая и широкая специализация, качественная
+					реализация - характерные черты Студцит.`,
     ],
   },
   weOffers: {
@@ -77,29 +75,52 @@ export const state = (): State => ({
       'Our possibilities are limited only by our imagination.',
     representation: [
       {
-        title: 'DEVELOPMENT OF WEB ',
+        title: 'Разработка веб-сайта для различных целей',
         text:
-          'A Web developer is a kind of programmer who specializes in the development of applications relating to the World Wide Web or distributed network applications, which typically run protocols like HTTP from a Web server to a client browser using associated programming languages like HTML/CSS, C#, Ruby and PHP to name a few.',
+					`Не каждый, кто задумывался о создании собственного ресурса в сети, до конца понимает,
+					зачем это нужно. А ведь определение целей будущего проекта, определяет дальнейшее
+					продвижение и популяризацию. Цели для создания собственного сайта делится на два
+					направления. Во-первых, это взаимодействие. К нему относится взаимодействие с
+					клиентами и обмен информацией. Во-вторых - реклама. Сайт станет инструментом
+					для распространения информации о  компании. В конечном результате ресурс дает
+					возможность демонстрировать продукцию или услуги независимо от места расположения
+					пользователя, а так же развивать собственную компанию с учетом современных
+					технологий.`,
         img: '~/assets/images/weOffer/1.jpg',
         positionCard: 'start',
       },
       {
-        title: 'CREATING SOFTWARE FOR REAL-WORLD TASKS',
+        title: 'Создание програмного обеспечения для реальных задач',
         text:
-          'Programming software is a software which helps the programmer in developing other software. Compilers, assemblers, debuggers, interpreters etc. are examples of programming software. Integrated development environments (IDEs) are combinations of all these software.',
+					`Разработанное программное обеспечение - инструмент для решения необходимых задач.
+					Например, при помощи веб-приложений, начисляется заработная плата, ведется
+					контроль времени работы, как каждого сотрудника, так и части компании,
+					выполняется проверка работы учреждения. Разработанное программное обеспечение
+					применяться не только в бизнес сфере. Некоммерческие организации также часто
+					используют ПО. Пример из  повседневной жизни – электронные школьные дневники.
+					Благодаря этому веб-приложению взаимодействуют школа, ученики и родители учащегося.
+					Помимо этого, существует так же оформление заказа онлайн, публикация информации
+					об услугах и товарах, способы обратной связи с клиентами и другое. `,
         img: '.~/assets/images/weOffer/2.jpg',
         positionCard: 'end',
       },
       {
-        title: 'DESIGNING INFORMATION SYSTEMS OF VARIOUS COMPLEXITY',
+        title: 'Проектирование информационных систем различной сложности',
         text:
-          'Information system is a system composed of people and computers that processes or interprets information. The term is also sometimes used in more restricted senses to refer to only the software used to run a computerized database or to refer to only a computer system.',
+					`Web-разработка начинается с определения причин и целей.
+					Если клиент нуждается в управлении объёмом информации -
+					информационная система решит поставленную проблему. Вид и
+					количество информации будут влиять на вид сайт в конечном
+					результате, выбор платформы и функционала. Поставленная
+					задача и способ реализации напрямую влияют на сложность
+					выполнения. Соответствие нужному функционалу, достижение
+					поставленных целей, удовлетворение требований пользователя
+					- признаки корректно выполненной работы.`,
         img: '~/assets/images/weOffer/3.jpg',
         positionCard: 'end',
       },
     ],
   },
-
   ourStaff: {
     previewTitle:
       'Many people who can easily realize all things which you wish.',

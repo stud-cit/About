@@ -6,6 +6,7 @@
           :title="portfolio.previewTitle"
           :subtitle="portfolio.previewSubtitle"
           :description="portfolio.previewDescription"
+          :icon-down="true"
         />
       </v-col>
     </v-row>
@@ -90,7 +91,7 @@ export default class PortfolioPage extends Vue {
 
 <style lang="sass">
 .fullscreen
-  height: 90vh !important
+  height: 75vh !important
   width: 101vw !important
   .section
     background: rgba(0,0,0,0.7)

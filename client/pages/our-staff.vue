@@ -6,9 +6,10 @@
           :title="ourStaff.previewTitle"
           :subtitle="ourStaff.previewSubtitle"
           :description="ourStaff.previewDescription"
+          :icon-down="false"
         />
         <ScrollBar />
-        <v-row justify="space-around" class="d-none d-sm-flex">
+        <v-row justify="start" class="d-none d-md-flex">
           <v-col
             v-for="(person, i) in ourStaff.representation"
             :key="i"
@@ -29,59 +30,78 @@
               </v-img>
             </v-card>
             <div class="card-addition">
-              <div class="employee-name my-3" :style="getStaffNameFont">
+              <div class="employee-name my-3 font-weight-thin" :style="getStaffNameFont">
                 {{ person.name }}
               </div>
               <div
-                class="employee-position-short"
+                class="employee-position-short font-weight-regular"
                 :style="getStaffPositionFont"
               >
                 {{ person.position }}
               </div>
-              <div class="employee-position-full" :style="getStaffPositionFont">
+              <div class="employee-position-full font-weight-regular" :style="getStaffPositionFont">
                 {{ person.stack }}
               </div>
             </div>
           </v-col>
         </v-row>
         <v-row
-          class="d-flex d-sm-none staff-slider"
+          class="d-flex d-md-none staff-slider"
           justify="center"
           align="center"
         >
-          <v-col cols="10">
+          <v-col>
             <v-window v-model="curStaff">
               <v-window-item
                 v-for="(person, i) in ourStaff.representation"
                 :key="i"
               >
-                <v-card class="mx-auto staff-card" color="transparent" flat>
+                <v-card class="mx-auto" color="transparent"
+                  width="100%"
+                  flat>
                   <v-img
+                    height="40%"
+                    class="card-img"
                     :src="getDynamicAssets(person.img_src)"
+										lazy-src="/cover.jpg"
                     :aspect-ratio="4 / 3"
-                    class="staff-image"
                   />
                   <div class="card-addition">
-                    <div class="employee-name my-3" :style="getStaffNameFont">
+										<v-btn
+											icon
+											color="white"
+											class="scroll-icon-left"
+										>
+											<v-icon size="200" @click="() => switchSlide(false)">mdi-chevron-left</v-icon>
+										</v-btn>
+                    <div class="employee-name my-3 font-weight-thin" :style="getStaffNameFont">
                       {{ person.name }}
                     </div>
                     <div
-                      class="employee-position-short"
+                      class="employee-position-short font-weight-regular"
                       :style="getStaffPositionFont"
                     >
                       {{ person.position }}
                     </div>
                     <div
-                      class="employee-position-full"
+                      class="employee-position-full font-weight-regular"
                       :style="getStaffPositionFont"
                     >
                       {{ person.stack }}
                     </div>
+										<v-btn
+											icon
+											color="white"
+											class="scroll-icon-right"
+										>
+											<v-icon size="200" @click="() => switchSlide(true)">mdi-chevron-right</v-icon>
+										</v-btn>
                   </div>
                 </v-card>
               </v-window-item>
               <p
-                class="text-center white--text font-italic font-italic subtitle-2"
+                class="text-center white--text font-italic"
+								:class="isXsOnly ? 'subtitle-2': 'heading'"
               >
                 {{ sliderInfo }}
               </p>
@@ -118,6 +138,19 @@ export default class OurStaffPage extends Vue {
   @Mutation('changePageId') changePageId;
   curStaff: number = 0;
 
+	switchSlide(nextSlide) {
+		const {curStaff, ourStaff} = this;
+		const totalStaff = ourStaff.representation.length;
+		let newIndex;
+		if(nextSlide) {
+			newIndex = curStaff + 1 < totalStaff ? curStaff + 1 : 0;
+		}
+		else {
+			newIndex = curStaff - 1 < 0 ? totalStaff -1 : curStaff - 1;
+		}
+		this.curStaff = newIndex;
+	}
+
   get sliderInfo() {
     return `${this.curStaff + 1} / ${this.ourStaff.representation.length}`;
   }
@@ -127,6 +160,9 @@ export default class OurStaffPage extends Vue {
   }
   get isMdAndUp() {
     return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
+	}
+	get isXsOnly() {
+    return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
   }
   get getStaffNameFont() {
     return {
@@ -160,6 +196,8 @@ export default class OurStaffPage extends Vue {
   display: flex
   flex-direction: column
   color: #ffffff
+  position: relative
+
 
 .employee-name
   font-weight: 900
@@ -177,7 +215,7 @@ export default class OurStaffPage extends Vue {
   transition: 1s
 
 .card-img
-  border-radius: 50px
+  border-radius: 50px !important
   transition: all 1s
   margin: 15px 0
 
@@ -204,24 +242,19 @@ export default class OurStaffPage extends Vue {
       opacity: 0
 
 .staff-slider
-  height: 100vh
+  height: 70vh
 
-  .staff-card
-    width: 100%
+.scroll-icon-left
+  opacity: 0.5
+  position: absolute
+  top: 50%
+  left: 5%
+  transform: translateY(-50%)
 
-    .staff-image
-      filter: brightness(35%)
-      transition: all 1s
-      .v-image__image
-        border-radius: 50px
-
-    &:hover
-      .staff-image
-        filter: brightness(100%)
-      .employee-name
-        display: none
-      .employee-position-full
-        opacity: 1
-      .employee-position-short
-        opacity: 0
+.scroll-icon-right
+  opacity: 0.5
+  position: absolute
+  top: 50%
+  right: 5%
+  transform: translateY(-50%)
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <v-row class="preview-section" justify="center" align="center">
-    <v-row class="preview-wrapper" justify="space-around" align="start">
+  <v-row class="preview-section" justify="center" align="end">
+    <v-row class="preview-wrapper" justify="space-around" align="end">
       <v-col cols="12" order="1" order-sm="1">
         <div class="d-none d-sm-block">
           <p class="font-weight-bold" :style="getPreviewTitleFont">
@@ -47,7 +47,7 @@
       </v-col>
 
       <v-col cols="12" order="2" order-sm="3">
-        <v-row class="d-none d-sm-flex">
+        <v-row class="d-none d-sm-flex font-weight-regular">
           <span :style="getPreviewSubTitleFont">
             {{ description }}
           </span>
@@ -56,7 +56,7 @@
           <img class="pointer-icon" src="/pointer-mobile.svg" />
         </v-row>
         <v-row justify="center" justify-sm="start" class="mt-4">
-          <span class="gray" :style="getPreviewInfoFont">
+          <span class="gray font-weight-regular" :style="getPreviewInfoFont">
             {{ $t('weOffers.scroll') }}
           </span>
         </v-row>
@@ -71,11 +71,11 @@
     >
       <v-col cols="12" sm="auto">
         <v-card class="pa-4 pt-0 card-contacts" @click="scrollToFooter">
-          <v-card-title class="justify-center" :style="getUseContactsTitleFont">
+          <v-card-title class="justify-center font-weight-thin" :style="getUseContactsTitleFont">
             {{ $t('contact.titleShort') }}
           </v-card-title>
           <v-card-actions
-            class="pa-0 contacts-action justify-center"
+            class="pa-0 contacts-action justify-center font-weight-regular"
             :style="getUseContactsActionFont"
           >
             {{ $t('contact.preTitleShort') }}
@@ -84,14 +84,14 @@
       </v-col>
       <v-col sm="1"></v-col>
     </v-row>
-    <v-row justify="center">
+    <v-row justify="center" v-show="arrowDown()">
       <v-btn
         icon
         color="white"
         @click="scollToContent"
         class="scroll-bottom-icon"
       >
-        <v-icon size="50">mdi-chevron-down</v-icon>
+        <v-icon size="50" class="icon-down">mdi-chevron-double-down</v-icon>
       </v-btn>
     </v-row>
   </v-row>
@@ -102,7 +102,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
 
 @Component({
-  props: ['title', 'subtitle', 'description'],
+  props: ['title', 'subtitle', 'description', 'iconDown'],
 })
 export default class PreviewPage extends Vue {
   @Getter('getPageByRoute') getPageByRoute;
@@ -163,7 +163,9 @@ export default class PreviewPage extends Vue {
       fontSize: `${this.getCommonAdaptiveFontSize('useContactsAction')}px`,
     };
   }
-
+	arrowDown(){
+		return this.iconDown;
+	}
   mounted() {
     // initial check
     this.handleScroll();
@@ -173,7 +175,7 @@ export default class PreviewPage extends Vue {
 
 <style lang="sass">
 .preview-section
-	height: 100vh
+	height: 97vh !important
 
 	.use-contacts-container
 		width: 100vw
@@ -191,8 +193,9 @@ export default class PreviewPage extends Vue {
 			text-decoration: underline
 
 .preview-wrapper
-	height: 60vh
+	height: 70vh
 	color: white
+	margin-bottom: 10vh
 
 .arrow
 	font-size: 1.8rem
@@ -214,8 +217,20 @@ export default class PreviewPage extends Vue {
 .squareThree
 	clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
 
-.scroll-bottom-icon
+.scroll-bottom-icon 
+	position: absolute
+	top: 90vh
 	z-index: 10
+	opacity: 0.5
+	border-radius: 50%
+	border: 1px solid rgba(255, 255, 255, 0.5)
+	padding: 30px
+
+.icon-down 
+	position: absolute
+	top: 50%
+	transform: translateY(-50%)
+
 .rotate
 	transform: rotate(90deg)
 .gray

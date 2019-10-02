@@ -1,16 +1,18 @@
 <template>
-  <v-container>
+  <v-container class="py-0">
+  <v-row justify="center">
+  <v-col cols="12" sm="10">
     <v-window v-model="curStage" continuous dark>
       <v-window-item>
-        <v-row justify="center">
-          <v-col cols="10" md="12">
+        <!-- <v-row justify="center">
+          <v-col cols="12">
             <v-row
               class="slide-container"
               justify="space-around"
               align="end"
               align-sm="start"
             >
-              <v-col cols="12" order="1" order-sm="1">
+              <v-col cols="12" align-self="end">
                 <div class="d-none d-sm-block">
                   <p class="font-weight-bold" :style="getPreviewTitleFont">
                     {{ about.previewTitle }}
@@ -25,7 +27,7 @@
                   </p>
                 </div>
               </v-col>
-              <v-col cols="12" order="3" order-sm="2">
+              <v-col cols="12" align-self="center">
                 <v-row justify="space-around" justify-sm="start">
                   <v-col cols="auto" order="1" order-sm="1">
                     <div
@@ -35,7 +37,7 @@
                       &#8592;
                     </div>
                   </v-col>
-                  <v-col cols="auto" order="3" order-sm="2">
+                  <v-col cols="auto">
                     <div class="arrow mr-3" @click="handleNavigatingPage(true)">
                       &#8594;
                     </div>
@@ -55,7 +57,7 @@
                 </v-row>
               </v-col>
 
-              <v-col cols="12" order="2" order-sm="3">
+              <v-col cols="12" align-self="start">
                 <v-row class="d-none d-sm-flex">
                   <span :style="getPreviewSubTitleFont">
                     {{ about.previewSubtitle }}
@@ -72,28 +74,46 @@
               </v-col>
             </v-row>
           </v-col>
-        </v-row>
+        </v-row> -->
+
+                <PreviewPage
+                  :title="about.previewTitle"
+                  cols="12"
+                  sm="9"
+                  :subtitle="about.previewSubtitle"
+                  :description="about.previewDescription"
+                  :icon-down="false"
+                />
+
+
       </v-window-item>
 
       <v-window-item v-for="(slide, index) in about.slides" :key="index">
         <v-row justify="center" align="center" class="slide-container">
-          <v-col cols="12" sm="10" md="8">
-            <v-row
-              class="font-weight-bold ma-2 white--text"
-              :style="getSlideTitleFont"
-            >
-              {{ slide.title }}
+          <v-col cols="12">
+            <v-row>
+              <v-col col="12">
+                <div
+                  class="font-weight-bold ma-2 white--text"
+                  :style="getSlideTitleFont"
+                  >
+                  Student centr of information technology
+                </div>
+                <div class="px-8 py-12 slide-content font-weight-light" :style="getSlideContentFont">
+                  {{ slide }}
+                </div>
+              </v-col>
             </v-row>
-            <div class="px-8 py-12 slide-content" :style="getSlideContentFont">
-              {{ slide.content }}
-            </div>
           </v-col>
         </v-row>
       </v-window-item>
-      <v-window-item> </v-window-item>
+      <v-window-item class="slide-container"></v-window-item>
     </v-window>
+  </v-col>
+  </v-row>
+
     <p
-      class="d-none d-md-block slogan"
+      class="d-none d-md-block slogan font-weight-light"
       :class="isLgAndUp ? 'slogan-lg' : 'slogan-md'"
     >
       {{ $t('about.tagLine') }}
@@ -135,17 +155,24 @@
         </v-col>
       </v-row>
     </v-footer>
+    
   </v-container>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
+
+import PreviewPage from '@/components/preview-page.vue';
+
 @Component({
   layout: 'immediate',
   head: {
     title: 'About us',
   },
+  components: {
+    PreviewPage,
+  }
 })
 export default class AboutPage extends Vue {
   @Getter('getAboutStage') about;
@@ -182,7 +209,7 @@ export default class AboutPage extends Vue {
   get getSlideContentFont() {
     return {
       fontSize: `${this.getCustomAdaptiveFontSize({
-        xs: 10,
+        xs: 15,
         sm: 20,
         md: 20,
         lg: 30,
@@ -236,70 +263,71 @@ export default class AboutPage extends Vue {
 
 <style lang="sass">
 .slider
-  .v-slider__tick
-    border-radius: 50%
-    background: #363636
+	.v-slider__tick
+		border-radius: 50%
+		background: #363636
 
-  .v-slider__tick--filled
-    background: white
+	.v-slider__tick--filled
+		background: white
 
 .preview-section
-  height: 100vh
+	height: 100vh
 
 .slide-container
-  height: 60vh
-  color: white
+	height: 60vh
+	color: white
 
 .arrow
-  font-size: 1.8rem
-  text-align: center
-  cursor: pointer
+	font-size: 1.8rem
+	text-align: center
+	cursor: pointer
 
 .square-container
-  display: flex
+	display: flex
 
 .square
-  height: 40px
-  width: 40px
-  border-radius: 20%
-  border: 2px solid white
+	height: 40px
+	width: 40px
+	border-radius: 20%
+	border: 2px solid white
 
 .squareOne
-  clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)
+	clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)
 
 .squareThree
-  clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
+	clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
 
 .slide-content
-  border: 5px solid white
-  border-right: 16px solid white
-  color: white
-  position: relative
+	border: 5px solid white
+	border-right: 16px solid white
+	background-color: rgba(78, 79, 80, 0.3)
+	color: white
+	position: relative
 
 .use-contacts-container
-  width: auto
-  border-bottom-left-radius: 0
-  border-bottom-right-radius: 0
+	width: auto
+	border-bottom-left-radius: 0
+	border-bottom-right-radius: 0
 
 .contacts-action
-  text-transform: uppercase
-  text-decoration: underline
+	text-transform: uppercase
+	text-decoration: underline
 
 .slogan
-  position: fixed
-  right: 2vw
-  color: white
-  writing-mode: vertical-rl
-  transform: scaleX(-1) scaleY(-1)
+	position: fixed
+	right: 2vw
+	color: white
+	writing-mode: vertical-rl
+	transform: scaleX(-1) scaleY(-1)
 
 .slogan-md
-  top: calc(50vh - 163px)
-  font-size: 30px
+	top: calc(50vh - 163px)
+	font-size: 30px
 
 .slogan-lg
-  top: calc(50vh - 272px)
-  font-size: 50px
+	top: calc(50vh - 272px)
+	font-size: 50px
 
 .rotate
-  transform: rotate(90deg)
+	transform: rotate(90deg)
 </style>

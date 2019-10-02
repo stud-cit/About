@@ -1,6 +1,8 @@
 <template>
   <v-row justify="center" align="end" class="footer-section">
+
     <v-col cols="10" class="d-flex ">
+
       <v-row
         justify="center"
         align="center"
@@ -14,7 +16,7 @@
         </p>
       </v-row>
 
-      <v-col cols="12" :class="isSmAndDown ? 'sqsMob' : 'sqs'">
+      <v-col cols="12" class="mt-12" :class="isSmAndDown ? 'sqsMob' : 'sqs'">
         <p :style="getTagLineFont" class=" ">{{ $t('about.tagLine') }}</p>
       </v-col>
     </v-col>
@@ -89,14 +91,14 @@ export default class PruductFooter extends Vue {
 
 .sqs
     position: absolute
-    top: 50vh
     font-weight: bold
     font-style: normal
+    z-index: 16
 
 
 .sqsMob
   position: absolute
-  top: 70vh
+  z-index: 16
   font-weight: bold
   font-style: normal
 
