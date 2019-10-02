@@ -9,17 +9,11 @@
         class="return-section d-lg-none flex-column"
         @click="scollTop"
       >
-        <!-- TODO: add icon -->
         <p class="arrowUp">&#8593;</p>
         <p :class="isSmAndUp ? 'text-sm' : 'text-xs'">
           {{ $t('weOffers.backToTop') }}
         </p>
       </v-row>
-
-			<!-- FIXME: fix positioning this tag line -->
-      <v-col cols="12" class="mt-xs-12 d-none" :class="isSmAndDown ? 'sqsMob' : 'sqs'">
-        <p :style="getTagLineFont">{{ $t('about.tagLine') }}</p>
-      </v-col>
     </v-col>
     <p class="d-none d-lg-block rotated-return-bar" @click="scollTop">
       {{ $t('weOffers.backToTop') }}
@@ -49,19 +43,6 @@ export default class PruductFooter extends Vue {
   get isSmAndDown(){
      return this.$breakpoint ? this.$breakpoint.is.sm : false;
   }
-
-  get getTagLineFont() {
-    return {
-      fontSize: `${this.getCustomAdaptiveSize({
-        xs: 25,
-        sm: 50,
-        md: 65,
-        lg: 85,
-      })}px`,
-    };
-  }
-
-
 }
 </script>
 
@@ -83,24 +64,11 @@ export default class PruductFooter extends Vue {
     p
         color: #696969
 
-
     .text-sm
         font-size: 30px
 
     .text-xs
         font-size: 25px
-
-.sqs
-  position: absolute
-  font-weight: normal
-  font-style: normal
-  top: 54%
-
-.sqsMob
-  position: absolute
-  font-weight: bold
-  font-style: normal
-  top: 69.5vh
 
 .rotated-return-bar
     position: absolute

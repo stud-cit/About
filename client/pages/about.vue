@@ -38,11 +38,22 @@
   </v-col>
   </v-row>
     <p
-      class="d-none d-md-block slogan font-weight-light"
-      :class="isLgAndUp ? 'slogan-lg' : 'slogan-md'"
+      class="d-none d-md-block rotated-phraze font-weight-light"
+      :class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
+			v-if="curStage <= about.slides.length"
     >
       {{ $t('about.tagLine') }}
     </p>
+		<p
+      class="d-none d-md-block font-weight-light rotated-phraze pointer"
+      :class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
+			v-if="curStage > about.slides.length"
+			@click="backToStart"
+    >
+      {{ $t('about.backToStart') }}
+    </p>
+
+
     <v-footer absolute color="transparent" class="pb-0 px-0 px-sm-auto">
       <v-row justify="center">
         <v-col sm="10" md="12" class="pb-0">
@@ -111,7 +122,11 @@ export default class AboutPage extends Vue {
     const newPageIndex = toRight ? this.pageId + 1 : this.pageId - 1;
     const nextPage = this.getPageRouteById(newPageIndex);
     this.$router.push(nextPage);
-  }
+	}
+	backToStart() {
+		this.curStage = 0;
+		this.changeContactBar(false);
+	}
 
   get isXsOnly() {
     return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
@@ -167,21 +182,25 @@ export default class AboutPage extends Vue {
     if (value === this.about.slides.length + 1) {
       this.changeContactBar(true);
     }
-  }
+	}
 
   @Watch('isShowContactBar')
   onChangeContactBar(curValue: boolean, prevValue: boolean) {
     // when we close contact bar - show prev stage
     if (prevValue === true) {
       this.curStage = this.curStage - 1;
-    }
+		}
+		else {
+			this.curStage = this.about.slides.length + 1;
+		}
   }
 
   created() {
     this.changePageId(1);
   }
-
-  mounted() {}
+	beforeDestroy() {
+		this.changeContactBar(false);
+	}
 }
 </script>
 
@@ -237,21 +256,24 @@ export default class AboutPage extends Vue {
 	text-transform: uppercase
 	text-decoration: underline
 
-.slogan
+.rotated-phraze
 	position: fixed
 	right: 2vw
 	color: white
 	writing-mode: vertical-rl
 	transform: scaleX(-1) scaleY(-1)
 
-.slogan-md
+.rotated-phraze-md
 	top: calc(50vh - 163px)
 	font-size: 30px
 
-.slogan-lg
+.rotated-phraze-lg
 	top: calc(50vh - 272px)
 	font-size: 50px
 
 .rotate
 	transform: rotate(90deg)
+
+.pointer
+	cursor: pointer
 </style>
