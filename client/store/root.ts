@@ -27,7 +27,7 @@ export const state = (): State => ({
     },
     {
       id: 2,
-      title: 'Offers',
+      title: 'We Offers',
       to: 'offers',
       img: '/images/background/offers.png',
       lazyImg: 'https://picsum.photos/id/3/60',

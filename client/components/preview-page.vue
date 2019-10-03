@@ -1,9 +1,9 @@
 <template>
-  <v-row class="preview-section" justify="center" :align="isAbout ? 'center' : 'end'">
+  <v-row class="preview-section" justify="center" align="end">
     <v-row class="preview-wrapper" justify="space-around" align="end">
-      <v-col cols="12" order="1" order-sm="1">
+      <v-col cols="12" order="1" order-sm="1" :class="isXsOnly ? 'text-center' : ''">
         <div class="d-none d-sm-block">
-          <p class="font-weight-bold" :style="getPreviewTitleFont">
+          <p class="font-weight-bold" :class="isAbout ? 'text-uppercase' : ''" :style="getPreviewTitleFont">
             {{ title }}
           </p>
           <p class="font-weight-bold" :style="getPreviewTitleFont">
@@ -11,10 +11,10 @@
           </p>
         </div>
         <div class="d-block d-sm-none">
-          <p class="font-weight-bold text-center" :style="getPreviewTitleFont">
+          <p class="font-weight-bold" :class="isAbout ? 'text-uppercase' : ''" :style="getPreviewTitleFont">
             {{ title }}
           </p>
-          <p class="font-weight-bold text-center" :style="getPreviewTitleFont">
+          <p class="font-weight-bold" :style="getPreviewTitleFont">
             {{ subtitle }}
           </p>
         </div>
@@ -23,12 +23,12 @@
         <v-row justify="space-around" justify-sm="start">
           <v-col cols="auto" order="1" order-sm="1">
             <div class="arrow mr-3" @click="handleNavigatingPage(false)">
-              &#8592;
+              <v-img src="/arrow-left.svg" width="45px" />
             </div>
           </v-col>
           <v-col cols="auto" order="3" order-sm="2">
             <div class="arrow mr-3" @click="handleNavigatingPage(true)">
-              &#8594;
+              <v-img src="/arrow-right.svg" width="45px" />
             </div>
           </v-col>
           <v-col
@@ -143,7 +143,17 @@ export default class PreviewPage extends Vue {
     return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
   }
   get getPreviewTitleFont() {
-    return { fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px` };
+    if (!this.isAbout){
+      return { fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px` };
+    } else {
+      return { fontSize:  `${this.getCustomAdaptiveSize({
+        xs: 35,
+        sm: 65,
+        md: 85,
+        lg: 100,
+      })}px`
+      };
+    }
   }
   get getPreviewSubTitleFont() {
     return {
@@ -195,7 +205,7 @@ export default class PreviewPage extends Vue {
 .preview-wrapper
 	height: 70vh
 	color: white
-	margin-bottom: 10vh
+	margin-bottom: 12vh
 
 .arrow
 	font-size: 1.8rem

@@ -30,8 +30,8 @@
                     >
                       0{{ ++i }}
                     </span>
-                    <span class="font-weight-bold" :style="getSlideTitleFont">
-                      {{ page.title }}
+                    <span class="font-weight-bold text-uppercase" :style="getSlideTitleFont">
+                      {{ page.title }}.
                     </span>
                   </v-row>
                 </v-card-title>
@@ -114,20 +114,20 @@ export default class HomePage extends Vue {
   get getSlideTitleFont() {
     return {
       fontSize: `${this.getCustomAdaptiveSize({
-        xs: 40,
-        sm: 31,
-        md: 31,
-        lg: 60,
+        xs: 45,
+        sm: 55,
+        md: 60,
+        lg: 80,
       })}px`,
     };
   }
   get getSlideNumberFont() {
     return {
       fontSize: `${this.getCustomAdaptiveSize({
-        xs: 20,
-        sm: 14,
-        md: 14,
-        lg: 32,
+        xs: 30,
+        sm: 35,
+        md: 45,
+        lg: 60,
       })}px`,
     };
   }

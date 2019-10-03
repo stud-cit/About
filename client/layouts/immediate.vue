@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar id="header" class="pt-3 pt-lg-4" color="transparent" app dark flat>
+    <v-app-bar id="header" class="pt-3 pt-lg-4 mt-3" color="transparent" app dark flat>
 			<v-row justify="space-between" align="center">
 				<v-col cols="3" class="pa-0 pa-sm-3">
 					<figure class="breakpoint">
@@ -74,7 +74,7 @@
       transition="dialog-bottom-transition"
       scrollable
     >
-      <v-btn @click="toggleVisibilityMobileMenu" icon large fixed right>
+      <v-btn @click="toggleVisibilityMobileMenu" class="mt-5" icon large fixed right>
         <v-icon size="50" color="black">
           mdi-close
         </v-icon>
@@ -83,7 +83,7 @@
         <v-list-item-group class="pages-list">
           <v-list-item v-for="(page, index) in pages" class="px-0" :key="index">
             <v-btn
-              class="text-center display-2 page-link"
+              class="text-center display-3 page-link font-weight-bold"
               exact-active-class="page-link-active"
               @click="toggleVisibilityMobileMenu()"
               :to="page.to"
@@ -129,7 +129,6 @@ export default class ImmediatetLayout extends Vue {
       })}px`,
     };
   }
-
   get getTotalPagesFont() {
     return {
       fontSize: `${this.getCustomAdaptiveSize({
@@ -140,7 +139,6 @@ export default class ImmediatetLayout extends Vue {
       })}px`,
     };
   }
-
   isShowMobileMenu: boolean = false;
 
   toggleVisibilityMobileMenu() {
@@ -171,7 +169,7 @@ export default class ImmediatetLayout extends Vue {
 
 .page-info
 	position: fixed
-	top: 8vh
+	top: 9vh
 	z-index: 5
 	color: white
 	.total-pages

@@ -72,7 +72,7 @@
 											color="white"
 											class="scroll-icon-left"
 										>
-											<v-icon size="200" @click="() => switchSlide(false)">mdi-chevron-left</v-icon>
+                      <v-img src="/arrow-point-to-left.svg" width="200" @click="() => switchSlide(false)"/>
 										</v-btn>
                     <div class="employee-name my-3 font-weight-thin" :style="getStaffNameFont">
                       {{ person.name }}
@@ -94,7 +94,7 @@
 											color="white"
 											class="scroll-icon-right"
 										>
-											<v-icon size="200" @click="() => switchSlide(true)">mdi-chevron-right</v-icon>
+											<v-img src="/arrow-point-to-right.svg" width="200" @click="() => switchSlide(true)"/>
 										</v-btn>
                   </div>
                 </v-card>
@@ -244,14 +244,10 @@ export default class OurStaffPage extends Vue {
 .scroll-icon-left
   opacity: 0.5
   position: absolute
-  top: 50%
   left: 5%
-  transform: translateY(-50%)
 
 .scroll-icon-right
   opacity: 0.5
   position: absolute
-  top: 50%
   right: 5%
-  transform: translateY(-50%)
 </style>

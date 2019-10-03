@@ -1,6 +1,6 @@
 <template>
   <v-app class="app">
-    <v-app-bar app flat class="pt-6 mt-sm-12 app-bar">
+    <v-app-bar app flat class="pt-6 mt-sm-12 mb-3 app-bar">
       <v-row justify="center">
         <v-col cols="10">
           <v-row justify="space-between">
@@ -12,7 +12,7 @@
                 >
                   {{ $t('home.title') }}
                 </p>
-                <p class="grey--text mb-0" :style="getPageSubTitleFont">
+                <p class="grey--text mb-0 font-weight-bold" :style="getPageSubTitleFont">
                   {{ $t('home.preTitle') }}
                 </p>
               </v-toolbar-title>
@@ -24,19 +24,22 @@
                 transition="slide-x-reverse-transition"
               >
                 <template v-slot:activator>
-                  <v-btn v-model="changeLocale" outlined icon>
-                    <v-icon v-if="changeLocale">mdi-close</v-icon>
+                  <v-btn v-model="changeLocale" outlined icon class="font-weight-bold" color="black">
+                    <v-icon v-if="changeLocale" size="50">mdi-close</v-icon>
                     <span v-else>{{ $i18n.locale }}</span>
                   </v-btn>
                 </template>
-                <v-btn
-                  v-for="(locale, i) in availableLocales()"
-                  v-text="locale.code"
-                  :key="i"
-                  :to="switchLocalePath(locale.code)"
-                  icon
-                />
-                <v-divider vertical />
+                  <v-btn
+                    v-for="(locale, i) in availableLocales()"
+                    v-text="locale.code"
+                    :key="i"
+                    :to="switchLocalePath(locale.code)"
+                    icon
+                    class="font-weight-bold"
+                    size="45"
+                    color="black"
+                    
+                  />
               </v-speed-dial>
             </v-col>
           </v-row>
@@ -54,7 +57,7 @@
       @click="toggleVisibilityLocales"
       icon
     >
-      <v-icon size="25" color="black">mdi-menu</v-icon>
+      <v-icon size="30" color="black">mdi-menu</v-icon>
     </v-btn>
 
     <v-bottom-sheet v-model="isShowMobileLocales">
@@ -65,7 +68,7 @@
           icon
           large
         >
-          <v-icon size="30" color="black">
+          <v-icon size="50" color="black">
             mdi-close
           </v-icon>
         </v-btn>
@@ -105,9 +108,9 @@ export default class PreliminaryLayout extends Vue {
   get getPageTitleFont() {
     return {
       fontSize: `${this.getCustomAdaptiveSize({
-        xs: 12,
+        xs: 20,
         sm: 20,
-        md: 20,
+        md: 25,
         lg: 30,
       })}px`,
     };
@@ -115,10 +118,10 @@ export default class PreliminaryLayout extends Vue {
   get getPageSubTitleFont() {
     return {
       fontSize: `${this.getCustomAdaptiveSize({
-        xs: 10,
+        xs: 16,
         sm: 20,
-        md: 15,
-        lg: 25,
+        md: 22,
+        lg: 28,
       })}px`,
     };
   }
@@ -126,6 +129,7 @@ export default class PreliminaryLayout extends Vue {
   toggleVisibilityLocales() {
     this.isShowMobileLocales = !this.isShowMobileLocales;
   }
+
 }
 </script>
 
@@ -192,4 +196,8 @@ export default class PreliminaryLayout extends Vue {
 
   .active-locale span
     font-weight: bold
+
+.lang-up
+  position: absolute
+  top: -15px
 </style>

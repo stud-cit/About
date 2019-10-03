@@ -23,7 +23,9 @@
                   <v-list-item-content>
                     <v-list-item-title
                       v-text="project.title"
-                      class="ma-5 display-3 text-underline text-wrap"
+                      class="ma-5 font-weight-medium text-underline text-wrap"
+                      :class="isMdAndUp ? '' : 'text-center'"
+                      :style="getTitleFontProject"
                     />
                     <v-divider />
                   </v-list-item-content>
@@ -41,13 +43,12 @@
                 <span class="headline d-none d-md-block">{{
                   $t('portfolio.link')
                 }}</span>
-                <v-icon
-                  class="arrow-right"
-                  color="white"
-                  :class="isMdAndUp ? 'display-3' : 'display-4'"
-                >
-                  mdi-chevron-right
-                </v-icon>
+                <div class="arrow-right">
+                  <v-img
+                    src="/arrow-point-to-right.svg"
+                    :width="isMdAndUp ? '50px' : '75px'"
+                  />
+                </div>
               </v-btn>
             </v-col>
           </v-row>
@@ -83,6 +84,16 @@ export default class PortfolioPage extends Vue {
   created() {
     this.changePageId(4);
   }
+  get getTitleFontProject() {
+      return { fontSize:  `${this.getCustomAdaptiveSize({
+        xs: 40,
+        sm: 50,
+        md: 60,
+        lg: 65,
+      })}px`
+      };
+  }
+
 }
 </script>
 
@@ -91,7 +102,6 @@ export default class PortfolioPage extends Vue {
   height: 75vh !important
   width: 101vw !important
   .section
-    background: rgba(0,0,0,0.7)
 
     .text-underline
       line-height: normal
@@ -100,7 +110,7 @@ export default class PortfolioPage extends Vue {
 
 .arrow-right
   border-radius: 50%
-  color: white
-  border: 1px solid white
+  padding: 25px
   margin: 10px
+  border: 1px solid white
 </style>
