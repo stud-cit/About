@@ -15,8 +15,8 @@
 					</v-window-item>
 
 					<v-window-item v-for="(slide, index) in about.slides" :key="index">
-						<v-row justify="center" align="center" class="slide-container">
-							<v-col cols="12">
+						<v-row justify="start" align="center" class="slide-container">
+							<v-col cols="12" md="9" >
 								<v-row>
 									<v-col col="12">
 										<div
@@ -26,10 +26,10 @@
 											Student centr of information technology
 										</div>
 										<div
-											class="px-8 py-12 slide-content font-weight-light"
+											class="px-12 px-md-12 px-xs-8 py-12 slide-content font-weight-light"
 											:style="getSlideContentFont"
 										>
-											{{ slide }}
+											<p class="py-md-12">{{ slide }}</p>
 										</div>
 									</v-col>
 								</v-row>

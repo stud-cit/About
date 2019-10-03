@@ -185,6 +185,8 @@ export default class ImmediatetLayout extends Vue {
 	top: 8vh
 	z-index: 5
 	color: white
+	font-weight: bold
+	font-style: italic
 
 	.total-pages
 		vertical-align: super

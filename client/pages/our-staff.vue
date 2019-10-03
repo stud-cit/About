@@ -83,7 +83,7 @@
 											{{ person.name }}
 										</div>
 										<div
-											class="employee-position-short font-weight-regular"
+											class="employee-position-short font-weight-regular d-none"
 											:style="getStaffPositionFont"
 										>
 											{{ person.position }}
@@ -169,7 +169,7 @@ export default class OurStaffPage extends Vue {
 	get getStaffNameFont() {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 25,
+				xs: 30,
 				sm: 40,
 				md: 20,
 				lg: 30,
@@ -179,7 +179,7 @@ export default class OurStaffPage extends Vue {
 	get getStaffPositionFont() {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 12,
+				xs: 15,
 				sm: 27,
 				md: 12,
 				lg: 25,

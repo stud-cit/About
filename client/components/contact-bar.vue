@@ -42,7 +42,7 @@
 						<v-row align="center" justify="space-between">
 							<v-col cols="6" sm="7">
 								<v-row
-									class=" underline mb-4 d-none d-sm-flex"
+									class=" underline mb-4 d-none d-sm-flex fontEmailPhone"
 									justify="space-between"
 								>
 									<v-col cols="auto" :style="getCreadentialsFont">
@@ -54,14 +54,14 @@
 								</v-row>
 								<v-col
 									cols="12"
-									class="font-weight-bold px-0 py-0 py-sm-2"
+									class="font-weight-bold px-0 py-0 "
 									:style="getLocationFont"
 								>
 									{{ contacts.street }}
 								</v-col>
 								<v-col
 									cols="12"
-									class="font-weight-bold px-0 py-0 py-sm-2"
+									class="font-weight-bold px-0 py-0 "
 									:style="getLocationFont"
 								>
 									{{ contacts.office }}
@@ -102,7 +102,7 @@ export default class ContactBar extends Vue {
 				xs: 12,
 				sm: 14,
 				md: 14,
-				lg: 22,
+				lg: 25,
 			})}px`,
 		};
 	}
@@ -148,6 +148,10 @@ export default class ContactBar extends Vue {
 	.contact-bar-section
 		background: white
 		color: black
+
+.fontEmailPhone
+	font-weight: 600
+	font-style: normal
 
 .slogan
 	position: relative

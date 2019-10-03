@@ -23,7 +23,7 @@
 									<v-list-item-content>
 										<v-list-item-title
 											v-text="project.title"
-											class="ma-5 display-3 text-underline text-wrap"
+											class="ma-5 display-3 text-center text-underline text-wrap"
 										/>
 										<v-divider />
 									</v-list-item-content>

@@ -24,7 +24,7 @@
 								transition="slide-x-reverse-transition"
 							>
 								<template v-slot:activator>
-									<v-btn v-model="changeLocale" outlined icon>
+									<v-btn v-model="changeLocale" icon class="borderBut">
 										<v-icon v-if="changeLocale">mdi-close</v-icon>
 										<span v-else>{{ $i18n.locale }}</span>
 									</v-btn>
@@ -142,6 +142,10 @@ export default class PreliminaryLayout extends Vue {
     .v-toolbar__content
       width: 100vw
       padding-bottom: 0
+
+.borderBut
+  border-radius: 50%
+  border: 2px solid #4A4A4A
 
 .mobile-icon
   background: white
