@@ -1,5 +1,6 @@
 export default {
     about: {
+				backToStart: 'Back to start',
         swipe: 'Swipe for more information',
         tagLine: 'Speed, quality, simplicity',
     },
@@ -19,7 +20,7 @@ export default {
         link: 'View Case Study',
     },
     weOffers: {
-        backToTop: 'Back to the top',
+				backToTop: 'Back to the top',
         scroll: 'Scroll for, more information',
     },
 };

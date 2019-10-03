@@ -55,7 +55,9 @@
         </v-parallax>
       </v-row>
     </v-col>
+    <product-footer />
   </v-container>
+
 </template>
 
 <script lang="ts">
@@ -63,20 +65,22 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
 
 import PreviewPage from '@/components/preview-page.vue';
+import PruductFooter from '@/components/product-footer.vue';
 
 @Component({
-  layout: 'immediate',
-  head: {
-    title: 'Portfolio',
-  },
-  components: {
-    PreviewPage,
-  },
+	layout: 'immediate',
+	head: {
+		title: 'Portfolio',
+	},
+	components: {
+		PreviewPage,
+		'product-footer': PruductFooter,
+	},
 })
 export default class PortfolioPage extends Vue {
-  @Getter('getProjectsStage') projects;
-  @Getter('getPortfolioStage') portfolio;
-  @Mutation('changePageId') changePageId;
+	@Getter('getProjectsStage') projects;
+	@Getter('getPortfolioStage') portfolio;
+	@Mutation('changePageId') changePageId;
 
   get isMdAndUp() {
     return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
@@ -93,13 +97,12 @@ export default class PortfolioPage extends Vue {
       })}px`
       };
   }
-
 }
 </script>
 
 <style lang="sass">
 .fullscreen
-  height: 75vh !important
+  height: 80vh !important
   width: 101vw !important
   .section
 

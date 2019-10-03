@@ -129,7 +129,6 @@ export default class PreliminaryLayout extends Vue {
   toggleVisibilityLocales() {
     this.isShowMobileLocales = !this.isShowMobileLocales;
   }
-
 }
 </script>
 
@@ -146,6 +145,10 @@ export default class PreliminaryLayout extends Vue {
     .v-toolbar__content
       width: 100vw
       padding-bottom: 0
+
+.borderBut
+  border-radius: 50%
+  border: 2px solid #4A4A4A
 
 .mobile-icon
   background: white

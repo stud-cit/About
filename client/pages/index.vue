@@ -82,32 +82,30 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Getter } from 'vuex-class';
 
 @Component({
-  layout: 'preliminary',
-  head: {
-    title: 'Home',
-  },
+	layout: 'preliminary',
+	head: {
+		title: 'Home',
+	},
 })
 export default class HomePage extends Vue {
-  @Getter('getPageStage') pages;
-  isShowSwiper: boolean = false;
-  swiperOption = {
-    mousewheel: true,
-    centeredSlides: true,
-    slidesPerView: 'auto',
-    spaceBetween: 100,
-  };
+	@Getter('getPageStage') pages;
+	isShowSwiper: boolean = false;
+	swiperOption = {
+		mousewheel: true,
+		centeredSlides: true,
+		slidesPerView: 'auto',
+		spaceBetween: 100,
+	};
 
-  showSwiper() {
-    if (!this.$nuxt.$store.state.isShowLoader) {
-    	this.isShowSwiper = true;
-		}
-		else {
+	showSwiper() {
+		if (!this.$nuxt.$store.state.isShowLoader) {
+			this.isShowSwiper = true;
+		} else {
 			setTimeout(() => {
 				this.isShowSwiper = true;
 			}, 250);
 		}
-  }
-
+	}
   get isMdAndDown() {
     return this.$breakpoint ? this.$breakpoint.is.mdAndDown : false;
   }
@@ -132,12 +130,12 @@ export default class HomePage extends Vue {
     };
   }
 
-  mounted() {
-    this.showSwiper();
-  }
+	mounted() {
+		this.showSwiper();
+	}
 
-  imagePageGradient: string =
-    'to top right, rgba(115, 115, 115, .33), rgba(32, 32, 72, .7)';
+	imagePageGradient: string =
+		'to top right, rgba(115, 115, 115, .33), rgba(32, 32, 72, .7)';
 }
 </script>
 

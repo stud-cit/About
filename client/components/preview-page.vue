@@ -95,6 +95,7 @@
       </v-btn>
     </v-row>
   </v-row>
+
 </template>
 
 <script lang="ts">
@@ -102,45 +103,73 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
 
 @Component({
-  props: ['title', 'subtitle', 'description', 'iconDown', 'isAbout'],
+	props: ['title', 'subtitle', 'description', 'iconDown','isAbout'],
 })
 export default class PreviewPage extends Vue {
-  @Getter('getPageByRoute') getPageByRoute;
-  @Getter('getPageId') pageId;
-  @Getter('getPageRouteById') getPageRouteById;
-  isShowUseContacts: boolean = true;
 
-  handleScroll(): void {
-    const windowHeight = window.innerHeight;
-    const scrollHeight = document.body.scrollHeight;
-    const scrollToFooter = scrollHeight - windowHeight * 2;
+	@Getter('getPageByRoute') getPageByRoute;
+	@Getter('getPageId') pageId;
+	@Getter('getPageRouteById') getPageRouteById;
+	isShowUseContacts: boolean = true;
+	aboutPageId = 1;
+	portfolioPageId = 4;
 
-    if (window.scrollY > scrollToFooter) {
-      this.isShowUseContacts = false;
-    } else {
-      this.isShowUseContacts = true;
-    }
-  }
+	handleScroll(): void {
+		const windowHeight = window.innerHeight;
+		const scrollHeight = document.body.scrollHeight;
+		const scrollToFooter = scrollHeight - windowHeight * 2;
+		const isPortolioPage = this.pageId === this.portfolioPageId;
 
-  scollToContent(): void {
-    window.scrollTo({ left: 0, top: window.innerHeight, behavior: 'smooth' });
-  }
-  scrollToFooter() {
-    window.scrollTo({
-      left: 0,
-      top: document.body.scrollHeight,
-      behavior: 'smooth',
-    });
-  }
+		// on porfolio page we have to hide if any scroll we have
+		if (isPortolioPage && window.scrollY > 0) {
+			this.isShowUseContacts = false;
+		} else if (window.scrollY > scrollToFooter) {
+			this.isShowUseContacts = false;
+		} else {
+			this.isShowUseContacts = true;
+		}
+	}
 
-  handleNavigatingPage(toRight: boolean) {
-    const newPageIndex = toRight ? this.pageId + 1 : this.pageId - 1;
-    const nextPage = this.getPageRouteById(newPageIndex);
-    this.$router.push(nextPage);
-  }
+	scollToContent(): void {
+		window.scrollTo({ left: 0, top: window.innerHeight, behavior: 'smooth' });
+	}
+	scrollToFooter() {
+		window.scrollTo({
+			left: 0,
+			top: document.body.scrollHeight,
+			behavior: 'smooth',
+		});
+	}
 
-  get isXsOnly() {
-    return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+	handleNavigatingPage(toRight: boolean) {
+		const newPageIndex = toRight ? this.pageId + 1 : this.pageId - 1;
+		const nextPage = this.getPageRouteById(newPageIndex);
+		this.$router.push(nextPage);
+	}
+
+	get isXsOnly() {
+		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+	}
+	get getPreviewTitleFont() {
+		return { fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px` };
+	}
+	get getPreviewSubTitleFont() {
+		return {
+			fontSize: `${this.getCommonAdaptiveFontSize('previewSubtitle')}px`,
+		};
+	}
+	get getPreviewInfoFont() {
+		return { fontSize: `${this.getCommonAdaptiveFontSize('previewInfo')}px` };
+	}
+	get getUseContactsTitleFont() {
+		return {
+			fontSize: `${this.getCommonAdaptiveFontSize('useContactsTitle')}px`,
+		};
+	}
+	get getUseContactsActionFont() {
+		return {
+			fontSize: `${this.getCommonAdaptiveFontSize('useContactsAction')}px`,
+		};
   }
   get getPreviewTitleFont() {
     if (!this.isAbout){
@@ -155,31 +184,13 @@ export default class PreviewPage extends Vue {
       };
     }
   }
-  get getPreviewSubTitleFont() {
-    return {
-      fontSize: `${this.getCommonAdaptiveFontSize('previewSubtitle')}px`,
-    };
-  }
-  get getPreviewInfoFont() {
-    return { fontSize: `${this.getCommonAdaptiveFontSize('previewInfo')}px` };
-  }
-  get getUseContactsTitleFont() {
-    return {
-      fontSize: `${this.getCommonAdaptiveFontSize('useContactsTitle')}px`,
-    };
-  }
-  get getUseContactsActionFont() {
-    return {
-      fontSize: `${this.getCommonAdaptiveFontSize('useContactsAction')}px`,
-    };
-  }
-	arrowDown(){
+	arrowDown() {
 		return this.iconDown;
 	}
-  mounted() {
-    // initial check
-    this.handleScroll();
-  }
+	mounted() {
+		// initial check
+		this.handleScroll();
+	}
 }
 </script>
 

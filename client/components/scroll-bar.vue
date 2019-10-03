@@ -1,11 +1,11 @@
 <template>
-  <div
-    class="d-none d-md-flex scrollbar-track"
-    v-if="visibility"
-    v-scroll="handleScroll"
-  >
-    <div class="scrollbar-thumb" :style="{ top: `${currScroll}%` }"></div>
-  </div>
+	<div
+		class="d-none d-md-flex scrollbar-track"
+		v-if="visibility"
+		v-scroll="handleScroll"
+	>
+		<div class="scrollbar-thumb" :style="{ top: `${currScroll}%` }"></div>
+	</div>
 </template>
 
 <script lang="ts">
@@ -13,30 +13,30 @@ import { Component, Vue, Watch } from 'vue-property-decorator';
 import { Mutation } from 'vuex-class';
 @Component
 export default class ScrollBar extends Vue {
-  el: 'scrollbar-track';
-  targ: 'scrollbar-thumb';
-  currScroll: number = 0;
-  visibility: boolean = true;
+	el: 'scrollbar-track';
+	targ: 'scrollbar-thumb';
+	currScroll: number = 0;
+	visibility: boolean = true;
 
-  handleScroll(): void {
+	handleScroll(): void {
 		const currentScroll = window.scrollY;
-    const windowHeight = window.innerHeight;
-    const scrollHeight = document.body.scrollHeight;
+		const windowHeight = window.innerHeight;
+		const scrollHeight = document.body.scrollHeight;
 		const scrollToFooter = scrollHeight - windowHeight * 2;
-    if (currentScroll > scrollToFooter) {
-      this.visibility = false;
-    } else {
-      this.visibility = true;
-      this.currScroll = (currentScroll / (scrollHeight - windowHeight)) * 100;
-    }
-  }
+		if (currentScroll > scrollToFooter) {
+			this.visibility = false;
+		} else {
+			this.visibility = true;
+			this.currScroll = (currentScroll / (scrollHeight - windowHeight)) * 100;
+		}
+	}
 
-  mounted() {
-    if (document.body.scrollHeight <= window.innerHeight) {
-      this.visibility = false;
-    }
-    this.handleScroll();
-  }
+	mounted() {
+		if (document.body.scrollHeight <= window.innerHeight) {
+			this.visibility = false;
+		}
+		this.handleScroll();
+	}
 }
 </script>
 
