@@ -1,3 +1,3 @@
 export interface EnvConfig {
-  [x: string]: string | undefined;
+	[x: string]: string | undefined;
 }

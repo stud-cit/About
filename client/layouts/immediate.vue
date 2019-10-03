@@ -1,12 +1,19 @@
 <template>
-  <v-app>
-    <v-app-bar id="header" class="pt-3 pt-lg-4" color="transparent" app dark flat>
+	<v-app>
+		<v-app-bar
+			id="header"
+			class="pt-3 pt-lg-4"
+			color="transparent"
+			app
+			dark
+			flat
+		>
 			<v-row class="mx-1 mx-sm-0" justify="center" align="center">
 				<v-col cols="12" sm="10" class="pa-0">
 					<v-row justify="space-between" align="center">
 						<v-col cols="auto" class="pa-0">
 							<nuxt-link to="/">
-								<v-img src="/logo.svg"/>
+								<v-img src="/logo.svg" />
 							</nuxt-link>
 						</v-col>
 						<v-spacer />
@@ -36,7 +43,7 @@
 								</v-col>
 							</v-row>
 						</v-col>
-						<v-spacer/>
+						<v-spacer />
 						<v-col cols="auto" class="pa-0">
 							<v-btn icon dark to="/" class="d-none d-md-flex">
 								<v-icon size="50">mdi-fullscreen-exit</v-icon>
@@ -52,7 +59,7 @@
 					</v-row>
 				</v-col>
 			</v-row>
-    </v-app-bar>
+		</v-app-bar>
 		<v-row class="mx-2 mx-sm-0 page-info" justify="start">
 			<v-col cols="auto" offset="0" offset-sm="1">
 				<p>
@@ -61,45 +68,45 @@
 				</p>
 			</v-col>
 		</v-row>
-    <v-img :src="getDynamicAssets(cover)" class="imageCover" />
+		<v-img :src="getDynamicAssets(cover)" class="imageCover" />
 
-    <v-content class="pt-0">
-      <v-container fluid class="fill-height pa-0">
-        <nuxt />
-        <contact-bar />
-      </v-container>
-    </v-content>
+		<v-content class="pt-0">
+			<v-container fluid class="fill-height pa-0">
+				<nuxt />
+				<contact-bar />
+			</v-container>
+		</v-content>
 
-    <v-dialog
-      v-model="isShowMobileMenu"
-      fullscreen
-      hide-overlay
-      transition="dialog-bottom-transition"
-      scrollable
-    >
-      <v-btn @click="toggleVisibilityMobileMenu" icon large fixed right>
-        <v-icon size="50" color="black">
-          mdi-close
-        </v-icon>
-      </v-btn>
-      <v-list id="pages-list-container">
-        <v-list-item-group class="pages-list">
-          <v-list-item v-for="(page, index) in pages" class="px-0" :key="index">
-            <v-btn
-              class="text-center display-2 page-link"
-              exact-active-class="page-link-active"
-              @click="toggleVisibilityMobileMenu()"
-              :to="page.to"
-              exact
-              nuxt
-            >
-              <span class="page-link-title">{{ page.title }}</span>
-            </v-btn>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-dialog>
-  </v-app>
+		<v-dialog
+			v-model="isShowMobileMenu"
+			fullscreen
+			hide-overlay
+			transition="dialog-bottom-transition"
+			scrollable
+		>
+			<v-btn @click="toggleVisibilityMobileMenu" icon large fixed right>
+				<v-icon size="50" color="black">
+					mdi-close
+				</v-icon>
+			</v-btn>
+			<v-list id="pages-list-container">
+				<v-list-item-group class="pages-list">
+					<v-list-item v-for="(page, index) in pages" class="px-0" :key="index">
+						<v-btn
+							class="text-center display-2 page-link"
+							exact-active-class="page-link-active"
+							@click="toggleVisibilityMobileMenu()"
+							:to="page.to"
+							exact
+							nuxt
+						>
+							<span class="page-link-title">{{ page.title }}</span>
+						</v-btn>
+					</v-list-item>
+				</v-list-item-group>
+			</v-list>
+		</v-dialog>
+	</v-app>
 </template>
 
 <script lang="ts">
@@ -108,47 +115,47 @@ import { Getter } from 'vuex-class';
 import ContactBar from '@/components/contact-bar.vue';
 
 @Component({
-  components: {
-    'contact-bar': ContactBar,
-  },
+	components: {
+		'contact-bar': ContactBar,
+	},
 })
 export default class ImmediatetLayout extends Vue {
-  @Getter('getPageByRoute') getPageByRoute;
-  @Getter('getPageId') pageId;
-  @Getter('getPageStage') pages;
-  @Getter('getPageCover') cover;
+	@Getter('getPageByRoute') getPageByRoute;
+	@Getter('getPageId') pageId;
+	@Getter('getPageStage') pages;
+	@Getter('getPageCover') cover;
 
-  get isLgAndUp() {
-    return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
+	get isLgAndUp() {
+		return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
 	}
 
-  get getPageIndexFont() {
-    return {
-      fontSize: `${this.getCustomAdaptiveSize({
-        xs: 25,
-        sm: 40,
-        md: 40,
-        lg: 45,
-      })}px`,
-    };
-  }
+	get getPageIndexFont() {
+		return {
+			fontSize: `${this.getCustomAdaptiveSize({
+				xs: 25,
+				sm: 40,
+				md: 40,
+				lg: 45,
+			})}px`,
+		};
+	}
 
-  get getTotalPagesFont() {
-    return {
-      fontSize: `${this.getCustomAdaptiveSize({
-        xs: 13,
-        sm: 20,
-        md: 20,
-        lg: 25,
-      })}px`,
-    };
-  }
+	get getTotalPagesFont() {
+		return {
+			fontSize: `${this.getCustomAdaptiveSize({
+				xs: 13,
+				sm: 20,
+				md: 20,
+				lg: 25,
+			})}px`,
+		};
+	}
 
-  isShowMobileMenu: boolean = false;
+	isShowMobileMenu: boolean = false;
 
-  toggleVisibilityMobileMenu() {
-    this.isShowMobileMenu = !this.isShowMobileMenu;
-  }
+	toggleVisibilityMobileMenu() {
+		this.isShowMobileMenu = !this.isShowMobileMenu;
+	}
 }
 </script>
 

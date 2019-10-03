@@ -1,93 +1,93 @@
 <template>
-  <v-app class="app">
-    <v-app-bar app flat class="pt-6 mt-sm-12 app-bar">
-      <v-row justify="center">
-        <v-col cols="10">
-          <v-row justify="space-between">
-            <v-col cols="auto">
-              <v-toolbar-title>
-                <p
-                  class="text-uppercase mb-0 font-weight-bold"
-                  :style="getPageTitleFont"
-                >
-                  {{ $t('home.title') }}
-                </p>
-                <p class="grey--text mb-0" :style="getPageSubTitleFont">
-                  {{ $t('home.preTitle') }}
-                </p>
-              </v-toolbar-title>
-            </v-col>
-            <v-col cols="auto" class="d-none d-sm-flex">
-              <v-speed-dial
-                v-model="changeLocale"
-                direction="left"
-                transition="slide-x-reverse-transition"
-              >
-                <template v-slot:activator>
-                  <v-btn v-model="changeLocale" outlined icon>
-                    <v-icon v-if="changeLocale">mdi-close</v-icon>
-                    <span v-else>{{ $i18n.locale }}</span>
-                  </v-btn>
-                </template>
-                <v-btn
-                  v-for="(locale, i) in availableLocales()"
-                  v-text="locale.code"
-                  :key="i"
-                  :to="switchLocalePath(locale.code)"
-                  icon
-                />
-                <v-divider vertical />
-              </v-speed-dial>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
-    </v-app-bar>
+	<v-app class="app">
+		<v-app-bar app flat class="pt-6 mt-sm-12 app-bar">
+			<v-row justify="center">
+				<v-col cols="10">
+					<v-row justify="space-between">
+						<v-col cols="auto">
+							<v-toolbar-title>
+								<p
+									class="text-uppercase mb-0 font-weight-bold"
+									:style="getPageTitleFont"
+								>
+									{{ $t('home.title') }}
+								</p>
+								<p class="grey--text mb-0" :style="getPageSubTitleFont">
+									{{ $t('home.preTitle') }}
+								</p>
+							</v-toolbar-title>
+						</v-col>
+						<v-col cols="auto" class="d-none d-sm-flex">
+							<v-speed-dial
+								v-model="changeLocale"
+								direction="left"
+								transition="slide-x-reverse-transition"
+							>
+								<template v-slot:activator>
+									<v-btn v-model="changeLocale" outlined icon>
+										<v-icon v-if="changeLocale">mdi-close</v-icon>
+										<span v-else>{{ $i18n.locale }}</span>
+									</v-btn>
+								</template>
+								<v-btn
+									v-for="(locale, i) in availableLocales()"
+									v-text="locale.code"
+									:key="i"
+									:to="switchLocalePath(locale.code)"
+									icon
+								/>
+								<v-divider vertical />
+							</v-speed-dial>
+						</v-col>
+					</v-row>
+				</v-col>
+			</v-row>
+		</v-app-bar>
 
-    <v-content class="pt-2">
-      <v-container fluid class="fill-height pa-0">
-        <nuxt />
-      </v-container>
-    </v-content>
-    <v-btn
-      class="d-flex d-sm-none mobile-icon burger-icon"
-      @click="toggleVisibilityLocales"
-      icon
-    >
-      <v-icon size="25" color="black">mdi-menu</v-icon>
-    </v-btn>
+		<v-content class="pt-2">
+			<v-container fluid class="fill-height pa-0">
+				<nuxt />
+			</v-container>
+		</v-content>
+		<v-btn
+			class="d-flex d-sm-none mobile-icon burger-icon"
+			@click="toggleVisibilityLocales"
+			icon
+		>
+			<v-icon size="25" color="black">mdi-menu</v-icon>
+		</v-btn>
 
-    <v-bottom-sheet v-model="isShowMobileLocales">
-      <div class="relative">
-        <v-btn
-          class="mobile-icon close-icon"
-          @click="toggleVisibilityLocales"
-          icon
-          large
-        >
-          <v-icon size="30" color="black">
-            mdi-close
-          </v-icon>
-        </v-btn>
-        <div class="half-round" />
-        <div class="locales-container">
-          <div class="locales-list">
-            <v-btn
-              v-for="(locale, i) in $i18n.locales"
-              :key="i"
-              :to="switchLocalePath(locale.code)"
-              class="locale-btn"
-              active-class="active-locale"
-              x-large
-              icon
-            >
-              <span class="locale">{{ locale.code }}</span>
-            </v-btn>
-          </div>
-        </div>
-      </div>
-    </v-bottom-sheet>
-  </v-app>
+		<v-bottom-sheet v-model="isShowMobileLocales">
+			<div class="relative">
+				<v-btn
+					class="mobile-icon close-icon"
+					@click="toggleVisibilityLocales"
+					icon
+					large
+				>
+					<v-icon size="30" color="black">
+						mdi-close
+					</v-icon>
+				</v-btn>
+				<div class="half-round" />
+				<div class="locales-container">
+					<div class="locales-list">
+						<v-btn
+							v-for="(locale, i) in $i18n.locales"
+							:key="i"
+							:to="switchLocalePath(locale.code)"
+							class="locale-btn"
+							active-class="active-locale"
+							x-large
+							icon
+						>
+							<span class="locale">{{ locale.code }}</span>
+						</v-btn>
+					</div>
+				</div>
+			</div>
+		</v-bottom-sheet>
+	</v-app>
 </template>
 
 <script lang="ts">
@@ -95,37 +95,37 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class PreliminaryLayout extends Vue {
-  changeLocale: boolean = false;
-  isShowMobileLocales: boolean = false;
+	changeLocale: boolean = false;
+	isShowMobileLocales: boolean = false;
 
-  availableLocales() {
-    return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale);
-  }
+	availableLocales() {
+		return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale);
+	}
 
-  get getPageTitleFont() {
-    return {
-      fontSize: `${this.getCustomAdaptiveSize({
-        xs: 12,
-        sm: 20,
-        md: 20,
-        lg: 30,
-      })}px`,
-    };
-  }
-  get getPageSubTitleFont() {
-    return {
-      fontSize: `${this.getCustomAdaptiveSize({
-        xs: 10,
-        sm: 20,
-        md: 15,
-        lg: 25,
-      })}px`,
-    };
-  }
+	get getPageTitleFont() {
+		return {
+			fontSize: `${this.getCustomAdaptiveSize({
+				xs: 12,
+				sm: 20,
+				md: 20,
+				lg: 30,
+			})}px`,
+		};
+	}
+	get getPageSubTitleFont() {
+		return {
+			fontSize: `${this.getCustomAdaptiveSize({
+				xs: 10,
+				sm: 20,
+				md: 15,
+				lg: 25,
+			})}px`,
+		};
+	}
 
-  toggleVisibilityLocales() {
-    this.isShowMobileLocales = !this.isShowMobileLocales;
-  }
+	toggleVisibilityLocales() {
+		this.isShowMobileLocales = !this.isShowMobileLocales;
+	}
 }
 </script>
 
