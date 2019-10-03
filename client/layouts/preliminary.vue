@@ -17,15 +17,15 @@
                 </p>
               </v-toolbar-title>
             </v-col>
-            <v-col cols="auto" class="d-none d-sm-flex">
+            <v-col cols="auto" class="d-none d-sm-flex align-center">
               <v-speed-dial
                 v-model="changeLocale"
                 direction="left"
                 transition="slide-x-reverse-transition"
               >
                 <template v-slot:activator>
-                  <v-btn v-model="changeLocale" outlined icon class="font-weight-bold" color="black">
-                    <v-icon v-if="changeLocale" size="50">mdi-close</v-icon>
+                  <v-btn v-model="changeLocale"  icon class="font-weight-bold borderLang pa-6" color="#4A4A4A">
+                    <v-icon v-if="changeLocale" class="font-weight-thin" size="40">mdi-close</v-icon>
                     <span v-else>{{ $i18n.locale }}</span>
                   </v-btn>
                 </template>
@@ -37,7 +37,7 @@
                     icon
                     class="font-weight-bold"
                     size="45"
-                    color="black"
+                    color="#4A4A4A"
                     
                   />
               </v-speed-dial>
@@ -157,6 +157,10 @@ export default class PreliminaryLayout extends Vue {
   position: fixed
   left: calc(50vw - 18px)
   bottom: 2vh
+
+.borderLang
+  border-radius: 50%
+  border: 3px solid #4A4A4A
 
 .close-icon
   z-index: 20
