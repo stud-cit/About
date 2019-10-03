@@ -118,10 +118,10 @@ export default class ContactBar extends Vue {
 	get getLocationFont() {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 20,
-				sm: 28,
-				md: 35,
-				lg: 42,
+				xs: 14,
+				sm: 18,
+				md: 22,
+				lg: 35,
 			})}px`,
 		};
 	}
