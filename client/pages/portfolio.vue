@@ -46,7 +46,7 @@
                 <div class="arrow-right">
                   <v-img
                     src="/arrow-point-to-right.svg"
-                    :width="isMdAndUp ? '50px' : '75px'"
+                    :width="isMdAndUp ? '40px' : '75px'"
                   />
                 </div>
               </v-btn>

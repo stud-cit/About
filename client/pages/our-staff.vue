@@ -20,30 +20,30 @@
 					>
 						<v-card
 							class="mx-auto"
-							:width="isMdAndUp ? '400px' : '100%'"
+							:width="isMdAndUp ? '450px' : '100%'"
 							:class="isLgAndUp ? 'card-img-hover' : 'card-img'"
 						>
 							<v-img
-								:height="isMdAndUp ? '250px' : '40%'"
+								:height="isMdAndUp ? '300px' : '45%'"
 								:src="getDynamicAssets(person.img_src)"
 							>
 							</v-img>
 						</v-card>
 						<div class="card-addition">
 							<div
-								class="employee-name my-3 font-weight-thin"
+								class="employee-name mt-6 mb-4 font-weight-bold line-height-1"
 								:style="getStaffNameFont"
 							>
 								{{ person.name }}
 							</div>
 							<div
-								class="employee-position-short font-weight-regular"
+								class="employee-position-short font-weight-regular line-height-1"
 								:style="getStaffPositionFont"
 							>
 								{{ person.position }}
 							</div>
 							<div
-								class="employee-position-full font-weight-regular"
+								class="employee-position-full font-weight-bold mt-7"
 								:style="getStaffPositionFont"
 							>
 								{{ person.stack }}
@@ -79,7 +79,7 @@
                       					<v-img src="/arrow-point-to-left.svg" width="200" @click="() => switchSlide(false)"/>
 										</v-btn>
 										<div
-											class="employee-name my-3 font-weight-thin"
+											class="employee-name my-3 font-weight-bold"
 											:style="getStaffNameFont"
 										>
 											{{ person.name }}
@@ -173,20 +173,20 @@ export default class OurStaffPage extends Vue {
 	get getStaffNameFont() {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 30,
+				xs: 35,
 				sm: 40,
-				md: 20,
-				lg: 30,
+				md: 45,
+				lg: 55,
 			})}px`,
 		};
 	}
 	get getStaffPositionFont() {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 15,
-				sm: 27,
-				md: 12,
-				lg: 25,
+				xs: 22,
+				sm: 30,
+				md: 25,
+				lg: 30,
 			})}px`,
 		};
 	}
@@ -259,4 +259,7 @@ export default class OurStaffPage extends Vue {
   opacity: 0.5
   position: absolute
   right: 5%
+
+.line-height-1
+  line-height: 1
 </style>

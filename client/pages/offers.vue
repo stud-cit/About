@@ -14,7 +14,8 @@
 			</v-col>
 		</v-row>
 		<v-row justify="center">
-			<v-col cols="12" md="10" xl="12">
+			<v-col cols="12" md="10"
+			>
 				<v-row
 					class="representation-section"
 					v-for="(preview, index) in weOffers.representation"

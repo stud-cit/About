@@ -2,21 +2,21 @@
 	<v-app>
 		<v-app-bar
 			id="header"
-			class="pt-3 pt-lg-4"
+			class="pt-3 pt-lg-4 mt-3"
 			color="transparent"
 			app
 			dark
 			flat
 		>
 			<v-row class="mx-1 mx-sm-0" justify="center" align="center">
-				<v-col cols="12" sm="10" class="pa-0">
+				<v-col cols="12" sm="10" order-md="2" class="pa-0">
 					<v-row justify="space-between" align="center">
 						<v-col cols="auto" class="pa-0">
 							<nuxt-link to="/">
 								<v-img src="/logo.svg" />
 							</nuxt-link>
 						</v-col>
-						<v-spacer />
+						<!-- <v-spacer /> -->
 						<v-col cols="6" md="6" lg="6" xl="6" class="d-none d-md-flex">
 							<v-row justify="space-between">
 								<v-col
@@ -41,11 +41,7 @@
 										</span>
 									</v-btn>
 								</v-col>
-							</v-row>
-						</v-col>
-						<v-spacer />
-						<v-col cols="auto" class="pa-0">
-							<v-btn icon dark to="/" class="d-none d-md-flex">
+															<v-btn icon dark to="/" class="d-none d-md-flex">
 								<v-icon size="50">mdi-fullscreen-exit</v-icon>
 							</v-btn>
 							<v-btn
@@ -55,7 +51,9 @@
 							>
 								<v-icon size="50">mdi-menu</v-icon>
 							</v-btn>
+							</v-row>
 						</v-col>
+						<!-- <v-spacer /> -->
 					</v-row>
 				</v-col>
 			</v-row>

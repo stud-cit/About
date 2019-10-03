@@ -22,15 +22,15 @@
                 :height="isMdAndDown ? '45vh' : '55vh'"
                 :aspect-ratio="16 / 9"
               >
-                <v-card-title class="title white--text fill-height">
+                <v-card-title class="white--text fill-height">
                   <v-row justify="center" align="center" class="fill-height">
                     <span
-                      class="font-weight-bold font-italic pr-4"
+                      class="font-weight-bold font-italic pr-4 slider-number"
                       :style="getSlideNumberFont"
                     >
                       0{{ ++i }}
                     </span>
-                    <span class="font-weight-bold text-uppercase" :style="getSlideTitleFont">
+                    <span class="font-weight-bold text-uppercase slider-title" :style="getSlideTitleFont">
                       {{ page.title }}.
                     </span>
                   </v-row>
@@ -113,19 +113,19 @@ export default class HomePage extends Vue {
     return {
       fontSize: `${this.getCustomAdaptiveSize({
         xs: 45,
-        sm: 55,
-        md: 60,
-        lg: 80,
+        sm: 50,
+        md: 55,
+        lg: 60,
       })}px`,
     };
   }
   get getSlideNumberFont() {
     return {
       fontSize: `${this.getCustomAdaptiveSize({
-        xs: 30,
-        sm: 35,
-        md: 45,
-        lg: 60,
+        xs: 20,
+        sm: 25,
+        md: 25,
+        lg: 30,
       })}px`,
     };
   }

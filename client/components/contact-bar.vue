@@ -7,7 +7,7 @@
 		v-if="isStatic || isActive"
 	>
 		<v-row class="ma-0 slogan" justify="center">
-			<v-col cols="10" class="pa-0 display-1">
+			<v-col cols="10" class="pa-0 font-weight-medium">
 				<span
 					:class="{ 'font-weight-bold': isSmAndDown }"
 					:style="getTagLineFont"
@@ -27,28 +27,28 @@
 							<v-col
 								class="font-weight-bold"
 								cols="auto"
-								:style="getCreadentialsFont"
+								:style="getMailFont"
 							>
 								{{ contacts.email }}
 							</v-col>
 							<v-col
 								class="font-weight-bold"
 								cols="auto"
-								:style="getCreadentialsFont"
+								:style="getMailFont"
 							>
 								{{ contacts.phone }}
 							</v-col>
 						</v-col>
 						<v-row align="center" justify="space-between">
-							<v-col cols="6" sm="7">
+							<v-col cols="6" sm="8" md="9">
 								<v-row
-									class=" underline mb-4 d-none d-sm-flex fontEmailPhone"
+									class=" underline mb-4 d-none d-sm-flex font-weight-bold"
 									justify="space-between"
 								>
-									<v-col cols="auto" :style="getCreadentialsFont">
+									<v-col cols="auto" :style="getMailFont">
 										{{ contacts.email }}
 									</v-col>
-									<v-col cols="auto" :style="getCreadentialsFont">
+									<v-col cols="auto" :style="getMailFont">
 										{{ contacts.phone }}
 									</v-col>
 								</v-row>
@@ -95,34 +95,44 @@ export default class ContactBar extends Vue {
 	@Getter('getContactStage') contacts;
 
 	@Prop({ default: false }) readonly isStatic: boolean;
-
+	get getMailFont() {
+		return {
+			fontSize: `${this.getCustomAdaptiveSize({
+				xs: 16,
+				sm: 18,
+				md: 20,
+				lg: 25,
+			})}px`,
+		};
+	}
 	get getCreadentialsFont() {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 12,
-				sm: 14,
-				md: 14,
-				lg: 25,
+				xs: 20,
+				sm: 28,
+				md: 35,
+				lg: 42,
 			})}px`,
 		};
 	}
 	get getLocationFont() {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 12,
-				sm: 20,
-				md: 20,
-				lg: 25,
+				xs: 20,
+				sm: 28,
+				md: 35,
+				lg: 42,
 			})}px`,
 		};
 	}
 	get getTagLineFont() {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 25,
-				sm: 50,
-				md: 65,
-				lg: 85,
+				xs: 30,
+				sm: 44,
+				md: 74,
+				lg: 95,
+				xl: 125,
 			})}px`,
 		};
 	}
@@ -149,16 +159,12 @@ export default class ContactBar extends Vue {
 		background: white
 		color: black
 
-.fontEmailPhone
-	font-weight: 600
-	font-style: normal
-
 .slogan
 	position: relative
 	top: 7px
-	font-weight: normal
 	font-style: normal
 	color: white
+	line-height: 2.5rem
 
 .static
 	position: static!important

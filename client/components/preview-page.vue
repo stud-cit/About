@@ -1,16 +1,8 @@
 <template>
   <v-row class="preview-section" justify="center" align="end">
     <v-row class="preview-wrapper" justify="space-around" align="end">
-      <v-col cols="12" order="1" order-sm="1" :class="isXsOnly ? 'text-center' : ''">
-        <div class="d-none d-sm-block">
-          <p class="font-weight-bold" :class="isAbout ? 'text-uppercase' : ''" :style="getPreviewTitleFont">
-            {{ title }}
-          </p>
-          <p class="font-weight-bold" :style="getPreviewTitleFont">
-            {{ subtitle }}
-          </p>
-        </div>
-        <div class="d-block d-sm-none">
+      <v-col cols="12" order="1" order-sm="1" class="line-height" :class="isXsOnly ? 'text-center' : ''">
+        <div class="d-block">
           <p class="font-weight-bold" :class="isAbout ? 'text-uppercase' : ''" :style="getPreviewTitleFont">
             {{ title }}
           </p>
@@ -47,7 +39,7 @@
       </v-col>
 
       <v-col cols="12" order="2" order-sm="3">
-        <v-row class="d-none d-sm-flex font-weight-regular">
+        <v-row class="d-none d-sm-flex font-weight-regular line-height-1">
           <span :style="getPreviewSubTitleFont">
             {{ description }}
           </span>
@@ -56,7 +48,10 @@
           <img class="pointer-icon" src="/pointer-mobile.svg" />
         </v-row>
         <v-row justify="center" justify-sm="start" class="mt-4">
-          <span class="gray font-weight-regular" :style="getPreviewInfoFont">
+          <span class="gray font-weight-regular" :style="getPreviewInfoFont" v-if="isAbout">
+            {{ $t('about.scrollPoint') }}
+          </span>
+          <span class="gray font-weight-regular" :style="getPreviewInfoFont" v-else >
             {{ $t('weOffers.scroll') }}
           </span>
         </v-row>
@@ -178,8 +173,8 @@ export default class PreviewPage extends Vue {
       return { fontSize:  `${this.getCustomAdaptiveSize({
         xs: 35,
         sm: 65,
-        md: 85,
-        lg: 100,
+        md: 83,
+        lg: 93,
       })}px`
       };
     }
@@ -226,11 +221,12 @@ export default class PreviewPage extends Vue {
 .square-container
 	display: flex
 
+
 .square
 	height: 40px
 	width: 40px
 	border-radius: 20%
-	border: 2px solid white
+	border: 4px solid white
 
 .squareOne
 	clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)
@@ -256,4 +252,10 @@ export default class PreviewPage extends Vue {
 	transform: rotate(90deg)
 .gray
 	color: gray
+
+.line-height
+	line-height: 1.2
+
+.line-height-1
+	line-height: 1
 </style>
