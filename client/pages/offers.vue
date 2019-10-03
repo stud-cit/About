@@ -14,23 +14,24 @@
 			</v-col>
 		</v-row>
 		<v-row justify="center">
-			<v-col cols="12" md="10" xl="12">
+			<v-col cols="12" md="10" lg="10" xl="10">
 				<v-row
 					class="representation-section"
 					v-for="(preview, index) in weOffers.representation"
 					:key="index"
-					justify="start"
+					:justify="preview.positionCard"
 					align="start"
 					:class="{ 'representation-xs': isXsOnly }"
 				>
-					<v-col cols="12" md="10" lg="8" class="representation-image">
+					<v-col cols="12" xs="8" md="8" lg="9" :class="{'representation-image':isMdAndDown}">
 						<v-img :src="getDynamicAssets(preview.img)" />
 					</v-col>
 
 					<v-col
 						cols="12"
-						md="6"
-						class="representation-card right-bottom-position"
+						md="5"
+						class="representation-card"
+						:class="preview.positionCard=='start' ? 'right-bottom-position' : 'left-bottom-position' "
 					>
 						<v-card class="pa-4 px-lg-8 py-lg-12">
 							<v-card-title
@@ -80,6 +81,11 @@ export default class OffersPage extends Vue {
 	get isXsOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 	}
+
+	get isMdAndDown(){
+		return this.$breakpoint ? this.$breakpoint.is.mdAndDown : false;
+	}
+
 	get getCardTitleFont() {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
@@ -131,4 +137,8 @@ export default class OffersPage extends Vue {
 .right-bottom-position
 	right: 0
 	bottom: 0
+
+.left-bottom-position
+	left: 0
+	bottom: 0	
 </style>
