@@ -24,7 +24,7 @@
                 transition="slide-x-reverse-transition"
               >
                 <template v-slot:activator>
-                  <v-btn v-model="changeLocale"  icon class="font-weight-bold borderLang pa-6" color="#4A4A4A">
+                  <v-btn v-model="changeLocale" icon class="pa-0 font-weight-bold locale-button" color="#4A4A4A">
                     <v-icon v-if="changeLocale" class="font-weight-thin" size="40">mdi-close</v-icon>
                     <span v-else>{{ $i18n.locale }}</span>
                   </v-btn>
@@ -35,10 +35,10 @@
                     :key="i"
                     :to="switchLocalePath(locale.code)"
                     icon
-                    class="font-weight-bold"
+                    class="font-weight-bold pa-0"
                     size="45"
                     color="#4A4A4A"
-                    
+
                   />
               </v-speed-dial>
             </v-col>
@@ -146,10 +146,6 @@ export default class PreliminaryLayout extends Vue {
       width: 100vw
       padding-bottom: 0
 
-.borderBut
-  border-radius: 50%
-  border: 2px solid #4A4A4A
-
 .mobile-icon
   background: white
 
@@ -158,9 +154,11 @@ export default class PreliminaryLayout extends Vue {
   left: calc(50vw - 18px)
   bottom: 2vh
 
-.borderLang
+.locale-button
+  width: 55px
+  height: 55px
   border-radius: 50%
-  border: 3px solid #4A4A4A
+  border: 2px solid #4A4A4A
 
 .close-icon
   z-index: 20
