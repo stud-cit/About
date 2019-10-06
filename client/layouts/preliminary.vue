@@ -23,7 +23,7 @@
                 direction="left"
                 transition="slide-x-reverse-transition"
               >
-                <template v-slot:activator>
+                <template v-slot:activator color="red">
                   <v-btn v-model="changeLocale" icon class="pa-0 font-weight-bold locale-button" color="#4A4A4A">
                     <v-icon v-if="changeLocale" class="font-weight-thin" size="40">mdi-close</v-icon>
                     <span v-else>{{ $i18n.locale }}</span>
@@ -158,6 +158,16 @@ export default class PreliminaryLayout extends Vue {
   width: 55px
   height: 55px
   border-radius: 50%
+  border: 2px solid #4A4A4A
+
+.theme--light.v-btn::before
+  opacity: 0 !important
+   border-radius: 50%
+  border: 2px solid #4A4A4A
+
+.theme--light.v-btn:hover::before
+  opacity: 0.18 !important
+   border-radius: 50%
   border: 2px solid #4A4A4A
 
 .close-icon

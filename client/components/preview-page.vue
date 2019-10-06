@@ -114,11 +114,11 @@ export default class PreviewPage extends Vue {
 		const windowHeight = window.innerHeight;
 		const scrollHeight = document.body.scrollHeight;
 		const scrollToFooter = scrollHeight - windowHeight * 2;
-    const isPortolioPage = this.pageId === this.portfolioPageId;
+    const isPortfolioPage = this.pageId === this.portfolioPageId;
     const isWeOfferPage = this.pageId === this.weofferPageId;
 
 		// on porfolio page we have to hide if any scroll we have
-		if (isPortolioPage && window.scrollY > 0) {
+		if (isPortfolioPage && window.scrollY > 0) {
 			this.isShowUseContacts = false;
     } else if(isWeOfferPage && window.scrollY > 0){
       	this.isShowUseContacts = false;

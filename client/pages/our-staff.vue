@@ -76,32 +76,35 @@
 											color="white"
 											class="scroll-icon-left"
 										>
-                      					<v-img src="/arrow-point-to-left.svg" width="200" @click="() => switchSlide(false)"/>
+                      					<v-img src="/arrow-point-to-left.svg" class="arrow-style" @click="() => switchSlide(false)"/>
 										</v-btn>
-										<div
+										<div class="infoNameSkill">
+											<div
 											class="employee-name my-3 font-weight-bold"
 											:style="getStaffNameFont"
-										>
-											{{ person.name }}
+											>
+												{{ person.name }}
+											</div>
+											<div
+												class="employee-position-short font-weight-regular d-none"
+												:style="getStaffPositionFont"
+											>
+												{{ person.position }}
+											</div>
+											<div
+												class="employee-position-full font-weight-regular"
+												:style="getStaffPositionFont"
+											>
+											{{ person.stack }}
+											</div>
 										</div>
-										<div
-											class="employee-position-short font-weight-regular d-none"
-											:style="getStaffPositionFont"
-										>
-											{{ person.position }}
-										</div>
-										<div
-											class="employee-position-full font-weight-regular"
-											:style="getStaffPositionFont"
-										>
-										{{ person.stack }}
-										</div>
+										
 										<v-btn
 											icon
 											color="white"
 											class="scroll-icon-right"
 										>
-                      					<v-img src="/arrow-point-to-right.svg" width="200" @click="() => switchSlide(false)"/>
+                      					<v-img src="/arrow-point-to-right.svg" class="arrow-style" @click="() => switchSlide(false)"/>
 										</v-btn>
 									</div>
 								</v-card>
@@ -203,7 +206,12 @@ export default class OurStaffPage extends Vue {
   flex-direction: column
   color: #ffffff
   position: relative
+  justify-content: center
 
+
+.infoNameSkill
+  width: 70%
+  margin: 0 auto	
 
 .employee-name
   font-weight: 900
@@ -262,4 +270,7 @@ export default class OurStaffPage extends Vue {
 
 .line-height-1
   line-height: 1
+
+.arrow-style
+  width: 18vw  
 </style>
