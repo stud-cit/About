@@ -1,9 +1,9 @@
 export default {
   previewTitle: {
-    xs: 25,
+    xs: 30,
     sm: 40,
-    md: 45,
-    lg: 75,
+    md: 60,
+    lg: 85,
   },
   previewSubtitle: {
     xs: 20,

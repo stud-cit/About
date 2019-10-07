@@ -7,13 +7,13 @@
             <v-col cols="auto">
               <v-toolbar-title>
                 <p
-                  class="text-uppercase mb-0 font-weight-bold"
+                  class="text-uppercase mb-0 font-weight-black"
                   :style="getPageTitleFont"
                 >
                   {{ $t('home.title') }}
                 </p>
-                <p class="grey--text mb-0 font-weight-bold" :style="getPageSubTitleFont">
-                  {{ $t('home.preTitle') }}
+                <p class="mb-0 grey--text font-weight-bold" :style="getPageSubTitleFont">
+                  {{ $t('home.subTitle') }}
                 </p>
               </v-toolbar-title>
             </v-col>
@@ -35,10 +35,9 @@
                     :key="i"
                     :to="switchLocalePath(locale.code)"
                     icon
-                    class="font-weight-bold pa-0"
+                    class="pa-0 font-weight-bold"
                     size="45"
                     color="#4A4A4A"
-
                   />
               </v-speed-dial>
             </v-col>
@@ -48,7 +47,7 @@
     </v-app-bar>
 
     <v-content class="pt-2">
-      <v-container fluid class="fill-height pa-0">
+      <v-container fluid class="pa-0 fill-height">
         <nuxt />
       </v-container>
     </v-content>

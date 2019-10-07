@@ -2,7 +2,7 @@
 	<v-container
 		fluid
 		id="contact"
-		class="pa-sm-1"
+		class="pa-0"
 		:class="{ static: isStatic }"
 		v-if="isStatic || isActive"
 	>
@@ -12,11 +12,11 @@
 					:class="{ 'font-weight-bold': isSmAndDown }"
 					:style="getTagLineFont"
 				>
-					{{ $t('about.tagLine') }}
+					{{ $t('common.slogan') }}
 				</span>
 			</v-col>
 		</v-row>
-		<v-row class="contact-bar-section">
+		<v-row class="contact-bar-section pa-0 ma-0">
 			<v-row class="relative" justify="center" align="center">
 				<v-row justify="space-around">
 					<v-col cols="10">
@@ -129,10 +129,9 @@ export default class ContactBar extends Vue {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
 				xs: 30,
-				sm: 44,
+				sm: 46,
 				md: 74,
 				lg: 95,
-				xl: 125,
 			})}px`,
 		};
 	}
@@ -149,6 +148,9 @@ export default class ContactBar extends Vue {
 </script>
 
 <style lang="sass">
+.container
+	padding: 0 !important
+
 #contact
 	position: fixed
 	bottom: 0

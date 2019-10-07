@@ -1,9 +1,12 @@
 <template>
   <v-row class="preview-section" justify="center" align="end">
-    <v-row class="preview-wrapper" justify="space-around" align="end">
+    <v-row class="preview-wrapper" justify="space-around" align="end" :class="iconDown ? 'preview-margin' : ''">
       <v-col cols="12" order="1" order-sm="1" class="line-height" :class="isXsOnly ? 'text-center' : ''">
         <div class="d-block">
-          <p class="font-weight-bold" :class="isAbout ? 'text-uppercase' : ''" :style="getPreviewTitleFont">
+          <p class="font-weight-bold"
+						:class="{'text-uppercase': isAboutPage}"
+						:style="getPreviewTitleFont"
+					>
             {{ title }}
           </p>
           <p class="font-weight-bold" :style="getPreviewTitleFont">
@@ -48,11 +51,8 @@
           <img class="pointer-icon" src="/pointer-mobile.svg" />
         </v-row>
         <v-row justify="center" justify-sm="start" class="mt-4">
-          <span class="gray font-weight-regular" :style="getPreviewInfoFont" v-if="isAbout">
-            {{ $t('about.scrollPoint') }}
-          </span>
-          <span class="gray font-weight-regular" :style="getPreviewInfoFont" v-else >
-            {{ $t('weOffers.scroll') }}
+          <span class="gray font-weight-regular" :style="getPreviewInfoFont">
+            {{ $t(isAboutPage ? 'about.scrollPoint' : 'common.scroll') }}
           </span>
         </v-row>
       </v-col>
@@ -67,19 +67,19 @@
       <v-col cols="12" sm="auto">
         <v-card class="pa-4 pt-0 card-contacts" @click="scrollToFooter">
           <v-card-title class="justify-center font-weight-thin" :style="getUseContactsTitleFont">
-            {{ $t('contact.titleShort') }}
+            {{ $t('contact.title') }}
           </v-card-title>
           <v-card-actions
             class="pa-0 contacts-action justify-center font-weight-regular"
             :style="getUseContactsActionFont"
           >
-            {{ $t('contact.preTitleShort') }}
+            {{ $t('contact.subTitle') }}
           </v-card-actions>
         </v-card>
       </v-col>
       <v-col sm="1"></v-col>
     </v-row>
-    <v-row justify="center" v-show="arrowDown()">
+    <v-row justify="center" v-show="iconDown">
       <v-btn
         icon
         color="white"
@@ -98,7 +98,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
 
 @Component({
-	props: ['title', 'subtitle', 'description', 'iconDown','isAbout'],
+	props: ['title', 'subtitle', 'description', 'iconDown'],
 })
 export default class PreviewPage extends Vue {
 
@@ -106,14 +106,14 @@ export default class PreviewPage extends Vue {
 	@Getter('getPageId') pageId;
 	@Getter('getPageRouteById') getPageRouteById;
 	isShowUseContacts: boolean = true;
-	aboutPageId = 1;
-  portfolioPageId = 4;
-  weofferPageId = 2;
+	aboutPageId: number = 1;
+  portfolioPageId: number = 4;
+  weofferPageId: number = 2;
 
 	handleScroll(): void {
 		const windowHeight = window.innerHeight;
 		const scrollHeight = document.body.scrollHeight;
-		const scrollToFooter = scrollHeight - windowHeight * 2;
+		const scrollToFooter = scrollHeight - (windowHeight * 2);
     const isPortfolioPage = this.pageId === this.portfolioPageId;
     const isWeOfferPage = this.pageId === this.weofferPageId;
 
@@ -146,6 +146,9 @@ export default class PreviewPage extends Vue {
 		this.$router.push(nextPage);
 	}
 
+	get isAboutPage() {
+		return this.pageId === this.aboutPageId;
+	}
 	get isXsOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 	}
@@ -171,25 +174,22 @@ export default class PreviewPage extends Vue {
 		};
   }
   get getPreviewTitleFont() {
-    if (!this.isAbout){
+    if (!this.isAboutPage){
       return { fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px` };
     } else {
       return { fontSize:  `${this.getCustomAdaptiveSize({
-        xs: 35,
-        sm: 65,
-        md: 83,
-        lg: 93,
+        xs: 33,
+        sm: 50,
+        md: 57,
+        lg: 95,
       })}px`
       };
     }
   }
-	arrowDown() {
-		return this.iconDown;
-	}
 	mounted() {
 		// initial check
 		this.handleScroll();
-	}
+  }
 }
 </script>
 
@@ -213,9 +213,14 @@ export default class PreviewPage extends Vue {
 			text-decoration: underline
 
 .preview-wrapper
-	height: 70vh
+	height: 60vh
 	color: white
-	margin-bottom: 12vh
+	margin-bottom: 13vh
+
+.preview-margin
+	margin-bottom: 0vh
+	margin-top: 13vh
+
 
 .arrow
 	font-size: 1.8rem
@@ -224,7 +229,6 @@ export default class PreviewPage extends Vue {
 
 .square-container
 	display: flex
-
 
 .square
 	height: 40px

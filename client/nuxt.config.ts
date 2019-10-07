@@ -18,7 +18,7 @@ const config: Configuration = {
 	 ** Headers of the page
 	 */
 	head: {
-		titleTemplate: `%s - ${configService.getSetting('npm_package_name')}`,
+		titleTemplate: `%s`,
 		meta: [
 			{ charset: 'utf-8' },
 			{
@@ -73,6 +73,13 @@ const config: Configuration = {
 		parsePages: false,
 		langDir: 'lang/',
 		defaultLocale: 'en',
+		strategy: 'prefix_and_default',
+		// TODO: uncomment on prod
+		// detectBrowserLanguage: {
+    // useCookie: true,
+    // cookieKey: 'i18n_redirected',
+    // alwaysRedirect: true,
+    // fallbackLocale: 'en'
 		locales: [
 			{
 				code: 'en',

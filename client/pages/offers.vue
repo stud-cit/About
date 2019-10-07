@@ -3,11 +3,11 @@
 		<v-row justify="center">
 			<v-col cols="12" sm="10">
 				<PreviewPage
-					:title="weOffers.previewTitle"
+					:title="weOffers[$i18n.locale].previewTitle"
 					cols="12"
 					sm="9"
-					:subtitle="weOffers.previewSubtitle"
-					:description="weOffers.previewDescription"
+					:subtitle="weOffers[$i18n.locale].previewSubtitle"
+					:description="weOffers[$i18n.locale].previewDescription"
 					:icon-down="false"
 				/>
 				<ScrollBar />
@@ -17,21 +17,21 @@
 			<v-col cols="12" md="10" lg="10" xl="10">
 				<v-row
 					class="representation-section"
-					v-for="(preview, index) in weOffers.representation"
+					v-for="(preview, index) in weOffers[$i18n.locale].representation"
 					:key="index"
 					:justify="preview.positionCard"
 					align="start"
 					:class="{ 'representation-xs': isXsOnly }"
 				>
-					<v-col cols="12" xs="8" md="8" lg="9" :class="{'representation-image':isMdAndDown}">
-						<v-img :src="getDynamicAssets(preview.img)" />
+					<v-col cols="12" xs="8" md="8" lg="9" :class="{'representation-image': isMdAndDown}">
+						<v-img :src="getDynamicAssets(preview.img)" :lazy-src="getDynamicAssets('')" />
 					</v-col>
 
 					<v-col
 						cols="12"
 						md="5"
 						class="representation-card"
-						:class="preview.positionCard=='start' ? 'right-bottom-position' : 'left-bottom-position' "
+						:class="preview.positionCard === 'start' ? 'right-bottom-position' : 'left-bottom-position' "
 					>
 						<v-card class="pa-4 px-lg-8 py-lg-12">
 							<v-card-title
@@ -140,5 +140,5 @@ export default class OffersPage extends Vue {
 
 .left-bottom-position
 	left: 0
-	bottom: 0	
+	bottom: 0
 </style>
