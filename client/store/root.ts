@@ -52,126 +52,354 @@ export const state = (): State => ({
 		},
 	],
 	about: {
-		previewTitle: 'common.companyName',
-		previewSubtitle: '',
-		previewDescription: 'We can make this world better.',
-		slides: [
-			`StudCIT – это команда из талантливых специалистов, для которых изготовление сайтов не работа,
-					а часть жизни. Возможность постоянно совершенствоваться,
-					решать нетривиальные задачи и использовать способности на благо клиента.
-					Специализируемся на разработке интернет ресурсов вариативного предназначения
-					и сложности. Также способны решать нестандартные задачи, в рамках индивидуальных проектов.`,
-
-			`Детально изучим каждый случай, спроектируем модель решения,
-					создадим подходящий дизайн и функциональный прототип, реализуем заказ и
-					закончим проект презентацией готового продукта. Необычный и свежий подход
-					к поставленной задаче, гибкая и широкая специализация, качественная
-					реализация - характерные черты Студцит.`,
-		],
+		ua: {
+			previewTitle: 'common.companyName',
+			previewSubtitle: '',
+			previewDescription: 'Мы можемо зробити цей світ краще.',
+			slides: [
+				`СтудЦІТ - це команда з талановитих фахівців, для яких виготовлення сайтів не робота,
+				а частина життя. Можливість постійно вдосконалюватися, вирішувати нетривіальні
+				завдання та використовувати здібності на благо клієнта. Спеціалізуємося на розробці
+				інтернет ресурсів варіативного призначення й складності. Також здатні вирішувати
+				нестандартні завдання, в рамках індивідуальних проектів.`,
+				`Детально вивчимо кожен випадок, спроектуємо модель рішення, створимо відповідний
+				дизайн і функціональний прототип, реалізуємо замовлення і закінчимо проект презентацією
+				готового продукту. Незвичайний та свіжий підхід до поставленого завдання, гнучка і
+				широка спеціалізація, якісна реалізація - характерні риси СтудЦІТ.`,
+			],
+		},
+		ru: {
+			previewTitle: 'common.companyName',
+			previewSubtitle: '',
+			previewDescription: 'Мы можем сделать этот мир лучше.',
+			slides: [
+				`СтудЦИТ – это команда из талантливых специалистов, для которых изготовление сайтов не работа,
+				а часть жизни. Возможность постоянно совершенствоваться,
+				решать нетривиальные задачи и использовать способности на благо клиента.
+				Специализируемся на разработке интернет ресурсов вариативного предназначения
+				и сложности. Также способны решать нестандартные задачи, в рамках индивидуальных проектов.`,
+				`Детально изучим каждый случай, спроектируем модель решения,
+				создадим подходящий дизайн и функциональный прототип, реализуем заказ и
+				закончим проект презентацией готового продукта. Необычный и свежий подход
+				к поставленной задаче, гибкая и широкая специализация, качественная
+				реализация - характерные черты Студцит.`,
+			],
+		},
+		en: {
+			previewTitle: 'common.companyName',
+			previewSubtitle: '',
+			previewDescription: 'We can make this world better.',
+			slides: [
+				`Student Center of Information Technologies (StudCIT) is a team of talented
+				professionals for whom website design is not a job but a part of life. There
+				is an opportunity to constantly improve, solve non-trivial tasks and use abilities
+				for the benefit of the client. We specialize in the development of internet resources
+				of different purpose and complexity. We are also capable of solving non-standard tasks
+				within individual projects.`,
+				`Let us study each case in detail, design a model of the solution, create the
+				appropriate design and a functional prototype, implement the order and finish the
+				project with the presentation of the finished product. An unusual and new approach
+				to the task, flexible and broad specialization, quality implementation are the
+				features of the StudCIT.`,
+			],
+		},
 	},
 	weOffers: {
-		previewTitle: 'Do you know what we can?',
-		previewSubtitle: 'What we do? What we support?',
-		previewDescription:
-			'Our possibilities are limited only by our imagination.',
-		representation: [
-			{
-				title: 'Разработка веб-сайта для различных целей',
-				text: `Не каждый, кто задумывался о создании собственного ресурса в сети, до конца понимает,
-					зачем это нужно. А ведь определение целей будущего проекта, определяет дальнейшее
-					продвижение и популяризацию.`,
-				img: '/images/weOffer/one.jpg',
-				positionCard: 'start',
-			},
-			{
-				title: 'Создание програмного обеспечения для реальных задач',
-				text: `Разработанное программное обеспечение - инструмент для решения необходимых задач.
-					Например, при помощи веб-приложений, начисляется заработная плата, ведется
-					контроль времени работы, как каждого сотрудника, так и части компании,
-					выполняется проверка работы учреждения.`,
-				img: '/images/weOffer/two.jpg',
-				positionCard: 'end',
-			},
-			{
-				title: 'Проектирование информационных систем различной сложности',
-				text: `Web-разработка начинается с определения целей. В зависмости
-					 от поставленой цели нами будет выбрана наиболее походящая платформа
-					 и функционал. Эти две составляющие напрямую влияют на сложность выполнения.`,
-				img: '/images/weOffer/three.jpg',
-				positionCard: 'end',
-			},
-		],
+		ua: {
+			previewTitle: 'Ви знаєте, що ми можемо?',
+			previewSubtitle: 'Що ми робимо? Які проєкти ми підтримуємо?',
+			previewDescription: 'Наші можливості.',
+			representation: [
+				{
+					title: 'Розробка веб-сайту для різних цілей',
+					text: `Не кожен, хто замислювався про створення власного ресурсу в мережі, до кінця
+						розуміє, навіщо це потрібно. Саме визначення цілей майбутнього проекту, визначає
+						подальший розвиток та популяризацію.`,
+					img: '/images/weOffer/one.jpg',
+					positionCard: 'start',
+				},
+				{
+					title: 'Створення програмного забезпечення для вирішення реально існюючих завдань',
+					text: `Розроблене програмне забезпечення - інструмент для вирішення необхідних завдань.
+						Наприклад, за допомогою веб-додатків, нараховується заробітна плата, ведеться контроль
+						часу роботи, як кожного співробітника, так і частини компанії, виконується перевірка
+						роботи установи.`,
+					img: '/images/weOffer/two.jpg',
+					positionCard: 'end',
+				},
+				{
+					title: 'Проєктування інформаційних систем різної складності',
+					text: `Web-розробка починається з визначення причин і цілей.
+						Ці дві складові напряму впливають на складність виконання.`,
+					img: '/images/weOffer/three.jpg',
+					positionCard: 'end',
+				},
+			],
+		},
+		ru: {
+			previewTitle: 'Ты знаешь что мы можем?',
+			previewSubtitle: 'Что мы делаем? Какие проэкты мы поддерживаем?',
+			previewDescription: 'Наши возможности ограничены только нашим воображением.',
+			representation: [
+				{
+					title: 'Разработка веб-сайта для различных целей',
+					text: `Не каждый, кто задумывался о создании собственного ресурса в сети, до конца понимает,
+						зачем это нужно. А ведь определение целей будущего проекта, определяет дальнейшее
+						продвижение и популяризацию.`,
+					img: '/images/weOffer/one.jpg',
+					positionCard: 'start',
+				},
+				{
+					title: 'Создание програмного обеспечения для реальных задач',
+					text: `Разработанное программное обеспечение - инструмент для решения необходимых задач.
+						Например, при помощи веб-приложений, начисляется заработная плата, ведется
+						контроль времени работы, как каждого сотрудника, так и части компании,
+						выполняется проверка работы учреждения.`,
+					img: '/images/weOffer/two.jpg',
+					positionCard: 'end',
+				},
+				{
+					title: 'Проектирование информационных систем различной сложности',
+					text: `Web-разработка начинается с определения целей. В зависмости
+						от поставленой цели нами будет выбрана наиболее походящая платформа
+						и функционал. Эти две составляющие напрямую влияют на сложность выполнения.`,
+					img: '/images/weOffer/three.jpg',
+					positionCard: 'end',
+				},
+			],
+		},
+		en: {
+			previewTitle: 'Do you know what we can?',
+			previewSubtitle: 'What we do? What we support?',
+			previewDescription: 'Our possibilities are limited only by our imagination.',
+			representation: [
+				{
+					title: 'Website development for different purposes',
+					text: `Not everyone who has thought about creating their own resource on
+					 the network fully understands why it is necessary. It\`s the definition
+						of the goals of the future project that determines the further development
+						and promotion.`,
+					img: '/images/weOffer/one.jpg',
+					positionCard: 'start',
+				},
+				{
+					title: 'Creating software to solve tasks',
+					text: `The developed software is a tool for solving the necessary tasks.
+						For example, with the help of web applications wages are calculated, work
+						time is monitored both for each employee and for part of the company,
+						the work of the institution is checked. `,
+					img: '/images/weOffer/two.jpg',
+					positionCard: 'end',
+				},
+				{
+					title: 'Design of information systems of various complexity',
+					text: `Web development begins by identifying the causes and goals. Depending
+					from the goal we will choose the most suitable platform
+					and functional. These two components directly affect the complexity of execution.`,
+					img: '/images/weOffer/three.jpg',
+					positionCard: 'end',
+				},
+			],
+		},
 	},
 	ourStaff: {
-		previewTitle:
-			'Many people who can easily realize all things which you wish.',
-		previewSubtitle: '',
-		previewDescription: 'Together we can more than one by one.',
-		representation: [
-			{
-				id: 1,
-				name: 'Kirk Philips',
-				position: 'Frontend developer',
-				stack: 'Proficient in HTML + CSS, JS',
-				img_src: '/images/ourStaff/team.jpg',
-			},
-			{
-				id: 2,
-				name: 'Kirk Philips2',
-				position: 'Designer',
-				stack: 'Proficient in HTML + CSS, JS',
-				img_src: '/images/ourStaff/team.jpg',
-			},
-			{
-				id: 3,
-				name: 'Kirk Philip3',
-				position: 'Designer',
-				stack: 'Proficient in HTML + CSS, JS',
-				img_src: '/images/ourStaff/team.jpg',
-			},
-			{
-				id: 4,
-				name: 'Kirk Philips4',
-				position: 'Designer',
-				stack: 'Proficient in HTML + CSS, JS',
-				img_src: '/images/ourStaff/team.jpg',
-			},
-			{
-				id: 5,
-				name: 'Kirk Philips5',
-				position: 'Designer',
-				stack: 'Proficient in HTML + CSS, JS',
-				img_src: '/images/ourStaff/team.jpg',
-			},
-		],
+		ua: {
+			previewTitle: 'У нас багато людей, які можуть легко реалізувати все те, що ви хочете.',
+			previewSubtitle: '',
+			previewDescription: 'Разом ми можемо більше, ніж кожен окремо.',
+			representation: [
+				{
+					id: 1,
+					name: 'Андрiй Горiшняк',
+					position: 'Project manager',
+					stack: 'Aglie, SCRUM, Lean',
+					img_src: '/images/ourStaff/team.jpg',
+				},
+				{
+					id: 2,
+					name: 'Евгенiй Бабiй',
+					position: 'Designer',
+					stack: 'Фахівець з UX/UI',
+					img_src: '/images/ourStaff/team.jpg',
+				},
+				{
+					id: 3,
+					name: 'Артем Кондратенко',
+					position: 'Fronend developer',
+					stack: 'Фахівець з Vue, React',
+					img_src: '/images/ourStaff/team.jpg',
+				},
+				{
+					id: 4,
+					name: 'Павло Тiтов',
+					position: 'Frontend developer',
+					stack: 'Фахівець з React, Vue, typescript',
+					img_src: '/images/ourStaff/team.jpg',
+				},
+				{
+					id: 5,
+					name: 'Iван Захарченко',
+					position: 'Backend developer',
+					stack: 'Фахівець з Laravel, NodeJs',
+					img_src: '/images/ourStaff/team.jpg',
+				},
+			],
+		},
+		ru: {
+			previewTitle: 'У нас много людей, которые могут легко реализовать все то, что вы хотите.',
+			previewSubtitle: '',
+			previewDescription: 'Вместе мы можем больше, чем в одиночку.',
+			representation: [
+				{
+					id: 1,
+					name: 'Андрей Горишняк',
+					position: 'Project manager',
+					stack: 'Aglie, SCRUM, Lean',
+					img_src: '/images/ourStaff/team.jpg',
+				},
+				{
+					id: 2,
+					name: 'Евгений Бабий',
+					position: 'Designer',
+					stack: 'Специалист по UX/UI',
+					img_src: '/images/ourStaff/team.jpg',
+				},
+				{
+					id: 3,
+					name: 'Артем Кондратенко',
+					position: 'Fronend developer',
+					stack: 'Специалист по Vue, React',
+					img_src: '/images/ourStaff/team.jpg',
+				},
+				{
+					id: 4,
+					name: 'Павел Титов',
+					position: 'Frontend developer',
+					stack: 'Специалист по React, Vue, typescript',
+					img_src: '/images/ourStaff/team.jpg',
+				},
+				{
+					id: 5,
+					name: 'Iван Захарченко',
+					position: 'Backend developer',
+					stack: 'Специалист по Laravel, NodeJs',
+					img_src: '/images/ourStaff/team.jpg',
+				},
+			],
+		},
+		en: {
+			previewTitle: 'We have many people who can easily realize all things which you wish.',
+			previewSubtitle: '',
+			previewDescription: 'Together we can more than one by one.',
+			representation: [
+				{
+					id: 1,
+					name: 'Andrey Gorishnyak',
+					position: 'Project manager',
+					stack: 'Aglie, SCRUM, Lean',
+					img_src: '/images/ourStaff/team.jpg',
+				},
+				{
+					id: 2,
+					name: 'Evgen Babiy',
+					position: 'Designer',
+					stack: 'Proficient in UX/UI',
+					img_src: '/images/ourStaff/team.jpg',
+				},
+				{
+					id: 3,
+					name: 'Artem Kondatenko',
+					position: 'Fronend developer',
+					stack: 'Proficient in Vue, React',
+					img_src: '/images/ourStaff/team.jpg',
+				},
+				{
+					id: 4,
+					name: 'Pablito Tytov :)',
+					position: 'Frontend developer',
+					stack: 'Proficient in React, Vue, typescript',
+					img_src: '/images/ourStaff/team.jpg',
+				},
+				{
+					id: 5,
+					name: 'Ivan Zacharchenko',
+					position: 'Backend developer',
+					stack: 'Proficient in Laravel, NodeJs',
+					img_src: '/images/ourStaff/team.jpg',
+				},
+			],
+		},
 	},
 	portfolio: {
-		previewTitle: 'Do you know what we can?',
-		previewSubtitle: 'What we have made?',
-		previewDescription: 'Our projects is one of the best',
-		projects: [
-			{
-				title: 'Department of Social Work of Sumy State University',
-				cover: '/images/portfolio/SOC.png',
-				link: 'http://soc.sumdu.edu.ua/',
-			},
-			{
-				title:
-					'Practice and internship search platform of Sumy State University',
-				cover: '/images/portfolio/JOB.png',
-				link: 'http://job-test.sumdu.edu.ua/',
-			},
-			{
-				title:
-					'Online assessment of the quality of the educational process at Sumy State University',
-				cover: '/images/portfolio/AC.png',
-				link: 'http://ac.sumdu.edu.ua/',
-			},
-		],
+		ua: {
+			previewTitle: 'Ти знаєш, що ми можемо?',
+			previewSubtitle: 'Якi проєкти ми зробили?',
+			previewDescription: 'Наші проекти - одні з найкращих',
+			projects: [
+				{
+					title: 'Сайт кафедри соціальної роботи СумДУ',
+					cover: '/images/portfolio/SOC.png',
+					link: 'http://soc.sumdu.edu.ua/',
+				},
+				{
+					title: 'Платформа пошуку роботи та стажування СумДУ',
+					cover: '/images/portfolio/JOB.png',
+					link: 'http://job-test.sumdu.edu.ua/',
+				},
+				{
+					title: 'Онлайн сервiс для оцiнки якості навчального процесу в СумДУ',
+					cover: '/images/portfolio/AC.png',
+					link: 'http://ac.sumdu.edu.ua/',
+				},
+			],
+		},
+		ru: {
+			previewTitle: 'Ты знаешь, что мы можем?',
+			previewSubtitle: 'Какие проекты мы сделали?',
+			previewDescription: 'Наши проекты - одни из лучших',
+			projects: [
+				{
+					title: 'Сайт кафедры социальной работы СумГУ',
+					cover: '/images/portfolio/SOC.png',
+					link: 'http://soc.sumdu.edu.ua/',
+				},
+				{
+					title: 'Платформа поиска работы и стажировки СумГУ',
+					cover: '/images/portfolio/JOB.png',
+					link: 'http://job-test.sumdu.edu.ua/',
+				},
+				{
+					title: 'Онлайн сервис для оценки качества учебного процесса в СумГУ',
+					cover: '/images/portfolio/AC.png',
+					link: 'http://ac.sumdu.edu.ua/',
+				},
+			],
+		},
+		en: {
+			previewTitle: 'Do you know what we can?',
+			previewSubtitle: 'What projects have we done?',
+			previewDescription: 'Our projects is one of the best',
+			projects: [
+				{
+					title: 'Department of Social Work of SSU',
+					cover: '/images/portfolio/SOC.png',
+					link: 'http://soc.sumdu.edu.ua/',
+				},
+				{
+					title: 'Practice and internship search platform of SSU',
+					cover: '/images/portfolio/JOB.png',
+					link: 'http://job-test.sumdu.edu.ua/',
+				},
+				{
+					title: 'Online assessment of the quality of the educational process at SSU',
+					cover: '/images/portfolio/AC.png',
+					link: 'http://ac.sumdu.edu.ua/',
+				},
+			],
+		},
 	},
 	showContactBar: false,
 	contacts: {
-		motto: 'Speed, quality, simplicity',
 		email: 'STUDCITMAIL@GMAIL.COM',
 		phone: '+380 98 43 70 202',
 		street: 'Ukraine, Sumy, st. Rimsky-Korsakov, 2',
@@ -201,9 +429,6 @@ export const getters: GetterTree<RootState, RootState> = {
 			);
 			return currentPage ? currentPage.to : '';
 		};
-	},
-	getProjectsStage({ portfolio }: State) {
-		return portfolio.projects;
 	},
 	getAboutStage({ about }: State) {
 		return about;

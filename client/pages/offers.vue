@@ -3,11 +3,11 @@
 		<v-row justify="center">
 			<v-col cols="12" sm="10">
 				<PreviewPage
-					:title="weOffers.previewTitle"
+					:title="weOffers[$i18n.locale].previewTitle"
 					cols="12"
 					sm="9"
-					:subtitle="weOffers.previewSubtitle"
-					:description="weOffers.previewDescription"
+					:subtitle="weOffers[$i18n.locale].previewSubtitle"
+					:description="weOffers[$i18n.locale].previewDescription"
 					:icon-down="false"
 				/>
 				<ScrollBar />
@@ -17,7 +17,7 @@
 			<v-col cols="12" md="10" lg="10" xl="10">
 				<v-row
 					class="representation-section"
-					v-for="(preview, index) in weOffers.representation"
+					v-for="(preview, index) in weOffers[$i18n.locale].representation"
 					:key="index"
 					:justify="preview.positionCard"
 					align="start"
@@ -140,5 +140,5 @@ export default class OffersPage extends Vue {
 
 .left-bottom-position
 	left: 0
-	bottom: 0	
+	bottom: 0
 </style>

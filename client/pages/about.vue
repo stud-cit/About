@@ -5,13 +5,13 @@
 				<v-window v-model="curStage" continuous dark>
 					<v-window-item>
 						<PreviewPage
-							:title="$t(about.previewTitle)"
-							:subtitle="about.previewSubtitle"
-							:description="about.previewDescription"
+							:title="$t(about[$i18n.locale].previewTitle)"
+							:subtitle="about[$i18n.locale].previewSubtitle"
+							:description="about[$i18n.locale].previewDescription"
 							:icon-down="false"
 						/>
 					</v-window-item>
-					<v-window-item v-for="(slide, index) in about.slides" :key="index">
+					<v-window-item v-for="(slide, index) in about[$i18n.locale].slides" :key="index">
 						<v-row justify="start" align="center" class="slide-container">
 							<v-col cols="12" md="9" >
 								<v-row>
@@ -40,14 +40,14 @@
 		<p
 			class="d-none d-md-block rotated-phraze font-weight-light"
 			:class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
-			v-if="curStage <= about.slides.length"
+			v-if="curStage <= about[$i18n.locale].slides.length"
 		>
 			{{ $t('common.slogan') }}
 		</p>
 		<p
 			class="d-none d-md-block font-weight-light rotated-phraze pointer"
 			:class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
-			v-if="curStage > about.slides.length"
+			v-if="curStage > about[$i18n.locale].slides.length"
 			@click="backToStart"
 		>
 			{{ $t('about.backToStart') }}
@@ -60,7 +60,7 @@
 						<v-col sm="12" md="8" class="px-0 d-none d-sm-flex">
 							<v-slider
 								v-model="curStage"
-								:max="about.slides.length + 1"
+								:max="about[$i18n.locale].slides.length + 1"
 								class="slider"
 								step="1"
 								ticks="always"
@@ -178,7 +178,7 @@ export default class AboutPage extends Vue {
 
 	@Watch('curStage')
 	onChangeCurStage(value: number) {
-		if (value === this.about.slides.length + 1) {
+		if (value === this.about[this.$i18n.locale].slides.length + 1) {
 			this.changeContactBar(true);
 		}
 	}
@@ -189,7 +189,7 @@ export default class AboutPage extends Vue {
 		if (prevValue === true) {
 			this.curStage = this.curStage - 1;
 		} else {
-			this.curStage = this.about.slides.length + 1;
+			this.curStage = this.about[this.$i18n.locale].slides.length + 1;
 		}
 	}
 
