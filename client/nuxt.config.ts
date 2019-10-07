@@ -74,6 +74,12 @@ const config: Configuration = {
 		langDir: 'lang/',
 		defaultLocale: 'en',
 		strategy: 'prefix_and_default',
+		// TODO: uncomment on prod
+		// detectBrowserLanguage: {
+    // useCookie: true,
+    // cookieKey: 'i18n_redirected',
+    // alwaysRedirect: true,
+    // fallbackLocale: 'en'
 		locales: [
 			{
 				code: 'en',
