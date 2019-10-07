@@ -12,7 +12,7 @@
 				<v-col cols="12" sm="10" order-md="2" class="pa-0">
 					<v-row justify="space-between" align="center">
 						<v-col cols="auto" class="pa-0">
-							<nuxt-link to="/">
+							<nuxt-link :to="localePath({name: 'index'})" nuxt>
 								<v-img src="/logo.svg" />
 							</nuxt-link>
 						</v-col>
@@ -39,7 +39,7 @@
 										</span>
 									</v-btn>
 								</v-col>
-															<v-btn icon dark to="/" class="d-none d-md-flex">
+									<v-btn icon dark :to="localePath({name: 'index'})" class="d-none d-md-flex" nuxt>
 								<v-icon size="50">mdi-fullscreen-exit</v-icon>
 							</v-btn>
 							<v-btn
@@ -158,7 +158,7 @@ export default class ImmediatetLayout extends Vue {
 
   toggleVisibilityMobileMenu() {
     this.isShowMobileMenu = !this.isShowMobileMenu;
-  }
+	}
 }
 </script>
 

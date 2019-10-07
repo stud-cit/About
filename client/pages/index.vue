@@ -13,7 +13,7 @@
           lg="8"
           class="swiper-slide"
         >
-          <nuxt-link :to="page.to" class="disable-underline">
+          <nuxt-link :to="localePath(page.to, $i18n.locale)" class="disable-underline">
             <v-card>
               <v-img
                 :src="getDynamicAssets(page.img)"
