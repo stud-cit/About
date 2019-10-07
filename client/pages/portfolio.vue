@@ -46,7 +46,7 @@
                 <div class="arrow-right">
                   <v-img
                     src="/arrow-point-to-right.svg"
-                    :width="isMdAndUp ? '40px' : '75px'"
+                    :width="isMdAndUp ? '40px' : '65px'"
                   />
                 </div>
               </v-btn>
@@ -90,9 +90,9 @@ export default class PortfolioPage extends Vue {
   }
   get getTitleFontProject() {
       return { fontSize:  `${this.getCustomAdaptiveSize({
-        xs: 40,
+        xs: 32,
         sm: 50,
-        md: 60,
+        md: 55,
         lg: 65,
       })}px`
       };
