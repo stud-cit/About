@@ -3,7 +3,7 @@
     <v-app-bar app flat class="pt-6 mt-sm-12 mb-3 app-bar">
       <v-row justify="center">
         <v-col cols="10">
-          <v-row justify="space-between ">
+          <v-row justify="space-between">
             <v-col cols="auto">
               <v-toolbar-title>
                 <p
