@@ -23,15 +23,15 @@
 					align="start"
 					:class="{ 'representation-xs': isXsOnly }"
 				>
-					<v-col cols="12" xs="8" md="8" lg="9" :class="{'representation-image':isMdAndDown}">
-						<v-img :src="getDynamicAssets(preview.img)" />
+					<v-col cols="12" xs="8" md="8" lg="9" :class="{'representation-image': isMdAndDown}">
+						<v-img :src="getDynamicAssets(preview.img)" :lazy-src="getDynamicAssets('')" />
 					</v-col>
 
 					<v-col
 						cols="12"
 						md="5"
 						class="representation-card"
-						:class="preview.positionCard=='start' ? 'right-bottom-position' : 'left-bottom-position' "
+						:class="preview.positionCard === 'start' ? 'right-bottom-position' : 'left-bottom-position' "
 					>
 						<v-card class="pa-4 px-lg-8 py-lg-12">
 							<v-card-title
