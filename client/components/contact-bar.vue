@@ -2,7 +2,7 @@
 	<v-container
 		fluid
 		id="contact"
-		class="pa-sm-1"
+		class="pa-0"
 		:class="{ static: isStatic }"
 		v-if="isStatic || isActive"
 	>
@@ -16,7 +16,7 @@
 				</span>
 			</v-col>
 		</v-row>
-		<v-row class="contact-bar-section">
+		<v-row class="contact-bar-section pa-0 ma-0">
 			<v-row class="relative" justify="center" align="center">
 				<v-row justify="space-around">
 					<v-col cols="10">
@@ -149,6 +149,9 @@ export default class ContactBar extends Vue {
 </script>
 
 <style lang="sass">
+.container
+	padding: 0 !important
+
 #contact
 	position: fixed
 	bottom: 0
