@@ -12,7 +12,7 @@
 					:class="{ 'font-weight-bold': isSmAndDown }"
 					:style="getTagLineFont"
 				>
-					{{ $t('about.tagLine') }}
+					{{ $t('common.slogan') }}
 				</span>
 			</v-col>
 		</v-row>

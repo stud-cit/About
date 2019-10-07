@@ -5,14 +5,12 @@
 				<v-window v-model="curStage" continuous dark>
 					<v-window-item>
 						<PreviewPage
-							:title="about.previewTitle"						
+							:title="$t(about.previewTitle)"
 							:subtitle="about.previewSubtitle"
 							:description="about.previewDescription"
 							:icon-down="false"
-							:isAbout="true"
 						/>
 					</v-window-item>
-
 					<v-window-item v-for="(slide, index) in about.slides" :key="index">
 						<v-row justify="start" align="center" class="slide-container">
 							<v-col cols="12" md="9" >
@@ -22,7 +20,7 @@
 											class="font-weight-bold ma-2 white--text text-uppercase"
 											:style="getSlideTitleFont"
 										>
-											Student centr of information technology
+											{{ $t('common.companyName')}}
 										</div>
 										<div
 											class="px-12 px-md-12 px-xs-8 py-12 slide-content font-weight-light"
@@ -44,7 +42,7 @@
 			:class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
 			v-if="curStage <= about.slides.length"
 		>
-			{{ $t('about.tagLine') }}
+			{{ $t('common.slogan') }}
 		</p>
 		<p
 			class="d-none d-md-block font-weight-light rotated-phraze pointer"
@@ -79,12 +77,12 @@
 								<v-card-title
 									class="justify-center"
 									:style="getUseContactsTitleFont"
-									>{{ $t('contact.titleShort') }}</v-card-title
+									>{{ $t('contact.title') }}</v-card-title
 								>
 								<v-card-actions
 									class="pa-0 contacts-action justify-center"
 									:style="getUseContactsActionFont"
-									>{{ $t('contact.preTitleShort') }}</v-card-actions
+									>{{ $t('contact.subTitle') }}</v-card-actions
 								>
 							</v-card>
 						</v-col>

@@ -9,12 +9,12 @@
 			>
 				<p class="arrowUp">&#8593;</p>
 				<p :class="isSmAndUp ? 'text-sm' : 'text-xs'">
-					{{ $t('weOffers.backToTop') }}
+					{{ $t('common.backToTop') }}
 				</p>
 			</v-row>
 		</v-col>
 		<p class="d-none d-lg-block rotated-return-bar" @click="scollTop">
-			{{ $t('weOffers.backToTop') }}
+			{{ $t('common.backToTop') }}
 		</p>
 		<contact-bar id="contact" :isStatic="true" />
 	</v-row>

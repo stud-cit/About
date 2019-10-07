@@ -31,7 +31,7 @@
                       0{{ ++i }}
                     </span>
                     <span class="font-weight-bold text-uppercase slider-title" :style="getSlideTitleFont">
-                      {{ page.title }}.
+                      {{ $t(page.title) }}.
                     </span>
                   </v-row>
                 </v-card-title>

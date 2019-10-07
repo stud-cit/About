@@ -16,7 +16,6 @@
 								<v-img src="/logo.svg" />
 							</nuxt-link>
 						</v-col>
-						<!-- <v-spacer /> -->
 						<v-col cols="6" md="6" lg="6" xl="6" class="d-none d-md-flex">
 							<v-row justify="space-between">
 								<v-col
@@ -34,10 +33,9 @@
 										text
 									>
 										<span
-											class="capitalize"
 											:class="isLgAndUp ? 'nav-link-desktop' : 'nav-link'"
 										>
-											{{ page.title }}
+											{{ $t(page.title) }}
 										</span>
 									</v-btn>
 								</v-col>
@@ -53,7 +51,6 @@
 							</v-btn>
 							</v-row>
 						</v-col>
-						<!-- <v-spacer /> -->
 					</v-row>
 				</v-col>
 			</v-row>
@@ -227,9 +224,6 @@ export default class ImmediatetLayout extends Vue {
 	position: fixed !important
 	width: 100vw
 	height: 100vh
-
-.capitalize
-	text-transform: capitalize
 
 .desktop-link:hover
 	opacity: 0.5

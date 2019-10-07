@@ -20,7 +20,7 @@ export const state = (): State => ({
 	pages: [
 		{
 			id: 1,
-			title: 'About Us',
+			title: 'pages.about',
 			to: 'about',
 			img: '/images/background/about.png',
 			lazyImg: 'https://picsum.photos/id/1/60',
@@ -28,7 +28,7 @@ export const state = (): State => ({
 		},
 		{
 			id: 2,
-			title: 'We Offers',
+			title: 'pages.weOffers',
 			to: 'offers',
 			img: '/images/background/offers.png',
 			lazyImg: 'https://picsum.photos/id/3/60',
@@ -36,7 +36,7 @@ export const state = (): State => ({
 		},
 		{
 			id: 3,
-			title: 'Our Staff',
+			title: 'pages.ourStaff',
 			to: 'our-staff',
 			img: '/images/background/our-staff.png',
 			lazyImg: 'https://picsum.photos/id/4/60',
@@ -44,7 +44,7 @@ export const state = (): State => ({
 		},
 		{
 			id: 4,
-			title: 'Portfolio',
+			title: 'pages.portfolio',
 			to: 'portfolio',
 			img: '/images/background/portfolio.png',
 			lazyImg: 'https://picsum.photos/id/5/60',
@@ -52,7 +52,7 @@ export const state = (): State => ({
 		},
 	],
 	about: {
-		previewTitle: 'Student centr of information technology',
+		previewTitle: 'common.companyName',
 		previewSubtitle: '',
 		previewDescription: 'We can make this world better.',
 		slides: [
