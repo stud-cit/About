@@ -27,4 +27,8 @@ export default {
 	portfolio: {
 		link: 'Подивитись приклад',
 	},
+	errors: {
+		returnToHome: 'Повернутись на головну',
+		errorOccured: 'Виникла помилка',
+	},
 };

@@ -27,4 +27,8 @@ export default {
 	portfolio: {
 		link: 'View Case Study',
 	},
+	errors: {
+		returnToHome: 'Return to home page',
+		errorOccured: 'An error occurred',
+	},
 };

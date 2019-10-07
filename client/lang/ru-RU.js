@@ -27,4 +27,8 @@ export default {
 	portfolio: {
 		link: 'Посмотреть пример',
 	},
+	errors: {
+		returnToHome: 'Вернутся на главную',
+		errorOccured: 'Возникла ошибка',
+	}
 };
