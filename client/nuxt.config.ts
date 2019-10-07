@@ -18,7 +18,7 @@ const config: Configuration = {
 	 ** Headers of the page
 	 */
 	head: {
-		titleTemplate: `%s - ${configService.getSetting('npm_package_name')}`,
+		titleTemplate: `%s`,
 		meta: [
 			{ charset: 'utf-8' },
 			{
