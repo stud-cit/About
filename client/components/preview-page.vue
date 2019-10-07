@@ -1,6 +1,6 @@
 <template>
   <v-row class="preview-section" justify="center" align="end">
-    <v-row class="preview-wrapper" justify="space-around" align="end">
+    <v-row class="preview-wrapper" justify="space-around" align="end" :class="iconDown ? 'preview-margin' : ''">
       <v-col cols="12" order="1" order-sm="1" class="line-height" :class="isXsOnly ? 'text-center' : ''">
         <div class="d-block">
           <p class="font-weight-bold" :class="isAbout ? 'text-uppercase' : ''" :style="getPreviewTitleFont">
@@ -175,10 +175,10 @@ export default class PreviewPage extends Vue {
       return { fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px` };
     } else {
       return { fontSize:  `${this.getCustomAdaptiveSize({
-        xs: 35,
-        sm: 65,
-        md: 83,
-        lg: 93,
+        xs: 33,
+        sm: 50,
+        md: 57,
+        lg: 95,
       })}px`
       };
     }
@@ -189,7 +189,7 @@ export default class PreviewPage extends Vue {
 	mounted() {
 		// initial check
 		this.handleScroll();
-	}
+  }
 }
 </script>
 
@@ -213,9 +213,14 @@ export default class PreviewPage extends Vue {
 			text-decoration: underline
 
 .preview-wrapper
-	height: 70vh
+	height: 60vh
 	color: white
-	margin-bottom: 12vh
+	margin-bottom: 13vh
+
+.preview-margin
+	margin-bottom: 0vh
+	margin-top: 13vh
+
 
 .arrow
 	font-size: 1.8rem

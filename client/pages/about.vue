@@ -5,9 +5,7 @@
 				<v-window v-model="curStage" continuous dark>
 					<v-window-item>
 						<PreviewPage
-							:title="about.previewTitle"
-							cols="12"
-							sm="9"
+							:title="about.previewTitle"						
 							:subtitle="about.previewSubtitle"
 							:description="about.previewDescription"
 							:icon-down="false"
