@@ -75,7 +75,7 @@
 										class="map"
 										href="https://www.google.com.ua/maps/place/Department+of+General+and+Theoretical+Physics+of+SSU/@50.8918344,34.8410504,17z/data=!4m9!1m3!11m2!2sfL29wECLWo3E0vp-J1Rb4QPskla8Pg!3e3!3m4!1s0x0:0x33afc095aa39b815!8m2!3d50.8929585!4d34.8404856?hl=ru"
 									>
-										<v-img src="/map.png"></v-img>
+										<v-img src="/map.jpg"></v-img>
 									</a>
 								</v-row>
 							</v-col>

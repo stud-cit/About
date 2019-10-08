@@ -22,33 +22,33 @@ export const state = (): State => ({
 			id: 1,
 			title: 'pages.about',
 			to: 'about',
-			img: '/images/background/about.png',
+			img: '/images/background/about.jpg',
 			lazyImg: 'https://picsum.photos/id/1/60',
-			cover: '/images/background/about.png',
+			cover: '/images/background/about.jpg',
 		},
 		{
 			id: 2,
 			title: 'pages.weOffers',
 			to: 'offers',
-			img: '/images/background/offers.png',
+			img: '/images/background/offers.jpg',
 			lazyImg: 'https://picsum.photos/id/3/60',
-			cover: '/images/background/offers.png',
+			cover: '/images/background/offers.jpg',
 		},
 		{
 			id: 3,
 			title: 'pages.ourStaff',
 			to: 'our-staff',
-			img: '/images/background/our-staff.png',
+			img: '/images/background/our-staff.jpg',
 			lazyImg: 'https://picsum.photos/id/4/60',
-			cover: '/images/background/our-staff.png',
+			cover: '/images/background/our-staff.jpg',
 		},
 		{
 			id: 4,
 			title: 'pages.portfolio',
 			to: 'portfolio',
-			img: '/images/background/portfolio.png',
+			img: '/images/background/portfolio.jpg',
 			lazyImg: 'https://picsum.photos/id/5/60',
-			cover: '/images/background/portfolio.png',
+			cover: '/images/background/portfolio.jpg',
 		},
 	],
 	about: {
@@ -315,7 +315,7 @@ export const state = (): State => ({
 				},
 				{
 					id: 4,
-					name: 'Pablito Tytov :)',
+					name: 'Pavlo Tytov',
 					position: 'Frontend developer',
 					stack: 'Proficient in React, Vue, typescript',
 					img_src: '/images/ourStaff/staff-1.jpg',
@@ -338,17 +338,17 @@ export const state = (): State => ({
 			projects: [
 				{
 					title: 'Сайт кафедри соціальної роботи СумДУ',
-					cover: '/images/portfolio/SOC.png',
+					cover: '/images/portfolio/SOC.jpg',
 					link: 'http://soc.sumdu.edu.ua/',
 				},
 				{
 					title: 'Платформа пошуку роботи та стажування СумДУ',
-					cover: '/images/portfolio/JOB.png',
+					cover: '/images/portfolio/JOB.jpg',
 					link: 'http://job-test.sumdu.edu.ua/',
 				},
 				{
 					title: 'Онлайн сервiс для оцiнки якості навчального процесу в СумДУ',
-					cover: '/images/portfolio/AC.png',
+					cover: '/images/portfolio/AC.jpg',
 					link: 'http://ac.sumdu.edu.ua/',
 				},
 			],
@@ -360,17 +360,17 @@ export const state = (): State => ({
 			projects: [
 				{
 					title: 'Сайт кафедры социальной работы СумГУ',
-					cover: '/images/portfolio/SOC.png',
+					cover: '/images/portfolio/SOC.jpg',
 					link: 'http://soc.sumdu.edu.ua/',
 				},
 				{
 					title: 'Платформа поиска работы и стажировки СумГУ',
-					cover: '/images/portfolio/JOB.png',
+					cover: '/images/portfolio/JOB.jpg',
 					link: 'http://job-test.sumdu.edu.ua/',
 				},
 				{
 					title: 'Онлайн сервис для оценки качества учебного процесса в СумГУ',
-					cover: '/images/portfolio/AC.png',
+					cover: '/images/portfolio/AC.jpg',
 					link: 'http://ac.sumdu.edu.ua/',
 				},
 			],
@@ -382,17 +382,17 @@ export const state = (): State => ({
 			projects: [
 				{
 					title: 'Department of Social Work of SSU',
-					cover: '/images/portfolio/SOC.png',
+					cover: '/images/portfolio/SOC.jpg',
 					link: 'http://soc.sumdu.edu.ua/',
 				},
 				{
 					title: 'Practice and internship search platform of SSU',
-					cover: '/images/portfolio/JOB.png',
+					cover: '/images/portfolio/JOB.jpg',
 					link: 'http://job-test.sumdu.edu.ua/',
 				},
 				{
 					title: 'Online assessment of the quality of the educational process at SSU',
-					cover: '/images/portfolio/AC.png',
+					cover: '/images/portfolio/AC.jpg',
 					link: 'http://ac.sumdu.edu.ua/',
 				},
 			],
