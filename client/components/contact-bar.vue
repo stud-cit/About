@@ -7,7 +7,7 @@
 		v-if="isStatic || isActive"
 	>
 		<v-row class="ma-0 slogan" justify="center">
-			<v-col cols="10" class="pa-0 font-weight-medium">
+			<v-col cols="10" class="pa-0 font-weight-regular">
 				<span
 					:class="{ 'font-weight-bold': isSmAndDown }"
 					:style="getTagLineFont"
@@ -19,20 +19,20 @@
 		<v-row class="contact-bar-section pa-0 ma-0">
 			<v-row class="relative" justify="center" align="center">
 				<v-row justify="space-around">
-					<v-col cols="10">
+					<v-col cols="10" class="pa-0">
 						<v-col
-							class="mb-4 d-flex d-sm-none justify-space-between"
-							:class="isXs ? 'mobUnderline' : 'underline'"
+							class="my-4 pa-0 d-flex d-md-none justify-space-between"
+							:class="isSmAndDown ? 'mobUnderline' : 'underline'"
 						>
 							<v-col
-								class="font-weight-bold"
+								class="font-weight-black"
 								cols="auto"
 								:style="getMailFont"
 							>
 								{{ contacts.email }}
 							</v-col>
 							<v-col
-								class="font-weight-bold"
+								class="font-weight-black"
 								cols="auto"
 								:style="getMailFont"
 							>
@@ -40,35 +40,37 @@
 							</v-col>
 						</v-col>
 						<v-row align="center" justify="space-between">
-							<v-col cols="6" sm="8" md="9">
+							<v-col cols="6" md="8">
 								<v-row
-									class=" underline mb-4 d-none d-sm-flex font-weight-bold"
+									class="underline mb-4 d-none d-md-flex font-weight-bold"
 									justify="space-between"
 								>
-									<v-col cols="auto" :style="getMailFont">
+									<v-col cols="auto" :style="getMailFont" class="pa-0">
 										{{ contacts.email }}
 									</v-col>
-									<v-col cols="auto" :style="getMailFont">
+									<v-col cols="auto" :style="getMailFont" class="pa-0">
 										{{ contacts.phone }}
 									</v-col>
 								</v-row>
-								<v-col
-									cols="12"
-									class="font-weight-bold px-0 py-0 "
-									:style="getLocationFont"
-								>
-									{{ contacts.street }}
-								</v-col>
-								<v-col
-									cols="12"
-									class="font-weight-bold px-0 py-0 "
-									:style="getLocationFont"
-								>
-									{{ contacts.office }}
-								</v-col>
+								<v-row>
+									<v-col
+										cols="12"
+										class="font-weight-black px-md-0 py-0 color-main"
+										:style="getLocationFont"
+									>
+										{{ contacts.street }}
+									</v-col>
+									<v-col
+										cols="12"
+										class="font-weight-black px-md-0 py-0 color-main"
+										:style="getLocationFont"
+									>
+										{{ contacts.office }}
+									</v-col>
+								</v-row>
 							</v-col>
-							<v-col cols="6" sm="3" md="2">
-								<v-row class="pb-0" justify="center" align="end">
+							<v-col cols="6" sm="5" md="3" class="pt-0 pt-md-2">
+								<v-row class="py-md-3 py-0 mr-1 mr-md-0" justify="center" align="end">
 									<a
 										class="map"
 										href="https://www.google.com.ua/maps/place/Department+of+General+and+Theoretical+Physics+of+SSU/@50.8918344,34.8410504,17z/data=!4m9!1m3!11m2!2sfL29wECLWo3E0vp-J1Rb4QPskla8Pg!3e3!3m4!1s0x0:0x33afc095aa39b815!8m2!3d50.8929585!4d34.8404856?hl=ru"
@@ -98,9 +100,9 @@ export default class ContactBar extends Vue {
 	get getMailFont() {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 16,
-				sm: 18,
-				md: 20,
+				xs: 13,
+				sm: 16,
+				md: 18,
 				lg: 25,
 			})}px`,
 		};
@@ -118,25 +120,25 @@ export default class ContactBar extends Vue {
 	get getLocationFont() {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 14,
-				sm: 18,
-				md: 22,
-				lg: 35,
-			})}px`,
+				xs: 3.1,
+				sm: 2.6,
+				md: 1.9,
+				lg: 1.9,
+			})}vw`,
 		};
 	}
 	get getTagLineFont() {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 30,
-				sm: 46,
-				md: 74,
-				lg: 95,
-			})}px`,
+				xs: 7,
+				sm: 7,
+				md: 6.5,
+				lg: 6.5,
+			})}vw`,
 		};
 	}
-	get isSmAndUp() {
-		return this.$breakpoint ? this.$breakpoint.is.smAndUp : false;
+	get isMdAndUp() {
+		return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
 	}
 	get isSmAndDown() {
 		return this.$breakpoint ? this.$breakpoint.is.smAndDown : false;
@@ -182,4 +184,7 @@ export default class ContactBar extends Vue {
 
 .relative
 	position: relative
+
+.color-main
+	color: rgba(45, 45, 45, 1)
 </style>

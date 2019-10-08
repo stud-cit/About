@@ -118,4 +118,7 @@ export default class PortfolioPage extends Vue {
   padding: 25px
   margin: 10px
   border: 1px solid white
+
+.v-btn:hover::before
+  opacity: 1
 </style>
