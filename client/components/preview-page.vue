@@ -1,5 +1,5 @@
 <template>
-  <v-row class="preview-section" justify="center" align="end">
+  <v-row class="preview-section" justify="center" align="end" :class="isAboutPage ? 'preview-section-about' : 'preview-section-not-about'">
     <v-row class="preview-wrapper" justify="space-around" align="end" :class="iconDown ? 'preview-margin' : ''">
       <v-col cols="12" order="1" order-sm="1" class="line-height" :class="isXsOnly ? 'text-center' : ''">
         <div class="d-block">
@@ -195,7 +195,6 @@ export default class PreviewPage extends Vue {
 
 <style lang="sass">
 .preview-section
-	height: 97vh !important
 
 	.use-contacts-container
 		width: 100vw
@@ -211,6 +210,12 @@ export default class PreviewPage extends Vue {
 		.contacts-action
 			text-transform: uppercase
 			text-decoration: underline
+
+.preview-section-about
+	height: 97vh !important
+
+.preview-section-not-about
+	height: 100vh !important
 
 .preview-wrapper
 	height: 60vh
