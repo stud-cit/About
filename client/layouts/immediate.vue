@@ -66,7 +66,7 @@
 		<v-img :src="getDynamicAssets(cover)" class="imageCover" />
 
 		<v-content class="pt-0">
-			<v-container fluid class="fill-height pa-0">
+			<v-container fluid class="pa-0">
 				<nuxt />
 				<contact-bar />
 			</v-container>
