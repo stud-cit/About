@@ -33,9 +33,9 @@
             :class="{ rotate: isXsOnly }"
           >
             <nuxt-link class="square-container" to="/">
-              <div class="square mr-3 squareOne"></div>
-              <div class="square mr-3 squareTwo"></div>
-              <div class="square squareThree"></div>
+              <div class="squares mr-3 squareOne"></div>
+              <div class="squares mr-3 squareTwo"></div>
+              <div class="squares squareThree"></div>
             </nuxt-link>
           </v-col>
         </v-row>
@@ -235,7 +235,7 @@ export default class PreviewPage extends Vue {
 .square-container
 	display: flex
 
-.square
+.squares
 	height: 40px
 	width: 40px
 	border-radius: 20%
