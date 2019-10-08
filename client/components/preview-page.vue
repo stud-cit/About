@@ -181,7 +181,8 @@ export default class PreviewPage extends Vue {
         xs: 33,
         sm: 50,
         md: 57,
-        lg: 95,
+        lg: 70,
+        xl:95,
       })}px`
       };
     }

@@ -13,7 +13,7 @@
 					</v-window-item>
 					<v-window-item v-for="(slide, index) in about[$i18n.locale].slides" :key="index">
 						<v-row justify="start" align="center" class="slide-container">
-							<v-col cols="12" md="9" >
+							<v-col cols="12" xl="9" lg="12" md="12" sm="12"  >
 								<v-row>
 									<v-col col="12">
 										<div
@@ -23,7 +23,7 @@
 											{{ $t('common.companyName')}}
 										</div>
 										<div
-											class="px-12 px-md-12 px-xs-8 py-12 slide-content font-weight-light"
+											class="px-xl-12 px-lg-8 px-md-8 px-sm-8 px-xs-8 py-xl-12 py-lg-2 py-md-8 py-sm-8 px-4 py-2 slide-content font-weight-light"
 											:style="getSlideContentFont"
 										>
 											<p class="py-md-12">{{ slide }}</p>
