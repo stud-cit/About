@@ -3,15 +3,15 @@
 		<v-row justify="center">
 			<v-col cols="12" sm="10">
 				<PreviewPage
-					:title="ourStaff.previewTitle"
-					:subtitle="ourStaff.previewSubtitle"
-					:description="ourStaff.previewDescription"
+					:title="ourStaff[$i18n.locale].previewTitle"
+					:subtitle="ourStaff[$i18n.locale].previewSubtitle"
+					:description="ourStaff[$i18n.locale].previewDescription"
 					:icon-down="false"
 				/>
 				<ScrollBar />
 				<v-row justify="start" class="d-none d-md-flex">
 					<v-col
-						v-for="(person, i) in ourStaff.representation"
+						v-for="(person, i) in ourStaff[$i18n.locale].representation"
 						:key="i"
 						lg="4"
 						md="6"
@@ -59,7 +59,7 @@
 					<v-col>
 						<v-window v-model="curStaff">
 							<v-window-item
-								v-for="(person, i) in ourStaff.representation"
+								v-for="(person, i) in ourStaff[$i18n.locale].representation"
 								:key="i"
 							>
 								<v-card class="mx-auto" color="transparent" width="100%" flat>
@@ -76,7 +76,7 @@
 											color="white"
 											class="scroll-icon-left"
 										>
-                      					<v-img src="/arrow-point-to-left.svg" class="arrow-style" @click="() => switchSlide(false)"/>
+                      <v-img src="/arrow-point-to-left.svg" class="arrow-style" @click="() => switchSlide(false)"/>
 										</v-btn>
 										<div class="infoNameSkill">
 											<div
@@ -98,13 +98,13 @@
 											{{ person.stack }}
 											</div>
 										</div>
-										
+
 										<v-btn
 											icon
 											color="white"
 											class="scroll-icon-right"
 										>
-                      					<v-img src="/arrow-point-to-right.svg" class="arrow-style" @click="() => switchSlide(false)"/>
+                      <v-img src="/arrow-point-to-right.svg" class="arrow-style" @click="() => switchSlide(false)"/>
 										</v-btn>
 									</div>
 								</v-card>
@@ -150,7 +150,7 @@ export default class OurStaffPage extends Vue {
 
 	switchSlide(nextSlide) {
 		const { curStaff, ourStaff } = this;
-		const totalStaff = ourStaff.representation.length;
+		const totalStaff = ourStaff[this.$i18n.locale].representation.length;
 		let newIndex;
 		if (nextSlide) {
 			newIndex = curStaff + 1 < totalStaff ? curStaff + 1 : 0;
@@ -161,7 +161,7 @@ export default class OurStaffPage extends Vue {
 	}
 
 	get sliderInfo() {
-		return `${this.curStaff + 1} / ${this.ourStaff.representation.length}`;
+		return `${this.curStaff + 1} / ${this.ourStaff[this.$i18n.locale].representation.length}`;
 	}
 
 	get isLgAndUp() {
@@ -208,10 +208,9 @@ export default class OurStaffPage extends Vue {
   position: relative
   justify-content: center
 
-
 .infoNameSkill
   width: 70%
-  margin: 0 auto	
+  margin: 0 auto
 
 .employee-name
   font-weight: 900
@@ -272,5 +271,5 @@ export default class OurStaffPage extends Vue {
   line-height: 1
 
 .arrow-style
-  width: 18vw  
+  width: 18vw
 </style>

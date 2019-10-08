@@ -3,15 +3,18 @@
     <v-row justify="center">
       <v-col cols="12" sm="10">
         <PreviewPage
-          :title="portfolio.previewTitle"
-          :subtitle="portfolio.previewSubtitle"
-          :description="portfolio.previewDescription"
+          :title="portfolio[$i18n.locale].previewTitle"
+          :subtitle="portfolio[$i18n.locale].previewSubtitle"
+          :description="portfolio[$i18n.locale].previewDescription"
           :icon-down="true"
         />
       </v-col>
     </v-row>
     <v-col class="pa-0">
-      <v-row v-for="(project, i) in projects" :key="i" align="center">
+      <v-row v-for="(project, i) in portfolio[$i18n.locale].projects"
+				:key="i"
+				align="center"
+			>
         <v-parallax
           :src="getDynamicAssets(project.cover)"
           class="pa-0 fullscreen"
@@ -78,7 +81,6 @@ import PruductFooter from '@/components/product-footer.vue';
 	},
 })
 export default class PortfolioPage extends Vue {
-	@Getter('getProjectsStage') projects;
 	@Getter('getPortfolioStage') portfolio;
 	@Mutation('changePageId') changePageId;
 

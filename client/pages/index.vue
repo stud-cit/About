@@ -13,7 +13,7 @@
           lg="8"
           class="swiper-slide"
         >
-          <nuxt-link :to="page.to" class="disable-underline">
+          <nuxt-link :to="localePath(page.to, $i18n.locale)" class="disable-underline">
             <v-card>
               <v-img
                 :src="getDynamicAssets(page.img)"
@@ -31,7 +31,7 @@
                       0{{ ++i }}
                     </span>
                     <span class="font-weight-bold text-uppercase slider-title" :style="getSlideTitleFont">
-                      {{ page.title }}.
+                      {{ $t(page.title) }}.
                     </span>
                   </v-row>
                 </v-card-title>
