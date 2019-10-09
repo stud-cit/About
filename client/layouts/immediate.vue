@@ -17,7 +17,7 @@
 							</nuxt-link>
 						</v-col>
 						<v-col cols="6" md="6" lg="6" xl="6" class="d-none d-md-flex">
-							<v-row justify="space-between">
+							<v-row justify="space-between" align="center">
 								<v-col
 									class="pa-0 nav-links"
 									cols="auto"
@@ -66,7 +66,7 @@
 		<v-img :src="getDynamicAssets(cover)" class="imageCover" />
 
 		<v-content class="pt-0">
-			<v-container fluid class="fill-height pa-0">
+			<v-container fluid class="pa-0">
 				<nuxt />
 				<contact-bar />
 			</v-container>

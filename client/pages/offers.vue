@@ -23,8 +23,8 @@
 					align="start"
 					:class="{ 'representation-xs': isXsOnly }"
 				>
-					<v-col cols="12" xs="8" md="8" lg="9" :class="{'representation-image': isMdAndDown}">
-						<v-img :src="getDynamicAssets(preview.img)" :lazy-src="getDynamicAssets('')" />
+					<v-col cols="12" xs="8" md="8" lg="9" class="mb-12 mb-md-0" :class="{'representation-image': isMdAndDown}">
+						<v-img  class="pb-12 pb-md-0" :src="getDynamicAssets(preview.img)" :lazy-src="getDynamicAssets('')" />
 					</v-col>
 
 					<v-col
@@ -129,7 +129,7 @@ export default class OffersPage extends Vue {
 	overflow: hidden
 
 .representation-xs
-	padding-bottom: 25vh
+	padding-bottom: 15vh
 
 .card-title
 	word-break: break-word

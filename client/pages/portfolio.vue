@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid id="portfolio">
     <v-row justify="center">
       <v-col cols="12" sm="10">
         <PreviewPage
@@ -11,52 +11,50 @@
       </v-col>
     </v-row>
     <v-col class="pa-0">
-      <v-row v-for="(project, i) in portfolio[$i18n.locale].projects"
+			<v-parallax
+				v-for="(project, i) in portfolio[$i18n.locale].projects"
 				:key="i"
-				align="center"
+				:src="getDynamicAssets(project.cover)"
+				class="pa-0 fullscreen"
+				height="900"
 			>
-        <v-parallax
-          :src="getDynamicAssets(project.cover)"
-          class="pa-0 fullscreen"
-        >
-          <v-row justify="center" align="center" class="section">
-            <v-col lg="7" md="7" sm="12">
-              <v-card dark flat color="transparent">
-                <v-list-item>
-                  <v-list-item-content>
-                    <v-list-item-title
-                      v-text="project.title"
-                      class="ma-5 font-weight-medium text-underline text-wrap"
-                      :class="isMdAndUp ? '' : 'text-center'"
-                      :style="getTitleFontProject"
-                    />
-                    <v-divider />
-                  </v-list-item-content>
-                </v-list-item>
-              </v-card>
-            </v-col>
-            <v-col
-              lg="3"
-              md="4"
-              sm="12"
-              class="ma-3 d-flex"
-              :class="isMdAndUp ? 'justify-end' : 'justify-center'"
-            >
-              <v-btn :to="project.link" large dark text>
-                <span class="headline d-none d-md-block">{{
-                  $t('portfolio.link')
-                }}</span>
-                <div class="arrow-right">
-                  <v-img
-                    src="/arrow-point-to-right.svg"
-                    :width="isMdAndUp ? '40px' : '65px'"
-                  />
-                </div>
-              </v-btn>
-            </v-col>
-          </v-row>
-        </v-parallax>
-      </v-row>
+				<v-row justify="center" align="center" class="section">
+					<v-col lg="7" md="7" sm="12">
+						<v-card dark flat color="transparent">
+							<v-list-item>
+								<v-list-item-content>
+									<v-list-item-title
+										v-text="project.title"
+										class="ma-5 font-weight-medium text-underline text-wrap"
+										:class="isMdAndUp ? '' : 'text-center'"
+										:style="getTitleFontProject"
+									/>
+									<v-divider />
+								</v-list-item-content>
+							</v-list-item>
+						</v-card>
+					</v-col>
+					<v-col
+						lg="3"
+						md="4"
+						sm="12"
+						class="ma-3 d-flex"
+						:class="isMdAndUp ? 'justify-end' : 'justify-center'"
+					>
+						<v-btn :to="project.link" large dark text>
+							<span class="headline d-none d-md-block">{{
+								$t('portfolio.link')
+							}}</span>
+							<div class="arrow-right">
+								<v-img
+									src="/arrow-point-to-right.svg"
+									:width="isMdAndUp ? '40px' : '65px'"
+								/>
+							</div>
+						</v-btn>
+					</v-col>
+				</v-row>
+			</v-parallax>
     </v-col>
     <product-footer />
   </v-container>
@@ -103,11 +101,9 @@ export default class PortfolioPage extends Vue {
 </script>
 
 <style lang="sass">
-.fullscreen
-  height: 80vh !important
-  width: 101vw !important
-  .section
-
+#portfolio
+  .fullscreen
+    width: 100vw
     .text-underline
       line-height: normal
       text-decoration: underline
@@ -118,4 +114,7 @@ export default class PortfolioPage extends Vue {
   padding: 25px
   margin: 10px
   border: 1px solid white
+
+.v-btn:hover::before
+  opacity: 0 !important
 </style>
