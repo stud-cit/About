@@ -21,7 +21,7 @@ export const state = (): State => ({
 		{
 			id: 1,
 			title: 'pages.about',
-			to: 'about',
+			to: '/about',
 			img: '/images/background/about.jpg',
 			lazyImg: 'https://picsum.photos/id/1/60',
 			cover: '/images/background/about.jpg',
@@ -29,7 +29,7 @@ export const state = (): State => ({
 		{
 			id: 2,
 			title: 'pages.weOffers',
-			to: 'offers',
+			to: '/offers',
 			img: '/images/background/offers.jpg',
 			lazyImg: 'https://picsum.photos/id/3/60',
 			cover: '/images/background/offers.jpg',
@@ -37,7 +37,7 @@ export const state = (): State => ({
 		{
 			id: 3,
 			title: 'pages.ourStaff',
-			to: 'our-staff',
+			to: '/our-staff',
 			img: '/images/background/our-staff.jpg',
 			lazyImg: 'https://picsum.photos/id/4/60',
 			cover: '/images/background/our-staff.jpg',
@@ -45,7 +45,7 @@ export const state = (): State => ({
 		{
 			id: 4,
 			title: 'pages.portfolio',
-			to: 'portfolio',
+			to: '/portfolio',
 			img: '/images/background/portfolio.jpg',
 			lazyImg: 'https://picsum.photos/id/5/60',
 			cover: '/images/background/portfolio.jpg',
