@@ -116,5 +116,5 @@ export default class PortfolioPage extends Vue {
   border: 1px solid white
 
 .v-btn:hover::before
-  opacity: 1
+  opacity: 0 !important
 </style>
