@@ -5,19 +5,18 @@
         <v-col cols="10">
           <v-row justify="space-between">
             <v-col cols="auto">
-              <v-toolbar-title>
                 <p
                   class="text-uppercase mb-0 font-weight-black"
                   :style="getPageTitleFont"
+                  :class="isXsOnly ? 'text-center' : ''"
                 >
                   {{ $t('home.title') }}
                 </p>
-                <p class="mb-0 grey--text font-weight-bold" :style="getPageSubTitleFont">
+                <p class="mb-0 grey--text font-weight-bold" :style="getPageSubTitleFont" :class="isXsOnly ? 'text-center' : ''">
                   {{ $t('home.subTitle') }}
                 </p>
-              </v-toolbar-title>
             </v-col>
-            <v-col cols="auto" class="d-none d-sm-flex align-center">
+            <v-col cols="auto" class="d-none d-md-flex align-center">
               <v-speed-dial
                 v-model="changeLocale"
                 direction="left"
@@ -52,9 +51,10 @@
       </v-container>
     </v-content>
     <v-btn
-      class="d-flex d-sm-none mobile-icon burger-icon"
+      class="d-flex d-md-none mobile-icon burger-icon"
       @click="toggleVisibilityLocales"
       icon
+      :class="isSmOnly ? 'locale-button' : ''"
     >
       <v-icon size="30" color="black">mdi-menu</v-icon>
     </v-btn>
@@ -124,7 +124,12 @@ export default class PreliminaryLayout extends Vue {
       })}px`,
     };
   }
-
+  get isSmOnly(){
+    return this.$breakpoint ? this.$breakpoint.is.smOnly : false;
+  }
+   get isXsOnly(){
+    return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+  }
   toggleVisibilityLocales() {
     this.isShowMobileLocales = !this.isShowMobileLocales;
   }
@@ -139,7 +144,8 @@ export default class PreliminaryLayout extends Vue {
 
   .app-bar
     position: sticky
-    height: 90px
+    height: 90px !important
+    margin-top: 10px !important
     background: rgba(250, 250, 250, .85)
     .v-toolbar__content
       width: 100vw
