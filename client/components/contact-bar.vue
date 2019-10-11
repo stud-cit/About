@@ -40,7 +40,7 @@
 							</v-col>
 						</v-col>
 						<v-row align="center" justify="space-between">
-							<v-col cols="6" md="8">
+							<v-col cols="7" md="9" sm="8">
 								<v-row
 									class="underline mb-4 d-none d-md-flex font-weight-bold"
 									justify="space-between"
@@ -69,7 +69,7 @@
 									</v-col>
 								</v-row>
 							</v-col>
-							<v-col cols="6" sm="5" md="3" class="pt-0 pt-md-2">
+							<v-col cols="5" sm="4"  md="2" class="pt-0 pt-md-2">
 								<v-row class="py-md-3 py-0 mr-1 mr-md-0" justify="center" align="end">
 									<a
 										class="map"

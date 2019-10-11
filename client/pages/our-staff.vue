@@ -258,15 +258,15 @@ export default class OurStaffPage extends Vue {
   height: 70vh
 
 .scroll-icon-left
-  opacity: 0.5
+  opacity: 1
   position: absolute
   left: 5%
-
+  fill: red
 .scroll-icon-right
-  opacity: 0.5
+  opacity: 1
   position: absolute
   right: 5%
-
+  
 .line-height-1
   line-height: 1
 
