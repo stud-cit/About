@@ -46,15 +46,15 @@
 								>
 									<v-icon size="50">mdi-fullscreen-exit</v-icon>
 								</v-btn>
-								<v-btn
-									class="d-flex d-md-none"
-									@click="toggleVisibilityMobileMenu"
-									icon
-								>
-									<v-icon size="50">mdi-menu</v-icon>
-								</v-btn>
 							</v-row>
 						</v-col>
+						<v-btn
+							class="d-flex d-md-none"
+							@click="toggleVisibilityMobileMenu"
+							icon
+						>
+							<v-icon size="50">mdi-menu</v-icon>
+						</v-btn>
 					</v-row>
 				</v-col>
 			</v-row>
@@ -99,7 +99,7 @@
 							exact
 							nuxt
 						>
-							<span class="page-link-title">{{ page.title }}</span>
+							<span class="page-link-title">{{ $t(page.title) }}</span>
 						</v-btn>
 					</v-list-item>
 				</v-list-item-group>
