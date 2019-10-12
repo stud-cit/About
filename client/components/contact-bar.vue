@@ -24,18 +24,10 @@
 							class="my-4 pa-0 d-flex d-md-none justify-space-between"
 							:class="isSmAndDown ? 'mobUnderline' : 'underline'"
 						>
-							<v-col
-								class="font-weight-black"
-								cols="auto"
-								:style="getMailFont"
-							>
+							<v-col class="font-weight-black" cols="auto" :style="getMailFont">
 								{{ contacts.email }}
 							</v-col>
-							<v-col
-								class="font-weight-black"
-								cols="auto"
-								:style="getMailFont"
-							>
+							<v-col class="font-weight-black" cols="auto" :style="getMailFont">
 								{{ contacts.phone }}
 							</v-col>
 						</v-col>
@@ -69,8 +61,12 @@
 									</v-col>
 								</v-row>
 							</v-col>
-							<v-col cols="5" sm="4"  md="2" class="pt-0 pt-md-2">
-								<v-row class="py-md-3 py-0 mr-1 mr-md-0" justify="center" align="end">
+							<v-col cols="5" sm="4" md="2" class="pt-0 pt-md-2">
+								<v-row
+									class="py-md-3 py-0 mr-1 mr-md-0"
+									justify="center"
+									align="end"
+								>
 									<a
 										class="map"
 										href="https://www.google.com.ua/maps/place/Department+of+General+and+Theoretical+Physics+of+SSU/@50.8918344,34.8410504,17z/data=!4m9!1m3!11m2!2sfL29wECLWo3E0vp-J1Rb4QPskla8Pg!3e3!3m4!1s0x0:0x33afc095aa39b815!8m2!3d50.8929585!4d34.8404856?hl=ru"

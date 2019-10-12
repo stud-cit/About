@@ -1,96 +1,115 @@
 <template>
-  <v-row class="preview-section" justify="center" align="end" :class="isAboutPage ? 'preview-section-about' : 'preview-section-not-about'">
-    <v-row class="preview-wrapper" justify="space-around" align="end" :class="iconDown ? 'preview-margin' : ''">
-      <v-col cols="12" order="1" order-sm="1" class="line-height" :class="isXsOnly ? 'text-center' : ''">
-        <div class="d-block">
-          <p class="font-weight-bold"
-						:class="{'text-uppercase': isAboutPage}"
+	<v-row
+		class="preview-section"
+		justify="center"
+		align="end"
+		:class="isAboutPage ? 'preview-section-about' : 'preview-section-not-about'"
+	>
+		<v-row
+			class="preview-wrapper"
+			justify="space-around"
+			align="end"
+			:class="iconDown ? 'preview-margin' : ''"
+		>
+			<v-col
+				cols="12"
+				order="1"
+				order-sm="1"
+				class="line-height"
+				:class="isXsOnly ? 'text-center' : ''"
+			>
+				<div class="d-block">
+					<p
+						class="font-weight-bold"
+						:class="{ 'text-uppercase': isAboutPage }"
 						:style="getPreviewTitleFont"
 					>
-            {{ title }}
-          </p>
-          <p class="font-weight-bold" :style="getPreviewTitleFont">
-            {{ subtitle }}
-          </p>
-        </div>
-      </v-col>
-      <v-col cols="12" order="3" order-sm="2">
-        <v-row justify="space-around" justify-sm="start">
-          <v-col cols="auto" order="1" order-sm="1">
-            <div class="arrow mr-3" @click="handleNavigatingPage(false)">
-              <v-img src="/arrow-left.svg" width="45px" />
-            </div>
-          </v-col>
-          <v-col cols="auto" order="3" order-sm="2">
-            <div class="arrow mr-3" @click="handleNavigatingPage(true)">
-              <v-img src="/arrow-right.svg" width="45px" />
-            </div>
-          </v-col>
-          <v-col
-            cols="auto"
-            order="2"
-            order-sm="3"
-            :class="{ rotate: isXsOnly }"
-          >
-            <nuxt-link class="square-container" to="/">
-              <div class="squares mr-3 squareOne"></div>
-              <div class="squares mr-3 squareTwo"></div>
-              <div class="squares squareThree"></div>
-            </nuxt-link>
-          </v-col>
-        </v-row>
-      </v-col>
+						{{ title }}
+					</p>
+					<p class="font-weight-bold" :style="getPreviewTitleFont">
+						{{ subtitle }}
+					</p>
+				</div>
+			</v-col>
+			<v-col cols="12" order="3" order-sm="2">
+				<v-row justify="space-around" justify-sm="start">
+					<v-col cols="auto" order="1" order-sm="1">
+						<div class="arrow mr-3" @click="handleNavigatingPage(false)">
+							<v-img src="/arrow-left.svg" width="45px" />
+						</div>
+					</v-col>
+					<v-col cols="auto" order="3" order-sm="2">
+						<div class="arrow mr-3" @click="handleNavigatingPage(true)">
+							<v-img src="/arrow-right.svg" width="45px" />
+						</div>
+					</v-col>
+					<v-col
+						cols="auto"
+						order="2"
+						order-sm="3"
+						:class="{ rotate: isXsOnly }"
+					>
+						<nuxt-link class="square-container" to="/">
+							<div class="squares mr-3 squareOne"></div>
+							<div class="squares mr-3 squareTwo"></div>
+							<div class="squares squareThree"></div>
+						</nuxt-link>
+					</v-col>
+				</v-row>
+			</v-col>
 
-      <v-col cols="12" order="2" order-sm="3">
-        <v-row class="d-none d-sm-flex font-weight-regular line-height-1">
-          <span :style="getPreviewSubTitleFont">
-            {{ description }}
-          </span>
-        </v-row>
-        <v-row justify="center" class="d-flex d-sm-none pl-0">
-          <img class="pointer-icon" src="/pointer-mobile.svg" />
-        </v-row>
-        <v-row justify="center" justify-sm="start" class="mt-4">
-          <span class="gray font-weight-regular" :style="getPreviewInfoFont">
-            {{ $t(isAboutPage ? 'about.scrollPoint' : 'common.scroll') }}
-          </span>
-        </v-row>
-      </v-col>
-    </v-row>
-    <v-row
-      v-show="isShowUseContacts"
-      v-scroll="handleScroll"
-      class="pa-0 use-contacts-container"
-      justify="end"
-      no-gutters
-    >
-      <v-col cols="12" sm="auto">
-        <v-card class="pa-4 pt-0 card-contacts" @click="scrollToFooter">
-          <v-card-title class="justify-center font-weight-thin" :style="getUseContactsTitleFont">
-            {{ $t('contact.title') }}
-          </v-card-title>
-          <v-card-actions
-            class="pa-0 contacts-action justify-center font-weight-regular"
-            :style="getUseContactsActionFont"
-          >
-            {{ $t('contact.subTitle') }}
-          </v-card-actions>
-        </v-card>
-      </v-col>
-      <v-col sm="1"></v-col>
-    </v-row>
-    <v-row justify="center" v-show="iconDown">
-      <v-btn
-        icon
-        color="white"
-        @click="scollToContent"
-        class="scroll-bottom-icon"
-      >
-        <v-icon size="50" class="icon-down">mdi-chevron-double-down</v-icon>
-      </v-btn>
-    </v-row>
-  </v-row>
-
+			<v-col cols="12" order="2" order-sm="3">
+				<v-row class="d-none d-sm-flex font-weight-regular line-height-1">
+					<span :style="getPreviewSubTitleFont">
+						{{ description }}
+					</span>
+				</v-row>
+				<v-row justify="center" class="d-flex d-sm-none pl-0">
+					<img class="pointer-icon" src="/pointer-mobile.svg" />
+				</v-row>
+				<v-row justify="center" justify-sm="start" class="mt-4">
+					<span class="gray font-weight-regular" :style="getPreviewInfoFont">
+						{{ $t(isAboutPage ? 'about.scrollPoint' : 'common.scroll') }}
+					</span>
+				</v-row>
+			</v-col>
+		</v-row>
+		<v-row
+			v-show="isShowUseContacts"
+			v-scroll="handleScroll"
+			class="pa-0 use-contacts-container"
+			justify="end"
+			no-gutters
+		>
+			<v-col cols="12" sm="auto">
+				<v-card class="pa-4 pt-0 card-contacts" @click="scrollToFooter">
+					<v-card-title
+						class="justify-center font-weight-thin"
+						:style="getUseContactsTitleFont"
+					>
+						{{ $t('contact.title') }}
+					</v-card-title>
+					<v-card-actions
+						class="pa-0 contacts-action justify-center font-weight-regular"
+						:style="getUseContactsActionFont"
+					>
+						{{ $t('contact.subTitle') }}
+					</v-card-actions>
+				</v-card>
+			</v-col>
+			<v-col sm="1"></v-col>
+		</v-row>
+		<v-row justify="center" v-show="iconDown">
+			<v-btn
+				icon
+				color="white"
+				@click="scollToContent"
+				class="scroll-bottom-icon"
+			>
+				<v-icon size="50" class="icon-down">mdi-chevron-double-down</v-icon>
+			</v-btn>
+		</v-row>
+	</v-row>
 </template>
 
 <script lang="ts">
@@ -101,28 +120,27 @@ import { Getter, Mutation } from 'vuex-class';
 	props: ['title', 'subtitle', 'description', 'iconDown'],
 })
 export default class PreviewPage extends Vue {
-
 	@Getter('getPageByRoute') getPageByRoute;
 	@Getter('getPageId') pageId;
 	@Getter('getPageRouteById') getPageRouteById;
 	isShowUseContacts: boolean = true;
 	aboutPageId: number = 1;
-  portfolioPageId: number = 4;
-  weofferPageId: number = 2;
+	portfolioPageId: number = 4;
+	weofferPageId: number = 2;
 
 	handleScroll(): void {
 		const windowHeight = window.innerHeight;
 		const scrollHeight = document.body.scrollHeight;
-		const scrollToFooter = scrollHeight - (windowHeight * 2);
-    const isPortfolioPage = this.pageId === this.portfolioPageId;
-    const isWeOfferPage = this.pageId === this.weofferPageId;
+		const scrollToFooter = scrollHeight - windowHeight * 2;
+		const isPortfolioPage = this.pageId === this.portfolioPageId;
+		const isWeOfferPage = this.pageId === this.weofferPageId;
 
 		// on porfolio page we have to hide if any scroll we have
 		if (isPortfolioPage && window.scrollY > 0) {
 			this.isShowUseContacts = false;
-    } else if(isWeOfferPage && window.scrollY > 0){
-      	this.isShowUseContacts = false;
-    }else if (window.scrollY > scrollToFooter) {
+		} else if (isWeOfferPage && window.scrollY > 0) {
+			this.isShowUseContacts = false;
+		} else if (window.scrollY > scrollToFooter) {
 			this.isShowUseContacts = false;
 		} else {
 			this.isShowUseContacts = true;
@@ -172,25 +190,28 @@ export default class PreviewPage extends Vue {
 		return {
 			fontSize: `${this.getCommonAdaptiveFontSize('useContactsAction')}px`,
 		};
-  }
-  get getPreviewTitleFont() {
-    if (!this.isAboutPage){
-      return { fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px` };
-    } else {
-      return { fontSize:  `${this.getCustomAdaptiveSize({
-        xs: 33,
-        sm: 50,
-        md: 57,
-        lg: 70,
-        xl:95,
-      })}px`
-      };
-    }
-  }
+	}
+	get getPreviewTitleFont() {
+		if (!this.isAboutPage) {
+			return {
+				fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px`,
+			};
+		} else {
+			return {
+				fontSize: `${this.getCustomAdaptiveSize({
+					xs: 33,
+					sm: 50,
+					md: 57,
+					lg: 70,
+					xl: 95,
+				})}px`,
+			};
+		}
+	}
 	mounted() {
 		// initial check
 		this.handleScroll();
-  }
+	}
 }
 </script>
 

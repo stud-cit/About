@@ -56,7 +56,7 @@
 					justify="center"
 					align="center"
 				>
-					<v-col>
+					<v-col class="staff-slide">
 						<v-window v-model="curStaff">
 							<v-window-item
 								v-for="(person, i) in ourStaff[$i18n.locale].representation"
@@ -68,53 +68,50 @@
 										class="card-img"
 										:src="getDynamicAssets(person.img_src)"
 										lazy-src="/cover.jpg"
-                    :aspect-ratio="4 / 3"
-                  />
-                  <div class="card-addition">
+										:aspect-ratio="4 / 3"
+									/>
+									<v-row justify="space-around" align="center">
 										<v-btn
-											icon
 											color="white"
-											class="scroll-icon-left"
+											icon
+											width="15vw"
+											height="15vw"
+											@click="() => switchSlide(false)"
 										>
-                      <v-img src="/arrow-point-to-left.svg" class="arrow-style" @click="() => switchSlide(false)"/>
+											<v-icon size="20vw">mdi-chevron-left</v-icon>
 										</v-btn>
-										<div class="infoNameSkill">
+										<v-col cols="6" class="pa-0">
 											<div
-											class="employee-name my-3 font-weight-bold"
-											:style="getStaffNameFont"
+												class="employee-name my-3 font-weight-bold"
+												:style="getStaffNameFont"
 											>
 												{{ person.name }}
 											</div>
 											<div
-												class="employee-position-short font-weight-regular d-none"
+												class="employee-position-short"
 												:style="getStaffPositionFont"
 											>
 												{{ person.position }}
 											</div>
-											<div
-												class="employee-position-full font-weight-regular"
-												:style="getStaffPositionFont"
+											<p
+												class="text-center white--text font-italic"
+												:class="isXsOnly ? 'subtitle-2' : 'heading'"
 											>
-											{{ person.stack }}
-											</div>
-										</div>
-
+												{{ sliderInfo }}
+											</p>
+										</v-col>
 										<v-btn
-											icon
 											color="white"
-											class="scroll-icon-right"
+											icon
+											width="15vw"
+											height="15vw"
+											@click="() => switchSlide(true)"
 										>
-                      <v-img src="/arrow-point-to-right.svg" class="arrow-style" @click="() => switchSlide(false)"/>
+											<v-icon size="20vw">mdi-chevron-right</v-icon>
 										</v-btn>
-									</div>
+									</v-row>
 								</v-card>
 							</v-window-item>
-							<p
-								class="text-center white--text font-italic"
-								:class="isXsOnly ? 'subtitle-2' : 'heading'"
-							>
-								{{ sliderInfo }}
-							</p>
 						</v-window>
 					</v-col>
 				</v-row>
@@ -161,7 +158,9 @@ export default class OurStaffPage extends Vue {
 	}
 
 	get sliderInfo() {
-		return `${this.curStaff + 1} / ${this.ourStaff[this.$i18n.locale].representation.length}`;
+		return `${this.curStaff + 1} / ${
+			this.ourStaff[this.$i18n.locale].representation.length
+		}`;
 	}
 
 	get isLgAndUp() {
@@ -208,18 +207,15 @@ export default class OurStaffPage extends Vue {
   position: relative
   justify-content: center
 
-.infoNameSkill
-  width: 70%
-  margin: 0 auto
-
 .employee-name
-  font-weight: 900
+  color: white
   text-align: center
   margin-bottom: 0
   display: block
 
 .employee-position-short, .employee-position-full
   font-weight: 400
+  color: #ffffff
   text-align: center
 
 .card-img-hover
@@ -231,10 +227,6 @@ export default class OurStaffPage extends Vue {
   border-radius: 50px !important
   transition: all 1s
   margin: 15px 0
-
-  ~ .card-addition
-    .employee-position-full
-      opacity: 1
 
 .employee-position-full
   opacity: 0
@@ -257,19 +249,9 @@ export default class OurStaffPage extends Vue {
 .staff-slider
   height: 70vh
 
-.scroll-icon-left
-  opacity: 1
-  position: absolute
-  left: 5%
-  fill: red
-.scroll-icon-right
-  opacity: 1
-  position: absolute
-  right: 5%
-  
+.staff-slide
+  height: 65vh
+
 .line-height-1
   line-height: 1
-
-.arrow-style
-  width: 18vw
 </style>

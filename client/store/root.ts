@@ -14,7 +14,6 @@ interface PageModel {
 }
 
 export const state = (): State => ({
-
 	isShowLoader: true,
 	pageId: 0,
 	pages: [
@@ -119,7 +118,8 @@ export const state = (): State => ({
 					positionCard: 'start',
 				},
 				{
-					title: 'Створення програмного забезпечення для вирішення реально існюючих завдань',
+					title:
+						'Створення програмного забезпечення для вирішення реально існюючих завдань',
 					text: `Розроблене програмне забезпечення - інструмент для вирішення необхідних завдань.
 						Наприклад, за допомогою веб-додатків, нараховується заробітна плата, ведеться контроль
 						часу роботи, як кожного співробітника, так і частини компанії, виконується перевірка
@@ -139,7 +139,8 @@ export const state = (): State => ({
 		ru: {
 			previewTitle: 'Ты знаешь что мы можем?',
 			previewSubtitle: 'Что мы делаем? Какие проэкты мы поддерживаем?',
-			previewDescription: 'Наши возможности ограничены только нашим воображением.',
+			previewDescription:
+				'Наши возможности ограничены только нашим воображением.',
 			representation: [
 				{
 					title: 'Разработка веб-сайта для различных целей',
@@ -171,7 +172,8 @@ export const state = (): State => ({
 		en: {
 			previewTitle: 'Do you know what we can?',
 			previewSubtitle: 'What we do? What we support?',
-			previewDescription: 'Our possibilities are limited only by our imagination.',
+			previewDescription:
+				'Our possibilities are limited only by our imagination.',
 			representation: [
 				{
 					title: 'Website development for different purposes',
@@ -204,7 +206,8 @@ export const state = (): State => ({
 	},
 	ourStaff: {
 		ua: {
-			previewTitle: 'У нас багато людей, які можуть легко реалізувати все те, що ви хочете.',
+			previewTitle:
+				'У нас багато людей, які можуть легко реалізувати все те, що ви хочете.',
 			previewSubtitle: '',
 			previewDescription: 'Разом ми можемо більше, ніж кожен окремо.',
 			representation: [
@@ -246,7 +249,8 @@ export const state = (): State => ({
 			],
 		},
 		ru: {
-			previewTitle: 'У нас много людей, которые могут легко реализовать все то, что вы хотите.',
+			previewTitle:
+				'У нас много людей, которые могут легко реализовать все то, что вы хотите.',
 			previewSubtitle: '',
 			previewDescription: 'Вместе мы можем больше, чем в одиночку.',
 			representation: [
@@ -288,7 +292,8 @@ export const state = (): State => ({
 			],
 		},
 		en: {
-			previewTitle: 'We have many people who can easily realize all things which you wish.',
+			previewTitle:
+				'We have many people who can easily realize all things which you wish.',
 			previewSubtitle: '',
 			previewDescription: 'Together we can more than one by one.',
 			representation: [
@@ -391,7 +396,8 @@ export const state = (): State => ({
 					link: 'http://job-test.sumdu.edu.ua/',
 				},
 				{
-					title: 'Online assessment of the quality of the educational process at SSU',
+					title:
+						'Online assessment of the quality of the educational process at SSU',
 					cover: '/images/portfolio/AC.jpg',
 					link: 'http://ac.sumdu.edu.ua/',
 				},

@@ -6,9 +6,9 @@
 				NOT F<img src="@/static/not-found.svg" alt="" />UND
 			</div>
 		</section>
-		<section v-else>{{$t('errors.errorOccured')}}</section>
+		<section v-else>{{ $t('errors.errorOccured') }}</section>
 		<nuxt-link to="/" :class="isMdAndUp ? 'link-full' : 'link-mobile'">
-			<div class="text">{{$t('errors.returnToHome')}}</div>
+			<div class="text">{{ $t('errors.returnToHome') }}</div>
 		</nuxt-link>
 	</v-container>
 </template>

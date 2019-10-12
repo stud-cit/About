@@ -1,95 +1,109 @@
 <template>
-  <v-app class="app">
-    <v-app-bar app flat class="pt-6 mt-sm-12 mb-3 app-bar">
-      <v-row justify="center">
-        <v-col cols="10">
-          <v-row justify="space-between">
-            <v-col cols="auto">
-                <p
-                  class="text-uppercase mb-0 font-weight-black"
-                  :style="getPageTitleFont"
-                  :class="isXsOnly ? 'text-center' : ''"
-                >
-                  {{ $t('home.title') }}
-                </p>
-                <p class="mb-0 grey--text font-weight-bold" :style="getPageSubTitleFont" :class="isXsOnly ? 'text-center' : ''">
-                  {{ $t('home.subTitle') }}
-                </p>
-            </v-col>
-            <v-col cols="auto" class="d-none d-md-flex align-center">
-              <v-speed-dial
-                v-model="changeLocale"
-                direction="left"
-                transition="slide-x-reverse-transition"
-              >
-                <template v-slot:activator color="red">
-                  <v-btn v-model="changeLocale" icon class="pa-0 font-weight-bold locale-button" color="#4A4A4A">
-                    <v-icon v-if="changeLocale" class="font-weight-thin" size="40">mdi-close</v-icon>
-                    <span v-else>{{ $i18n.locale }}</span>
-                  </v-btn>
-                </template>
-                  <v-btn
-                    v-for="(locale, i) in availableLocales()"
-                    v-text="locale.code"
-                    :key="i"
-                    :to="switchLocalePath(locale.code)"
-                    icon
-                    class="pa-0 font-weight-bold"
-                    size="45"
-                    color="#4A4A4A"
-                  />
-              </v-speed-dial>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
-    </v-app-bar>
+	<v-app class="app">
+		<v-app-bar app flat class="pt-6 mt-sm-12 mb-3 app-bar">
+			<v-row justify="center">
+				<v-col cols="10">
+					<v-row justify="space-between">
+						<v-col cols="auto">
+							<p
+								class="text-uppercase mb-0 font-weight-black"
+								:style="getPageTitleFont"
+								:class="isXsOnly ? 'text-center' : ''"
+							>
+								{{ $t('home.title') }}
+							</p>
+							<p
+								class="mb-0 grey--text font-weight-bold"
+								:style="getPageSubTitleFont"
+								:class="isXsOnly ? 'text-center' : ''"
+							>
+								{{ $t('home.subTitle') }}
+							</p>
+						</v-col>
+						<v-col cols="auto" class="d-none d-md-flex align-center">
+							<v-speed-dial
+								v-model="changeLocale"
+								direction="left"
+								transition="slide-x-reverse-transition"
+							>
+								<template v-slot:activator color="red">
+									<v-btn
+										v-model="changeLocale"
+										icon
+										class="pa-0 font-weight-bold locale-button"
+										color="#4A4A4A"
+									>
+										<v-icon
+											v-if="changeLocale"
+											class="font-weight-thin"
+											size="40"
+											>mdi-close</v-icon
+										>
+										<span v-else>{{ $i18n.locale }}</span>
+									</v-btn>
+								</template>
+								<v-btn
+									v-for="(locale, i) in availableLocales()"
+									v-text="locale.code"
+									:key="i"
+									:to="switchLocalePath(locale.code)"
+									icon
+									class="pa-0 font-weight-bold"
+									size="45"
+									color="#4A4A4A"
+								/>
+							</v-speed-dial>
+						</v-col>
+					</v-row>
+				</v-col>
+			</v-row>
+		</v-app-bar>
 
-    <v-content class="pt-2">
-      <v-container fluid class="pa-0 fill-height">
-        <nuxt />
-      </v-container>
-    </v-content>
-    <v-btn
-      class="d-flex d-md-none mobile-icon burger-icon"
-      @click="toggleVisibilityLocales"
-      icon
-      :class="isSmOnly ? 'locale-button' : ''"
-    >
-      <v-icon size="30" color="black">mdi-menu</v-icon>
-    </v-btn>
+		<v-content class="pt-2">
+			<v-container fluid class="pa-0 fill-height">
+				<nuxt />
+			</v-container>
+		</v-content>
+		<v-btn
+			class="d-flex d-md-none mobile-icon burger-icon"
+			@click="toggleVisibilityLocales"
+			icon
+			:class="isSmOnly ? 'locale-button' : ''"
+		>
+			<v-icon size="30" color="black">mdi-menu</v-icon>
+		</v-btn>
 
-    <v-bottom-sheet v-model="isShowMobileLocales">
-      <div class="relative">
-        <v-btn
-          class="mobile-icon close-icon"
-          @click="toggleVisibilityLocales"
-          icon
-          large
-        >
-          <v-icon size="50" color="black">
-            mdi-close
-          </v-icon>
-        </v-btn>
-        <div class="half-round" />
-        <div class="locales-container">
-          <div class="locales-list">
-            <v-btn
-              v-for="(locale, i) in $i18n.locales"
-              :key="i"
-              :to="switchLocalePath(locale.code)"
-              class="locale-btn"
-              active-class="active-locale"
-              x-large
-              icon
-            >
-              <span class="locale">{{ locale.code }}</span>
-            </v-btn>
-          </div>
-        </div>
-      </div>
-    </v-bottom-sheet>
-  </v-app>
+		<v-bottom-sheet v-model="isShowMobileLocales">
+			<div class="relative">
+				<v-btn
+					class="mobile-icon close-icon"
+					@click="toggleVisibilityLocales"
+					icon
+					large
+				>
+					<v-icon size="50" color="black">
+						mdi-close
+					</v-icon>
+				</v-btn>
+				<div class="half-round" />
+				<div class="locales-container">
+					<div class="locales-list">
+						<v-btn
+							v-for="(locale, i) in $i18n.locales"
+							:key="i"
+							:to="switchLocalePath(locale.code)"
+							class="locale-btn"
+							active-class="active-locale"
+							x-large
+							icon
+						>
+							<span class="locale">{{ locale.code }}</span>
+						</v-btn>
+					</div>
+				</div>
+			</div>
+		</v-bottom-sheet>
+	</v-app>
 </template>
 
 <script lang="ts">
@@ -97,42 +111,42 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class PreliminaryLayout extends Vue {
-  changeLocale: boolean = false;
-  isShowMobileLocales: boolean = false;
+	changeLocale: boolean = false;
+	isShowMobileLocales: boolean = false;
 
-  availableLocales() {
-    return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale);
-  }
+	availableLocales() {
+		return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale);
+	}
 
-  get getPageTitleFont() {
-    return {
-      fontSize: `${this.getCustomAdaptiveSize({
-        xs: 20,
-        sm: 20,
-        md: 25,
-        lg: 30,
-      })}px`,
-    };
-  }
-  get getPageSubTitleFont() {
-    return {
-      fontSize: `${this.getCustomAdaptiveSize({
-        xs: 16,
-        sm: 20,
-        md: 22,
-        lg: 28,
-      })}px`,
-    };
-  }
-  get isSmOnly(){
-    return this.$breakpoint ? this.$breakpoint.is.smOnly : false;
-  }
-   get isXsOnly(){
-    return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
-  }
-  toggleVisibilityLocales() {
-    this.isShowMobileLocales = !this.isShowMobileLocales;
-  }
+	get getPageTitleFont() {
+		return {
+			fontSize: `${this.getCustomAdaptiveSize({
+				xs: 20,
+				sm: 20,
+				md: 25,
+				lg: 30,
+			})}px`,
+		};
+	}
+	get getPageSubTitleFont() {
+		return {
+			fontSize: `${this.getCustomAdaptiveSize({
+				xs: 16,
+				sm: 20,
+				md: 22,
+				lg: 28,
+			})}px`,
+		};
+	}
+	get isSmOnly() {
+		return this.$breakpoint ? this.$breakpoint.is.smOnly : false;
+	}
+	get isXsOnly() {
+		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+	}
+	toggleVisibilityLocales() {
+		this.isShowMobileLocales = !this.isShowMobileLocales;
+	}
 }
 </script>
 
