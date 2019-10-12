@@ -24,14 +24,14 @@
 					:class="{ 'representation-xs': isXsOnly }"
 				>
 					<v-col cols="12" xs="8" md="8" lg="9" class="mb-12 mb-md-0" :class="{'representation-image': isMdAndDown}">
-						<v-img  class="pb-12 pb-md-0" :src="getDynamicAssets(preview.img)" :lazy-src="getDynamicAssets('')" />
+						<v-img class="pb-12 pb-md-0" :src="getDynamicAssets(preview.img)" :lazy-src="getDynamicAssets('')" :aspect-ratio="3/2"/>
 					</v-col>
 
 					<v-col
 						cols="12"
 						md="5"
 						class="representation-card"
-						:class="preview.positionCard === 'start' ? 'right-bottom-position' : 'left-bottom-position' "
+						:class="preview.positionCard === 'start' ? 'right-bottom-position' : 'left-bottom-position'"
 					>
 						<v-card class="pa-4 px-lg-8 py-lg-12">
 							<v-card-title
