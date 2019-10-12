@@ -73,7 +73,6 @@ const config: Configuration = {
 		parsePages: false,
 		langDir: 'lang/',
 		defaultLocale: 'en',
-		strategy: 'prefix_and_default',
 		// TODO: uncomment on prod
 		// detectBrowserLanguage: {
     // useCookie: true,
