@@ -75,10 +75,10 @@ const config: Configuration = {
 		defaultLocale: 'en',
 		// TODO: uncomment on prod
 		// detectBrowserLanguage: {
-    // useCookie: true,
-    // cookieKey: 'i18n_redirected',
-    // alwaysRedirect: true,
-    // fallbackLocale: 'en'
+		// useCookie: true,
+		// cookieKey: 'i18n_redirected',
+		// alwaysRedirect: true,
+		// fallbackLocale: 'en'
 		locales: [
 			{
 				code: 'en',

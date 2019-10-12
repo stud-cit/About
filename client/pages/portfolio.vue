@@ -1,16 +1,16 @@
 <template>
-  <v-container fluid id="portfolio">
-    <v-row justify="center">
-      <v-col cols="12" sm="10">
-        <PreviewPage
-          :title="portfolio[$i18n.locale].previewTitle"
-          :subtitle="portfolio[$i18n.locale].previewSubtitle"
-          :description="portfolio[$i18n.locale].previewDescription"
-          :icon-down="true"
-        />
-      </v-col>
-    </v-row>
-    <v-col class="pa-0">
+	<v-container fluid id="portfolio">
+		<v-row justify="center">
+			<v-col cols="12" sm="10">
+				<PreviewPage
+					:title="portfolio[$i18n.locale].previewTitle"
+					:subtitle="portfolio[$i18n.locale].previewSubtitle"
+					:description="portfolio[$i18n.locale].previewDescription"
+					:icon-down="true"
+				/>
+			</v-col>
+		</v-row>
+		<v-col class="pa-0">
 			<v-parallax
 				v-for="(project, i) in portfolio[$i18n.locale].projects"
 				:key="i"
@@ -55,10 +55,9 @@
 					</v-col>
 				</v-row>
 			</v-parallax>
-    </v-col>
-    <product-footer />
-  </v-container>
-
+		</v-col>
+		<product-footer />
+	</v-container>
 </template>
 
 <script lang="ts">
@@ -82,21 +81,22 @@ export default class PortfolioPage extends Vue {
 	@Getter('getPortfolioStage') portfolio;
 	@Mutation('changePageId') changePageId;
 
-  get isMdAndUp() {
-    return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
-  }
-  created() {
-    this.changePageId(4);
-  }
-  get getTitleFontProject() {
-      return { fontSize:  `${this.getCustomAdaptiveSize({
-        xs: 32,
-        sm: 50,
-        md: 55,
-        lg: 65,
-      })}px`
-      };
-  }
+	get isMdAndUp() {
+		return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
+	}
+	created() {
+		this.changePageId(4);
+	}
+	get getTitleFontProject() {
+		return {
+			fontSize: `${this.getCustomAdaptiveSize({
+				xs: 32,
+				sm: 50,
+				md: 55,
+				lg: 65,
+			})}px`,
+		};
+	}
 }
 </script>
 

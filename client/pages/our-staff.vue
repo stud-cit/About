@@ -68,16 +68,22 @@
 										class="card-img"
 										:src="getDynamicAssets(person.img_src)"
 										lazy-src="/cover.jpg"
-                    :aspect-ratio="4 / 3"
-                  />
+										:aspect-ratio="4 / 3"
+									/>
 									<v-row justify="space-around" align="center">
-										<v-btn color="white" icon width="15vw" height="15vw" @click="() => switchSlide(false)">
+										<v-btn
+											color="white"
+											icon
+											width="15vw"
+											height="15vw"
+											@click="() => switchSlide(false)"
+										>
 											<v-icon size="20vw">mdi-chevron-left</v-icon>
 										</v-btn>
 										<v-col cols="6" class="pa-0">
 											<div
-											class="employee-name my-3 font-weight-bold"
-											:style="getStaffNameFont"
+												class="employee-name my-3 font-weight-bold"
+												:style="getStaffNameFont"
 											>
 												{{ person.name }}
 											</div>
@@ -94,7 +100,13 @@
 												{{ sliderInfo }}
 											</p>
 										</v-col>
-										<v-btn color="white" icon width="15vw" height="15vw" @click="() => switchSlide(true)">
+										<v-btn
+											color="white"
+											icon
+											width="15vw"
+											height="15vw"
+											@click="() => switchSlide(true)"
+										>
 											<v-icon size="20vw">mdi-chevron-right</v-icon>
 										</v-btn>
 									</v-row>
@@ -146,7 +158,9 @@ export default class OurStaffPage extends Vue {
 	}
 
 	get sliderInfo() {
-		return `${this.curStaff + 1} / ${this.ourStaff[this.$i18n.locale].representation.length}`;
+		return `${this.curStaff + 1} / ${
+			this.ourStaff[this.$i18n.locale].representation.length
+		}`;
 	}
 
 	get isLgAndUp() {

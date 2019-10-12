@@ -12,7 +12,7 @@
 				<v-col cols="12" sm="10" order-md="2" class="pa-0">
 					<v-row justify="space-between" align="center">
 						<v-col cols="auto" class="pa-0">
-							<nuxt-link :to="localePath({name: 'index'})" nuxt>
+							<nuxt-link :to="localePath({ name: 'index' })" nuxt>
 								<v-img src="/logo.svg" />
 							</nuxt-link>
 						</v-col>
@@ -32,23 +32,27 @@
 										dark
 										text
 									>
-										<span
-											:class="isLgAndUp ? 'nav-link-desktop' : 'nav-link'"
-										>
+										<span :class="isLgAndUp ? 'nav-link-desktop' : 'nav-link'">
 											{{ $t(page.title) }}
 										</span>
 									</v-btn>
 								</v-col>
-									<v-btn icon dark :to="localePath({name: 'index'})" class="d-none d-md-flex" nuxt>
-								<v-icon size="50">mdi-fullscreen-exit</v-icon>
-							</v-btn>
-							<v-btn
-								class="d-flex d-md-none"
-								@click="toggleVisibilityMobileMenu"
-								icon
-							>
-								<v-icon size="50">mdi-menu</v-icon>
-							</v-btn>
+								<v-btn
+									icon
+									dark
+									:to="localePath({ name: 'index' })"
+									class="d-none d-md-flex"
+									nuxt
+								>
+									<v-icon size="50">mdi-fullscreen-exit</v-icon>
+								</v-btn>
+								<v-btn
+									class="d-flex d-md-none"
+									@click="toggleVisibilityMobileMenu"
+									icon
+								>
+									<v-icon size="50">mdi-menu</v-icon>
+								</v-btn>
 							</v-row>
 						</v-col>
 					</v-row>
@@ -134,30 +138,30 @@ export default class ImmediatetLayout extends Vue {
 			})}px`,
 		};
 	}
-  get getPageIndexFont() {
-    return {
-      fontSize: `${this.getCustomAdaptiveSize({
-        xs: 25,
-        sm: 40,
-        md: 40,
-        lg: 45,
-      })}px`,
-    };
-  }
-  get getTotalPagesFont() {
-    return {
-      fontSize: `${this.getCustomAdaptiveSize({
-        xs: 13,
-        sm: 20,
-        md: 20,
-        lg: 25,
-      })}px`,
-    };
-  }
-  isShowMobileMenu: boolean = false;
+	get getPageIndexFont() {
+		return {
+			fontSize: `${this.getCustomAdaptiveSize({
+				xs: 25,
+				sm: 40,
+				md: 40,
+				lg: 45,
+			})}px`,
+		};
+	}
+	get getTotalPagesFont() {
+		return {
+			fontSize: `${this.getCustomAdaptiveSize({
+				xs: 13,
+				sm: 20,
+				md: 20,
+				lg: 25,
+			})}px`,
+		};
+	}
+	isShowMobileMenu: boolean = false;
 
-  toggleVisibilityMobileMenu() {
-    this.isShowMobileMenu = !this.isShowMobileMenu;
+	toggleVisibilityMobileMenu() {
+		this.isShowMobileMenu = !this.isShowMobileMenu;
 	}
 }
 </script>
