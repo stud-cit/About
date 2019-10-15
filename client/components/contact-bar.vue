@@ -24,8 +24,8 @@
 							class="my-4 pa-0 d-flex d-md-none justify-space-between"
 							:class="isSmAndDown ? 'mobUnderline' : 'underline'"
 						>
-							<v-col class="font-weight-black" cols="auto" :style="getMailFont">
-								{{ contacts.email }}
+							<v-col class="font-weight-black" cols="auto" :style="getMailFont"> 
+								<a class="linkMail" href="mailto:studcitmail@gmail.com" target="_blank">{{ contacts.email }}</a>
 							</v-col>
 							<v-col class="font-weight-black" cols="auto" :style="getMailFont">
 								{{ contacts.phone }}
@@ -38,7 +38,7 @@
 									justify="space-between"
 								>
 									<v-col cols="auto" :style="getMailFont" class="pa-0">
-										{{ contacts.email }}
+										<a class="linkMail" href="mailto:studcitmail@gmail.com" target="_blank">{{ contacts.email }}</a>
 									</v-col>
 									<v-col cols="auto" :style="getMailFont" class="pa-0">
 										{{ contacts.phone }}
@@ -69,6 +69,7 @@
 								>
 									<a
 										class="map"
+										target="_blank"
 										href="https://www.google.com.ua/maps/place/Department+of+General+and+Theoretical+Physics+of+SSU/@50.8918344,34.8410504,17z/data=!4m9!1m3!11m2!2sfL29wECLWo3E0vp-J1Rb4QPskla8Pg!3e3!3m4!1s0x0:0x33afc095aa39b815!8m2!3d50.8929585!4d34.8404856?hl=ru"
 									>
 										<v-img src="/map.jpg"></v-img>
@@ -146,6 +147,10 @@ export default class ContactBar extends Vue {
 </script>
 
 <style lang="sass">
+.linkMail
+	color: black  !important
+	text-decoration: none
+
 .container
 	padding: 0 !important
 
