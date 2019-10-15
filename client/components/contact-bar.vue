@@ -24,8 +24,13 @@
 							class="my-4 pa-0 d-flex d-md-none justify-space-between"
 							:class="isSmAndDown ? 'mobUnderline' : 'underline'"
 						>
-							<v-col class="font-weight-black" cols="auto" :style="getMailFont"> 
-								<a class="linkMail" href="mailto:studcitmail@gmail.com" target="_blank">{{ contacts.email }}</a>
+							<v-col class="font-weight-black" cols="auto" :style="getMailFont">
+								<a
+									class="linkMail"
+									href="mailto:studcitmail@gmail.com"
+									target="_blank"
+									>{{ contacts.email }}</a
+								>
 							</v-col>
 							<v-col class="font-weight-black" cols="auto" :style="getMailFont">
 								{{ contacts.phone }}
@@ -38,7 +43,12 @@
 									justify="space-between"
 								>
 									<v-col cols="auto" :style="getMailFont" class="pa-0">
-										<a class="linkMail" href="mailto:studcitmail@gmail.com" target="_blank">{{ contacts.email }}</a>
+										<a
+											class="linkMail"
+											href="mailto:studcitmail@gmail.com"
+											target="_blank"
+											>{{ contacts.email }}</a
+										>
 									</v-col>
 									<v-col cols="auto" :style="getMailFont" class="pa-0">
 										{{ contacts.phone }}

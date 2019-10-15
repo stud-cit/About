@@ -15,8 +15,8 @@
 				v-for="(project, i) in portfolio[$i18n.locale].projects"
 				:key="i"
 				:src="getDynamicAssets(project.cover)"
-				class="pa-0 fullscreen"
-				height="900"
+				class="pa-0"
+				:height="isMdAndUp ? 900 : 450"
 			>
 				<v-row justify="center" align="center" class="section">
 					<v-col lg="7" md="7" sm="12">
@@ -42,9 +42,9 @@
 						:class="isMdAndUp ? 'justify-end' : 'justify-center'"
 					>
 						<v-btn :to="project.link" large dark text>
-							<span class="headline d-none d-md-block">{{
-								$t('portfolio.link')
-							}}</span>
+							<span class="headline d-none d-md-block">
+								{{ $t('portfolio.link') }}
+							</span>
 							<div class="arrow-right">
 								<v-img
 									src="/arrow-point-to-right.svg"
@@ -102,12 +102,10 @@ export default class PortfolioPage extends Vue {
 
 <style lang="sass">
 #portfolio
-  .fullscreen
-    width: 100vw
-    .text-underline
-      line-height: normal
-      text-decoration: underline
-      text-underline-position: under
+  .text-underline
+    line-height: normal
+    text-decoration: underline
+    text-underline-position: under
 
 .arrow-right
   border-radius: 50%
