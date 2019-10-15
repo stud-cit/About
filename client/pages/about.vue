@@ -58,9 +58,9 @@
 
 		<v-footer absolute color="transparent" class="pb-0 px-0 px-sm-auto">
 			<v-row justify="center">
-				<v-col sm="10" md="12" class="pb-0">
-					<v-row justify-sm="end" justify-md="space-around" align="center">
-						<v-col sm="12" md="8" class="px-0 d-none d-sm-flex">
+				<v-col sm="12" md="12" class="pb-0">
+					<v-row justify-sm="center" justify-md="space-around" align="center">
+						<v-col sm="10" md="8" class="px-0 d-none d-sm-flex">
 							<v-slider
 								v-model="curStage"
 								:max="about[$i18n.locale].slides.length + 1"
@@ -72,7 +72,7 @@
 								dark
 							/>
 						</v-col>
-						<v-col xs="12" sm="auto" class="pb-0">
+						<v-col xs="12" md="auto" class="pb-0" :class="isSmAndDown ? 'justify-center' : ''">
 							<v-card
 								class="pa-4 pt-0 use-contacts-container"
 								@click="() => changeContactBar(true)"
@@ -132,6 +132,9 @@ export default class AboutPage extends Vue {
 
 	get isXsOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+	}
+	get isSmAndDown() {
+		return this.$breakpoint ? this.$breakpoint.is.smAndDown : false;
 	}
 	get isLgAndUp() {
 		return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
