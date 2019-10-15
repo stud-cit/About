@@ -32,7 +32,7 @@
 										dark
 										text
 									>
-										<span :class="isMdAndUp ? 'nav-link-desktop' : 'nav-link'">
+										<span :style="getTotalPagesFont">
 											{{ $t(page.title) }}
 										</span>
 									</v-btn>
