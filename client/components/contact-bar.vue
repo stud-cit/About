@@ -127,8 +127,8 @@ export default class ContactBar extends Vue {
 	get getTagLineFont() {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 7,
-				sm: 7,
+				xs: 6,
+				sm: 6,
 				md: 6.5,
 				lg: 6.5,
 			})}vw`,
