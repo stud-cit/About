@@ -63,7 +63,7 @@
 			<v-col cols="auto" offset="0" offset-sm="1">
 				<p>
 					<span :style="getPageIndexFont">{{ pageId }}</span>
-					<span class="total-pages" :style="getTotalPagesFont"> / 4</span>
+					<span class="total-pages" :style="getPageAllIndexFont"> / 4</span>
 				</p>
 			</v-col>
 		</v-row>
@@ -145,6 +145,16 @@ export default class ImmediatetLayout extends Vue {
 				sm: 40,
 				md: 40,
 				lg: 45,
+			})}px`,
+		};
+	}
+	get getPageAllIndexFont() {
+		return {
+			fontSize: `${this.getCustomAdaptiveSize({
+				xs: 15,
+				sm: 25,
+				md: 25,
+				lg: 30,
 			})}px`,
 		};
 	}
