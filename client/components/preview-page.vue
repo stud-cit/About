@@ -20,13 +20,13 @@
 			>
 				<div class="d-block">
 					<p
-						class="font-weight-bold"
+						class="font-weight-bold px-2"
 						:class="{ 'text-uppercase': isAboutPage }"
 						:style="getPreviewTitleFont"
 					>
 						{{ title }}
 					</p>
-					<p class="font-weight-bold" :style="getPreviewTitleFont">
+					<p class="font-weight-bold px-2" :style="getPreviewTitleFont">
 						{{ subtitle }}
 					</p>
 				</div>
