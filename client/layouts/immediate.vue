@@ -32,7 +32,7 @@
 										dark
 										text
 									>
-										<span :class="isLgAndUp ? 'nav-link-desktop' : 'nav-link'">
+										<span :style="getTotalPagesFont">
 											{{ $t(page.title) }}
 										</span>
 									</v-btn>
@@ -63,7 +63,7 @@
 			<v-col cols="auto" offset="0" offset-sm="1">
 				<p>
 					<span :style="getPageIndexFont">{{ pageId }}</span>
-					<span class="total-pages" :style="getTotalPagesFont"> / 4</span>
+					<span class="total-pages" :style="getPageAllIndexFont"> / 4</span>
 				</p>
 			</v-col>
 		</v-row>
@@ -124,8 +124,8 @@ export default class ImmediatetLayout extends Vue {
 	@Getter('getPageStage') pages;
 	@Getter('getPageCover') cover;
 
-	get isLgAndUp() {
-		return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
+	get isMdAndUp() {
+		return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
 	}
 
 	get getPageIndexFont() {
@@ -148,14 +148,24 @@ export default class ImmediatetLayout extends Vue {
 			})}px`,
 		};
 	}
+	get getPageAllIndexFont() {
+		return {
+			fontSize: `${this.getCustomAdaptiveSize({
+				xs: 15,
+				sm: 25,
+				md: 25,
+				lg: 30,
+			})}px`,
+		};
+	}
 	get getTotalPagesFont() {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 13,
-				sm: 20,
-				md: 20,
-				lg: 25,
-			})}px`,
+				xs: 2,
+				sm: 2,
+				md: 1.4,
+				lg: 1.5,
+			})}vw`,
 		};
 	}
 	isShowMobileMenu: boolean = false;
