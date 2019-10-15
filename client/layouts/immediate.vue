@@ -32,7 +32,7 @@
 										dark
 										text
 									>
-										<span :class="isLgAndUp ? 'nav-link-desktop' : 'nav-link'">
+										<span :class="isMdAndUp ? 'nav-link-desktop' : 'nav-link'">
 											{{ $t(page.title) }}
 										</span>
 									</v-btn>
@@ -124,8 +124,8 @@ export default class ImmediatetLayout extends Vue {
 	@Getter('getPageStage') pages;
 	@Getter('getPageCover') cover;
 
-	get isLgAndUp() {
-		return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
+	get isMdAndUp() {
+		return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
 	}
 
 	get getPageIndexFont() {
@@ -151,11 +151,11 @@ export default class ImmediatetLayout extends Vue {
 	get getTotalPagesFont() {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 13,
-				sm: 20,
-				md: 20,
-				lg: 25,
-			})}px`,
+				xs: 2,
+				sm: 2,
+				md: 1.4,
+				lg: 1.5,
+			})}vw`,
 		};
 	}
 	isShowMobileMenu: boolean = false;
