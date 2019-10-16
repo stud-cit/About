@@ -83,10 +83,13 @@
 									>{{ $t('contact.title') }}</v-card-title
 								>
 								<v-card-actions
-									class="pa-0 contacts-action justify-center"
+									class="pa-0 justify-center"
 									:style="getUseContactsActionFont"
-									>{{ $t('contact.subTitle') }}</v-card-actions
-								>
+									>
+										<div class="contacts-action">
+											{{ $t('contact.subTitle') }}
+										</div>
+								</v-card-actions>
 							</v-card>
 						</v-col>
 					</v-row>
@@ -258,7 +261,7 @@ export default class AboutPage extends Vue {
 
 .contacts-action
 	text-transform: uppercase
-	text-decoration: underline
+	border-bottom: 2px solid black
 
 .rotated-phraze
 	position: fixed

@@ -90,10 +90,12 @@
 						{{ $t('contact.title') }}
 					</v-card-title>
 					<v-card-actions
-						class="pa-0 contacts-action justify-center font-weight-regular"
+						class="pa-0 justify-center font-weight-regular"
 						:style="getUseContactsActionFont"
 					>
-						{{ $t('contact.subTitle') }}
+						<div class="contacts-action">
+							{{ $t('contact.subTitle') }}
+						</div>	
 					</v-card-actions>
 				</v-card>
 			</v-col>
@@ -231,7 +233,7 @@ export default class PreviewPage extends Vue {
 
 		.contacts-action
 			text-transform: uppercase
-			text-decoration: underline
+			border-bottom: 2px solid black
 
 .preview-section-about
 	height: 97vh !important
