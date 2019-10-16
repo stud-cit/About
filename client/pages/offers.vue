@@ -51,13 +51,13 @@
 					>
 						<v-card class="pa-4 px-lg-8 py-lg-12">
 							<v-card-title
-								class="mb-6 font-weight-bold card-title"
+								class="mb-6 font-weight-black card-title"
 								:style="getCardTitleFont"
 							>
 								{{ preview.title }}
 							</v-card-title>
 							<v-card-text
-								class="font-weight-regular card-content"
+								class="font-weight-bold card-content"
 								:style="getCardContentFont"
 							>
 								<span>{{ preview.text }}</span>
@@ -116,9 +116,9 @@ export default class OffersPage extends Vue {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
 				xs: 12,
-				sm: 20,
+				sm: 18,
 				md: 12,
-				lg: 25,
+				lg: 22,
 			})}px`,
 		};
 	}
@@ -157,4 +157,8 @@ export default class OffersPage extends Vue {
 .left-bottom-position
 	left: 0
 	bottom: 0
+
+.card-content
+	line-height: 1.25
+	color: rgba(0, 0, 0, 1) !important
 </style>
