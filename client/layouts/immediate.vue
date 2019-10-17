@@ -152,9 +152,9 @@ export default class ImmediatetLayout extends Vue {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
 				xs: 15,
-				sm: 25,
-				md: 25,
-				lg: 30,
+				sm: 20,
+				md: 20,
+				lg: 25,
 			})}px`,
 		};
 	}
