@@ -265,7 +265,7 @@ export default class AboutPage extends Vue {
 
 .rotated-phraze
 	position: fixed
-	right: 2vw
+	right: 8vw
 	color: white
 	writing-mode: vertical-rl
 	transform: scaleX(-1) scaleY(-1)
