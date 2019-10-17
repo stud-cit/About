@@ -16,7 +16,7 @@
 				:key="i"
 				:src="getDynamicAssets(project.cover)"
 				class="pa-0"
-				:height="isMdAndUp ? 900 : 450"
+				:style="getParalaxHeight"
 			>
 				<v-row justify="center" align="center" class="section">
 					<v-col lg="7" md="7" sm="12">
@@ -42,9 +42,9 @@
 						:class="isMdAndUp ? 'justify-end' : 'justify-center'"
 					>
 						<v-btn :to="project.link" large dark text>
-							<span class="headline d-none d-md-block">
-								{{ $t('portfolio.link') }}
-							</span>
+							<span class="headline d-none d-md-block">{{
+								$t('portfolio.link')
+							}}</span>
 							<div class="arrow-right">
 								<v-img
 									src="/arrow-point-to-right.svg"
@@ -97,6 +97,17 @@ export default class PortfolioPage extends Vue {
 			})}px`,
 		};
 	}
+
+	get getParalaxHeight() {
+		return {
+			height: `${this.getCustomAdaptiveSize({
+				xs: 50,
+				sm: 60,
+				md: 65,
+				lg: 65,
+			})}vh`,
+		};
+	}
 }
 </script>
 
@@ -106,7 +117,6 @@ export default class PortfolioPage extends Vue {
     line-height: normal
     text-decoration: underline
     text-underline-position: under
-
 .arrow-right
   border-radius: 50%
   padding: 25px
