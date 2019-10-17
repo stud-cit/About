@@ -10,7 +10,7 @@
 					v-for="(page, i) in pages"
 					:key="i"
 					cols="10"
-					lg="8"
+					lg="9"
 					class="swiper-slide"
 				>
 					<nuxt-link

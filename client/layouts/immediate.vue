@@ -32,7 +32,7 @@
 										dark
 										text
 									>
-										<span :style="getTotalPagesFont">
+										<span :style="getTotalPagesFont" class="not_uppercase">
 											{{ $t(page.title) }}
 										</span>
 									</v-btn>
@@ -62,8 +62,8 @@
 		<v-row class="mx-2 mx-sm-0 page-info" justify="start">
 			<v-col cols="auto" offset="0" offset-sm="1">
 				<p>
-					<span :style="getPageIndexFont">{{ pageId }}</span>
-					<span class="total-pages" :style="getPageAllIndexFont"> / 4</span>
+					<span :style="getPageIndexFont">0{{ pageId }}</span>
+					<span class="total-pages" :style="getPageAllIndexFont"> / 04</span>
 				</p>
 			</v-col>
 		</v-row>
@@ -152,9 +152,9 @@ export default class ImmediatetLayout extends Vue {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
 				xs: 15,
-				sm: 25,
-				md: 25,
-				lg: 30,
+				sm: 20,
+				md: 20,
+				lg: 25,
 			})}px`,
 		};
 	}
@@ -241,4 +241,7 @@ export default class ImmediatetLayout extends Vue {
 
 .desktop-link:hover
 	opacity: 0.5
+
+.not_uppercase
+	text-transform: none !important
 </style>
