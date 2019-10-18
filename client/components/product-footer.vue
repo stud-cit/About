@@ -70,7 +70,7 @@ export default class PruductFooter extends Vue {
 
 .rotated-return-bar
     position: absolute
-    top: calc(35vh)
+    top: calc(30vh)
     right: 5vw
     writing-mode: vertical-rl
     transform: scaleX(-1) scaleY(-1)

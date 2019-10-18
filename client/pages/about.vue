@@ -48,7 +48,7 @@
 			{{ $t('common.slogan') }}
 		</p>
 		<p
-			class="font-weight-light rotated-phraze pointer"
+			class="font-weight-light rotated-phraze pointer back-to-start"
 			:class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
 			v-if="curStage > about[$i18n.locale].slides.length"
 			@click="backToStart"
@@ -281,7 +281,7 @@ export default class AboutPage extends Vue {
 	font-size: 30px
 
 .rotated-phraze-lg
-	top: calc(50vh - 230px)
+	top: calc(50vh - 300px)
 	font-size: 50px
 
 .rotate
@@ -289,4 +289,9 @@ export default class AboutPage extends Vue {
 
 .pointer
 	cursor: pointer
+
+.back-to-start
+	font-size: 35px !important
+	opacity: 0.45
+	top: calc(50vh - 185px) !important
 </style>

@@ -51,7 +51,7 @@
 					>
 						<v-card class="pa-4 px-lg-8 py-lg-12">
 							<v-card-title
-								class="mb-6 font-weight-black card-title"
+								class="mb-6 bold-preview card-title"
 								:style="getCardTitleFont"
 							>
 								{{ preview.title }}
@@ -161,4 +161,8 @@ export default class OffersPage extends Vue {
 .card-content
 	line-height: 1.25
 	color: rgba(0, 0, 0, 1) !important
+
+.bold-preview
+	font-weight: 800 !important
+	font-style: normal
 </style>
