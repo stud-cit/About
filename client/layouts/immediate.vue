@@ -61,9 +61,9 @@
 		</v-app-bar>
 		<v-row class="mx-2 mx-sm-0 page-info" justify="start">
 			<v-col cols="auto" offset="0" offset-sm="1">
-				<p>
-					<span :style="getPageIndexFont">0{{ pageId }}</span>
-					<span class="total-pages" :style="getPageAllIndexFont"> / 04</span>
+				<p class="bold-italic-preview d-flex">
+					<span :style="getPageIndexFont">0{{ pageId }} </span>
+					<span class="total-pages mt-1 mt-sm-2" :style="getPageAllIndexFont"> /04</span>
 				</p>
 			</v-col>
 		</v-row>
@@ -206,7 +206,7 @@ export default class ImmediatetLayout extends Vue {
 	font-style: italic
 
 	.total-pages
-		vertical-align: super
+		vertical-align: top
 
 #pages-list-container
 	height: 100vh
@@ -244,4 +244,8 @@ export default class ImmediatetLayout extends Vue {
 
 .not_uppercase
 	text-transform: none !important
+
+.bold-italic-preview
+	font-weight: 800 !important
+	font-style: italic
 </style>

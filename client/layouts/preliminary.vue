@@ -6,7 +6,7 @@
 					<v-row justify="space-between">
 						<v-col cols="auto">
 							<p
-								class="text-uppercase mb-0 font-weight-black"
+								class="text-uppercase mb-0 bold-preview"
 								:style="getPageTitleFont"
 								:class="isXsOnly ? 'text-center' : ''"
 							>
@@ -234,4 +234,8 @@ export default class PreliminaryLayout extends Vue {
 .lang-up
   position: absolute
   top: -15px
+
+.bold-preview
+  font-weight: 800 !important
+  font-style: normal
 </style>

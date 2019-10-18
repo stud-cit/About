@@ -29,11 +29,11 @@
 									class="linkMail"
 									href="mailto:studcitmail@gmail.com"
 									target="_blank"
-									>{{ contacts.email }}</a
+									>{{ contacts[$i18n.locale].email }}</a
 								>
 							</v-col>
 							<v-col class="font-weight-black" cols="auto" :style="getMailFont">
-								{{ contacts.phone }}
+								{{ contacts[$i18n.locale].phone }}
 							</v-col>
 						</v-col>
 						<v-row align="center" justify="space-between">
@@ -47,27 +47,27 @@
 											class="linkMail"
 											href="mailto:studcitmail@gmail.com"
 											target="_blank"
-											>{{ contacts.email }}</a
+											>{{ contacts[$i18n.locale].email }}</a
 										>
 									</v-col>
 									<v-col cols="auto" :style="getMailFont" class="pa-0">
-										{{ contacts.phone }}
+										{{ contacts[$i18n.locale].phone }}
 									</v-col>
 								</v-row>
 								<v-row>
 									<v-col
 										cols="12"
-										class="font-weight-black px-md-0 py-0 color-main"
+										class="bold-preview px-md-0 py-0 color-main"
 										:style="getLocationFont"
 									>
-										{{ contacts.street }}
+										{{ contacts[$i18n.locale].street }}
 									</v-col>
 									<v-col
 										cols="12"
-										class="font-weight-black px-md-0 py-0 color-main"
+										class="bold-preview px-md-0 py-0 color-main"
 										:style="getLocationFont"
 									>
-										{{ contacts.office }}
+										{{ contacts[$i18n.locale].office }}
 									</v-col>
 								</v-row>
 							</v-col>
@@ -198,4 +198,8 @@ export default class ContactBar extends Vue {
 
 .color-main
 	color: rgba(45, 45, 45, 1)
+
+.bold-preview
+	font-weight: 800 !important
+	font-style: normal
 </style>

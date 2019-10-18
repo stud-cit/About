@@ -281,7 +281,7 @@ export default class AboutPage extends Vue {
 	font-size: 30px
 
 .rotated-phraze-lg
-	top: calc(50vh - 272px)
+	top: calc(50vh - 230px)
 	font-size: 50px
 
 .rotate

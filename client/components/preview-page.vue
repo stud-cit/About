@@ -20,13 +20,13 @@
 			>
 				<div class="d-block">
 					<p
-						class="font-weight-bold px-2"
+						class="bold-preview px-2"
 						:class="{ 'text-uppercase': isAboutPage }"
 						:style="getPreviewTitleFont"
 					>
 						{{ title }}
 					</p>
-					<p class="font-weight-bold px-2" :style="getPreviewTitleFont">
+					<p class="bold-preview px-2" :style="getPreviewTitleFont">
 						{{ subtitle }}
 					</p>
 				</div>
@@ -295,4 +295,8 @@ export default class PreviewPage extends Vue {
 
 .line-height-1
 	line-height: 1
+
+.bold-preview
+	font-weight: 800 !important
+	font-style: normal
 </style>

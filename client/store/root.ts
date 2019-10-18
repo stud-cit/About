@@ -406,10 +406,24 @@ export const state = (): State => ({
 	},
 	showContactBar: false,
 	contacts: {
-		email: 'STUDCITMAIL@GMAIL.COM',
-		phone: '+380 98 43 70 202',
-		street: 'Ukraine, Sumy, st. Rimsky-Korsakov, 2',
-		office: 'Sumy State University, Electrotechnical Corps, cab. ET-504',
+		ua:{
+			email: 'STUDCITMAIL@GMAIL.COM',
+			phone: '+380 98 43 70 202',
+			street: 'Україна, м. Суми, вул. Римського-Корсакова, 2',
+			office: 'Сумський державний університет, ЕТ-корпус, каб. ET-504',
+		},
+		ru:{
+			email: 'STUDCITMAIL@GMAIL.COM',
+			phone: '+380 98 43 70 202',
+			street: 'Украина, г. Сумы, ул. Римського-Корсакова, 2',
+			office: 'Сумский Государственный Университет, ЭТ-корпус, каб. ЭT-504',
+		},
+		en:{
+			email: 'STUDCITMAIL@GMAIL.COM',
+			phone: '+380 98 43 70 202',
+			street: 'Ukraine, Sumy, st. Rimsky-Korsakov, 2',
+			office: 'Sumy State University, Electrotechnical Corps, cab. ET-504',
+		},		
 	},
 });
 

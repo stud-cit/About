@@ -70,12 +70,13 @@ export default class PruductFooter extends Vue {
 
 .rotated-return-bar
     position: absolute
-    top: calc(25vh)
+    top: calc(35vh)
     right: 5vw
     writing-mode: vertical-rl
     transform: scaleX(-1) scaleY(-1)
     font-size: 35px
     cursor: pointer
+    opacity: 0.45
 
 .arrowUp
       color: #2f2f2f
