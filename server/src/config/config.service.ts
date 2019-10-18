@@ -2,23 +2,23 @@ import { Injectable } from '@nestjs/common';
 import { readFileSync } from 'fs';
 import { parse } from 'dotenv';
 
-import { EnvConfig } from './interfaces/envConfig.interface';
+import { Config } from './interfaces/config.interface';
 
 @Injectable()
 export class ConfigService {
-	private readonly envConfig: EnvConfig;
+	private readonly config: Config;
 
 	constructor() {
-		this.envConfig = {
+		this.config = {
 			...process.env,
 			...parse(readFileSync(`.env.${process.env.NODE_ENV}`)),
 		};
 	}
 
 	get(key: string): any {
-		const variable = this.envConfig[key];
+		const variable = this.config[key];
 
-		if (this.envConfig[key] === undefined) {
+		if (this.config[key] === undefined) {
 			throw TypeError(`The ${key} cannot be undefined`);
 		}
 
@@ -30,6 +30,6 @@ export class ConfigService {
 			return +variable;
 		}
 
-		return this.envConfig[key];
+		return this.config[key];
 	}
 }

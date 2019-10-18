@@ -23,7 +23,10 @@ import { ConfigService } from '../config/config.service';
 					return cb(new UnsupportedMediaTypeException(), false);
 				},
 				storage: diskStorage({
-					destination: configService.get('STORE_DEST'),
+					destination: join(
+						configService.get('PWD'),
+						configService.get('STORE_DEST'),
+					),
 					filename: (_req, file, cb) => {
 						return cb(null, join(v4()) + extname(file.originalname));
 					},
