@@ -5,6 +5,7 @@ import { StorageModule } from '../storage/storage.module';
 import { DatabaseModule } from '../database/database.module';
 
 import { UserModule } from '../modules/user/user.module';
+import { AuthModule } from '../modules/auth/auth.module';
 
 @Global()
 @Module({
@@ -13,5 +14,7 @@ import { UserModule } from '../modules/user/user.module';
 		StorageModule,
 		DatabaseModule,
 		UserModule,
+		AuthModule,
+	],
 })
 export class AppModule {}
