@@ -99,34 +99,34 @@ class RootGetters extends Getters<RootState> {
 		return this.state.error;
 	}
 
-	get visibilityLoader() {
+	get visibilityLoader(): boolean {
 		return this.state.visibilityLoader;
 	}
 
-	get isAuth() {
+	get isAuth(): boolean {
 		return this.state.auth.loggedIn;
 	}
 
-	get getContactBarVisibility() {
+	get getContactBarVisibility(): boolean {
 		return this.state.showContactBar;
 	}
 
-	get getPageCover() {
+	get getPageCover(): string | null {
 		const currentPage = this.state.pages.find(
 			({ id }: PageModel) => id === this.state.pageId,
 		);
 		return currentPage ? currentPage.cover : null;
 	}
 
-	get getPageStage() {
+	get getPageStage(): PageModel[] {
 		return this.state.pages;
 	}
 
-	get getPageId() {
+	get getPageId(): number {
 		return this.state.pageId;
 	}
 
-	get getPageRouteById() {
+	get getPageRouteById(): (index: number) => string {
 		return (index: number) => {
 			const changedIndex = index > 4 ? 1 : index < 1 ? 4 : index;
 			const currentPage = this.state.pages.find(
@@ -135,7 +135,7 @@ class RootGetters extends Getters<RootState> {
 			return currentPage ? currentPage.to : '';
 		};
 	}
-	get getContactStage() {
+	get getContactStage(): ContactsModel {
 		return this.state.contacts;
 	}
 }

@@ -12,20 +12,11 @@ interface StaffModel {
 }
 
 interface OurStaffLocaleModel {
-	readonly previewTitle: string;
-	readonly previewSubtitle: string;
-	readonly previewDescription: string;
 	readonly representation: StaffModel[];
 }
 
-export interface OurStaffStateModel {
-	ua: OurStaffLocaleModel;
-	ru: OurStaffLocaleModel;
-	en: OurStaffLocaleModel;
-}
-
 class OurStaffState {
-	ua = {
+	ua: OurStaffLocaleModel = {
 		representation: [
 			{
 				id: 1,
@@ -64,7 +55,7 @@ class OurStaffState {
 			},
 		],
 	};
-	ru = {
+	ru: OurStaffLocaleModel = {
 		representation: [
 			{
 				id: 1,
@@ -103,7 +94,7 @@ class OurStaffState {
 			},
 		],
 	};
-	en = {
+	en: OurStaffLocaleModel = {
 		representation: [
 			{
 				id: 1,
@@ -144,15 +135,15 @@ class OurStaffState {
 	};
 }
 
-class OurStaffGetters extends Getters<OurStaffStateModel> {
-	get getStage(): OurStaffStateModel {
+class OurStaffGetters extends Getters<OurStaffState> {
+	get getStage(): OurStaffState {
 		return this.state;
 	}
 }
-class OurStaffMutations extends Mutations<OurStaffStateModel> {}
+class OurStaffMutations extends Mutations<OurStaffState> {}
 
 export class OurStaffActions extends Actions<
-	OurStaffStateModel,
+	OurStaffState,
 	OurStaffGetters,
 	OurStaffMutations
 > {

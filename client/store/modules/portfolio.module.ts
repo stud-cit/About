@@ -10,20 +10,11 @@ interface ProjectModel {
 }
 
 interface PortfolioLocaleModel {
-	readonly previewTitle: string;
-	readonly previewSubtitle: string;
-	readonly previewDescription: string;
 	readonly projects: ProjectModel[];
 }
 
-export interface PortfolioStateModel {
-	ua: PortfolioLocaleModel;
-	ru: PortfolioLocaleModel;
-	en: PortfolioLocaleModel;
-}
-
 class PortfolioState {
-	ua = {
+	ua: PortfolioLocaleModel = {
 		projects: [
 			{
 				title: 'Сайт кафедри соціальної роботи СумДУ',
@@ -42,7 +33,7 @@ class PortfolioState {
 			},
 		],
 	};
-	ru = {
+	ru: PortfolioLocaleModel = {
 		projects: [
 			{
 				title: 'Сайт кафедры социальной работы СумГУ',
@@ -61,7 +52,7 @@ class PortfolioState {
 			},
 		],
 	};
-	en = {
+	en: PortfolioLocaleModel = {
 		projects: [
 			{
 				title: 'Department of Social Work of SSU',
@@ -83,16 +74,16 @@ class PortfolioState {
 	};
 }
 
-class PortfolioGetters extends Getters<PortfolioStateModel> {
-	get getStage(): PortfolioStateModel {
+class PortfolioGetters extends Getters<PortfolioState> {
+	get getStage(): PortfolioState {
 		return this.state;
 	}
 }
 
-class PortfolioMutations extends Mutations<PortfolioStateModel> {}
+class PortfolioMutations extends Mutations<PortfolioState> {}
 
 export class PortfolioActions extends Actions<
-	PortfolioStateModel,
+	PortfolioState,
 	PortfolioGetters,
 	PortfolioMutations
 > {

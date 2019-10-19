@@ -11,20 +11,11 @@ interface ReperesentationModel {
 }
 
 interface OffersLocaleModel {
-	readonly previewTitle: string;
-	readonly previewSubtitle: string;
-	readonly previewDescription: string;
 	readonly representation: ReperesentationModel[];
 }
 
-export interface OffersStateModel {
-	ua: OffersLocaleModel;
-	ru: OffersLocaleModel;
-	en: OffersLocaleModel;
-}
-
 class OffersState {
-	ua = {
+	ua: OffersLocaleModel = {
 		representation: [
 			{
 				title: 'Розробка веб-сайту для різних цілей',
@@ -53,7 +44,7 @@ class OffersState {
 			},
 		],
 	};
-	ru = {
+	ru: OffersLocaleModel = {
 		representation: [
 			{
 				title: 'Разработка веб-сайта для различных целей',
@@ -82,7 +73,7 @@ class OffersState {
 			},
 		],
 	};
-	en = {
+	en: OffersLocaleModel = {
 		representation: [
 			{
 				title: 'Website development for different purposes',
@@ -114,15 +105,15 @@ class OffersState {
 	};
 }
 
-class OffersGetters extends Getters<OffersStateModel> {
-	get getStage(): OffersStateModel {
+class OffersGetters extends Getters<OffersState> {
+	get getStage(): OffersState {
 		return this.state;
 	}
 }
-class OffersMutations extends Mutations<OffersStateModel> {}
+class OffersMutations extends Mutations<OffersState> {}
 
 export class OffersActions extends Actions<
-	OffersStateModel,
+	OffersState,
 	OffersGetters,
 	OffersMutations
 > {

@@ -4,20 +4,11 @@ import { Store } from 'vuex';
 import Vue from 'vue';
 
 interface AboutLocaleModel {
-	readonly previewTitle: string;
-	readonly previewSubtitle: string;
-	readonly previewDescription: string;
 	readonly slides: string[];
 }
 
-export interface AboutStateModel {
-	ua: AboutLocaleModel;
-	ru: AboutLocaleModel;
-	en: AboutLocaleModel;
-}
-
 class AboutState {
-	ua = {
+	ua: AboutLocaleModel = {
 		slides: [
 			`СтудЦІТ - це команда з талановитих фахівців, для яких виготовлення сайтів не робота,
 			а частина життя. Можливість постійно вдосконалюватися, вирішувати нетривіальні
@@ -30,7 +21,7 @@ class AboutState {
 			широка спеціалізація, якісна реалізація - характерні риси СтудЦІТ.`,
 		],
 	};
-	ru = {
+	ru: AboutLocaleModel = {
 		slides: [
 			`СтудЦИТ – это команда из талантливых специалистов, для которых изготовление сайтов не работа,
 			а часть жизни. Возможность постоянно совершенствоваться,
@@ -44,7 +35,7 @@ class AboutState {
 			реализация - характерные черты Студцит.`,
 		],
 	};
-	en = {
+	en: AboutLocaleModel = {
 		slides: [
 			`Student Center of Information Technologies (StudCIT) is a team of talented
 			professionals for whom website design is not a job but a part of life. There
@@ -61,15 +52,15 @@ class AboutState {
 	};
 }
 
-class AboutGetters extends Getters<AboutStateModel> {
-	get getStage(): AboutStateModel {
+class AboutGetters extends Getters<AboutState> {
+	get getStage(): AboutState {
 		return this.state;
 	}
 }
-class AboutMutations extends Mutations<AboutStateModel> {}
+class AboutMutations extends Mutations<AboutState> {}
 
 export class AboutActions extends Actions<
-	AboutStateModel,
+	AboutState,
 	AboutGetters,
 	AboutMutations
 > {
