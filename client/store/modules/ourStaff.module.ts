@@ -157,7 +157,11 @@ class OurStaffState {
 	};
 }
 
-class OurStaffGetters extends Getters<OurStaffStateModel> {}
+class OurStaffGetters extends Getters<OurStaffStateModel> {
+	get getStage (): OurStaffStateModel {
+		return this.state;
+	}
+}
 class OurStaffMutations extends Mutations<OurStaffStateModel> {}
 
 export class OurStaffActions extends Actions<

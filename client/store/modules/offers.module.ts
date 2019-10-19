@@ -126,7 +126,11 @@ class OffersState {
 	};
 }
 
-class OffersGetters extends Getters<OffersStateModel> {}
+class OffersGetters extends Getters<OffersStateModel> {
+	get getStage (): OffersStateModel {
+		return this.state;
+	}
+}
 class OffersMutations extends Mutations<OffersStateModel> {}
 
 export class OffersActions extends Actions<

@@ -93,7 +93,11 @@ class PortfolioState {
 	};
 }
 
-class PortfolioGetters extends Getters<PortfolioStateModel> {}
+class PortfolioGetters extends Getters<PortfolioStateModel> {
+	get getStage (): PortfolioStateModel {
+		return this.state;
+	}
+}
 
 class PortfolioMutations extends Mutations<PortfolioStateModel> {}
 

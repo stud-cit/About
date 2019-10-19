@@ -70,7 +70,11 @@ class AboutState {
 	};
 }
 
-class AboutGetters extends Getters<AboutStateModel> {}
+class AboutGetters extends Getters<AboutStateModel> {
+	get getStage (): AboutStateModel {
+		return this.state;
+	}
+}
 class AboutMutations extends Mutations<AboutStateModel> {}
 
 export class AboutActions extends Actions<

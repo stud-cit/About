@@ -79,6 +79,7 @@ import { Getter } from 'vuex-class';
 export default class HomePage extends Vue {
   @Getter('visibilityLoader') visibilityLoader;
   @Getter('getPageStage') pages;
+
   isShowSwiper: boolean = false;
   swiperOption = {
     mousewheel: true,
@@ -121,7 +122,6 @@ export default class HomePage extends Vue {
   }
 
   mounted() {
-    console.log(this.pages);
     this.showSwiper();
   }
 

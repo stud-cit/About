@@ -109,7 +109,7 @@ import PreviewPage from '@/components/preview-page.vue';
   },
 })
 export default class AboutPage extends Vue {
-  @Getter('getAboutStage') about;
+  @Getter('AboutModule/getStage') about;
   @Getter('getPageId') pageId;
   @Getter('getPageRouteById') getPageRouteById;
   @Getter('getContactBarVisibility') isShowContactBar;
@@ -199,6 +199,8 @@ export default class AboutPage extends Vue {
   created() {
     this.changePageId(1);
   }
+
+  mounted() {}
   beforeDestroy() {
     this.changeContactBar(false);
   }

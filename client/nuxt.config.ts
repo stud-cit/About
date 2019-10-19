@@ -46,6 +46,8 @@ const config: Configuration = {
 		'~/mixins',
 		'~/plugins/directives',
 		'~/plugins/vuetify',
+		'~/plugins/vee-validate',
+    '~/plugins/axios',
 		{ src: '~/plugins/vuetify-breakpoints', ssr: false },
 		{ src: '~/plugins/swiper', ssr: false },
 	],

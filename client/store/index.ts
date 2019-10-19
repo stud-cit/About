@@ -1,7 +1,9 @@
-import { Getters, Mutations, Actions, Module, createStore } from 'vuex-smart-module';
+import { Getters, Mutations, Actions, Module } from 'vuex-smart-module';
 import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { Store } from 'vuex';
 import Vue from 'vue';
+
+import { createStore } from 'vuex-smart-module';
 
 import { AboutModule } from './modules/about.module';
 import { OffersModule } from './modules/offers.module';
@@ -9,12 +11,7 @@ import { OurStaffModule } from './modules/ourStaff.module';
 import { PortfolioModule } from './modules/portfolio.module';
 
 
-// import { GetterTree, ActionTree, MutationTree } from 'vuex';
-// import { RootState } from 'store';
 
-// export interface State {
-// 	[x: string]: any;
-// }
 interface PageModel {
 	readonly id: number;
 	readonly title: string;
@@ -100,46 +97,6 @@ class RootState {
 	};
 }
 
-// export const getters: GetterTree<RootState, RootState> = {
-// 	getContactBarVisibility({ showContactBar }: State) {
-// 		return showContactBar;
-// 	},
-// 	getPageCover({ pages, pageId }: State) {
-// 		const currentPage = pages.find(({ id }: PageModel) => id === pageId);
-// 		return currentPage ? currentPage.cover : null;
-// 	},
-// 	getPageStage({ pages }: State) {
-// 		return pages;
-// 	},
-// 	getPageId({ pageId }: State) {
-// 		return pageId;
-// 	},
-// 	getPageRouteById({ pages }: State) {
-// 		return (index: number) => {
-// 			const changedIndex = index > 4 ? 1 : index < 1 ? 4 : index;
-// 			const currentPage = pages.find(
-// 				({ id }: PageModel) => id === changedIndex,
-// 			);
-// 			return currentPage ? currentPage.to : '';
-// 		};
-// 	},
-// 	getAboutStage({ about }: State) {
-// 		return about;
-// 	},
-// 	getOffersStage({ weOffers }: State) {
-// 		return weOffers;
-// 	},
-// 	getStaffStage({ ourStaff }: State) {
-// 		return ourStaff;
-// 	},
-// 	getPortfolioStage({ portfolio }: State) {
-// 		return portfolio;
-// 	},
-// 	getContactStage({ contacts }: State) {
-// 		return contacts;
-// 	},
-// };
-
 class RootGetters extends Getters<RootState> {
   get getError(): any {
     return this.state.error;
@@ -153,66 +110,36 @@ class RootGetters extends Getters<RootState> {
     return this.state.auth.loggedIn;
 	}
 
-	getContactBarVisibility({ showContactBar }: RootState) {
-		return showContactBar;
+	get getContactBarVisibility() {
+		return this.state.showContactBar;
 	}
 
-	getPageCover({ pages, pageId }: RootState) {
-		const currentPage = pages.find(({ id }: PageModel) => id === pageId);
+	get getPageCover() {
+		const currentPage = this.state.pages.find(({ id }: PageModel) => id === this.state.pageId);
 		return currentPage ? currentPage.cover : null;
 	}
-	getPageStage() {
+
+	get getPageStage() {
 		return this.state.pages;
 	}
 
-	getPageId({ pageId }: RootState) {
-		return pageId;
+	get getPageId() {
+		return this.state.pageId;
 	}
 
-	getPageRouteById({ pages }: RootState) {
+	get getPageRouteById() {
 		return (index: number) => {
 			const changedIndex = index > 4 ? 1 : index < 1 ? 4 : index;
-			const currentPage = pages.find(
+			const currentPage = this.state.pages.find(
 				({ id }: PageModel) => id === changedIndex,
 			);
 			return currentPage ? currentPage.to : '';
 		};
 	}
-	getContactStage({ contacts }: RootState) {
-		return contacts;
+	get getContactStage() {
+		return this.state.contacts;
 	}
 }
-
-
-// getAboutStage({ about }: State) {
-// 	return about;
-// }
-
-// getOffersStage({ weOffers }: State) {
-// 	return weOffers;
-// }
-
-// getStaffStage({ ourStaff }: State) {
-// 	return ourStaff;
-// }
-
-// getPortfolioStage({ portfolio }: State) {
-// 	return portfolio;
-// }
-
-// export const actions: ActionTree<RootState, RootState> = {};
-
-// export const mutations: MutationTree<RootState> = {
-// 	hideLoader(state: RootState): void {
-// 		state.isShowLoader = false;
-// 	},
-// 	changePageId(state: RootState, pageId: number): void {
-// 		state.pageId = pageId;
-// 	},
-// 	changeContactBar(state: RootState, visibility: boolean): void {
-// 		state.showContactBar = visibility;
-// 	},
-// };
 
 class RootMutations extends Mutations<RootState> {
   setError(data: any) {
@@ -221,11 +148,11 @@ class RootMutations extends Mutations<RootState> {
 	hideLoader() {
 		return Vue.set(this.state, 'visibilityLoader', false);
 	}
-	changePageId(state: RootState, pageId: number): void {
-		state.pageId = pageId;
+	changePageId(pageId: number) {
+		return Vue.set(this.state, 'pageId', pageId);
 	}
-	changeContactBar(state: RootState, visibility: boolean): void {
-		state.showContactBar = visibility;
+	changeContactBar(visibility: boolean) {
+		return Vue.set(this.state, 'showContactBar', visibility);
 	}
 }
 
