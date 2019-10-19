@@ -12,21 +12,21 @@ import { UserEntity } from './user.entity';
 @EventSubscriber()
 export class AdminSubscriber extends ConfigService
 	implements EntitySubscriberInterface<any> {
-	listenTo() {
+	public listenTo() {
 		return UserEntity;
 	}
 
-	hashPassword(password: string) {
+	private hashPassword(password: string) {
 		return hashSync(password, this.get('SALT_ROUND'));
 	}
 
-	beforeInsert(event: InsertEvent<UserEntity>): void {
+	public beforeInsert(event: InsertEvent<UserEntity>): void {
 		if (event.entity) {
 			event.entity.password = this.hashPassword(event.entity.password);
 		}
 	}
 
-	beforeUpdate(event: UpdateEvent<UserEntity>): void {
+	public beforeUpdate(event: UpdateEvent<UserEntity>): void {
 		if (event.entity) {
 			event.entity.password = this.hashPassword(event.entity.password);
 			event.entity.updateAt = new Date();

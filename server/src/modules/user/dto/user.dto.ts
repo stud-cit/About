@@ -3,12 +3,13 @@ import { ApiModelProperty } from '@nestjs/swagger';
 
 export class UserRequest {
 	@IsEmail()
-	@ApiModelProperty({ example: 'example@google.com' })
-	readonly email: string;
+	@MaxLength(255)
+	@ApiModelProperty({ example: 'example@ex.com' })
+	public readonly email: string;
 
 	@IsString()
 	@MinLength(8)
-	@MaxLength(254)
+	@MaxLength(255)
 	@ApiModelProperty({ example: 'qwerty1234' })
-	readonly password: string;
+	public readonly password: string;
 }

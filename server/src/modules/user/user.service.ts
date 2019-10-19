@@ -12,15 +12,15 @@ export class UserService {
 		private readonly userRepository: Repository<UserEntity>,
 	) {}
 
-	async createOne(user: UserRequest): Promise<UserEntity> {
+	public async createOne(user: UserRequest): Promise<UserEntity> {
 		return await this.userRepository.save(user);
 	}
 
-	async selectAll(): Promise<UserEntity[]> {
+	public async selectAll(): Promise<UserEntity[]> {
 		return await this.userRepository.find();
 	}
 
-	async selectOne(user: UserRequest): Promise<UserEntity> {
+	public async selectOne(user: UserRequest): Promise<UserEntity> {
 		return await this.userRepository.findOneOrFail({
 			where: {
 				email: user.email,
@@ -28,12 +28,15 @@ export class UserService {
 		});
 	}
 
-	async updateOne(user: UserEntity, newUser: UserRequest): Promise<UserEntity> {
-		this.userRepository.merge(user, newUser);
+	public async updateOne(
+		user: UserEntity,
+		_user: UserRequest,
+	): Promise<UserEntity> {
+		this.userRepository.merge(user, _user);
 		return await this.userRepository.save(user);
 	}
 
-	async deleteOne(user: UserEntity): Promise<DeleteResult> {
+	public async deleteOne(user: UserEntity): Promise<DeleteResult> {
 		return await this.userRepository.delete(user.email);
 	}
 }

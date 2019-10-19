@@ -15,7 +15,7 @@ export class ConfigService {
 		};
 	}
 
-	get(key: string): any {
+	public get(key: string): any {
 		const variable = this.config[key];
 
 		if (this.config[key] === undefined) {
