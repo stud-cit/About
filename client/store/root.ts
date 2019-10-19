@@ -54,7 +54,7 @@ export const state = (): State => ({
 		ua: {
 			previewTitle: 'common.companyName',
 			previewSubtitle: '',
-			previewDescription: 'Мы можемо зробити цей світ краще.',
+			previewDescription: 'Ми можемо зробити цей світ краще.',
 			slides: [
 				`СтудЦІТ - це команда з талановитих фахівців, для яких виготовлення сайтів не робота,
 				а частина життя. Можливість постійно вдосконалюватися, вирішувати нетривіальні
@@ -106,8 +106,8 @@ export const state = (): State => ({
 	weOffers: {
 		ua: {
 			previewTitle: 'Ви знаєте, що ми можемо?',
-			previewSubtitle: 'Що ми робимо? Які проєкти ми підтримуємо?',
-			previewDescription: 'Наші можливості.',
+			previewSubtitle: 'Що ми робимо? Що ми підтримуємо?',
+			previewDescription: 'Наші можливості обмежені лише нашою уявою.',
 			representation: [
 				{
 					title: 'Розробка веб-сайту для різних цілей',
@@ -138,7 +138,7 @@ export const state = (): State => ({
 		},
 		ru: {
 			previewTitle: 'Ты знаешь что мы можем?',
-			previewSubtitle: 'Что мы делаем? Какие проэкты мы поддерживаем?',
+			previewSubtitle: 'Что мы делаем? Что мы поддерживаем?',
 			previewDescription:
 				'Наши возможности ограничены только нашим воображением.',
 			representation: [
@@ -207,7 +207,7 @@ export const state = (): State => ({
 	ourStaff: {
 		ua: {
 			previewTitle:
-				'У нас багато людей, які можуть легко реалізувати все те, що ви хочете.',
+				'Ті люди, які можуть легко реалізувати все те, що ви хочете.',
 			previewSubtitle: '',
 			previewDescription: 'Разом ми можемо більше, ніж кожен окремо.',
 			representation: [
@@ -250,7 +250,7 @@ export const state = (): State => ({
 		},
 		ru: {
 			previewTitle:
-				'У нас много людей, которые могут легко реализовать все то, что вы хотите.',
+				'Те люди, которые могут легко реализовать все то, что вы хотите.',
 			previewSubtitle: '',
 			previewDescription: 'Вместе мы можем больше, чем в одиночку.',
 			representation: [
@@ -293,7 +293,7 @@ export const state = (): State => ({
 		},
 		en: {
 			previewTitle:
-				'We have many people who can easily realize all things which you wish.',
+				'Many people who can easily realize all things which you wish.',
 			previewSubtitle: '',
 			previewDescription: 'Together we can more than one by one.',
 			representation: [
@@ -337,9 +337,9 @@ export const state = (): State => ({
 	},
 	portfolio: {
 		ua: {
-			previewTitle: 'Ти знаєш, що ми можемо?',
-			previewSubtitle: 'Якi проєкти ми зробили?',
-			previewDescription: 'Наші проекти - одні з найкращих',
+			previewTitle: 'Наші проекти,',
+			previewSubtitle: 'якими ми пишаємось.',
+			previewDescription: 'Плоди нашої діяльності.',
 			projects: [
 				{
 					title: 'Сайт кафедри соціальної роботи СумДУ',
@@ -359,9 +359,9 @@ export const state = (): State => ({
 			],
 		},
 		ru: {
-			previewTitle: 'Ты знаешь, что мы можем?',
-			previewSubtitle: 'Какие проекты мы сделали?',
-			previewDescription: 'Наши проекты - одни из лучших',
+			previewTitle: 'Наши проекты,',
+			previewSubtitle: 'которыми мы гордимся.',
+			previewDescription: 'Плоды нашей скромной деятельности.',
 			projects: [
 				{
 					title: 'Сайт кафедры социальной работы СумГУ',
@@ -381,9 +381,9 @@ export const state = (): State => ({
 			],
 		},
 		en: {
-			previewTitle: 'Do you know what we can?',
-			previewSubtitle: 'What projects have we done?',
-			previewDescription: 'Our projects is one of the best',
+			previewTitle: 'Our projects',
+			previewSubtitle: 'which we are proud of.',
+			previewDescription: 'The fruits of our humble activity.',
 			projects: [
 				{
 					title: 'Department of Social Work of SSU',
@@ -423,7 +423,7 @@ export const state = (): State => ({
 			phone: '+380 98 43 70 202',
 			street: 'Ukraine, Sumy, st. Rimsky-Korsakov, 2',
 			office: 'Sumy State University, Electrotechnical Corps, cab. ET-504',
-		},		
+		},
 	},
 });
 
