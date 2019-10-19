@@ -1,32 +1,36 @@
 <template>
-	<v-container fluid class="loading" v-if="isLoading">
-		<section class="loader" :class="{ activeLoader: isLoaded }">
-			<p class="stud" v-if="isLoaded">Stud</p>
-			<div class="circle" :class="{ activeCircle: isLoaded }">
-				<p>CIT</p>
-			</div>
-		</section>
-	</v-container>
+  <v-container fluid class="loading" v-if="isLoading">
+    <section class="loader" :class="{ activeLoader: isLoaded }">
+      <p class="stud" v-if="isLoaded">Stud</p>
+      <div class="circle" :class="{ activeCircle: isLoaded }">
+        <p>CIT</p>
+      </div>
+    </section>
+  </v-container>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import { Mutation } from 'vuex-class';
+import { Mutation, Getter } from 'vuex-class';
 
 @Component({})
 export default class Loader extends Vue {
-	@Mutation('hideLoader') hideLoader;
+  @Getter('visibilityLoader') visibilityLoader;
+  @Mutation('hideLoader') hideLoader;
 
-	isLoading: boolean = true && this.$nuxt.$store.state.isShowLoader;
-	isLoaded: boolean = false;
+  isLoading: boolean = true;
+  isLoaded: boolean = false;
 
-	mounted() {
-		this.isLoaded = true;
-		setTimeout(() => {
-			this.isLoading = false;
-			this.hideLoader();
-		}, 1500);
-	}
+  created() {
+    this.isLoading = true && this.visibilityLoader;
+  }
+  mounted() {
+    this.isLoaded = true;
+    setTimeout(() => {
+      this.isLoading = false;
+      this.hideLoader();
+    }, 1500);
+  }
 }
 </script>
 

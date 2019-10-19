@@ -49,24 +49,26 @@ const config: Configuration = {
 		{ src: '~/plugins/vuetify-breakpoints', ssr: false },
 		{ src: '~/plugins/swiper', ssr: false },
 	],
-	/*
-	 ** Modules to load before mounting the App
-	 */
-	buildModules: ['@nuxt/typescript-build', 'nuxt-i18n'],
-	build: {
-		transpile: ['vuetify/lib', /^vue2-google-maps($|\/)/],
-		plugins: [new VuetifyLoaderPlugin()],
-		loaders: {
-			sass: {
-				implementation: sass,
-				indentedSyntax: true,
-			},
-		},
-	},
-	typescript: {
-		typeCheck: false,
-		ignoreNotFoundWarnings: true,
-	},
+
+	auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/auth', method: 'post', propertyName: 'token' },
+          user: { url: '/user', method: 'get', propertyName: '' },
+          logout: false,
+        },
+        tokenRequired: true,
+        tokenType: 'Bearer',
+      },
+    },
+    redirect: {
+      home: '/',
+      login: '/signin',
+      logout: '/signin',
+      callback: '/signin',
+    },
+  },
 
 	i18n: {
 		lazy: true,
@@ -96,6 +98,24 @@ const config: Configuration = {
 				name: 'Ukrainian',
 			},
 		],
+	},
+	/*
+	** Modules to load before mounting the App
+	*/
+	buildModules: ['@nuxt/typescript-build', 'nuxt-i18n', '@nuxtjs/auth', '@nuxtjs/axios'],
+	build: {
+		transpile: ['vuetify/lib'],
+		plugins: [new VuetifyLoaderPlugin()],
+		loaders: {
+			sass: {
+				implementation: sass,
+				indentedSyntax: true,
+			},
+		},
+	},
+	typescript: {
+		typeCheck: false,
+		ignoreNotFoundWarnings: true,
 	},
 };
 
