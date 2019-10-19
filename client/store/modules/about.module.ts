@@ -11,16 +11,13 @@ interface AboutLocaleModel {
 }
 
 export interface AboutStateModel {
-	ua: AboutLocaleModel,
-	ru: AboutLocaleModel,
-	en: AboutLocaleModel
+	ua: AboutLocaleModel;
+	ru: AboutLocaleModel;
+	en: AboutLocaleModel;
 }
 
 class AboutState {
 	ua = {
-		previewTitle: 'common.companyName',
-		previewSubtitle: '',
-		previewDescription: 'Ми можемо зробити цей світ краще.',
 		slides: [
 			`СтудЦІТ - це команда з талановитих фахівців, для яких виготовлення сайтів не робота,
 			а частина життя. Можливість постійно вдосконалюватися, вирішувати нетривіальні
@@ -34,9 +31,6 @@ class AboutState {
 		],
 	};
 	ru = {
-		previewTitle: 'common.companyName',
-		previewSubtitle: '',
-		previewDescription: 'Мы можем сделать этот мир лучше.',
 		slides: [
 			`СтудЦИТ – это команда из талантливых специалистов, для которых изготовление сайтов не работа,
 			а часть жизни. Возможность постоянно совершенствоваться,
@@ -51,9 +45,6 @@ class AboutState {
 		],
 	};
 	en = {
-		previewTitle: 'common.companyName',
-		previewSubtitle: '',
-		previewDescription: 'We can make this world better.',
 		slides: [
 			`Student Center of Information Technologies (StudCIT) is a team of talented
 			professionals for whom website design is not a job but a part of life. There
@@ -71,7 +62,7 @@ class AboutState {
 }
 
 class AboutGetters extends Getters<AboutStateModel> {
-	get getStage (): AboutStateModel {
+	get getStage(): AboutStateModel {
 		return this.state;
 	}
 }
@@ -79,19 +70,19 @@ class AboutMutations extends Mutations<AboutStateModel> {}
 
 export class AboutActions extends Actions<
 	AboutStateModel,
-  AboutGetters,
-  AboutMutations
+	AboutGetters,
+	AboutMutations
 > {
-  private store!: Store<NuxtAxiosInstance>;
+	private store!: Store<NuxtAxiosInstance>;
 
-  $init(store: Store<NuxtAxiosInstance>): void {
-    this.store = store;
-  }
+	$init(store: Store<NuxtAxiosInstance>): void {
+		this.store = store;
+	}
 }
 
 export const AboutModule = new Module({
-  state: AboutState,
-  getters: AboutGetters,
-  mutations: AboutMutations,
-  actions: AboutActions,
+	state: AboutState,
+	getters: AboutGetters,
+	mutations: AboutMutations,
+	actions: AboutActions,
 });

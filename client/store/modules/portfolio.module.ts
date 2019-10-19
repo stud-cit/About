@@ -3,7 +3,6 @@ import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { Store } from 'vuex';
 import Vue from 'vue';
 
-
 interface ProjectModel {
 	title: string;
 	cover: string;
@@ -18,16 +17,13 @@ interface PortfolioLocaleModel {
 }
 
 export interface PortfolioStateModel {
-	ua: PortfolioLocaleModel,
-	ru: PortfolioLocaleModel,
-	en: PortfolioLocaleModel,
+	ua: PortfolioLocaleModel;
+	ru: PortfolioLocaleModel;
+	en: PortfolioLocaleModel;
 }
 
 class PortfolioState {
 	ua = {
-		previewTitle: 'Наші проекти,',
-		previewSubtitle: 'якими ми пишаємось.',
-		previewDescription: 'Плоди нашої діяльності.',
 		projects: [
 			{
 				title: 'Сайт кафедри соціальної роботи СумДУ',
@@ -47,9 +43,6 @@ class PortfolioState {
 		],
 	};
 	ru = {
-		previewTitle: 'Наши проекты,',
-		previewSubtitle: 'которыми мы гордимся.',
-		previewDescription: 'Плоды нашей скромной деятельности.',
 		projects: [
 			{
 				title: 'Сайт кафедры социальной работы СумГУ',
@@ -69,9 +62,6 @@ class PortfolioState {
 		],
 	};
 	en = {
-		previewTitle: 'Our projects',
-		previewSubtitle: 'which we are proud of.',
-		previewDescription: 'The fruits of our humble activity.',
 		projects: [
 			{
 				title: 'Department of Social Work of SSU',
@@ -94,7 +84,7 @@ class PortfolioState {
 }
 
 class PortfolioGetters extends Getters<PortfolioStateModel> {
-	get getStage (): PortfolioStateModel {
+	get getStage(): PortfolioStateModel {
 		return this.state;
 	}
 }
@@ -103,19 +93,19 @@ class PortfolioMutations extends Mutations<PortfolioStateModel> {}
 
 export class PortfolioActions extends Actions<
 	PortfolioStateModel,
-  PortfolioGetters,
-  PortfolioMutations
+	PortfolioGetters,
+	PortfolioMutations
 > {
-  private store!: Store<NuxtAxiosInstance>;
+	private store!: Store<NuxtAxiosInstance>;
 
-  $init(store: Store<NuxtAxiosInstance>): void {
-    this.store = store;
-  }
+	$init(store: Store<NuxtAxiosInstance>): void {
+		this.store = store;
+	}
 }
 
 export const PortfolioModule = new Module({
-  state: PortfolioState,
-  getters: PortfolioGetters,
-  mutations: PortfolioMutations,
-  actions: PortfolioActions,
+	state: PortfolioState,
+	getters: PortfolioGetters,
+	mutations: PortfolioMutations,
+	actions: PortfolioActions,
 });

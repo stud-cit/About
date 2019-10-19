@@ -1,69 +1,73 @@
 <template>
-  <div>
-    <v-row justify="center">
-      <v-col cols="12" sm="10">
-        <PreviewPage
-          :title="weOffers[$i18n.locale].previewTitle"
-          cols="12"
-          sm="9"
-          :subtitle="weOffers[$i18n.locale].previewSubtitle"
-          :description="weOffers[$i18n.locale].previewDescription"
-          :icon-down="false"
-        />
-        <ScrollBar />
-      </v-col>
-    </v-row>
-    <v-row justify="center">
-      <v-col cols="12" md="10" lg="10" xl="10">
-        <v-row
-          class="representation-section"
-          v-for="(preview, index) in weOffers[$i18n.locale].representation"
-          :key="index"
-          :justify="preview.positionCard"
-          align="start"
-          :class="{ 'representation-xs': isXsOnly }"
-        >
-          <v-col
-            cols="12"
-            xs="8"
-            md="8"
-            lg="9"
-            class="mb-12 mb-md-0"
-            :class="{ 'representation-image': isMdAndDown }"
-          >
-            <v-img
-              class="pb-12 pb-md-0"
-              :src="getDynamicAssets(preview.img)"
-              :lazy-src="getDynamicAssets('')"
-              :aspect-ratio="3 / 2"
-            />
-          </v-col>
+	<div>
+		<v-row justify="center">
+			<v-col cols="12" sm="10">
+				<PreviewPage
+					:title="$t('offers.previewTitle')"
+					cols="12"
+					sm="9"
+					:subtitle="$t('offers.previewSubtitle')"
+					:description="$t('offers.previewDescription')"
+					:icon-down="false"
+				/>
+				<ScrollBar />
+			</v-col>
+		</v-row>
+		<v-row justify="center">
+			<v-col cols="12" md="10" lg="10" xl="10">
+				<v-row
+					class="representation-section"
+					v-for="(preview, index) in weOffers[$i18n.locale].representation"
+					:key="index"
+					:justify="preview.positionCard"
+					align="start"
+					:class="{ 'representation-xs': isXsOnly }"
+				>
+					<v-col
+						cols="12"
+						xs="8"
+						md="8"
+						lg="9"
+						class="mb-12 mb-md-0"
+						:class="{ 'representation-image': isMdAndDown }"
+					>
+						<v-img
+							class="pb-12 pb-md-0"
+							:src="getDynamicAssets(preview.img)"
+							:lazy-src="getDynamicAssets('')"
+							:aspect-ratio="3 / 2"
+						/>
+					</v-col>
 
-          <v-col
-            cols="12"
-            md="5"
-            class="representation-card"
-            :class="
+					<v-col
+						cols="12"
+						md="5"
+						class="representation-card"
+						:class="
 							preview.positionCard === 'start'
 								? 'right-bottom-position'
 								: 'left-bottom-position'
 						"
-          >
-            <v-card class="pa-4 px-lg-8 py-lg-12">
-              <v-card-title
-                class="mb-6 bold-preview card-title"
-                :style="getCardTitleFont"
-              >{{ preview.title }}</v-card-title>
-              <v-card-text class="font-weight-bold card-content" :style="getCardContentFont">
-                <span>{{ preview.text }}</span>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-col>
-      <product-footer />
-    </v-row>
-  </div>
+					>
+						<v-card class="pa-4 px-lg-8 py-lg-12">
+							<v-card-title
+								class="mb-6 bold-preview card-title"
+								:style="getCardTitleFont"
+								>{{ preview.title }}</v-card-title
+							>
+							<v-card-text
+								class="font-weight-bold card-content"
+								:style="getCardContentFont"
+							>
+								<span>{{ preview.text }}</span>
+							</v-card-text>
+						</v-card>
+					</v-col>
+				</v-row>
+			</v-col>
+			<product-footer />
+		</v-row>
+	</div>
 </template>
 
 <script lang="ts">
@@ -75,52 +79,52 @@ import PreviewPage from '@/components/preview-page.vue';
 import ScrollBar from '@/components/scroll-bar.vue';
 
 @Component({
-  layout: 'immediate',
-  head: {
-    title: 'Offers',
-  },
-  components: {
-    'product-footer': PruductFooter,
-    PreviewPage,
-    ScrollBar,
-  },
+	layout: 'immediate',
+	head: {
+		title: 'Offers',
+	},
+	components: {
+		'product-footer': PruductFooter,
+		PreviewPage,
+		ScrollBar,
+	},
 })
 export default class OffersPage extends Vue {
-  @Getter('OffersModule/getStage') weOffers;
-  @Mutation('changePageId') changePageId;
+	@Getter('OffersModule/getStage') weOffers;
+	@Mutation('changePageId') changePageId;
 
-  get isXsOnly() {
-    return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
-  }
+	get isXsOnly() {
+		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+	}
 
-  get isMdAndDown() {
-    return this.$breakpoint ? this.$breakpoint.is.mdAndDown : false;
-  }
+	get isMdAndDown() {
+		return this.$breakpoint ? this.$breakpoint.is.mdAndDown : false;
+	}
 
-  get getCardTitleFont() {
-    return {
-      fontSize: `${this.getCustomAdaptiveSize({
-        xs: 15,
-        sm: 20,
-        md: 20,
-        lg: 30,
-      })}px`,
-    };
-  }
-  get getCardContentFont() {
-    return {
-      fontSize: `${this.getCustomAdaptiveSize({
-        xs: 12,
-        sm: 18,
-        md: 12,
-        lg: 22,
-      })}px`,
-    };
-  }
+	get getCardTitleFont() {
+		return {
+			fontSize: `${this.getCustomAdaptiveSize({
+				xs: 15,
+				sm: 20,
+				md: 20,
+				lg: 30,
+			})}px`,
+		};
+	}
+	get getCardContentFont() {
+		return {
+			fontSize: `${this.getCustomAdaptiveSize({
+				xs: 12,
+				sm: 18,
+				md: 12,
+				lg: 22,
+			})}px`,
+		};
+	}
 
-  created() {
-    this.changePageId(2);
-  }
+	created() {
+		this.changePageId(2);
+	}
 }
 </script>
 

@@ -3,12 +3,11 @@ import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { Store } from 'vuex';
 import Vue from 'vue';
 
-
 interface ReperesentationModel {
-	readonly title: string,
-	readonly text: string,
-	readonly img: string,
-	readonly positionCard: 'start' | 'end',
+	readonly title: string;
+	readonly text: string;
+	readonly img: string;
+	readonly positionCard: 'start' | 'end';
 }
 
 interface OffersLocaleModel {
@@ -19,16 +18,13 @@ interface OffersLocaleModel {
 }
 
 export interface OffersStateModel {
-	ua: OffersLocaleModel,
-	ru: OffersLocaleModel,
-	en: OffersLocaleModel,
+	ua: OffersLocaleModel;
+	ru: OffersLocaleModel;
+	en: OffersLocaleModel;
 }
 
 class OffersState {
 	ua = {
-		previewTitle: 'Ви знаєте, що ми можемо?',
-		previewSubtitle: 'Що ми робимо? Що ми підтримуємо?',
-		previewDescription: 'Наші можливості обмежені лише нашою уявою.',
 		representation: [
 			{
 				title: 'Розробка веб-сайту для різних цілей',
@@ -58,10 +54,6 @@ class OffersState {
 		],
 	};
 	ru = {
-		previewTitle: 'Ты знаешь что мы можем?',
-		previewSubtitle: 'Что мы делаем? Что мы поддерживаем?',
-		previewDescription:
-			'Наши возможности ограничены только нашим воображением.',
 		representation: [
 			{
 				title: 'Разработка веб-сайта для различных целей',
@@ -91,10 +83,6 @@ class OffersState {
 		],
 	};
 	en = {
-		previewTitle: 'Do you know what we can?',
-		previewSubtitle: 'What we do? What we support?',
-		previewDescription:
-			'Our possibilities are limited only by our imagination.',
 		representation: [
 			{
 				title: 'Website development for different purposes',
@@ -127,7 +115,7 @@ class OffersState {
 }
 
 class OffersGetters extends Getters<OffersStateModel> {
-	get getStage (): OffersStateModel {
+	get getStage(): OffersStateModel {
 		return this.state;
 	}
 }
@@ -135,19 +123,19 @@ class OffersMutations extends Mutations<OffersStateModel> {}
 
 export class OffersActions extends Actions<
 	OffersStateModel,
-  OffersGetters,
-  OffersMutations
+	OffersGetters,
+	OffersMutations
 > {
-  private store!: Store<NuxtAxiosInstance>;
+	private store!: Store<NuxtAxiosInstance>;
 
-  $init(store: Store<NuxtAxiosInstance>): void {
-    this.store = store;
-  }
+	$init(store: Store<NuxtAxiosInstance>): void {
+		this.store = store;
+	}
 }
 
 export const OffersModule = new Module({
-  state: OffersState,
-  getters: OffersGetters,
-  mutations: OffersMutations,
-  actions: OffersActions,
+	state: OffersState,
+	getters: OffersGetters,
+	mutations: OffersMutations,
+	actions: OffersActions,
 });

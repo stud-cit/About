@@ -10,8 +10,6 @@ import { OffersModule } from './modules/offers.module';
 import { OurStaffModule } from './modules/ourStaff.module';
 import { PortfolioModule } from './modules/portfolio.module';
 
-
-
 interface PageModel {
 	readonly id: number;
 	readonly title: string;
@@ -34,10 +32,9 @@ interface ContactsModel {
 	en: ContactsLocaleModel;
 }
 
-
 class RootState {
 	auth!: any;
-  error!: any;
+	error!: any;
 	visibilityLoader: boolean = true;
 	showContactBar: boolean = false;
 	pageId = 0;
@@ -98,16 +95,16 @@ class RootState {
 }
 
 class RootGetters extends Getters<RootState> {
-  get getError(): any {
-    return this.state.error;
+	get getError(): any {
+		return this.state.error;
 	}
 
 	get visibilityLoader() {
 		return this.state.visibilityLoader;
 	}
 
-  get isAuth() {
-    return this.state.auth.loggedIn;
+	get isAuth() {
+		return this.state.auth.loggedIn;
 	}
 
 	get getContactBarVisibility() {
@@ -115,7 +112,9 @@ class RootGetters extends Getters<RootState> {
 	}
 
 	get getPageCover() {
-		const currentPage = this.state.pages.find(({ id }: PageModel) => id === this.state.pageId);
+		const currentPage = this.state.pages.find(
+			({ id }: PageModel) => id === this.state.pageId,
+		);
 		return currentPage ? currentPage.cover : null;
 	}
 
@@ -142,8 +141,8 @@ class RootGetters extends Getters<RootState> {
 }
 
 class RootMutations extends Mutations<RootState> {
-  setError(data: any) {
-    return Vue.set(this.state, 'error', data);
+	setError(data: any) {
+		return Vue.set(this.state, 'error', data);
 	}
 	hideLoader() {
 		return Vue.set(this.state, 'visibilityLoader', false);
@@ -157,38 +156,38 @@ class RootMutations extends Mutations<RootState> {
 }
 
 class RootActions extends Actions<
-  RootState,
-  RootGetters,
-  RootMutations,
-  RootActions
+	RootState,
+	RootGetters,
+	RootMutations,
+	RootActions
 > {
-  store!: Store<NuxtAxiosInstance> | any;
+	store!: Store<NuxtAxiosInstance> | any;
 
-  $init(store: Store<NuxtAxiosInstance>): void {
-    this.store = store;
+	$init(store: Store<NuxtAxiosInstance>): void {
+		this.store = store;
 	}
 
-  async authorizationUser(data: any): Promise<void> {
-    return await this.store.$auth
-      .loginWith('local', { data })
-      .catch(err => this.mutations.setError(err));
-  }
+	async authorizationUser(data: any): Promise<void> {
+		return await this.store.$auth
+			.loginWith('local', { data })
+			.catch(err => this.mutations.setError(err));
+	}
 }
 
 const RootModule = new Module({
-  state: RootState,
-  getters: RootGetters,
-  mutations: RootMutations,
-  actions: RootActions,
-  modules: {
-    AboutModule,
+	state: RootState,
+	getters: RootGetters,
+	mutations: RootMutations,
+	actions: RootActions,
+	modules: {
+		AboutModule,
 		OffersModule,
 		OurStaffModule,
 		PortfolioModule,
-  },
+	},
 });
 
 export default (): Store<any> =>
-  createStore(RootModule, {
-    strict: process.env.NODE_ENV !== 'production',
-  });
+	createStore(RootModule, {
+		strict: process.env.NODE_ENV !== 'production',
+	});

@@ -3,7 +3,6 @@ import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { Store } from 'vuex';
 import Vue from 'vue';
 
-
 interface StaffModel {
 	id: number;
 	name: string;
@@ -20,17 +19,13 @@ interface OurStaffLocaleModel {
 }
 
 export interface OurStaffStateModel {
-	ua: OurStaffLocaleModel,
-	ru: OurStaffLocaleModel,
-	en: OurStaffLocaleModel,
+	ua: OurStaffLocaleModel;
+	ru: OurStaffLocaleModel;
+	en: OurStaffLocaleModel;
 }
 
 class OurStaffState {
-  ua = {
-		previewTitle:
-			'Ті люди, які можуть легко реалізувати все те, що ви хочете.',
-		previewSubtitle: '',
-		previewDescription: 'Разом ми можемо більше, ніж кожен окремо.',
+	ua = {
 		representation: [
 			{
 				id: 1,
@@ -70,10 +65,6 @@ class OurStaffState {
 		],
 	};
 	ru = {
-		previewTitle:
-			'Те люди, которые могут легко реализовать все то, что вы хотите.',
-		previewSubtitle: '',
-		previewDescription: 'Вместе мы можем больше, чем в одиночку.',
 		representation: [
 			{
 				id: 1,
@@ -113,10 +104,6 @@ class OurStaffState {
 		],
 	};
 	en = {
-		previewTitle:
-			'Many people who can easily realize all things which you wish.',
-		previewSubtitle: '',
-		previewDescription: 'Together we can more than one by one.',
 		representation: [
 			{
 				id: 1,
@@ -158,7 +145,7 @@ class OurStaffState {
 }
 
 class OurStaffGetters extends Getters<OurStaffStateModel> {
-	get getStage (): OurStaffStateModel {
+	get getStage(): OurStaffStateModel {
 		return this.state;
 	}
 }
@@ -166,19 +153,19 @@ class OurStaffMutations extends Mutations<OurStaffStateModel> {}
 
 export class OurStaffActions extends Actions<
 	OurStaffStateModel,
-  OurStaffGetters,
-  OurStaffMutations
+	OurStaffGetters,
+	OurStaffMutations
 > {
-  private store!: Store<NuxtAxiosInstance>;
+	private store!: Store<NuxtAxiosInstance>;
 
-  $init(store: Store<NuxtAxiosInstance>): void {
-    this.store = store;
-  }
+	$init(store: Store<NuxtAxiosInstance>): void {
+		this.store = store;
+	}
 }
 
 export const OurStaffModule = new Module({
-  state: OurStaffState,
-  getters: OurStaffGetters,
-  mutations: OurStaffMutations,
-  actions: OurStaffActions,
+	state: OurStaffState,
+	getters: OurStaffGetters,
+	mutations: OurStaffMutations,
+	actions: OurStaffActions,
 });

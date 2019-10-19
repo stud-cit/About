@@ -47,30 +47,30 @@ const config: Configuration = {
 		'~/plugins/directives',
 		'~/plugins/vuetify',
 		'~/plugins/vee-validate',
-    '~/plugins/axios',
+		'~/plugins/axios',
 		{ src: '~/plugins/vuetify-breakpoints', ssr: false },
 		{ src: '~/plugins/swiper', ssr: false },
 	],
 
 	auth: {
-    strategies: {
-      local: {
-        endpoints: {
-          login: { url: '/auth', method: 'post', propertyName: 'token' },
-          user: { url: '/user', method: 'get', propertyName: '' },
-          logout: false,
-        },
-        tokenRequired: true,
-        tokenType: 'Bearer',
-      },
-    },
-    redirect: {
-      home: '/',
-      login: '/signin',
-      logout: '/signin',
-      callback: '/signin',
-    },
-  },
+		strategies: {
+			local: {
+				endpoints: {
+					login: { url: '/auth', method: 'post', propertyName: 'token' },
+					user: { url: '/user', method: 'get', propertyName: '' },
+					logout: false,
+				},
+				tokenRequired: true,
+				tokenType: 'Bearer',
+			},
+		},
+		redirect: {
+			home: '/',
+			login: '/signin',
+			logout: '/signin',
+			callback: '/signin',
+		},
+	},
 
 	i18n: {
 		lazy: true,
@@ -102,9 +102,14 @@ const config: Configuration = {
 		],
 	},
 	/*
-	** Modules to load before mounting the App
-	*/
-	buildModules: ['@nuxt/typescript-build', 'nuxt-i18n', '@nuxtjs/auth', '@nuxtjs/axios'],
+	 ** Modules to load before mounting the App
+	 */
+	buildModules: [
+		'@nuxt/typescript-build',
+		'nuxt-i18n',
+		'@nuxtjs/auth',
+		'@nuxtjs/axios',
+	],
 	build: {
 		transpile: ['vuetify/lib'],
 		plugins: [new VuetifyLoaderPlugin()],

@@ -63,7 +63,9 @@
 			<v-col cols="auto" offset="0" offset-sm="1">
 				<p class="bold-italic-preview d-flex">
 					<span :style="getPageIndexFont">0{{ pageId }} </span>
-					<span class="total-pages mt-1 mt-sm-2" :style="getPageAllIndexFont"> /04</span>
+					<span class="total-pages mt-1 mt-sm-2" :style="getPageAllIndexFont">
+						/04</span
+					>
 				</p>
 			</v-col>
 		</v-row>
