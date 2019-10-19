@@ -35,8 +35,8 @@ export default {
 			title: 'Choose What you are interested',
     },
     portfolio: {
-			previewTitle: 'Our projects',
-			previewSubtitle: 'which we are proud of.',
+			previewTitle	: 'Our implemented incredible ',
+			previewSubtitle: 'projects which we are proud of.',
 			previewDescription: 'The fruits of our humble activity.',
 			link: 'View Case Study',
     },
