@@ -1,111 +1,92 @@
 <template>
-	<v-app>
-		<v-app-bar
-			id="header"
-			class="pt-3 pt-lg-4 mt-3"
-			color="transparent"
-			app
-			dark
-			flat
-		>
-			<v-row class="mx-1 mx-sm-0" justify="center" align="center">
-				<v-col cols="12" sm="10" order-md="2" class="pa-0">
-					<v-row justify="space-between" align="center">
-						<v-col cols="auto" class="pa-0">
-							<nuxt-link :to="localePath({ name: 'index' })" nuxt>
-								<v-img src="/logo.svg" />
-							</nuxt-link>
-						</v-col>
-						<v-col cols="6" md="6" lg="7" xl="6" class="d-none d-md-flex">
-							<v-row justify="space-between" align="center">
-								<v-col
-									class="pa-0 nav-links"
-									cols="auto"
-									v-for="(page, index) in pages"
-									:key="index"
-								>
-									<v-btn
-										class="px-0 desktop-link"
-										active-class="active-desktop-link"
-										:to="page.to"
-										exact
-										dark
-										text
-									>
-										<span :style="getTotalPagesFont" class="not_uppercase">
-											{{ $t(page.title) }}
-										</span>
-									</v-btn>
-								</v-col>
-								<v-btn
-									icon
-									dark
-									:to="localePath({ name: 'index' })"
-									class="d-none d-md-flex"
-									nuxt
-								>
-									<v-icon size="50">mdi-fullscreen-exit</v-icon>
-								</v-btn>
-							</v-row>
-						</v-col>
-						<v-btn
-							class="d-flex d-md-none"
-							@click="toggleVisibilityMobileMenu"
-							icon
-						>
-							<v-icon size="50">mdi-menu</v-icon>
-						</v-btn>
-					</v-row>
-				</v-col>
-			</v-row>
-		</v-app-bar>
-		<v-row class="mx-2 mx-sm-0 page-info" justify="start">
-			<v-col cols="auto" offset="0" offset-sm="1">
-				<p class="bold-italic-preview d-flex">
-					<span :style="getPageIndexFont">0{{ pageId }} </span>
-					<span class="total-pages mt-1 mt-sm-2" :style="getPageAllIndexFont"> /04</span>
-				</p>
-			</v-col>
-		</v-row>
-		<v-img :src="getDynamicAssets(cover)" class="imageCover" />
+  <v-app>
+    <v-app-bar id="header" class="pt-3 pt-lg-4 mt-3" color="transparent" app dark flat>
+      <v-row class="mx-1 mx-sm-0" justify="center" align="center">
+        <v-col cols="12" sm="10" order-md="2" class="pa-0">
+          <v-row justify="space-between" align="center">
+            <v-col cols="auto" class="pa-0">
+              <nuxt-link :to="localePath({ name: 'index' })" nuxt>
+                <v-img src="/logo.svg" />
+              </nuxt-link>
+            </v-col>
+            <v-col cols="6" md="6" lg="7" xl="6" class="d-none d-md-flex">
+              <v-row justify="space-between" align="center">
+                <v-col
+                  class="pa-0 nav-links"
+                  cols="auto"
+                  v-for="(page, index) in pages"
+                  :key="index"
+                >
+                  <v-btn
+                    class="px-0 desktop-link"
+                    active-class="active-desktop-link"
+                    :to="localePath(page.to)"
+                    replace
+                    exact
+                    dark
+                    text
+                  >
+                    <span :style="getTotalPagesFont" class="not_uppercase">{{ $t(page.title) }}</span>
+                  </v-btn>
+                </v-col>
+                <v-btn icon dark :to="localePath({ name: 'index' })" class="d-none d-md-flex" nuxt>
+                  <v-icon size="50">mdi-fullscreen-exit</v-icon>
+                </v-btn>
+              </v-row>
+            </v-col>
+            <v-btn class="d-flex d-md-none" @click="toggleVisibilityMobileMenu" icon>
+              <v-icon size="50">mdi-menu</v-icon>
+            </v-btn>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-app-bar>
+    <v-row class="mx-2 mx-sm-0 page-info" justify="start">
+      <v-col cols="auto" offset="0" offset-sm="1">
+        <p class="bold-italic-preview d-flex">
+          <span :style="getPageIndexFont">0{{ pageId }}</span>
+          <span class="total-pages mt-1 mt-sm-2" :style="getPageAllIndexFont">/04</span>
+        </p>
+      </v-col>
+    </v-row>
+    <v-img :src="getDynamicAssets(cover)" class="imageCover" />
 
-		<v-content class="pt-0">
-			<v-container fluid class="pa-0">
-				<nuxt />
-				<contact-bar />
-			</v-container>
-		</v-content>
+    <v-content class="pt-0">
+      <v-container fluid class="pa-0">
+        <nuxt />
+        <contact-bar />
+      </v-container>
+    </v-content>
 
-		<v-dialog
-			v-model="isShowMobileMenu"
-			fullscreen
-			hide-overlay
-			transition="dialog-bottom-transition"
-			scrollable
-		>
-			<v-btn @click="toggleVisibilityMobileMenu" icon large fixed right>
-				<v-icon size="50" color="black">
-					mdi-close
-				</v-icon>
-			</v-btn>
-			<v-list id="pages-list-container">
-				<v-list-item-group class="pages-list">
-					<v-list-item v-for="(page, index) in pages" class="px-0" :key="index">
-						<v-btn
-							class="text-center display-2 page-link font-weight-bold"
-							exact-active-class="page-link-active"
-							@click="toggleVisibilityMobileMenu()"
-							:to="page.to"
-							exact
-							nuxt
-						>
-							<span class="page-link-title">{{ $t(page.title) }}</span>
-						</v-btn>
-					</v-list-item>
-				</v-list-item-group>
-			</v-list>
-		</v-dialog>
-	</v-app>
+    <v-dialog
+      v-model="isShowMobileMenu"
+      fullscreen
+      hide-overlay
+      transition="dialog-bottom-transition"
+      scrollable
+    >
+      <v-btn @click="toggleVisibilityMobileMenu" icon large fixed right>
+        <v-icon size="50" color="black">mdi-close</v-icon>
+      </v-btn>
+      <v-list id="pages-list-container">
+        <v-list-item-group class="pages-list">
+          <v-list-item v-for="(page, index) in pages" class="px-0" :key="index">
+            <v-btn
+              class="text-center display-2 page-link font-weight-bold"
+              exact-active-class="page-link-active"
+              @click="toggleVisibilityMobileMenu()"
+              :to="localePath(page.to)"
+              replace
+              exact
+              nuxt
+            >
+              <span class="page-link-title">{{ $t(page.title) }}</span>
+            </v-btn>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-dialog>
+  </v-app>
 </template>
 
 <script lang="ts">
@@ -114,65 +95,65 @@ import { Getter } from 'vuex-class';
 import ContactBar from '@/components/contact-bar.vue';
 
 @Component({
-	components: {
-		'contact-bar': ContactBar,
-	},
+  components: {
+    'contact-bar': ContactBar,
+  },
 })
 export default class ImmediatetLayout extends Vue {
-	@Getter('getPageByRoute') getPageByRoute;
-	@Getter('getPageId') pageId;
-	@Getter('getPageStage') pages;
-	@Getter('getPageCover') cover;
+  @Getter('getPageByRoute') getPageByRoute;
+  @Getter('getPageId') pageId;
+  @Getter('getPageStage') pages;
+  @Getter('getPageCover') cover;
 
-	get isMdAndUp() {
-		return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
-	}
+  get isMdAndUp() {
+    return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
+  }
 
-	get getPageIndexFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 25,
-				sm: 40,
-				md: 40,
-				lg: 45,
-			})}px`,
-		};
-	}
-	get getPageIndexFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 25,
-				sm: 40,
-				md: 40,
-				lg: 45,
-			})}px`,
-		};
-	}
-	get getPageAllIndexFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 15,
-				sm: 20,
-				md: 20,
-				lg: 25,
-			})}px`,
-		};
-	}
-	get getTotalPagesFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 2,
-				sm: 2,
-				md: 1.4,
-				lg: 1.5,
-			})}vw`,
-		};
-	}
-	isShowMobileMenu: boolean = false;
+  get getPageIndexFont() {
+    return {
+      fontSize: `${this.getCustomAdaptiveSize({
+        xs: 25,
+        sm: 40,
+        md: 40,
+        lg: 45,
+      })}px`,
+    };
+  }
+  get getPageIndexFont() {
+    return {
+      fontSize: `${this.getCustomAdaptiveSize({
+        xs: 25,
+        sm: 40,
+        md: 40,
+        lg: 45,
+      })}px`,
+    };
+  }
+  get getPageAllIndexFont() {
+    return {
+      fontSize: `${this.getCustomAdaptiveSize({
+        xs: 15,
+        sm: 20,
+        md: 20,
+        lg: 25,
+      })}px`,
+    };
+  }
+  get getTotalPagesFont() {
+    return {
+      fontSize: `${this.getCustomAdaptiveSize({
+        xs: 2,
+        sm: 2,
+        md: 1.4,
+        lg: 1.5,
+      })}vw`,
+    };
+  }
+  isShowMobileMenu: boolean = false;
 
-	toggleVisibilityMobileMenu() {
-		this.isShowMobileMenu = !this.isShowMobileMenu;
-	}
+  toggleVisibilityMobileMenu() {
+    this.isShowMobileMenu = !this.isShowMobileMenu;
+  }
 }
 </script>
 

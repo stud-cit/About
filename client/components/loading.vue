@@ -11,15 +11,19 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import { Mutation } from 'vuex-class';
+import { Mutation, Getter } from 'vuex-class';
 
 @Component({})
 export default class Loader extends Vue {
+	@Getter('visibilityLoader') visibilityLoader;
 	@Mutation('hideLoader') hideLoader;
 
-	isLoading: boolean = true && this.$nuxt.$store.state.isShowLoader;
+	isLoading: boolean = true;
 	isLoaded: boolean = false;
 
+	created() {
+		this.isLoading = true && this.visibilityLoader;
+	}
 	mounted() {
 		this.isLoaded = true;
 		setTimeout(() => {
