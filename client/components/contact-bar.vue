@@ -11,12 +11,11 @@
 				<span
 					:class="{ 'font-weight-bold': isSmAndDown }"
 					:style="getTagLineFont"
+					>{{ $t('common.slogan') }}</span
 				>
-					{{ $t('common.slogan') }}
-				</span>
 			</v-col>
 		</v-row>
-		<v-row class="contact-bar-section pa-0 ma-0">
+		<v-row class="contact-bar-section pa-0 ma-0 color-main">
 			<v-row class="relative" justify="center" align="center">
 				<v-row justify="space-around">
 					<v-col cols="10" class="pa-0">
@@ -26,15 +25,18 @@
 						>
 							<v-col class="font-weight-black" cols="auto" :style="getMailFont">
 								<a
-									class="linkMail"
-									href="mailto:studcitmail@gmail.com"
+									class="linkMail color-main"
+									:href="`mailto:${contacts[$i18n.locale].email}`"
 									target="_blank"
 									>{{ contacts[$i18n.locale].email }}</a
 								>
 							</v-col>
-							<v-col class="font-weight-black" cols="auto" :style="getMailFont">
-								{{ contacts[$i18n.locale].phone }}
-							</v-col>
+							<v-col
+								class="font-weight-black"
+								cols="auto"
+								:style="getMailFont"
+								>{{ contacts[$i18n.locale].phone }}</v-col
+							>
 						</v-col>
 						<v-row align="center" justify="space-between">
 							<v-col cols="7" md="9" sm="8">
@@ -44,31 +46,29 @@
 								>
 									<v-col cols="auto" :style="getMailFont" class="pa-0">
 										<a
-											class="linkMail"
+											class="linkMail color-main"
 											href="mailto:studcitmail@gmail.com"
 											target="_blank"
 											>{{ contacts[$i18n.locale].email }}</a
 										>
 									</v-col>
-									<v-col cols="auto" :style="getMailFont" class="pa-0">
-										{{ contacts[$i18n.locale].phone }}
-									</v-col>
+									<v-col cols="auto" :style="getMailFont" class="pa-0">{{
+										contacts[$i18n.locale].phone
+									}}</v-col>
 								</v-row>
 								<v-row>
 									<v-col
 										cols="12"
 										class="bold-preview px-md-0 py-0 color-main"
 										:style="getLocationFont"
+										>{{ contacts[$i18n.locale].street }}</v-col
 									>
-										{{ contacts[$i18n.locale].street }}
-									</v-col>
 									<v-col
 										cols="12"
 										class="bold-preview px-md-0 py-0 color-main"
 										:style="getLocationFont"
+										>{{ contacts[$i18n.locale].office }}</v-col
 									>
-										{{ contacts[$i18n.locale].office }}
-									</v-col>
 								</v-row>
 							</v-col>
 							<v-col cols="5" sm="4" md="2" class="pt-0 pt-md-2">
@@ -158,7 +158,6 @@ export default class ContactBar extends Vue {
 
 <style lang="sass">
 .linkMail
-	color: black  !important
 	text-decoration: none
 
 .container
@@ -172,7 +171,9 @@ export default class ContactBar extends Vue {
 
 	.contact-bar-section
 		background: white
-		color: black
+
+	.color-main
+		color: #2d2d2d
 
 .slogan
 	position: relative
@@ -185,19 +186,16 @@ export default class ContactBar extends Vue {
 	position: static!important
 
 .underline
-	border-bottom: 6px solid black
+	border-bottom: 6px solid #2d2d2d
 
 .mobUnderline
-	border-bottom: 2px solid black
+	border-bottom: 2px solid #2d2d2d
 
 .map
 	width: 100%
 
 .relative
 	position: relative
-
-.color-main
-	color: rgba(45, 45, 45, 1)
 
 .bold-preview
 	font-weight: 800 !important
