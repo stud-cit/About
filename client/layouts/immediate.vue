@@ -90,7 +90,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import { Getter } from 'vuex-class';
 import ContactBar from '@/components/contact-bar.vue';
 
@@ -150,11 +150,6 @@ export default class ImmediatetLayout extends Vue {
     };
   }
   isShowMobileMenu: boolean = false;
-
-  @Watch('cover')
-  onChangeValue(val: string) {
-    console.error('val', val);
-  }
 
   toggleVisibilityMobileMenu() {
     this.isShowMobileMenu = !this.isShowMobileMenu;
