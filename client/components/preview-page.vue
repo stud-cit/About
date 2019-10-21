@@ -5,7 +5,7 @@
     align="center"
     :class="isAboutPage ? 'preview-section-about' : 'preview-section-not-about'"
   >
-    <v-col cols="12" sm="11" lg="12" xl="12" class="pa-0">
+    <v-col cols="12" sm="11" lg="12" xl="12" >
       <v-row
         class="ma-0 preview-wrapper"
         justify="space-around"
