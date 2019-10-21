@@ -85,7 +85,7 @@ export default class HomePage extends Vue {
     mousewheel: true,
     centeredSlides: true,
     slidesPerView: 'auto',
-    spaceBetween: 100,
+    spaceBetween: 200,
   };
 
   showSwiper() {

@@ -1,8 +1,7 @@
 <template>
   <v-container class="py-0 ma-0">
-    <v-row justify="start">
-      <v-spacer />
-      <v-col cols="12" sm="11" lg="10" class="pa-0">
+    <v-row justify="center">
+      <v-col cols="12" sm="11" lg="10" >
         <v-window v-model="curStage" continuous dark>
           <v-window-item>
             <v-col cols="12" class="pa-0 slide-container">
@@ -243,6 +242,9 @@ export default class AboutPage extends Vue {
 	background-color: rgba(78, 79, 80, 0.3)
 	color: white
 	position: relative
+
+// .spacer
+// 	flex-grow: 0.65 !important
 
 .use-contacts-container
 	width: auto
