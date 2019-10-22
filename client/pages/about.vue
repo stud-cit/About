@@ -1,5 +1,5 @@
 <template>
-  <v-container class="py-0 ma-0">
+  <v-container fluid cdclass="py-0 ma-0">
     <v-row justify="center">
       <v-col cols="12" sm="11" lg="10" >
         <v-window v-model="curStage" continuous dark>
@@ -14,7 +14,7 @@
           </v-window-item>
           <v-window-item v-for="(slide, index) in about[$i18n.locale].slides" :key="index">
             <v-row justify="start" align="center" class="slide-container">
-              <v-col cols="12" md="10" lg="12">
+              <v-col cols="12" md="10" lg="10">
                 <v-row>
                   <v-col col="12">
                     <div
@@ -34,8 +34,7 @@
           </v-window-item>
           <v-window-item class="slide-container"></v-window-item>
         </v-window>
-      </v-col>
-    </v-row>
+
     <p
       class="d-none d-md-block rotated-phraze font-weight-light"
       :class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
@@ -50,9 +49,9 @@
 
     <v-footer absolute color="transparent" class="pb-0 px-0 px-sm-auto">
       <v-row justify="center">
-        <v-col sm="12" md="12" class="pb-0">
-          <v-row justify-sm="center" justify-md="space-around" align="center">
-            <v-col sm="10" lg="8" class="px-0 d-none d-sm-flex">
+        <v-col sm="12" md="10" lg="10" class="pb-0">
+          <v-row justify-sm="center" justify-md="space-between" align="center">
+            <v-col sm="10" md="7" class="d-none d-sm-flex">
               <v-slider
                 v-model="curStage"
                 :max="about[$i18n.locale].slides.length + 1"
@@ -66,9 +65,10 @@
             </v-col>
             <v-col
               xs="12"
-              md="12"
+              sm="12"
+              md="auto"
               lg="auto"
-              class="pb-0"
+              class="pa-0"
               :class="{ 'justify-center': isSmAndDown }"
             >
               <v-card
@@ -88,6 +88,8 @@
         </v-col>
       </v-row>
     </v-footer>
+  </v-col>
+  </v-row>
   </v-container>
 </template>
 
@@ -257,7 +259,7 @@ export default class AboutPage extends Vue {
 
 .rotated-phraze
 	position: fixed
-	right: 3vw
+	right: 8vw
 	color: white
 	writing-mode: vertical-rl
 	transform: scaleX(-1) scaleY(-1)

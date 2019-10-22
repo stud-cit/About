@@ -5,12 +5,13 @@
     align="center"
     :class="isAboutPage ? 'preview-section-about' : 'preview-section-not-about'"
   >
-    <v-col cols="12" sm="11" lg="12" xl="12"  :class="isAboutPage ? 'margin-about' : ''">
+    <v-col cols="12" sm="11" lg="12" xl="12">
       <v-row
-        class="ma-0 preview-wrapper"
+        class="ma-0 preview-wrapper ml-2"
         justify="space-around"
         align="end"
         :class="{ 'preview-margin': iconDown }"
+
       >
         <v-col
           cols="12"
@@ -185,12 +186,17 @@ export default class PreviewPage extends Vue {
     } else {
       return {
         fontSize: `${this.getCustomAdaptiveSize({
-          xs: 33,
-          sm: 50,
-          md: 57,
-          lg: 70,
-          xl: 85,
-        })}px`,
+          xs: 7,
+          sm: 9,
+          md: 5,
+          lg: 4,
+        })}vw`,
+        width: `${this.getCustomAdaptiveSize({
+          xs: 100,
+          sm: 100,
+          md: 100,
+          lg: 80,
+        })}%`
       };
     }
   }
@@ -279,8 +285,8 @@ export default class PreviewPage extends Vue {
 .line-height-1
 	line-height: 1
 
-.margin-about
-	margin-left: 2.5vw
+.title-about
+	width: 80%
 
 .bold-preview
 	font-weight: 800 !important
