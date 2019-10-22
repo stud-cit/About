@@ -6,7 +6,7 @@
       :class="isShowSwiper && 'swiper-active'"
     >
       <div class="swiper-wrapper">
-        <v-col v-for="(page, i) in pages" :key="i" cols="10" lg="9" class="swiper-slide">
+        <v-col v-for="(page, i) in pages" :key="i" cols="12" sm="10" md="10" lg="9" class="swiper-slide">
           <nuxt-link :to="localePath(page.to, $i18n.locale)" class="disable-underline">
             <v-card>
               <v-img
@@ -86,6 +86,14 @@ export default class HomePage extends Vue {
     centeredSlides: true,
     slidesPerView: 'auto',
     spaceBetween: 200,
+    breakpoints:{
+      768:{
+        spaceBetween:50,
+      },
+      1024:{
+        spaceBetween:100,
+      },
+    }
   };
 
   showSwiper() {
