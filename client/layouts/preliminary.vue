@@ -3,7 +3,7 @@
 		<v-app-bar app flat class="pt-6 mt-sm-12 mb-3 app-bar">
 			<v-row justify="center">
 				<v-col cols="10">
-					<v-row justify="space-between">
+					<v-row :class="{ 'margin-top': isSmAndUp }" justify="space-between">
 						<v-col cols="auto">
 							<p
 								class="text-uppercase mb-0 bold-preview"
@@ -141,6 +141,9 @@ export default class PreliminaryLayout extends Vue {
 	get isSmOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.smOnly : false;
 	}
+	get isSmAndUp() {
+		return this.$breakpoint ? this.$breakpoint.is.smAndUp : false;
+	}
 	get isXsOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 	}
@@ -238,4 +241,7 @@ export default class PreliminaryLayout extends Vue {
 .bold-preview
   font-weight: 800 !important
   font-style: normal
+
+.margin-top
+  margin-top: 10%
 </style>
