@@ -1,102 +1,117 @@
 <template>
-  <v-row
-    class="preview-section"
-    justify="center"
-    align="center"
-    :class="isAboutPage ? 'preview-section-about' : 'preview-section-not-about'"
-  >
-    <v-col cols="12" sm="11" lg="12" xl="12">
-      <v-row
-        class="ma-0 preview-wrapper ml-2"
-        justify="space-around"
-        align="end"
-        :class="{ 'preview-margin': iconDown }"
+	<v-row
+		class="preview-section"
+		justify="center"
+		align="center"
+		:class="isAboutPage ? 'preview-section-about' : 'preview-section-not-about'"
+	>
+		<v-col cols="12" sm="11" lg="12" xl="12">
+			<v-row
+				class="ma-0 preview-wrapper ml-2"
+				justify="space-around"
+				align="end"
+				:class="{ 'preview-margin': iconDown }"
+			>
+				<v-col
+					cols="12"
+					order="1"
+					order-sm="1"
+					class="pa-0 line-height"
+					:class="{ 'text-center': isXsOnly }"
+				>
+					<div class="d-block">
+						<p
+							class="bold-preview"
+							:class="{
+								'text-uppercase': isAboutPage,
+								'title-about': isLgAndUp && isAboutPage,
+							}"
+							:style="getPreviewTitleFont"
+						>
+							{{ title }}
+						</p>
+						<p class="bold-preview" :style="getPreviewTitleFont">
+							{{ subtitle }}
+						</p>
+					</div>
+				</v-col>
+				<v-col cols="12" order="3" order-sm="2">
+					<v-row justify="space-around" justify-sm="start">
+						<v-col cols="auto" order="1" order-sm="1">
+							<div class="arrow mr-3" @click="handleNavigatingPage(false)">
+								<v-img src="/arrow-left.svg" width="45px" />
+							</div>
+						</v-col>
+						<v-col cols="auto" order="3" order-sm="2">
+							<div class="arrow mr-3" @click="handleNavigatingPage(true)">
+								<v-img src="/arrow-right.svg" width="45px" />
+							</div>
+						</v-col>
+						<v-col
+							cols="auto"
+							order="2"
+							order-sm="3"
+							:class="{ rotate: isXsOnly }"
+						>
+							<nuxt-link class="square-container" to="/">
+								<div class="squares mr-3 squareOne"></div>
+								<div class="squares mr-3 squareTwo"></div>
+								<div class="squares squareThree"></div>
+							</nuxt-link>
+						</v-col>
+					</v-row>
+				</v-col>
 
-      >
-        <v-col
-          cols="12"
-          order="1"
-          order-sm="1"
-          class="pa-0 line-height"
-          :class="{ 'text-center': isXsOnly }"
-        >
-          <div class="d-block">
-            <p
-              class="bold-preview"
-              :class="{ 'text-uppercase': isAboutPage }"
-              :style="getPreviewTitleFont"
-            >{{ title }}</p>
-            <p class="bold-preview" :style="getPreviewTitleFont">{{ subtitle }}</p>
-          </div>
-        </v-col>
-        <v-col cols="12" order="3" order-sm="2">
-          <v-row justify="space-around" justify-sm="start">
-            <v-col cols="auto" order="1" order-sm="1">
-              <div class="arrow mr-3" @click="handleNavigatingPage(false)">
-                <v-img src="/arrow-left.svg" width="45px" />
-              </div>
-            </v-col>
-            <v-col cols="auto" order="3" order-sm="2">
-              <div class="arrow mr-3" @click="handleNavigatingPage(true)">
-                <v-img src="/arrow-right.svg" width="45px" />
-              </div>
-            </v-col>
-            <v-col cols="auto" order="2" order-sm="3" :class="{ rotate: isXsOnly }">
-              <nuxt-link class="square-container" to="/">
-                <div class="squares mr-3 squareOne"></div>
-                <div class="squares mr-3 squareTwo"></div>
-                <div class="squares squareThree"></div>
-              </nuxt-link>
-            </v-col>
-          </v-row>
-        </v-col>
-
-        <v-col cols="12" order="2" order-sm="3">
-          <v-row class="d-none d-sm-flex font-weight-regular line-height-1">
-            <span :style="getPreviewSubTitleFont">{{ description }}</span>
-          </v-row>
-          <v-row justify="center" class="d-flex d-sm-none pl-0">
-            <img class="pointer-icon" src="/pointer-mobile.svg" />
-          </v-row>
-          <v-row justify="center" justify-sm="start" class="mt-4">
-            <span class="gray font-weight-regular" :style="getPreviewInfoFont">
-              {{
-              $t(isAboutPage ? 'about.scrollPoint' : 'common.scroll')
-              }}
-            </span>
-          </v-row>
-        </v-col>
-      </v-row>
-      <v-row
-        v-show="isShowUseContacts"
-        v-scroll="handleScroll"
-        class="pa-0 use-contacts-container"
-        justify="end"
-        no-gutters
-      >
-        <v-col cols="12" sm="auto">
-          <v-card class="pa-4 pt-0 card-contacts" @click="scrollToFooter">
-            <v-card-title
-              class="justify-center font-weight-thin"
-              :style="getUseContactsTitleFont"
-            >{{ $t('contact.title') }}</v-card-title>
-            <v-card-actions
-              class="pa-0 justify-center font-weight-regular"
-              :style="getUseContactsActionFont"
-            >
-              <div class="contacts-action">{{ $t('contact.subTitle') }}</div>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-        <v-col sm="1"></v-col>
-      </v-row>
-      <v-row justify="center" v-show="iconDown">
-        <v-btn icon color="white" @click="scollToContent" class="scroll-bottom-icon">
-          <v-icon size="50" class="icon-down">mdi-chevron-double-down</v-icon>
-        </v-btn>
-      </v-row>
-    </v-col>
-  </v-row>
+				<v-col cols="12" order="2" order-sm="3">
+					<v-row class="d-none d-sm-flex font-weight-regular line-height-1">
+						<span :style="getPreviewSubTitleFont">{{ description }}</span>
+					</v-row>
+					<v-row justify="center" class="d-flex d-sm-none pl-0">
+						<img class="pointer-icon" src="/pointer-mobile.svg" />
+					</v-row>
+					<v-row justify="center" justify-sm="start" class="mt-4">
+						<span class="gray font-weight-regular" :style="getPreviewInfoFont">
+							{{ $t(isAboutPage ? 'about.scrollPoint' : 'common.scroll') }}
+						</span>
+					</v-row>
+				</v-col>
+			</v-row>
+			<v-row
+				v-show="isShowUseContacts"
+				v-scroll="handleScroll"
+				class="pa-0 use-contacts-container"
+				justify="end"
+				no-gutters
+			>
+				<v-col cols="12" sm="auto">
+					<v-card class="pa-4 pt-0 card-contacts" @click="scrollToFooter">
+						<v-card-title
+							class="justify-center font-weight-thin"
+							:style="getUseContactsTitleFont"
+							>{{ $t('contact.title') }}</v-card-title
+						>
+						<v-card-actions
+							class="pa-0 justify-center font-weight-regular"
+							:style="getUseContactsActionFont"
+						>
+							<div class="contacts-action">{{ $t('contact.subTitle') }}</div>
+						</v-card-actions>
+					</v-card>
+				</v-col>
+				<v-col sm="1"></v-col>
+			</v-row>
+			<v-row justify="center" v-show="iconDown">
+				<v-btn
+					icon
+					color="white"
+					@click="scollToContent"
+					class="scroll-bottom-icon"
+				>
+					<v-icon size="50" class="icon-down">mdi-chevron-double-down</v-icon>
+				</v-btn>
+			</v-row>
+		</v-col>
+	</v-row>
 </template>
 
 <script lang="ts">
@@ -104,106 +119,103 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
 
 @Component({
-  props: ['title', 'subtitle', 'description', 'iconDown'],
+	props: ['title', 'subtitle', 'description', 'iconDown'],
 })
 export default class PreviewPage extends Vue {
-  @Getter('getPageByRoute') getPageByRoute;
-  @Getter('getPageId') pageId;
-  @Getter('getPageRouteById') getPageRouteById;
-  isShowUseContacts: boolean = true;
-  aboutPageId: number = 1;
-  portfolioPageId: number = 4;
-  weofferPageId: number = 2;
+	@Getter('getPageByRoute') getPageByRoute;
+	@Getter('getPageId') pageId;
+	@Getter('getPageRouteById') getPageRouteById;
+	isShowUseContacts: boolean = true;
+	aboutPageId: number = 1;
+	portfolioPageId: number = 4;
+	weofferPageId: number = 2;
 
-  handleScroll(): void {
-    const windowHeight = window.innerHeight;
-    const scrollHeight = document.body.scrollHeight;
-    const scrollToFooter = scrollHeight - windowHeight * 2;
-    const isPortfolioPage = this.pageId === this.portfolioPageId;
-    const isWeOfferPage = this.pageId === this.weofferPageId;
+	handleScroll(): void {
+		const windowHeight = window.innerHeight;
+		const scrollHeight = document.body.scrollHeight;
+		const scrollToFooter = scrollHeight - windowHeight * 2;
+		const isPortfolioPage = this.pageId === this.portfolioPageId;
+		const isWeOfferPage = this.pageId === this.weofferPageId;
 
-    // on porfolio page we have to hide if any scroll we have
-    if (isPortfolioPage && window.scrollY > 0) {
-      this.isShowUseContacts = false;
-    } else if (isWeOfferPage && window.scrollY > 0) {
-      this.isShowUseContacts = false;
-    } else if (window.scrollY > scrollToFooter) {
-      this.isShowUseContacts = false;
-    } else {
-      this.isShowUseContacts = true;
-    }
-  }
+		// on porfolio page we have to hide if any scroll we have
+		if (isPortfolioPage && window.scrollY > 0) {
+			this.isShowUseContacts = false;
+		} else if (isWeOfferPage && window.scrollY > 0) {
+			this.isShowUseContacts = false;
+		} else if (window.scrollY > scrollToFooter) {
+			this.isShowUseContacts = false;
+		} else {
+			this.isShowUseContacts = true;
+		}
+	}
 
-  scollToContent(): void {
-    window.scrollTo({ left: 0, top: window.innerHeight, behavior: 'smooth' });
-  }
-  scrollToFooter() {
-    window.scrollTo({
-      left: 0,
-      top: document.body.scrollHeight,
-      behavior: 'smooth',
-    });
-  }
+	scollToContent(): void {
+		window.scrollTo({ left: 0, top: window.innerHeight, behavior: 'smooth' });
+	}
+	scrollToFooter() {
+		window.scrollTo({
+			left: 0,
+			top: document.body.scrollHeight,
+			behavior: 'smooth',
+		});
+	}
 
-  handleNavigatingPage(toRight: boolean) {
-    const newPageIndex = toRight ? this.pageId + 1 : this.pageId - 1;
-    const nextPage = this.getPageRouteById(newPageIndex);
-    this.$router.replace(this.localePath(nextPage));
-  }
+	handleNavigatingPage(toRight: boolean) {
+		const newPageIndex = toRight ? this.pageId + 1 : this.pageId - 1;
+		const nextPage = this.getPageRouteById(newPageIndex);
+		this.$router.replace(this.localePath(nextPage));
+	}
 
-  get isAboutPage() {
-    return this.pageId === this.aboutPageId;
-  }
-  get isXsOnly() {
-    return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
-  }
-  get getPreviewTitleFont() {
-    return { fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px` };
-  }
-  get getPreviewSubTitleFont() {
-    return {
-      fontSize: `${this.getCommonAdaptiveFontSize('previewSubtitle')}px`,
-    };
-  }
-  get getPreviewInfoFont() {
-    return { fontSize: `${this.getCommonAdaptiveFontSize('previewInfo')}px` };
-  }
-  get getUseContactsTitleFont() {
-    return {
-      fontSize: `${this.getCommonAdaptiveFontSize('useContactsTitle')}px`,
-    };
-  }
-  get getUseContactsActionFont() {
-    return {
-      fontSize: `${this.getCommonAdaptiveFontSize('useContactsAction')}px`,
-    };
-  }
-  get getPreviewTitleFont() {
-    if (!this.isAboutPage) {
-      return {
-        fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px`,
-      };
-    } else {
-      return {
-        fontSize: `${this.getCustomAdaptiveSize({
-          xs: 7,
-          sm: 9,
-          md: 5,
-          lg: 4,
-        })}vw`,
-        width: `${this.getCustomAdaptiveSize({
-          xs: 100,
-          sm: 100,
-          md: 100,
-          lg: 80,
-        })}%`
-      };
-    }
-  }
-  mounted() {
-    // initial check
-    this.handleScroll();
-  }
+	get isAboutPage() {
+		return this.pageId === this.aboutPageId;
+	}
+	get isLgAndUp() {
+		return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
+	}
+	get isXsOnly() {
+		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+	}
+	get getPreviewTitleFont() {
+		return { fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px` };
+	}
+	get getPreviewSubTitleFont() {
+		return {
+			fontSize: `${this.getCommonAdaptiveFontSize('previewSubtitle')}px`,
+		};
+	}
+	get getPreviewInfoFont() {
+		return { fontSize: `${this.getCommonAdaptiveFontSize('previewInfo')}px` };
+	}
+	get getUseContactsTitleFont() {
+		return {
+			fontSize: `${this.getCommonAdaptiveFontSize('useContactsTitle')}px`,
+		};
+	}
+	get getUseContactsActionFont() {
+		return {
+			fontSize: `${this.getCommonAdaptiveFontSize('useContactsAction')}px`,
+		};
+	}
+	get getPreviewTitleFont() {
+		if (!this.isAboutPage) {
+			return {
+				fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px`,
+			};
+		} else {
+			return {
+				fontSize: `${this.getCustomAdaptiveSize({
+					xs: 7,
+					sm: 9,
+					md: 5,
+					lg: 4,
+				})}vw`,
+			};
+		}
+	}
+	mounted() {
+		// initial check
+		this.handleScroll();
+	}
 }
 </script>
 
