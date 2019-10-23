@@ -156,7 +156,7 @@ export default class HomePage extends Vue {
 
 <style lang="sass">
 #home .swiper-wrapper
-  width: 70%
+  width: 75%
 
 .swiper-inactive
   transform: translateX(300%)
