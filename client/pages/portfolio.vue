@@ -25,7 +25,7 @@
 								<v-list-item-content>
 									<v-list-item-title
 										v-text="project.title"
-										class="ma-5 font-weight-medium text-underline text-wrap"
+										class=" font-weight-medium text-underline text-wrap"
 										:class="isMdAndUp ? '' : 'text-center'"
 										:style="getTitleFontProject"
 									/>
@@ -38,10 +38,10 @@
 						lg="3"
 						md="4"
 						sm="12"
-						class="ma-3 d-flex"
+						class="ma-3 mr-0 d-flex pr-0"
 						:class="isMdAndUp ? 'justify-end' : 'justify-center'"
 					>
-						<v-btn :to="project.link" large dark text>
+						<v-btn :to="project.link" large dark text class="pr-0">
 							<span class="headline d-none d-md-block">
 								{{ $t('portfolio.link') }}
 							</span>

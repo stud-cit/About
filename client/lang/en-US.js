@@ -38,7 +38,7 @@ export default {
 			previewTitle	: 'Our implemented incredible ',
 			previewSubtitle: 'projects which we are proud of.',
 			previewDescription: 'The fruits of our humble activity.',
-			link: 'View Case Study',
+			link: 'Visit site',
     },
     errors: {
 			returnToHome: 'Return to home page',
