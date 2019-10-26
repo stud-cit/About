@@ -76,7 +76,10 @@ export default class PruductFooter extends Vue {
     transform: scaleX(-1) scaleY(-1)
     font-size: 35px
     cursor: pointer
-    opacity: 0.45
+    opacity: 0.55
+
+.rotated-return-bar:hover
+    opacity: 0.8
 
 .arrowUp
       color: #2f2f2f
