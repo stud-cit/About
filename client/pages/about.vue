@@ -226,6 +226,7 @@ export default class AboutPage extends Vue {
 	.v-slider__tick
 		border-radius: 50%
 		background: #363636
+		cursor: pointer
 
 	.v-slider__tick--filled
 		background: white
