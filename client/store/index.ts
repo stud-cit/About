@@ -1,13 +1,9 @@
-import Vue from 'vue';
-import { Store } from 'vuex';
+import { Getters, Mutations, Actions, Module } from 'vuex-smart-module';
 import { NuxtAxiosInstance } from '@nuxtjs/axios';
-import {
-	Getters,
-	Mutations,
-	Actions,
-	Module,
-	createStore,
-} from 'vuex-smart-module';
+import { Store } from 'vuex';
+import Vue from 'vue';
+
+import { createStore } from 'vuex-smart-module';
 
 import { AboutModule } from './modules/about.module';
 import { OffersModule } from './modules/offers.module';
@@ -16,11 +12,11 @@ import { PortfolioModule } from './modules/portfolio.module';
 
 interface PageModel {
 	readonly id: number;
+	readonly title: string;
 	readonly to: string;
 	readonly img: string;
-	readonly cover: string;
-	readonly title: string;
 	readonly lazyImg: string;
+	readonly cover: string;
 }
 
 interface ContactsLocaleModel {
@@ -99,8 +95,6 @@ class RootState {
 }
 
 class RootGetters extends Getters<RootState> {
-	private readonly state: RootState = new RootState();
-
 	get getError(): any {
 		return this.state.error;
 	}
@@ -147,8 +141,6 @@ class RootGetters extends Getters<RootState> {
 }
 
 class RootMutations extends Mutations<RootState> {
-	private readonly state: RootState = new RootState();
-
 	setError(data: any) {
 		return Vue.set(this.state, 'error', data);
 	}
@@ -169,8 +161,7 @@ class RootActions extends Actions<
 	RootMutations,
 	RootActions
 > {
-	private store!: Store<NuxtAxiosInstance> | any;
-	private readonly mutations: RootMutations = new RootMutations();
+	store!: Store<NuxtAxiosInstance> | any;
 
 	$init(store: Store<NuxtAxiosInstance>): void {
 		this.store = store;
@@ -179,7 +170,7 @@ class RootActions extends Actions<
 	async authorizationUser(data: any): Promise<void> {
 		return await this.store.$auth
 			.loginWith('local', { data })
-			.catch((err: any) => this.mutations.setError(err));
+			.catch(err => this.mutations.setError(err));
 	}
 }
 

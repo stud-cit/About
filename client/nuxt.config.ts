@@ -1,4 +1,5 @@
 import { Configuration } from '@nuxt/types';
+import TerserPlugin from 'terser-webpack-plugin';
 import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin';
 
 import sass from 'sass';
@@ -102,6 +103,13 @@ const config: Configuration = {
 		],
 	},
 	/*
+	 ** Optimization plugin bu terser
+	 */
+	optimization: {
+		minimize: true,
+		minimizer: [new TerserPlugin()],
+	},
+	/*
 	 ** Modules to load before mounting the App
 	 */
 	buildModules: [
@@ -111,6 +119,7 @@ const config: Configuration = {
 		'@nuxtjs/axios',
 	],
 	build: {
+		analyze: true,
 		transpile: ['vuetify/lib'],
 		plugins: [new VuetifyLoaderPlugin()],
 		loaders: {

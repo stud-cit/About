@@ -28,6 +28,7 @@
 										class="px-0 desktop-link"
 										active-class="active-desktop-link"
 										:to="localePath(page.to)"
+										:ripple="false"
 										replace
 										exact
 										dark

@@ -1,6 +1,7 @@
-import { Store } from 'vuex';
-import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { Getters, Mutations, Actions, Module } from 'vuex-smart-module';
+import { NuxtAxiosInstance } from '@nuxtjs/axios';
+import { Store } from 'vuex';
+import Vue from 'vue';
 
 interface ProjectModel {
 	title: string;
@@ -18,7 +19,7 @@ class PortfolioState {
 			{
 				title: 'Сайт кафедри соціальної роботи СумДУ',
 				cover: '/images/portfolio/SOC.jpg',
-				link: 'http://soc.sumdu.edu.ua/',
+				link: 'https://soc.sumdu.edu.ua/',
 			},
 			{
 				title: 'Платформа пошуку роботи та стажування СумДУ',
@@ -74,8 +75,6 @@ class PortfolioState {
 }
 
 class PortfolioGetters extends Getters<PortfolioState> {
-	private readonly state: PortfolioState = new PortfolioState();
-
 	get getStage(): PortfolioState {
 		return this.state;
 	}

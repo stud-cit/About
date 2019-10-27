@@ -4,12 +4,6 @@ import { parse } from 'dotenv';
 import { Config } from './interfaces/config.interface';
 
 export class ConfigService {
-	getSetting(arg0: string): string | number | undefined {
-		throw new Error('Method not implemented.');
-	}
-	getSetting(arg0: string): string | number | undefined {
-		throw new Error('Method not implemented.');
-	}
 	private readonly config: Config;
 
 	constructor() {
@@ -20,7 +14,7 @@ export class ConfigService {
 	}
 
 	public get(key: string): any {
-		const variable = this.config[key];
+		const variable: any = this.config[key];
 
 		if (this.config[key] === undefined) {
 			throw TypeError(`The ${key} cannot be undefined`);

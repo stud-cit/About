@@ -1,6 +1,7 @@
-import { Store } from 'vuex';
-import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { Getters, Mutations, Actions, Module } from 'vuex-smart-module';
+import { NuxtAxiosInstance } from '@nuxtjs/axios';
+import { Store } from 'vuex';
+import Vue from 'vue';
 
 interface ReperesentationModel {
 	readonly cardTitle: string;
@@ -105,8 +106,6 @@ class OffersState {
 }
 
 class OffersGetters extends Getters<OffersState> {
-	private readonly state: OffersState = new OffersState();
-
 	get getStage(): OffersState {
 		return this.state;
 	}

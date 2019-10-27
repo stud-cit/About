@@ -3,30 +3,33 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { dirname } from 'path';
 
 import { ConfigService } from '../config/config.service';
+import { DatabaseService } from './database.service';
 
 @Global()
 @Module({
-	imports: [
-		TypeOrmModule.forRootAsync({
-			useFactory: async (configService: ConfigService) => ({
-				port: configService.get('TYPEORM_PORT'),
-				name: configService.get('TYPEORM_NAME'),
-				host: configService.get('TYPEORM_HOST'),
-				type: configService.get('TYPEORM_CONNECTION'),
-				logging: configService.get('NODE_ENV') === 'development',
-				username: configService.get('TYPEORM_USERNAME'),
-				password: configService.get('TYPEORM_PASSWORD'),
-				database: configService.get('TYPEORM_DATABASE'),
-				dropSchema: configService.get('TYPEORM_DROP_SCHEMA'),
-				synchronize: configService.get('TYPEORM_SYNCHRONIZE'),
-				migrationsRun: configService.get('TYPEORM_MIGRATIONS_RUN'),
-				keepConnectionAlive: configService.get('TYPEORM_KEEP_ALIVE'),
-				migrations: [__dirname + '/migrations/*{.ts,.js}'],
-				entities: [dirname(__dirname) + '/**/*.entity{.ts,.js}'],
-				subscribers: [dirname(__dirname) + '/**/*.subscriber{.ts,.js}'],
-			}),
-			inject: [ConfigService],
-		}),
-	],
+  imports: [
+    TypeOrmModule.forRootAsync({
+      useFactory: async (configService: ConfigService) => ({
+        port: configService.getSetting('TYPEORM_PORT'),
+        name: configService.getSetting('TYPEORM_NAME'),
+        host: configService.getSetting('TYPEORM_HOST'),
+        type: configService.getSetting('TYPEORM_CONNECTION'),
+        logging: configService.getSetting('NODE_ENV') === 'development',
+        username: configService.getSetting('TYPEORM_USERNAME'),
+        password: configService.getSetting('TYPEORM_PASSWORD'),
+        database: configService.getSetting('TYPEORM_DATABASE'),
+        dropSchema: configService.getSetting('TYPEORM_DROP_SCHEMA'),
+        synchronize: configService.getSetting('TYPEORM_SYNCHRONIZE'),
+        migrationsRun: configService.getSetting('TYPEORM_MIGRATIONS_RUN'),
+        keepConnectionAlive: configService.getSetting('TYPEORM_KEEP_ALIVE'),
+        migrations: [__dirname + '/migrations/*{.ts,.js}'],
+        entities: [dirname(__dirname) + '/**/*.entity{.ts,.js}'],
+        subscribers: [dirname(__dirname) + '/**/*.subscriber{.ts,.js}'],
+      }),
+      inject: [ConfigService],
+    }),
+  ],
+  providers: [DatabaseService],
+  exports: [DatabaseService],
 })
 export class DatabaseModule {}

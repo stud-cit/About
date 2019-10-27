@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  client:
+    restart: always
+    image: node:latest
+    working_dir: /usr/src/app
+    container_name: client
+    command: "npm run start:dev"
+    volumes:
+      - ./client:/usr/src/app
+    ports:
+      - "80:8080"
+    environment:
+      HOST: 0.0.0.0

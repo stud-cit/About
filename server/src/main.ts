@@ -3,34 +3,39 @@ import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { NestExpressApplication } from '@nestjs/platform-express';
 
+import { json } from 'body-parser';
 import { join } from 'path';
 
 import { AppModule } from './app/app.module';
 import { ConfigService } from './config/config.service';
 
 async function bootstrap() {
-	const app = await NestFactory.create<NestExpressApplication>(AppModule);
-	const config = new ConfigService();
-	const options = new DocumentBuilder()
-		.setDescription(config.get('npm_package_description'))
-		.setVersion(config.get('npm_package_version'))
-		.setTitle(config.get('npm_package_name'))
-		.setBasePath(config.get('API_PREFFIX'))
-		.addBearerAuth()
-		.build();
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const config = await new ConfigService();
+  const options = await new DocumentBuilder()
+    .setTitle('')
+    .setDescription('')
+    .setBasePath(config.getSetting('API_PREFFIX'))
+    .setVersion(config.getSetting('npm_package_version'))
+    .addBearerAuth()
+    .build();
 
-	const document = SwaggerModule.createDocument(app, options);
-	SwaggerModule.setup(config.get('API_PREFFIX'), app, document);
+  const document = SwaggerModule.createDocument(app, options);
 
-	return await app
-		.useStaticAssets(join(config.get('PWD'), config.get('DOC_DIST')))
-		.useStaticAssets(join(config.get('PWD'), config.get('STORE_DEST')), {
-			prefix: config.get('STORE_DEST'),
-		})
-		.setGlobalPrefix(config.get('API_PREFFIX'))
-		.useGlobalPipes(new ValidationPipe())
-		.enableCors()
-		.listen(config.get('PORT'));
+  SwaggerModule.setup(config.getSetting('API_DOCS'), app, document);
+
+  return await app
+    .use(json())
+    .useStaticAssets(join(__dirname, '..', 'public'))
+    .setBaseViewsDir(join(__dirname, '..', 'public'))
+    .setGlobalPrefix(config.getSetting('API_PREFFIX'))
+    .useGlobalPipes(
+      new ValidationPipe({
+        whitelist: true,
+      }),
+    )
+    .enableCors()
+    .listen(config.getSetting('API_PORT'));
 }
 
 bootstrap();

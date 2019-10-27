@@ -71,5 +71,4 @@ package-lock.json
 dist
 
 # Compiled documentation
-server/public/
-server/static/
+public/

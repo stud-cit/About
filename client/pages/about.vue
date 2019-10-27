@@ -120,6 +120,7 @@ import PreviewPage from '@/components/preview-page.vue';
 
 @Component({
 	layout: 'immediate',
+	transition: 'page',
 	head: {
 		title: 'About us',
 	},

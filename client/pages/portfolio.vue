@@ -41,10 +41,22 @@
 						class="ma-3 mr-0 d-flex pr-0"
 						:class="isMdAndUp ? 'justify-end' : 'justify-center'"
 					>
-						<v-btn :to="project.link" large dark text class="pr-0"
-						 @mouseover="borderActive = true"
-						 @mouseleave="borderActive = false">
-							<span class="headline d-none d-md-block pr-3" :class="{'border-text-link':borderActive}">
+						<v-btn
+							:href="project.link"
+							target="_blank"
+							large
+							dark
+							text
+							:ripple="false"
+							depressed
+							class="pr-0"
+							@mouseover="borderActive = true"
+							@mouseleave="borderActive = false"
+						>
+							<span
+								class="headline d-none d-md-block pr-3"
+								:class="{ 'border-text-link': borderActive }"
+							>
 								{{ $t('portfolio.link') }}
 							</span>
 							<div class="arrow-right">
@@ -71,6 +83,7 @@ import PruductFooter from '@/components/product-footer.vue';
 
 @Component({
 	layout: 'immediate',
+	transition: 'page',
 	head: {
 		title: 'Portfolio',
 	},
@@ -131,5 +144,5 @@ export default class PortfolioPage extends Vue {
   opacity: 0 !important
 
 .border-text-link
-  text-decoration: underline  
+  text-decoration: underline
 </style>

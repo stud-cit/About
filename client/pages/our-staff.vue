@@ -129,6 +129,7 @@ import PruductFooter from '@/components/product-footer.vue';
 
 @Component({
 	layout: 'immediate',
+	transition: 'page',
 	head: {
 		title: 'Our staff',
 	},

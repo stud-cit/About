@@ -80,6 +80,7 @@ import ScrollBar from '@/components/scroll-bar.vue';
 
 @Component({
 	layout: 'immediate',
+	transition: 'page',
 	head: {
 		title: 'Offers',
 	},
