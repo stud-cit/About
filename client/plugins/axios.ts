@@ -1,3 +1,4 @@
+import { AxiosError, AxiosResponse } from 'axios';
 const routingRedirection = {
 	503: '/',
 	500: '/',
@@ -7,8 +8,7 @@ const routingRedirection = {
 };
 
 export default function({ $axios, redirect }) {
-	$axios.onError(error => {
-		const { status } = error.response;
-		return redirect(routingRedirection[status]);
+	$axios.onError((error: AxiosError<AxiosResponse> | any) => {
+		return redirect(routingRedirection[error.response.status]);
 	});
 }

@@ -1,7 +1,6 @@
-import { Getters, Mutations, Actions, Module } from 'vuex-smart-module';
-import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { Store } from 'vuex';
-import Vue from 'vue';
+import { NuxtAxiosInstance } from '@nuxtjs/axios';
+import { Getters, Mutations, Actions, Module } from 'vuex-smart-module';
 
 interface ProjectModel {
 	title: string;
@@ -75,6 +74,8 @@ class PortfolioState {
 }
 
 class PortfolioGetters extends Getters<PortfolioState> {
+	private readonly state: PortfolioState = new PortfolioState();
+
 	get getStage(): PortfolioState {
 		return this.state;
 	}

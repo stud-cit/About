@@ -1,7 +1,6 @@
-import { Getters, Mutations, Actions, Module } from 'vuex-smart-module';
-import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { Store } from 'vuex';
-import Vue from 'vue';
+import { NuxtAxiosInstance } from '@nuxtjs/axios';
+import { Getters, Mutations, Actions, Module } from 'vuex-smart-module';
 
 interface AboutLocaleModel {
 	readonly slides: string[];
@@ -53,6 +52,8 @@ class AboutState {
 }
 
 class AboutGetters extends Getters<AboutState> {
+	private readonly state: AboutState = new AboutState();
+
 	get getStage(): AboutState {
 		return this.state;
 	}

@@ -1,7 +1,6 @@
-import { Getters, Mutations, Actions, Module } from 'vuex-smart-module';
-import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { Store } from 'vuex';
-import Vue from 'vue';
+import { NuxtAxiosInstance } from '@nuxtjs/axios';
+import { Getters, Mutations, Actions, Module } from 'vuex-smart-module';
 
 interface StaffModel {
 	id: number;
@@ -136,6 +135,8 @@ class OurStaffState {
 }
 
 class OurStaffGetters extends Getters<OurStaffState> {
+	private readonly state: OurStaffState = new OurStaffState();
+
 	get getStage(): OurStaffState {
 		return this.state;
 	}

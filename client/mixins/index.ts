@@ -28,10 +28,7 @@ Vue.mixin({
 			if (allowedElementNames.includes(elementName)) {
 				const currentFontDimensions = commonFontSizeList[elementName];
 				const currentBreakpoint = this.$vuetify.breakpoint.name;
-
-				if (currentBreakpoint === 'xl') {
-					return currentFontDimensions.lg;
-				}
+				if (currentBreakpoint === 'xl') return currentFontDimensions.lg;
 				return currentFontDimensions[currentBreakpoint];
 			}
 			return null;

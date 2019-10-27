@@ -1,25 +1,29 @@
 import { readFileSync } from 'fs';
 import { parse } from 'dotenv';
 
-import { EnvConfig } from './interfaces/envConfig.interface';
+import { Config } from './interfaces/config.interface';
 
 export class ConfigService {
-	private readonly filePath: string;
-	private readonly envConfig: EnvConfig;
+	getSetting(arg0: string): string | number | undefined {
+		throw new Error('Method not implemented.');
+	}
+	getSetting(arg0: string): string | number | undefined {
+		throw new Error('Method not implemented.');
+	}
+	private readonly config: Config;
 
 	constructor() {
-		this.filePath = process.env.NODE_ENV || '';
-		this.envConfig = {
-			...parse(readFileSync(`${this.filePath}.env`)),
+		this.config = {
 			...process.env,
+			...parse(readFileSync(`.env.${process.env.NODE_ENV}`)),
 		};
 	}
 
-	getSetting(key: string): any {
-		const variable = this.envConfig[key];
+	public get(key: string): any {
+		const variable = this.config[key];
 
-		if (variable === undefined) {
-			return undefined;
+		if (this.config[key] === undefined) {
+			throw TypeError(`The ${key} cannot be undefined`);
 		}
 
 		if (/true|false/.test(variable)) {
@@ -30,6 +34,6 @@ export class ConfigService {
 			return +variable;
 		}
 
-		return this.envConfig[key];
+		return this.config[key];
 	}
 }

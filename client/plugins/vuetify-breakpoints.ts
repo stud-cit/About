@@ -35,7 +35,7 @@ Vue.prototype.$breakpoint = new Vue({
 		},
 	},
 	methods: {
-		breakpointWithDefault(breakpoint) {
+		breakpointWithDefault(breakpoint: string | number) {
 			return Object.keys(this.$data.mountedBreakpoints).length > 0
 				? this.$data.mountedBreakpoints[breakpoint]
 				: this.$data.default[breakpoint];

@@ -11,8 +11,8 @@ const config: Configuration = {
 	 ** Server options
 	 */
 	server: {
-		port: configService.getSetting('APP_PORT'),
-		timing: configService.getSetting('APP_TIMG'),
+		port: configService.get('APP_PORT'),
+		timing: configService.get('APP_TIMG'),
 	},
 	/*
 	 ** Headers of the page
@@ -29,7 +29,7 @@ const config: Configuration = {
 			{
 				hid: 'description',
 				name: 'description',
-				content: configService.getSetting('APP_DESC'),
+				content: configService.get('APP_DESC'),
 			},
 		],
 		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
