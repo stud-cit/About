@@ -44,7 +44,7 @@
 						<v-btn :to="project.link" large dark text class="pr-0"
 						 @mouseover="borderActive = true"
 						 @mouseleave="borderActive = false">
-							<span class="headline d-none d-md-block pr-3" :class="{borderTextLink:borderActive}">
+							<span class="headline d-none d-md-block pr-3" :class="{'border-text-link':borderActive}">
 								{{ $t('portfolio.link') }}
 							</span>
 							<div class="arrow-right">
@@ -130,6 +130,6 @@ export default class PortfolioPage extends Vue {
 .v-btn:hover::before
   opacity: 0 !important
 
-.borderTextLink
+.border-text-link
   text-decoration: underline  
 </style>
