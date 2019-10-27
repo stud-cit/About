@@ -19,7 +19,7 @@
 						:to="localePath(page.to, $i18n.locale)"
 						class="disable-underline"
 					>
-						<v-card class="noneRadius">
+						<v-card class="none-radius">
 							<v-img
 								:src="getDynamicAssets(page.img)"
 								:gradient="imagePageGradient"
@@ -168,6 +168,6 @@ export default class HomePage extends Vue {
 .disable-underline
   text-decoration: none
 
-.noneRadius
+.none-radius
   border-radius: 0px
 </style>
