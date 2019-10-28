@@ -25,7 +25,7 @@
 								<v-list-item-content>
 									<v-list-item-title
 										v-text="project.title"
-										class="ma-5 font-weight-medium text-underline text-wrap"
+										class=" font-weight-medium text-underline text-wrap"
 										:class="isMdAndUp ? '' : 'text-center'"
 										:style="getTitleFontProject"
 									/>
@@ -38,11 +38,13 @@
 						lg="3"
 						md="4"
 						sm="12"
-						class="ma-3 d-flex"
+						class="ma-3 mr-0 d-flex pr-0"
 						:class="isMdAndUp ? 'justify-end' : 'justify-center'"
 					>
-						<v-btn :to="project.link" large dark text>
-							<span class="headline d-none d-md-block">
+						<v-btn :to="project.link" large dark text class="pr-0"
+						 @mouseover="borderActive = true"
+						 @mouseleave="borderActive = false">
+							<span class="headline d-none d-md-block pr-3" :class="{'border-text-link':borderActive}">
 								{{ $t('portfolio.link') }}
 							</span>
 							<div class="arrow-right">
@@ -80,6 +82,8 @@ import PruductFooter from '@/components/product-footer.vue';
 export default class PortfolioPage extends Vue {
 	@Getter('PortfolioModule/getStage') portfolio;
 	@Mutation('changePageId') changePageId;
+
+	borderActive: boolean = false;
 
 	get isMdAndUp() {
 		return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
@@ -121,8 +125,11 @@ export default class PortfolioPage extends Vue {
   border-radius: 50%
   padding: 25px
   margin: 10px
-  border: 1px solid white
+  border: 5px solid white
 
 .v-btn:hover::before
   opacity: 0 !important
+
+.border-text-link
+  text-decoration: underline  
 </style>

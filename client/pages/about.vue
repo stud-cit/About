@@ -226,6 +226,7 @@ export default class AboutPage extends Vue {
 	.v-slider__tick
 		border-radius: 50%
 		background: #363636
+		cursor: pointer
 
 	.v-slider__tick--filled
 		background: white
@@ -288,8 +289,8 @@ export default class AboutPage extends Vue {
 	font-size: 30px
 
 .rotated-phraze-lg
-	top: calc(50vh - 300px)
-	font-size: 50px
+	top: calc(50vh - 270px)
+	font-size: 2.5rem
 
 .rotate
 	transform: rotate(90deg)
