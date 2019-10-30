@@ -38,7 +38,7 @@
 						lg="3"
 						md="4"
 						sm="12"
-						class="ma-3 mr-0 d-flex pr-0"
+						class="ma-3 mr-0 ml-0 d-flex pr-0 pl-0"
 						:class="isMdAndUp ? 'justify-end' : 'justify-center'"
 					>
 						<v-btn
@@ -49,7 +49,7 @@
 							text
 							:ripple="false"
 							depressed
-							class="pr-0"
+							class="pr-0 pl-0"
 							@mouseover="borderActive = true"
 							@mouseleave="borderActive = false"
 						>
