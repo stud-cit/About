@@ -7,7 +7,7 @@
 	>
 		<v-col cols="12" sm="11" lg="12" xl="12">
 			<v-row
-				class="ma-0 preview-wrapper ml-2"
+				class="ma-0 preview-wrapper ml-lg-2"
 				justify="space-around"
 				align="end"
 				:class="{ 'preview-margin': iconDown }"
