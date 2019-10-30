@@ -230,9 +230,8 @@ export default class PreviewPage extends Vue {
 		z-index: 10
 
 		.card-contacts
-			border-bottom-left-radius: 0
-			border-bottom-right-radius: 0
-
+			border-radius: 0
+		
 		.contacts-action
 			text-transform: uppercase
 			border-bottom: 2px solid black

@@ -271,8 +271,7 @@ export default class AboutPage extends Vue {
 
 .use-contacts-container
 	width: auto
-	border-bottom-left-radius: 0
-	border-bottom-right-radius: 0
+	border-radius: 0
 
 .contacts-action
 	text-transform: uppercase
