@@ -87,7 +87,7 @@
 			transition="dialog-bottom-transition"
 			scrollable
 		>
-			<v-btn class="index" @click="toggleVisibilityMobileMenu" icon large fixed right top>
+			<v-btn class="index" @click="toggleVisibilityMobileMenu" icon large fixed right>
 				<v-icon size="50" color="black">mdi-close</v-icon>
 			</v-btn>
 			<v-list id="pages-list-container">
