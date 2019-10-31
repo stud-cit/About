@@ -160,7 +160,7 @@ export default class PreliminaryLayout extends Vue {
 
   .app-bar
     position: sticky
-    height: 90px !important
+    height: 110px !important
     margin-top: 10px !important
     background: rgba(250, 250, 250, .85)
     .v-toolbar__content
