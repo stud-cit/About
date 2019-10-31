@@ -23,7 +23,7 @@
 							class="my-4 pa-0 d-flex d-md-none justify-space-between"
 							:class="isSmAndDown ? 'mobUnderline' : 'underline'"
 						>
-							<v-col class="font-weight-black" cols="auto" :style="getMailFont">
+							<v-col class="bold-preview px-0" cols="auto" :style="getMailFont">
 								<a
 									class="linkMail color-main"
 									:href="`mailto:${contacts[$i18n.locale].email}`"
@@ -32,7 +32,7 @@
 								>
 							</v-col>
 							<v-col
-								class="font-weight-black"
+								class="bold-preview px-0"
 								cols="auto"
 								:style="getMailFont"
 								>{{ contacts[$i18n.locale].phone }}</v-col
@@ -41,18 +41,18 @@
 						<v-row align="center" justify="space-between">
 							<v-col cols="7" md="9" sm="8">
 								<v-row
-									class="underline mb-4 d-none d-md-flex font-weight-bold"
+									class="underline mb-4 d-none d-md-flex"
 									justify="space-between"
 								>
 									<v-col cols="auto" :style="getMailFont" class="pa-0">
 										<a
-											class="linkMail color-main"
+											class="linkMail color-main bold-preview"
 											href="mailto:studcitmail@gmail.com"
 											target="_blank"
 											>{{ contacts[$i18n.locale].email }}</a
 										>
 									</v-col>
-									<v-col cols="auto" :style="getMailFont" class="pa-0">{{
+									<v-col cols="auto" :style="getMailFont" class="pa-0 bold-preview">{{
 										contacts[$i18n.locale].phone
 									}}</v-col>
 								</v-row>
@@ -107,11 +107,11 @@ export default class ContactBar extends Vue {
 	get getMailFont() {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 13,
-				sm: 16,
-				md: 18,
-				lg: 25,
-			})}px`,
+				xs: 3.25,
+				sm: 2.75,
+				md: 1.75,
+				lg: 1.35,
+			})}vw`,
 		};
 	}
 	get getCreadentialsFont() {
