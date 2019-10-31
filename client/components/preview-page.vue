@@ -5,9 +5,9 @@
 		align="center"
 		:class="isAboutPage ? 'preview-section-about' : 'preview-section-not-about'"
 	>
-		<v-col cols="12" sm="11" lg="12" xl="12">
+		<v-col cols="12" lg="12" xl="12">
 			<v-row
-				class="ma-0 preview-wrapper ml-lg-2"
+				class="ma-0 preview-wrapper ml-sm-2"
 				justify="space-around"
 				align="end"
 				:class="{ 'preview-margin': iconDown }"
@@ -204,8 +204,8 @@ export default class PreviewPage extends Vue {
 		} else {
 			return {
 				fontSize: `${this.getCustomAdaptiveSize({
-					xs: 7,
-					sm: 9,
+					xs: 6,
+					sm: 5,
 					md: 5,
 					lg: 4,
 				})}vw`,

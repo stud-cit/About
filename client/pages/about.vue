@@ -1,7 +1,7 @@
 <template>
 	<v-container fluid cdclass="py-0 ma-0">
 		<v-row justify="center">
-			<v-col cols="12" sm="11" lg="10">
+			<v-col cols="12" sm="10">
 				<v-window v-model="curStage" continuous dark>
 					<v-window-item>
 						<v-col cols="12" class="pa-0 slide-container">

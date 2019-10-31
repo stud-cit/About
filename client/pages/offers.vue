@@ -4,8 +4,6 @@
 			<v-col cols="12" sm="10">
 				<PreviewPage
 					:title="$t('offers.previewTitle')"
-					cols="12"
-					sm="9"
 					:subtitle="$t('offers.previewSubtitle')"
 					:description="$t('offers.previewDescription')"
 					:icon-down="false"
