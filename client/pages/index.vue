@@ -48,8 +48,8 @@
 				</v-col>
 			</div>
 		</div>
-		<v-row class="d-flex d-sm-none">
-			<v-col v-for="(page, i) in pages" :key="i" cols="12">
+		<v-row class="d-flex d-sm-none" justify="center">
+			<v-col v-for="(page, i) in pages" :key="i" cols="10">
 				<nuxt-link :to="page.to" class="disable-underline">
 					<client-only>
 						<v-card :href="page.to" :link="true">
@@ -67,7 +67,7 @@
 											:style="getSlideNumberFont"
 											>0{{ ++i }}</span
 										>
-										<span class="font-weight-bold" :style="getSlideTitleFont"
+										<span class="font-weight-bold text-uppercase" :style="getSlideTitleFont"
 											>{{ $t(page.title) }}.</span
 										>
 									</v-row>
