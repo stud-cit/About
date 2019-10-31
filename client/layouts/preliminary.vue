@@ -8,14 +8,12 @@
 							<p
 								class="text-uppercase mb-0 bold-preview"
 								:style="getPageTitleFont"
-								:class="isXsOnly ? 'text-center' : ''"
 							>
 								{{ $t('home.title') }}
 							</p>
 							<p
 								class="mb-0 grey--text font-weight-bold"
 								:style="getPageSubTitleFont"
-								:class="isXsOnly ? 'text-center' : ''"
 							>
 								{{ $t('home.subTitle') }}
 							</p>
@@ -68,9 +66,10 @@
 			class="d-flex d-md-none mobile-icon burger-icon"
 			@click="toggleVisibilityLocales"
 			icon
+			x-large
 			:class="isSmOnly ? 'locale-button' : ''"
 		>
-			<v-icon size="25" color="black">mdi-menu</v-icon>
+			<v-icon size="35" color="black">mdi-menu</v-icon>
 		</v-btn>
 
 		<v-bottom-sheet v-model="isShowMobileLocales">
@@ -79,7 +78,7 @@
 					class="mobile-icon close-icon"
 					@click="toggleVisibilityLocales"
 					icon
-					large
+					x-large
 				>
 					<v-icon size="30" color="black">
 						mdi-close
