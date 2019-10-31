@@ -70,7 +70,7 @@
 			icon
 			:class="isSmOnly ? 'locale-button' : ''"
 		>
-			<v-icon size="30" color="black">mdi-menu</v-icon>
+			<v-icon size="25" color="black">mdi-menu</v-icon>
 		</v-btn>
 
 		<v-bottom-sheet v-model="isShowMobileLocales">
@@ -81,7 +81,7 @@
 					icon
 					large
 				>
-					<v-icon size="50" color="black">
+					<v-icon size="30" color="black">
 						mdi-close
 					</v-icon>
 				</v-btn>
