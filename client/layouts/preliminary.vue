@@ -243,5 +243,5 @@ export default class PreliminaryLayout extends Vue {
   font-style: normal
 
 .margin-top
-  margin-top: 10%
+  margin-top: 5%
 </style>
