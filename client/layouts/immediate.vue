@@ -87,7 +87,7 @@
 			transition="dialog-bottom-transition"
 			scrollable
 		>
-			<v-btn @click="toggleVisibilityMobileMenu" icon large fixed right>
+			<v-btn class="index" @click="toggleVisibilityMobileMenu" icon large fixed right top>
 				<v-icon size="50" color="black">mdi-close</v-icon>
 			</v-btn>
 			<v-list id="pages-list-container">
@@ -251,4 +251,7 @@ export default class ImmediatetLayout extends Vue {
 .bold-italic-preview
 	font-weight: 800 !important
 	font-style: italic
+
+.index
+	z-index: 10
 </style>
