@@ -4,7 +4,7 @@
 			<v-row justify="center">
 				<v-col cols="10">
 					<v-row :class="{ 'margin-top': isSmAndUp }" justify="space-between">
-						<v-col cols="auto">
+						<v-col cols="auto" class="px-0">
 							<p
 								class="text-uppercase mb-0 bold-preview"
 								:style="getPageTitleFont"
