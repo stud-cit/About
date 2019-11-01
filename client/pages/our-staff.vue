@@ -80,7 +80,7 @@
 										</v-btn>
 										<v-col cols="6" class="pa-0">
 											<div
-												class="employee-name my-3 font-weight-bold"
+												class="employee-name mt-3 mb-2 font-weight-bold line-height-1-2"
 												:style="getStaffNameFont"
 											>
 												{{ employee.name }}
@@ -218,12 +218,11 @@ export default class OurStaffPage extends Vue {
   text-align: center
 
 .card-img-hover
-  border-radius: 50px
+  border-radius: 50px !important
   filter: brightness(35%)
   transition: 1s
 
 .card-img
-  border-radius: 50px !important
   transition: all 1s
   margin: 15px 0
 
@@ -253,4 +252,10 @@ export default class OurStaffPage extends Vue {
 
 .line-height-1
   line-height: 1
+
+.line-height-1-2
+  line-height: 1.2
+
+.v-card:not(.v-sheet--tile)
+  border-radius: 0
 </style>
