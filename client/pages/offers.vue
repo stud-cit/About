@@ -26,7 +26,7 @@
 						xs="8"
 						md="8"
 						lg="9"
-						class="mb-12 mb-md-0"
+						class="mb-12 mb-md-0 px-0"
 						:class="{ 'representation-image': isMdAndDown }"
 					>
 						<v-img
@@ -40,7 +40,7 @@
 					<v-col
 						cols="12"
 						md="5"
-						class="representation-card"
+						class="representation-card px-0"
 						:class="
 							offer.contentPosition === 'start'
 								? 'right-bottom-position'
@@ -49,12 +49,13 @@
 					>
 						<v-card class="pa-4 px-lg-8 py-lg-12">
 							<v-card-title
-								class="mb-6 bold-preview card-title"
+								class="bold-preview card-title mb-3"
 								:style="getCardTitleFont"
+								:class="isXsOnly?'card-title-mobile':'mb-3'"
 								>{{ offer.cardTitle }}</v-card-title
 							>
 							<v-card-text
-								class="font-weight-bold card-content"
+								class="font-weight-medium card-content"
 								:style="getCardContentFont"
 							>
 								<span>{{ offer.cardContent }}</span>
@@ -103,7 +104,7 @@ export default class OffersPage extends Vue {
 	get getCardTitleFont() {
 		return {
 			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 15,
+				xs: 20,
 				sm: 20,
 				md: 20,
 				lg: 30,
@@ -147,6 +148,9 @@ export default class OffersPage extends Vue {
 
 .card-title
 	word-break: break-word
+
+.card-title-mobile
+	line-height: 1
 
 .right-bottom-position
 	right: 0
