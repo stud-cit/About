@@ -2,7 +2,7 @@
 	<v-app>
 		<v-app-bar
 			id="header"
-			class="pt-3 pt-lg-4 mt-3"
+			class="pt-8 pt-lg-4 mt-3"
 			color="transparent"
 			app
 			dark
