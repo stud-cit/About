@@ -54,7 +54,7 @@
 							class="d-flex d-md-none"
 							@click="toggleVisibilityMobileMenu"
 							icon
-							:class="isXsOnly? 'gumburger-mobile-position': ''"
+							:class="{'gumburger-mobile-position': isXsOnly }"
 						>
 							<v-icon size="50">mdi-menu</v-icon>
 						</v-btn>
@@ -64,7 +64,7 @@
 		</v-app-bar>
 		<v-row class="mx-2 mx-sm-0 page-info"
 					 justify="start"
-					 :class="isXsOnly?'page-info-mobile': ''"
+					 :class="{'page-info-mobile': isXsOnly }"
 		>
 			<v-col cols="auto" offset="0" offset-sm="1">
 				<p class="bold-italic-preview d-flex">
