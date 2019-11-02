@@ -2,7 +2,7 @@
 	<v-app>
 		<v-app-bar
 			id="header"
-			class="pt-8 pt-lg-4 mt-3"
+			class="pt-2 pt-lg-4 mt-3"
 			color="transparent"
 			app
 			dark
@@ -11,7 +11,7 @@
 			<v-row class="mx-1 mx-sm-0" justify="center" align="center">
 				<v-col cols="12" sm="10" order-md="2" class="pa-0">
 					<v-row justify="space-between" align="center">
-						<v-col cols="auto" class="pa-0">
+						<v-col cols="auto" class="pa-0 d-none d-sm-flex">
 							<nuxt-link :to="localePath({ name: 'index' })" nuxt>
 								<v-img src="/logo.svg" />
 							</nuxt-link>
@@ -54,6 +54,7 @@
 							class="d-flex d-md-none"
 							@click="toggleVisibilityMobileMenu"
 							icon
+							:class="isXsOnly? 'gumburger-mobile-position': ''"
 						>
 							<v-icon size="50">mdi-menu</v-icon>
 						</v-btn>
@@ -61,7 +62,10 @@
 				</v-col>
 			</v-row>
 		</v-app-bar>
-		<v-row class="mx-2 mx-sm-0 page-info" justify="start">
+		<v-row class="mx-2 mx-sm-0 page-info"
+					 justify="start"
+					 :class="isXsOnly?'page-info-mobile': ''"
+		>
 			<v-col cols="auto" offset="0" offset-sm="1">
 				<p class="bold-italic-preview d-flex">
 					<span :style="getPageIndexFont">0{{ pageId }}</span>
@@ -126,6 +130,10 @@ export default class ImmediatetLayout extends Vue {
 	@Getter('getPageId') pageId;
 	@Getter('getPageStage') pages;
 	@Getter('getPageCover') cover;
+
+	get isXsOnly() {
+			return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+	}
 
 	get isMdAndUp() {
 		return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
@@ -199,6 +207,11 @@ export default class ImmediatetLayout extends Vue {
 .nav-link-desktop
 	font-size: 25px
 
+.gumburger-mobile-position
+	position: absolute !important
+	right: 0
+	margin-right: 1rem
+
 .page-info
 	position: fixed
 	width: 100%
@@ -210,6 +223,9 @@ export default class ImmediatetLayout extends Vue {
 
 	.total-pages
 		vertical-align: top
+
+.page-info-mobile
+	top: 3vh
 
 #pages-list-container
 	height: 100vh
