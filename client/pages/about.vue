@@ -29,6 +29,7 @@
 										<div
 											class="px-xl-12 px-lg-8 px-md-8 px-sm-8 px-xs-8 py-xl-12 py-lg-2 py-md-8 py-sm-8 px-4 py-2 slide-content font-weight-light"
 											:style="getSlideContentFont"
+											:class="isXsOnly? '' : 'border-right'"
 										>
 											<p class="py-md-12">{{ slide }}</p>
 										</div>
@@ -261,10 +262,12 @@ export default class AboutPage extends Vue {
 
 .slide-content
 	border: 5px solid white
-	border-right: 16px solid white
 	background-color: rgba(78, 79, 80, 0.3)
 	color: white
 	position: relative
+
+.border-right
+	border-right: 16px solid white
 
 // .spacer
 // 	flex-grow: 0.65 !important
