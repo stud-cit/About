@@ -118,25 +118,12 @@ export default class PreliminaryLayout extends Vue {
 	}
 
 	get getPageTitleFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 20,
-				sm: 20,
-				md: 25,
-				lg: 30,
-			})}px`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('pageTitleFont')}px` };
 	}
 	get getPageSubTitleFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 16,
-				sm: 20,
-				md: 22,
-				lg: 28,
-			})}px`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('pageSubTitleFont')}px` };
 	}
+
 	get isSmOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.smOnly : false;
 	}

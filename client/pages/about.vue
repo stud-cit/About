@@ -29,7 +29,7 @@
 										<div
 											class="px-xl-12 px-lg-8 px-md-8 px-sm-8 px-xs-8 py-xl-12 py-lg-2 py-md-8 py-sm-8 px-4 py-2 slide-content font-weight-light"
 											:style="getSlideContentFont"
-											:class="isXsOnly? '' : 'border-right'"
+											:class="isXsOnly ? '' : 'border-right'"
 										>
 											<p class="py-md-12">{{ slide }}</p>
 										</div>
@@ -154,44 +154,30 @@ export default class AboutPage extends Vue {
 	}
 
 	get getSlideTitleFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 12,
-				sm: 20,
-				md: 20,
-				lg: 30,
-			})}px`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('aboutSlideTitleFont')}px` };
 	}
 	get getSlideContentFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 15,
-				sm: 20,
-				md: 20,
-				lg: 30,
-			})}px`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('slideContentFont')}px` };
 	}
 	get getPreviewTitleFont() {
-		return { fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px` };
+		return { fontSize: `${this.getAdaptiveSize('previewTitle')}px` };
 	}
 	get getPreviewSubTitleFont() {
 		return {
-			fontSize: `${this.getCommonAdaptiveFontSize('previewSubtitle')}px`,
+			fontSize: `${this.getAdaptiveSize('previewSubtitle')}px`,
 		};
 	}
 	get getPreviewInfoFont() {
-		return { fontSize: `${this.getCommonAdaptiveFontSize('previewInfo')}px` };
+		return { fontSize: `${this.getAdaptiveSize('previewInfo')}px` };
 	}
 	get getUseContactsTitleFont() {
 		return {
-			fontSize: `${this.getCommonAdaptiveFontSize('useContactsTitle')}px`,
+			fontSize: `${this.getAdaptiveSize('useContactsTitle')}px`,
 		};
 	}
 	get getUseContactsActionFont() {
 		return {
-			fontSize: `${this.getCommonAdaptiveFontSize('useContactsAction')}px`,
+			fontSize: `${this.getAdaptiveSize('useContactsAction')}px`,
 		};
 	}
 

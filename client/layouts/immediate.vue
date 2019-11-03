@@ -54,7 +54,7 @@
 							class="d-flex d-md-none"
 							@click="toggleVisibilityMobileMenu"
 							icon
-							:class="{'gumburger-mobile-position': isXsOnly }"
+							:class="{ 'gumburger-mobile-position': isXsOnly }"
 						>
 							<v-icon size="50">mdi-menu</v-icon>
 						</v-btn>
@@ -62,16 +62,17 @@
 				</v-col>
 			</v-row>
 		</v-app-bar>
-		<v-row class="mx-2 mx-sm-0 page-info"
-					 justify="start"
-					 :class="{'page-info-mobile': isXsOnly }"
+		<v-row
+			class="mx-2 mx-sm-0 page-info"
+			justify="start"
+			:class="{ 'page-info-mobile': isXsOnly }"
 		>
 			<v-col cols="auto" offset="0" offset-sm="1">
 				<p class="bold-italic-preview d-flex">
 					<span :style="getPageIndexFont">0{{ pageId }}</span>
-					<span class="total-pages mt-1 mt-sm-2" :style="getPageAllIndexFont"
-						>/04</span
-					>
+					<span class="total-pages mt-1 mt-sm-2" :style="getPageTotalIndexFont">
+						/04
+					</span>
 				</p>
 			</v-col>
 		</v-row>
@@ -91,7 +92,14 @@
 			transition="dialog-bottom-transition"
 			scrollable
 		>
-			<v-btn class="index" @click="toggleVisibilityMobileMenu" icon large fixed right>
+			<v-btn
+				class="index"
+				@click="toggleVisibilityMobileMenu"
+				icon
+				large
+				fixed
+				right
+			>
 				<v-icon size="50" color="black">mdi-close</v-icon>
 			</v-btn>
 			<v-list id="pages-list-container">
@@ -132,7 +140,7 @@ export default class ImmediatetLayout extends Vue {
 	@Getter('getPageCover') cover;
 
 	get isXsOnly() {
-			return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 	}
 
 	get isMdAndUp() {
@@ -140,45 +148,15 @@ export default class ImmediatetLayout extends Vue {
 	}
 
 	get getPageIndexFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 25,
-				sm: 40,
-				md: 40,
-				lg: 45,
-			})}px`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('pageIndexFont')}px` };
 	}
-	get getPageIndexFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 25,
-				sm: 40,
-				md: 40,
-				lg: 45,
-			})}px`,
-		};
-	}
-	get getPageAllIndexFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 15,
-				sm: 20,
-				md: 20,
-				lg: 25,
-			})}px`,
-		};
+	get getPageTotalIndexFont() {
+		return { fontSize: `${this.getAdaptiveSize('pageTotalIndexFont')}px` };
 	}
 	get getTotalPagesFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 2,
-				sm: 2,
-				md: 1.4,
-				lg: 1.5,
-			})}vw`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('totalPagesFont')}vw` };
 	}
+
 	isShowMobileMenu: boolean = false;
 
 	toggleVisibilityMobileMenu() {

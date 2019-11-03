@@ -171,25 +171,12 @@ export default class OurStaffPage extends Vue {
 	get isXsOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 	}
+
 	get getStaffNameFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 35,
-				sm: 40,
-				md: 45,
-				lg: 55,
-			})}px`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('staffNameFont')}px` };
 	}
 	get getStaffPositionFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 22,
-				sm: 30,
-				md: 25,
-				lg: 30,
-			})}px`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('staffPositionFont')}px` };
 	}
 
 	created() {

@@ -175,43 +175,37 @@ export default class PreviewPage extends Vue {
 	get isXsOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 	}
-	get getPreviewTitleFont() {
-		return { fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px` };
-	}
+
 	get getPreviewSubTitleFont() {
 		return {
-			fontSize: `${this.getCommonAdaptiveFontSize('previewSubtitle')}px`,
+			fontSize: `${this.getAdaptiveSize('previewSubtitle')}px`,
 		};
 	}
 	get getPreviewInfoFont() {
-		return { fontSize: `${this.getCommonAdaptiveFontSize('previewInfo')}px` };
+		return { fontSize: `${this.getAdaptiveSize('previewInfo')}px` };
 	}
 	get getUseContactsTitleFont() {
 		return {
-			fontSize: `${this.getCommonAdaptiveFontSize('useContactsTitle')}px`,
+			fontSize: `${this.getAdaptiveSize('useContactsTitle')}px`,
 		};
 	}
 	get getUseContactsActionFont() {
 		return {
-			fontSize: `${this.getCommonAdaptiveFontSize('useContactsAction')}px`,
+			fontSize: `${this.getAdaptiveSize('useContactsAction')}px`,
 		};
 	}
 	get getPreviewTitleFont() {
 		if (!this.isAboutPage) {
 			return {
-				fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px`,
+				fontSize: `${this.getAdaptiveSize('previewTitle')}px`,
 			};
 		} else {
 			return {
-				fontSize: `${this.getCustomAdaptiveSize({
-					xs: 6,
-					sm: 5,
-					md: 5,
-					lg: 4,
-				})}vw`,
+				fontSize: `${this.getAdaptiveSize('customPreviewTitle')}vw`,
 			};
 		}
 	}
+
 	mounted() {
 		// initial check
 		this.handleScroll();
@@ -231,7 +225,7 @@ export default class PreviewPage extends Vue {
 
 		.card-contacts
 			border-radius: 0
-		
+
 		.contacts-action
 			text-transform: uppercase
 			border-bottom: 2px solid black

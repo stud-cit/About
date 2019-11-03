@@ -52,9 +52,12 @@
 											>{{ contacts[$i18n.locale].email }}</a
 										>
 									</v-col>
-									<v-col cols="auto" :style="getMailFont" class="pa-0 bold-preview">{{
-										contacts[$i18n.locale].phone
-									}}</v-col>
+									<v-col
+										cols="auto"
+										:style="getMailFont"
+										class="pa-0 bold-preview"
+										>{{ contacts[$i18n.locale].phone }}</v-col
+									>
 								</v-row>
 								<v-row>
 									<v-col
@@ -104,46 +107,17 @@ export default class ContactBar extends Vue {
 	@Getter('getContactStage') contacts;
 
 	@Prop({ default: false }) readonly isStatic: boolean;
+
 	get getMailFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 3.25,
-				sm: 2.75,
-				md: 1.75,
-				lg: 1.35,
-			})}vw`,
-		};
-	}
-	get getCreadentialsFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 20,
-				sm: 28,
-				md: 35,
-				lg: 42,
-			})}px`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('mailFont')}vw` };
 	}
 	get getLocationFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 3.1,
-				sm: 2.6,
-				md: 1.9,
-				lg: 1.9,
-			})}vw`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('locationFont')}vw` };
 	}
 	get getTagLineFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 6,
-				sm: 6,
-				md: 6.5,
-				lg: 6.5,
-			})}vw`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('tagLineFont')}vw` };
 	}
+
 	get isMdAndUp() {
 		return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
 	}

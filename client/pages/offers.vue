@@ -51,7 +51,7 @@
 							<v-card-title
 								class="bold-preview card-title mb-3"
 								:style="getCardTitleFont"
-								:class="isXsOnly?'card-title-mobile':'mb-3'"
+								:class="isXsOnly ? 'card-title-mobile' : 'mb-3'"
 								>{{ offer.cardTitle }}</v-card-title
 							>
 							<v-card-text
@@ -102,24 +102,10 @@ export default class OffersPage extends Vue {
 	}
 
 	get getCardTitleFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 20,
-				sm: 20,
-				md: 20,
-				lg: 30,
-			})}px`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('cardTitleFont')}px` };
 	}
 	get getCardContentFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 12,
-				sm: 18,
-				md: 12,
-				lg: 22,
-			})}px`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('cardContentFont')}px` };
 	}
 
 	created() {

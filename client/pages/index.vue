@@ -67,7 +67,9 @@
 											:style="getSlideNumberFont"
 											>0{{ ++i }}</span
 										>
-										<span class="font-weight-bold text-uppercase" :style="getSlideTitleFont"
+										<span
+											class="font-weight-bold text-uppercase"
+											:style="getSlideTitleFont"
 											>{{ $t(page.title) }}.</span
 										>
 									</v-row>
@@ -125,25 +127,12 @@ export default class HomePage extends Vue {
 	get isMdAndDown() {
 		return this.$breakpoint ? this.$breakpoint.is.mdAndDown : false;
 	}
+
 	get getSlideTitleFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 45,
-				sm: 50,
-				md: 55,
-				lg: 60,
-			})}px`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('slideTitleFont')}px` };
 	}
 	get getSlideNumberFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 20,
-				sm: 25,
-				md: 25,
-				lg: 30,
-			})}px`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('slideNumberFont')}px` };
 	}
 
 	mounted() {

@@ -27,7 +27,7 @@
 										v-text="project.title"
 										class=" font-weight-medium text-underline text-wrap"
 										:class="isMdAndUp ? '' : 'text-center'"
-										:style="getTitleFontProject"
+										:style="getProjectTitleFont"
 									/>
 									<v-divider />
 								</v-list-item-content>
@@ -104,26 +104,12 @@ export default class PortfolioPage extends Vue {
 	created() {
 		this.changePageId(4);
 	}
-	get getTitleFontProject() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 32,
-				sm: 50,
-				md: 55,
-				lg: 65,
-			})}px`,
-		};
-	}
 
+	get getProjectTitleFont() {
+		return { fontSize: `${this.getAdaptiveSize('projectTitleFont')}px` };
+	}
 	get getParalaxHeight() {
-		return {
-			height: `${this.getCustomAdaptiveSize({
-				xs: 50,
-				sm: 60,
-				md: 65,
-				lg: 65,
-			})}vh`,
-		};
+		return { height: `${this.getAdaptiveSize('paralaxHeight')}vh` };
 	}
 }
 </script>
