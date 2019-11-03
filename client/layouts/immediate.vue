@@ -34,7 +34,7 @@
 										dark
 										text
 									>
-										<span :style="getTotalPagesFont" class="not_uppercase">{{
+										<span :style="getTotalPagesFont" class="not-uppercase">{{
 											$t(page.title)
 										}}</span>
 									</v-btn>
@@ -261,7 +261,7 @@ export default class ImmediatetLayout extends Vue {
 .desktop-link:hover
 	opacity: 0.5
 
-.not_uppercase
+.not-uppercase
 	text-transform: none !important
 
 .bold-italic-preview
