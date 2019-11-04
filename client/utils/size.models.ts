@@ -117,7 +117,7 @@ export default {
 		lg: 65,
 	},
 	paralaxHeight: {
-		xs: 50,
+		xs: 70,
 		sm: 60,
 		md: 65,
 		lg: 65,

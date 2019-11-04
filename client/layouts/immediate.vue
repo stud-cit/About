@@ -12,49 +12,55 @@
 				<v-col cols="12" sm="10" order-md="2" class="pa-0">
 					<v-row justify="space-between" align="center">
 						<v-col cols="auto" class="pa-0 d-none d-sm-flex">
-							<nuxt-link :to="localePath({ name: 'index' })" nuxt>
-								<v-img src="/logo.svg" />
-							</nuxt-link>
+							<OpacityBox :pose="isStartAnimation ? 'visible' : 'hidden'">
+								<nuxt-link :to="localePath({ name: 'index' })" nuxt>
+									<v-img src="/logo.svg" />
+								</nuxt-link>
+							</OpacityBox>
 						</v-col>
 						<v-col cols="6" md="6" lg="7" xl="6" class="d-none d-md-flex">
-							<v-row justify="space-between" align="center">
-								<v-col
-									class="pa-0 nav-links"
-									cols="auto"
-									v-for="(page, index) in pages"
-									:key="index"
-								>
-									<v-btn
-										class="px-0 desktop-link"
-										active-class="active-desktop-link"
-										:to="localePath(page.to)"
-										:ripple="false"
-										replace
-										exact
-										dark
-										text
+								<Navs class="nav-panel" :pose="isStartAnimation ? 'visible' : 'hidden'">
+									<v-col
+										class="pa-0 nav-links"
+										cols="auto"
+										v-for="(page, index) in pages"
+										:key="index"
 									>
-										<span :style="getTotalPagesFont" class="not-uppercase">{{
-											$t(page.title)
-										}}</span>
-									</v-btn>
-								</v-col>
-								<v-btn
-									icon
-									dark
-									:to="localePath({ name: 'index' })"
-									class="d-none d-md-flex"
-									nuxt
-								>
-									<v-icon size="50">mdi-fullscreen-exit</v-icon>
-								</v-btn>
-							</v-row>
+										<ContentBox>
+											<v-btn
+												class="px-0 desktop-link"
+												active-class="active-desktop-link"
+												:to="localePath(page.to)"
+												:ripple="false"
+												replace
+												exact
+												dark
+												text
+											>
+												<span :style="getTotalPagesFont" class="not-uppercase">{{
+													$t(page.title)
+												}}</span>
+											</v-btn>
+										</ContentBox>
+									</v-col>
+									<ContentBox>
+										<v-btn
+											icon
+											dark
+											:to="localePath({ name: 'index' })"
+											class="d-none d-md-flex"
+											nuxt
+										>
+											<v-icon size="50">mdi-fullscreen-exit</v-icon>
+										</v-btn>
+									</ContentBox>
+								</Navs>
 						</v-col>
 						<v-btn
 							class="d-flex d-md-none"
 							@click="toggleVisibilityMobileMenu"
 							icon
-							:class="{ 'gumburger-mobile-position': isXsOnly }"
+							:class="{ 'gumb	urger-mobile-position': isXsOnly }"
 						>
 							<v-icon size="50">mdi-menu</v-icon>
 						</v-btn>
@@ -68,12 +74,14 @@
 			:class="{ 'page-info-mobile': isXsOnly }"
 		>
 			<v-col cols="auto" offset="0" offset-sm="1">
-				<p class="bold-italic-preview d-flex">
-					<span :style="getPageIndexFont">0{{ pageId }}</span>
-					<span class="total-pages mt-1 mt-sm-2" :style="getPageTotalIndexFont">
-						/04
-					</span>
-				</p>
+				<OpacityBox :pose="isStartAnimation ? 'visible' : 'hidden'">
+					<p class="bold-italic-preview d-flex">
+						<span :style="getPageIndexFont">0{{ pageId }}</span>
+						<span class="total-pages mt-1 mt-sm-2" :style="getPageTotalIndexFont">
+							/04
+						</span>
+					</p>
+				</OpacityBox>
 			</v-col>
 		</v-row>
 		<v-img :src="getDynamicAssets(cover)" class="imageCover" />
@@ -124,6 +132,7 @@
 </template>
 
 <script lang="ts">
+import posed from 'vue-pose';
 import { Component, Vue } from 'vue-property-decorator';
 import { Getter } from 'vuex-class';
 import ContactBar from '@/components/contact-bar.vue';
@@ -131,6 +140,23 @@ import ContactBar from '@/components/contact-bar.vue';
 @Component({
 	components: {
 		'contact-bar': ContactBar,
+		Navs: posed.div({
+			visible: {
+        beforeChildren: true,
+        staggerChildren: 50
+      },
+      hidden: {
+        afterChildren: true
+      },
+		}),
+		OpacityBox: posed.div({
+			visible: { opacity: 1 },
+			hidden: { opacity: 0 },
+		}),
+		ContentBox: posed.div({
+      visible: { opacity: 1, y: 0 },
+      hidden: { opacity: 0, y: 20 },
+		}),
 	},
 })
 export default class ImmediatetLayout extends Vue {
@@ -138,6 +164,10 @@ export default class ImmediatetLayout extends Vue {
 	@Getter('getPageId') pageId;
 	@Getter('getPageStage') pages;
 	@Getter('getPageCover') cover;
+
+	isShowMobileMenu: boolean = false;
+	isStartAnimation: boolean = false;
+
 
 	get isXsOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
@@ -157,10 +187,13 @@ export default class ImmediatetLayout extends Vue {
 		return { fontSize: `${this.getAdaptiveSize('totalPagesFont')}vw` };
 	}
 
-	isShowMobileMenu: boolean = false;
+
 
 	toggleVisibilityMobileMenu() {
 		this.isShowMobileMenu = !this.isShowMobileMenu;
+	}
+	mounted() {
+		setTimeout(() => this.isStartAnimation = true, 1500);
 	}
 }
 </script>
@@ -176,6 +209,13 @@ export default class ImmediatetLayout extends Vue {
 		border-bottom: 4px solid white
 		border-radius: unset
 
+
+.nav-panel
+	display: flex
+	align-items: center
+	justify-content: space-between
+	width: 100%
+
 .nav-links
 	align-items: center
 
@@ -188,7 +228,7 @@ export default class ImmediatetLayout extends Vue {
 .gumburger-mobile-position
 	position: absolute !important
 	right: 0
-	margin-right: 1rem
+	margin-right: 4vw
 
 .page-info
 	position: fixed
