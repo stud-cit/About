@@ -188,7 +188,7 @@ export default class ImmediatetLayout extends Vue {
 .gumburger-mobile-position
 	position: absolute !important
 	right: 0
-	margin-right: 1rem
+	margin-right: 4vw
 
 .page-info
 	position: fixed
