@@ -57,60 +57,59 @@
 				>
 					{{ $t('about.backToStart') }}
 				</p>
-
-				<v-footer absolute color="transparent" class="pb-0 px-0 px-sm-auto">
-					<v-row justify="center">
-						<v-col sm="12" md="10" lg="10" class="pb-0">
-							<v-row
-								justify-sm="center"
-								justify-md="space-between"
-								align="center"
-							>
-								<v-col sm="10" md="7" class="d-none d-sm-flex">
-									<v-slider
-										v-model="curStage"
-										:max="about[$i18n.locale].slides.length + 1"
-										class="slider"
-										step="1"
-										ticks="always"
-										tick-size="10"
-										hide-details
-										dark
-									/>
-								</v-col>
-								<v-col
-									xs="12"
-									sm="12"
-									md="auto"
-									lg="auto"
-									class="pa-0"
-									:class="{ 'justify-center': isSmAndDown }"
-								>
-									<UseContact :pose="isContactAnimation ? 'visible' : 'hidden'">
-										<v-card
-											class="pa-4 pt-0 use-contacts-container"
-											@click="() => changeContactBar(true)"
+				<OpacityBox :pose="isContactAnimation ? 'visible' : 'hidden'">
+					<v-footer absolute color="transparent" class="pb-0 px-0 px-sm-auto">
+							<v-row justify="center">
+								<v-col sm="12" md="10" lg="10" class="pb-0">
+									<v-row
+										justify-sm="center"
+										justify-md="space-between"
+										align="center"
+									>
+										<v-col sm="10" md="7" class="d-none d-sm-flex">
+											<v-slider
+												v-model="curStage"
+												:max="about[$i18n.locale].slides.length + 1"
+												class="slider"
+												step="1"
+												ticks="always"
+												tick-size="10"
+												hide-details
+												dark
+											/>
+										</v-col>
+										<v-col
+											xs="12"
+											sm="12"
+											md="auto"
+											lg="auto"
+											class="pa-0"
+											:class="{ 'justify-center': isSmAndDown }"
 										>
-											<v-card-title
-												class="justify-center"
-												:style="getUseContactsTitleFont"
-												>{{ $t('contact.title') }}</v-card-title
+											<v-card
+												class="pa-4 pt-0 use-contacts-container"
+												@click="() => changeContactBar(true)"
 											>
-											<v-card-actions
-												class="pa-0 justify-center"
-												:style="getUseContactsActionFont"
-											>
-												<div class="contacts-action">
-													{{ $t('contact.subTitle') }}
-												</div>
-											</v-card-actions>
-										</v-card>
-									</UseContact>
+												<v-card-title
+													class="justify-center"
+													:style="getUseContactsTitleFont"
+													>{{ $t('contact.title') }}</v-card-title
+												>
+												<v-card-actions
+													class="pa-0 justify-center"
+													:style="getUseContactsActionFont"
+												>
+													<div class="contacts-action">
+														{{ $t('contact.subTitle') }}
+													</div>
+												</v-card-actions>
+											</v-card>
+										</v-col>
+									</v-row>
 								</v-col>
 							</v-row>
-						</v-col>
-					</v-row>
-				</v-footer>
+					</v-footer>
+				</OpacityBox>
 			</v-col>
 		</v-row>
 	</v-container>
@@ -134,7 +133,7 @@ import PreviewPage from '@/components/preview-page.vue';
         visible: { opacity: 1, x: 0 },
         hidden: { opacity: 0, x: 40 },
 		}),
-		UseContact: posed.div({
+		OpacityBox: posed.div({
         visible: { opacity: 1},
         hidden: { opacity: 0},
 		})
@@ -145,8 +144,10 @@ export default class AboutPage extends Vue {
 	@Getter('getPageId') pageId;
 	@Getter('getPageRouteById') getPageRouteById;
 	@Getter('getContactBarVisibility') isShowContactBar;
+	@Getter('visibilityLoader') visibilityLoader;
 	@Mutation('changePageId') changePageId;
 	@Mutation('changeContactBar') changeContactBar;
+
 	curStage: number = 0;
 	isSloganAnimation: boolean = false;
 	isContactAnimation: boolean = false;
