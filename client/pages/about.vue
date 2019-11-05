@@ -41,13 +41,14 @@
 					<v-window-item class="slide-container"></v-window-item>
 				</v-window>
 
-				<p
+				<Slogan
+					:pose="isSloganAnimation ? 'visible' : 'hidden'"
 					class="d-none d-md-block rotated-phraze font-weight-light"
 					:class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
 					v-if="curStage <= about[$i18n.locale].slides.length"
 				>
 					{{ $t('common.slogan') }}
-				</p>
+				</Slogan>
 				<p
 					class="font-weight-light rotated-phraze pointer back-to-start"
 					:class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
@@ -116,7 +117,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
-
+import posed from "~/node_modules/vue-pose";
 import PreviewPage from '@/components/preview-page.vue';
 
 @Component({
@@ -127,6 +128,10 @@ import PreviewPage from '@/components/preview-page.vue';
 	},
 	components: {
 		PreviewPage,
+		Slogan: posed.p({
+        visible: { opacity: 1, x: 0 },
+        hidden: { opacity: 0, x: 40 },
+		})
 	},
 })
 export default class AboutPage extends Vue {
@@ -137,6 +142,7 @@ export default class AboutPage extends Vue {
 	@Mutation('changePageId') changePageId;
 	@Mutation('changeContactBar') changeContactBar;
 	curStage: number = 0;
+	isSloganAnimation: boolean = false;
 
 	backToStart() {
 		this.curStage = 0;
@@ -202,7 +208,9 @@ export default class AboutPage extends Vue {
 		this.changePageId(1);
 	}
 
-	mounted() {}
+	mounted() {
+	    setTimeout(() => this.isSloganAnimation = true, 2500);
+	}
 	beforeDestroy() {
 		this.changeContactBar(false);
 	}
