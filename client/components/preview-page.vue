@@ -149,6 +149,8 @@ export default class PreviewPage extends Vue {
 	@Getter('getPageByRoute') getPageByRoute;
 	@Getter('getPageId') pageId;
 	@Getter('getPageRouteById') getPageRouteById;
+	@Getter('visibilityLoader') visibilityLoader;
+
 	isShowUseContacts: boolean = true;
 	aboutPageId: number = 1;
 	portfolioPageId: number = 4;
@@ -234,10 +236,13 @@ export default class PreviewPage extends Vue {
 	}
 
 	mounted() {
+		const firstStageAnimationDelay = this.visibilityLoader ? 2500 : 250;
+		const secondStageAnimationDelay = this.visibilityLoader ? 300 : 300;
+
 		// initial check
 		this.handleScroll();
-		setTimeout(() => this.isStartAnimation = true, 2500);
-		setTimeout(() => {this.isDescriptionContent; this.isTitleContent = true}, 4000);
+		setTimeout(() => this.isStartAnimation = true, firstStageAnimationDelay);
+		setTimeout(() => {this.isDescriptionContent; this.isTitleContent = true}, secondStageAnimationDelay);
 	}
 }
 </script>
