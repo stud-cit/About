@@ -236,13 +236,11 @@ export default class PreviewPage extends Vue {
 	}
 
 	mounted() {
-		const firstStageAnimationDelay = this.visibilityLoader ? 2500 : 250;
-		const secondStageAnimationDelay = this.visibilityLoader ? 3000 : 300;
+		const animationDelay = this.visibilityLoader ? 2000 : 200;
 
 		// initial check
 		this.handleScroll();
-		setTimeout(() => this.isStartAnimation = true, firstStageAnimationDelay);
-		setTimeout(() => {this.isDescriptionContent; this.isTitleContent = true}, secondStageAnimationDelay);
+		setTimeout(() => this.isStartAnimation = true, animationDelay);
 	}
 }
 </script>

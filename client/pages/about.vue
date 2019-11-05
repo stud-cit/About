@@ -217,8 +217,11 @@ export default class AboutPage extends Vue {
 	}
 
 	mounted() {
-	    setTimeout(() => this.isSloganAnimation = true, 2500);
-      setTimeout(() => this.isContactAnimation = true, 3500);
+		const firstStageAnimationDelay = this.visibilityLoader ? 2000 : 200;
+		const secondStageAnimationDelay = this.visibilityLoader ? 2500 : 250;
+
+		setTimeout(() => this.isSloganAnimation = true, firstStageAnimationDelay);
+		setTimeout(() => this.isContactAnimation = true, secondStageAnimationDelay);
 	}
 	beforeDestroy() {
 		this.changeContactBar(false);
