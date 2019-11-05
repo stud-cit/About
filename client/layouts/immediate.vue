@@ -164,6 +164,7 @@ export default class ImmediatetLayout extends Vue {
 	@Getter('getPageId') pageId;
 	@Getter('getPageStage') pages;
 	@Getter('getPageCover') cover;
+	@Getter('visibilityLoader') visibilityLoader;
 
 	isShowMobileMenu: boolean = false;
 	isStartAnimation: boolean = false;
@@ -193,7 +194,8 @@ export default class ImmediatetLayout extends Vue {
 		this.isShowMobileMenu = !this.isShowMobileMenu;
 	}
 	mounted() {
-		setTimeout(() => this.isStartAnimation = true, 1500);
+		const animationDelay = this.visibilityLoader ? 1500 : 0;
+		setTimeout(() => this.isStartAnimation = true, animationDelay);
 	}
 }
 </script>
