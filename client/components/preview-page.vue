@@ -21,7 +21,8 @@
 						:class="{ 'text-center': isXsOnly }"
 					>
 						<div class="d-block">
-							<p
+							<TitleContent
+								:pose="isTitleContent ? 'visible' : 'hidden'"
 								class="bold-preview"
 								:class="{
 									'text-uppercase': isAboutPage,
@@ -30,7 +31,7 @@
 								:style="getPreviewTitleFont"
 							>
 								{{ title }}
-							</p>
+							</TitleContent>
 							<p class="bold-preview" :style="getPreviewTitleFont">
 								{{ subtitle }}
 							</p>
@@ -65,15 +66,15 @@
 
 					<v-col cols="12" order="2" order-sm="3">
 						<v-row class="d-none d-sm-flex font-weight-regular line-height-1">
-							<span :style="getPreviewSubTitleFont">{{ description }}</span>
+							<DescriptionContent :pose="isDescriptionContent ? 'visible' : 'hidden'" :style="getPreviewSubTitleFont">{{ description }}</DescriptionContent>
 						</v-row>
 						<v-row justify="center" class="d-flex d-sm-none pl-0">
 							<img class="pointer-icon" src="/pointer-mobile.svg" />
 						</v-row>
 						<v-row justify="center" justify-sm="start" class="mt-4">
-							<span class="gray font-weight-regular" :style="getPreviewInfoFont">
+							<DescriptionContent :pose="isDescriptionContent ? 'visible' : 'hidden'" class="gray font-weight-regular" :style="getPreviewInfoFont">
 								{{ $t(isAboutPage ? 'about.scrollPoint' : 'common.scroll') }}
-							</span>
+							</DescriptionContent>
 						</v-row>
 					</v-col>
 				</v-row>
@@ -124,10 +125,23 @@ import posed from "~/node_modules/vue-pose";
 @Component({
 	components:{
 	    CentralSection: posed.section({
-          visible: { opacity: 1},
-          hidden: { opacity: 0},
+          visible: {
+              opacity: 1 ,
+              beforeChildren: true,
+					},
+          hidden: {
+              opacity: 0,
+							afterChildren: true,
+					},
 			}),
-
+			TitleContent: posed.p({
+          visible: { opacity: 1, y: 0 },
+          hidden: { opacity: 0, y: 20 },
+			}),
+			DescriptionContent: posed.span({
+          visible: { opacity: 1, y: 0 },
+          hidden: { opacity: 0, y: 20 },
+			}),
 	},
 	props: ['title', 'subtitle', 'description', 'iconDown'],
 })
@@ -140,6 +154,8 @@ export default class PreviewPage extends Vue {
 	portfolioPageId: number = 4;
 	weofferPageId: number = 2;
 	isStartAnimation: boolean = false;
+	isTitleContent: boolean = false;
+	isDescriptionContent: boolean = false;
 
 	handleScroll(): void {
 		const windowHeight = window.innerHeight;
@@ -221,6 +237,7 @@ export default class PreviewPage extends Vue {
 		// initial check
 		this.handleScroll();
 		setTimeout(() => this.isStartAnimation = true, 2500);
+		setTimeout(() => {this.isDescriptionContent; this.isTitleContent = true}, 4000);
 	}
 }
 </script>

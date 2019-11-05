@@ -86,24 +86,26 @@
 									class="pa-0"
 									:class="{ 'justify-center': isSmAndDown }"
 								>
-									<v-card
-										class="pa-4 pt-0 use-contacts-container"
-										@click="() => changeContactBar(true)"
-									>
-										<v-card-title
-											class="justify-center"
-											:style="getUseContactsTitleFont"
-											>{{ $t('contact.title') }}</v-card-title
+									<UseContact :pose="isContactAnimation ? 'visible' : 'hidden'">
+										<v-card
+											class="pa-4 pt-0 use-contacts-container"
+											@click="() => changeContactBar(true)"
 										>
-										<v-card-actions
-											class="pa-0 justify-center"
-											:style="getUseContactsActionFont"
-										>
-											<div class="contacts-action">
-												{{ $t('contact.subTitle') }}
-											</div>
-										</v-card-actions>
-									</v-card>
+											<v-card-title
+												class="justify-center"
+												:style="getUseContactsTitleFont"
+												>{{ $t('contact.title') }}</v-card-title
+											>
+											<v-card-actions
+												class="pa-0 justify-center"
+												:style="getUseContactsActionFont"
+											>
+												<div class="contacts-action">
+													{{ $t('contact.subTitle') }}
+												</div>
+											</v-card-actions>
+										</v-card>
+									</UseContact>
 								</v-col>
 							</v-row>
 						</v-col>
@@ -131,6 +133,10 @@ import PreviewPage from '@/components/preview-page.vue';
 		Slogan: posed.p({
         visible: { opacity: 1, x: 0 },
         hidden: { opacity: 0, x: 40 },
+		}),
+		UseContact: posed.div({
+        visible: { opacity: 1},
+        hidden: { opacity: 0},
 		})
 	},
 })
@@ -143,6 +149,7 @@ export default class AboutPage extends Vue {
 	@Mutation('changeContactBar') changeContactBar;
 	curStage: number = 0;
 	isSloganAnimation: boolean = false;
+	isContactAnimation: boolean = false;
 
 	backToStart() {
 		this.curStage = 0;
@@ -210,6 +217,7 @@ export default class AboutPage extends Vue {
 
 	mounted() {
 	    setTimeout(() => this.isSloganAnimation = true, 2500);
+      setTimeout(() => this.isContactAnimation = true, 3500);
 	}
 	beforeDestroy() {
 		this.changeContactBar(false);
