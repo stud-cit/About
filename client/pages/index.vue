@@ -1,6 +1,7 @@
 <template>
 	<v-container fluid class="pa-0" id="home">
 		<div
+			v-if="showSwiper"
 			v-swiper:mySwiper="swiperOption"
 			class="swiper-inactive d-none d-sm-flex"
 			:class="isShowSwiper && 'swiper-active'"
@@ -19,7 +20,7 @@
 						:to="localePath(page.to, $i18n.locale)"
 						class="disable-underline"
 					>
-						<v-card class="none-radius">
+						<v-card class="none-radius" @click="hideSwiper">
 							<v-img
 								:src="getDynamicAssets(page.img)"
 								:gradient="imagePageGradient"
@@ -124,6 +125,11 @@ export default class HomePage extends Vue {
 			}, 250);
 		}
 	}
+
+	hideSwiper() {
+		this.isShowSwiper = false;
+	}
+
 	get isMdAndDown() {
 		return this.$breakpoint ? this.$breakpoint.is.mdAndDown : false;
 	}
