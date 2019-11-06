@@ -4,7 +4,7 @@
 			<v-col cols="12" sm="10">
 				<v-window v-model="curStage" continuous dark>
 					<v-window-item>
-						<v-col cols="12" class="pa-0 slide-container">
+						<v-col cols="12" class="pa-0" :class=" isXsOnly ? 'slide-container-mobile' : 'slide-container' ">
 							<PreviewPage
 								:title="$t('common.companyName')"
 								:description="$t('about.previewDescription')"
@@ -16,7 +16,7 @@
 						v-for="(slide, index) in about[$i18n.locale].slides"
 						:key="index"
 					>
-						<v-row justify="start" align="center" class="slide-container">
+						<v-row justify="start" align="center" :class=" isXsOnly ? 'slide-container-mobile' : 'slide-container' ">
 							<v-col cols="12" md="10" lg="10">
 								<v-row>
 									<v-col col="12">
@@ -38,7 +38,7 @@
 							</v-col>
 						</v-row>
 					</v-window-item>
-					<v-window-item class="slide-container"></v-window-item>
+					<v-window-item :class=" isXsOnly ? 'slide-container-mobile' : 'slide-container' "></v-window-item>
 				</v-window>
 
 				<Slogan
@@ -245,6 +245,10 @@ export default class AboutPage extends Vue {
 
 .slide-container
 	height: 97vh
+	color: white
+
+.slide-container-mobile
+	height: 90vh
 	color: white
 
 .arrow

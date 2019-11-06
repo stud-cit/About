@@ -8,10 +8,10 @@
 		<CentralSection :pose="isStartAnimation ? 'visible' : 'hidden'">
 			<v-col cols="12" lg="12" xl="12">
 				<v-row
-					class="ma-0 preview-wrapper ml-sm-2"
+					class="ma-0 ml-sm-2"
 					justify="space-around"
 					align="end"
-					:class="{ 'preview-margin': iconDown }"
+					:class="{ 'preview-margin': iconDown , 'preview-wrapper'  : !isXsOnly , 'preview-wrapper-mobile'  : isXsOnly }"
 				>
 					<v-col
 						cols="12"
@@ -266,10 +266,13 @@ export default class PreviewPage extends Vue {
 	height: 70vh
 	color: white
 
+.preview-wrapper-mobile
+	height: 60vh
+	color: white
+
 .preview-margin
 	margin-bottom: 0vh
 	margin-top: 13vh
-
 
 .arrow
 	font-size: 1.8rem
