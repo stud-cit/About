@@ -168,6 +168,10 @@ export default class PreliminaryLayout extends Vue {
   border-radius: 50%
   border: 2px solid #4A4A4A
 
+.v-bottom-sheet
+    background: #8a8a8a
+    box-shadow: 0px 11px 0px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 50px 8px rgba(0, 0, 0, 0.12)
+
 .theme--light.v-btn::before
   opacity: 0 !important
    border-radius: 50%
