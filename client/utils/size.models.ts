@@ -122,12 +122,6 @@ export default {
 		md: 65,
 		lg: 65,
 	},
-	customPreviewTitle: {
-		xs: 6,
-		sm: 5,
-		md: 5,
-		lg: 4,
-	},
 	mailFont: {
 		xs: 12,
 		sm: 16,
@@ -137,8 +131,8 @@ export default {
 	locationFont: {
 		xs: 14,
 		sm: 19,
-		md: 21,
-		lg: 27,
+		md: 20,
+		lg: 26,
 	},
 	tagLineFont: {
 		xs: 21,

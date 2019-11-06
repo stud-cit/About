@@ -224,14 +224,8 @@ export default class PreviewPage extends Vue {
 		};
 	}
 	get getPreviewTitleFont() {
-		if (!this.isAboutPage) {
-			return {
-				fontSize: `${this.getAdaptiveSize('previewTitle')}px`,
-			};
-		} else {
-			return {
-				fontSize: `${this.getAdaptiveSize('customPreviewTitle')}vw`,
-			};
+		return {
+			fontSize: `${this.getAdaptiveSize('previewTitle')}px`,
 		}
 	}
 
