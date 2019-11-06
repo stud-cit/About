@@ -118,7 +118,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
-import posed from "~/node_modules/vue-pose";
+import posed from "vue-pose";
 import PreviewPage from '@/components/preview-page.vue';
 
 @Component({
@@ -139,6 +139,7 @@ import PreviewPage from '@/components/preview-page.vue';
 		})
 	},
 })
+
 export default class AboutPage extends Vue {
 	@Getter('AboutModule/getStage') about;
 	@Getter('getPageId') pageId;
