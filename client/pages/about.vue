@@ -130,8 +130,8 @@ import PreviewPage from '@/components/preview-page.vue';
 	components: {
 		PreviewPage,
 		Slogan: posed.p({
-        visible: { opacity: 1, x: 0 },
-        hidden: { opacity: 0, x: 40 },
+        visible: { opacity: 1 },
+        hidden: { opacity: 0 },
 		}),
 		OpacityBox: posed.div({
         visible: { opacity: 1},
