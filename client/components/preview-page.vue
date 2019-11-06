@@ -130,17 +130,17 @@ import posed from "~/node_modules/vue-pose";
               beforeChildren: true,
 					},
           hidden: {
-              opacity: 0,
-							afterChildren: true,
+            	opacity: 0,
+				afterChildren: true,
 					},
 			}),
 			TitleContent: posed.p({
-          visible: { opacity: 1, y: 0 },
-          hidden: { opacity: 0, y: 20 },
+				visible: { opacity: 1, y: 0 },
+				hidden: { opacity: 0, y: 20 },
 			}),
 			DescriptionContent: posed.span({
-          visible: { opacity: 1, y: 0 },
-          hidden: { opacity: 0, y: 20 },
+				visible: { opacity: 1, y: 0 },
+				hidden: { opacity: 0, y: 20 },
 			}),
 	},
 	props: ['title', 'subtitle', 'description', 'iconDown'],
