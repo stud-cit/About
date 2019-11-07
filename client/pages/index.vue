@@ -91,7 +91,6 @@ import { Getter } from 'vuex-class';
 
 @Component({
 	layout: 'preliminary',
-	transition: 'bounce',
 	head: {
 		title: 'Home',
 	},
