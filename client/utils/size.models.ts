@@ -81,7 +81,7 @@ export default {
 		lg: 30,
 	},
 	slideContentFont: {
-		xs: 15,
+		xs: 14,
 		sm: 20,
 		md: 20,
 		lg: 29,
