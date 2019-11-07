@@ -102,7 +102,7 @@
 					</v-col>
 					<v-col sm="1"></v-col>
 				</v-row>
-				<v-row justify="center" v-show="iconDown">
+				<v-row justify="center" v-show="iconDown && isMdAndUp">
 					<v-btn
 						icon
 						color="white"
@@ -201,9 +201,13 @@ export default class PreviewPage extends Vue {
 	get isLgAndUp() {
 		return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
 	}
+	get isMdAndUp() {
+		return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
+	}
 	get isXsOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 	}
+
 
 	get getPreviewSubTitleFont() {
 		return {
