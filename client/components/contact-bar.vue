@@ -112,7 +112,7 @@ export default class ContactBar extends Vue {
 		return { fontSize: `${this.getAdaptiveSize('mailFont')}px` };
 	}
 	get getLocationFont() {
-		return { fontSize: `${this.getAdaptiveSize('locationFont')}px` };
+		return { fontSize: `${this.getAdaptiveSize('useContactsAction')}px` };
 	}
 	get getTagLineFont() {
 		return { fontSize: `${this.getAdaptiveSize('tagLineFont')}px` };

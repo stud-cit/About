@@ -128,12 +128,6 @@ export default {
 		md: 18,
 		lg: 22,
 	},
-	locationFont: {
-		xs: 14,
-		sm: 19,
-		md: 20,
-		lg: 26,
-	},
 	tagLineFont: {
 		xs: 21,
 		sm: 39,
