@@ -62,6 +62,12 @@ export default {
 		md: 1.4,
 		lg: 1.5,
 	},
+	totalMiniPagesFont: {
+		xs: 1.7,
+		sm: 1.7,
+		md: 1.1,
+		lg: 1.2,
+	},
 	slideTitleFont: {
 		xs: 45,
 		sm: 50,

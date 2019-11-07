@@ -2,16 +2,16 @@
 	<v-app>
 		<v-app-bar
 			id="header"
-			class="pt-2 pt-lg-4 mt-3"
-			color="transparent"
+			:class="scrollNumber ? 'pt-5 pt-lg-7' : 'pt-2 pb-1 mini-header'"
+			:color="scrollNumber ? 'transparent' : ''"
 			app
-			dark
 			flat
+			v-scroll="handleScroll"
 		>
 			<v-row class="mx-1 mx-sm-0" justify="center" align="center">
 				<v-col cols="12" sm="10" order-md="2" class="pa-0">
 					<v-row justify="space-between" align="center">
-						<v-col cols="auto" class="pa-0 d-none d-sm-flex">
+						<v-col :cols="scrollNumber ? 'auto' : '2'" class="pa-0 d-none d-sm-flex">
 							<OpacityBox :pose="isStartAnimation ? 'visible' : 'hidden'">
 								<nuxt-link :to="localePath({ name: 'index' })" nuxt>
 									<v-img src="/logo.svg" />
@@ -73,7 +73,7 @@
 			justify="start"
 			:class="{ 'page-info-mobile': isXsOnly }"
 		>
-			<v-col cols="auto" offset="0" offset-sm="1">
+			<v-col v-show="scrollNumber" cols="auto" offset="0" offset-sm="1">
 				<OpacityBox :pose="isStartAnimation ? 'visible' : 'hidden'">
 					<p class="bold-italic-preview d-flex">
 						<span :style="getPageIndexFont">0{{ pageId }}</span>
@@ -168,8 +168,12 @@ export default class ImmediatetLayout extends Vue {
 
 	isShowMobileMenu: boolean = false;
 	isStartAnimation: boolean = false;
+	scrollNumber: boolean = true;
 
-
+	handleScroll(): void {
+		const currentScroll = window.scrollY;
+		((currentScroll > 10) && (this.$breakpoint.is.mdAndUp)) ? this.scrollNumber = false : this.scrollNumber = true ;
+	}
 	get isXsOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 	}
@@ -185,7 +189,11 @@ export default class ImmediatetLayout extends Vue {
 		return { fontSize: `${this.getAdaptiveSize('pageTotalIndexFont')}px` };
 	}
 	get getTotalPagesFont() {
-		return { fontSize: `${this.getAdaptiveSize('totalPagesFont')}vw` };
+		if(this.scrollNumber){
+			return { fontSize: `${this.getAdaptiveSize('totalPagesFont')}vw` };
+		} else {
+			return { fontSize: `${this.getAdaptiveSize('totalMiniPagesFont')}vw` };
+		}
 	}
 
 
@@ -203,6 +211,8 @@ export default class ImmediatetLayout extends Vue {
 <style lang="sass">
 #header
 	z-index: 30
+	height: auto !important
+	color: rgba(255, 255, 255, 1) 
 	.desktop-link
 		font-weight: 600
 		&::before
@@ -211,6 +221,8 @@ export default class ImmediatetLayout extends Vue {
 		border-bottom: 4px solid white
 		border-radius: unset
 
+.mini-header
+	background: rgba(0, 0, 0, 0.45) !important
 
 .nav-panel
 	display: flex
