@@ -48,13 +48,13 @@ export default {
 		xs: 25,
 		sm: 40,
 		md: 40,
-		lg: 45,
+		lg: 43,
 	},
 	pageTotalIndexFont: {
 		xs: 15,
 		sm: 20,
 		md: 20,
-		lg: 25,
+		lg: 23,
 	},
 	totalPagesFont: {
 		xs: 2,
@@ -84,7 +84,7 @@ export default {
 		xs: 15,
 		sm: 20,
 		md: 20,
-		lg: 30,
+		lg: 29,
 	},
 	cardTitleFont: {
 		xs: 20,

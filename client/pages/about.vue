@@ -31,7 +31,7 @@
 											:style="getSlideContentFont"
 											:class="isXsOnly ? '' : 'border-right'"
 										>
-											<p class="py-md-12">{{ slide }}</p>
+											<p class="py-md-10">{{ slide }}</p>
 										</div>
 									</v-col>
 								</v-row>
