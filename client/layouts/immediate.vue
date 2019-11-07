@@ -60,7 +60,7 @@
 							class="d-flex d-md-none"
 							@click="toggleVisibilityMobileMenu"
 							icon
-							:class="{ 'gumb	urger-mobile-position': isXsOnly }"
+							:class="{ 'gumburger-mobile-position': isXsOnly }"
 						>
 							<v-icon size="50">mdi-menu</v-icon>
 						</v-btn>

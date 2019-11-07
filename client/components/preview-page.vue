@@ -32,36 +32,38 @@
 							>
 								{{ title }}
 							</TitleContent>
-							<p class="bold-preview" :style="getPreviewTitleFont">
+							<SubtitleContent class="bold-preview" :style="getPreviewTitleFont">
 								{{ subtitle }}
-							</p>
+							</SubtitleContent>
 						</div>
 					</v-col>
 					<v-col cols="12" order="3" order-sm="2">
-						<v-row justify="space-around" justify-sm="start">
-							<v-col cols="auto" order="1" order-sm="1">
-								<div class="arrow mr-3" @click="handleNavigatingPage(false)">
-									<v-img src="/arrow-left.svg" width="45px" />
-								</div>
-							</v-col>
-							<v-col cols="auto" order="3" order-sm="2">
-								<div class="arrow mr-3" @click="handleNavigatingPage(true)">
-									<v-img src="/arrow-right.svg" width="45px" />
-								</div>
-							</v-col>
-							<v-col
-								cols="auto"
-								order="2"
-								order-sm="3"
-								:class="{ rotate: isXsOnly }"
-							>
-								<nuxt-link class="square-container" to="/">
-									<div class="squares mr-3 squareOne"></div>
-									<div class="squares mr-3 squareTwo"></div>
-									<div class="squares squareThree"></div>
-								</nuxt-link>
-							</v-col>
-						</v-row>
+						<NavigationContent>
+							<v-row justify="space-around" justify-sm="start">
+								<v-col cols="auto" order="1" order-sm="1">
+									<div class="arrow mr-3" @click="handleNavigatingPage(false)">
+										<v-img src="/arrow-left.svg" width="45px" />
+									</div>
+								</v-col>
+								<v-col cols="auto" order="3" order-sm="2">
+									<div class="arrow mr-3" @click="handleNavigatingPage(true)">
+										<v-img src="/arrow-right.svg" width="45px" />
+									</div>
+								</v-col>
+								<v-col
+									cols="auto"
+									order="2"
+									order-sm="3"
+									:class="{ rotate: isXsOnly }"
+								>
+									<nuxt-link class="square-container" to="/">
+										<div class="squares mr-3 squareOne"></div>
+										<div class="squares mr-3 squareTwo"></div>
+										<div class="squares squareThree"></div>
+									</nuxt-link>
+								</v-col>
+							</v-row>
+						</NavigationContent>
 					</v-col>
 
 					<v-col cols="12" order="2" order-sm="3">
@@ -135,8 +137,16 @@ import posed from "~/node_modules/vue-pose";
 					},
 			}),
 			TitleContent: posed.p({
-				visible: { opacity: 1, y: 0 },
-				hidden: { opacity: 0, y: 20 },
+          visible: { opacity: 1, y: 0 },
+          hidden: { opacity: 0, y: 20 },
+      }),
+      SubtitleContent: posed.p({
+          visible: { opacity: 1, y: 0 },
+          hidden: { opacity: 0, y: 20 },
+      }),
+			NavigationContent: posed.div({
+          visible: { opacity: 1, y: 0 },
+          hidden: { opacity: 0, y: 20 },
 			}),
 			DescriptionContent: posed.span({
 				visible: { opacity: 1, y: 0 },

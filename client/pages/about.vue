@@ -31,7 +31,7 @@
 											:style="getSlideContentFont"
 											:class="isXsOnly ? '' : 'border-right'"
 										>
-											<p class="py-md-12">{{ slide }}</p>
+											<p class="py-md-10">{{ slide }}</p>
 										</div>
 									</v-col>
 								</v-row>
@@ -303,8 +303,9 @@ export default class AboutPage extends Vue {
 	font-size: 30px
 
 .rotated-phraze-lg
-	top: calc(50vh - 270px)
+	top: calc(50vh - 230px)
 	font-size: 2.5rem
+	right: 9vw
 
 .rotate
 	transform: rotate(90deg)
