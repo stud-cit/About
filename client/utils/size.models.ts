@@ -63,7 +63,7 @@ export default {
 		lg: 1.5,
 	},
 	slideTitleFont: {
-		xs: 45,
+		xs: 40,
 		sm: 50,
 		md: 55,
 		lg: 60,
