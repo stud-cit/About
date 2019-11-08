@@ -22,11 +22,19 @@
 					<v-col lg="7" md="7" sm="12">
 						<v-card dark flat color="transparent">
 							<v-list-item>
-								<v-list-item-content>
+								<v-list-item-content v-if="!isMdAndUp">
+									<a :href="project.link">
+										<v-list-item-title
+											v-text="project.title"
+											class=" font-weight-medium text-underline text-wrap text-center"
+											:style="getProjectTitleFont"
+										/>
+									</a>
+								</v-list-item-content>
+								<v-list-item-content v-else>
 									<v-list-item-title
 										v-text="project.title"
 										class=" font-weight-medium text-underline text-wrap"
-										:class="isMdAndUp ? '' : 'text-center'"
 										:style="getProjectTitleFont"
 									/>
 									<v-divider />
@@ -38,7 +46,7 @@
 						lg="3"
 						md="4"
 						sm="12"
-						class="ma-3 mr-0 ml-0 d-flex pr-0 pl-0"
+						class="ma-3 mr-0 ml-0 d-none d-md-flex pr-0 pl-0"
 						:class="isMdAndUp ? 'justify-end' : 'justify-center'"
 					>
 						<v-btn
@@ -131,4 +139,7 @@ export default class PortfolioPage extends Vue {
 
 .border-text-link
   text-decoration: underline
+
+.v-application a
+  color: white
 </style>
