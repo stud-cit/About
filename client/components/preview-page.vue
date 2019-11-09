@@ -91,7 +91,9 @@
 					no-gutters
 				>
 					<v-col cols="12" sm="auto">
-						<v-card class="pa-4 pt-0 card-contacts" @click="scrollToFooter">
+						<v-card class="pa-4 pt-0"
+										:class="isXsOnly ? 'card-contacts': 'card-contacts-sm-and-up'"
+										@click="scrollToFooter">
 							<v-card-title
 								class="justify-center font-weight-thin"
 								:style="getUseContactsTitleFont"
@@ -268,6 +270,10 @@ export default class PreviewPage extends Vue {
 
 		.card-contacts
 			border-radius: 0
+
+		.card-contacts-sm-and-up
+			border-top-left-radius: 10px
+			border-top-right-radius: 10px
 
 		.contacts-action
 			text-transform: uppercase
