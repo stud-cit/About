@@ -61,6 +61,7 @@
 							@click="toggleVisibilityMobileMenu"
 							icon
 							:class="{ 'gumburger-mobile-position': isXsOnly }"
+							color="white"
 						>
 							<v-icon size="50">mdi-menu</v-icon>
 						</v-btn>
