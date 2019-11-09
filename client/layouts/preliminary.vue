@@ -67,7 +67,7 @@
 			@click="toggleVisibilityLocales"
 			icon
 			x-large
-			:class="isSmOnly ? 'locale-button' : ''"
+			:class="{'locale-button': isSmOnly}"
 		>
 			<v-icon size="35" color="black">mdi-menu</v-icon>
 		</v-btn>
@@ -95,6 +95,7 @@
 							active-class="active-locale"
 							x-large
 							icon
+							@click="toggleVisibilityLocales"
 						>
 							<span class="locale">{{ locale.code }}</span>
 						</v-btn>
