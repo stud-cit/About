@@ -160,7 +160,7 @@ export default class PreliminaryLayout extends Vue {
 
 .burger-icon
   position: fixed
-  left: calc(50vw - 18px)
+  left: calc(50vw - 26px)
   bottom: 2vh
 
 .locale-button
@@ -175,7 +175,7 @@ export default class PreliminaryLayout extends Vue {
 
 .theme--light.v-btn::before
   opacity: 0 !important
-   border-radius: 50%
+  border-radius: 50%
   border: 2px solid #4A4A4A
 
 .theme--light.v-btn:hover::before
@@ -186,7 +186,7 @@ export default class PreliminaryLayout extends Vue {
 .close-icon
   z-index: 20
   position: absolute
-  left: calc(50vw - 18px)
+  left: calc(50vw - 26px)
   top: -18px
 .relative
   position: relative

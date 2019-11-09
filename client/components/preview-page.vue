@@ -56,7 +56,10 @@
 									order-sm="3"
 									:class="{ rotate: isXsOnly }"
 								>
-									<nuxt-link class="square-container" to="/">
+									<nuxt-link
+										class="square-container"
+										:to="`/${$i18n.locale !== $i18n.defaultLocale ? $i18n.locale : ''}`"
+									>
 										<div class="squares mr-3 squareOne"></div>
 										<div class="squares mr-3 squareTwo"></div>
 										<div class="squares squareThree"></div>
@@ -122,7 +125,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
-import posed from "~/node_modules/vue-pose";
+import posed from 'vue-pose';
 
 @Component({
 	components:{
