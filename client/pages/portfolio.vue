@@ -138,7 +138,7 @@ export default class PortfolioPage extends Vue {
   opacity: 0 !important
 
 .border-text-link
-  text-decoration: underline
+  border-bottom: 1px solid white
 
 .v-application a
   color: white
