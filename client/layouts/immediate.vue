@@ -51,7 +51,7 @@
 											class="d-none d-md-flex"
 											nuxt
 										>
-											<v-icon size="50">mdi-fullscreen-exit</v-icon>
+											<v-icon size="40">mdi-fullscreen-exit</v-icon>
 										</v-btn>
 									</ContentBox>
 								</Navs>
