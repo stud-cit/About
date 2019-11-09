@@ -212,7 +212,7 @@ export default class ImmediatetLayout extends Vue {
 #header
 	z-index: 30
 	height: auto !important
-	color: rgba(255, 255, 255, 1) 
+	color: rgba(255, 255, 255, 1)
 	.desktop-link
 		font-weight: 600
 		&::before
