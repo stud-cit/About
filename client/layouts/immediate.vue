@@ -7,14 +7,24 @@
 				id="video-bg"
 				:sources="[
 					{
-						src: videoBg.videoPc ? getDynamicAssets(`/videos${videoBg.videoPc }`) : '',
+						src: videoBg.videoPc
+							? getDynamicAssets(`/videos${videoBg.videoPc}`)
+							: '',
 						res: 600,
 						autoplay: true,
-						poster: videoBg.cover ? getDynamicAssets(`/images/covers${videoBg.cover}`) : '',
-					}
+						poster: videoBg.cover
+							? getDynamicAssets(`/images/covers${videoBg.cover}`)
+							: '',
+					},
 				]"
-				:src="videoBg.videoPc ? getDynamicAssets(`/videos${videoBg.videoPc}`) : ''"
-				:poster="videoBg.cover ? getDynamicAssets(`/images/covers${videoBg.cover}`) : ''"
+				:src="
+					videoBg.videoPc ? getDynamicAssets(`/videos${videoBg.videoPc}`) : ''
+				"
+				:poster="
+					videoBg.cover
+						? getDynamicAssets(`/images/covers${videoBg.cover}`)
+						: ''
+				"
 				overlay="linear-gradient(45deg,#2a4ae430,#fb949e6b)"
 			/>
 		</client-only>
@@ -29,7 +39,10 @@
 			<v-row class="mx-1 mx-sm-0" justify="center" align="center">
 				<v-col cols="12" sm="10" order-md="2" class="pa-0">
 					<v-row justify="space-between" align="center">
-						<v-col :cols="scrollNumber ? 'auto' : '2'" class="pa-0 d-none d-sm-flex">
+						<v-col
+							:cols="scrollNumber ? 'auto' : '2'"
+							class="pa-0 d-none d-sm-flex"
+						>
 							<OpacityBox :pose="isStartAnimation ? 'visible' : 'hidden'">
 								<nuxt-link :to="localePath({ name: 'index' })" nuxt>
 									<v-img src="/logo.svg" />
@@ -37,31 +50,34 @@
 							</OpacityBox>
 						</v-col>
 						<v-col cols="6" md="6" lg="7" xl="6" class="d-none d-md-flex">
-								<Navs class="nav-panel" :pose="isStartAnimation ? 'visible' : 'hidden'">
-									<v-col
-										class="pa-0 nav-links"
-										cols="auto"
-										v-for="(page, index) in pages"
-										:key="index"
-									>
-										<ContentBox>
-											<v-btn
-												class="px-0 desktop-link"
-												active-class="active-desktop-link"
-												:to="localePath(page.to)"
-												:ripple="false"
-												replace
-												exact
-												dark
-												text
-											>
-												<span :style="getTotalPagesFont" class="not-uppercase">{{
-													$t(page.title)
-												}}</span>
-											</v-btn>
-										</ContentBox>
-									</v-col>
-								</Navs>
+							<Navs
+								class="nav-panel"
+								:pose="isStartAnimation ? 'visible' : 'hidden'"
+							>
+								<v-col
+									class="pa-0 nav-links"
+									cols="auto"
+									v-for="(page, index) in pages"
+									:key="index"
+								>
+									<ContentBox>
+										<v-btn
+											class="px-0 desktop-link"
+											active-class="active-desktop-link"
+											:to="localePath(page.to)"
+											:ripple="false"
+											replace
+											exact
+											dark
+											text
+										>
+											<span :style="getTotalPagesFont" class="not-uppercase">{{
+												$t(page.title)
+											}}</span>
+										</v-btn>
+									</ContentBox>
+								</v-col>
+							</Navs>
 						</v-col>
 						<v-btn
 							class="d-flex d-md-none"
@@ -85,7 +101,10 @@
 				<OpacityBox :pose="isStartAnimation ? 'visible' : 'hidden'">
 					<p class="bold-italic-preview d-flex">
 						<span :style="getPageIndexFont">0{{ pageId }}</span>
-						<span class="total-pages mt-1 mt-sm-2" :style="getPageTotalIndexFont">
+						<span
+							class="total-pages mt-1 mt-sm-2"
+							:style="getPageTotalIndexFont"
+						>
 							/04
 						</span>
 					</p>
@@ -147,20 +166,20 @@ import ContactBar from '@/components/contact-bar.vue';
 		'contact-bar': ContactBar,
 		Navs: posed.div({
 			visible: {
-        beforeChildren: true,
-        staggerChildren: 50
-      },
-      hidden: {
-        afterChildren: true
-      },
+				beforeChildren: true,
+				staggerChildren: 50,
+			},
+			hidden: {
+				afterChildren: true,
+			},
 		}),
 		OpacityBox: posed.div({
 			visible: { opacity: 1 },
 			hidden: { opacity: 0 },
 		}),
 		ContentBox: posed.div({
-      visible: { opacity: 1, y: 0 },
-      hidden: { opacity: 0, y: 20 },
+			visible: { opacity: 1, y: 0 },
+			hidden: { opacity: 0, y: 20 },
 		}),
 	},
 })
@@ -177,7 +196,9 @@ export default class ImmediatetLayout extends Vue {
 
 	handleScroll(): void {
 		const currentScroll = window.scrollY;
-		((currentScroll > 10) && (this.$breakpoint.is.mdAndUp)) ? this.scrollNumber = false : this.scrollNumber = true ;
+		currentScroll > 10 && this.$breakpoint.is.mdAndUp
+			? (this.scrollNumber = false)
+			: (this.scrollNumber = true);
 	}
 	get isXsOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
@@ -194,21 +215,19 @@ export default class ImmediatetLayout extends Vue {
 		return { fontSize: `${this.getAdaptiveSize('pageTotalIndexFont')}px` };
 	}
 	get getTotalPagesFont() {
-		if(this.scrollNumber){
+		if (this.scrollNumber) {
 			return { fontSize: `${this.getAdaptiveSize('totalPagesFont')}vw` };
 		} else {
 			return { fontSize: `${this.getAdaptiveSize('totalMiniPagesFont')}vw` };
 		}
 	}
 
-
-
 	toggleVisibilityMobileMenu() {
 		this.isShowMobileMenu = !this.isShowMobileMenu;
 	}
 	mounted() {
 		const animationDelay = this.visibilityLoader ? 1500 : 0;
-		setTimeout(() => this.isStartAnimation = true, animationDelay);
+		setTimeout(() => (this.isStartAnimation = true), animationDelay);
 	}
 }
 </script>

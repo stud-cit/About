@@ -4,7 +4,11 @@
 			<v-col cols="12" sm="10">
 				<v-window v-model="curStage" continuous dark>
 					<v-window-item>
-						<v-col cols="12" class="pa-0" :class=" isXsOnly ? 'slide-container-mobile' : 'slide-container' ">
+						<v-col
+							cols="12"
+							class="pa-0"
+							:class="isXsOnly ? 'slide-container-mobile' : 'slide-container'"
+						>
 							<PreviewPage
 								:title="$t('common.companyName')"
 								:description="$t('about.previewDescription')"
@@ -16,7 +20,11 @@
 						v-for="(slide, index) in about[$i18n.locale].slides"
 						:key="index"
 					>
-						<v-row justify="start" align="center" :class=" isXsOnly ? 'slide-container-mobile' : 'slide-container' ">
+						<v-row
+							justify="start"
+							align="center"
+							:class="isXsOnly ? 'slide-container-mobile' : 'slide-container'"
+						>
 							<v-col cols="12" md="10" lg="10">
 								<v-row>
 									<v-col col="12">
@@ -38,7 +46,9 @@
 							</v-col>
 						</v-row>
 					</v-window-item>
-					<v-window-item :class=" isXsOnly ? 'slide-container-mobile' : 'slide-container' "></v-window-item>
+					<v-window-item
+						:class="isXsOnly ? 'slide-container-mobile' : 'slide-container'"
+					></v-window-item>
 				</v-window>
 
 				<Slogan
@@ -59,55 +69,55 @@
 				</p>
 				<OpacityBox :pose="isContactAnimation ? 'visible' : 'hidden'">
 					<v-footer absolute color="transparent" class="pb-0 px-0 px-sm-auto">
-							<v-row justify="center">
-								<v-col sm="12" md="10" lg="10" class="pb-0">
-									<v-row
-										justify-sm="center"
-										justify-md="space-between"
-										align="center"
+						<v-row justify="center">
+							<v-col sm="12" md="10" lg="10" class="pb-0">
+								<v-row
+									justify-sm="center"
+									justify-md="space-between"
+									align="center"
+								>
+									<v-col sm="10" md="7" class="d-none d-sm-flex">
+										<v-slider
+											v-model="curStage"
+											:max="about[$i18n.locale].slides.length + 1"
+											class="slider"
+											step="1"
+											ticks="always"
+											tick-size="10"
+											hide-details
+											dark
+										/>
+									</v-col>
+									<v-col
+										xs="12"
+										sm="12"
+										md="auto"
+										lg="auto"
+										class="pa-0"
+										:class="{ 'justify-center': isSmAndDown }"
 									>
-										<v-col sm="10" md="7" class="d-none d-sm-flex">
-											<v-slider
-												v-model="curStage"
-												:max="about[$i18n.locale].slides.length + 1"
-												class="slider"
-												step="1"
-												ticks="always"
-												tick-size="10"
-												hide-details
-												dark
-											/>
-										</v-col>
-										<v-col
-											xs="12"
-											sm="12"
-											md="auto"
-											lg="auto"
-											class="pa-0"
-											:class="{ 'justify-center': isSmAndDown }"
+										<v-card
+											class="pa-4 pt-0 use-contacts-container"
+											@click="() => changeContactBar(true)"
 										>
-											<v-card
-												class="pa-4 pt-0 use-contacts-container"
-												@click="() => changeContactBar(true)"
+											<v-card-title
+												class="justify-center"
+												:style="getUseContactsTitleFont"
+												>{{ $t('contact.title') }}</v-card-title
 											>
-												<v-card-title
-													class="justify-center"
-													:style="getUseContactsTitleFont"
-													>{{ $t('contact.title') }}</v-card-title
-												>
-												<v-card-actions
-													class="pa-0 justify-center"
-													:style="getUseContactsActionFont"
-												>
-													<div class="contacts-action">
-														{{ $t('contact.subTitle') }}
-													</div>
-												</v-card-actions>
-											</v-card>
-										</v-col>
-									</v-row>
-								</v-col>
-							</v-row>
+											<v-card-actions
+												class="pa-0 justify-center"
+												:style="getUseContactsActionFont"
+											>
+												<div class="contacts-action">
+													{{ $t('contact.subTitle') }}
+												</div>
+											</v-card-actions>
+										</v-card>
+									</v-col>
+								</v-row>
+							</v-col>
+						</v-row>
 					</v-footer>
 				</OpacityBox>
 			</v-col>
@@ -118,7 +128,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
-import posed from "vue-pose";
+import posed from 'vue-pose';
 import PreviewPage from '@/components/preview-page.vue';
 
 @Component({
@@ -130,16 +140,15 @@ import PreviewPage from '@/components/preview-page.vue';
 	components: {
 		PreviewPage,
 		Slogan: posed.p({
-        visible: { opacity: 1 },
-        hidden: { opacity: 0 },
+			visible: { opacity: 1 },
+			hidden: { opacity: 0 },
 		}),
 		OpacityBox: posed.div({
-        visible: { opacity: 1},
-        hidden: { opacity: 0},
-		})
+			visible: { opacity: 1 },
+			hidden: { opacity: 0 },
+		}),
 	},
 })
-
 export default class AboutPage extends Vue {
 	@Getter('AboutModule/getStage') about;
 	@Getter('getPageId') pageId;
@@ -221,8 +230,11 @@ export default class AboutPage extends Vue {
 		const firstStageAnimationDelay = this.visibilityLoader ? 2000 : 200;
 		const secondStageAnimationDelay = this.visibilityLoader ? 2500 : 250;
 
-		setTimeout(() => this.isSloganAnimation = true, firstStageAnimationDelay);
-		setTimeout(() => this.isContactAnimation = true, secondStageAnimationDelay);
+		setTimeout(() => (this.isSloganAnimation = true), firstStageAnimationDelay);
+		setTimeout(
+			() => (this.isContactAnimation = true),
+			secondStageAnimationDelay,
+		);
 	}
 	beforeDestroy() {
 		this.changeContactBar(false);

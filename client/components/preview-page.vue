@@ -11,7 +11,11 @@
 					class="ma-0 ml-sm-2"
 					justify="space-around"
 					align="end"
-					:class="{ 'preview-margin': iconDown , 'preview-wrapper'  : !isXsOnly , 'preview-wrapper-mobile'  : isXsOnly }"
+					:class="{
+						'preview-margin': iconDown,
+						'preview-wrapper': !isXsOnly,
+						'preview-wrapper-mobile': isXsOnly,
+					}"
 				>
 					<v-col
 						cols="12"
@@ -32,7 +36,10 @@
 							>
 								{{ title }}
 							</TitleContent>
-							<SubtitleContent class="bold-preview" :style="getPreviewTitleFont">
+							<SubtitleContent
+								class="bold-preview"
+								:style="getPreviewTitleFont"
+							>
 								{{ subtitle }}
 							</SubtitleContent>
 						</div>
@@ -58,7 +65,11 @@
 								>
 									<nuxt-link
 										class="square-container"
-										:to="`/${$i18n.locale !== $i18n.defaultLocale ? $i18n.locale : ''}`"
+										:to="
+											`/${
+												$i18n.locale !== $i18n.defaultLocale ? $i18n.locale : ''
+											}`
+										"
 									>
 										<div class="squares mr-3 squareOne"></div>
 										<div class="squares mr-3 squareTwo"></div>
@@ -71,13 +82,21 @@
 
 					<v-col cols="12" order="2" order-sm="3">
 						<v-row class="d-none d-sm-flex font-weight-regular line-height-1">
-							<DescriptionContent :pose="isDescriptionContent ? 'visible' : 'hidden'" :style="getPreviewSubTitleFont">{{ description }}</DescriptionContent>
+							<DescriptionContent
+								:pose="isDescriptionContent ? 'visible' : 'hidden'"
+								:style="getPreviewSubTitleFont"
+								>{{ description }}</DescriptionContent
+							>
 						</v-row>
 						<v-row justify="center" class="d-flex d-sm-none pl-0">
 							<img class="pointer-icon" src="/pointer-mobile.svg" />
 						</v-row>
 						<v-row justify="center" justify-sm="start" class="mt-4">
-							<DescriptionContent :pose="isDescriptionContent ? 'visible' : 'hidden'" class="gray font-weight-regular" :style="getPreviewInfoFont">
+							<DescriptionContent
+								:pose="isDescriptionContent ? 'visible' : 'hidden'"
+								class="gray font-weight-regular"
+								:style="getPreviewInfoFont"
+							>
 								{{ $t(isAboutPage ? 'about.scrollPoint' : 'common.scroll') }}
 							</DescriptionContent>
 						</v-row>
@@ -91,9 +110,11 @@
 					no-gutters
 				>
 					<v-col cols="12" sm="auto">
-						<v-card class="pa-4 pt-0"
-										:class="isXsOnly ? 'card-contacts': 'card-contacts-sm-and-up'"
-										@click="scrollToFooter">
+						<v-card
+							class="pa-4 pt-0"
+							:class="isXsOnly ? 'card-contacts' : 'card-contacts-sm-and-up'"
+							@click="scrollToFooter"
+						>
 							<v-card-title
 								class="justify-center font-weight-thin"
 								:style="getUseContactsTitleFont"
@@ -130,33 +151,33 @@ import { Getter, Mutation } from 'vuex-class';
 import posed from 'vue-pose';
 
 @Component({
-	components:{
-	    CentralSection: posed.section({
-          visible: {
-              opacity: 1 ,
-              beforeChildren: true,
-					},
-          hidden: {
-            	opacity: 0,
+	components: {
+		CentralSection: posed.section({
+			visible: {
+				opacity: 1,
+				beforeChildren: true,
+			},
+			hidden: {
+				opacity: 0,
 				afterChildren: true,
-					},
-			}),
-			TitleContent: posed.p({
-          visible: { opacity: 1, y: 0 },
-          hidden: { opacity: 0, y: 20 },
-      }),
-      SubtitleContent: posed.p({
-          visible: { opacity: 1, y: 0 },
-          hidden: { opacity: 0, y: 20 },
-      }),
-			NavigationContent: posed.div({
-          visible: { opacity: 1, y: 0 },
-          hidden: { opacity: 0, y: 20 },
-			}),
-			DescriptionContent: posed.span({
-				visible: { opacity: 1, y: 0 },
-				hidden: { opacity: 0, y: 20 },
-			}),
+			},
+		}),
+		TitleContent: posed.p({
+			visible: { opacity: 1, y: 0 },
+			hidden: { opacity: 0, y: 20 },
+		}),
+		SubtitleContent: posed.p({
+			visible: { opacity: 1, y: 0 },
+			hidden: { opacity: 0, y: 20 },
+		}),
+		NavigationContent: posed.div({
+			visible: { opacity: 1, y: 0 },
+			hidden: { opacity: 0, y: 20 },
+		}),
+		DescriptionContent: posed.span({
+			visible: { opacity: 1, y: 0 },
+			hidden: { opacity: 0, y: 20 },
+		}),
 	},
 	props: ['title', 'subtitle', 'description', 'iconDown'],
 })
@@ -223,7 +244,6 @@ export default class PreviewPage extends Vue {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 	}
 
-
 	get getPreviewSubTitleFont() {
 		return {
 			fontSize: `${this.getAdaptiveSize('previewSubtitle')}px`,
@@ -245,7 +265,7 @@ export default class PreviewPage extends Vue {
 	get getPreviewTitleFont() {
 		return {
 			fontSize: `${this.getAdaptiveSize('previewTitle')}px`,
-		}
+		};
 	}
 
 	mounted() {
@@ -253,7 +273,7 @@ export default class PreviewPage extends Vue {
 
 		// initial check
 		this.handleScroll();
-		setTimeout(() => this.isStartAnimation = true, animationDelay);
+		setTimeout(() => (this.isStartAnimation = true), animationDelay);
 	}
 }
 </script>

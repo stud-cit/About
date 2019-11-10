@@ -143,6 +143,4 @@ export default class PortfolioPage extends Vue {
 
 .border-text-link
   border-bottom: 1px solid white
-
-
 </style>

@@ -52,7 +52,11 @@
 		<v-row class="d-flex d-sm-none" justify="center">
 			<v-col v-for="(page, i) in pages" :key="i" cols="10">
 				<client-only>
-					<v-card class="disable-underline" :href="localePath(page.to, $i18n.locale)" :link="true">
+					<v-card
+						class="disable-underline"
+						:href="localePath(page.to, $i18n.locale)"
+						:link="true"
+					>
 						<v-img
 							:src="getDynamicAssets(`/images/covers${page.videoBg.cover}`)"
 							:gradient="imagePageGradient"

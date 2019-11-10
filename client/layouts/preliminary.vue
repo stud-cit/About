@@ -67,7 +67,7 @@
 			@click="toggleVisibilityLocales"
 			icon
 			x-large
-			:class="{'locale-button': isSmOnly}"
+			:class="{ 'locale-button': isSmOnly }"
 		>
 			<v-icon size="35" color="black">mdi-menu</v-icon>
 		</v-btn>
