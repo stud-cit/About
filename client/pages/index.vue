@@ -22,7 +22,7 @@
 					>
 						<v-card class="none-radius" @click="hideSwiper">
 							<v-img
-								:src="getDynamicAssets(page.img)"
+								:src="getDynamicAssets(`/images/covers${page.videoBg.cover}`)"
 								:gradient="imagePageGradient"
 								:lazy-src="page.lazyImg"
 								:height="isMdAndDown ? '45vh' : '55vh'"
@@ -54,7 +54,7 @@
 				<client-only>
 					<v-card class="disable-underline" :href="localePath(page.to, $i18n.locale)" :link="true">
 						<v-img
-							:src="getDynamicAssets(page.img)"
+							:src="getDynamicAssets(`/images/covers${page.videoBg.cover}`)"
 							:gradient="imagePageGradient"
 							:lazy-src="page.lazyImg"
 							height="30vh"
