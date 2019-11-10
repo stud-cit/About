@@ -43,17 +43,6 @@
 											</v-btn>
 										</ContentBox>
 									</v-col>
-									<ContentBox>
-										<v-btn
-											icon
-											dark
-											:to="localePath({ name: 'index' })"
-											class="d-none d-md-flex"
-											nuxt
-										>
-											<v-icon size="40">mdi-fullscreen-exit</v-icon>
-										</v-btn>
-									</ContentBox>
 								</Navs>
 						</v-col>
 						<v-btn
