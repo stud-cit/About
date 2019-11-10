@@ -3,7 +3,7 @@ import commonFontSizeList from '~/utils/size.models';
 
 Vue.mixin({
 	methods: {
-		getDynamicAssets(src: string | null) {
+		getDynamicAssets(src?: string) {
 			if (src) {
 				return require(`~/assets${src}`);
 			}

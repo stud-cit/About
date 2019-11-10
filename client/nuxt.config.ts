@@ -49,8 +49,9 @@ const config: Configuration = {
 		'~/plugins/vuetify',
 		'~/plugins/vee-validate',
 		'~/plugins/axios',
-		{ src: '~/plugins/vuetify-breakpoints', ssr: false },
+		{ src: '~/plugins/responsive-video-bg', ssr: false },
 		{ src: '~/plugins/swiper', ssr: false },
+		{ src: '~/plugins/vuetify-breakpoints', ssr: false },
 	],
 
 	auth: {

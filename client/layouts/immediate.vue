@@ -1,5 +1,23 @@
 <template>
 	<v-app>
+		<!-- shows video on md using sources otherwise using default src -->
+		<!-- TODO: (vadim) change to videoMobile when get proper videos-->
+		<client-only>
+			<video-background
+				id="video-bg"
+				:sources="[
+					{
+						src: videoBg.videoPc ? getDynamicAssets(`/videos${videoBg.videoPc }`) : '',
+						res: 600,
+						autoplay: true,
+						poster: videoBg.cover ? getDynamicAssets(`/images/covers${videoBg.cover}`) : '',
+					}
+				]"
+				:src="videoBg.videoPc ? getDynamicAssets(`/videos${videoBg.videoPc}`) : ''"
+				:poster="videoBg.cover ? getDynamicAssets(`/images/covers${videoBg.cover}`) : ''"
+				overlay="linear-gradient(45deg,#2a4ae430,#fb949e6b)"
+			/>
+		</client-only>
 		<v-app-bar
 			id="header"
 			:class="scrollNumber ? 'pt-5 pt-lg-7' : 'pt-2 pb-1 mini-header'"
@@ -74,15 +92,12 @@
 				</OpacityBox>
 			</v-col>
 		</v-row>
-		<v-img :src="getDynamicAssets(cover)" class="imageCover" />
-
 		<v-content class="pt-0">
 			<v-container fluid class="pa-0">
 				<nuxt />
 				<contact-bar />
 			</v-container>
 		</v-content>
-
 		<v-dialog
 			v-model="isShowMobileMenu"
 			fullscreen
@@ -153,7 +168,7 @@ export default class ImmediatetLayout extends Vue {
 	@Getter('getPageByRoute') getPageByRoute;
 	@Getter('getPageId') pageId;
 	@Getter('getPageStage') pages;
-	@Getter('getPageCover') cover;
+	@Getter('getPageVideoBg') videoBg;
 	@Getter('visibilityLoader') visibilityLoader;
 
 	isShowMobileMenu: boolean = false;
@@ -199,6 +214,11 @@ export default class ImmediatetLayout extends Vue {
 </script>
 
 <style lang="sass">
+#video-bg
+	height: 100vh
+	max-height: 100vh
+	position: fixed
+
 #header
 	z-index: 30
 	height: auto !important
