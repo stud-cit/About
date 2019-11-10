@@ -71,9 +71,9 @@
 											dark
 											text
 										>
-											<span :style="getTotalPagesFont" class="not-uppercase">{{
-												$t(page.title)
-											}}</span>
+											<span :style="getTotalPagesFont" class="not-uppercase">
+												{{$t(page.title)}}
+											</span>
 										</v-btn>
 									</ContentBox>
 								</v-col>
@@ -242,16 +242,19 @@ export default class ImmediatetLayout extends Vue {
 	z-index: 30
 	height: auto !important
 	color: rgba(255, 255, 255, 1)
+	transition: all ease .5s
+
 	.desktop-link
 		font-weight: 600
 		&::before
 			opacity: 0
+
 	.active-desktop-link
 		border-bottom: 4px solid white
 		border-radius: unset
 
-.mini-header
-	background: rgba(0, 0, 0, 0.45) !important
+	&.mini-header
+		background: rgba(0, 0, 0, 0.45)
 
 .nav-panel
 	display: flex
