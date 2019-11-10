@@ -26,7 +26,7 @@
 									<a :href="project.link">
 										<v-list-item-title
 											v-text="project.title"
-											class=" font-weight-medium text-underline text-wrap text-center"
+											class="font-weight-medium text-underline text-wrap text-center portfolio-link"
 											:style="getProjectTitleFont"
 										/>
 									</a>
@@ -128,6 +128,10 @@ export default class PortfolioPage extends Vue {
     line-height: normal
     text-decoration: underline
     text-underline-position: under
+
+  .portfolio-link
+    color: white
+
 .arrow-right
   border-radius: 50%
   padding: 25px
@@ -140,6 +144,5 @@ export default class PortfolioPage extends Vue {
 .border-text-link
   border-bottom: 1px solid white
 
-.v-application a
-  color: white
+
 </style>
