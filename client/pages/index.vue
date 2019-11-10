@@ -125,7 +125,7 @@ export default class HomePage extends Vue {
 		} else {
 			setTimeout(() => {
 				this.isShowSwiper = true;
-			}, 250);
+			}, 1000);
 		}
 	}
 

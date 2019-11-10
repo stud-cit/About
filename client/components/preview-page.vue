@@ -5,143 +5,150 @@
 		align="center"
 		:class="isAboutPage ? 'preview-section-about' : 'preview-section-not-about'"
 	>
-		<CentralSection :pose="isStartAnimation ? 'visible' : 'hidden'">
-			<v-col cols="12" lg="12" xl="12">
-				<v-row
-					class="ma-0 ml-sm-2"
-					justify="space-around"
-					align="end"
-					:class="{
-						'preview-margin': iconDown,
-						'preview-wrapper': !isXsOnly,
-						'preview-wrapper-mobile': isXsOnly,
-					}"
+		<v-col cols="12" lg="12" xl="12">
+			<v-row
+				class="ma-0 ml-sm-2"
+				justify="space-around"
+				align="end"
+				:class="{
+					'preview-margin': iconDown,
+					'preview-wrapper': !isXsOnly,
+					'preview-wrapper-mobile': isXsOnly,
+				}"
+			>
+				<v-col
+					cols="12"
+					order="1"
+					order-sm="1"
+					class="pa-0 line-height"
+					:class="{ 'text-center': isXsOnly }"
 				>
-					<v-col
-						cols="12"
-						order="1"
-						order-sm="1"
-						class="pa-0 line-height"
-						:class="{ 'text-center': isXsOnly }"
-					>
-						<div class="d-block">
-							<TitleContent
-								:pose="isTitleContent ? 'visible' : 'hidden'"
-								class="bold-preview"
-								:class="{
-									'text-uppercase': isAboutPage,
-									'title-about': isLgAndUp && isAboutPage,
-								}"
-								:style="getPreviewTitleFont"
-							>
-								{{ title }}
-							</TitleContent>
-							<SubtitleContent
-								class="bold-preview"
-								:style="getPreviewTitleFont"
-							>
-								{{ subtitle }}
-							</SubtitleContent>
-						</div>
-					</v-col>
-					<v-col cols="12" order="3" order-sm="2">
-						<NavigationContent>
-							<v-row justify="space-around" justify-sm="start">
-								<v-col cols="auto" order="1" order-sm="1">
-									<div class="arrow mr-3" @click="handleNavigatingPage(false)">
-										<v-img src="/arrow-left.svg" width="45px" />
-									</div>
-								</v-col>
-								<v-col cols="auto" order="3" order-sm="2">
-									<div class="arrow mr-3" @click="handleNavigatingPage(true)">
-										<v-img src="/arrow-right.svg" width="45px" />
-									</div>
-								</v-col>
-								<v-col
-									cols="auto"
-									order="2"
-									order-sm="3"
-									:class="{ rotate: isXsOnly }"
-								>
-									<nuxt-link
-										class="square-container"
-										:to="
-											`/${
-												$i18n.locale !== $i18n.defaultLocale ? $i18n.locale : ''
-											}`
-										"
-									>
-										<div class="squares mr-3 squareOne"></div>
-										<div class="squares mr-3 squareTwo"></div>
-										<div class="squares squareThree"></div>
-									</nuxt-link>
-								</v-col>
-							</v-row>
-						</NavigationContent>
-					</v-col>
-
-					<v-col cols="12" order="2" order-sm="3">
-						<v-row class="d-none d-sm-flex font-weight-regular line-height-1">
-							<DescriptionContent
-								:pose="isDescriptionContent ? 'visible' : 'hidden'"
-								:style="getPreviewSubTitleFont"
-								>{{ description }}</DescriptionContent
-							>
-						</v-row>
-						<v-row justify="center" class="d-flex d-sm-none pl-0">
-							<img class="pointer-icon" src="/pointer-mobile.svg" />
-						</v-row>
-						<v-row justify="center" justify-sm="start" class="mt-4">
-							<DescriptionContent
-								:pose="isDescriptionContent ? 'visible' : 'hidden'"
-								class="gray font-weight-regular"
-								:style="getPreviewInfoFont"
-							>
-								{{ $t(getScrollInfo) }}
-							</DescriptionContent>
-						</v-row>
-					</v-col>
-				</v-row>
-				<v-row
-					v-show="isShowUseContacts"
-					v-scroll="handleScroll"
-					class="pa-0 use-contacts-container"
-					justify="end"
-					no-gutters
-				>
-					<v-col cols="12" sm="auto">
-						<v-card
-							class="pa-4 pt-0"
-							:class="isXsOnly ? 'card-contacts' : 'card-contacts-sm-and-up'"
-							@click="scrollToFooter"
+					<div class="d-block">
+						<ContentBlock
+							:pose="isStartAnimation ? 'visible' : 'hidden'"
+							:delay="getAnimationDelay"
+							class="bold-preview"
+							:class="{
+								'text-uppercase': isAboutPage,
+								'title-about': isLgAndUp && isAboutPage,
+							}"
+							:style="getPreviewTitleFont"
 						>
-							<v-card-title
-								class="justify-center font-weight-thin"
-								:style="getUseContactsTitleFont"
-								>{{ $t('contact.title') }}</v-card-title
-							>
-							<v-card-actions
-								class="pa-0 justify-center font-weight-regular"
-								:style="getUseContactsActionFont"
-							>
-								<div class="contacts-action">{{ $t('contact.subTitle') }}</div>
-							</v-card-actions>
-						</v-card>
-					</v-col>
-					<v-col sm="1"></v-col>
-				</v-row>
-				<v-row justify="center" v-show="iconDown && isMdAndUp">
-					<v-btn
-						icon
-						color="white"
-						@click="scollToContent"
-						class="scroll-bottom-icon"
+							{{ title }}
+						</ContentBlock>
+						<ContentBlock
+							:pose="isStartAnimation ? 'visible' : 'hidden'"
+							:delay="getAnimationDelay"
+							class="bold-preview"
+							:style="getPreviewTitleFont"
+						>
+							{{ subtitle }}
+						</ContentBlock>
+					</div>
+				</v-col>
+				<v-col cols="12" order="3" order-sm="2">
+					<OpacityBlock
+						:pose="isStartAnimation ? 'visible' : 'hidden'"
+						:delay="getAnimationDelay"
 					>
-						<v-icon size="50" class="icon-down">mdi-chevron-double-down</v-icon>
-					</v-btn>
-				</v-row>
-			</v-col>
-		</CentralSection>
+						<v-row justify="space-around" justify-sm="start">
+							<v-col cols="auto" order="1" order-sm="1">
+								<div class="arrow mr-3" @click="handleNavigatingPage(false)">
+									<v-img src="/arrow-left.svg" width="45px" />
+								</div>
+							</v-col>
+							<v-col cols="auto" order="3" order-sm="2">
+								<div class="arrow mr-3" @click="handleNavigatingPage(true)">
+									<v-img src="/arrow-right.svg" width="45px" />
+								</div>
+							</v-col>
+							<v-col
+								cols="auto"
+								order="2"
+								order-sm="3"
+								:class="{ rotate: isXsOnly }"
+							>
+								<nuxt-link
+									class="square-container"
+									:to="
+										`/${
+											$i18n.locale !== $i18n.defaultLocale ? $i18n.locale : ''
+										}`
+									"
+								>
+									<div class="squares mr-3 squareOne"></div>
+									<div class="squares mr-3 squareTwo"></div>
+									<div class="squares squareThree"></div>
+								</nuxt-link>
+							</v-col>
+						</v-row>
+					</OpacityBlock>
+				</v-col>
+
+				<v-col cols="12" order="2" order-sm="3">
+					<v-row class="d-none d-sm-flex font-weight-regular line-height-1">
+						<ContentBlock
+							:pose="isStartAnimation ? 'visible' : 'hidden'"
+							:delay="getAnimationDelay"
+							:style="getPreviewSubTitleFont"
+						>
+							{{ description }}
+						</ContentBlock>
+					</v-row>
+					<v-row justify="center" class="d-flex d-sm-none pl-0">
+						<img class="pointer-icon" src="/pointer-mobile.svg" />
+					</v-row>
+					<v-row justify="center" justify-sm="start" class="mt-4">
+						<ContentBlock
+							:pose="isStartAnimation ? 'visible' : 'hidden'"
+							:delay="getAnimationDelay"
+							class="gray font-weight-regular"
+							:style="getPreviewInfoFont"
+						>
+							{{ $t(getScrollInfo) }}
+						</ContentBlock>
+					</v-row>
+				</v-col>
+			</v-row>
+			<v-row
+				v-show="isShowUseContacts"
+				v-scroll="handleScroll"
+				class="pa-0 use-contacts-container"
+				justify="end"
+				no-gutters
+			>
+				<v-col cols="12" sm="auto">
+					<v-card
+						class="pa-4 pt-0"
+						:class="isXsOnly ? 'card-contacts' : 'card-contacts-sm-and-up'"
+						@click="scrollToFooter"
+					>
+						<v-card-title
+							class="justify-center font-weight-thin"
+							:style="getUseContactsTitleFont"
+							>{{ $t('contact.title') }}</v-card-title
+						>
+						<v-card-actions
+							class="pa-0 justify-center font-weight-regular"
+							:style="getUseContactsActionFont"
+						>
+							<div class="contacts-action">{{ $t('contact.subTitle') }}</div>
+						</v-card-actions>
+					</v-card>
+				</v-col>
+				<v-col sm="1"></v-col>
+			</v-row>
+			<v-row justify="center" v-show="iconDown && isMdAndUp">
+				<v-btn
+					icon
+					color="white"
+					@click="scollToContent"
+					class="scroll-bottom-icon"
+				>
+					<v-icon size="50" class="icon-down">mdi-chevron-double-down</v-icon>
+				</v-btn>
+			</v-row>
+		</v-col>
 	</v-row>
 </template>
 
@@ -152,30 +159,12 @@ import posed from 'vue-pose';
 
 @Component({
 	components: {
-		CentralSection: posed.section({
-			visible: {
-				opacity: 1,
-				beforeChildren: true,
-			},
-			hidden: {
-				opacity: 0,
-				afterChildren: true,
-			},
+		OpacityBlock: posed.div({
+			visible: { opacity: 1, delay: ({delay}) => delay },
+			hidden: { opacity: 0 },
 		}),
-		TitleContent: posed.p({
-			visible: { opacity: 1, y: 0 },
-			hidden: { opacity: 0, y: 20 },
-		}),
-		SubtitleContent: posed.p({
-			visible: { opacity: 1, y: 0 },
-			hidden: { opacity: 0, y: 20 },
-		}),
-		NavigationContent: posed.div({
-			visible: { opacity: 1, y: 0 },
-			hidden: { opacity: 0, y: 20 },
-		}),
-		DescriptionContent: posed.span({
-			visible: { opacity: 1, y: 0 },
+		ContentBlock: posed.p({
+			visible: { opacity: 1, y: 0, delay: ({delay}) => delay },
 			hidden: { opacity: 0, y: 20 },
 		}),
 	},
@@ -191,9 +180,11 @@ export default class PreviewPage extends Vue {
 	aboutPageId: number = 1;
 	portfolioPageId: number = 4;
 	weofferPageId: number = 2;
+
+	// animation
 	isStartAnimation: boolean = false;
-	isTitleContent: boolean = false;
-	isDescriptionContent: boolean = false;
+	animationDelayWithLoader: number =  2000;
+	animationDelayWithoutLoader: number =  200;
 
 	handleScroll(): void {
 		const windowHeight = window.innerHeight;
@@ -217,6 +208,7 @@ export default class PreviewPage extends Vue {
 	scollToContent(): void {
 		window.scrollTo({ left: 0, top: window.innerHeight, behavior: 'smooth' });
 	}
+
 	scrollToFooter() {
 		window.scrollTo({
 			left: 0,
@@ -259,6 +251,11 @@ export default class PreviewPage extends Vue {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 	}
 
+
+	get getAnimationDelay() {
+		return this.visibilityLoader ? this.animationDelayWithLoader : this.animationDelayWithoutLoader;
+	}
+
 	get getPreviewSubTitleFont() {
 		return {
 			fontSize: `${this.getAdaptiveSize('previewSubtitle')}px`,
@@ -284,11 +281,13 @@ export default class PreviewPage extends Vue {
 	}
 
 	mounted() {
-		const animationDelay = this.visibilityLoader ? 2000 : 200;
+		this.isStartAnimation = true;
+
+		// increase animation delay to prevent staring too early
+		this.animationDelayWithoutLoader = 350;
 
 		// initial check
 		this.handleScroll();
-		setTimeout(() => (this.isStartAnimation = true), animationDelay);
 	}
 }
 </script>

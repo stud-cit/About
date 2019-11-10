@@ -43,7 +43,7 @@
 							:cols="scrollNumber ? 'auto' : '2'"
 							class="pa-0 d-none d-sm-flex"
 						>
-							<OpacityBox :pose="isStartAnimation ? 'visible' : 'hidden'">
+							<OpacityBox :pose="isStartAnimation ? 'visible' : 'hidden'" :delay="getAnimationDelay">
 								<nuxt-link :to="localePath({ name: 'index' })" nuxt>
 									<v-img src="/logo.svg" />
 								</nuxt-link>
@@ -53,6 +53,7 @@
 							<Navs
 								class="nav-panel"
 								:pose="isStartAnimation ? 'visible' : 'hidden'"
+								:delay="getAnimationDelay"
 							>
 								<v-col
 									class="pa-0 nav-links"
@@ -98,7 +99,7 @@
 			:class="{ 'page-info-mobile': isXsOnly }"
 		>
 			<v-col v-show="scrollNumber" cols="auto" offset="0" offset-sm="1">
-				<OpacityBox :pose="isStartAnimation ? 'visible' : 'hidden'">
+				<OpacityBox :pose="isStartAnimation ? 'visible' : 'hidden'" :delay="getAnimationDelay">
 					<p class="bold-italic-preview d-flex">
 						<span :style="getPageIndexFont">0{{ pageId }}</span>
 						<span
@@ -168,13 +169,14 @@ import ContactBar from '@/components/contact-bar.vue';
 			visible: {
 				beforeChildren: true,
 				staggerChildren: 50,
+				delayChildren: ({delay}) => delay,
 			},
 			hidden: {
 				afterChildren: true,
 			},
 		}),
 		OpacityBox: posed.div({
-			visible: { opacity: 1 },
+			visible: { opacity: 1, delay: ({delay}) => delay },
 			hidden: { opacity: 0 },
 		}),
 		ContentBox: posed.div({
@@ -208,6 +210,10 @@ export default class ImmediatetLayout extends Vue {
 		return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
 	}
 
+	get getAnimationDelay() {
+		return this.visibilityLoader ? 1500 : 0;
+	}
+
 	get getPageIndexFont() {
 		return { fontSize: `${this.getAdaptiveSize('pageIndexFont')}px` };
 	}
@@ -226,8 +232,7 @@ export default class ImmediatetLayout extends Vue {
 		this.isShowMobileMenu = !this.isShowMobileMenu;
 	}
 	mounted() {
-		const animationDelay = this.visibilityLoader ? 1500 : 0;
-		setTimeout(() => (this.isStartAnimation = true), animationDelay);
+		this.isStartAnimation = true;
 	}
 }
 </script>

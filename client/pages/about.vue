@@ -53,6 +53,7 @@
 
 				<Slogan
 					:pose="isSloganAnimation ? 'visible' : 'hidden'"
+					:delay="getFirstStageAnimationDelay"
 					class="d-none d-md-block rotated-phraze font-weight-light"
 					:class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
 					v-if="curStage <= about[$i18n.locale].slides.length"
@@ -67,7 +68,10 @@
 				>
 					{{ $t('about.backToStart') }}
 				</p>
-				<OpacityBox :pose="isContactAnimation ? 'visible' : 'hidden'">
+				<OpacityBox
+					:pose="isContactAnimation ? 'visible' : 'hidden'"
+					:delay="getSecondStageAnimationDelay"
+				>
 					<v-footer absolute color="transparent" class="pb-0 px-0 px-sm-auto">
 						<v-row justify="center">
 							<v-col sm="12" md="10" lg="10" class="pb-0">
@@ -140,11 +144,11 @@ import PreviewPage from '@/components/preview-page.vue';
 	components: {
 		PreviewPage,
 		Slogan: posed.p({
-			visible: { opacity: 1 },
+			visible: { opacity: 1, delay: ({delay}) => delay },
 			hidden: { opacity: 0 },
 		}),
 		OpacityBox: posed.div({
-			visible: { opacity: 1 },
+			visible: { opacity: 1, delay: ({delay}) => delay },
 			hidden: { opacity: 0 },
 		}),
 	},
@@ -159,13 +163,26 @@ export default class AboutPage extends Vue {
 	@Mutation('changeContactBar') changeContactBar;
 
 	curStage: number = 0;
-	isSloganAnimation: boolean = false;
+	isSloganAnimation: boolean 	= false;
 	isContactAnimation: boolean = false;
 
 	backToStart() {
 		this.curStage = 0;
 		this.changeContactBar(false);
 	}
+
+
+	get getFirstStageAnimationDelay() {
+		const delayWithLoader = 2000;
+		const delayWithoutLoader = 200;
+		return this.visibilityLoader ? delayWithLoader : delayWithoutLoader;
+	};
+
+	get getSecondStageAnimationDelay() {
+		const delayWithLoader = 2500;
+		const delayWithoutLoader = 200;
+		return this.visibilityLoader ? delayWithLoader : delayWithoutLoader;
+	};
 
 	get isXsOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
@@ -227,15 +244,10 @@ export default class AboutPage extends Vue {
 	}
 
 	mounted() {
-		const firstStageAnimationDelay = this.visibilityLoader ? 2000 : 200;
-		const secondStageAnimationDelay = this.visibilityLoader ? 2500 : 250;
-
-		setTimeout(() => (this.isSloganAnimation = true), firstStageAnimationDelay);
-		setTimeout(
-			() => (this.isContactAnimation = true),
-			secondStageAnimationDelay,
-		);
+		this.isSloganAnimation = true;
+		this.isContactAnimation = true
 	}
+
 	beforeDestroy() {
 		this.changeContactBar(false);
 	}
