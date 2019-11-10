@@ -42,6 +42,7 @@ class RootState {
 	error!: any;
 	visibilityLoader: boolean = true;
 	showContactBar: boolean = false;
+	showScrollBar: boolean = false;
 	pageId = 0;
 	pages: PageModel[] = [
 		{
@@ -128,6 +129,10 @@ class RootGetters extends Getters<RootState> {
 		return this.state.showContactBar;
 	}
 
+	get getScrollBarVisibility(): boolean {
+		return this.state.showScrollBar;
+	}
+
 	get getPageVideoBg(): VideoBgModel | {} {
 		const currentPage = this.state.pages.find(
 			({ id }: PageModel) => id === this.state.pageId,
@@ -169,6 +174,9 @@ class RootMutations extends Mutations<RootState> {
 	}
 	changeContactBar(visibility: boolean) {
 		return Vue.set(this.state, 'showContactBar', visibility);
+	}
+	changeScrollBar(visibility: boolean) {
+		return Vue.set(this.state, 'showScrollBar', visibility);
 	}
 }
 

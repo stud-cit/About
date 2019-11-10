@@ -1,6 +1,6 @@
 <template>
 	<OpacityBox
-		:pose="visibility ? 'visible' : 'hidden'"
+		:pose="visibility && visibilityScrollBar ? 'visible' : 'hidden'"
 		:delay="visibilityLoader ? 2500 : 450"
 	>
 		<div class="d-none d-md-flex scrollbar-track" v-scroll="handleScroll">
@@ -11,20 +11,21 @@
 
 <script lang="ts">
 import posed from 'vue-pose';
-
 import { Component, Vue, Watch } from 'vue-property-decorator';
-import { Getter } from 'vuex-class';
+import { Getter, Mutation } from 'vuex-class';
 
 @Component({
 	components: {
 		OpacityBox: posed.div({
 			visible: { opacity: 1, delay: ({delay}) => delay },
-			hidden: { opacity: 0, delay: ({delay}) => delay },
+			hidden: { opacity: 0, transition: { duration: 0 } },
 		}),
 	},
 })
 export default class ScrollBar extends Vue {
 	@Getter('visibilityLoader') visibilityLoader;
+	@Getter('getScrollBarVisibility') visibilityScrollBar;
+	@Mutation('changeScrollBar') changeScrollBar;
 
 	el: 'scrollbar-track';
 	targ: 'scrollbar-thumb';
@@ -45,6 +46,7 @@ export default class ScrollBar extends Vue {
 	}
 
 	mounted() {
+		this.changeScrollBar(true);
 		if (document.body.scrollHeight > window.innerHeight) {
 			this.visibility = true;
 		}

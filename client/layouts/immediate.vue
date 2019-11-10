@@ -159,7 +159,7 @@
 <script lang="ts">
 import posed from 'vue-pose';
 import { Component, Vue } from 'vue-property-decorator';
-import { Getter } from 'vuex-class';
+import { Getter, Mutation } from 'vuex-class';
 import ContactBar from '@/components/contact-bar.vue';
 
 @Component({
@@ -191,6 +191,7 @@ export default class ImmediatetLayout extends Vue {
 	@Getter('getPageStage') pages;
 	@Getter('getPageVideoBg') videoBg;
 	@Getter('visibilityLoader') visibilityLoader;
+	@Mutation('changeScrollBar') changeScrollBar;
 
 	isShowMobileMenu: boolean = false;
 	isStartAnimation: boolean = false;
@@ -233,6 +234,12 @@ export default class ImmediatetLayout extends Vue {
 	}
 	mounted() {
 		this.isStartAnimation = true;
+
+		// hide scrollBar on any route change
+		this.$router.beforeHooks.push((prevRoute, nextRoute, next) => {
+			this.changeScrollBar(false);
+			setTimeout(() => next(), 25);
+		});
 	}
 }
 </script>
