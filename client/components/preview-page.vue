@@ -56,7 +56,10 @@
 									order-sm="3"
 									:class="{ rotate: isXsOnly }"
 								>
-									<nuxt-link class="square-container" to="/">
+									<nuxt-link
+										class="square-container"
+										:to="`/${$i18n.locale !== $i18n.defaultLocale ? $i18n.locale : ''}`"
+									>
 										<div class="squares mr-3 squareOne"></div>
 										<div class="squares mr-3 squareTwo"></div>
 										<div class="squares squareThree"></div>
@@ -88,7 +91,9 @@
 					no-gutters
 				>
 					<v-col cols="12" sm="auto">
-						<v-card class="pa-4 pt-0 card-contacts" @click="scrollToFooter">
+						<v-card class="pa-4 pt-0"
+										:class="isXsOnly ? 'card-contacts': 'card-contacts-sm-and-up'"
+										@click="scrollToFooter">
 							<v-card-title
 								class="justify-center font-weight-thin"
 								:style="getUseContactsTitleFont"
@@ -122,7 +127,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
-import posed from "~/node_modules/vue-pose";
+import posed from 'vue-pose';
 
 @Component({
 	components:{
@@ -265,6 +270,10 @@ export default class PreviewPage extends Vue {
 
 		.card-contacts
 			border-radius: 0
+
+		.card-contacts-sm-and-up
+			border-top-left-radius: 10px
+			border-top-right-radius: 10px
 
 		.contacts-action
 			text-transform: uppercase

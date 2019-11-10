@@ -67,7 +67,7 @@
 			@click="toggleVisibilityLocales"
 			icon
 			x-large
-			:class="isSmOnly ? 'locale-button' : ''"
+			:class="{'locale-button': isSmOnly}"
 		>
 			<v-icon size="35" color="black">mdi-menu</v-icon>
 		</v-btn>
@@ -95,6 +95,7 @@
 							active-class="active-locale"
 							x-large
 							icon
+							@click="toggleVisibilityLocales"
 						>
 							<span class="locale">{{ locale.code }}</span>
 						</v-btn>
@@ -159,7 +160,7 @@ export default class PreliminaryLayout extends Vue {
 
 .burger-icon
   position: fixed
-  left: calc(50vw - 18px)
+  left: calc(50vw - 26px)
   bottom: 2vh
 
 .locale-button
@@ -174,7 +175,7 @@ export default class PreliminaryLayout extends Vue {
 
 .theme--light.v-btn::before
   opacity: 0 !important
-   border-radius: 50%
+  border-radius: 50%
   border: 2px solid #4A4A4A
 
 .theme--light.v-btn:hover::before
@@ -185,7 +186,7 @@ export default class PreliminaryLayout extends Vue {
 .close-icon
   z-index: 20
   position: absolute
-  left: calc(50vw - 18px)
+  left: calc(50vw - 26px)
   top: -18px
 .relative
   position: relative

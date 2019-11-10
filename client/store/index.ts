@@ -10,13 +10,17 @@ import { OffersModule } from './modules/offers.module';
 import { OurStaffModule } from './modules/ourStaff.module';
 import { PortfolioModule } from './modules/portfolio.module';
 
+// cover using for showing img during video loading
+interface VideoBgModel {
+	readonly cover: string;
+	readonly videoMobile: string;
+	readonly videoPc: string;
+}
 interface PageModel {
 	readonly id: number;
 	readonly title: string;
 	readonly to: string;
-	readonly img: string;
-	readonly lazyImg: string;
-	readonly cover: string;
+	readonly videoBg: VideoBgModel;
 }
 
 interface ContactsLocaleModel {
@@ -43,33 +47,41 @@ class RootState {
 			id: 1,
 			title: 'pages.about',
 			to: 'about',
-			img: '/images/background/about.jpg',
-			lazyImg: 'https://picsum.photos/id/1/60',
-			cover: '/images/background/about.jpg',
+			videoBg: {
+				cover: '/about.jpg',
+				videoMobile: '/about-us-mobile.mp4',
+				videoPc: '/about-us-pc.mp4',
+			},
 		},
 		{
 			id: 2,
 			title: 'pages.weOffers',
 			to: 'offers',
-			img: '/images/background/offers.jpg',
-			lazyImg: 'https://picsum.photos/id/3/60',
-			cover: '/images/background/offers.jpg',
+			videoBg: {
+				cover: '/offers.jpg',
+				videoMobile: '/we-offer-mobile.mp4',
+				videoPc: '/we-offer-pc.mp4',
+			},
 		},
 		{
 			id: 3,
 			title: 'pages.ourStaff',
 			to: 'our-staff',
-			img: '/images/background/our-staff.jpg',
-			lazyImg: 'https://picsum.photos/id/4/60',
-			cover: '/images/background/our-staff.jpg',
+			videoBg: {
+				cover: '/our-staff.jpg',
+				videoMobile: '/staff-mobile.mp4',
+				videoPc: '/staff-pc.mp4',
+			},
 		},
 		{
 			id: 4,
 			title: 'pages.portfolio',
 			to: 'portfolio',
-			img: '/images/background/portfolio.jpg',
-			lazyImg: 'https://picsum.photos/id/5/60',
-			cover: '/images/background/portfolio.jpg',
+			videoBg: {
+				cover: '/portfolio.jpg',
+				videoMobile: '/portfolio-mobile.mp4',
+				videoPc: '/portfolio-pc.mp4',
+			},
 		},
 	];
 	contacts: ContactsModel = {
@@ -111,11 +123,11 @@ class RootGetters extends Getters<RootState> {
 		return this.state.showContactBar;
 	}
 
-	get getPageCover(): string | null {
+	get getPageVideoBg(): VideoBgModel | {} {
 		const currentPage = this.state.pages.find(
 			({ id }: PageModel) => id === this.state.pageId,
 		);
-		return currentPage ? currentPage.cover : null;
+		return currentPage ? currentPage.videoBg : {};
 	}
 
 	get getPageStage(): PageModel[] {
