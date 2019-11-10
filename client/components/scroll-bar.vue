@@ -44,10 +44,10 @@ export default class ScrollBar extends Vue {
 	mounted() {
 		const animationDelay = this.visibilityLoader ? 2500 : 350;
 		setTimeout(() => {
-			this.handleScroll();
 			if (document.body.scrollHeight > window.innerHeight) {
 				this.visibility = true;
 			}
+			this.handleScroll();
 		}, animationDelay);
 	}
 }

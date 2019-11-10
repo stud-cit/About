@@ -292,9 +292,6 @@ export default class AboutPage extends Vue {
 .border-right
 	border-right: 16px solid white
 
-// .spacer
-// 	flex-grow: 0.65 !important
-
 .use-contacts-container
 	width: auto
 	border-radius: 0
@@ -309,6 +306,9 @@ export default class AboutPage extends Vue {
 	color: white
 	writing-mode: vertical-rl
 	transform: scaleX(-1) scaleY(-1)
+
+	&:hover
+		opacity: 0.8
 
 .rotated-phraze-md
 	top: calc(50vh - 163px)

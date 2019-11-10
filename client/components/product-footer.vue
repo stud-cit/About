@@ -1,6 +1,6 @@
 <template>
 	<v-row justify="center" align="end" class="footer-section">
-		<v-col cols="12" sm="10" class="d-flex ">
+		<v-col cols="12" sm="10" class="d-flex">
 			<v-row
 				justify="center"
 				align="center"
@@ -46,42 +46,42 @@ export default class PruductFooter extends Vue {
 
 <style lang="sass">
 .footer-section
-    position: relative
-    height: 100vh
-    color: white
+	position: relative
+	height: 100vh
+	color: white
 
 .return-section
-    width: 90%
-    height: 40vh
-    background: #282828
-    opacity: .5
-    cursor: pointer
-    font-weight: normal
-    font-style: normal
+	width: 90%
+	height: 40vh
+	background: #282828
+	opacity: .5
+	cursor: pointer
+	font-weight: normal
+	font-style: normal
 
-    p
-        color: #696969
+	p
+		color: #696969
 
-    .text-sm
-        font-size: 30px
+	.text-sm
+		font-size: 30px
 
-    .text-xs
-        font-size: 25px
+	.text-xs
+		font-size: 25px
 
 .rotated-return-bar
-    position: absolute
-    top: calc(30vh)
-    right: 5vw
-    writing-mode: vertical-rl
-    transform: scaleX(-1) scaleY(-1)
-    font-size: 35px
-    cursor: pointer
-    opacity: 0.55
+	position: absolute
+	top: calc(30vh)
+	right: 5vw
+	writing-mode: vertical-rl
+	transform: scaleX(-1) scaleY(-1)
+	font-size: 35px
+	cursor: pointer
+	opacity: 0.55
 
-.rotated-return-bar:hover
-    opacity: 0.8
+	&:hover
+		opacity: 0.8
 
 .arrowUp
-      color: #2f2f2f
-      font-size: 50px
+	color: #2f2f2f
+	font-size: 50px
 </style>
