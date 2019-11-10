@@ -15,7 +15,7 @@ export default {
 	about: {
 		previewDescription: 'We can make this world better.',
 		backToStart: 'Back to start',
-		scrollPoint: 'Swipe left/right for page navigation',
+		scrollPointNavigation: 'Use scroll point for page navigation',
 	},
 	offers: {
 		previewTitle: 'Do you know what we can?',

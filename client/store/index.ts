@@ -52,7 +52,7 @@ class RootState {
 				cover: '/about.jpg',
 				videoMobile: '/about-us-mobile.mp4',
 				videoPc: '/about-us-pc.mp4',
-				gradient: 'linear-gradient(90deg, #2a4ae430, #fb949e6b)',
+				gradient: 'linear-gradient(0deg, #2a4ae430, #fb949e6b)',
 			},
 		},
 		{

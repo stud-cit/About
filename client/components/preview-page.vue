@@ -97,7 +97,7 @@
 								class="gray font-weight-regular"
 								:style="getPreviewInfoFont"
 							>
-								{{ $t(isAboutPage ? 'about.scrollPoint' : 'common.scroll') }}
+								{{ $t(getScrollInfo) }}
 							</DescriptionContent>
 						</v-row>
 					</v-col>
@@ -229,6 +229,21 @@ export default class PreviewPage extends Vue {
 		const newPageIndex = toRight ? this.pageId + 1 : this.pageId - 1;
 		const nextPage = this.getPageRouteById(newPageIndex);
 		this.$router.replace(this.localePath(nextPage));
+	}
+
+
+	get getScrollInfo() {
+		if(this.isAboutPage) {
+			if(this.isMdAndUp) {
+				return 'about.scrollPointNavigation';
+			}
+			else {
+				return 'common.swipe';
+			}
+		}
+		else {
+			return 'common.scroll';
+		}
 	}
 
 	get isAboutPage() {
