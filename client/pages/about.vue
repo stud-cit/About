@@ -105,7 +105,7 @@
 											@click="() => changeContactBar(true)"
 										>
 											<v-card-title
-												class="justify-center"
+												class="justify-center font-weight-bold footer-padding pt-2 pt-sm-3 pt-md-4 pt-lg-5"
 												:style="getUseContactsTitleFont"
 												>{{ $t('contact.title') }}</v-card-title
 											>
@@ -113,7 +113,7 @@
 												class="pa-0 justify-center"
 												:style="getUseContactsActionFont"
 											>
-												<div class="contacts-action">
+												<div class="contacts-action font-weight-bold">
 													{{ $t('contact.subTitle') }}
 												</div>
 											</v-card-actions>
@@ -341,4 +341,8 @@ export default class AboutPage extends Vue {
 	font-size: 35px !important
 	opacity: 0.45
 	top: calc(50vh - 185px) !important
+
+.footer-padding
+	padding: 6% 12% 0
+	white-space: nowrap
 </style>

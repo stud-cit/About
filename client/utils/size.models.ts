@@ -21,8 +21,8 @@ export default {
 	useContactsTitle: {
 		xs: 13,
 		sm: 16,
-		md: 20,
-		lg: 25,
+		md: 16,
+		lg: 20,
 	},
 	useContactsAction: {
 		xs: 15,
