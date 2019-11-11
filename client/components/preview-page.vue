@@ -306,8 +306,7 @@ export default class PreviewPage extends Vue {
 			border-radius: 0
 
 		.card-contacts-sm-and-up
-			border-top-left-radius: 10px
-			border-top-right-radius: 10px
+			border-radius: 0 !important
 
 		.contacts-action
 			text-transform: uppercase
