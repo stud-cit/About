@@ -17,7 +17,7 @@ import { Getter, Mutation } from 'vuex-class';
 @Component({
 	components: {
 		OpacityBox: posed.div({
-			visible: { opacity: 1, delay: ({delay}) => delay },
+			visible: { opacity: 1, delay: ({ delay }) => delay },
 			hidden: { opacity: 0, transition: { duration: 0 } },
 		}),
 	},

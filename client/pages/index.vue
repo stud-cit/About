@@ -1,7 +1,6 @@
 <template>
 	<v-container fluid class="pa-0" id="home">
 		<div
-			v-if="showSwiper"
 			v-swiper:mySwiper="swiperOption"
 			class="swiper-inactive d-none d-sm-flex"
 			:class="isShowSwiper && 'swiper-active'"
@@ -15,12 +14,17 @@
 					md="10"
 					lg="9"
 					class="swiper-slide"
+					@click="() => choosePage(i)"
 				>
-					<nuxt-link
+					<Slide
+						:pose="isStartAnimation ? 'hidden' : 'default'"
+						:index="i"
+						:choosedSlide="choosedSlide"
 						:to="localePath(page.to, $i18n.locale)"
-						class="disable-underline"
+						:router="$router"
+						:isMobile="isXsOnly"
 					>
-						<v-card class="none-radius" @click="hideSwiper">
+						<v-card class="none-radius">
 							<v-img
 								:src="getDynamicAssets(`/images/covers${page.videoBg.cover}`)"
 								:gradient="imagePageGradient"
@@ -45,18 +49,26 @@
 								<div class="fill-height bottom-gradient"></div>
 							</v-img>
 						</v-card>
-					</nuxt-link>
+					</Slide>
 				</v-col>
 			</div>
 		</div>
 		<v-row class="d-flex d-sm-none" justify="center">
-			<v-col v-for="(page, i) in pages" :key="i" cols="10">
-				<client-only>
-					<v-card
-						class="disable-underline"
-						:href="localePath(page.to, $i18n.locale)"
-						:link="true"
-					>
+			<v-col
+				v-for="(page, i) in pages"
+				:key="i"
+				cols="10"
+				@click="() => choosePage(i)"
+			>
+				<Slide
+					:pose="isStartAnimation ? 'hidden' : 'default'"
+					:index="i"
+					:choosedSlide="choosedSlide"
+					:to="localePath(page.to, $i18n.locale)"
+					:router="$router"
+					:isMobile="isXsOnly"
+				>
+					<v-card class="disable-underline" :link="true">
 						<v-img
 							:src="getDynamicAssets(`/images/covers${page.videoBg.cover}`)"
 							:gradient="imagePageGradient"
@@ -83,7 +95,7 @@
 							<div class="fill-height bottom-gradient"></div>
 						</v-img>
 					</v-card>
-				</client-only>
+				</Slide>
 			</v-col>
 		</v-row>
 	</v-container>
@@ -92,17 +104,48 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Getter } from 'vuex-class';
+import posed from 'vue-pose';
 
 @Component({
 	layout: 'preliminary',
 	head: {
 		title: 'Home',
 	},
+	components: {
+		/**
+		 * 	Move choosed slide on y axis on sm and higer
+		 * 	Move choosed slide on x axis on xs only
+		 */
+		Slide: posed.div({
+			hidden: {
+				opacity: 0,
+				x: ({ index, choosedSlide, isMobile }) =>
+					index === choosedSlide && isMobile ? -30 : 0,
+				y: ({ index, choosedSlide, isMobile }) => {
+					if (!isMobile) {
+						return index === choosedSlide ? -30 : 0;
+					}
+					return 0;
+				},
+				applyAtEnd: { display: 'none' },
+				onPoseComplete: ({ index, choosedSlide, isMobile, to, router }) => {
+					if (index === choosedSlide) {
+						setTimeout(() => router.push(to), !isMobile ? 350 : 100);
+					}
+				},
+			},
+			default: {
+				opacity: 1,
+				y: 0,
+			},
+		}),
+	},
 })
 export default class HomePage extends Vue {
 	@Getter('visibilityLoader') visibilityLoader;
 	@Getter('getPageStage') pages;
 
+	choosedSlide: number = -1;
 	isShowSwiper: boolean = false;
 	swiperOption = {
 		mousewheel: true,
@@ -129,10 +172,17 @@ export default class HomePage extends Vue {
 		}
 	}
 
-	hideSwiper() {
-		this.isShowSwiper = false;
+	choosePage(index: number): void {
+		this.choosedSlide = index - 1;
 	}
 
+	get isStartAnimation() {
+		return this.choosedSlide !== -1 ? true : false;
+	}
+
+	get isXsOnly() {
+		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+	}
 	get isMdAndDown() {
 		return this.$breakpoint ? this.$breakpoint.is.mdAndDown : false;
 	}

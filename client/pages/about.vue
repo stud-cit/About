@@ -144,11 +144,11 @@ import PreviewPage from '@/components/preview-page.vue';
 	components: {
 		PreviewPage,
 		Slogan: posed.p({
-			visible: { opacity: 1, delay: ({delay}) => delay },
+			visible: { opacity: 1, delay: ({ delay }) => delay },
 			hidden: { opacity: 0 },
 		}),
 		OpacityBox: posed.div({
-			visible: { opacity: 1, delay: ({delay}) => delay },
+			visible: { opacity: 1, delay: ({ delay }) => delay },
 			hidden: { opacity: 0 },
 		}),
 	},
@@ -163,7 +163,7 @@ export default class AboutPage extends Vue {
 	@Mutation('changeContactBar') changeContactBar;
 
 	curStage: number = 0;
-	isSloganAnimation: boolean 	= false;
+	isSloganAnimation: boolean = false;
 	isContactAnimation: boolean = false;
 
 	backToStart() {
@@ -171,18 +171,17 @@ export default class AboutPage extends Vue {
 		this.changeContactBar(false);
 	}
 
-
 	get getFirstStageAnimationDelay() {
 		const delayWithLoader = 2000;
 		const delayWithoutLoader = 200;
 		return this.visibilityLoader ? delayWithLoader : delayWithoutLoader;
-	};
+	}
 
 	get getSecondStageAnimationDelay() {
 		const delayWithLoader = 2500;
 		const delayWithoutLoader = 200;
 		return this.visibilityLoader ? delayWithLoader : delayWithoutLoader;
-	};
+	}
 
 	get isXsOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
@@ -245,7 +244,7 @@ export default class AboutPage extends Vue {
 
 	mounted() {
 		this.isSloganAnimation = true;
-		this.isContactAnimation = true
+		this.isContactAnimation = true;
 	}
 
 	beforeDestroy() {

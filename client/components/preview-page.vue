@@ -160,11 +160,11 @@ import posed from 'vue-pose';
 @Component({
 	components: {
 		OpacityBlock: posed.div({
-			visible: { opacity: 1, delay: ({delay}) => delay },
+			visible: { opacity: 1, delay: ({ delay }) => delay },
 			hidden: { opacity: 0 },
 		}),
 		ContentBlock: posed.p({
-			visible: { opacity: 1, y: 0, delay: ({delay}) => delay },
+			visible: { opacity: 1, y: 0, delay: ({ delay }) => delay },
 			hidden: { opacity: 0, y: 20 },
 		}),
 	},
@@ -183,8 +183,8 @@ export default class PreviewPage extends Vue {
 
 	// animation
 	isStartAnimation: boolean = false;
-	animationDelayWithLoader: number =  2000;
-	animationDelayWithoutLoader: number =  200;
+	animationDelayWithLoader: number = 2000;
+	animationDelayWithoutLoader: number = 200;
 
 	handleScroll(): void {
 		const windowHeight = window.innerHeight;
@@ -223,17 +223,14 @@ export default class PreviewPage extends Vue {
 		this.$router.replace(this.localePath(nextPage));
 	}
 
-
 	get getScrollInfo() {
-		if(this.isAboutPage) {
-			if(this.isMdAndUp) {
+		if (this.isAboutPage) {
+			if (this.isMdAndUp) {
 				return 'about.scrollPointNavigation';
-			}
-			else {
+			} else {
 				return 'common.swipe';
 			}
-		}
-		else {
+		} else {
 			return 'common.scroll';
 		}
 	}
@@ -251,9 +248,10 @@ export default class PreviewPage extends Vue {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 	}
 
-
 	get getAnimationDelay() {
-		return this.visibilityLoader ? this.animationDelayWithLoader : this.animationDelayWithoutLoader;
+		return this.visibilityLoader
+			? this.animationDelayWithLoader
+			: this.animationDelayWithoutLoader;
 	}
 
 	get getPreviewSubTitleFont() {
