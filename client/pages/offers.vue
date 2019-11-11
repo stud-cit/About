@@ -25,7 +25,7 @@
 						cols="12"
 						xs="8"
 						md="8"
-						lg="9"
+						lg="8"
 						class="mb-12 mb-md-0 px-0"
 						:class="{ 'representation-image': isMdAndDown }"
 					>
