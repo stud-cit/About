@@ -79,7 +79,7 @@
 							<v-card-title class="title white--text fill-height">
 								<v-row justify="center" align="center" class="fill-height">
 									<span
-										class="font-weight-bold font-italic pr-4"
+										class="font-weight-bold font-italic pr-4 pr-sm-6 pr-md-7 pr-lg-8"
 										:style="getSlideNumberFont"
 									>
 										0{{ ++i }}

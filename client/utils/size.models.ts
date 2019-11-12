@@ -75,10 +75,10 @@ export default {
 		lg: 60,
 	},
 	slideNumberFont: {
-		xs: 20,
-		sm: 25,
-		md: 25,
-		lg: 30,
+		xs: 18,
+		sm: 20,
+		md: 22,
+		lg: 25,
 	},
 	aboutSlideTitleFont: {
 		xs: 12,
