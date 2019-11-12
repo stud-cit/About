@@ -124,12 +124,12 @@
 						@click="scrollToFooter"
 					>
 						<v-card-title
-							class="justify-center font-weight-thin"
+							class="justify-center font-weight-bold footer-padding pt-2 pt-sm-3 pt-md-4 pt-lg-5 "
 							:style="getUseContactsTitleFont"
 							>{{ $t('contact.title') }}</v-card-title
 						>
 						<v-card-actions
-							class="pa-0 justify-center font-weight-regular"
+							class="pa-0 justify-center font-weight-bold"
 							:style="getUseContactsActionFont"
 						>
 							<div class="contacts-action">{{ $t('contact.subTitle') }}</div>
@@ -160,11 +160,11 @@ import posed from 'vue-pose';
 @Component({
 	components: {
 		OpacityBlock: posed.div({
-			visible: { opacity: 1, delay: ({delay}) => delay },
+			visible: { opacity: 1, delay: ({ delay }) => delay },
 			hidden: { opacity: 0 },
 		}),
 		ContentBlock: posed.p({
-			visible: { opacity: 1, y: 0, delay: ({delay}) => delay },
+			visible: { opacity: 1, y: 0, delay: ({ delay }) => delay },
 			hidden: { opacity: 0, y: 20 },
 		}),
 	},
@@ -183,8 +183,8 @@ export default class PreviewPage extends Vue {
 
 	// animation
 	isStartAnimation: boolean = false;
-	animationDelayWithLoader: number =  2000;
-	animationDelayWithoutLoader: number =  200;
+	animationDelayWithLoader: number = 2000;
+	animationDelayWithoutLoader: number = 200;
 
 	handleScroll(): void {
 		const windowHeight = window.innerHeight;
@@ -223,17 +223,14 @@ export default class PreviewPage extends Vue {
 		this.$router.replace(this.localePath(nextPage));
 	}
 
-
 	get getScrollInfo() {
-		if(this.isAboutPage) {
-			if(this.isMdAndUp) {
+		if (this.isAboutPage) {
+			if (this.isMdAndUp) {
 				return 'about.scrollPointNavigation';
-			}
-			else {
+			} else {
 				return 'common.swipe';
 			}
-		}
-		else {
+		} else {
 			return 'common.scroll';
 		}
 	}
@@ -251,9 +248,10 @@ export default class PreviewPage extends Vue {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 	}
 
-
 	get getAnimationDelay() {
-		return this.visibilityLoader ? this.animationDelayWithLoader : this.animationDelayWithoutLoader;
+		return this.visibilityLoader
+			? this.animationDelayWithLoader
+			: this.animationDelayWithoutLoader;
 	}
 
 	get getPreviewSubTitleFont() {
@@ -306,8 +304,7 @@ export default class PreviewPage extends Vue {
 			border-radius: 0
 
 		.card-contacts-sm-and-up
-			border-top-left-radius: 10px
-			border-top-right-radius: 10px
+			border-radius: 0 !important
 
 		.contacts-action
 			text-transform: uppercase
@@ -382,4 +379,8 @@ export default class PreviewPage extends Vue {
 .bold-preview
 	font-weight: 800 !important
 	font-style: normal
+
+.footer-padding
+	padding: 6% 12% 0
+	white-space: nowrap
 </style>

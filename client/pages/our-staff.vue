@@ -13,17 +13,16 @@
 						v-for="(employee, i) in ourStaff[$i18n.locale].staff"
 						:key="i"
 						lg="4"
-						md="6"
+						md="4"
 						sm="12"
 						class="my-4"
 					>
 						<v-card
-							class="mx-auto"
-							:width="isMdAndUp ? '450px' : '100%'"
-							:class="isLgAndUp ? 'card-img-hover' : 'card-img'"
+							class="mx-auto card-img-hover"
+							:width="isLgAndUp ? '425px' : 'auto' "
 						>
 							<v-img
-								:height="isMdAndUp ? '300px' : '45%'"
+								:height="isLgAndUp ? '300px' : '200px'"
 								:src="getDynamicAssets(employee.img)"
 							></v-img>
 						</v-card>
@@ -42,7 +41,7 @@
 							</div>
 							<div
 								class="employee-position-full font-weight-bold mt-7"
-								:style="getStaffPositionFont"
+								:style="getStackPositionFont"
 							>
 								{{ employee.stack }}
 							</div>
@@ -89,7 +88,7 @@
 												class="employee-position-short"
 												:style="getStaffPositionFont"
 											>
-												{{ employee.position }}
+												{{ employee.stack }}
 											</div>
 											<p
 												class="text-center white--text font-italic"
@@ -178,6 +177,9 @@ export default class OurStaffPage extends Vue {
 	get getStaffPositionFont() {
 		return { fontSize: `${this.getAdaptiveSize('staffPositionFont')}px` };
 	}
+	get getStackPositionFont() {
+		return { fontSize: `${this.getAdaptiveSize('stackPositionFont')}px` };
+	}
 
 	created() {
 		this.changePageId(3);
@@ -220,6 +222,7 @@ export default class OurStaffPage extends Vue {
   z-index: 10
   transform: scale(1.15)
   filter: brightness(100%)
+  border-radius: 0 !important
   transition: 1s
   ~ .card-addition
     .employee-name

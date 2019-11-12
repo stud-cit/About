@@ -43,7 +43,10 @@
 							:cols="scrollNumber ? 'auto' : '2'"
 							class="pa-0 d-none d-sm-flex"
 						>
-							<OpacityBox :pose="isStartAnimation ? 'visible' : 'hidden'" :delay="getAnimationDelay">
+							<OpacityBox
+								:pose="isStartAnimation ? 'visible' : 'hidden'"
+								:delay="getAnimationDelay"
+							>
 								<nuxt-link :to="localePath({ name: 'index' })" nuxt>
 									<v-img src="/logo.svg" />
 								</nuxt-link>
@@ -73,7 +76,7 @@
 											text
 										>
 											<span :style="getTotalPagesFont" class="not-uppercase">
-												{{$t(page.title)}}
+												{{ $t(page.title) }}
 											</span>
 										</v-btn>
 									</ContentBox>
@@ -94,12 +97,15 @@
 			</v-row>
 		</v-app-bar>
 		<v-row
-			class="mx-2 mx-sm-0 page-info"
+			class="mx-2 mt-md-2 mt-lg-6 mx-sm-0 page-info"
 			justify="start"
 			:class="{ 'page-info-mobile': isXsOnly }"
 		>
 			<v-col v-show="scrollNumber" cols="auto" offset="0" offset-sm="1">
-				<OpacityBox :pose="isStartAnimation ? 'visible' : 'hidden'" :delay="getAnimationDelay">
+				<OpacityBox
+					:pose="isStartAnimation ? 'visible' : 'hidden'"
+					:delay="getAnimationDelay"
+				>
 					<p class="bold-italic-preview d-flex">
 						<span :style="getPageIndexFont">0{{ pageId }}</span>
 						<span
@@ -169,14 +175,14 @@ import ContactBar from '@/components/contact-bar.vue';
 			visible: {
 				beforeChildren: true,
 				staggerChildren: 50,
-				delayChildren: ({delay}) => delay,
+				delayChildren: ({ delay }) => delay,
 			},
 			hidden: {
 				afterChildren: true,
 			},
 		}),
 		OpacityBox: posed.div({
-			visible: { opacity: 1, delay: ({delay}) => delay },
+			visible: { opacity: 1, delay: ({ delay }) => delay },
 			hidden: { opacity: 0 },
 		}),
 		ContentBox: posed.div({
@@ -291,7 +297,7 @@ export default class ImmediatetLayout extends Vue {
 .page-info
 	position: fixed
 	width: 100%
-	top: 9vh
+	top: 7vh
 	z-index: 5
 	color: white
 	font-weight: bold

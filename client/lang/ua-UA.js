@@ -15,7 +15,8 @@ export default {
 	about: {
 		previewDescription: 'Ми можемо зробити цей світ краще.',
 		backToStart: 'На початок',
-		scrollPointNavigation: 'Використовуйте контрольні точки для переміщення по сторінці',
+		scrollPointNavigation:
+			'Використовуйте контрольні точки для переміщення по сторінці',
 	},
 	offers: {
 		previewTitle: 'Ви знаєте, що ми можемо?',

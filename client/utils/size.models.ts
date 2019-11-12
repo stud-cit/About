@@ -21,8 +21,8 @@ export default {
 	useContactsTitle: {
 		xs: 13,
 		sm: 16,
-		md: 20,
-		lg: 25,
+		md: 16,
+		lg: 20,
 	},
 	useContactsAction: {
 		xs: 15,
@@ -75,10 +75,10 @@ export default {
 		lg: 60,
 	},
 	slideNumberFont: {
-		xs: 20,
-		sm: 25,
-		md: 25,
-		lg: 30,
+		xs: 18,
+		sm: 20,
+		md: 22,
+		lg: 25,
 	},
 	aboutSlideTitleFont: {
 		xs: 12,
@@ -105,16 +105,22 @@ export default {
 		lg: 22,
 	},
 	staffNameFont: {
-		xs: 35,
-		sm: 40,
-		md: 45,
-		lg: 55,
+		xs: 25,
+		sm: 35,
+		md: 30,
+		lg: 40,
 	},
 	staffPositionFont: {
-		xs: 22,
-		sm: 30,
+		xs: 18,
+		sm: 25,
+		md: 20,
+		lg: 27,
+	},
+	stackPositionFont: {
+		xs: 18,
+		sm: 25,
 		md: 25,
-		lg: 30,
+		lg: 27,
 	},
 	projectTitleFont: {
 		xs: 32,

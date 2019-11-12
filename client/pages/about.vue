@@ -105,7 +105,7 @@
 											@click="() => changeContactBar(true)"
 										>
 											<v-card-title
-												class="justify-center"
+												class="justify-center font-weight-bold footer-padding pt-2 pt-sm-3 pt-md-4 pt-lg-5"
 												:style="getUseContactsTitleFont"
 												>{{ $t('contact.title') }}</v-card-title
 											>
@@ -113,7 +113,7 @@
 												class="pa-0 justify-center"
 												:style="getUseContactsActionFont"
 											>
-												<div class="contacts-action">
+												<div class="contacts-action font-weight-bold">
 													{{ $t('contact.subTitle') }}
 												</div>
 											</v-card-actions>
@@ -144,11 +144,11 @@ import PreviewPage from '@/components/preview-page.vue';
 	components: {
 		PreviewPage,
 		Slogan: posed.p({
-			visible: { opacity: 1, delay: ({delay}) => delay },
+			visible: { opacity: 1, delay: ({ delay }) => delay },
 			hidden: { opacity: 0 },
 		}),
 		OpacityBox: posed.div({
-			visible: { opacity: 1, delay: ({delay}) => delay },
+			visible: { opacity: 1, delay: ({ delay }) => delay },
 			hidden: { opacity: 0 },
 		}),
 	},
@@ -163,7 +163,7 @@ export default class AboutPage extends Vue {
 	@Mutation('changeContactBar') changeContactBar;
 
 	curStage: number = 0;
-	isSloganAnimation: boolean 	= false;
+	isSloganAnimation: boolean = false;
 	isContactAnimation: boolean = false;
 
 	backToStart() {
@@ -171,18 +171,17 @@ export default class AboutPage extends Vue {
 		this.changeContactBar(false);
 	}
 
-
 	get getFirstStageAnimationDelay() {
 		const delayWithLoader = 2000;
 		const delayWithoutLoader = 200;
 		return this.visibilityLoader ? delayWithLoader : delayWithoutLoader;
-	};
+	}
 
 	get getSecondStageAnimationDelay() {
 		const delayWithLoader = 2500;
 		const delayWithoutLoader = 200;
 		return this.visibilityLoader ? delayWithLoader : delayWithoutLoader;
-	};
+	}
 
 	get isXsOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
@@ -245,7 +244,7 @@ export default class AboutPage extends Vue {
 
 	mounted() {
 		this.isSloganAnimation = true;
-		this.isContactAnimation = true
+		this.isContactAnimation = true;
 	}
 
 	beforeDestroy() {
@@ -306,7 +305,7 @@ export default class AboutPage extends Vue {
 
 .use-contacts-container
 	width: auto
-	border-radius: 0
+	border-radius: 0 !important
 
 .contacts-action
 	text-transform: uppercase
@@ -341,4 +340,8 @@ export default class AboutPage extends Vue {
 	font-size: 35px !important
 	opacity: 0.45
 	top: calc(50vh - 185px) !important
+
+.footer-padding
+	padding: 6% 12% 0
+	white-space: nowrap
 </style>
