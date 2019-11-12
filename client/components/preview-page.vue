@@ -124,7 +124,7 @@
 						@click="scrollToFooter"
 					>
 						<v-card-title
-							class="justify-center font-weight-bold footer-padding pt-2 pt-sm-3 pt-md-4 pt-lg-5 "
+							class="justify-center font-weight-bold footer-margin mt-2 mt-sm-3 mt-md-4 mt-lg-5 "
 							:style="getUseContactsTitleFont"
 							>{{ $t('contact.title') }}</v-card-title
 						>
@@ -380,7 +380,7 @@ export default class PreviewPage extends Vue {
 	font-weight: 800 !important
 	font-style: normal
 
-.footer-padding
+.footer-margin
 	padding: 6% 12% 0
 	white-space: nowrap
 </style>
