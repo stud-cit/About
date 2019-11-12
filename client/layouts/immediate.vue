@@ -97,7 +97,7 @@
 			</v-row>
 		</v-app-bar>
 		<v-row
-			class="mx-2 mt-lg-4 mx-sm-0 page-info"
+			class="mx-2 mt-md-2 mt-lg-6 mx-sm-0 page-info"
 			justify="start"
 			:class="{ 'page-info-mobile': isXsOnly }"
 		>
@@ -297,7 +297,7 @@ export default class ImmediatetLayout extends Vue {
 .page-info
 	position: fixed
 	width: 100%
-	top: 9vh
+	top: 7vh
 	z-index: 5
 	color: white
 	font-weight: bold
