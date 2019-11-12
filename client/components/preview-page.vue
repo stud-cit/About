@@ -98,7 +98,7 @@
 					<v-row justify="center" class="d-flex d-sm-none pl-0">
 						<img class="pointer-icon" src="/pointer-mobile.svg" />
 					</v-row>
-					<v-row justify="center" justify-sm="start" class="mt-4">
+					<v-row justify="center" justify-sm="start" >
 						<ContentBlock
 							:pose="isStartAnimation ? 'visible' : 'hidden'"
 							:delay="getAnimationDelay"
