@@ -144,6 +144,6 @@ export default {
 		xs: 21,
 		sm: 39,
 		md: 65,
-		lg: 92,
+		lg: 85,
 	},
 };
