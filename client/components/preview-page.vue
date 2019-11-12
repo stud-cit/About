@@ -27,7 +27,7 @@
 						<ContentBlock
 							:pose="isStartAnimation ? 'visible' : 'hidden'"
 							:delay="getAnimationDelay"
-							class="bold-preview"
+							class="bold-preview mt-sm-8 mt-0 mt-md-0"
 							:class="{
 								'text-uppercase': isAboutPage,
 								'title-about': isLgAndUp && isAboutPage,
@@ -98,7 +98,7 @@
 					<v-row justify="center" class="d-flex d-sm-none pl-0">
 						<img class="pointer-icon" src="/pointer-mobile.svg" />
 					</v-row>
-					<v-row justify="center" justify-sm="start" class="mt-4">
+					<v-row justify="center" justify-sm="start" >
 						<ContentBlock
 							:pose="isStartAnimation ? 'visible' : 'hidden'"
 							:delay="getAnimationDelay"

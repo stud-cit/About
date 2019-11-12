@@ -29,7 +29,7 @@
 								:src="getDynamicAssets(`/images/covers${page.videoBg.cover}`)"
 								:gradient="imagePageGradient"
 								:lazy-src="page.lazyImg"
-								:height="isMdAndDown ? '45vh' : '55vh'"
+								:height="isMdAndDown ? '45vh' : '65vh'"
 								:aspect-ratio="16 / 9"
 							>
 								<v-card-title class="white--text fill-height">
@@ -151,7 +151,7 @@ export default class HomePage extends Vue {
 		mousewheel: true,
 		centeredSlides: true,
 		slidesPerView: 'auto',
-		spaceBetween: 200,
+		spaceBetween: 150,
 		breakpoints: {
 			768: {
 				spaceBetween: 50,
