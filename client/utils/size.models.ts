@@ -4,13 +4,13 @@ export default {
 		xs: 30,
 		sm: 40,
 		md: 60,
-		lg: 68,
+		lg: 72,
 	},
 	previewSubtitle: {
 		xs: 20,
-		sm: 30,
-		md: 35,
-		lg: 40,
+		sm: 25,
+		md: 30,
+		lg: 37,
 	},
 	previewInfo: {
 		xs: 10,
@@ -65,8 +65,8 @@ export default {
 	totalMiniPagesFont: {
 		xs: 1.7,
 		sm: 1.7,
-		md: 1.1,
-		lg: 1.2,
+		md: 1.2,
+		lg: 1.3,
 	},
 	slideTitleFont: {
 		xs: 40,
