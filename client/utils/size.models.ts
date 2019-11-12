@@ -138,12 +138,12 @@ export default {
 		xs: 12,
 		sm: 16,
 		md: 18,
-		lg: 22,
+		lg: 25,
 	},
 	tagLineFont: {
 		xs: 21,
 		sm: 39,
 		md: 65,
-		lg: 85,
+		lg: 92,
 	},
 };
