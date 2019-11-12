@@ -27,7 +27,7 @@
 						<ContentBlock
 							:pose="isStartAnimation ? 'visible' : 'hidden'"
 							:delay="getAnimationDelay"
-							class="bold-preview"
+							class="bold-preview mt-sm-8 mt-0 mt-md-0"
 							:class="{
 								'text-uppercase': isAboutPage,
 								'title-about': isLgAndUp && isAboutPage,
