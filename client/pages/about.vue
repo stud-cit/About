@@ -35,7 +35,7 @@
 											{{ $t('common.companyName') }}
 										</div>
 										<div
-											class="px-xl-12 px-lg-8 px-md-8 px-sm-8 px-xs-8 py-xl-12 py-lg-2 py-md-8 py-sm-8 px-4 py-2 slide-content font-weight-light"
+											class="px-xl-12 px-lg-8 px-md-8 px-sm-8 px-xs-8 py-xl-12 py-lg-2 py-md-8 py-sm-8 px-1 py-2 slide-content font-weight-light"
 											:style="getSlideContentFont"
 											:class="isXsOnly ? '' : 'border-right'"
 										>

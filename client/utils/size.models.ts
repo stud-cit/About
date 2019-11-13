@@ -4,7 +4,7 @@ export default {
 		xs: 30,
 		sm: 40,
 		md: 60,
-		lg: 72,
+		lg: 68,
 	},
 	previewSubtitle: {
 		xs: 20,
@@ -47,7 +47,7 @@ export default {
 	pageIndexFont: {
 		xs: 25,
 		sm: 40,
-		md: 40,
+		md: 35,
 		lg: 43,
 	},
 	pageTotalIndexFont: {
