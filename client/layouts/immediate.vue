@@ -29,8 +29,8 @@
 		</client-only>
 		<v-app-bar
 			id="header"
-			:class="scrollNumber ? 'pt-5 pt-lg-7' : 'pt-2 pb-1 mini-header'"
-			:color="scrollNumber ? 'transparent' : ''"
+			:class="isShowNormalHeader ? 'pt-5 pt-lg-7' : 'pt-2 pb-1 mini-header'"
+			:color="isShowNormalHeader ? 'transparent' : ''"
 			app
 			flat
 			v-scroll="handleScroll"
@@ -39,7 +39,7 @@
 				<v-col cols="12" sm="10" order-md="2" class="pa-0">
 					<v-row justify="space-between" align="center">
 						<v-col
-							:cols="scrollNumber ? 'auto' : '2'"
+							:cols="isShowNormalHeader ? 'auto' : '2'"
 							class="pa-0 d-none d-sm-flex"
 						>
 							<OpacityBox
@@ -100,7 +100,7 @@
 			justify="start"
 			:class="{ 'page-info-mobile': isXsOnly }"
 		>
-			<v-col v-show="scrollNumber" cols="auto" offset="0" offset-sm="1">
+			<v-col v-show="isShowNormalHeader" cols="auto" offset="0" offset-sm="1">
 				<OpacityBox
 					:pose="isStartAnimation ? 'visible' : 'hidden'"
 					:delay="getAnimationDelay"
@@ -200,13 +200,23 @@ export default class ImmediatetLayout extends Vue {
 
 	isShowMobileMenu: boolean = false;
 	isStartAnimation: boolean = false;
-	scrollNumber: boolean = true;
+	isShowNormalHeader: boolean = true;
 
 	handleScroll(): void {
 		const currentScroll = window.scrollY;
-		currentScroll > 10 && this.$breakpoint.is.mdAndUp
-			? (this.scrollNumber = false)
-			: (this.scrollNumber = true);
+		const windowHeight = window.innerHeight;
+		const scrollHeight = document.body.scrollHeight;
+		const scrollToFooter = scrollHeight - windowHeight * 1.3;
+
+		// show normal header version when scroll to footer
+		if (currentScroll > scrollToFooter) {
+			this.isShowNormalHeader = true;
+		}
+		else {
+			currentScroll > 10 && this.$breakpoint.is.mdAndUp
+				? (this.isShowNormalHeader = false)
+				: (this.isShowNormalHeader = true);
+		}
 	}
 	get isXsOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
@@ -227,7 +237,7 @@ export default class ImmediatetLayout extends Vue {
 		return { fontSize: `${this.getAdaptiveSize('pageTotalIndexFont')}px` };
 	}
 	get getTotalPagesFont() {
-		if (this.scrollNumber) {
+		if (this.isShowNormalHeader) {
 			return { fontSize: `${this.getAdaptiveSize('totalPagesFont')}vw` };
 		} else {
 			return { fontSize: `${this.getAdaptiveSize('totalMiniPagesFont')}vw` };
