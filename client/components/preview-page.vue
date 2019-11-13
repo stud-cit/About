@@ -27,7 +27,7 @@
 					<div class="d-block">
 						<ContentBlock
 							:pose="isStartAnimation ? 'visible' : 'hidden'"
-							:delay="getAnimationDelay"
+							:delay="getFirstStageAnimationDelay"
 							class="bold-preview"
 							:class="{
 								'text-uppercase': isAboutPage,
@@ -39,7 +39,7 @@
 						</ContentBlock>
 						<ContentBlock
 							:pose="isStartAnimation ? 'visible' : 'hidden'"
-							:delay="getAnimationDelay"
+							:delay="getFirstStageAnimationDelay"
 							class="bold-preview"
 							:style="getPreviewTitleFont"
 						>
@@ -50,7 +50,7 @@
 				<v-col cols="12" order="3" order-sm="2">
 					<OpacityBlock
 						:pose="isStartAnimation ? 'visible' : 'hidden'"
-						:delay="getAnimationDelay"
+						:delay="getFirstStageAnimationDelay"
 					>
 						<v-row justify="space-around" justify-sm="start">
 							<v-col cols="auto" order="1" order-sm="1">
@@ -90,7 +90,7 @@
 					<v-row class="d-none d-sm-flex font-weight-regular line-height-1">
 						<ContentBlock
 							:pose="isStartAnimation ? 'visible' : 'hidden'"
-							:delay="getAnimationDelay"
+							:delay="getFirstStageAnimationDelay"
 							:style="getPreviewSubTitleFont"
 						>
 							{{ description }}
@@ -102,7 +102,7 @@
 					<v-row justify="center" justify-sm="start">
 						<ContentBlock
 							:pose="isStartAnimation ? 'visible' : 'hidden'"
-							:delay="getAnimationDelay"
+							:delay="getFirstStageAnimationDelay"
 							class="gray font-weight-regular"
 							:style="getPreviewInfoFont"
 						>
@@ -111,34 +111,39 @@
 					</v-row>
 				</v-col>
 			</v-row>
-			<v-row
-				v-show="isShowUseContacts"
-				v-scroll="handleScroll"
-				class="pa-0 use-contacts-container"
-				justify="end"
-				no-gutters
+			<OpacityBlock
+				:pose="isStartAnimation ? 'visible' : 'hidden'"
+				:delay="getSecondStageAnimationDelay"
 			>
-				<v-col cols="12" sm="auto">
-					<v-card
-						class="pa-4 pt-0"
-						:class="isXsOnly ? 'card-contacts' : 'card-contacts-sm-and-up'"
-						@click="scrollToFooter"
-					>
-						<v-card-title
-							class="justify-center font-weight-bold footer-padding pt-2 pt-sm-3 pt-md-4 pt-lg-5 "
-							:style="getUseContactsTitleFont"
-							>{{ $t('contact.title') }}</v-card-title
+				<v-row
+					v-show="isShowUseContacts"
+					v-scroll="handleScroll"
+					class="pa-0 use-contacts-container"
+					justify="end"
+					no-gutters
+				>
+					<v-col cols="12" sm="auto">
+						<v-card
+							class="pa-4 pt-0"
+							:class="isXsOnly ? 'card-contacts' : 'card-contacts-sm-and-up'"
+							@click="scrollToFooter"
 						>
-						<v-card-actions
-							class="pa-0 justify-center font-weight-bold"
-							:style="getUseContactsActionFont"
-						>
-							<div class="contacts-action">{{ $t('contact.subTitle') }}</div>
-						</v-card-actions>
-					</v-card>
-				</v-col>
-				<v-col sm="1"></v-col>
-			</v-row>
+							<v-card-title
+								class="justify-center font-weight-bold footer-padding pt-2 pt-sm-3 pt-md-4 pt-lg-5 "
+								:style="getUseContactsTitleFont"
+								>{{ $t('contact.title') }}</v-card-title
+							>
+							<v-card-actions
+								class="pa-0 justify-center font-weight-bold"
+								:style="getUseContactsActionFont"
+							>
+								<div class="contacts-action">{{ $t('contact.subTitle') }}</div>
+							</v-card-actions>
+						</v-card>
+					</v-col>
+					<v-col sm="1"></v-col>
+				</v-row>
+			</OpacityBlock>
 		</v-col>
 	</v-row>
 </template>
@@ -174,8 +179,10 @@ export default class PreviewPage extends Vue {
 
 	// animation
 	isStartAnimation: boolean = false;
-	animationDelayWithLoader: number = 2000;
-	animationDelayWithoutLoader: number = 200;
+	firstStageAnimationDelayWithLoader: number = 2500;
+	firstStageAnimationDelayWithoutLoader: number = 500;
+	secondStageAnimationDelayWithLoader: number = 3000;
+	secondStageAnimationDelayWithoutLoader: number = 600;
 
 	handleScroll(): void {
 		const windowHeight = window.innerHeight;
@@ -239,10 +246,15 @@ export default class PreviewPage extends Vue {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 	}
 
-	get getAnimationDelay() {
+	get getFirstStageAnimationDelay() {
 		return this.visibilityLoader
-			? this.animationDelayWithLoader
-			: this.animationDelayWithoutLoader;
+			? this.firstStageAnimationDelayWithLoader
+			: this.firstStageAnimationDelayWithoutLoader;
+	}
+	get getSecondStageAnimationDelay() {
+		return this.visibilityLoader
+			? this.secondStageAnimationDelayWithLoader
+			: this.secondStageAnimationDelayWithoutLoader;
 	}
 
 	get getPreviewSubTitleFont() {
@@ -273,7 +285,7 @@ export default class PreviewPage extends Vue {
 		this.isStartAnimation = true;
 
 		// increase animation delay to prevent staring too early
-		this.animationDelayWithoutLoader = 350;
+		// this.animationDelayWithoutLoader = 350;
 
 		// initial check
 		this.handleScroll();

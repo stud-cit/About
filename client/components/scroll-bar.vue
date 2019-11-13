@@ -1,7 +1,7 @@
 <template>
 	<OpacityBox
 		:pose="visibility && visibilityScrollBar ? 'visible' : 'hidden'"
-		:delay="visibilityLoader ? 2500 : 450"
+		:delay="visibilityLoader ? 2500 : 500"
 	>
 		<div class="d-none d-md-flex scrollbar-track" v-scroll="handleScroll">
 			<div class="scrollbar-thumb" :style="{ top: `${currScroll}%` }" />

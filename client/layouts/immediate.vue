@@ -25,7 +25,6 @@
 						? getDynamicAssets(`/images/covers${videoBg.cover}`)
 						: ''
 				"
-				:overlay="videoBg.gradient"
 			/>
 		</client-only>
 		<v-app-bar

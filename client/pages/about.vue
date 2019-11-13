@@ -172,14 +172,14 @@ export default class AboutPage extends Vue {
 	}
 
 	get getFirstStageAnimationDelay() {
-		const delayWithLoader = 2000;
-		const delayWithoutLoader = 200;
+		const delayWithLoader = 2500;
+		const delayWithoutLoader = 500;
 		return this.visibilityLoader ? delayWithLoader : delayWithoutLoader;
 	};
 
 	get getSecondStageAnimationDelay() {
-		const delayWithLoader = 2500;
-		const delayWithoutLoader = 200;
+		const delayWithLoader = 3000;
+		const delayWithoutLoader = 600;
 		return this.visibilityLoader ? delayWithLoader : delayWithoutLoader;
 	};
 

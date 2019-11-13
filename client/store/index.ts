@@ -15,7 +15,6 @@ interface VideoBgModel {
 	readonly cover: string;
 	readonly videoMobile: string;
 	readonly videoPc: string;
-	readonly gradient: string | null;
 }
 interface PageModel {
 	readonly id: number;
@@ -53,7 +52,6 @@ class RootState {
 				cover: '/about.jpg',
 				videoMobile: '/about-us-mobile.mp4',
 				videoPc: '/about-us-pc.mp4',
-				gradient: 'linear-gradient(0deg, #2a4ae430, #fb949e6b)',
 			},
 		},
 		{
@@ -64,7 +62,6 @@ class RootState {
 				cover: '/offers.jpg',
 				videoMobile: '/we-offer-mobile.mp4',
 				videoPc: '/we-offer-pc.mp4',
-				gradient: null,
 			},
 		},
 		{
@@ -75,7 +72,6 @@ class RootState {
 				cover: '/our-staff.jpg',
 				videoMobile: '/staff-mobile.mp4',
 				videoPc: '/staff-pc.mp4',
-				gradient: null,
 			},
 		},
 		{
@@ -86,7 +82,6 @@ class RootState {
 				cover: '/portfolio.jpg',
 				videoMobile: '/portfolio-mobile.mp4',
 				videoPc: '/portfolio-pc.mp4',
-				gradient: null,
 			},
 		},
 	];
