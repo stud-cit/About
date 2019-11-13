@@ -47,14 +47,14 @@ export default {
 	pageIndexFont: {
 		xs: 25,
 		sm: 40,
-		md: 35,
-		lg: 43,
+		md: 33,
+		lg: 41,
 	},
 	pageTotalIndexFont: {
 		xs: 15,
 		sm: 20,
-		md: 20,
-		lg: 23,
+		md: 19,
+		lg: 22,
 	},
 	totalPagesFont: {
 		xs: 2,
