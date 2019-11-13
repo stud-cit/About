@@ -19,7 +19,7 @@ class PortfolioState {
 			{
 				title: 'Сайт кафедри соціальної роботи СумДУ',
 				cover: '/images/portfolio/SOC.jpg',
-				link: 'http://socstor-test.sumdu.edu.ua',
+				link: 'http://socstor.sumdu.edu.ua/',
 			},
 			{
 				title: 'Платформа пошуку роботи та стажування СумДУ',
@@ -38,7 +38,7 @@ class PortfolioState {
 			{
 				title: 'Сайт кафедры социальной работы СумГУ',
 				cover: '/images/portfolio/SOC.jpg',
-				link: 'http://socstor-test.sumdu.edu.ua',
+				link: 'http://socstor.sumdu.edu.ua/',
 			},
 			{
 				title: 'Платформа поиска работы и стажировки СумГУ',
@@ -57,7 +57,7 @@ class PortfolioState {
 			{
 				title: 'Department of Social Work of SSU',
 				cover: '/images/portfolio/SOC.jpg',
-				link: 'http://socstor-test.sumdu.edu.ua',
+				link: 'http://socstor.sumdu.edu.ua/',
 			},
 			{
 				title: 'Practice and internship search platform of SSU',
