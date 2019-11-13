@@ -138,16 +138,6 @@
 				</v-col>
 				<v-col sm="1"></v-col>
 			</v-row>
-			<v-row justify="center" v-show="iconDown && isMdAndUp">
-				<v-btn
-					icon
-					color="white"
-					@click="scollToContent"
-					class="scroll-bottom-icon"
-				>
-					<v-icon size="50" class="icon-down">mdi-chevron-double-down</v-icon>
-				</v-btn>
-			</v-row>
 		</v-col>
 	</v-row>
 </template>
