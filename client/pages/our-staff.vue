@@ -59,7 +59,7 @@
 								v-for="(employee, i) in ourStaff[$i18n.locale].staff"
 								:key="i"
 							>
-								<v-card class="mx-auto" color="transparent" width="100%" flat>
+								<v-card class="mx-auto" color="transparent" :width="isXsOnly ? '90%' : '100%'" flat>
 									<v-img
 										height="40%"
 										class="card-img"
