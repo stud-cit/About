@@ -7,13 +7,14 @@
 	>
 		<v-col cols="12" lg="12" xl="12">
 			<v-row
-				class="ma-0 ml-sm-2"
+				class="ma-0 ml-sm-2 mt-md-12 pt-md-12"
 				justify="space-around"
 				align="end"
 				:class="{
 					'preview-margin': iconDown,
 					'preview-wrapper': !isXsOnly,
 					'preview-wrapper-mobile': isXsOnly,
+					'mb-sm-8 mb-md-0' : isAboutPage,
 				}"
 			>
 				<v-col
@@ -98,7 +99,7 @@
 					<v-row justify="center" class="d-flex d-sm-none pl-0">
 						<img class="pointer-icon" src="/pointer-mobile.svg" />
 					</v-row>
-					<v-row justify="center" justify-sm="start" class="mt-4">
+					<v-row justify="center" justify-sm="start">
 						<ContentBlock
 							:pose="isStartAnimation ? 'visible' : 'hidden'"
 							:delay="getAnimationDelay"
@@ -307,7 +308,7 @@ export default class PreviewPage extends Vue {
 	height: 100vh !important
 
 .preview-wrapper
-	height: 70vh
+	height: 80vh
 	color: white
 
 .preview-wrapper-mobile
