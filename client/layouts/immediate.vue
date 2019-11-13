@@ -97,7 +97,7 @@
 			</v-row>
 		</v-app-bar>
 		<v-row
-			class="mx-2 mt-md-2 mt-lg-6 mx-sm-0 page-info"
+			class="mx-2 mt-sm-4 mt-md-5 mt-lg-6 mx-sm-0 page-info"
 			justify="start"
 			:class="{ 'page-info-mobile': isXsOnly }"
 		>
