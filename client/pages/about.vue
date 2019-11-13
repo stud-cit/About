@@ -171,7 +171,6 @@ export default class AboutPage extends Vue {
 		this.changeContactBar(false);
 	}
 
-
 	get getFirstStageAnimationDelay() {
 		const delayWithLoader = 2000;
 		const delayWithoutLoader = 200;
@@ -227,15 +226,8 @@ export default class AboutPage extends Vue {
 		if (value === this.about[this.$i18n.locale].slides.length + 1) {
 			this.changeContactBar(true);
 		}
-	}
-
-	@Watch('isShowContactBar')
-	onChangeContactBar(curValue: boolean, prevValue: boolean) {
-		// when we close contact bar - show prev stage
-		if (prevValue === true) {
-			this.curStage = this.curStage - 1;
-		} else {
-			this.curStage = this.about[this.$i18n.locale].slides.length + 1;
+		else {
+			this.changeContactBar(false);
 		}
 	}
 
