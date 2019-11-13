@@ -4,7 +4,7 @@ export default {
 		xs: 30,
 		sm: 40,
 		md: 60,
-		lg: 72,
+		lg: 68,
 	},
 	previewSubtitle: {
 		xs: 20,
