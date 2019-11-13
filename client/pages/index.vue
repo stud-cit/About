@@ -121,6 +121,7 @@ import posed from 'vue-pose';
 				opacity: 0,
 				x: ({ index, choosedSlide, isMobile }) =>
 					index === choosedSlide && isMobile ? -30 : 0,
+					transition: {duration: 600},
 				y: ({ index, choosedSlide, isMobile }) => {
 					if (!isMobile) {
 						return index === choosedSlide ? -30 : 0;
@@ -130,7 +131,7 @@ import posed from 'vue-pose';
 				applyAtEnd: { display: 'none' },
 				onPoseComplete: ({ index, choosedSlide, isMobile, to, router }) => {
 					if (index === choosedSlide) {
-						setTimeout(() => router.push(to), !isMobile ? 350 : 100);
+						setTimeout(() => router.push(to), !isMobile ? 500 : 100);
 					}
 				},
 			},
