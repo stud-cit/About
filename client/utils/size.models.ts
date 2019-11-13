@@ -47,7 +47,7 @@ export default {
 	pageIndexFont: {
 		xs: 25,
 		sm: 40,
-		md: 40,
+		md: 35,
 		lg: 43,
 	},
 	pageTotalIndexFont: {

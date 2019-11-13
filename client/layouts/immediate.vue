@@ -106,7 +106,7 @@
 					:pose="isStartAnimation ? 'visible' : 'hidden'"
 					:delay="getAnimationDelay"
 				>
-					<p class="bold-italic-preview d-flex">
+					<p class="bold-italic-preview d-flex mt-md-3">
 						<span :style="getPageIndexFont">0{{ pageId }}</span>
 						<span
 							class="total-pages mt-1 mt-sm-2"
