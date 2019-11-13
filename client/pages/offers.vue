@@ -64,7 +64,7 @@
 					</v-col>
 				</v-row>
 			</v-col>
-			<product-footer />
+			<product-footer class="max-width" />
 		</v-row>
 	</div>
 </template>
@@ -148,6 +148,9 @@ export default class OffersPage extends Vue {
 .left-bottom-position
 	left: 0
 	bottom: 0
+
+.max-width
+	max-width: 100vw
 
 .card-content
 	line-height: 1.25
