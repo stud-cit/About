@@ -299,7 +299,7 @@ export default class PreviewPage extends Vue {
 
 		.contacts-action
 			text-transform: uppercase
-			border-bottom: 2px solid black
+			border-bottom: 2px solid rgba(0, 0, 0, 0.87)
 
 .preview-section-about
 	height: 97vh !important
