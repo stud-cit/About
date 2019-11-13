@@ -132,6 +132,9 @@ export default class OffersPage extends Vue {
 .representation-xs
 	padding-bottom: 15vh
 
+.v-card:not(.v-sheet--tile)
+	border-radius: 0 !important
+
 .card-title
 	word-break: break-word
 
