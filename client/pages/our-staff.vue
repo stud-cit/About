@@ -16,36 +16,41 @@
 						md="4"
 						sm="12"
 						class="my-4"
+						ref="staff"
 					>
-						<v-card
-							class="mx-auto card-img-hover"
-							:width="isLgAndUp ? '425px' : 'auto' "
+						<Staff
+							:pose="staffToAnimate.includes(i) ? 'visible': 'hidden'"
 						>
-							<v-img
-								:height="isLgAndUp ? '300px' : '200px'"
-								:src="getDynamicAssets(employee.img)"
-							></v-img>
-						</v-card>
-						<div class="card-addition">
-							<div
-								class="employee-name mt-6 mb-4 font-weight-bold line-height-1"
-								:style="getStaffNameFont"
+							<v-card
+								class="mx-auto card-img-hover"
+								:width="isLgAndUp ? '425px' : 'auto'"
 							>
-								{{ employee.name }}
+								<v-img
+									:height="isLgAndUp ? '300px' : '200px'"
+									:src="getDynamicAssets(employee.img)"
+								></v-img>
+							</v-card>
+							<div class="card-addition">
+								<div
+									class="employee-name mt-6 mb-4 font-weight-bold line-height-1"
+									:style="getStaffNameFont"
+								>
+									{{ employee.name }}
+								</div>
+								<div
+									class="employee-position-short font-weight-regular line-height-1"
+									:style="getStaffPositionFont"
+								>
+									{{ employee.position }}
+								</div>
+								<div
+									class="employee-position-full font-weight-bold mt-7"
+									:style="getStackPositionFont"
+								>
+									{{ employee.stack }}
+								</div>
 							</div>
-							<div
-								class="employee-position-short font-weight-regular line-height-1"
-								:style="getStaffPositionFont"
-							>
-								{{ employee.position }}
-							</div>
-							<div
-								class="employee-position-full font-weight-bold mt-7"
-								:style="getStackPositionFont"
-							>
-								{{ employee.stack }}
-							</div>
-						</div>
+						</Staff>
 					</v-col>
 				</v-row>
 				<v-row
@@ -121,6 +126,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
+import posed from 'vue-pose';
 
 import ScrollBar from '@/components/scroll-bar.vue';
 import PreviewPage from '@/components/preview-page.vue';
@@ -136,12 +142,24 @@ import PruductFooter from '@/components/product-footer.vue';
 		ScrollBar,
 		PreviewPage,
 		'product-footer': PruductFooter,
+		Staff: posed.div({
+			visible: {
+				opacity: 1,
+				y: 0,
+			},
+			hidden: {
+				opacity: 0,
+				y: 40,
+			},
+		}),
 	},
 })
 export default class OurStaffPage extends Vue {
 	@Getter('OurStaffModule/getStage') ourStaff;
 	@Mutation('changePageId') changePageId;
 	curStaff: number = 0;
+	observers: IntersectionObserver[] = [];
+	staffToAnimate: number[] = [];
 
 	switchSlide(nextSlide) {
 		const { curStaff, ourStaff } = this;
@@ -159,6 +177,16 @@ export default class OurStaffPage extends Vue {
 		return `${this.curStaff + 1} / ${
 			this.ourStaff[this.$i18n.locale].staff.length
 		}`;
+	}
+
+	setAnimation(entry, representationIndex, observer) {
+		if (
+			entry.intersectionRatio > 0 &&
+			!this.staffToAnimate.includes(representationIndex)
+		) {
+			this.staffToAnimate.push(representationIndex);
+			observer.disconnect();
+		}
 	}
 
 	get isLgAndUp() {
@@ -184,6 +212,23 @@ export default class OurStaffPage extends Vue {
 	created() {
 		this.changePageId(3);
 	}
+
+	mounted() {
+		const staff: any = this.$refs.staff;
+
+		this.observers = staff.map((currStaff, index) => {
+			const options = { threshold: 0.7 };
+			const observer = new IntersectionObserver(([entry], observer) => this.setAnimation(entry, index, observer), options);
+			observer.observe(currStaff);
+			return observer;
+		});
+	}
+
+	beforeDestroy() {
+    this.observers.forEach( observer => {
+			observer.disconnect();
+		});
+  }
 }
 </script>
 

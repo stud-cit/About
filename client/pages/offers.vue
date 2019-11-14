@@ -128,8 +128,6 @@ export default class OffersPage extends Vue {
 	@Mutation('changePageId') changePageId;
 
 	observers: IntersectionObserver[] = [];
-
-	// current index for start animation during scroll
 	representationToAnimate: number[] = [];
 
 	get isXsOnly() {
@@ -152,17 +150,12 @@ export default class OffersPage extends Vue {
 	}
 
 
-// TODO: переделай картинку, чтобы она была v-img и грузилась сразу
 	setAnimation(entry, representationIndex, observer) {
 		if (
 			entry.intersectionRatio > 0 &&
 			!this.representationToAnimate.includes(representationIndex)
 		) {
 			this.representationToAnimate.push(representationIndex);
-		}
-
-
-		if(this.representationToAnimate.includes(representationIndex)) {
 			observer.disconnect();
 		}
 	}

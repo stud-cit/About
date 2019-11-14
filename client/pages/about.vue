@@ -263,7 +263,7 @@ export default class AboutPage extends Vue {
 		this.isSloganAnimation = true;
 		this.isContactAnimation = true
 	}
-	
+
 	beforeDestroy() {
 		this.changeContactBar(false);
 	}
