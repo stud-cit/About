@@ -111,7 +111,7 @@
 									>
 										<v-card
 											class="pa-4 pt-0 use-contacts-container"
-											@click="() => changeContactBar(true)"
+											@click="showLastStage"
 										>
 											<v-card-title
 												class="justify-center font-weight-bold footer-padding pt-2 pt-sm-3 pt-md-4 pt-lg-5"
@@ -176,6 +176,11 @@ export default class AboutPage extends Vue {
 	isContactAnimation: boolean = false;
 	stageText : number = 0;
 	stageAbout: number = 0;
+
+
+	showLastStage() {
+		this.curStage = this.about[this.$i18n.locale].slides.length + 1;
+	}
 
 	backToStart() {
 		this.curStage = 0;
@@ -242,7 +247,7 @@ export default class AboutPage extends Vue {
 		}
 
 		if ((this.curStage > 0) && (this.curStage < this.about[this.$i18n.locale].slides.length + 2)){
-			if (this.curStage > 1){
+			if (this.curStage > 1) {
 				this.stageAbout = this.curStage - 1;
 				this.stageText = this.stageAbout;
 			} else {
