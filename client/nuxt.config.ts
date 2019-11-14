@@ -78,13 +78,13 @@ const config: Configuration = {
 		lazy: true,
 		parsePages: false,
 		langDir: 'lang/',
-		defaultLocale: 'en',
-		// TODO: uncomment on prod
-		// detectBrowserLanguage: {
-		// useCookie: true,
-		// cookieKey: 'i18n_redirected',
-		// alwaysRedirect: true,
-		// fallbackLocale: 'en'
+		defaultLocale: 'ua',
+		detectBrowserLanguage: {
+			useCookie: true,
+			cookieKey: 'i18n_redirected',
+			alwaysRedirect: true,
+			fallbackLocale: 'ua',
+		},
 		locales: [
 			{
 				code: 'en',
