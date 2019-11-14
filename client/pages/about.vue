@@ -2,7 +2,7 @@
 	<v-container fluid cdclass="py-0 ma-0">
 		<v-row justify="center">
 			<v-col cols="12" sm="10">
-				<v-window v-model="curStage" continuous dark>
+				<v-window v-model="stageAbout" continuous dark>
 					<v-window-item>
 						<v-col
 							cols="12"
@@ -16,10 +16,7 @@
 							/>
 						</v-col>
 					</v-window-item>
-					<v-window-item
-						v-for="(slide, index) in about[$i18n.locale].slides"
-						:key="index"
-					>
+					<v-window-item>
 						<v-row
 							justify="start"
 							align="center"
@@ -39,7 +36,19 @@
 											:style="getSlideContentFont"
 											:class="isXsOnly ? '' : 'border-right'"
 										>
-											<p class="py-md-10">{{ slide }}</p>
+											<v-window v-model="stageText">
+												<v-window-item
+													v-for="(slide, i) in about[$i18n.locale].slides"
+													:key="i"
+												>
+													<p class="py-md-10"
+														pose="default"
+													>
+														{{ slide }}
+													</p>
+												</v-window-item>
+											</v-window>
+
 										</div>
 									</v-col>
 								</v-row>
@@ -165,6 +174,8 @@ export default class AboutPage extends Vue {
 	curStage: number = 0;
 	isSloganAnimation: boolean 	= false;
 	isContactAnimation: boolean = false;
+	stageText : number = 0;
+	stageAbout: number = 0;
 
 	backToStart() {
 		this.curStage = 0;
@@ -229,6 +240,19 @@ export default class AboutPage extends Vue {
 		else {
 			this.changeContactBar(false);
 		}
+
+		if ((this.curStage > 0) && (this.curStage < this.about[this.$i18n.locale].slides.length + 2)){
+			if (this.curStage > 1){
+				this.stageAbout = this.curStage - 1;
+				this.stageText = this.stageAbout;
+			} else {
+				this.stageAbout = this.curStage;
+				this.stageText = this.stageAbout - this.curStage;
+			}
+		} else {
+			this.stageAbout = this.curStage;
+			this.stageText = 0;
+		}
 	}
 
 	created() {
@@ -239,7 +263,7 @@ export default class AboutPage extends Vue {
 		this.isSloganAnimation = true;
 		this.isContactAnimation = true
 	}
-
+	
 	beforeDestroy() {
 		this.changeContactBar(false);
 	}
