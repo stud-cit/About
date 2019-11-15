@@ -1,10 +1,14 @@
 <template>
 	<v-container fluid cdclass="py-0 ma-0">
 		<v-row justify="center">
-			<v-col cols="12" sm="11" lg="10">
-				<v-window v-model="curStage" continuous dark>
+			<v-col cols="12" sm="10">
+				<v-window v-model="stageAbout" continuous dark>
 					<v-window-item>
-						<v-col cols="12" class="pa-0 slide-container">
+						<v-col
+							cols="12"
+							class="pa-0"
+							:class="isXsOnly ? 'slide-container-mobile' : 'slide-container'"
+						>
 							<PreviewPage
 								:title="$t('common.companyName')"
 								:description="$t('about.previewDescription')"
@@ -12,11 +16,12 @@
 							/>
 						</v-col>
 					</v-window-item>
-					<v-window-item
-						v-for="(slide, index) in about[$i18n.locale].slides"
-						:key="index"
-					>
-						<v-row justify="start" align="center" class="slide-container">
+					<v-window-item>
+						<v-row
+							justify="start"
+							align="center"
+							:class="isXsOnly ? 'slide-container-mobile' : 'slide-container'"
+						>
 							<v-col cols="12" md="10" lg="10">
 								<v-row>
 									<v-col col="12">
@@ -27,26 +32,35 @@
 											{{ $t('common.companyName') }}
 										</div>
 										<div
-											class="px-xl-12 px-lg-8 px-md-8 px-sm-8 px-xs-8 py-xl-12 py-lg-2 py-md-8 py-sm-8 px-4 py-2 slide-content font-weight-light"
+											class="px-xl-12 px-lg-8 px-md-8 px-sm-8 px-xs-8 py-xl-12 py-lg-2 py-md-8 py-sm-8 px-1 py-2 slide-content font-weight-light"
 											:style="getSlideContentFont"
+											:class="isXsOnly ? '' : 'border-right'"
 										>
-											<p class="py-md-12">{{ slide }}</p>
+											<TextSlider
+												:pose="isTextSliderAnimation ? 'visible' : 'hidden'"
+											  	class="py-md-10">
+												{{ about[$i18n.locale].slides[stageText] }}
+											</TextSlider>
 										</div>
 									</v-col>
 								</v-row>
 							</v-col>
 						</v-row>
 					</v-window-item>
-					<v-window-item class="slide-container"></v-window-item>
+					<v-window-item
+						:class="isXsOnly ? 'slide-container-mobile' : 'slide-container'"
+					></v-window-item>
 				</v-window>
 
-				<p
+				<Slogan
+					:pose="isSloganAnimation ? 'visible' : 'hidden'"
+					:delay="getFirstStageAnimationDelay"
 					class="d-none d-md-block rotated-phraze font-weight-light"
 					:class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
 					v-if="curStage <= about[$i18n.locale].slides.length"
 				>
 					{{ $t('common.slogan') }}
-				</p>
+				</Slogan>
 				<p
 					class="font-weight-light rotated-phraze pointer back-to-start"
 					:class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
@@ -55,58 +69,62 @@
 				>
 					{{ $t('about.backToStart') }}
 				</p>
-
-				<v-footer absolute color="transparent" class="pb-0 px-0 px-sm-auto">
-					<v-row justify="center">
-						<v-col sm="12" md="10" lg="10" class="pb-0">
-							<v-row
-								justify-sm="center"
-								justify-md="space-between"
-								align="center"
-							>
-								<v-col sm="10" md="7" class="d-none d-sm-flex">
-									<v-slider
-										v-model="curStage"
-										:max="about[$i18n.locale].slides.length + 1"
-										class="slider"
-										step="1"
-										ticks="always"
-										tick-size="10"
-										hide-details
-										dark
-									/>
-								</v-col>
-								<v-col
-									xs="12"
-									sm="12"
-									md="auto"
-									lg="auto"
-									class="pa-0"
-									:class="{ 'justify-center': isSmAndDown }"
+				<OpacityBox
+					:pose="isContactAnimation ? 'visible' : 'hidden'"
+					:delay="getSecondStageAnimationDelay"
+				>
+					<v-footer absolute color="transparent" class="pb-0 px-0 px-sm-auto">
+						<v-row justify="center">
+							<v-col sm="12" md="10" lg="10" class="pb-0">
+								<v-row
+									justify-sm="center"
+									justify-md="space-between"
+									align="center"
 								>
-									<v-card
-										class="pa-4 pt-0 use-contacts-container"
-										@click="() => changeContactBar(true)"
+									<v-col sm="10" md="7" class="d-none d-sm-flex">
+										<v-slider
+											v-model="curStage"
+											:max="about[$i18n.locale].slides.length + 1"
+											class="slider"
+											step="1"
+											ticks="always"
+											tick-size="10"
+											hide-details
+											dark
+										/>
+									</v-col>
+									<v-col
+										xs="12"
+										sm="12"
+										md="auto"
+										lg="auto"
+										class="pa-0"
+										:class="{ 'justify-center': isSmAndDown }"
 									>
-										<v-card-title
-											class="justify-center"
-											:style="getUseContactsTitleFont"
-											>{{ $t('contact.title') }}</v-card-title
+										<v-card
+											class="pa-4 pt-0 use-contacts-container"
+											@click="showLastStage"
 										>
-										<v-card-actions
-											class="pa-0 justify-center"
-											:style="getUseContactsActionFont"
-										>
-											<div class="contacts-action">
-												{{ $t('contact.subTitle') }}
-											</div>
-										</v-card-actions>
-									</v-card>
-								</v-col>
-							</v-row>
-						</v-col>
-					</v-row>
-				</v-footer>
+											<v-card-title
+												class="justify-center font-weight-bold footer-padding pt-2 pt-sm-3 pt-md-4 pt-lg-5"
+												:style="getUseContactsTitleFont"
+												>{{ $t('contact.title') }}</v-card-title
+											>
+											<v-card-actions
+												class="pa-0 justify-center"
+												:style="getUseContactsActionFont"
+											>
+												<div class="contacts-action font-weight-bold">
+													{{ $t('contact.subTitle') }}
+												</div>
+											</v-card-actions>
+										</v-card>
+									</v-col>
+								</v-row>
+							</v-col>
+						</v-row>
+					</v-footer>
+				</OpacityBox>
 			</v-col>
 		</v-row>
 	</v-container>
@@ -115,16 +133,32 @@
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
-
+import posed from 'vue-pose';
 import PreviewPage from '@/components/preview-page.vue';
 
 @Component({
 	layout: 'immediate',
+	transition: 'page',
 	head: {
 		title: 'About us',
 	},
 	components: {
 		PreviewPage,
+		Slogan: posed.p({
+			visible: { opacity: 1, delay: ({delay}) => delay },
+			hidden: { opacity: 0 },
+		}),
+		OpacityBox: posed.div({
+			visible: { opacity: 1, delay: ({delay}) => delay },
+			hidden: { opacity: 0 },
+		}),
+		TextSlider: posed.p({
+			visible: { 
+				opacity: 1, 
+				transition: { duration: 500 },
+			 },
+			hidden: { opacity: 0 },
+		}),
 	},
 })
 export default class AboutPage extends Vue {
@@ -132,14 +166,38 @@ export default class AboutPage extends Vue {
 	@Getter('getPageId') pageId;
 	@Getter('getPageRouteById') getPageRouteById;
 	@Getter('getContactBarVisibility') isShowContactBar;
+	@Getter('visibilityLoader') visibilityLoader;
 	@Mutation('changePageId') changePageId;
 	@Mutation('changeContactBar') changeContactBar;
+
 	curStage: number = 0;
+	isSloganAnimation: boolean 	= false;
+	isContactAnimation: boolean = false;
+	isTextSliderAnimation: boolean = false;
+	stageText : number = 0;
+	stageAbout: number = 0;
+
+
+	showLastStage() {
+		this.curStage = this.about[this.$i18n.locale].slides.length + 1;
+	}
 
 	backToStart() {
 		this.curStage = 0;
 		this.changeContactBar(false);
 	}
+
+	get getFirstStageAnimationDelay() {
+		const delayWithLoader = 2500;
+		const delayWithoutLoader = 500;
+		return this.visibilityLoader ? delayWithLoader : delayWithoutLoader;
+	};
+
+	get getSecondStageAnimationDelay() {
+		const delayWithLoader = 3000;
+		const delayWithoutLoader = 600;
+		return this.visibilityLoader ? delayWithLoader : delayWithoutLoader;
+	};
 
 	get isXsOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
@@ -152,44 +210,30 @@ export default class AboutPage extends Vue {
 	}
 
 	get getSlideTitleFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 12,
-				sm: 20,
-				md: 20,
-				lg: 30,
-			})}px`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('aboutSlideTitleFont')}px` };
 	}
 	get getSlideContentFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 15,
-				sm: 20,
-				md: 20,
-				lg: 30,
-			})}px`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('slideContentFont')}px` };
 	}
 	get getPreviewTitleFont() {
-		return { fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px` };
+		return { fontSize: `${this.getAdaptiveSize('previewTitle')}px` };
 	}
 	get getPreviewSubTitleFont() {
 		return {
-			fontSize: `${this.getCommonAdaptiveFontSize('previewSubtitle')}px`,
+			fontSize: `${this.getAdaptiveSize('previewSubtitle')}px`,
 		};
 	}
 	get getPreviewInfoFont() {
-		return { fontSize: `${this.getCommonAdaptiveFontSize('previewInfo')}px` };
+		return { fontSize: `${this.getAdaptiveSize('previewInfo')}px` };
 	}
 	get getUseContactsTitleFont() {
 		return {
-			fontSize: `${this.getCommonAdaptiveFontSize('useContactsTitle')}px`,
+			fontSize: `${this.getAdaptiveSize('useContactsTitle')}px`,
 		};
 	}
 	get getUseContactsActionFont() {
 		return {
-			fontSize: `${this.getCommonAdaptiveFontSize('useContactsAction')}px`,
+			fontSize: `${this.getAdaptiveSize('useContactsAction')}px`,
 		};
 	}
 
@@ -198,15 +242,31 @@ export default class AboutPage extends Vue {
 		if (value === this.about[this.$i18n.locale].slides.length + 1) {
 			this.changeContactBar(true);
 		}
-	}
-
-	@Watch('isShowContactBar')
-	onChangeContactBar(curValue: boolean, prevValue: boolean) {
-		// when we close contact bar - show prev stage
-		if (prevValue === true) {
-			this.curStage = this.curStage - 1;
+		else {
+			this.changeContactBar(false);
+		}
+		this.isTextSliderAnimation = false;
+		if ((this.curStage > 0) && (this.curStage < this.about[this.$i18n.locale].slides.length + 2)){
+			if (this.curStage > 1) {
+				setTimeout(() => {
+					this.stageAbout = this.curStage - 1;
+					this.stageText = this.stageAbout;
+				}, 250);
+				setTimeout(() => {
+					this.isTextSliderAnimation = true;
+				}, 500);
+			} else {
+				setTimeout(() => {
+					this.stageAbout = this.curStage;
+					this.stageText = this.stageAbout - this.curStage;
+				}, 250);
+				setTimeout(() => {
+					this.isTextSliderAnimation = true;
+				}, 500);
+			}
 		} else {
-			this.curStage = this.about[this.$i18n.locale].slides.length + 1;
+			this.stageAbout = this.curStage;
+			this.stageText = 0;
 		}
 	}
 
@@ -214,7 +274,11 @@ export default class AboutPage extends Vue {
 		this.changePageId(1);
 	}
 
-	mounted() {}
+	mounted() {
+		this.isSloganAnimation = true;
+		this.isContactAnimation = true;
+	}
+
 	beforeDestroy() {
 		this.changeContactBar(false);
 	}
@@ -226,6 +290,7 @@ export default class AboutPage extends Vue {
 	.v-slider__tick
 		border-radius: 50%
 		background: #363636
+		cursor: pointer
 
 	.v-slider__tick--filled
 		background: white
@@ -235,6 +300,10 @@ export default class AboutPage extends Vue {
 
 .slide-container
 	height: 97vh
+	color: white
+
+.slide-container-mobile
+	height: 90vh
 	color: white
 
 .arrow
@@ -259,18 +328,16 @@ export default class AboutPage extends Vue {
 
 .slide-content
 	border: 5px solid white
-	border-right: 16px solid white
 	background-color: rgba(78, 79, 80, 0.3)
 	color: white
 	position: relative
 
-// .spacer
-// 	flex-grow: 0.65 !important
+.border-right
+	border-right: 16px solid white
 
 .use-contacts-container
 	width: auto
-	border-bottom-left-radius: 0
-	border-bottom-right-radius: 0
+	border-radius: 0 !important
 
 .contacts-action
 	text-transform: uppercase
@@ -283,13 +350,17 @@ export default class AboutPage extends Vue {
 	writing-mode: vertical-rl
 	transform: scaleX(-1) scaleY(-1)
 
+	&:hover
+		opacity: 0.8
+
 .rotated-phraze-md
 	top: calc(50vh - 163px)
 	font-size: 30px
 
 .rotated-phraze-lg
-	top: calc(50vh - 300px)
-	font-size: 50px
+	top: calc(50vh - 230px)
+	font-size: 2.5rem
+	right: 9vw
 
 .rotate
 	transform: rotate(90deg)
@@ -301,4 +372,8 @@ export default class AboutPage extends Vue {
 	font-size: 35px !important
 	opacity: 0.45
 	top: calc(50vh - 185px) !important
+
+.footer-padding
+	padding: 6% 12% 0
+	white-space: nowrap
 </style>

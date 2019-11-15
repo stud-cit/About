@@ -13,40 +13,44 @@
 						v-for="(employee, i) in ourStaff[$i18n.locale].staff"
 						:key="i"
 						lg="4"
-						md="6"
+						md="4"
 						sm="12"
 						class="my-4"
+						ref="staff"
 					>
-						<v-card
-							class="mx-auto"
-							:width="isMdAndUp ? '450px' : '100%'"
-							:class="isLgAndUp ? 'card-img-hover' : 'card-img'"
+						<Staff
+							:pose="staffToAnimate.includes(i) ? 'visible': 'hidden'"
 						>
-							<v-img
-								:height="isMdAndUp ? '300px' : '45%'"
-								:src="getDynamicAssets(employee.img)"
-							></v-img>
-						</v-card>
-						<div class="card-addition">
-							<div
-								class="employee-name mt-6 mb-4 font-weight-bold line-height-1"
-								:style="getStaffNameFont"
+							<v-card
+								class="mx-auto card-img-hover"
+								:width="isLgAndUp ? '425px' : 'auto'"
 							>
-								{{ employee.name }}
+								<v-img
+									:height="isLgAndUp ? '300px' : '200px'"
+									:src="getDynamicAssets(employee.img)"
+								></v-img>
+							</v-card>
+							<div class="card-addition">
+								<div
+									class="employee-name mt-6 mb-4 font-weight-bold line-height-1"
+									:style="getStaffNameFont"
+								>
+									{{ employee.name }}
+								</div>
+								<div
+									class="employee-position-short font-weight-regular line-height-1"
+									:style="getStaffPositionFont"
+								>
+									{{ employee.position }}
+								</div>
+								<div
+									class="employee-position-full font-weight-bold mt-7"
+									:style="getStackPositionFont"
+								>
+									{{ employee.stack }}
+								</div>
 							</div>
-							<div
-								class="employee-position-short font-weight-regular line-height-1"
-								:style="getStaffPositionFont"
-							>
-								{{ employee.position }}
-							</div>
-							<div
-								class="employee-position-full font-weight-bold mt-7"
-								:style="getStaffPositionFont"
-							>
-								{{ employee.stack }}
-							</div>
-						</div>
+						</Staff>
 					</v-col>
 				</v-row>
 				<v-row
@@ -60,7 +64,7 @@
 								v-for="(employee, i) in ourStaff[$i18n.locale].staff"
 								:key="i"
 							>
-								<v-card class="mx-auto" color="transparent" width="100%" flat>
+								<v-card class="mx-auto" color="transparent" :width="isXsOnly ? '90%' : '100%'" flat>
 									<v-img
 										height="40%"
 										class="card-img"
@@ -80,7 +84,7 @@
 										</v-btn>
 										<v-col cols="6" class="pa-0">
 											<div
-												class="employee-name my-3 font-weight-bold"
+												class="employee-name mt-3 mb-2 font-weight-bold line-height-1-2"
 												:style="getStaffNameFont"
 											>
 												{{ employee.name }}
@@ -89,7 +93,7 @@
 												class="employee-position-short"
 												:style="getStaffPositionFont"
 											>
-												{{ employee.position }}
+												{{ employee.stack }}
 											</div>
 											<p
 												class="text-center white--text font-italic"
@@ -122,6 +126,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
+import posed from 'vue-pose';
 
 import ScrollBar from '@/components/scroll-bar.vue';
 import PreviewPage from '@/components/preview-page.vue';
@@ -129,6 +134,7 @@ import PruductFooter from '@/components/product-footer.vue';
 
 @Component({
 	layout: 'immediate',
+	transition: 'page',
 	head: {
 		title: 'Our staff',
 	},
@@ -136,12 +142,24 @@ import PruductFooter from '@/components/product-footer.vue';
 		ScrollBar,
 		PreviewPage,
 		'product-footer': PruductFooter,
+		Staff: posed.div({
+			visible: {
+				opacity: 1,
+				y: 0,
+			},
+			hidden: {
+				opacity: 0,
+				y: 40,
+			},
+		}),
 	},
 })
 export default class OurStaffPage extends Vue {
 	@Getter('OurStaffModule/getStage') ourStaff;
 	@Mutation('changePageId') changePageId;
 	curStaff: number = 0;
+	observers: IntersectionObserver[] = [];
+	staffToAnimate: number[] = [];
 
 	switchSlide(nextSlide) {
 		const { curStaff, ourStaff } = this;
@@ -161,6 +179,16 @@ export default class OurStaffPage extends Vue {
 		}`;
 	}
 
+	setAnimation(entry, representationIndex, observer) {
+		if (
+			entry.intersectionRatio > 0 &&
+			!this.staffToAnimate.includes(representationIndex)
+		) {
+			this.staffToAnimate.push(representationIndex);
+			observer.disconnect();
+		}
+	}
+
 	get isLgAndUp() {
 		return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
 	}
@@ -170,30 +198,37 @@ export default class OurStaffPage extends Vue {
 	get isXsOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 	}
+
 	get getStaffNameFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 35,
-				sm: 40,
-				md: 45,
-				lg: 55,
-			})}px`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('staffNameFont')}px` };
 	}
 	get getStaffPositionFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 22,
-				sm: 30,
-				md: 25,
-				lg: 30,
-			})}px`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('staffPositionFont')}px` };
+	}
+	get getStackPositionFont() {
+		return { fontSize: `${this.getAdaptiveSize('stackPositionFont')}px` };
 	}
 
 	created() {
 		this.changePageId(3);
 	}
+
+	mounted() {
+		const staff: any = this.$refs.staff;
+
+		this.observers = staff.map((currStaff, index) => {
+			const options = { threshold: 0.7 };
+			const observer = new IntersectionObserver(([entry], observer) => this.setAnimation(entry, index, observer), options);
+			observer.observe(currStaff);
+			return observer;
+		});
+	}
+
+	beforeDestroy() {
+    this.observers.forEach( observer => {
+			observer.disconnect();
+		});
+  }
 }
 </script>
 
@@ -217,12 +252,11 @@ export default class OurStaffPage extends Vue {
   text-align: center
 
 .card-img-hover
-  border-radius: 50px
+  border-radius: 50px !important
   filter: brightness(35%)
   transition: 1s
 
 .card-img
-  border-radius: 50px !important
   transition: all 1s
   margin: 15px 0
 
@@ -233,6 +267,7 @@ export default class OurStaffPage extends Vue {
   z-index: 10
   transform: scale(1.15)
   filter: brightness(100%)
+  border-radius: 0 !important
   transition: 1s
   ~ .card-addition
     .employee-name
@@ -252,4 +287,10 @@ export default class OurStaffPage extends Vue {
 
 .line-height-1
   line-height: 1
+
+.line-height-1-2
+  line-height: 1.2
+
+.v-card:not(.v-sheet--tile)
+  border-radius: 0
 </style>

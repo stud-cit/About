@@ -1,4 +1,5 @@
 import { Configuration } from '@nuxt/types';
+import TerserPlugin from 'terser-webpack-plugin';
 import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin';
 
 import sass from 'sass';
@@ -11,8 +12,8 @@ const config: Configuration = {
 	 ** Server options
 	 */
 	server: {
-		port: configService.getSetting('APP_PORT'),
-		timing: configService.getSetting('APP_TIMG'),
+		port: configService.get('APP_PORT'),
+		timing: configService.get('APP_TIMG'),
 	},
 	/*
 	 ** Headers of the page
@@ -29,7 +30,7 @@ const config: Configuration = {
 			{
 				hid: 'description',
 				name: 'description',
-				content: configService.getSetting('APP_DESC'),
+				content: configService.get('APP_DESC'),
 			},
 		],
 		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
@@ -48,8 +49,9 @@ const config: Configuration = {
 		'~/plugins/vuetify',
 		'~/plugins/vee-validate',
 		'~/plugins/axios',
-		{ src: '~/plugins/vuetify-breakpoints', ssr: false },
+		{ src: '~/plugins/responsive-video-bg', ssr: false },
 		{ src: '~/plugins/swiper', ssr: false },
+		{ src: '~/plugins/vuetify-breakpoints', ssr: false },
 	],
 
 	auth: {
@@ -76,13 +78,13 @@ const config: Configuration = {
 		lazy: true,
 		parsePages: false,
 		langDir: 'lang/',
-		defaultLocale: 'en',
-		// TODO: uncomment on prod
-		// detectBrowserLanguage: {
-		// useCookie: true,
-		// cookieKey: 'i18n_redirected',
-		// alwaysRedirect: true,
-		// fallbackLocale: 'en'
+		defaultLocale: 'ua',
+		detectBrowserLanguage: {
+			useCookie: true,
+			cookieKey: 'i18n_redirected',
+			alwaysRedirect: true,
+			fallbackLocale: 'ua',
+		},
 		locales: [
 			{
 				code: 'en',
@@ -102,6 +104,13 @@ const config: Configuration = {
 		],
 	},
 	/*
+	 ** Optimization plugin bu terser
+	 */
+	optimization: {
+		minimize: true,
+		minimizer: [new TerserPlugin()],
+	},
+	/*
 	 ** Modules to load before mounting the App
 	 */
 	buildModules: [
@@ -111,6 +120,7 @@ const config: Configuration = {
 		'@nuxtjs/axios',
 	],
 	build: {
+		analyze: true,
 		transpile: ['vuetify/lib'],
 		plugins: [new VuetifyLoaderPlugin()],
 		loaders: {

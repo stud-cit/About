@@ -5,12 +5,17 @@
 		align="center"
 		:class="isAboutPage ? 'preview-section-about' : 'preview-section-not-about'"
 	>
-		<v-col cols="12" sm="11" lg="12" xl="12">
+		<v-col cols="12" lg="12" xl="12">
 			<v-row
-				class="ma-0 preview-wrapper ml-2"
+				class="ma-0 ml-sm-2 mt-md-12 pt-md-12"
 				justify="space-around"
 				align="end"
-				:class="{ 'preview-margin': iconDown }"
+				:class="{
+					'preview-margin': iconDown,
+					'preview-wrapper': !isXsOnly,
+					'preview-wrapper-mobile': isXsOnly,
+					'mb-sm-8 mb-md-0' : isAboutPage,
+				}"
 			>
 				<v-col
 					cols="12"
@@ -20,7 +25,9 @@
 					:class="{ 'text-center': isXsOnly }"
 				>
 					<div class="d-block">
-						<p
+						<ContentBlock
+							:pose="isStartAnimation ? 'visible' : 'hidden'"
+							:delay="getFirstStageAnimationDelay"
 							class="bold-preview"
 							:class="{
 								'text-uppercase': isAboutPage,
@@ -29,87 +36,114 @@
 							:style="getPreviewTitleFont"
 						>
 							{{ title }}
-						</p>
-						<p class="bold-preview" :style="getPreviewTitleFont">
+						</ContentBlock>
+						<ContentBlock
+							:pose="isStartAnimation ? 'visible' : 'hidden'"
+							:delay="getFirstStageAnimationDelay"
+							class="bold-preview"
+							:style="getPreviewTitleFont"
+						>
 							{{ subtitle }}
-						</p>
+						</ContentBlock>
 					</div>
 				</v-col>
 				<v-col cols="12" order="3" order-sm="2">
-					<v-row justify="space-around" justify-sm="start">
-						<v-col cols="auto" order="1" order-sm="1">
-							<div class="arrow mr-3" @click="handleNavigatingPage(false)">
-								<v-img src="/arrow-left.svg" width="45px" />
-							</div>
-						</v-col>
-						<v-col cols="auto" order="3" order-sm="2">
-							<div class="arrow mr-3" @click="handleNavigatingPage(true)">
-								<v-img src="/arrow-right.svg" width="45px" />
-							</div>
-						</v-col>
-						<v-col
-							cols="auto"
-							order="2"
-							order-sm="3"
-							:class="{ rotate: isXsOnly }"
-						>
-							<nuxt-link class="square-container" to="/">
-								<div class="squares mr-3 squareOne"></div>
-								<div class="squares mr-3 squareTwo"></div>
-								<div class="squares squareThree"></div>
-							</nuxt-link>
-						</v-col>
-					</v-row>
+					<OpacityBlock
+						:pose="isStartAnimation ? 'visible' : 'hidden'"
+						:delay="getFirstStageAnimationDelay"
+					>
+						<v-row justify="space-around" justify-sm="start">
+							<v-col cols="auto" order="1" order-sm="1">
+								<div class="arrow mr-3" @click="handleNavigatingPage(false)">
+									<v-img src="/arrow-left.svg" width="45px" />
+								</div>
+							</v-col>
+							<v-col cols="auto" order="3" order-sm="2">
+								<div class="arrow mr-3" @click="handleNavigatingPage(true)">
+									<v-img src="/arrow-right.svg" width="45px" />
+								</div>
+							</v-col>
+							<v-col
+								cols="auto"
+								order="2"
+								order-sm="3"
+								:class="{ rotate: isXsOnly }"
+							>
+								<nuxt-link
+									class="square-container"
+									:to="
+										`/${
+											$i18n.locale !== $i18n.defaultLocale ? $i18n.locale : ''
+										}`
+									"
+								>
+									<div class="squares mr-3 squareOne"></div>
+									<div class="squares mr-3 squareTwo"></div>
+									<div class="squares squareThree"></div>
+								</nuxt-link>
+							</v-col>
+						</v-row>
+					</OpacityBlock>
 				</v-col>
 
 				<v-col cols="12" order="2" order-sm="3">
 					<v-row class="d-none d-sm-flex font-weight-regular line-height-1">
-						<span :style="getPreviewSubTitleFont">{{ description }}</span>
+						<ContentBlock
+							:pose="isStartAnimation ? 'visible' : 'hidden'"
+							:delay="getFirstStageAnimationDelay"
+							:style="getPreviewSubTitleFont"
+						>
+							{{ description }}
+						</ContentBlock>
 					</v-row>
 					<v-row justify="center" class="d-flex d-sm-none pl-0">
 						<img class="pointer-icon" src="/pointer-mobile.svg" />
 					</v-row>
-					<v-row justify="center" justify-sm="start" class="mt-4">
-						<span class="gray font-weight-regular" :style="getPreviewInfoFont">
-							{{ $t(isAboutPage ? 'about.scrollPoint' : 'common.scroll') }}
-						</span>
+					<v-row justify="center" justify-sm="start">
+						<ContentBlock
+							:pose="isStartAnimation ? 'visible' : 'hidden'"
+							:delay="getFirstStageAnimationDelay"
+							class="gray font-weight-regular"
+							:style="getPreviewInfoFont"
+						>
+							{{ $t(getScrollInfo) }}
+						</ContentBlock>
 					</v-row>
 				</v-col>
 			</v-row>
-			<v-row
-				v-show="isShowUseContacts"
-				v-scroll="handleScroll"
-				class="pa-0 use-contacts-container"
-				justify="end"
-				no-gutters
+			<OpacityBlock
+				:pose="isStartAnimation ? 'visible' : 'hidden'"
+				:delay="getSecondStageAnimationDelay"
 			>
-				<v-col cols="12" sm="auto">
-					<v-card class="pa-4 pt-0 card-contacts" @click="scrollToFooter">
-						<v-card-title
-							class="justify-center font-weight-thin"
-							:style="getUseContactsTitleFont"
-							>{{ $t('contact.title') }}</v-card-title
-						>
-						<v-card-actions
-							class="pa-0 justify-center font-weight-regular"
-							:style="getUseContactsActionFont"
-						>
-							<div class="contacts-action">{{ $t('contact.subTitle') }}</div>
-						</v-card-actions>
-					</v-card>
-				</v-col>
-				<v-col sm="1"></v-col>
-			</v-row>
-			<v-row justify="center" v-show="iconDown">
-				<v-btn
-					icon
-					color="white"
-					@click="scollToContent"
-					class="scroll-bottom-icon"
+				<v-row
+					v-show="isShowUseContacts"
+					v-scroll="handleScroll"
+					class="pa-0 use-contacts-container"
+					justify="end"
+					no-gutters
 				>
-					<v-icon size="50" class="icon-down">mdi-chevron-double-down</v-icon>
-				</v-btn>
-			</v-row>
+					<v-col cols="12" sm="auto">
+						<v-card
+							class="pa-4 pt-0"
+							:class="isXsOnly ? 'card-contacts' : 'card-contacts-sm-and-up'"
+							@click="scrollToFooter"
+						>
+							<v-card-title
+								class="justify-center font-weight-bold footer-padding pt-2 pt-sm-3 pt-md-4 pt-lg-5 "
+								:style="getUseContactsTitleFont"
+								>{{ $t('contact.title') }}</v-card-title
+							>
+							<v-card-actions
+								class="pa-0 justify-center font-weight-bold"
+								:style="getUseContactsActionFont"
+							>
+								<div class="contacts-action">{{ $t('contact.subTitle') }}</div>
+							</v-card-actions>
+						</v-card>
+					</v-col>
+					<v-col sm="1"></v-col>
+				</v-row>
+			</OpacityBlock>
 		</v-col>
 	</v-row>
 </template>
@@ -117,18 +151,38 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
+import posed from 'vue-pose';
 
 @Component({
+	components: {
+		OpacityBlock: posed.div({
+			visible: { opacity: 1, delay: ({ delay }) => delay },
+			hidden: { opacity: 0 },
+		}),
+		ContentBlock: posed.p({
+			visible: { opacity: 1, y: 0, delay: ({ delay }) => delay },
+			hidden: { opacity: 0, y: 20 },
+		}),
+	},
 	props: ['title', 'subtitle', 'description', 'iconDown'],
 })
 export default class PreviewPage extends Vue {
 	@Getter('getPageByRoute') getPageByRoute;
 	@Getter('getPageId') pageId;
 	@Getter('getPageRouteById') getPageRouteById;
+	@Getter('visibilityLoader') visibilityLoader;
+
 	isShowUseContacts: boolean = true;
 	aboutPageId: number = 1;
 	portfolioPageId: number = 4;
 	weofferPageId: number = 2;
+
+	// animation
+	isStartAnimation: boolean = false;
+	firstStageAnimationDelayWithLoader: number = 2500;
+	firstStageAnimationDelayWithoutLoader: number = 500;
+	secondStageAnimationDelayWithLoader: number = 3000;
+	secondStageAnimationDelayWithoutLoader: number = 600;
 
 	handleScroll(): void {
 		const windowHeight = window.innerHeight;
@@ -152,6 +206,7 @@ export default class PreviewPage extends Vue {
 	scollToContent(): void {
 		window.scrollTo({ left: 0, top: window.innerHeight, behavior: 'smooth' });
 	}
+
 	scrollToFooter() {
 		window.scrollTo({
 			left: 0,
@@ -166,53 +221,72 @@ export default class PreviewPage extends Vue {
 		this.$router.replace(this.localePath(nextPage));
 	}
 
+	get getScrollInfo() {
+		if (this.isAboutPage) {
+			if (this.isMdAndUp) {
+				return 'about.scrollPointNavigation';
+			} else {
+				return 'common.swipe';
+			}
+		} else {
+			return 'common.scroll';
+		}
+	}
+
 	get isAboutPage() {
 		return this.pageId === this.aboutPageId;
 	}
 	get isLgAndUp() {
 		return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
 	}
+	get isMdAndUp() {
+		return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
+	}
 	get isXsOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 	}
-	get getPreviewTitleFont() {
-		return { fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px` };
+
+	get getFirstStageAnimationDelay() {
+		return this.visibilityLoader
+			? this.firstStageAnimationDelayWithLoader
+			: this.firstStageAnimationDelayWithoutLoader;
 	}
+	get getSecondStageAnimationDelay() {
+		return this.visibilityLoader
+			? this.secondStageAnimationDelayWithLoader
+			: this.secondStageAnimationDelayWithoutLoader;
+	}
+
 	get getPreviewSubTitleFont() {
 		return {
-			fontSize: `${this.getCommonAdaptiveFontSize('previewSubtitle')}px`,
+			fontSize: `${this.getAdaptiveSize('previewSubtitle')}px`,
 		};
 	}
 	get getPreviewInfoFont() {
-		return { fontSize: `${this.getCommonAdaptiveFontSize('previewInfo')}px` };
+		return { fontSize: `${this.getAdaptiveSize('previewInfo')}px` };
 	}
 	get getUseContactsTitleFont() {
 		return {
-			fontSize: `${this.getCommonAdaptiveFontSize('useContactsTitle')}px`,
+			fontSize: `${this.getAdaptiveSize('useContactsTitle')}px`,
 		};
 	}
 	get getUseContactsActionFont() {
 		return {
-			fontSize: `${this.getCommonAdaptiveFontSize('useContactsAction')}px`,
+			fontSize: `${this.getAdaptiveSize('useContactsAction')}px`,
 		};
 	}
 	get getPreviewTitleFont() {
-		if (!this.isAboutPage) {
-			return {
-				fontSize: `${this.getCommonAdaptiveFontSize('previewTitle')}px`,
-			};
-		} else {
-			return {
-				fontSize: `${this.getCustomAdaptiveSize({
-					xs: 7,
-					sm: 9,
-					md: 5,
-					lg: 4,
-				})}vw`,
-			};
-		}
+		return {
+			fontSize: `${this.getAdaptiveSize('previewTitle')}px`,
+		};
 	}
+
 	mounted() {
+		this.isStartAnimation = true;
+
+		// increase animation delay to prevent staring too early
+		// this.animationDelayWithoutLoader = 350;
+
 		// initial check
 		this.handleScroll();
 	}
@@ -230,12 +304,14 @@ export default class PreviewPage extends Vue {
 		z-index: 10
 
 		.card-contacts
-			border-bottom-left-radius: 0
-			border-bottom-right-radius: 0
+			border-radius: 0
+
+		.card-contacts-sm-and-up
+			border-radius: 0 !important
 
 		.contacts-action
 			text-transform: uppercase
-			border-bottom: 2px solid black
+			border-bottom: 2px solid rgba(0, 0, 0, 0.87)
 
 .preview-section-about
 	height: 97vh !important
@@ -244,13 +320,16 @@ export default class PreviewPage extends Vue {
 	height: 100vh !important
 
 .preview-wrapper
-	height: 70vh
+	height: 80vh
+	color: white
+
+.preview-wrapper-mobile
+	height: 60vh
 	color: white
 
 .preview-margin
 	margin-bottom: 0vh
 	margin-top: 13vh
-
 
 .arrow
 	font-size: 1.8rem
@@ -303,4 +382,8 @@ export default class PreviewPage extends Vue {
 .bold-preview
 	font-weight: 800 !important
 	font-style: normal
+
+.footer-padding
+	padding: 6% 12% 0
+	white-space: nowrap
 </style>

@@ -40,7 +40,7 @@ class OffersState {
 				cardContent: `Web-розробка починається з визначення причин і цілей.
 					Ці дві складові напряму впливають на складність виконання.`,
 				img: '/images/weOffer/three.jpg',
-				contentPosition: 'end',
+				contentPosition: 'start',
 			},
 		],
 	};
@@ -69,7 +69,7 @@ class OffersState {
 					от поставленой цели нами будет выбрана наиболее походящая платформа
 					и функционал. Эти две составляющие напрямую влияют на сложность выполнения.`,
 				img: '/images/weOffer/three.jpg',
-				contentPosition: 'end',
+				contentPosition: 'start',
 			},
 		],
 	};
@@ -99,7 +99,7 @@ class OffersState {
 				from the goal we will choose the most suitable platform
 				and functional. These two components directly affect the complexity of execution.`,
 				img: '/images/weOffer/three.jpg',
-				contentPosition: 'end',
+				contentPosition: 'start',
 			},
 		],
 	};

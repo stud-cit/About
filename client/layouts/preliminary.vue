@@ -4,18 +4,16 @@
 			<v-row justify="center">
 				<v-col cols="10">
 					<v-row :class="{ 'margin-top': isSmAndUp }" justify="space-between">
-						<v-col cols="auto">
+						<v-col cols="auto" class="px-0">
 							<p
 								class="text-uppercase mb-0 bold-preview"
 								:style="getPageTitleFont"
-								:class="isXsOnly ? 'text-center' : ''"
 							>
 								{{ $t('home.title') }}
 							</p>
 							<p
 								class="mb-0 grey--text font-weight-bold"
 								:style="getPageSubTitleFont"
-								:class="isXsOnly ? 'text-center' : ''"
 							>
 								{{ $t('home.subTitle') }}
 							</p>
@@ -68,9 +66,10 @@
 			class="d-flex d-md-none mobile-icon burger-icon"
 			@click="toggleVisibilityLocales"
 			icon
-			:class="isSmOnly ? 'locale-button' : ''"
+			x-large
+			:class="{ 'locale-button': isSmOnly }"
 		>
-			<v-icon size="30" color="black">mdi-menu</v-icon>
+			<v-icon size="35" color="black">mdi-menu</v-icon>
 		</v-btn>
 
 		<v-bottom-sheet v-model="isShowMobileLocales">
@@ -79,9 +78,9 @@
 					class="mobile-icon close-icon"
 					@click="toggleVisibilityLocales"
 					icon
-					large
+					x-large
 				>
-					<v-icon size="50" color="black">
+					<v-icon size="30" color="black">
 						mdi-close
 					</v-icon>
 				</v-btn>
@@ -96,6 +95,7 @@
 							active-class="active-locale"
 							x-large
 							icon
+							@click="toggleVisibilityLocales"
 						>
 							<span class="locale">{{ locale.code }}</span>
 						</v-btn>
@@ -119,25 +119,12 @@ export default class PreliminaryLayout extends Vue {
 	}
 
 	get getPageTitleFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 20,
-				sm: 20,
-				md: 25,
-				lg: 30,
-			})}px`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('pageTitleFont')}px` };
 	}
 	get getPageSubTitleFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 16,
-				sm: 20,
-				md: 22,
-				lg: 28,
-			})}px`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('pageSubTitleFont')}px` };
 	}
+
 	get isSmOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.smOnly : false;
 	}
@@ -161,7 +148,7 @@ export default class PreliminaryLayout extends Vue {
 
   .app-bar
     position: sticky
-    height: 90px !important
+    height: 110px !important
     margin-top: 10px !important
     background: rgba(250, 250, 250, .85)
     .v-toolbar__content
@@ -173,7 +160,7 @@ export default class PreliminaryLayout extends Vue {
 
 .burger-icon
   position: fixed
-  left: calc(50vw - 18px)
+  left: calc(50vw - 26px)
   bottom: 2vh
 
 .locale-button
@@ -182,9 +169,13 @@ export default class PreliminaryLayout extends Vue {
   border-radius: 50%
   border: 2px solid #4A4A4A
 
+.v-bottom-sheet
+    background: #8a8a8a
+    box-shadow: 0px 11px 0px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 50px 8px rgba(0, 0, 0, 0.12)
+
 .theme--light.v-btn::before
   opacity: 0 !important
-   border-radius: 50%
+  border-radius: 50%
   border: 2px solid #4A4A4A
 
 .theme--light.v-btn:hover::before
@@ -195,7 +186,7 @@ export default class PreliminaryLayout extends Vue {
 .close-icon
   z-index: 20
   position: absolute
-  left: calc(50vw - 18px)
+  left: calc(50vw - 26px)
   top: -18px
 .relative
   position: relative
@@ -243,5 +234,5 @@ export default class PreliminaryLayout extends Vue {
   font-style: normal
 
 .margin-top
-  margin-top: 10%
+  margin-top: 5%
 </style>

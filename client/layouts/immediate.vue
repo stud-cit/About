@@ -1,58 +1,93 @@
 <template>
 	<v-app>
+		<!-- shows video on md using sources otherwise using default src -->
+		<!-- TODO: (vadim) change to videoMobile when get proper videos-->
+		<client-only>
+			<video-background
+				id="video-bg"
+				:sources="[
+					{
+						src: videoBg.videoPc
+							? getDynamicAssets(`/videos${videoBg.videoPc}`)
+							: '',
+						res: 600,
+						autoplay: true,
+						poster: videoBg.cover
+							? getDynamicAssets(`/images/covers${videoBg.cover}`)
+							: '',
+					},
+				]"
+				:src="
+					videoBg.videoPc ? getDynamicAssets(`/videos${videoBg.videoPc}`) : ''
+				"
+				:poster="
+					videoBg.cover
+						? getDynamicAssets(`/images/covers${videoBg.cover}`)
+						: ''
+				"
+			/>
+		</client-only>
 		<v-app-bar
 			id="header"
-			class="pt-3 pt-lg-4 mt-3"
-			color="transparent"
+			:class="isShowNormalHeader ? 'pt-5 pt-lg-7' : 'pt-2 pb-1 mini-header'"
+			:color="isShowNormalHeader ? 'transparent' : ''"
 			app
-			dark
 			flat
+			v-scroll="handleScroll"
 		>
 			<v-row class="mx-1 mx-sm-0" justify="center" align="center">
 				<v-col cols="12" sm="10" order-md="2" class="pa-0">
 					<v-row justify="space-between" align="center">
-						<v-col cols="auto" class="pa-0">
-							<nuxt-link :to="localePath({ name: 'index' })" nuxt>
-								<v-img src="/logo.svg" />
-							</nuxt-link>
+						<v-col
+							:cols="isShowNormalHeader ? 'auto' : '2'"
+							class="pa-0 d-none d-sm-flex"
+						>
+							<OpacityBox
+								:pose="isStartAnimation ? 'visible' : 'hidden'"
+								:delay="getAnimationDelay"
+							>
+								<nuxt-link :to="localePath({ name: 'index' })" nuxt>
+									<v-img src="/logo.svg" />
+								</nuxt-link>
+							</OpacityBox>
 						</v-col>
 						<v-col cols="6" md="6" lg="7" xl="6" class="d-none d-md-flex">
-							<v-row justify="space-between" align="center">
+							<Navs
+								class="nav-panel"
+								:pose="isStartAnimation ? 'visible' : 'hidden'"
+								:delay="getAnimationDelay"
+							>
 								<v-col
 									class="pa-0 nav-links"
 									cols="auto"
 									v-for="(page, index) in pages"
 									:key="index"
 								>
-									<v-btn
-										class="px-0 desktop-link"
-										active-class="active-desktop-link"
-										:to="localePath(page.to)"
-										replace
-										exact
-										dark
-										text
-									>
-										<span :style="getTotalPagesFont" class="not_uppercase">{{
-											$t(page.title)
-										}}</span>
-									</v-btn>
+									<ContentBox>
+										<v-btn
+											class="px-0 desktop-link"
+											active-class="active-desktop-link"
+											:to="localePath(page.to)"
+											:ripple="false"
+											replace
+											exact
+											dark
+											text
+										>
+											<span :style="getTotalPagesFont" class="not-uppercase">
+												{{ $t(page.title) }}
+											</span>
+										</v-btn>
+									</ContentBox>
 								</v-col>
-								<v-btn
-									icon
-									dark
-									:to="localePath({ name: 'index' })"
-									class="d-none d-md-flex"
-									nuxt
-								>
-									<v-icon size="50">mdi-fullscreen-exit</v-icon>
-								</v-btn>
-							</v-row>
+							</Navs>
 						</v-col>
 						<v-btn
 							class="d-flex d-md-none"
 							@click="toggleVisibilityMobileMenu"
 							icon
+							:class="{ 'gumburger-mobile-position': isXsOnly }"
+							color="white"
 						>
 							<v-icon size="50">mdi-menu</v-icon>
 						</v-btn>
@@ -60,25 +95,34 @@
 				</v-col>
 			</v-row>
 		</v-app-bar>
-		<v-row class="mx-2 mx-sm-0 page-info" justify="start">
-			<v-col cols="auto" offset="0" offset-sm="1">
-				<p class="bold-italic-preview d-flex">
-					<span :style="getPageIndexFont">0{{ pageId }}</span>
-					<span class="total-pages mt-1 mt-sm-2" :style="getPageAllIndexFont"
-						>/04</span
-					>
-				</p>
+		<v-row
+			class="mx-2 mt-sm-4 mt-md-5 mt-lg-6 mx-sm-0 page-info"
+			justify="start"
+			:class="{ 'page-info-mobile': isXsOnly }"
+		>
+			<v-col v-show="isShowNormalHeader" cols="auto" offset="0" offset-sm="1">
+				<OpacityBox
+					:pose="isStartAnimation ? 'visible' : 'hidden'"
+					:delay="getAnimationDelay"
+				>
+					<p class="bold-italic-preview d-flex mt-md-3">
+						<span :style="getPageIndexFont">0{{ pageId }}</span>
+						<span
+							class="total-pages mt-1 mt-sm-2"
+							:style="getPageTotalIndexFont"
+						>
+							/04
+						</span>
+					</p>
+				</OpacityBox>
 			</v-col>
 		</v-row>
-		<v-img :src="getDynamicAssets(cover)" class="imageCover" />
-
 		<v-content class="pt-0">
 			<v-container fluid class="pa-0">
 				<nuxt />
 				<contact-bar />
 			</v-container>
 		</v-content>
-
 		<v-dialog
 			v-model="isShowMobileMenu"
 			fullscreen
@@ -86,7 +130,14 @@
 			transition="dialog-bottom-transition"
 			scrollable
 		>
-			<v-btn @click="toggleVisibilityMobileMenu" icon large fixed right>
+			<v-btn
+				class="index"
+				@click="toggleVisibilityMobileMenu"
+				icon
+				large
+				fixed
+				right
+			>
 				<v-icon size="50" color="black">mdi-close</v-icon>
 			</v-btn>
 			<v-list id="pages-list-container">
@@ -111,83 +162,132 @@
 </template>
 
 <script lang="ts">
+import posed from 'vue-pose';
 import { Component, Vue } from 'vue-property-decorator';
-import { Getter } from 'vuex-class';
+import { Getter, Mutation } from 'vuex-class';
 import ContactBar from '@/components/contact-bar.vue';
 
 @Component({
 	components: {
 		'contact-bar': ContactBar,
+		Navs: posed.div({
+			visible: {
+				beforeChildren: true,
+				staggerChildren: 50,
+				delayChildren: ({ delay }) => delay,
+			},
+			hidden: {
+				afterChildren: true,
+			},
+		}),
+		OpacityBox: posed.div({
+			visible: { opacity: 1, delay: ({ delay }) => delay },
+			hidden: { opacity: 0 },
+		}),
+		ContentBox: posed.div({
+			visible: { opacity: 1, y: 0 },
+			hidden: { opacity: 0, y: 20 },
+		}),
 	},
 })
 export default class ImmediatetLayout extends Vue {
 	@Getter('getPageByRoute') getPageByRoute;
 	@Getter('getPageId') pageId;
 	@Getter('getPageStage') pages;
-	@Getter('getPageCover') cover;
+	@Getter('getPageVideoBg') videoBg;
+	@Getter('visibilityLoader') visibilityLoader;
+	@Mutation('changeScrollBar') changeScrollBar;
+
+	isShowMobileMenu: boolean = false;
+	isStartAnimation: boolean = false;
+	isShowNormalHeader: boolean = true;
+
+	handleScroll(): void {
+		const currentScroll = window.scrollY;
+		const windowHeight = window.innerHeight;
+		const scrollHeight = document.body.scrollHeight;
+		const scrollToFooter = scrollHeight - windowHeight * 1.3;
+
+		// show normal header version when scroll to footer
+		if (currentScroll > scrollToFooter) {
+			this.isShowNormalHeader = true;
+		}
+		else {
+			currentScroll > 10 && this.$breakpoint.is.mdAndUp
+				? (this.isShowNormalHeader = false)
+				: (this.isShowNormalHeader = true);
+		}
+	}
+	get isXsOnly() {
+		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+	}
 
 	get isMdAndUp() {
 		return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
 	}
 
-	get getPageIndexFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 25,
-				sm: 40,
-				md: 40,
-				lg: 45,
-			})}px`,
-		};
+	get getAnimationDelay() {
+		return this.visibilityLoader ? 1500 : 0;
 	}
+
 	get getPageIndexFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 25,
-				sm: 40,
-				md: 40,
-				lg: 45,
-			})}px`,
-		};
+		return { fontSize: `${this.getAdaptiveSize('pageIndexFont')}px` };
 	}
-	get getPageAllIndexFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 15,
-				sm: 20,
-				md: 20,
-				lg: 25,
-			})}px`,
-		};
+	get getPageTotalIndexFont() {
+		return { fontSize: `${this.getAdaptiveSize('pageTotalIndexFont')}px` };
 	}
 	get getTotalPagesFont() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 2,
-				sm: 2,
-				md: 1.4,
-				lg: 1.5,
-			})}vw`,
-		};
+		if (this.isShowNormalHeader) {
+			return { fontSize: `${this.getAdaptiveSize('totalPagesFont')}vw` };
+		} else {
+			return { fontSize: `${this.getAdaptiveSize('totalMiniPagesFont')}vw` };
+		}
 	}
-	isShowMobileMenu: boolean = false;
 
 	toggleVisibilityMobileMenu() {
 		this.isShowMobileMenu = !this.isShowMobileMenu;
+	}
+	mounted() {
+		this.isStartAnimation = true;
+
+		// hide scrollBar on any route change
+		this.$router.beforeHooks.push((prevRoute, nextRoute, next) => {
+			this.changeScrollBar(false);
+			setTimeout(() => next(), 25);
+		});
 	}
 }
 </script>
 
 <style lang="sass">
+#video-bg
+	height: 100vh
+	max-height: 100vh
+	position: fixed
+
 #header
 	z-index: 30
+	height: auto !important
+	color: rgba(255, 255, 255, 1)
+	transition: all ease .5s
+
 	.desktop-link
 		font-weight: 600
 		&::before
 			opacity: 0
+
 	.active-desktop-link
 		border-bottom: 4px solid white
 		border-radius: unset
+
+	&.mini-header
+		background: rgba(0, 0, 0, 0.45)
+
+.nav-panel
+	display: flex
+	align-items: center
+	justify-content: space-between
+	width: 100%
 
 .nav-links
 	align-items: center
@@ -198,10 +298,15 @@ export default class ImmediatetLayout extends Vue {
 .nav-link-desktop
 	font-size: 25px
 
+.gumburger-mobile-position
+	position: absolute !important
+	right: 0
+	margin-right: 4vw
+
 .page-info
 	position: fixed
 	width: 100%
-	top: 9vh
+	top: 7vh
 	z-index: 5
 	color: white
 	font-weight: bold
@@ -209,6 +314,9 @@ export default class ImmediatetLayout extends Vue {
 
 	.total-pages
 		vertical-align: top
+
+.page-info-mobile
+	top: 3vh
 
 #pages-list-container
 	height: 100vh
@@ -244,10 +352,13 @@ export default class ImmediatetLayout extends Vue {
 .desktop-link:hover
 	opacity: 0.5
 
-.not_uppercase
+.not-uppercase
 	text-transform: none !important
 
 .bold-italic-preview
 	font-weight: 800 !important
 	font-style: italic
+
+.index
+	z-index: 10
 </style>

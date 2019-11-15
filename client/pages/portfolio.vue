@@ -22,12 +22,20 @@
 					<v-col lg="7" md="7" sm="12">
 						<v-card dark flat color="transparent">
 							<v-list-item>
-								<v-list-item-content>
+								<v-list-item-content v-if="!isMdAndUp">
+									<a :href="project.link">
+										<v-list-item-title
+											v-text="project.title"
+											class="font-weight-medium text-underline text-wrap text-center portfolio-link"
+											:style="getProjectTitleFont"
+										/>
+									</a>
+								</v-list-item-content>
+								<v-list-item-content v-else>
 									<v-list-item-title
 										v-text="project.title"
-										class="ma-5 font-weight-medium text-underline text-wrap"
-										:class="isMdAndUp ? '' : 'text-center'"
-										:style="getTitleFontProject"
+										class=" font-weight-medium text-underline text-wrap"
+										:style="getProjectTitleFont"
 									/>
 									<v-divider />
 								</v-list-item-content>
@@ -38,11 +46,25 @@
 						lg="3"
 						md="4"
 						sm="12"
-						class="ma-3 d-flex"
+						class="ma-3 mr-0 ml-0 d-none d-md-flex pr-0 pl-0"
 						:class="isMdAndUp ? 'justify-end' : 'justify-center'"
 					>
-						<v-btn :to="project.link" large dark text>
-							<span class="headline d-none d-md-block">
+						<v-btn
+							:href="project.link"
+							target="_blank"
+							large
+							dark
+							text
+							:ripple="false"
+							depressed
+							class="pr-0 pl-0"
+							@mouseover="borderActive = true"
+							@mouseleave="borderActive = false"
+						>
+							<span
+								class="headline d-none d-md-block pr-3"
+								:class="{ 'border-text-link': borderActive }"
+							>
 								{{ $t('portfolio.link') }}
 							</span>
 							<div class="arrow-right">
@@ -69,6 +91,7 @@ import PruductFooter from '@/components/product-footer.vue';
 
 @Component({
 	layout: 'immediate',
+	transition: 'page',
 	head: {
 		title: 'Portfolio',
 	},
@@ -81,32 +104,20 @@ export default class PortfolioPage extends Vue {
 	@Getter('PortfolioModule/getStage') portfolio;
 	@Mutation('changePageId') changePageId;
 
+	borderActive: boolean = false;
+
 	get isMdAndUp() {
 		return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
 	}
 	created() {
 		this.changePageId(4);
 	}
-	get getTitleFontProject() {
-		return {
-			fontSize: `${this.getCustomAdaptiveSize({
-				xs: 32,
-				sm: 50,
-				md: 55,
-				lg: 65,
-			})}px`,
-		};
-	}
 
+	get getProjectTitleFont() {
+		return { fontSize: `${this.getAdaptiveSize('projectTitleFont')}px` };
+	}
 	get getParalaxHeight() {
-		return {
-			height: `${this.getCustomAdaptiveSize({
-				xs: 50,
-				sm: 60,
-				md: 65,
-				lg: 65,
-			})}vh`,
-		};
+		return { height: `${this.getAdaptiveSize('paralaxHeight')}vh` };
 	}
 }
 </script>
@@ -117,12 +128,19 @@ export default class PortfolioPage extends Vue {
     line-height: normal
     text-decoration: underline
     text-underline-position: under
+
+  .portfolio-link
+    color: white
+
 .arrow-right
   border-radius: 50%
   padding: 25px
   margin: 10px
-  border: 1px solid white
+  border: 5px solid white
 
 .v-btn:hover::before
   opacity: 0 !important
+
+.border-text-link
+  border-bottom: 1px solid white
 </style>
