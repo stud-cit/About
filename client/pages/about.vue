@@ -36,19 +36,11 @@
 											:style="getSlideContentFont"
 											:class="isXsOnly ? '' : 'border-right'"
 										>
-											<v-window v-model="stageText">
-												<v-window-item
-													v-for="(slide, i) in about[$i18n.locale].slides"
-													:key="i"
-												>
-													<p class="py-md-10"
-														pose="default"
-													>
-														{{ slide }}
-													</p>
-												</v-window-item>
-											</v-window>
-
+											<TextSlider
+												:pose="isTextSliderAnimation ? 'visible' : 'hidden'"
+											  	class="py-md-10">
+												{{ about[$i18n.locale].slides[stageText] }}
+											</TextSlider>
 										</div>
 									</v-col>
 								</v-row>
@@ -160,6 +152,13 @@ import PreviewPage from '@/components/preview-page.vue';
 			visible: { opacity: 1, delay: ({delay}) => delay },
 			hidden: { opacity: 0 },
 		}),
+		TextSlider: posed.p({
+			visible: { 
+				opacity: 1, 
+				transition: { duration: 500 },
+			 },
+			hidden: { opacity: 0 },
+		}),
 	},
 })
 export default class AboutPage extends Vue {
@@ -174,6 +173,7 @@ export default class AboutPage extends Vue {
 	curStage: number = 0;
 	isSloganAnimation: boolean 	= false;
 	isContactAnimation: boolean = false;
+	isTextSliderAnimation: boolean = false;
 	stageText : number = 0;
 	stageAbout: number = 0;
 
@@ -266,7 +266,11 @@ export default class AboutPage extends Vue {
 
 	mounted() {
 		this.isSloganAnimation = true;
-		this.isContactAnimation = true
+		this.isContactAnimation = true;
+	
+		setTimeout(() => {
+			this.isTextSliderAnimation = true;
+		}, 5000);
 	}
 
 	beforeDestroy() {
