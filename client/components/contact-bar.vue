@@ -8,6 +8,7 @@
 	>
 		<Footer
 			:pose="getAnimationStage"
+			ref="footer"
 		>
 			<v-row class="ma-0 slogan" justify="center">
 				<v-col cols="10" class="pa-0 font-weight-regular">
@@ -112,10 +113,11 @@ import posed from 'vue-pose';
 			visible: {
 				opacity: 1,
 				y: 0,
+				transition: { duration: 3000 }
 			},
 			hidden: {
 				opacity: 0,
-				y: 30,
+				y: 300,
 			}
 		})
 	}
@@ -125,10 +127,13 @@ export default class ContactBar extends Vue {
 	@Getter('getContactStage') contacts;
 
 	@Prop({ default: false }) readonly isStatic: boolean;
+	isVisible: boolean = true;
+	// observer: IntersectionObserver;
 
 	get getAnimationStage() {
 		if(this.isStatic) {
-			return 'visible';
+
+			return this.isVisible ? 'visible' : 'hidden';
 		}
 		else {
 			return this.isActive ? 'visible' : 'hidden';
@@ -154,6 +159,24 @@ export default class ContactBar extends Vue {
 	get isXs() {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 	}
+
+	setAnimation(entry, observer) {
+			if ( entry.intersectionRatio > 0 ) {
+					this.isVisible = true;
+					observer.disconnect();
+			}
+	}
+
+	// mounted(){
+	//     const representation: any = this.$refs.footer;
+  //     const options = { threshold: 0.65 };
+	//     this.observer = new IntersectionObserver((entry,observer) => this.setAnimation(entry, observer), options);
+	//     this.observer.observe(representation);
+	// }
+	//
+	// beforeDestroy() {
+	// 		this.observer.disconnect();
+	// }
 }
 </script>
 

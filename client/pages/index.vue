@@ -27,7 +27,6 @@
 						<v-card class="none-radius">
 							<v-img
 								:src="getDynamicAssets(`/images/covers${page.videoBg.cover}`)"
-								:gradient="imagePageGradient"
 								:lazy-src="page.lazyImg"
 								:height="isMdAndDown ? '45vh' : '65vh'"
 								:aspect-ratio="16 / 9"
