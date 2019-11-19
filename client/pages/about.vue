@@ -245,14 +245,24 @@ export default class AboutPage extends Vue {
 		else {
 			this.changeContactBar(false);
 		}
-
+		this.isTextSliderAnimation = false;
 		if ((this.curStage > 0) && (this.curStage < this.about[this.$i18n.locale].slides.length + 2)){
 			if (this.curStage > 1) {
-				this.stageAbout = this.curStage - 1;
-				this.stageText = this.stageAbout;
+				setTimeout(() => {
+					this.stageAbout = this.curStage - 1;
+					this.stageText = this.stageAbout;
+				}, 250);
+				setTimeout(() => {
+					this.isTextSliderAnimation = true;
+				}, 500);
 			} else {
-				this.stageAbout = this.curStage;
-				this.stageText = this.stageAbout - this.curStage;
+				setTimeout(() => {
+					this.stageAbout = this.curStage;
+					this.stageText = this.stageAbout - this.curStage;
+				}, 250);
+				setTimeout(() => {
+					this.isTextSliderAnimation = true;
+				}, 500);
 			}
 		} else {
 			this.stageAbout = this.curStage;
@@ -267,10 +277,6 @@ export default class AboutPage extends Vue {
 	mounted() {
 		this.isSloganAnimation = true;
 		this.isContactAnimation = true;
-	
-		setTimeout(() => {
-			this.isTextSliderAnimation = true;
-		}, 5000);
 	}
 
 	beforeDestroy() {
