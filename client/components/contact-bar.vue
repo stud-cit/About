@@ -5,10 +5,11 @@
 		class="pa-0"
 		:class="{ static: isStatic }"
 		v-show="isStatic | isActive"
+		ref="test"
 	>
 		<Footer
 			:pose="getAnimationStage"
-			ref="footer"
+
 		>
 			<v-row class="ma-0 slogan" justify="center">
 				<v-col cols="10" class="pa-0 font-weight-regular">
@@ -113,7 +114,7 @@ import posed from 'vue-pose';
 			visible: {
 				opacity: 1,
 				y: 0,
-				transition: { duration: 3000 }
+				transition: { duration: 1000 }
 			},
 			hidden: {
 				opacity: 0,
@@ -127,8 +128,8 @@ export default class ContactBar extends Vue {
 	@Getter('getContactStage') contacts;
 
 	@Prop({ default: false }) readonly isStatic: boolean;
-	isVisible: boolean = true;
-	// observer: IntersectionObserver;
+	isVisible: boolean = false;
+	observer: any = null;
 
 	get getAnimationStage() {
 		if(this.isStatic) {
@@ -160,23 +161,26 @@ export default class ContactBar extends Vue {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 	}
 
-	setAnimation(entry, observer) {
+	setAnimation([entry]:any, observer) {
 			if ( entry.intersectionRatio > 0 ) {
-					this.isVisible = true;
-					observer.disconnect();
+					setTimeout(()=>{
+					    this.isVisible = true;
+					    observer.disconnect()
+					}, 1000);
 			}
 	}
 
-	// mounted(){
-	//     const representation: any = this.$refs.footer;
-  //     const options = { threshold: 0.65 };
-	//     this.observer = new IntersectionObserver((entry,observer) => this.setAnimation(entry, observer), options);
-	//     this.observer.observe(representation);
-	// }
-	//
-	// beforeDestroy() {
-	// 		this.observer.disconnect();
-	// }
+	mounted(){
+	    const footer: any = this.$refs.test;
+	    console.log(footer)
+      const options = { threshold: 0.85 };
+      this.observer = new IntersectionObserver(this.setAnimation, options);
+      this.observer.observe(footer);
+  }
+
+	beforeDestroy() {
+			this.observer.disconnect();
+	}
 }
 </script>
 
@@ -192,6 +196,7 @@ export default class ContactBar extends Vue {
 	bottom: 0
 	padding: 0!important
 	z-index: 15
+	overflow: hidden
 
 	.contact-bar-section
 		background: white
