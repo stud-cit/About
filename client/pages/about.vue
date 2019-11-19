@@ -153,8 +153,8 @@ import PreviewPage from '@/components/preview-page.vue';
 			hidden: { opacity: 0 },
 		}),
 		TextSlider: posed.p({
-			visible: { 
-				opacity: 1, 
+			visible: {
+				opacity: 1,
 				transition: { duration: 500 },
 			 },
 			hidden: { opacity: 0 },
@@ -341,7 +341,7 @@ export default class AboutPage extends Vue {
 
 .contacts-action
 	text-transform: uppercase
-	border-bottom: 2px solid black
+	border-bottom: 2px solid #212121
 
 .rotated-phraze
 	position: fixed
