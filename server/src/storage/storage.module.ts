@@ -1,12 +1,11 @@
-import { Module, Global } from '@nestjs/common';
-import { MulterModule } from '@nestjs/platform-express';
 import { UnsupportedMediaTypeException } from '@nestjs/common';
+import { MulterModule } from '@nestjs/platform-express';
+import { Module, Global } from '@nestjs/common';
 
-import { diskStorage } from 'multer';
 import { extname, join } from 'path';
+import { diskStorage } from 'multer';
 import { v4 } from 'uuid';
 
-import { MulterOptions } from '@nestjs/platform-express/multer/interfaces/multer-options.interface';
 import { AllowedTypes } from './interfaces/types.interface';
 import { ConfigService } from '../config/config.service';
 
@@ -14,7 +13,7 @@ import { ConfigService } from '../config/config.service';
 @Module({
 	imports: [
 		MulterModule.registerAsync({
-			useFactory: (configService: ConfigService): MulterOptions => ({
+			useFactory: (configService: ConfigService) => ({
 				limits: {
 					fileSize: configService.get('STORE_FILE_SIZE') * 1024 ** 2,
 				},

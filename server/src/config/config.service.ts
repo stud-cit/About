@@ -16,20 +16,11 @@ export class ConfigService {
 	}
 
 	public get(key: string): any {
-		const variable = this.config[key];
-
-		if (this.config[key] === undefined) {
+		const value = this.config[key];
+		if (/true|false/.test(value)) return Boolean(value);
+		if (!Number.isNaN(+value)) return +value;
+		if (this.config[key] === undefined)
 			throw TypeError(`The ${key} cannot be undefined`);
-		}
-
-		if (/true|false/.test(variable)) {
-			return Boolean(variable);
-		}
-
-		if (!Number.isNaN(+variable)) {
-			return +variable;
-		}
-
 		return this.config[key];
 	}
 }
