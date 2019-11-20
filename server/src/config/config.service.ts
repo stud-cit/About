@@ -9,6 +9,7 @@ export class ConfigService {
 	private readonly config: Config;
 
 	constructor() {
+		if (!process.env.NODE_ENV) process.env.NODE_ENV = 'production';
 		this.config = {
 			...process.env,
 			...parse(readFileSync(`.env.${process.env.NODE_ENV}`)),

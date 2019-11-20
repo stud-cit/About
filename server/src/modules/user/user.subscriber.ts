@@ -6,8 +6,7 @@ import {
 	UpdateEvent,
 } from 'typeorm';
 
-import { ConfigService } from 'src/config/config.service';
-
+import { ConfigService } from '../../config/config.service';
 import { UserEntity } from './user.entity';
 
 @EventSubscriber()

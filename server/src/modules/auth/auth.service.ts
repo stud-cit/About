@@ -3,7 +3,6 @@ import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
 
 import { ConfigService } from '../../config/config.service';
-
 import { UserService } from '../user/user.service';
 import { UserEntity } from '../user/user.entity';
 

@@ -3,8 +3,7 @@ import { Post, Get, Patch, Delete, Body } from '@nestjs/common';
 import { Controller, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
-import { User } from 'src/common/decorators/user.decorator';
-
+import { User } from '../../common/decorators/user.decorator';
 import { UserService } from './user.service';
 import { UserEntity } from './user.entity';
 

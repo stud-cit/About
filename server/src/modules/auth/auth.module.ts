@@ -2,9 +2,8 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { Module } from '@nestjs/common';
 
-import { ConfigService } from 'src/config/config.service';
-import { ConfigModule } from 'src/config/config.module';
-
+import { ConfigService } from '../../config/config.service';
+import { ConfigModule } from '../../config/config.module';
 import { JwtStrategy } from './strateges/jwt.strategy';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';

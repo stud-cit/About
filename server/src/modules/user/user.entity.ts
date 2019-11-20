@@ -14,14 +14,14 @@ export class UserEntity extends BaseEntity {
 	@MaxLength(255)
 	@ApiModelProperty({ example: 'example@ex.com' })
 	@Column('varchar', { unique: true })
-	public email: string;
+	public readonly email: string;
 
 	@MinLength(8)
 	@MaxLength(255)
 	@ApiModelProperty({
 		example: '$2b$08$t/.IMs/l9cpEXmnxf73nCu9OwDY82iGE4I24QFhqQlXKNkvC0slJe',
 	})
-	@Column('varchar', { unique: true })
+	@Column('varchar')
 	public password: string;
 
 	@ApiModelProperty({ example: new Date() })
