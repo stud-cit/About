@@ -1,12 +1,10 @@
-import { ConflictException, NotFoundException } from '@nestjs/common';
+import { ApiUseTags, ApiBearerAuth, ApiCreatedResponse } from '@nestjs/swagger';
 import { Post, Get, Patch, Delete, Body } from '@nestjs/common';
 import { Controller, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
-import { ApiUseTags, ApiBearerAuth, ApiCreatedResponse } from '@nestjs/swagger';
-import { User } from '../../common/decorators/user.decorator';
+import { User } from 'src/common/decorators/user.decorator';
 
-import { UserRequest } from './dto/user.dto';
 import { UserService } from './user.service';
 import { UserEntity } from './user.entity';
 
@@ -17,28 +15,26 @@ export class UserController {
 
 	@Post()
 	@ApiCreatedResponse({ type: UserEntity })
-	public async createRoot(@Body() payload: UserRequest): Promise<UserEntity> {
+	public async createRoot(@Body() data: UserEntity): Promise<UserEntity> {
 		const users = await this.userService.selectAll();
-		if (users.length) throw new ConflictException(`User already exists`);
-		return await this.createOne(payload);
+		if (!users.length) return await this.createOne(data);
+		return;
 	}
 
 	@Post('invite')
 	@ApiBearerAuth()
 	@UseGuards(AuthGuard('jwt'))
 	@ApiCreatedResponse({ type: UserEntity })
-	public async createOne(@Body() payload: UserRequest): Promise<UserEntity> {
-		return await this.userService.createOne(payload).catch(() => {
-			throw new ConflictException(`User already exists`);
-		});
+	public async createOne(@Body() data: UserEntity): Promise<UserEntity> {
+		return await this.userService.createOne(data);
 	}
 
 	@Get()
 	@ApiBearerAuth()
 	@UseGuards(AuthGuard('jwt'))
 	@ApiCreatedResponse({ type: UserEntity })
-	public async selectOne(@User() payload: UserEntity): Promise<UserEntity> {
-		return payload;
+	public async selectOne(@User() data: UserEntity): Promise<UserEntity> {
+		return data;
 	}
 
 	@Patch()
@@ -47,19 +43,15 @@ export class UserController {
 	@ApiCreatedResponse({ type: UserEntity })
 	public async updateOne(
 		@User() user: UserEntity,
-		@Body() payload: UserRequest,
+		@Body() data: UserEntity,
 	): Promise<UserEntity> {
-		return await this.userService.updateOne(user, payload).catch(() => {
-			throw new NotFoundException('User not found');
-		});
+		return await this.userService.updateOne(user, data);
 	}
 
 	@Delete()
 	@ApiBearerAuth()
 	@UseGuards(AuthGuard('jwt'))
-	public async deleteOne(@User() payload: UserEntity): Promise<any> {
-		return await this.userService.deleteOne(payload).catch(() => {
-			throw new NotFoundException('User not found');
-		});
+	public async deleteOne(@User() data: UserEntity): Promise<any> {
+		return await this.userService.deleteOne(data.id);
 	}
 }

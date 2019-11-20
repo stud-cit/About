@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { ConflictException, NotFoundException } from '@nestjs/common';
 import { Repository, DeleteResult } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable } from '@nestjs/common';
 
-import { UserRequest } from './dto/user.dto';
 import { UserEntity } from './user.entity';
 
 @Injectable()
@@ -12,31 +12,38 @@ export class UserService {
 		private readonly userRepository: Repository<UserEntity>,
 	) {}
 
-	public async createOne(user: UserRequest): Promise<UserEntity> {
-		return await this.userRepository.save(user);
+	public async createOne(user: UserEntity): Promise<UserEntity> {
+		return await this.userRepository.save(user).catch(() => {
+			throw new ConflictException(`User already exists`);
+		});
 	}
 
 	public async selectAll(): Promise<UserEntity[]> {
-		return await this.userRepository.find();
+		return await this.userRepository.find().catch(() => {
+			throw new NotFoundException('Woops');
+		});
 	}
 
-	public async selectOne(user: UserRequest): Promise<UserEntity> {
-		return await this.userRepository.findOneOrFail({
-			where: {
-				email: user.email,
-			},
+	public async selectOne(email: UserEntity['email']): Promise<UserEntity> {
+		const options = { where: { email } };
+		return await this.userRepository.findOneOrFail(options).catch(() => {
+			throw new NotFoundException('User not found');
 		});
 	}
 
 	public async updateOne(
 		user: UserEntity,
-		_user: UserRequest,
+		_user: UserEntity,
 	): Promise<UserEntity> {
-		this.userRepository.merge(user, _user);
-		return await this.userRepository.save(user);
+		const mergeUser = this.userRepository.merge(user, _user);
+		return await this.userRepository.save(mergeUser).catch(() => {
+			throw new NotFoundException('User not found');
+		});
 	}
 
-	public async deleteOne(user: UserEntity): Promise<DeleteResult> {
-		return await this.userRepository.delete(user.email);
+	public async deleteOne(id: UserEntity['id']): Promise<DeleteResult> {
+		return await this.userRepository.delete(id).catch(() => {
+			throw new NotFoundException('User not found');
+		});
 	}
 }
