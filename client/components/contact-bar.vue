@@ -105,126 +105,126 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator';
-import { Getter, Mutation } from 'vuex-class';
-import posed from 'vue-pose';
+	import { Vue, Component, Prop } from 'vue-property-decorator';
+	import { Getter, Mutation } from 'vuex-class';
+	import posed from 'vue-pose';
 
-@Component({
-	components: {
-		Footer: posed.div({
-			visible: {
-				opacity: 1,
-				y: 0,
-				transition: { duration: 1000 },
-			},
-			hidden: {
-				opacity: 0,
-				y: 300,
-			},
-		}),
-	},
-})
-export default class ContactBar extends Vue {
-	@Getter('getContactBarVisibility') isActive;
-	@Getter('getContactStage') contacts;
+	@Component({
+		components: {
+			Footer: posed.div({
+				visible: {
+					opacity: 1,
+					y: 0,
+					transition: { duration: 1000 },
+				},
+				hidden: {
+					opacity: 0,
+					y: 300,
+				},
+			}),
+		},
+	})
+	export default class ContactBar extends Vue {
+		@Getter('getContactBarVisibility') isActive;
+		@Getter('getContactStage') contacts;
 
-	@Prop({ default: false }) readonly isStatic: boolean;
-	isVisible: boolean = false;
-	observer: any = null;
+		@Prop({ default: false }) readonly isStatic: boolean;
+		isVisible: boolean = false;
+		observer: any = null;
 
-	get getAnimationStage() {
-		if (this.isStatic) {
-			return this.isVisible ? 'visible' : 'hidden';
-		} else {
-			return this.isActive ? 'visible' : 'hidden';
+		get getAnimationStage() {
+			if (this.isStatic) {
+				return this.isVisible ? 'visible' : 'hidden';
+			} else {
+				return this.isActive ? 'visible' : 'hidden';
+			}
+		}
+
+		get getMailFont() {
+			return { fontSize: `${this.getAdaptiveSize('mailFont')}px` };
+		}
+		get getLocationFont() {
+			return { fontSize: `${this.getAdaptiveSize('useContactsAction')}px` };
+		}
+		get getTagLineFont() {
+			return { fontSize: `${this.getAdaptiveSize('tagLineFont')}px` };
+		}
+
+		get isMdAndUp() {
+			return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
+		}
+		get isSmAndDown() {
+			return this.$breakpoint ? this.$breakpoint.is.smAndDown : false;
+		}
+		get isXs() {
+			return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+		}
+
+		setAnimation([entry]: any, observer) {
+			if (entry.intersectionRatio > 0) {
+				setTimeout(() => {
+					this.isVisible = true;
+					observer.disconnect();
+				}, 1000);
+			}
+		}
+
+		mounted() {
+			const footer: any = this.$refs.test;
+			const options = { threshold: 0.85 };
+			this.observer = new IntersectionObserver(this.setAnimation, options);
+			this.observer.observe(footer);
+		}
+
+		beforeDestroy() {
+			this.observer.disconnect();
 		}
 	}
-
-	get getMailFont() {
-		return { fontSize: `${this.getAdaptiveSize('mailFont')}px` };
-	}
-	get getLocationFont() {
-		return { fontSize: `${this.getAdaptiveSize('useContactsAction')}px` };
-	}
-	get getTagLineFont() {
-		return { fontSize: `${this.getAdaptiveSize('tagLineFont')}px` };
-	}
-
-	get isMdAndUp() {
-		return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
-	}
-	get isSmAndDown() {
-		return this.$breakpoint ? this.$breakpoint.is.smAndDown : false;
-	}
-	get isXs() {
-		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
-	}
-
-	setAnimation([entry]: any, observer) {
-		if (entry.intersectionRatio > 0) {
-			setTimeout(() => {
-				this.isVisible = true;
-				observer.disconnect();
-			}, 1000);
-		}
-	}
-
-	mounted() {
-		const footer: any = this.$refs.test;
-		const options = { threshold: 0.85 };
-		this.observer = new IntersectionObserver(this.setAnimation, options);
-		this.observer.observe(footer);
-	}
-
-	beforeDestroy() {
-		this.observer.disconnect();
-	}
-}
 </script>
 
 <style lang="sass">
-.linkMail
-	text-decoration: none
+	.linkMail
+		text-decoration: none
 
-.container
-	padding: 0 !important
+	.container
+		padding: 0 !important
 
-#contact
-	position: fixed
-	bottom: 0
-	padding: 0!important
-	z-index: 15
-	overflow: hidden
+	#contact
+		position: fixed
+		bottom: 0
+		padding: 0!important
+		z-index: 15
+		overflow: hidden
 
-	.contact-bar-section
-		background: white
+		.contact-bar-section
+			background: white
 
-	.color-main
-		color: #2d2d2d
+		.color-main
+			color: #2d2d2d
 
-.slogan
-	position: relative
-	top: 7px
-	font-style: normal
-	color: white
-	line-height: 2.5rem
+	.slogan
+		position: relative
+		top: 7px
+		font-style: normal
+		color: white
+		line-height: 2.5rem
 
-.static
-	position: static!important
+	.static
+		position: static!important
 
-.underline
-	border-bottom: 6px solid #2d2d2d
+	.underline
+		border-bottom: 6px solid #2d2d2d
 
-.mobUnderline
-	border-bottom: 2px solid #2d2d2d
+	.mobUnderline
+		border-bottom: 2px solid #2d2d2d
 
-.map
-	width: 100%
+	.map
+		width: 100%
 
-.relative
-	position: relative
+	.relative
+		position: relative
 
-.bold-preview
-	font-weight: 800 !important
-	font-style: normal
+	.bold-preview
+		font-weight: 800 !important
+		font-style: normal
 </style>

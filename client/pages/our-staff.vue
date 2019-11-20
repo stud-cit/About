@@ -127,176 +127,176 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { Getter, Mutation } from 'vuex-class';
-import posed from 'vue-pose';
+	import { Component, Vue } from 'vue-property-decorator';
+	import { Getter, Mutation } from 'vuex-class';
+	import posed from 'vue-pose';
 
-import ScrollBar from '@/components/scroll-bar.vue';
-import PreviewPage from '@/components/preview-page.vue';
-import PruductFooter from '@/components/product-footer.vue';
+	import ScrollBar from '@/components/scroll-bar.vue';
+	import PreviewPage from '@/components/preview-page.vue';
+	import PruductFooter from '@/components/product-footer.vue';
 
-@Component({
-	layout: 'immediate',
-	transition: 'page',
-	head: {
-		title: 'Our staff',
-	},
-	components: {
-		ScrollBar,
-		PreviewPage,
-		'product-footer': PruductFooter,
-		Staff: posed.div({
-			visible: {
-				opacity: 1,
-				y: 0,
-			},
-			hidden: {
-				opacity: 0,
-				y: 40,
-			},
-		}),
-	},
-})
-export default class OurStaffPage extends Vue {
-	@Getter('OurStaffModule/getStage') ourStaff;
-	@Mutation('changePageId') changePageId;
-	curStaff: number = 0;
-	observers: IntersectionObserver[] = [];
-	staffToAnimate: number[] = [];
+	@Component({
+		layout: 'immediate',
+		transition: 'page',
+		head: {
+			title: 'Our staff',
+		},
+		components: {
+			ScrollBar,
+			PreviewPage,
+			'product-footer': PruductFooter,
+			Staff: posed.div({
+				visible: {
+					opacity: 1,
+					y: 0,
+				},
+				hidden: {
+					opacity: 0,
+					y: 40,
+				},
+			}),
+		},
+	})
+	export default class OurStaffPage extends Vue {
+		@Getter('OurStaffModule/getStage') ourStaff;
+		@Mutation('changePageId') changePageId;
+		curStaff: number = 0;
+		observers: IntersectionObserver[] = [];
+		staffToAnimate: number[] = [];
 
-	switchSlide(nextSlide) {
-		const { curStaff, ourStaff } = this;
-		const totalStaff = ourStaff[this.$i18n.locale].staff.length;
-		let newIndex;
-		if (nextSlide) {
-			newIndex = curStaff + 1 < totalStaff ? curStaff + 1 : 0;
-		} else {
-			newIndex = curStaff - 1 < 0 ? totalStaff - 1 : curStaff - 1;
+		switchSlide(nextSlide) {
+			const { curStaff, ourStaff } = this;
+			const totalStaff = ourStaff[this.$i18n.locale].staff.length;
+			let newIndex;
+			if (nextSlide) {
+				newIndex = curStaff + 1 < totalStaff ? curStaff + 1 : 0;
+			} else {
+				newIndex = curStaff - 1 < 0 ? totalStaff - 1 : curStaff - 1;
+			}
+			this.curStaff = newIndex;
 		}
-		this.curStaff = newIndex;
-	}
 
-	get sliderInfo() {
-		return `${this.curStaff + 1} / ${
-			this.ourStaff[this.$i18n.locale].staff.length
-		}`;
-	}
+		get sliderInfo() {
+			return `${this.curStaff + 1} / ${
+				this.ourStaff[this.$i18n.locale].staff.length
+			}`;
+		}
 
-	setAnimation(entry, representationIndex, observer) {
-		if (
-			entry.intersectionRatio > 0 &&
-			!this.staffToAnimate.includes(representationIndex)
-		) {
-			this.staffToAnimate.push(representationIndex);
-			observer.disconnect();
+		setAnimation(entry, representationIndex, observer) {
+			if (
+				entry.intersectionRatio > 0 &&
+				!this.staffToAnimate.includes(representationIndex)
+			) {
+				this.staffToAnimate.push(representationIndex);
+				observer.disconnect();
+			}
+		}
+
+		get isLgAndUp() {
+			return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
+		}
+		get isMdAndUp() {
+			return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
+		}
+		get isXsOnly() {
+			return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+		}
+
+		get getStaffNameFont() {
+			return { fontSize: `${this.getAdaptiveSize('staffNameFont')}px` };
+		}
+		get getStaffPositionFont() {
+			return { fontSize: `${this.getAdaptiveSize('staffPositionFont')}px` };
+		}
+		get getStackPositionFont() {
+			return { fontSize: `${this.getAdaptiveSize('stackPositionFont')}px` };
+		}
+
+		created() {
+			this.changePageId(3);
+		}
+
+		mounted() {
+			const staff: any = this.$refs.staff;
+
+			this.observers = staff.map((currStaff, index) => {
+				const options = { threshold: 0.7 };
+				const observer = new IntersectionObserver(
+					([entry], observer) => this.setAnimation(entry, index, observer),
+					options,
+				);
+				observer.observe(currStaff);
+				return observer;
+			});
+		}
+
+		beforeDestroy() {
+			this.observers.forEach(observer => {
+				observer.disconnect();
+			});
 		}
 	}
-
-	get isLgAndUp() {
-		return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
-	}
-	get isMdAndUp() {
-		return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
-	}
-	get isXsOnly() {
-		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
-	}
-
-	get getStaffNameFont() {
-		return { fontSize: `${this.getAdaptiveSize('staffNameFont')}px` };
-	}
-	get getStaffPositionFont() {
-		return { fontSize: `${this.getAdaptiveSize('staffPositionFont')}px` };
-	}
-	get getStackPositionFont() {
-		return { fontSize: `${this.getAdaptiveSize('stackPositionFont')}px` };
-	}
-
-	created() {
-		this.changePageId(3);
-	}
-
-	mounted() {
-		const staff: any = this.$refs.staff;
-
-		this.observers = staff.map((currStaff, index) => {
-			const options = { threshold: 0.7 };
-			const observer = new IntersectionObserver(
-				([entry], observer) => this.setAnimation(entry, index, observer),
-				options,
-			);
-			observer.observe(currStaff);
-			return observer;
-		});
-	}
-
-	beforeDestroy() {
-		this.observers.forEach(observer => {
-			observer.disconnect();
-		});
-	}
-}
 </script>
 
 <style lang="sass">
-.card-addition
-  display: flex
-  flex-direction: column
-  color: #ffffff
-  position: relative
-  justify-content: center
+	.card-addition
+	  display: flex
+	  flex-direction: column
+	  color: #ffffff
+	  position: relative
+	  justify-content: center
 
-.employee-name
-  color: white
-  text-align: center
-  margin-bottom: 0
-  display: block
+	.employee-name
+	  color: white
+	  text-align: center
+	  margin-bottom: 0
+	  display: block
 
-.employee-position-short, .employee-position-full
-  font-weight: 400
-  color: #ffffff
-  text-align: center
+	.employee-position-short, .employee-position-full
+	  font-weight: 400
+	  color: #ffffff
+	  text-align: center
 
-.card-img-hover
-  border-radius: 50px !important
-  filter: brightness(35%)
-  transition: 1s
+	.card-img-hover
+	  border-radius: 50px !important
+	  filter: brightness(35%)
+	  transition: 1s
 
-.card-img
-  transition: all 1s
-  margin: 15px 0
+	.card-img
+	  transition: all 1s
+	  margin: 15px 0
 
-.employee-position-full
-  opacity: 0
+	.employee-position-full
+	  opacity: 0
 
-.card-img-hover:hover
-  z-index: 10
-  transform: scale(1.15)
-  filter: brightness(100%)
-  border-radius: 0 !important
-  transition: 1s
-  ~ .card-addition
-    .employee-name
-      opacity: 0
-      transition: 0.5s
-      display: none
-    .employee-position-full
-      opacity: 1
-    .employee-position-short
-      opacity: 0
+	.card-img-hover:hover
+	  z-index: 10
+	  transform: scale(1.15)
+	  filter: brightness(100%)
+	  border-radius: 0 !important
+	  transition: 1s
+	  ~ .card-addition
+	    .employee-name
+	      opacity: 0
+	      transition: 0.5s
+	      display: none
+	    .employee-position-full
+	      opacity: 1
+	    .employee-position-short
+	      opacity: 0
 
-.staff-slider
-  height: 70vh
+	.staff-slider
+	  height: 70vh
 
-.staff-slide
-  height: 65vh
+	.staff-slide
+	  height: 65vh
 
-.line-height-1
-  line-height: 1
+	.line-height-1
+	  line-height: 1
 
-.line-height-1-2
-  line-height: 1.2
+	.line-height-1-2
+	  line-height: 1.2
 
-.v-card:not(.v-sheet--tile)
-  border-radius: 0
+	.v-card:not(.v-sheet--tile)
+	  border-radius: 0
 </style>

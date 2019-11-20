@@ -107,132 +107,132 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+	import { Component, Vue } from 'vue-property-decorator';
 
-@Component
-export default class PreliminaryLayout extends Vue {
-	changeLocale: boolean = false;
-	isShowMobileLocales: boolean = false;
+	@Component
+	export default class PreliminaryLayout extends Vue {
+		changeLocale: boolean = false;
+		isShowMobileLocales: boolean = false;
 
-	availableLocales() {
-		return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale);
-	}
+		availableLocales() {
+			return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale);
+		}
 
-	get getPageTitleFont() {
-		return { fontSize: `${this.getAdaptiveSize('pageTitleFont')}px` };
-	}
-	get getPageSubTitleFont() {
-		return { fontSize: `${this.getAdaptiveSize('pageSubTitleFont')}px` };
-	}
+		get getPageTitleFont() {
+			return { fontSize: `${this.getAdaptiveSize('pageTitleFont')}px` };
+		}
+		get getPageSubTitleFont() {
+			return { fontSize: `${this.getAdaptiveSize('pageSubTitleFont')}px` };
+		}
 
-	get isSmOnly() {
-		return this.$breakpoint ? this.$breakpoint.is.smOnly : false;
+		get isSmOnly() {
+			return this.$breakpoint ? this.$breakpoint.is.smOnly : false;
+		}
+		get isSmAndUp() {
+			return this.$breakpoint ? this.$breakpoint.is.smAndUp : false;
+		}
+		get isXsOnly() {
+			return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+		}
+		toggleVisibilityLocales() {
+			this.isShowMobileLocales = !this.isShowMobileLocales;
+		}
 	}
-	get isSmAndUp() {
-		return this.$breakpoint ? this.$breakpoint.is.smAndUp : false;
-	}
-	get isXsOnly() {
-		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
-	}
-	toggleVisibilityLocales() {
-		this.isShowMobileLocales = !this.isShowMobileLocales;
-	}
-}
 </script>
 
 <style lang="sass">
-.app .v-application--wrap
-  flex-direction: row
-  flex-wrap: wrap
-  align-items: flex-start
+	.app .v-application--wrap
+	  flex-direction: row
+	  flex-wrap: wrap
+	  align-items: flex-start
 
-  .app-bar
-    position: sticky
-    height: 110px !important
-    margin-top: 10px !important
-    background: rgba(250, 250, 250, .85)
-    .v-toolbar__content
-      width: 100vw
-      padding-bottom: 0
+	  .app-bar
+	    position: sticky
+	    height: 110px !important
+	    margin-top: 10px !important
+	    background: rgba(250, 250, 250, .85)
+	    .v-toolbar__content
+	      width: 100vw
+	      padding-bottom: 0
 
-.mobile-icon
-  background: white
+	.mobile-icon
+	  background: white
 
-.burger-icon
-  position: fixed
-  left: calc(50vw - 26px)
-  bottom: 2vh
+	.burger-icon
+	  position: fixed
+	  left: calc(50vw - 26px)
+	  bottom: 2vh
 
-.locale-button
-  width: 55px
-  height: 55px
-  border-radius: 50%
-  border: 2px solid #4A4A4A
+	.locale-button
+	  width: 55px
+	  height: 55px
+	  border-radius: 50%
+	  border: 2px solid #4A4A4A
 
-.v-bottom-sheet
-    background: #8a8a8a
-    box-shadow: 0px 11px 0px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 50px 8px rgba(0, 0, 0, 0.12)
+	.v-bottom-sheet
+	    background: #8a8a8a
+	    box-shadow: 0px 11px 0px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 50px 8px rgba(0, 0, 0, 0.12)
 
-.theme--light.v-btn::before
-  opacity: 0 !important
-  border-radius: 50%
-  border: 2px solid #4A4A4A
+	.theme--light.v-btn::before
+	  opacity: 0 !important
+	  border-radius: 50%
+	  border: 2px solid #4A4A4A
 
-.theme--light.v-btn:hover::before
-  opacity: 0.18 !important
-   border-radius: 50%
-  border: 2px solid #4A4A4A
+	.theme--light.v-btn:hover::before
+	  opacity: 0.18 !important
+	   border-radius: 50%
+	  border: 2px solid #4A4A4A
 
-.close-icon
-  z-index: 20
-  position: absolute
-  left: calc(50vw - 26px)
-  top: -18px
-.relative
-  position: relative
+	.close-icon
+	  z-index: 20
+	  position: absolute
+	  left: calc(50vw - 26px)
+	  top: -18px
+	.relative
+	  position: relative
 
-.half-round
-  width: 100%
-  height: 30px
-  background: white
-  clip-path: ellipse(50% 100% at 50% 100%)
-  margin-bottom: -1px
+	.half-round
+	  width: 100%
+	  height: 30px
+	  background: white
+	  clip-path: ellipse(50% 100% at 50% 100%)
+	  margin-bottom: -1px
 
-.locale
-  font-size: 25px
+	.locale
+	  font-size: 25px
 
-.locales-container
-  width: 100%
-  height: 10vh
-  display: flex
-  justify-content: center
-  align-items: center
-  background: white
+	.locales-container
+	  width: 100%
+	  height: 10vh
+	  display: flex
+	  justify-content: center
+	  align-items: center
+	  background: white
 
-.locales-list
-  width: 60%
-  display: flex
-  justify-content: space-between
-  color: white
+	.locales-list
+	  width: 60%
+	  display: flex
+	  justify-content: space-between
+	  color: white
 
-  .locale-btn
-    color: white
+	  .locale-btn
+	    color: white
 
-  span
-    color: black
-    font-weight: normal
+	  span
+	    color: black
+	    font-weight: normal
 
-  .active-locale span
-    font-weight: bold
+	  .active-locale span
+	    font-weight: bold
 
-.lang-up
-  position: absolute
-  top: -15px
+	.lang-up
+	  position: absolute
+	  top: -15px
 
-.bold-preview
-  font-weight: 800 !important
-  font-style: normal
+	.bold-preview
+	  font-weight: 800 !important
+	  font-style: normal
 
-.margin-top
-  margin-top: 5%
+	.margin-top
+	  margin-top: 5%
 </style>

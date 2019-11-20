@@ -83,64 +83,64 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { Getter, Mutation } from 'vuex-class';
+	import { Component, Vue } from 'vue-property-decorator';
+	import { Getter, Mutation } from 'vuex-class';
 
-import PreviewPage from '@/components/preview-page.vue';
-import PruductFooter from '@/components/product-footer.vue';
+	import PreviewPage from '@/components/preview-page.vue';
+	import PruductFooter from '@/components/product-footer.vue';
 
-@Component({
-	layout: 'immediate',
-	transition: 'page',
-	head: {
-		title: 'Portfolio',
-	},
-	components: {
-		PreviewPage,
-		'product-footer': PruductFooter,
-	},
-})
-export default class PortfolioPage extends Vue {
-	@Getter('PortfolioModule/getStage') portfolio;
-	@Mutation('changePageId') changePageId;
+	@Component({
+		layout: 'immediate',
+		transition: 'page',
+		head: {
+			title: 'Portfolio',
+		},
+		components: {
+			PreviewPage,
+			'product-footer': PruductFooter,
+		},
+	})
+	export default class PortfolioPage extends Vue {
+		@Getter('PortfolioModule/getStage') portfolio;
+		@Mutation('changePageId') changePageId;
 
-	borderActive: boolean = false;
+		borderActive: boolean = false;
 
-	get isMdAndUp() {
-		return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
+		get isMdAndUp() {
+			return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
+		}
+		created() {
+			this.changePageId(4);
+		}
+
+		get getProjectTitleFont() {
+			return { fontSize: `${this.getAdaptiveSize('projectTitleFont')}px` };
+		}
+		get getParalaxHeight() {
+			return { height: `${this.getAdaptiveSize('paralaxHeight')}vh` };
+		}
 	}
-	created() {
-		this.changePageId(4);
-	}
-
-	get getProjectTitleFont() {
-		return { fontSize: `${this.getAdaptiveSize('projectTitleFont')}px` };
-	}
-	get getParalaxHeight() {
-		return { height: `${this.getAdaptiveSize('paralaxHeight')}vh` };
-	}
-}
 </script>
 
 <style lang="sass">
-#portfolio
-  .text-underline
-    line-height: normal
-    text-decoration: underline
-    text-underline-position: under
+	#portfolio
+	  .text-underline
+	    line-height: normal
+	    text-decoration: underline
+	    text-underline-position: under
 
-  .portfolio-link
-    color: white
+	  .portfolio-link
+	    color: white
 
-.arrow-right
-  border-radius: 50%
-  padding: 25px
-  margin: 10px
-  border: 5px solid white
+	.arrow-right
+	  border-radius: 50%
+	  padding: 25px
+	  margin: 10px
+	  border: 5px solid white
 
-.v-btn:hover::before
-  opacity: 0 !important
+	.v-btn:hover::before
+	  opacity: 0 !important
 
-.border-text-link
-  border-bottom: 1px solid white
+	.border-text-link
+	  border-bottom: 1px solid white
 </style>

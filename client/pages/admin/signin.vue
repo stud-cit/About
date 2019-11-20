@@ -48,38 +48,38 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { ValidationObserver } from 'vee-validate';
-import { Action } from 'vuex-class';
+	import { Component, Vue } from 'vue-property-decorator';
+	import { ValidationObserver } from 'vee-validate';
+	import { Action } from 'vuex-class';
 
-@Component({
-	middleware: ['guest'],
-	layout: 'admin',
-	components: {
-		ValidationObserver,
-		VTextFieldValidation: () =>
-			import('~/components/inputs/VTextFieldValidation'),
-	},
-})
-export default class SignInPage extends Vue {
-	@Action('authorizationUser') authorizationUser;
+	@Component({
+		middleware: ['guest'],
+		layout: 'admin',
+		components: {
+			ValidationObserver,
+			VTextFieldValidation: () =>
+				import('~/components/inputs/VTextFieldValidation'),
+		},
+	})
+	export default class SignInPage extends Vue {
+		@Action('authorizationUser') authorizationUser;
 
-	private show1: boolean = false;
-	private progress: boolean = false;
-	private userCredentials = {
-		email: '',
-		password: '',
-	};
+		private show1: boolean = false;
+		private progress: boolean = false;
+		private userCredentials = {
+			email: '',
+			password: '',
+		};
 
-	private changeVisibility(condition) {
-		return condition ? 'mdi-eye-outline' : 'mdi-eye-off-outline';
+		private changeVisibility(condition) {
+			return condition ? 'mdi-eye-outline' : 'mdi-eye-off-outline';
+		}
+
+		private async onSubmit() {
+			const validation = await this.$refs.observer.validate();
+			if (!validation) return;
+			this.progress = !this.progress;
+			return await this.authorizationUser(this.userCredentials);
+		}
 	}
-
-	private async onSubmit() {
-		const validation = await this.$refs.observer.validate();
-		if (!validation) return;
-		this.progress = !this.progress;
-		return await this.authorizationUser(this.userCredentials);
-	}
-}
 </script>
