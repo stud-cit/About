@@ -60,13 +60,13 @@
 										class="bold-preview card-title mb-3"
 										:style="getCardTitleFont"
 										:class="isXsOnly ? 'card-title-mobile' : 'mb-3'"
-										>{{ offer.cardTitle }}</v-card-title
+										>{{ offer.title }}</v-card-title
 									>
 									<v-card-text
 										class="font-weight-medium card-content"
 										:style="getCardContentFont"
 									>
-										<span>{{ offer.cardContent }}</span>
+										<span>{{ offer.content }}</span>
 									</v-card-text>
 								</v-card>
 							</RepresentationContent>

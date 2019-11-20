@@ -21,7 +21,7 @@
 						:pose="isStartAnimation ? 'hidden' : 'default'"
 						:index="i"
 						:choosedSlide="choosedSlide"
-						:to="localePath(page.to, $i18n.locale)"
+						:to="localePath(page.link, $i18n.locale)"
 						:router="$router"
 						:isMobile="isXsOnly"
 					>
@@ -65,7 +65,7 @@
 					:pose="isStartAnimation ? 'hidden' : 'default'"
 					:index="i"
 					:choosedSlide="choosedSlide"
-					:to="localePath(page.to, $i18n.locale)"
+					:to="localePath(page.link, $i18n.locale)"
 					:router="$router"
 					:isMobile="isXsOnly"
 				>

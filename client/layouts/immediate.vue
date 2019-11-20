@@ -67,7 +67,7 @@
 										<v-btn
 											class="px-0 desktop-link"
 											active-class="active-desktop-link"
-											:to="localePath(page.to)"
+											:to="localePath(page.link)"
 											:ripple="false"
 											replace
 											exact
@@ -147,7 +147,7 @@
 							class="text-center display-2 page-link font-weight-bold"
 							exact-active-class="page-link-active"
 							@click="toggleVisibilityMobileMenu()"
-							:to="localePath(page.to)"
+							:to="localePath(page.link)"
 							replace
 							exact
 							nuxt
