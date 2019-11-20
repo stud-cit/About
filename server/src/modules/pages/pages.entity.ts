@@ -1,60 +1,55 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { PrimaryGeneratedColumn, BaseEntity, Column, Entity } from 'typeorm';
+import { IsNotEmpty, IsOptional, IsUUID, MaxLength } from 'class-validator';
 import { ApiModelProperty } from '@nestjs/swagger';
 
 @Entity('Pages')
 export class PagesEntity extends BaseEntity {
-	@ApiModelProperty({ example: 1 })
-	@PrimaryGeneratedColumn()
-	public readonly id: number;
+	@IsUUID()
+	@IsOptional()
+	@PrimaryGeneratedColumn('uuid')
+	public readonly id: string;
 
+	@IsNotEmpty()
+	@MaxLength(255)
 	@ApiModelProperty({ example: 'example' })
-	@Column('varchar', {
-		nullable: false,
-		name: 'title',
-	})
-	public title: string;
+	@Column('varchar')
+	public readonly title: string;
 
+	@IsNotEmpty()
+	@MaxLength(255)
 	@ApiModelProperty({ example: '/example' })
-	@Column('varchar', {
-		nullable: false,
-		name: 'link',
-	})
-	public link: string;
+	@Column('varchar')
+	public readonly link: string;
 
+	@IsNotEmpty()
+	@IsOptional()
+	@MaxLength(255)
 	@ApiModelProperty({ example: '/example.jpg' })
-	@Column('varchar', {
-		nullable: true,
-		name: 'background',
-	})
-	public background?: string;
+	@Column('varchar', { nullable: true })
+	public readonly background?: string;
 
+	@IsNotEmpty()
+	@IsOptional()
+	@MaxLength(255)
 	@ApiModelProperty({ example: '/exampl1.jpg' })
-	@Column('varchar', {
-		nullable: true,
-		name: 'lazyBackground',
-	})
-	public lazyBackground?: string;
+	@Column('varchar', { nullable: true })
+	public readonly lazyBackground?: string;
 
+	@IsNotEmpty()
+	@IsOptional()
+	@MaxLength(255)
 	@ApiModelProperty({ example: '/exampl3.jpg' })
-	@Column('varchar', {
-		nullable: true,
-		name: 'cover',
-	})
-	public cover: string;
+	@Column('varchar', { nullable: true })
+	public readonly cover: string;
 
 	@ApiModelProperty({ example: new Date() })
-	@Column('datetime', {
-		nullable: false,
-		default: () => 'CURRENT_TIMESTAMP',
-		name: 'createAt',
-	})
+	@Column('timestamp', { default: () => 'CURRENT_TIMESTAMP' })
 	public readonly createAt: Date;
 
 	@ApiModelProperty({ example: new Date() })
-	@Column('datetime', {
-		nullable: false,
+	@Column('timestamp', {
 		default: () => 'CURRENT_TIMESTAMP',
-		name: 'updateAt',
+		onUpdate: 'CURRENT_TIMESTAMP',
 	})
-	public updateAt: Date;
+	public readonly updateAt: Date;
 }

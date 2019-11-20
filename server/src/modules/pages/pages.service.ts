@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { ConflictException, NotFoundException } from '@nestjs/common';
 import { Repository, DeleteResult } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable } from '@nestjs/common';
 
 import { PagesEntity } from './pages.entity';
-import { PageRequest } from './dto/pages.dto';
 
 @Injectable()
 export class PagesService {
@@ -12,27 +12,37 @@ export class PagesService {
 		private readonly pagesRepository: Repository<PagesEntity>,
 	) {}
 
-	public async createOne(page: PageRequest): Promise<PagesEntity> {
-		return await this.pagesRepository.save(page);
+	public async createOne(page: PagesEntity): Promise<PagesEntity> {
+		return await this.pagesRepository.save(page).catch(() => {
+			throw new ConflictException(`Page already exists`);
+		});
 	}
 
 	public async selectAll(): Promise<PagesEntity[]> {
-		return await this.pagesRepository.find();
+		return await this.pagesRepository.find().catch(() => {
+			throw new NotFoundException('Pages not found');
+		});
 	}
 
-	public async selectOne(id: number): Promise<PagesEntity> {
-		return await this.pagesRepository.findOneOrFail(id);
+	public async selectOne(id: PagesEntity['id']): Promise<PagesEntity> {
+		return await this.pagesRepository.findOneOrFail(id).catch(() => {
+			throw new NotFoundException('Pages not found');
+		});
 	}
 
 	public async updateOne(
 		page: PagesEntity,
-		_page: PageRequest,
+		_page: PagesEntity,
 	): Promise<PagesEntity> {
-		this.pagesRepository.merge(page, _page);
-		return await this.pagesRepository.save(page);
+		const mergePage = this.pagesRepository.merge(page, _page);
+		return await this.pagesRepository.save(mergePage).catch(() => {
+			throw new NotFoundException('Pages not found');
+		});
 	}
 
-	public async deleteMultiple(page: number[]): Promise<DeleteResult> {
-		return await this.pagesRepository.delete(page);
+	public async deleteMultiple(id: [PagesEntity['id']]): Promise<DeleteResult> {
+		return await this.pagesRepository.delete(id).catch(() => {
+			throw new NotFoundException('Pages not found');
+		});
 	}
 }
