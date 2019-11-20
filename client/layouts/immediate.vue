@@ -281,7 +281,7 @@ export default class ImmediatetLayout extends Vue {
 		border-radius: unset
 
 	&.mini-header
-		background: rgba(0, 0, 0, 0.45)
+		background: rgba(0, 0, 0, 0.8)
 
 .nav-panel
 	display: flex
