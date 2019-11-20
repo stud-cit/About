@@ -18,9 +18,7 @@
 						class="my-4"
 						ref="staff"
 					>
-						<Staff
-							:pose="staffToAnimate.includes(i) ? 'visible': 'hidden'"
-						>
+						<Staff :pose="staffToAnimate.includes(i) ? 'visible' : 'hidden'">
 							<v-card
 								class="mx-auto card-img-hover"
 								:width="isLgAndUp ? '425px' : 'auto'"
@@ -64,7 +62,12 @@
 								v-for="(employee, i) in ourStaff[$i18n.locale].staff"
 								:key="i"
 							>
-								<v-card class="mx-auto" color="transparent" :width="isXsOnly ? '90%' : '100%'" flat>
+								<v-card
+									class="mx-auto"
+									color="transparent"
+									:width="isXsOnly ? '90%' : '100%'"
+									flat
+								>
 									<v-img
 										height="40%"
 										class="card-img"
@@ -218,17 +221,20 @@ export default class OurStaffPage extends Vue {
 
 		this.observers = staff.map((currStaff, index) => {
 			const options = { threshold: 0.7 };
-			const observer = new IntersectionObserver(([entry], observer) => this.setAnimation(entry, index, observer), options);
+			const observer = new IntersectionObserver(
+				([entry], observer) => this.setAnimation(entry, index, observer),
+				options,
+			);
 			observer.observe(currStaff);
 			return observer;
 		});
 	}
 
 	beforeDestroy() {
-    this.observers.forEach( observer => {
+		this.observers.forEach(observer => {
 			observer.disconnect();
 		});
-  }
+	}
 }
 </script>
 

@@ -211,8 +211,7 @@ export default class ImmediatetLayout extends Vue {
 		// show normal header version when scroll to footer
 		if (currentScroll > scrollToFooter) {
 			this.isShowNormalHeader = true;
-		}
-		else {
+		} else {
 			currentScroll > 10 && this.$breakpoint.is.mdAndUp
 				? (this.isShowNormalHeader = false)
 				: (this.isShowNormalHeader = true);

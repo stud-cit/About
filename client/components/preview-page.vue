@@ -14,7 +14,7 @@
 					'preview-margin': iconDown,
 					'preview-wrapper': !isXsOnly,
 					'preview-wrapper-mobile': isXsOnly,
-					'mb-sm-8 mb-md-0' : isAboutPage,
+					'mb-sm-8 mb-md-0': isAboutPage,
 				}"
 			>
 				<v-col

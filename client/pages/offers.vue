@@ -24,9 +24,11 @@
 				>
 					<RepresentationBlock
 						:direction="offer.contentPosition"
-						:pose="representationToAnimate.includes(index) ? 'visible': 'hidden'"
+						:pose="
+							representationToAnimate.includes(index) ? 'visible' : 'hidden'
+						"
 						class="representation-block"
-						:class="offer.contentPosition === 'start' ? 'image-left' : 'image-right'"
+						:class="index % 2 === 0 ? 'image-left' : 'image-right'"
 						appear
 					>
 						<v-col
@@ -49,7 +51,7 @@
 							md="5"
 							class="representation-card px-0"
 							:class="
-								offer.contentPosition === 'start'
+								index % 2 === 0
 									? 'right-bottom-position'
 									: 'left-bottom-position'
 							"
@@ -107,7 +109,7 @@ import ScrollBar from '@/components/scroll-bar.vue';
 			},
 			hidden: {
 				opacity: 0,
-				x: ({direction}) => direction === 'start' ? -40 : 40,
+				x: ({ direction }) => (direction === 'start' ? -40 : 40),
 			},
 		}),
 		RepresentationContent: posed.div({
@@ -149,7 +151,6 @@ export default class OffersPage extends Vue {
 		this.changePageId(2);
 	}
 
-
 	setAnimation(entry, representationIndex, observer) {
 		if (
 			entry.intersectionRatio > 0 &&
@@ -165,17 +166,20 @@ export default class OffersPage extends Vue {
 
 		this.observers = representations.map((representation, index) => {
 			const options = { threshold: 0.65 };
-			const observer = new IntersectionObserver(([entry], observer) => this.setAnimation(entry, index, observer), options);
+			const observer = new IntersectionObserver(
+				([entry], observer) => this.setAnimation(entry, index, observer),
+				options,
+			);
 			observer.observe(representation);
 			return observer;
 		});
 	}
 
 	beforeDestroy() {
-    this.observers.forEach( observer => {
+		this.observers.forEach(observer => {
 			observer.disconnect();
 		});
-  }
+	}
 }
 </script>
 

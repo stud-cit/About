@@ -7,10 +7,7 @@
 		v-show="isStatic | isActive"
 		ref="test"
 	>
-		<Footer
-			:pose="getAnimationStage"
-
-		>
+		<Footer :pose="getAnimationStage">
 			<v-row class="ma-0 slogan" justify="center">
 				<v-col cols="10" class="pa-0 font-weight-regular">
 					<span
@@ -28,7 +25,11 @@
 								class="my-4 pa-0 d-flex d-md-none justify-space-between"
 								:class="isSmAndDown ? 'mobUnderline' : 'underline'"
 							>
-								<v-col class="bold-preview px-0" cols="auto" :style="getMailFont">
+								<v-col
+									class="bold-preview px-0"
+									cols="auto"
+									:style="getMailFont"
+								>
 									<a
 										class="linkMail color-main"
 										:href="`mailto:${contacts[$i18n.locale].email}`"
@@ -114,14 +115,14 @@ import posed from 'vue-pose';
 			visible: {
 				opacity: 1,
 				y: 0,
-				transition: { duration: 1000 }
+				transition: { duration: 1000 },
 			},
 			hidden: {
 				opacity: 0,
 				y: 300,
-			}
-		})
-	}
+			},
+		}),
+	},
 })
 export default class ContactBar extends Vue {
 	@Getter('getContactBarVisibility') isActive;
@@ -132,11 +133,9 @@ export default class ContactBar extends Vue {
 	observer: any = null;
 
 	get getAnimationStage() {
-		if(this.isStatic) {
-
+		if (this.isStatic) {
 			return this.isVisible ? 'visible' : 'hidden';
-		}
-		else {
+		} else {
 			return this.isActive ? 'visible' : 'hidden';
 		}
 	}
@@ -161,25 +160,24 @@ export default class ContactBar extends Vue {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 	}
 
-	setAnimation([entry]:any, observer) {
-			if ( entry.intersectionRatio > 0 ) {
-					setTimeout(()=>{
-					    this.isVisible = true;
-					    observer.disconnect()
-					}, 1000);
-			}
+	setAnimation([entry]: any, observer) {
+		if (entry.intersectionRatio > 0) {
+			setTimeout(() => {
+				this.isVisible = true;
+				observer.disconnect();
+			}, 1000);
+		}
 	}
 
-	mounted(){
-	    const footer: any = this.$refs.test;
-	    console.log(footer)
-      const options = { threshold: 0.85 };
-      this.observer = new IntersectionObserver(this.setAnimation, options);
-      this.observer.observe(footer);
-  }
+	mounted() {
+		const footer: any = this.$refs.test;
+		const options = { threshold: 0.85 };
+		this.observer = new IntersectionObserver(this.setAnimation, options);
+		this.observer.observe(footer);
+	}
 
 	beforeDestroy() {
-			this.observer.disconnect();
+		this.observer.disconnect();
 	}
 }
 </script>

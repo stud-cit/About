@@ -122,7 +122,7 @@ import posed from 'vue-pose';
 				opacity: 0,
 				x: ({ index, choosedSlide, isMobile }) =>
 					index === choosedSlide && isMobile ? -30 : 0,
-					transition: {duration: 600},
+				transition: { duration: 600 },
 				y: ({ index, choosedSlide, isMobile }) => {
 					if (!isMobile) {
 						return index === choosedSlide ? -30 : 0;

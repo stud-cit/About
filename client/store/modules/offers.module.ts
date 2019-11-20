@@ -7,7 +7,6 @@ interface ReperesentationModel {
 	readonly title: string;
 	readonly content: string;
 	readonly img: string;
-	readonly contentPosition: 'start' | 'end';
 }
 
 interface OffersLocaleModel {
@@ -23,7 +22,6 @@ class OffersState {
 					розуміє, навіщо це потрібно. Саме визначення цілей майбутнього проекту, визначає
 					подальший розвиток та популяризацію.`,
 				img: '/images/weOffer/one.jpg',
-				contentPosition: 'start',
 			},
 			{
 				title:
@@ -33,14 +31,12 @@ class OffersState {
 					часу роботи, як кожного співробітника, так і частини компанії, виконується перевірка
 					роботи установи.`,
 				img: '/images/weOffer/two.jpg',
-				contentPosition: 'end',
 			},
 			{
 				title: 'Проєктування інформаційних систем різної складності',
 				content: `Web-розробка починається з визначення причин і цілей.
 					Ці дві складові напряму впливають на складність виконання.`,
 				img: '/images/weOffer/three.jpg',
-				contentPosition: 'start',
 			},
 		],
 	};
@@ -52,7 +48,6 @@ class OffersState {
 					зачем это нужно. А ведь определение целей будущего проекта, определяет дальнейшее
 					продвижение и популяризацию.`,
 				img: '/images/weOffer/one.jpg',
-				contentPosition: 'start',
 			},
 			{
 				title: 'Создание програмного обеспечения для реальных задач',
@@ -69,7 +64,6 @@ class OffersState {
 					от поставленой цели нами будет выбрана наиболее походящая платформа
 					и функционал. Эти две составляющие напрямую влияют на сложность выполнения.`,
 				img: '/images/weOffer/three.jpg',
-				contentPosition: 'start',
 			},
 		],
 	};
@@ -82,7 +76,6 @@ class OffersState {
 					of the goals of the future project that determines the further development
 					and promotion.`,
 				img: '/images/weOffer/one.jpg',
-				contentPosition: 'start',
 			},
 			{
 				title: 'Creating software to solve tasks',
@@ -91,7 +84,6 @@ class OffersState {
 					time is monitored both for each employee and for part of the company,
 					the work of the institution is checked. `,
 				img: '/images/weOffer/two.jpg',
-				contentPosition: 'end',
 			},
 			{
 				title: 'Design of information systems of various complexity',
@@ -99,7 +91,6 @@ class OffersState {
 				from the goal we will choose the most suitable platform
 				and functional. These two components directly affect the complexity of execution.`,
 				img: '/images/weOffer/three.jpg',
-				contentPosition: 'start',
 			},
 		],
 	};

@@ -38,7 +38,8 @@
 										>
 											<TextSlider
 												:pose="isTextSliderAnimation ? 'visible' : 'hidden'"
-											  	class="py-md-10">
+												class="py-md-10"
+											>
 												{{ about[$i18n.locale].slides[stageText] }}
 											</TextSlider>
 										</div>
@@ -145,18 +146,18 @@ import PreviewPage from '@/components/preview-page.vue';
 	components: {
 		PreviewPage,
 		Slogan: posed.p({
-			visible: { opacity: 1, delay: ({delay}) => delay },
+			visible: { opacity: 1, delay: ({ delay }) => delay },
 			hidden: { opacity: 0 },
 		}),
 		OpacityBox: posed.div({
-			visible: { opacity: 1, delay: ({delay}) => delay },
+			visible: { opacity: 1, delay: ({ delay }) => delay },
 			hidden: { opacity: 0 },
 		}),
 		TextSlider: posed.p({
 			visible: {
 				opacity: 1,
 				transition: { duration: 500 },
-			 },
+			},
 			hidden: { opacity: 0 },
 		}),
 	},
@@ -171,12 +172,11 @@ export default class AboutPage extends Vue {
 	@Mutation('changeContactBar') changeContactBar;
 
 	curStage: number = 0;
-	isSloganAnimation: boolean 	= false;
+	isSloganAnimation: boolean = false;
 	isContactAnimation: boolean = false;
 	isTextSliderAnimation: boolean = false;
-	stageText : number = 0;
+	stageText: number = 0;
 	stageAbout: number = 0;
-
 
 	showLastStage() {
 		this.curStage = this.about[this.$i18n.locale].slides.length + 1;
@@ -191,13 +191,13 @@ export default class AboutPage extends Vue {
 		const delayWithLoader = 2500;
 		const delayWithoutLoader = 500;
 		return this.visibilityLoader ? delayWithLoader : delayWithoutLoader;
-	};
+	}
 
 	get getSecondStageAnimationDelay() {
 		const delayWithLoader = 3000;
 		const delayWithoutLoader = 600;
 		return this.visibilityLoader ? delayWithLoader : delayWithoutLoader;
-	};
+	}
 
 	get isXsOnly() {
 		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
@@ -241,12 +241,14 @@ export default class AboutPage extends Vue {
 	onChangeCurStage(value: number) {
 		if (value === this.about[this.$i18n.locale].slides.length + 1) {
 			this.changeContactBar(true);
-		}
-		else {
+		} else {
 			this.changeContactBar(false);
 		}
 		this.isTextSliderAnimation = false;
-		if ((this.curStage > 0) && (this.curStage < this.about[this.$i18n.locale].slides.length + 2)){
+		if (
+			this.curStage > 0 &&
+			this.curStage < this.about[this.$i18n.locale].slides.length + 2
+		) {
 			if (this.curStage > 1) {
 				setTimeout(() => {
 					this.stageAbout = this.curStage - 1;
