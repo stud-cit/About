@@ -4,7 +4,6 @@ import { compare } from 'bcrypt';
 
 import { ConfigService } from '../../config/config.service';
 
-import { UserRequest } from '../user/dto/user.dto';
 import { UserService } from '../user/user.service';
 import { UserEntity } from '../user/user.entity';
 
@@ -18,20 +17,19 @@ export class AuthService {
 		private readonly jwtService: JwtService,
 	) {}
 
-	public async createToken(payload: UserRequest): Promise<JWTRequest> {
-		return {
-			expiresIn: this.configService.get('JWT_EXPIRE'),
-			token: this.jwtService.sign({ ...payload }),
-		};
+	public async createToken(payload: UserEntity): Promise<JWTRequest> {
+		const expiresIn = this.configService.get('JWT_EXPIRE');
+		const token = this.jwtService.sign(payload);
+		return { expiresIn, token };
 	}
 
-	public async compareHash(payload: UserRequest): Promise<boolean> {
+	public async compareHash(payload: UserEntity): Promise<boolean> {
 		const user = await this.validateUser(payload);
 		return await compare(payload.password, user.password);
 	}
 
-	public async validateUser(payload: UserRequest): Promise<UserEntity> {
-		return await this.userService.selectOne(payload).catch(() => {
+	public async validateUser(payload: UserEntity): Promise<UserEntity> {
+		return await this.userService.selectOne(payload.email).catch(() => {
 			throw new UnauthorizedException();
 		});
 	}
