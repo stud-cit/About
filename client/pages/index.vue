@@ -17,6 +17,7 @@
 					@click="() => choosePage(i)"
 				>
 					<Slide
+						class="slide"
 						:pose="isStartAnimation ? 'hidden' : 'default'"
 						:index="i"
 						:choosedSlide="choosedSlide"
@@ -60,6 +61,7 @@
 				@click="() => choosePage(i)"
 			>
 				<Slide
+					class="slide"
 					:pose="isStartAnimation ? 'hidden' : 'default'"
 					:index="i"
 					:choosedSlide="choosedSlide"
@@ -207,6 +209,8 @@ export default class HomePage extends Vue {
 #home .swiper-wrapper
   width: 75%
 
+  .slide
+    cursor: pointer
 .swiper-inactive
   transform: translateX(300%)
 
