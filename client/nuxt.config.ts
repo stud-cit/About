@@ -82,7 +82,6 @@ const config: Configuration = {
 		detectBrowserLanguage: {
 			useCookie: true,
 			cookieKey: 'i18n_redirected',
-			alwaysRedirect: true,
 			fallbackLocale: 'ua',
 		},
 		locales: [
