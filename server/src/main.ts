@@ -8,6 +8,9 @@ import { join } from 'path';
 import { ConfigService } from './config/config.service';
 import { AppModule } from './app/app.module';
 
+/**
+ * [bootstrap description]
+ */
 async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule);
 	const config = new ConfigService();

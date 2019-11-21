@@ -13,34 +13,33 @@
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:dev": "nodemon",
     "start:debug": "nodemon --config nodemon-debug.json",
-    "start:prod": " rimraf dist && npm run test && npm run build && node dist/main.js",
-    "postinstall": "npm run doc && npm run start:prod",
+    "start:prod": "rimraf dist && npm run build && node dist/main.js",
+    "postinstall": "npm run test && npm run doc && npm run start:prod",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "format": "prettier --write --loglevel warn \"{src,test}/**/*.ts\"",
     "lint": "tslint -p tsconfig.json -c tslint.json",
-    "doc": "npx compodoc -p tsconfig.json -d public",
-    "test": "jest --notify --verbose --coverage -i",
-    "test:watch": "jest --watchAll",
-    "test:cov": "jest --coverage --notify --verbose --watchAll",
+    "doc": "npx compodoc",
+		"test": "jest -i --coverage",
+    "test:cov": "jest --watchAll --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest -i",
-    "test:e2e": "jest --config ./test/jest-e2e.json --notify --watchAll"
+    "test:e2e": "jest --config ./test/jest-e2e.json --watchAll"
   },
   "dependencies": {
     "@nestjs/common": "latest",
     "@nestjs/core": "latest",
-    "@nestjs/jwt": "^6.1.1",
-    "@nestjs/passport": "^6.1.0",
+    "@nestjs/jwt": "latest",
+    "@nestjs/passport": "latest",
     "@nestjs/platform-express": "latest",
     "@nestjs/swagger": "latest",
     "@nestjs/typeorm": "latest",
-    "@types/bcrypt": "^3.0.0",
-    "bcrypt": "^3.0.6",
+    "@types/bcrypt": "latest",
+    "bcrypt": "latest",
     "class-transformer": "latest",
     "class-validator": "latest",
     "dotenv": "latest",
     "mysql": "latest",
-    "passport": "^0.4.0",
-    "passport-jwt": "^4.0.0",
+    "passport": "latest",
+    "passport-jwt": "latest",
     "reflect-metadata": "latest",
     "rimraf": "latest",
     "rxjs": "latest",
@@ -55,11 +54,11 @@
     "@types/express": "latest",
     "@types/faker": "latest",
     "@types/jest": "latest",
-    "@types/multer": "^1.3.10",
+    "@types/multer": "latest",
     "@types/node": "latest",
-    "@types/passport-jwt": "^3.0.2",
+    "@types/passport-jwt": "latest",
     "@types/supertest": "latest",
-    "@types/uuid": "^3.4.5",
+    "@types/uuid": "latest",
     "faker": "latest",
     "jest": "latest",
     "nodemon": "latest",
@@ -71,18 +70,28 @@
     "tsconfig-paths": "latest",
     "tslint": "latest"
   },
+	"compodoc": {
+		"open": true,
+		"hideGenerator": true,
+		"output": "./public",
+	  "tsconfig": "./tsconfig.json",
+		"unitTestCoverage": "./coverage/coverage-summary.json"
+	},
   "jest": {
     "moduleFileExtensions": [
       "js",
       "json",
       "ts"
     ],
+		"notify": true,
+		"verbose": true,
     "rootDir": "src",
     "testRegex": ".spec.ts$",
+    "testEnvironment": "node",
+    "coverageDirectory": "../coverage",
+		"coverageReporters": ["json-summary", "text"],
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    }
   }
 }
