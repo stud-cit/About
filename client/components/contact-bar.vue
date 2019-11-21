@@ -5,7 +5,7 @@
 		class="pa-0"
 		:class="{ static: isStatic }"
 		v-show="isStatic | isActive"
-		ref="test"
+		ref="contact"
 	>
 		<Footer :pose="getAnimationStage">
 			<v-row class="ma-0 slogan" justify="center">
@@ -162,15 +162,13 @@
 
 		setAnimation([entry]: any, observer) {
 			if (entry.intersectionRatio > 0) {
-				setTimeout(() => {
 					this.isVisible = true;
 					observer.disconnect();
-				}, 1000);
 			}
 		}
 
 		mounted() {
-			const footer: any = this.$refs.test;
+			const footer: any = this.$refs.contact;
 			const options = { threshold: 0.85 };
 			this.observer = new IntersectionObserver(this.setAnimation, options);
 			this.observer.observe(footer);
