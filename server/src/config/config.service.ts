@@ -4,10 +4,20 @@ import { parse } from 'dotenv';
 
 import { Config } from './interfaces/config.interface';
 
+/**
+ * [Injectable description]
+ * @return [description]
+ */
 @Injectable()
 export class ConfigService {
+	/**
+	 * [config description]
+	 */
 	private readonly config: Config;
 
+	/**
+	 * [constructor description]
+	 */
 	constructor() {
 		if (!process.env.NODE_ENV) process.env.NODE_ENV = 'production';
 		this.config = {
@@ -16,6 +26,11 @@ export class ConfigService {
 		};
 	}
 
+	/**
+	 * [get description]
+	 * @param  key [description]
+	 * @return     [description]
+	 */
 	public get(key: string): any {
 		const value = this.config[key];
 		if (/true|false/.test(value)) return Boolean(value);
