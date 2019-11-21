@@ -17,17 +17,17 @@
 					@click="() => choosePage(i)"
 				>
 					<Slide
+						class="slide"
 						:pose="isStartAnimation ? 'hidden' : 'default'"
 						:index="i"
 						:choosedSlide="choosedSlide"
-						:to="localePath(page.to, $i18n.locale)"
+						:to="localePath(page.link, $i18n.locale)"
 						:router="$router"
 						:isMobile="isXsOnly"
 					>
 						<v-card class="none-radius">
 							<v-img
 								:src="getDynamicAssets(`/images/covers${page.videoBg.cover}`)"
-								:gradient="imagePageGradient"
 								:lazy-src="page.lazyImg"
 								:height="isMdAndDown ? '45vh' : '65vh'"
 								:aspect-ratio="16 / 9"
@@ -61,10 +61,11 @@
 				@click="() => choosePage(i)"
 			>
 				<Slide
+					class="slide"
 					:pose="isStartAnimation ? 'hidden' : 'default'"
 					:index="i"
 					:choosedSlide="choosedSlide"
-					:to="localePath(page.to, $i18n.locale)"
+					:to="localePath(page.link, $i18n.locale)"
 					:router="$router"
 					:isMobile="isXsOnly"
 				>
@@ -102,122 +103,124 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { Getter } from 'vuex-class';
-import posed from 'vue-pose';
+	import { Component, Vue } from 'vue-property-decorator';
+	import { Getter } from 'vuex-class';
+	import posed from 'vue-pose';
 
-@Component({
-	layout: 'preliminary',
-	head: {
-		title: 'Home',
-	},
-	components: {
-		/**
-		 * 	Move choosed slide on y axis on sm and higer
-		 * 	Move choosed slide on x axis on xs only
-		 */
-		Slide: posed.div({
-			hidden: {
-				opacity: 0,
-				x: ({ index, choosedSlide, isMobile }) =>
-					index === choosedSlide && isMobile ? -30 : 0,
-					transition: {duration: 600},
-				y: ({ index, choosedSlide, isMobile }) => {
-					if (!isMobile) {
-						return index === choosedSlide ? -30 : 0;
-					}
-					return 0;
-				},
-				applyAtEnd: { display: 'none' },
-				onPoseComplete: ({ index, choosedSlide, isMobile, to, router }) => {
-					if (index === choosedSlide) {
-						setTimeout(() => router.push(to), !isMobile ? 500 : 100);
-					}
-				},
-			},
-			default: {
-				opacity: 1,
-				y: 0,
-			},
-		}),
-	},
-})
-export default class HomePage extends Vue {
-	@Getter('visibilityLoader') visibilityLoader;
-	@Getter('getPageStage') pages;
-
-	choosedSlide: number = -1;
-	isShowSwiper: boolean = false;
-	swiperOption = {
-		mousewheel: true,
-		centeredSlides: true,
-		slidesPerView: 'auto',
-		spaceBetween: 150,
-		breakpoints: {
-			768: {
-				spaceBetween: 50,
-			},
-			1024: {
-				spaceBetween: 100,
-			},
+	@Component({
+		layout: 'preliminary',
+		head: {
+			title: 'Home',
 		},
-	};
+		components: {
+			/**
+			 * 	Move choosed slide on y axis on sm and higer
+			 * 	Move choosed slide on x axis on xs only
+			 */
+			Slide: posed.div({
+				hidden: {
+					opacity: 0,
+					x: ({ index, choosedSlide, isMobile }) =>
+						index === choosedSlide && isMobile ? -30 : 0,
+					transition: { duration: 600 },
+					y: ({ index, choosedSlide, isMobile }) => {
+						if (!isMobile) {
+							return index === choosedSlide ? -30 : 0;
+						}
+						return 0;
+					},
+					applyAtEnd: { display: 'none' },
+					onPoseComplete: ({ index, choosedSlide, isMobile, to, router }) => {
+						if (index === choosedSlide) {
+							setTimeout(() => router.push(to), !isMobile ? 500 : 100);
+						}
+					},
+				},
+				default: {
+					opacity: 1,
+					y: 0,
+				},
+			}),
+		},
+	})
+	export default class HomePage extends Vue {
+		@Getter('visibilityLoader') visibilityLoader;
+		@Getter('getPageStage') pages;
 
-	showSwiper() {
-		if (!this.visibilityLoader) {
-			this.isShowSwiper = true;
-		} else {
-			setTimeout(() => {
+		choosedSlide: number = -1;
+		isShowSwiper: boolean = false;
+		swiperOption = {
+			mousewheel: true,
+			centeredSlides: true,
+			slidesPerView: 'auto',
+			spaceBetween: 150,
+			breakpoints: {
+				768: {
+					spaceBetween: 50,
+				},
+				1024: {
+					spaceBetween: 100,
+				},
+			},
+		};
+
+		showSwiper() {
+			if (!this.visibilityLoader) {
 				this.isShowSwiper = true;
-			}, 1000);
+			} else {
+				setTimeout(() => {
+					this.isShowSwiper = true;
+				}, 1000);
+			}
 		}
-	}
 
-	choosePage(index: number): void {
-		this.choosedSlide = index - 1;
-	}
+		choosePage(index: number): void {
+			this.choosedSlide = index - 1;
+		}
 
-	get isStartAnimation() {
-		return this.choosedSlide !== -1 ? true : false;
-	}
+		get isStartAnimation() {
+			return this.choosedSlide !== -1 ? true : false;
+		}
 
-	get isXsOnly() {
-		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
-	}
-	get isMdAndDown() {
-		return this.$breakpoint ? this.$breakpoint.is.mdAndDown : false;
-	}
+		get isXsOnly() {
+			return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+		}
+		get isMdAndDown() {
+			return this.$breakpoint ? this.$breakpoint.is.mdAndDown : false;
+		}
 
-	get getSlideTitleFont() {
-		return { fontSize: `${this.getAdaptiveSize('slideTitleFont')}px` };
-	}
-	get getSlideNumberFont() {
-		return { fontSize: `${this.getAdaptiveSize('slideNumberFont')}px` };
-	}
+		get getSlideTitleFont() {
+			return { fontSize: `${this.getAdaptiveSize('slideTitleFont')}px` };
+		}
+		get getSlideNumberFont() {
+			return { fontSize: `${this.getAdaptiveSize('slideNumberFont')}px` };
+		}
 
-	mounted() {
-		this.showSwiper();
-	}
+		mounted() {
+			this.showSwiper();
+		}
 
-	imagePageGradient: string =
-		'to top right, rgba(115, 115, 115, .33), rgba(32, 32, 72, .7)';
-}
+		imagePageGradient: string =
+			'to top right, rgba(115, 115, 115, .33), rgba(32, 32, 72, .7)';
+	}
 </script>
 
 <style lang="sass">
-#home .swiper-wrapper
-  width: 75%
+	#home .swiper-wrapper
+	  width: 75%
 
-.swiper-inactive
-  transform: translateX(300%)
+	  .slide
+	    cursor: pointer
+	.swiper-inactive
+	  transform: translateX(300%)
 
-.swiper-active
-    transform: translateX(0%)
-    transition: 2s
+	.swiper-active
+	    transform: translateX(0%)
+	    transition: 2s
 
-.disable-underline
-  text-decoration: none
+	.disable-underline
+	  text-decoration: none
 
-.none-radius
-  border-radius: 0px
+	.none-radius
+	  border-radius: 0px
 </style>

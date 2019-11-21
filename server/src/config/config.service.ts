@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { readFileSync } from 'fs';
 import { parse } from 'dotenv';
 
-import { Config } from './interfaces/config.interface';
+import { EnvConfig } from './interfaces/envConfig.interface';
 
 /**
  * [Injectable description]

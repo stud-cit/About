@@ -67,7 +67,7 @@
 										<v-btn
 											class="px-0 desktop-link"
 											active-class="active-desktop-link"
-											:to="localePath(page.to)"
+											:to="localePath(page.link)"
 											:ripple="false"
 											replace
 											exact
@@ -147,7 +147,7 @@
 							class="text-center display-2 page-link font-weight-bold"
 							exact-active-class="page-link-active"
 							@click="toggleVisibilityMobileMenu()"
-							:to="localePath(page.to)"
+							:to="localePath(page.link)"
 							replace
 							exact
 							nuxt
@@ -162,203 +162,204 @@
 </template>
 
 <script lang="ts">
-import posed from 'vue-pose';
-import { Component, Vue } from 'vue-property-decorator';
-import { Getter, Mutation } from 'vuex-class';
-import ContactBar from '@/components/contact-bar.vue';
+	import posed from 'vue-pose';
+	import { Component, Vue } from 'vue-property-decorator';
+	import { Getter, Mutation } from 'vuex-class';
+	import ContactBar from '@/components/contact-bar.vue';
 
-@Component({
-	components: {
-		'contact-bar': ContactBar,
-		Navs: posed.div({
-			visible: {
-				beforeChildren: true,
-				staggerChildren: 50,
-				delayChildren: ({ delay }) => delay,
-			},
-			hidden: {
-				afterChildren: true,
-			},
-		}),
-		OpacityBox: posed.div({
-			visible: { opacity: 1, delay: ({ delay }) => delay },
-			hidden: { opacity: 0 },
-		}),
-		ContentBox: posed.div({
-			visible: { opacity: 1, y: 0 },
-			hidden: { opacity: 0, y: 20 },
-		}),
-	},
-})
-export default class ImmediatetLayout extends Vue {
-	@Getter('getPageByRoute') getPageByRoute;
-	@Getter('getPageId') pageId;
-	@Getter('getPageStage') pages;
-	@Getter('getPageVideoBg') videoBg;
-	@Getter('visibilityLoader') visibilityLoader;
-	@Mutation('changeScrollBar') changeScrollBar;
+	@Component({
+		components: {
+			'contact-bar': ContactBar,
+			Navs: posed.div({
+				visible: {
+					beforeChildren: true,
+					staggerChildren: 50,
+					delayChildren: ({ delay }) => delay,
+				},
+				hidden: {
+					afterChildren: true,
+				},
+			}),
+			OpacityBox: posed.div({
+				visible: { opacity: 1, delay: ({ delay }) => delay },
+				hidden: { opacity: 0 },
+			}),
+			ContentBox: posed.div({
+				visible: { opacity: 1, y: 0 },
+				hidden: { opacity: 0, y: 20 },
+			}),
+		},
+	})
+	export default class ImmediatetLayout extends Vue {
+		@Getter('getPageByRoute') getPageByRoute;
+		@Getter('getPageId') pageId;
+		@Getter('getPageStage') pages;
+		@Getter('getPageVideoBg') videoBg;
+		@Getter('visibilityLoader') visibilityLoader;
+		@Mutation('changeScrollBar') changeScrollBar;
 
-	isShowMobileMenu: boolean = false;
-	isStartAnimation: boolean = false;
-	isShowNormalHeader: boolean = true;
+		isShowMobileMenu: boolean = false;
+		isStartAnimation: boolean = false;
+		isShowNormalHeader: boolean = true;
 
-	handleScroll(): void {
-		const currentScroll = window.scrollY;
-		const windowHeight = window.innerHeight;
-		const scrollHeight = document.body.scrollHeight;
-		const scrollToFooter = scrollHeight - windowHeight * 1.3;
+		handleScroll(): void {
+			const currentScroll = window.scrollY;
+			const windowHeight = window.innerHeight;
+			const scrollHeight = document.body.scrollHeight;
+			const scrollToFooter = scrollHeight - windowHeight * 1.3;
 
-		// show normal header version when scroll to footer
-		if (currentScroll > scrollToFooter) {
-			this.isShowNormalHeader = true;
+			// show normal header version when scroll to footer
+			if (currentScroll > scrollToFooter) {
+				this.isShowNormalHeader = true;
+			} else {
+				currentScroll > 10 && this.$breakpoint.is.mdAndUp
+					? (this.isShowNormalHeader = false)
+					: (this.isShowNormalHeader = true);
+			}
 		}
-		else {
-			currentScroll > 10 && this.$breakpoint.is.mdAndUp
-				? (this.isShowNormalHeader = false)
-				: (this.isShowNormalHeader = true);
+		get isXsOnly() {
+			return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+		}
+
+		get isMdAndUp() {
+			return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
+		}
+
+		get getAnimationDelay() {
+			return this.visibilityLoader ? 1500 : 0;
+		}
+
+		get getPageIndexFont() {
+			return { fontSize: `${this.getAdaptiveSize('pageIndexFont')}px` };
+		}
+		get getPageTotalIndexFont() {
+			return { fontSize: `${this.getAdaptiveSize('pageTotalIndexFont')}px` };
+		}
+		get getTotalPagesFont() {
+			if (this.isShowNormalHeader) {
+				return { fontSize: `${this.getAdaptiveSize('totalPagesFont')}vw` };
+			} else {
+				return { fontSize: `${this.getAdaptiveSize('totalMiniPagesFont')}vw` };
+			}
+		}
+
+		toggleVisibilityMobileMenu() {
+			this.isShowMobileMenu = !this.isShowMobileMenu;
+		}
+		mounted() {
+			this.isStartAnimation = true;
+
+			// hide scrollBar on any route change
+			this.$router.beforeHooks.push((prevRoute, nextRoute, next) => {
+				this.changeScrollBar(false);
+				setTimeout(() => next(), 25);
+			});
 		}
 	}
-	get isXsOnly() {
-		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
-	}
-
-	get isMdAndUp() {
-		return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
-	}
-
-	get getAnimationDelay() {
-		return this.visibilityLoader ? 1500 : 0;
-	}
-
-	get getPageIndexFont() {
-		return { fontSize: `${this.getAdaptiveSize('pageIndexFont')}px` };
-	}
-	get getPageTotalIndexFont() {
-		return { fontSize: `${this.getAdaptiveSize('pageTotalIndexFont')}px` };
-	}
-	get getTotalPagesFont() {
-		if (this.isShowNormalHeader) {
-			return { fontSize: `${this.getAdaptiveSize('totalPagesFont')}vw` };
-		} else {
-			return { fontSize: `${this.getAdaptiveSize('totalMiniPagesFont')}vw` };
-		}
-	}
-
-	toggleVisibilityMobileMenu() {
-		this.isShowMobileMenu = !this.isShowMobileMenu;
-	}
-	mounted() {
-		this.isStartAnimation = true;
-
-		// hide scrollBar on any route change
-		this.$router.beforeHooks.push((prevRoute, nextRoute, next) => {
-			this.changeScrollBar(false);
-			setTimeout(() => next(), 25);
-		});
-	}
-}
 </script>
 
 <style lang="sass">
-#video-bg
-	height: 100vh
-	max-height: 100vh
-	position: fixed
+	#video-bg
+		height: 100vh
+		max-height: 100vh
+		position: fixed
 
-#header
-	z-index: 30
-	height: auto !important
-	color: rgba(255, 255, 255, 1)
-	transition: all ease .5s
+	#header
+		z-index: 30
+		height: auto !important
+		color: rgba(255, 255, 255, 1)
+		transition: all ease .5s
 
-	.desktop-link
-		font-weight: 600
-		&::before
-			opacity: 0
+		.desktop-link
+			font-weight: 600
+			&::before
+				opacity: 0
 
-	.active-desktop-link
-		border-bottom: 4px solid white
-		border-radius: unset
+		.active-desktop-link
+			border-bottom: 4px solid white
+			border-radius: unset
 
-	&.mini-header
-		background: rgba(0, 0, 0, 0.45)
+		&.mini-header
+			background: rgba(0, 0, 0, 0.8)
 
-.nav-panel
-	display: flex
-	align-items: center
-	justify-content: space-between
-	width: 100%
-
-.nav-links
-	align-items: center
-
-.nav-link
-	font-size: 15px
-
-.nav-link-desktop
-	font-size: 25px
-
-.gumburger-mobile-position
-	position: absolute !important
-	right: 0
-	margin-right: 4vw
-
-.page-info
-	position: fixed
-	width: 100%
-	top: 7vh
-	z-index: 5
-	color: white
-	font-weight: bold
-	font-style: italic
-
-	.total-pages
-		vertical-align: top
-
-.page-info-mobile
-	top: 3vh
-
-#pages-list-container
-	height: 100vh
-	display: flex
-	align-items: center
-
-	.pages-list
-		width: 100vh
-		height: 90vh
+	.nav-panel
 		display: flex
-		flex-direction: column
+		align-items: center
 		justify-content: space-between
-
-	.page-link
 		width: 100%
-		height: 100%
-		background: white
+
+	.nav-links
+		align-items: center
+
+	.nav-link
+		font-size: 15px
+
+	.nav-link-desktop
+		font-size: 25px
+
+	.gumburger-mobile-position
+		position: absolute !important
+		right: 0
+		margin-right: 4vw
+
+	.page-info
+		position: fixed
+		width: 100%
+		top: 7vh
+		z-index: 5
 		color: white
-		box-shadow: none
+		font-weight: bold
+		font-style: italic
 
-		.page-link-title
-			font-size: 35px
-			color: black
+		.total-pages
+			vertical-align: top
 
-	.page-link-active .page-link-title
-		border-bottom: 2px solid black
+	.page-info-mobile
+		top: 3vh
 
-.imageCover
-	position: fixed !important
-	width: 100vw
-	height: 100vh
+	#pages-list-container
+		height: 100vh
+		display: flex
+		align-items: center
 
-.desktop-link:hover
-	opacity: 0.5
+		.pages-list
+			width: 100vh
+			height: 90vh
+			display: flex
+			flex-direction: column
+			justify-content: space-between
 
-.not-uppercase
-	text-transform: none !important
+		.page-link
+			width: 100%
+			height: 100%
+			background: white
+			color: white
+			box-shadow: none
 
-.bold-italic-preview
-	font-weight: 800 !important
-	font-style: italic
+			.page-link-title
+				font-size: 35px
+				color: black
 
-.index
-	z-index: 10
+		.page-link-active .page-link-title
+			border-bottom: 2px solid black
+
+	.imageCover
+		position: fixed !important
+		width: 100vw
+		height: 100vh
+	.theme--light.v-btn::before
+		border-radius: 0 !important
+
+	.desktop-link:hover
+		opacity: 0.5
+
+	.not-uppercase
+		text-transform: none !important
+
+	.bold-italic-preview
+		font-weight: 800 !important
+		font-style: italic
+
+	.index
+		z-index: 10
 </style>

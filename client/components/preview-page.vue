@@ -14,7 +14,7 @@
 					'preview-margin': iconDown,
 					'preview-wrapper': !isXsOnly,
 					'preview-wrapper-mobile': isXsOnly,
-					'mb-sm-8 mb-md-0' : isAboutPage,
+					'mb-sm-8 mb-md-0': isAboutPage,
 				}"
 			>
 				<v-col
@@ -149,241 +149,241 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { Getter, Mutation } from 'vuex-class';
-import posed from 'vue-pose';
+	import { Component, Vue } from 'vue-property-decorator';
+	import { Getter, Mutation } from 'vuex-class';
+	import posed from 'vue-pose';
 
-@Component({
-	components: {
-		OpacityBlock: posed.div({
-			visible: { opacity: 1, delay: ({ delay }) => delay },
-			hidden: { opacity: 0 },
-		}),
-		ContentBlock: posed.p({
-			visible: { opacity: 1, y: 0, delay: ({ delay }) => delay },
-			hidden: { opacity: 0, y: 20 },
-		}),
-	},
-	props: ['title', 'subtitle', 'description', 'iconDown'],
-})
-export default class PreviewPage extends Vue {
-	@Getter('getPageByRoute') getPageByRoute;
-	@Getter('getPageId') pageId;
-	@Getter('getPageRouteById') getPageRouteById;
-	@Getter('visibilityLoader') visibilityLoader;
+	@Component({
+		components: {
+			OpacityBlock: posed.div({
+				visible: { opacity: 1, delay: ({ delay }) => delay },
+				hidden: { opacity: 0 },
+			}),
+			ContentBlock: posed.p({
+				visible: { opacity: 1, y: 0, delay: ({ delay }) => delay },
+				hidden: { opacity: 0, y: 20 },
+			}),
+		},
+		props: ['title', 'subtitle', 'description', 'iconDown'],
+	})
+	export default class PreviewPage extends Vue {
+		@Getter('getPageByRoute') getPageByRoute;
+		@Getter('getPageId') pageId;
+		@Getter('getPageRouteById') getPageRouteById;
+		@Getter('visibilityLoader') visibilityLoader;
 
-	isShowUseContacts: boolean = true;
-	aboutPageId: number = 1;
-	portfolioPageId: number = 4;
-	weofferPageId: number = 2;
+		isShowUseContacts: boolean = true;
+		aboutPageId: number = 1;
+		portfolioPageId: number = 4;
+		weofferPageId: number = 2;
 
-	// animation
-	isStartAnimation: boolean = false;
-	firstStageAnimationDelayWithLoader: number = 2500;
-	firstStageAnimationDelayWithoutLoader: number = 500;
-	secondStageAnimationDelayWithLoader: number = 3000;
-	secondStageAnimationDelayWithoutLoader: number = 600;
+		// animation
+		isStartAnimation: boolean = false;
+		firstStageAnimationDelayWithLoader: number = 2500;
+		firstStageAnimationDelayWithoutLoader: number = 500;
+		secondStageAnimationDelayWithLoader: number = 3000;
+		secondStageAnimationDelayWithoutLoader: number = 600;
 
-	handleScroll(): void {
-		const windowHeight = window.innerHeight;
-		const scrollHeight = document.body.scrollHeight;
-		const scrollToFooter = scrollHeight - windowHeight * 2;
-		const isPortfolioPage = this.pageId === this.portfolioPageId;
-		const isWeOfferPage = this.pageId === this.weofferPageId;
+		handleScroll(): void {
+			const windowHeight = window.innerHeight;
+			const scrollHeight = document.body.scrollHeight;
+			const scrollToFooter = scrollHeight - windowHeight * 2;
+			const isPortfolioPage = this.pageId === this.portfolioPageId;
+			const isWeOfferPage = this.pageId === this.weofferPageId;
 
-		// on porfolio page we have to hide if any scroll we have
-		if (isPortfolioPage && window.scrollY > 0) {
-			this.isShowUseContacts = false;
-		} else if (isWeOfferPage && window.scrollY > 0) {
-			this.isShowUseContacts = false;
-		} else if (window.scrollY > scrollToFooter) {
-			this.isShowUseContacts = false;
-		} else {
-			this.isShowUseContacts = true;
-		}
-	}
-
-	scollToContent(): void {
-		window.scrollTo({ left: 0, top: window.innerHeight, behavior: 'smooth' });
-	}
-
-	scrollToFooter() {
-		window.scrollTo({
-			left: 0,
-			top: document.body.scrollHeight,
-			behavior: 'smooth',
-		});
-	}
-
-	handleNavigatingPage(toRight: boolean) {
-		const newPageIndex = toRight ? this.pageId + 1 : this.pageId - 1;
-		const nextPage = this.getPageRouteById(newPageIndex);
-		this.$router.replace(this.localePath(nextPage));
-	}
-
-	get getScrollInfo() {
-		if (this.isAboutPage) {
-			if (this.isMdAndUp) {
-				return 'about.scrollPointNavigation';
+			// on porfolio page we have to hide if any scroll we have
+			if (isPortfolioPage && window.scrollY > 0) {
+				this.isShowUseContacts = false;
+			} else if (isWeOfferPage && window.scrollY > 0) {
+				this.isShowUseContacts = false;
+			} else if (window.scrollY > scrollToFooter) {
+				this.isShowUseContacts = false;
 			} else {
-				return 'common.swipe';
+				this.isShowUseContacts = true;
 			}
-		} else {
-			return 'common.scroll';
+		}
+
+		scollToContent(): void {
+			window.scrollTo({ left: 0, top: window.innerHeight, behavior: 'smooth' });
+		}
+
+		scrollToFooter() {
+			window.scrollTo({
+				left: 0,
+				top: document.body.scrollHeight,
+				behavior: 'smooth',
+			});
+		}
+
+		handleNavigatingPage(toRight: boolean) {
+			const newPageIndex = toRight ? this.pageId + 1 : this.pageId - 1;
+			const nextPage = this.getPageRouteById(newPageIndex);
+			this.$router.replace(this.localePath(nextPage));
+		}
+
+		get getScrollInfo() {
+			if (this.isAboutPage) {
+				if (this.isMdAndUp) {
+					return 'about.scrollPointNavigation';
+				} else {
+					return 'common.swipe';
+				}
+			} else {
+				return 'common.scroll';
+			}
+		}
+
+		get isAboutPage() {
+			return this.pageId === this.aboutPageId;
+		}
+		get isLgAndUp() {
+			return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
+		}
+		get isMdAndUp() {
+			return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
+		}
+		get isXsOnly() {
+			return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+		}
+
+		get getFirstStageAnimationDelay() {
+			return this.visibilityLoader
+				? this.firstStageAnimationDelayWithLoader
+				: this.firstStageAnimationDelayWithoutLoader;
+		}
+		get getSecondStageAnimationDelay() {
+			return this.visibilityLoader
+				? this.secondStageAnimationDelayWithLoader
+				: this.secondStageAnimationDelayWithoutLoader;
+		}
+
+		get getPreviewSubTitleFont() {
+			return {
+				fontSize: `${this.getAdaptiveSize('previewSubtitle')}px`,
+			};
+		}
+		get getPreviewInfoFont() {
+			return { fontSize: `${this.getAdaptiveSize('previewInfo')}px` };
+		}
+		get getUseContactsTitleFont() {
+			return {
+				fontSize: `${this.getAdaptiveSize('useContactsTitle')}px`,
+			};
+		}
+		get getUseContactsActionFont() {
+			return {
+				fontSize: `${this.getAdaptiveSize('useContactsAction')}px`,
+			};
+		}
+		get getPreviewTitleFont() {
+			return {
+				fontSize: `${this.getAdaptiveSize('previewTitle')}px`,
+			};
+		}
+
+		mounted() {
+			this.isStartAnimation = true;
+
+			// increase animation delay to prevent staring too early
+			// this.animationDelayWithoutLoader = 350;
+
+			// initial check
+			this.handleScroll();
 		}
 	}
-
-	get isAboutPage() {
-		return this.pageId === this.aboutPageId;
-	}
-	get isLgAndUp() {
-		return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
-	}
-	get isMdAndUp() {
-		return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
-	}
-	get isXsOnly() {
-		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
-	}
-
-	get getFirstStageAnimationDelay() {
-		return this.visibilityLoader
-			? this.firstStageAnimationDelayWithLoader
-			: this.firstStageAnimationDelayWithoutLoader;
-	}
-	get getSecondStageAnimationDelay() {
-		return this.visibilityLoader
-			? this.secondStageAnimationDelayWithLoader
-			: this.secondStageAnimationDelayWithoutLoader;
-	}
-
-	get getPreviewSubTitleFont() {
-		return {
-			fontSize: `${this.getAdaptiveSize('previewSubtitle')}px`,
-		};
-	}
-	get getPreviewInfoFont() {
-		return { fontSize: `${this.getAdaptiveSize('previewInfo')}px` };
-	}
-	get getUseContactsTitleFont() {
-		return {
-			fontSize: `${this.getAdaptiveSize('useContactsTitle')}px`,
-		};
-	}
-	get getUseContactsActionFont() {
-		return {
-			fontSize: `${this.getAdaptiveSize('useContactsAction')}px`,
-		};
-	}
-	get getPreviewTitleFont() {
-		return {
-			fontSize: `${this.getAdaptiveSize('previewTitle')}px`,
-		};
-	}
-
-	mounted() {
-		this.isStartAnimation = true;
-
-		// increase animation delay to prevent staring too early
-		// this.animationDelayWithoutLoader = 350;
-
-		// initial check
-		this.handleScroll();
-	}
-}
 </script>
 
 <style lang="sass">
-.preview-section
+	.preview-section
 
-	.use-contacts-container
-		width: 100vw
-		position: fixed
-		right: 0
-		bottom: 0
+		.use-contacts-container
+			width: 100vw
+			position: fixed
+			right: 0
+			bottom: 0
+			z-index: 10
+
+			.card-contacts
+				border-radius: 0
+
+			.card-contacts-sm-and-up
+				border-radius: 0 !important
+
+			.contacts-action
+				text-transform: uppercase
+				border-bottom: 2px solid #212121
+
+	.preview-section-about
+		height: 97vh !important
+
+	.preview-section-not-about
+		height: 100vh !important
+
+	.preview-wrapper
+		height: 80vh
+		color: white
+
+	.preview-wrapper-mobile
+		height: 60vh
+		color: white
+
+	.preview-margin
+		margin-bottom: 0vh
+		margin-top: 13vh
+
+	.arrow
+		font-size: 1.8rem
+		text-align: center
+		cursor: pointer
+
+	.square-container
+		display: flex
+
+	.squares
+		height: 40px
+		width: 40px
+		border-radius: 20%
+		border: 4px solid white
+
+	.squareOne
+		clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)
+
+	.squareThree
+		clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
+
+	.scroll-bottom-icon
+		position: absolute
+		top: 90vh
 		z-index: 10
+		opacity: 0.5
+		border-radius: 50%
+		border: 1px solid rgba(255, 255, 255, 0.5)
+		padding: 30px
 
-		.card-contacts
-			border-radius: 0
+	.icon-down
+		position: absolute
+		top: 50%
+		transform: translateY(-50%)
 
-		.card-contacts-sm-and-up
-			border-radius: 0 !important
+	.rotate
+		transform: rotate(90deg)
+	.gray
+		color: gray
 
-		.contacts-action
-			text-transform: uppercase
-			border-bottom: 2px solid rgba(0, 0, 0, 0.87)
+	.line-height
+		line-height: 1.2
 
-.preview-section-about
-	height: 97vh !important
+	.line-height-1
+		line-height: 1
 
-.preview-section-not-about
-	height: 100vh !important
+	.title-about
+		width: 80%
 
-.preview-wrapper
-	height: 80vh
-	color: white
+	.bold-preview
+		font-weight: 800 !important
+		font-style: normal
 
-.preview-wrapper-mobile
-	height: 60vh
-	color: white
-
-.preview-margin
-	margin-bottom: 0vh
-	margin-top: 13vh
-
-.arrow
-	font-size: 1.8rem
-	text-align: center
-	cursor: pointer
-
-.square-container
-	display: flex
-
-.squares
-	height: 40px
-	width: 40px
-	border-radius: 20%
-	border: 4px solid white
-
-.squareOne
-	clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)
-
-.squareThree
-	clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
-
-.scroll-bottom-icon
-	position: absolute
-	top: 90vh
-	z-index: 10
-	opacity: 0.5
-	border-radius: 50%
-	border: 1px solid rgba(255, 255, 255, 0.5)
-	padding: 30px
-
-.icon-down
-	position: absolute
-	top: 50%
-	transform: translateY(-50%)
-
-.rotate
-	transform: rotate(90deg)
-.gray
-	color: gray
-
-.line-height
-	line-height: 1.2
-
-.line-height-1
-	line-height: 1
-
-.title-about
-	width: 80%
-
-.bold-preview
-	font-weight: 800 !important
-	font-style: normal
-
-.footer-padding
-	padding: 6% 12% 0
-	white-space: nowrap
+	.footer-padding
+		padding: 6% 12% 0
+		white-space: nowrap
 </style>

@@ -38,7 +38,8 @@
 										>
 											<TextSlider
 												:pose="isTextSliderAnimation ? 'visible' : 'hidden'"
-											  	class="py-md-10">
+												class="py-md-10"
+											>
 												{{ about[$i18n.locale].slides[stageText] }}
 											</TextSlider>
 										</div>
@@ -131,249 +132,250 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
-import { Getter, Mutation } from 'vuex-class';
-import posed from 'vue-pose';
-import PreviewPage from '@/components/preview-page.vue';
+	import { Component, Vue, Watch } from 'vue-property-decorator';
+	import { Getter, Mutation } from 'vuex-class';
+	import posed from 'vue-pose';
+	import PreviewPage from '@/components/preview-page.vue';
 
-@Component({
-	layout: 'immediate',
-	transition: 'page',
-	head: {
-		title: 'About us',
-	},
-	components: {
-		PreviewPage,
-		Slogan: posed.p({
-			visible: { opacity: 1, delay: ({delay}) => delay },
-			hidden: { opacity: 0 },
-		}),
-		OpacityBox: posed.div({
-			visible: { opacity: 1, delay: ({delay}) => delay },
-			hidden: { opacity: 0 },
-		}),
-		TextSlider: posed.p({
-			visible: { 
-				opacity: 1, 
-				transition: { duration: 500 },
-			 },
-			hidden: { opacity: 0 },
-		}),
-	},
-})
-export default class AboutPage extends Vue {
-	@Getter('AboutModule/getStage') about;
-	@Getter('getPageId') pageId;
-	@Getter('getPageRouteById') getPageRouteById;
-	@Getter('getContactBarVisibility') isShowContactBar;
-	@Getter('visibilityLoader') visibilityLoader;
-	@Mutation('changePageId') changePageId;
-	@Mutation('changeContactBar') changeContactBar;
+	@Component({
+		layout: 'immediate',
+		transition: 'page',
+		head: {
+			title: 'About us',
+		},
+		components: {
+			PreviewPage,
+			Slogan: posed.p({
+				visible: { opacity: 1, delay: ({ delay }) => delay },
+				hidden: { opacity: 0 },
+			}),
+			OpacityBox: posed.div({
+				visible: { opacity: 1, delay: ({ delay }) => delay },
+				hidden: { opacity: 0 },
+			}),
+			TextSlider: posed.p({
+				visible: {
+					opacity: 1,
+					transition: { duration: 500 },
+				},
+				hidden: { opacity: 0 },
+			}),
+		},
+	})
+	export default class AboutPage extends Vue {
+		@Getter('AboutModule/getStage') about;
+		@Getter('getPageId') pageId;
+		@Getter('getPageRouteById') getPageRouteById;
+		@Getter('getContactBarVisibility') isShowContactBar;
+		@Getter('visibilityLoader') visibilityLoader;
+		@Mutation('changePageId') changePageId;
+		@Mutation('changeContactBar') changeContactBar;
 
-	curStage: number = 0;
-	isSloganAnimation: boolean 	= false;
-	isContactAnimation: boolean = false;
-	isTextSliderAnimation: boolean = false;
-	stageText : number = 0;
-	stageAbout: number = 0;
+		curStage: number = 0;
+		isSloganAnimation: boolean = false;
+		isContactAnimation: boolean = false;
+		isTextSliderAnimation: boolean = false;
+		stageText: number = 0;
+		stageAbout: number = 0;
 
-
-	showLastStage() {
-		this.curStage = this.about[this.$i18n.locale].slides.length + 1;
-	}
-
-	backToStart() {
-		this.curStage = 0;
-		this.changeContactBar(false);
-	}
-
-	get getFirstStageAnimationDelay() {
-		const delayWithLoader = 2500;
-		const delayWithoutLoader = 500;
-		return this.visibilityLoader ? delayWithLoader : delayWithoutLoader;
-	};
-
-	get getSecondStageAnimationDelay() {
-		const delayWithLoader = 3000;
-		const delayWithoutLoader = 600;
-		return this.visibilityLoader ? delayWithLoader : delayWithoutLoader;
-	};
-
-	get isXsOnly() {
-		return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
-	}
-	get isSmAndDown() {
-		return this.$breakpoint ? this.$breakpoint.is.smAndDown : false;
-	}
-	get isLgAndUp() {
-		return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
-	}
-
-	get getSlideTitleFont() {
-		return { fontSize: `${this.getAdaptiveSize('aboutSlideTitleFont')}px` };
-	}
-	get getSlideContentFont() {
-		return { fontSize: `${this.getAdaptiveSize('slideContentFont')}px` };
-	}
-	get getPreviewTitleFont() {
-		return { fontSize: `${this.getAdaptiveSize('previewTitle')}px` };
-	}
-	get getPreviewSubTitleFont() {
-		return {
-			fontSize: `${this.getAdaptiveSize('previewSubtitle')}px`,
-		};
-	}
-	get getPreviewInfoFont() {
-		return { fontSize: `${this.getAdaptiveSize('previewInfo')}px` };
-	}
-	get getUseContactsTitleFont() {
-		return {
-			fontSize: `${this.getAdaptiveSize('useContactsTitle')}px`,
-		};
-	}
-	get getUseContactsActionFont() {
-		return {
-			fontSize: `${this.getAdaptiveSize('useContactsAction')}px`,
-		};
-	}
-
-	@Watch('curStage')
-	onChangeCurStage(value: number) {
-		if (value === this.about[this.$i18n.locale].slides.length + 1) {
-			this.changeContactBar(true);
+		showLastStage() {
+			this.curStage = this.about[this.$i18n.locale].slides.length + 1;
 		}
-		else {
+
+		backToStart() {
+			this.curStage = 0;
 			this.changeContactBar(false);
 		}
-		this.isTextSliderAnimation = false;
-		if ((this.curStage > 0) && (this.curStage < this.about[this.$i18n.locale].slides.length + 2)){
-			if (this.curStage > 1) {
-				setTimeout(() => {
-					this.stageAbout = this.curStage - 1;
-					this.stageText = this.stageAbout;
-				}, 250);
-				setTimeout(() => {
-					this.isTextSliderAnimation = true;
-				}, 500);
+
+		get getFirstStageAnimationDelay() {
+			const delayWithLoader = 2500;
+			const delayWithoutLoader = 500;
+			return this.visibilityLoader ? delayWithLoader : delayWithoutLoader;
+		}
+
+		get getSecondStageAnimationDelay() {
+			const delayWithLoader = 3000;
+			const delayWithoutLoader = 600;
+			return this.visibilityLoader ? delayWithLoader : delayWithoutLoader;
+		}
+
+		get isXsOnly() {
+			return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+		}
+		get isSmAndDown() {
+			return this.$breakpoint ? this.$breakpoint.is.smAndDown : false;
+		}
+		get isLgAndUp() {
+			return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
+		}
+
+		get getSlideTitleFont() {
+			return { fontSize: `${this.getAdaptiveSize('aboutSlideTitleFont')}px` };
+		}
+		get getSlideContentFont() {
+			return { fontSize: `${this.getAdaptiveSize('slideContentFont')}px` };
+		}
+		get getPreviewTitleFont() {
+			return { fontSize: `${this.getAdaptiveSize('previewTitle')}px` };
+		}
+		get getPreviewSubTitleFont() {
+			return {
+				fontSize: `${this.getAdaptiveSize('previewSubtitle')}px`,
+			};
+		}
+		get getPreviewInfoFont() {
+			return { fontSize: `${this.getAdaptiveSize('previewInfo')}px` };
+		}
+		get getUseContactsTitleFont() {
+			return {
+				fontSize: `${this.getAdaptiveSize('useContactsTitle')}px`,
+			};
+		}
+		get getUseContactsActionFont() {
+			return {
+				fontSize: `${this.getAdaptiveSize('useContactsAction')}px`,
+			};
+		}
+
+		@Watch('curStage')
+		onChangeCurStage(value: number) {
+			if (value === this.about[this.$i18n.locale].slides.length + 1) {
+				this.changeContactBar(true);
 			} else {
-				setTimeout(() => {
-					this.stageAbout = this.curStage;
-					this.stageText = this.stageAbout - this.curStage;
-				}, 250);
-				setTimeout(() => {
-					this.isTextSliderAnimation = true;
-				}, 500);
+				this.changeContactBar(false);
 			}
-		} else {
-			this.stageAbout = this.curStage;
-			this.stageText = 0;
+			this.isTextSliderAnimation = false;
+			if (
+				this.curStage > 0 &&
+				this.curStage < this.about[this.$i18n.locale].slides.length + 2
+			) {
+				if (this.curStage > 1) {
+					setTimeout(() => {
+						this.stageAbout = this.curStage - 1;
+						this.stageText = this.stageAbout;
+					}, 250);
+					setTimeout(() => {
+						this.isTextSliderAnimation = true;
+					}, 500);
+				} else {
+					setTimeout(() => {
+						this.stageAbout = this.curStage;
+						this.stageText = this.stageAbout - this.curStage;
+					}, 250);
+					setTimeout(() => {
+						this.isTextSliderAnimation = true;
+					}, 500);
+				}
+			} else {
+				this.stageAbout = this.curStage;
+				this.stageText = 0;
+			}
+		}
+
+		created() {
+			this.changePageId(1);
+		}
+
+		mounted() {
+			this.isSloganAnimation = true;
+			this.isContactAnimation = true;
+		}
+
+		beforeDestroy() {
+			this.changeContactBar(false);
 		}
 	}
-
-	created() {
-		this.changePageId(1);
-	}
-
-	mounted() {
-		this.isSloganAnimation = true;
-		this.isContactAnimation = true;
-	}
-
-	beforeDestroy() {
-		this.changeContactBar(false);
-	}
-}
 </script>
 
 <style lang="sass">
-.slider
-	.v-slider__tick
-		border-radius: 50%
-		background: #363636
+	.slider
+		.v-slider__tick
+			border-radius: 50%
+			background: #363636
+			cursor: pointer
+
+		.v-slider__tick--filled
+			background: white
+
+	.preview-section
+		height: 100vh
+
+	.slide-container
+		height: 97vh
+		color: white
+
+	.slide-container-mobile
+		height: 90vh
+		color: white
+
+	.arrow
+		font-size: 1.8rem
+		text-align: center
 		cursor: pointer
 
-	.v-slider__tick--filled
-		background: white
+	.square-container
+		display: flex
 
-.preview-section
-	height: 100vh
+	.square
+		height: 40px
+		width: 40px
+		border-radius: 20%
+		border: 2px solid white
 
-.slide-container
-	height: 97vh
-	color: white
+	.squareOne
+		clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)
 
-.slide-container-mobile
-	height: 90vh
-	color: white
+	.squareThree
+		clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
 
-.arrow
-	font-size: 1.8rem
-	text-align: center
-	cursor: pointer
+	.slide-content
+		border: 5px solid white
+		background-color: rgba(78, 79, 80, 0.3)
+		color: white
+		position: relative
 
-.square-container
-	display: flex
+	.border-right
+		border-right: 16px solid white
 
-.square
-	height: 40px
-	width: 40px
-	border-radius: 20%
-	border: 2px solid white
+	.use-contacts-container
+		width: auto
+		border-radius: 0 !important
 
-.squareOne
-	clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)
+	.contacts-action
+		text-transform: uppercase
+		border-bottom: 2px solid #212121
 
-.squareThree
-	clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
+	.rotated-phraze
+		position: fixed
+		right: 8vw
+		color: white
+		writing-mode: vertical-rl
+		transform: scaleX(-1) scaleY(-1)
 
-.slide-content
-	border: 5px solid white
-	background-color: rgba(78, 79, 80, 0.3)
-	color: white
-	position: relative
+		&:hover
+			opacity: 0.8
 
-.border-right
-	border-right: 16px solid white
+	.rotated-phraze-md
+		top: calc(50vh - 163px)
+		font-size: 30px
 
-.use-contacts-container
-	width: auto
-	border-radius: 0 !important
+	.rotated-phraze-lg
+		top: calc(50vh - 230px)
+		font-size: 2.5rem
+		right: 9vw
 
-.contacts-action
-	text-transform: uppercase
-	border-bottom: 2px solid black
+	.rotate
+		transform: rotate(90deg)
 
-.rotated-phraze
-	position: fixed
-	right: 8vw
-	color: white
-	writing-mode: vertical-rl
-	transform: scaleX(-1) scaleY(-1)
+	.pointer
+		cursor: pointer
 
-	&:hover
-		opacity: 0.8
+	.back-to-start
+		font-size: 35px !important
+		opacity: 0.45
+		top: calc(50vh - 185px) !important
 
-.rotated-phraze-md
-	top: calc(50vh - 163px)
-	font-size: 30px
-
-.rotated-phraze-lg
-	top: calc(50vh - 230px)
-	font-size: 2.5rem
-	right: 9vw
-
-.rotate
-	transform: rotate(90deg)
-
-.pointer
-	cursor: pointer
-
-.back-to-start
-	font-size: 35px !important
-	opacity: 0.45
-	top: calc(50vh - 185px) !important
-
-.footer-padding
-	padding: 6% 12% 0
-	white-space: nowrap
+	.footer-padding
+		padding: 6% 12% 0
+		white-space: nowrap
 </style>

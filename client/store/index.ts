@@ -19,7 +19,7 @@ interface VideoBgModel {
 interface PageModel {
 	readonly id: number;
 	readonly title: string;
-	readonly to: string;
+	readonly link: string;
 	readonly videoBg: VideoBgModel;
 }
 
@@ -47,7 +47,7 @@ class RootState {
 		{
 			id: 1,
 			title: 'pages.about',
-			to: 'about',
+			link: 'about',
 			videoBg: {
 				cover: '/about.jpg',
 				videoMobile: '/about-us-mobile.mp4',
@@ -57,7 +57,7 @@ class RootState {
 		{
 			id: 2,
 			title: 'pages.weOffers',
-			to: 'offers',
+			link: 'offers',
 			videoBg: {
 				cover: '/offers.jpg',
 				videoMobile: '/we-offer-mobile.mp4',
@@ -67,7 +67,7 @@ class RootState {
 		{
 			id: 3,
 			title: 'pages.ourStaff',
-			to: 'our-staff',
+			link: 'our-staff',
 			videoBg: {
 				cover: '/our-staff.jpg',
 				videoMobile: '/staff-mobile.mp4',
@@ -77,7 +77,7 @@ class RootState {
 		{
 			id: 4,
 			title: 'pages.portfolio',
-			to: 'portfolio',
+			link: 'portfolio',
 			videoBg: {
 				cover: '/portfolio.jpg',
 				videoMobile: '/portfolio-mobile.mp4',
@@ -149,7 +149,7 @@ class RootGetters extends Getters<RootState> {
 			const currentPage = this.state.pages.find(
 				({ id }: PageModel) => id === changedIndex,
 			);
-			return currentPage ? currentPage.to : '';
+			return currentPage ? currentPage.link : '';
 		};
 	}
 	get getContactStage(): ContactsModel {
