@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { readFileSync } from 'fs';
 import { parse } from 'dotenv';
+import { join } from 'path';
 
-import { EnvConfig } from './interfaces/envConfig.interface';
+import { Config, Mode } from './interfaces/config.interface';
 
 /**
  * [Injectable description]
@@ -19,11 +20,31 @@ export class ConfigService {
 	 * [constructor description]
 	 */
 	constructor() {
-		if (!process.env.NODE_ENV) process.env.NODE_ENV = 'production';
 		this.config = {
 			...process.env,
 			...parse(readFileSync(`.env.${process.env.NODE_ENV}`)),
 		};
+	}
+
+	/**
+	 * [getDest description]
+	 * @param  key      [description]
+	 * @param  filename [description]
+	 * @return          [description]
+	 */
+	public getDest(key: string, filename: string = ''): string {
+		const variable = this.config[key];
+		if (!variable) throw TypeError(`The ${key} cannot be undefined`);
+		return join(this.config['PWD'], variable, filename);
+	}
+
+	/**
+	 * [getMode description]
+	 * @param  mode [description]
+	 * @return      [description]
+	 */
+	public getMode(mode: Mode): boolean {
+		return this.config['NODE_ENV'] === mode;
 	}
 
 	/**
@@ -32,11 +53,12 @@ export class ConfigService {
 	 * @return     [description]
 	 */
 	public get(key: string): any {
-		const value = this.config[key];
-		if (/true|false/.test(value)) return Boolean(value);
-		if (!Number.isNaN(+value)) return +value;
-		if (this.config[key] === undefined)
-			throw TypeError(`The ${key} cannot be undefined`);
-		return this.config[key];
+		const variable = this.config[key];
+		if (!variable) throw TypeError(`The ${key} cannot be undefined`);
+		try {
+			return JSON.parse(variable);
+		} catch {
+			return variable;
+		}
 	}
 }

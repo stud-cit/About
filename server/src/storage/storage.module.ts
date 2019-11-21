@@ -6,7 +6,7 @@ import { extname, join } from 'path';
 import { diskStorage } from 'multer';
 import { v4 } from 'uuid';
 
-import { AllowedTypes } from './interfaces/types.interface';
+import { AllowedTypes } from './interfaces/storage.interface';
 import { ConfigService } from '../config/config.service';
 
 @Global()

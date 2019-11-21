@@ -1,4 +1,4 @@
-import { ApiUseTags, ApiBearerAuth, ApiCreatedResponse } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth, ApiCreatedResponse } from '@nestjs/swagger';
 import { Post, Get, Patch, Delete, Body } from '@nestjs/common';
 import { Controller, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
@@ -14,7 +14,7 @@ import { UserEntity } from './user.entity';
  * @param  'user' [description]
  * @return        [description]
  */
-@ApiUseTags('user')
+@ApiTags('user')
 @Controller('user')
 export class UserController {
 	/**

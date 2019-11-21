@@ -3,20 +3,20 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
 	Column,
 	Entity,
-	OneToMany,
+	ManyToOne,
 	BaseEntity,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { ContentEntity } from './content.entity';
+import { PagesEntity } from './pages.entity';
 
 /**
  * [Entity description]
  * @param  'Pages' [description]
  * @return         [description]
  */
-@Entity('Pages')
-export class PagesEntity extends BaseEntity {
+@Entity('Content')
+export class ContentEntity extends BaseEntity {
 	/**
 	 * [id description]
 	 */
@@ -29,13 +29,10 @@ export class PagesEntity extends BaseEntity {
 	public readonly id: string;
 
 	/**
-	 * [content description]
+	 * [page description]
 	 */
-	@OneToMany(() => ContentEntity, content => content.page, {
-		nullable: true,
-		cascade: true,
-	})
-	public readonly content: ContentEntity;
+	@ManyToOne(() => PagesEntity, page => page.content)
+	public readonly page: PagesEntity;
 
 	/**
 	 * [title description]
@@ -47,41 +44,13 @@ export class PagesEntity extends BaseEntity {
 	public readonly title: string;
 
 	/**
-	 * [link description]
+	 * [description description]
 	 */
 	@IsNotEmpty()
 	@MaxLength(255)
-	@ApiProperty({ example: '/example', maxLength: 255 })
+	@ApiProperty({ example: 'example', maxLength: 255 })
 	@Column('varchar')
-	public readonly link: string;
-
-	/**
-	 * [background description]
-	 */
-	@IsOptional()
-	@MaxLength(255)
-	@ApiProperty({
-		maxLength: 255,
-		nullable: true,
-		required: false,
-		example: '/example.jpg',
-	})
-	@Column('varchar', { nullable: true })
-	public readonly background?: string;
-
-	/**
-	 * [lazyBackground description]
-	 */
-	@IsOptional()
-	@MaxLength(255)
-	@ApiProperty({
-		maxLength: 255,
-		nullable: true,
-		required: false,
-		example: '/example.jpg',
-	})
-	@Column('varchar', { nullable: true })
-	public readonly lazyBackground?: string;
+	public readonly description: string;
 
 	/**
 	 * [cover description]

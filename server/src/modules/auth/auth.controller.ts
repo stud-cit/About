@@ -1,5 +1,5 @@
 import { Controller, UnauthorizedException, Body, Post } from '@nestjs/common';
-import { ApiUseTags, ApiCreatedResponse } from '@nestjs/swagger';
+import { ApiTags, ApiCreatedResponse } from '@nestjs/swagger';
 
 import { UserEntity } from '../user/user.entity';
 import { AuthService } from './auth.service';
@@ -11,7 +11,7 @@ import { JWTRequest } from './dto/token.dto';
  * @param  'auth' [description]
  * @return        [description]
  */
-@ApiUseTags('auth')
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
 	/**
