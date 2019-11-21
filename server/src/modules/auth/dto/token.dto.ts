@@ -1,11 +1,20 @@
 import { IsPositive, IsBase64 } from 'class-validator';
 import { ApiModelProperty } from '@nestjs/swagger';
 
+/**
+ * [description]
+ */
 export class JWTRequest {
+	/**
+	 * [expiresIn description]
+	 */
 	@IsPositive()
 	@ApiModelProperty({ example: 3600 })
 	public readonly expiresIn: number;
 
+	/**
+	 * [token description]
+	 */
 	@IsBase64()
 	@ApiModelProperty({
 		example:
