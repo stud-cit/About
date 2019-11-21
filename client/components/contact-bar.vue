@@ -205,7 +205,7 @@
 		top: 7px
 		font-style: normal
 		color: white
-		line-height: 2.5rem
+		line-height: 2.7rem
 
 	.static
 		position: static!important
