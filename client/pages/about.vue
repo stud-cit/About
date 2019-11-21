@@ -38,7 +38,7 @@
 										>
 											<TextSlider
 												:pose="isTextSliderAnimation ? 'visible' : 'hidden'"
-												class="py-md-10"
+												class="py-md-10 py-lg-7"
 											>
 												{{ about[$i18n.locale].slides[stageText] }}
 											</TextSlider>
