@@ -169,7 +169,7 @@
 
 		mounted() {
 			const footer: any = this.$refs.contact;
-			const options = { threshold: 0.85 };
+			const options = { threshold: 0.95 };
 			this.observer = new IntersectionObserver(this.setAnimation, options);
 			this.observer.observe(footer);
 		}
