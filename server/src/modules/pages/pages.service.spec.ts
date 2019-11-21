@@ -54,7 +54,7 @@ describe('Pages Service', () => {
 		it('should be return exception', () => {});
 	});
 
-	describe('deleteMultiple', () => {
+	describe('deleteOne', () => {
 		it('should be return delete pages', () => {});
 		it('should be return exception', () => {});
 	});
