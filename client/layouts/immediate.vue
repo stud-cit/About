@@ -237,9 +237,9 @@
 		}
 		get getTotalPagesFont() {
 			if (this.isShowNormalHeader) {
-				return { fontSize: `${this.getAdaptiveSize('totalPagesFont')}vw` };
+				return { fontSize: `${this.getAdaptiveSize('totalPagesFont')}px` };
 			} else {
-				return { fontSize: `${this.getAdaptiveSize('totalMiniPagesFont')}vw` };
+				return { fontSize: `${this.getAdaptiveSize('totalMiniPagesFont')}px` };
 			}
 		}
 
