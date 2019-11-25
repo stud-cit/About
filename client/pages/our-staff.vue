@@ -18,7 +18,13 @@
 						class="my-4"
 						ref="staff"
 					>
-						<Staff :pose="staffToAnimate.includes(i) ? 'visible' : 'hidden'">
+						<Staff
+							:pose="
+								staffToAnimate.includes(i) && !getIsHideAnimationContent
+									? 'visible'
+									: 'hidden'
+							"
+						>
 							<v-card
 								class="mx-auto card-img-hover"
 								:width="isLgAndUp ? '425px' : 'auto'"
@@ -159,6 +165,7 @@
 	})
 	export default class OurStaffPage extends Vue {
 		@Getter('OurStaffModule/getStage') ourStaff;
+		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 		@Mutation('changePageId') changePageId;
 		curStaff: number = 0;
 		observers: IntersectionObserver[] = [];

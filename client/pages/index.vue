@@ -24,6 +24,7 @@
 						:to="localePath(page.link, $i18n.locale)"
 						:router="$router"
 						:isMobile="isXsOnly"
+						:disableHidingAnimation="changeIsHideAnimationContent"
 					>
 						<v-card class="none-radius">
 							<v-img
@@ -68,6 +69,7 @@
 					:to="localePath(page.link, $i18n.locale)"
 					:router="$router"
 					:isMobile="isXsOnly"
+					:disableHidingAnimation="changeIsHideAnimationContent"
 				>
 					<v-card class="disable-underline" :link="true">
 						<v-img
@@ -104,7 +106,7 @@
 
 <script lang="ts">
 	import { Component, Vue } from 'vue-property-decorator';
-	import { Getter } from 'vuex-class';
+	import { Getter, Mutation } from 'vuex-class';
 	import posed from 'vue-pose';
 
 	@Component({
@@ -130,8 +132,16 @@
 						return 0;
 					},
 					applyAtEnd: { display: 'none' },
-					onPoseComplete: ({ index, choosedSlide, isMobile, to, router }) => {
+					onPoseComplete: ({
+						index,
+						choosedSlide,
+						isMobile,
+						to,
+						router,
+						disableHidingAnimation,
+					}) => {
 						if (index === choosedSlide) {
+							disableHidingAnimation(false);
 							setTimeout(() => router.push(to), !isMobile ? 500 : 100);
 						}
 					},
@@ -146,6 +156,7 @@
 	export default class HomePage extends Vue {
 		@Getter('visibilityLoader') visibilityLoader;
 		@Getter('getPageStage') pages;
+		@Mutation('changeIsHideAnimationContent') changeIsHideAnimationContent;
 
 		choosedSlide: number = -1;
 		isShowSwiper: boolean = false;

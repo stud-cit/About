@@ -43,18 +43,28 @@
 							class="pa-0 d-none d-sm-flex"
 						>
 							<OpacityBox
-								:pose="isStartAnimation ? 'visible' : 'hidden'"
+								:pose="
+									isStartAnimation && !getIsHideAnimationContent
+										? 'visible'
+										: 'hidden'
+								"
 								:delay="getAnimationDelay"
 							>
-								<nuxt-link :to="localePath({ name: 'index' })" nuxt>
-									<v-img src="/logo.svg" />
-								</nuxt-link>
+								<v-img
+									@click="navigateToHomePage"
+									class="logo-img"
+									src="/logo.svg"
+								/>
 							</OpacityBox>
 						</v-col>
 						<v-col cols="6" md="6" lg="7" xl="6" class="d-none d-md-flex">
 							<Navs
 								class="nav-panel"
-								:pose="isStartAnimation ? 'visible' : 'hidden'"
+								:pose="
+									isStartAnimation && !getIsHideAnimationContent
+										? 'visible'
+										: 'hidden'
+								"
 								:delay="getAnimationDelay"
 							>
 								<v-col
@@ -102,7 +112,11 @@
 		>
 			<v-col v-show="isShowNormalHeader" cols="auto" offset="0" offset-sm="1">
 				<OpacityBox
-					:pose="isStartAnimation ? 'visible' : 'hidden'"
+					:pose="
+						isStartAnimation && !getIsHideAnimationContent
+							? 'visible'
+							: 'hidden'
+					"
 					:delay="getAnimationDelay"
 				>
 					<p class="bold-italic-preview d-flex mt-md-3">
@@ -195,12 +209,25 @@
 		@Getter('getPageId') pageId;
 		@Getter('getPageStage') pages;
 		@Getter('getPageVideoBg') videoBg;
+		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 		@Getter('visibilityLoader') visibilityLoader;
 		@Mutation('changeScrollBar') changeScrollBar;
+		@Mutation('changeIsHideAnimationContent') changeIsHideAnimationContent;
 
 		isShowMobileMenu: boolean = false;
 		isStartAnimation: boolean = false;
 		isShowNormalHeader: boolean = true;
+
+		/**
+		 * Set delay to play hiding content animations
+		 */
+		navigateToHomePage(): void {
+			this.changeIsHideAnimationContent(true);
+			setTimeout(
+				() => this.$router.push(this.localePath({ name: 'index' })),
+				500,
+			);
+		}
 
 		handleScroll(): void {
 			const currentScroll = window.scrollY;
@@ -287,6 +314,9 @@
 		align-items: center
 		justify-content: space-between
 		width: 100%
+
+	.logo-img
+		cursor: pointer
 
 	.nav-links
 		align-items: center

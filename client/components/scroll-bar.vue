@@ -1,6 +1,10 @@
 <template>
 	<OpacityBox
-		:pose="visibility && visibilityScrollBar ? 'visible' : 'hidden'"
+		:pose="
+			visibility && visibilityScrollBar && !getIsHideAnimationContent
+				? 'visible'
+				: 'hidden'
+		"
 		:delay="visibilityLoader ? 2500 : 500"
 	>
 		<div class="d-none d-md-flex scrollbar-track" v-scroll="handleScroll">
@@ -25,6 +29,7 @@
 	export default class ScrollBar extends Vue {
 		@Getter('visibilityLoader') visibilityLoader;
 		@Getter('getScrollBarVisibility') visibilityScrollBar;
+		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 		@Mutation('changeScrollBar') changeScrollBar;
 
 		el: 'scrollbar-track';

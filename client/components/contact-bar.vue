@@ -126,6 +126,7 @@
 	})
 	export default class ContactBar extends Vue {
 		@Getter('getContactBarVisibility') isActive;
+		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 		@Getter('getContactStage') contacts;
 
 		@Prop({ default: false }) readonly isStatic: boolean;
@@ -134,9 +135,13 @@
 
 		get getAnimationStage() {
 			if (this.isStatic) {
-				return this.isVisible ? 'visible' : 'hidden';
+				return this.isVisible && !this.getIsHideAnimationContent
+					? 'visible'
+					: 'hidden';
 			} else {
-				return this.isActive ? 'visible' : 'hidden';
+				return this.isActive && !this.getIsHideAnimationContent
+					? 'visible'
+					: 'hidden';
 			}
 		}
 
@@ -162,8 +167,8 @@
 
 		setAnimation([entry]: any, observer) {
 			if (entry.intersectionRatio > 0) {
-					this.isVisible = true;
-					observer.disconnect();
+				this.isVisible = true;
+				observer.disconnect();
 			}
 		}
 

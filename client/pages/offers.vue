@@ -25,7 +25,10 @@
 					<RepresentationBlock
 						:direction="offer.contentPosition"
 						:pose="
-							representationToAnimate.includes(index) ? 'visible' : 'hidden'
+							representationToAnimate.includes(index) &&
+							!getIsHideAnimationContent
+								? 'visible'
+								: 'hidden'
 						"
 						class="representation-block"
 						:class="index % 2 === 0 ? 'image-left' : 'image-right'"
@@ -127,6 +130,7 @@
 	})
 	export default class OffersPage extends Vue {
 		@Getter('OffersModule/getStage') weOffers;
+		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 		@Mutation('changePageId') changePageId;
 
 		observers: IntersectionObserver[] = [];

@@ -37,7 +37,11 @@
 											:class="isXsOnly ? '' : 'border-right'"
 										>
 											<TextSlider
-												:pose="isTextSliderAnimation ? 'visible' : 'hidden'"
+												:pose="
+													isTextSliderAnimation && !getIsHideAnimationContent
+														? 'visible'
+														: 'hidden'
+												"
 												class="py-md-10 py-lg-7"
 											>
 												{{ about[$i18n.locale].slides[stageText] }}
@@ -54,7 +58,11 @@
 				</v-window>
 
 				<Slogan
-					:pose="isSloganAnimation ? 'visible' : 'hidden'"
+					:pose="
+						isSloganAnimation && !getIsHideAnimationContent
+							? 'visible'
+							: 'hidden'
+					"
 					:delay="getFirstStageAnimationDelay"
 					class="d-none d-md-block rotated-phraze font-weight-light"
 					:class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
@@ -71,7 +79,11 @@
 					{{ $t('about.backToStart') }}
 				</p>
 				<OpacityBox
-					:pose="isContactAnimation ? 'visible' : 'hidden'"
+					:pose="
+						isContactAnimation && !getIsHideAnimationContent
+							? 'visible'
+							: 'hidden'
+					"
 					:delay="getSecondStageAnimationDelay"
 				>
 					<v-footer absolute color="transparent" class="pb-0 px-0 px-sm-auto">
@@ -168,6 +180,7 @@
 		@Getter('getPageRouteById') getPageRouteById;
 		@Getter('getContactBarVisibility') isShowContactBar;
 		@Getter('visibilityLoader') visibilityLoader;
+		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 		@Mutation('changePageId') changePageId;
 		@Mutation('changeContactBar') changeContactBar;
 

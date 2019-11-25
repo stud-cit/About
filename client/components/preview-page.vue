@@ -26,7 +26,11 @@
 				>
 					<div class="d-block">
 						<ContentBlock
-							:pose="isStartAnimation ? 'visible' : 'hidden'"
+							:pose="
+								isStartAnimation && !getIsHideAnimationContent
+									? 'visible'
+									: 'hidden'
+							"
 							:delay="getFirstStageAnimationDelay"
 							class="bold-preview"
 							:class="{
@@ -38,7 +42,11 @@
 							{{ title }}
 						</ContentBlock>
 						<ContentBlock
-							:pose="isStartAnimation ? 'visible' : 'hidden'"
+							:pose="
+								isStartAnimation && !getIsHideAnimationContent
+									? 'visible'
+									: 'hidden'
+							"
 							:delay="getFirstStageAnimationDelay"
 							class="bold-preview"
 							:style="getPreviewTitleFont"
@@ -49,7 +57,11 @@
 				</v-col>
 				<v-col cols="12" order="3" order-sm="2">
 					<OpacityBlock
-						:pose="isStartAnimation ? 'visible' : 'hidden'"
+						:pose="
+							isStartAnimation && !getIsHideAnimationContent
+								? 'visible'
+								: 'hidden'
+						"
 						:delay="getFirstStageAnimationDelay"
 					>
 						<v-row justify="space-around" justify-sm="start">
@@ -69,18 +81,11 @@
 								order-sm="3"
 								:class="{ rotate: isXsOnly }"
 							>
-								<nuxt-link
-									class="square-container"
-									:to="
-										`/${
-											$i18n.locale !== $i18n.defaultLocale ? $i18n.locale : ''
-										}`
-									"
-								>
+								<div class="home-link" @click="navigateToHomePage">
 									<div class="squares mr-3 squareOne"></div>
 									<div class="squares mr-3 squareTwo"></div>
 									<div class="squares squareThree"></div>
-								</nuxt-link>
+								</div>
 							</v-col>
 						</v-row>
 					</OpacityBlock>
@@ -89,7 +94,11 @@
 				<v-col cols="12" order="2" order-sm="3">
 					<v-row class="d-none d-sm-flex font-weight-regular line-height-1">
 						<ContentBlock
-							:pose="isStartAnimation ? 'visible' : 'hidden'"
+							:pose="
+								isStartAnimation && !getIsHideAnimationContent
+									? 'visible'
+									: 'hidden'
+							"
 							:delay="getFirstStageAnimationDelay"
 							:style="getPreviewSubTitleFont"
 						>
@@ -101,7 +110,11 @@
 					</v-row>
 					<v-row justify="center" justify-sm="start">
 						<ContentBlock
-							:pose="isStartAnimation ? 'visible' : 'hidden'"
+							:pose="
+								isStartAnimation && !getIsHideAnimationContent
+									? 'visible'
+									: 'hidden'
+							"
 							:delay="getFirstStageAnimationDelay"
 							class="gray font-weight-regular"
 							:style="getPreviewInfoFont"
@@ -112,7 +125,9 @@
 				</v-col>
 			</v-row>
 			<OpacityBlock
-				:pose="isStartAnimation ? 'visible' : 'hidden'"
+				:pose="
+					isStartAnimation && !getIsHideAnimationContent ? 'visible' : 'hidden'
+				"
 				:delay="getSecondStageAnimationDelay"
 			>
 				<v-row
@@ -170,7 +185,9 @@
 		@Getter('getPageByRoute') getPageByRoute;
 		@Getter('getPageId') pageId;
 		@Getter('getPageRouteById') getPageRouteById;
+		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 		@Getter('visibilityLoader') visibilityLoader;
+		@Mutation('changeIsHideAnimationContent') changeIsHideAnimationContent;
 
 		isShowUseContacts: boolean = true;
 		aboutPageId: number = 1;
@@ -183,6 +200,17 @@
 		firstStageAnimationDelayWithoutLoader: number = 500;
 		secondStageAnimationDelayWithLoader: number = 3000;
 		secondStageAnimationDelayWithoutLoader: number = 600;
+
+		/**
+		 * Set delay to play hiding content animations
+		 */
+		navigateToHomePage(): void {
+			this.changeIsHideAnimationContent(true);
+			setTimeout(
+				() => this.$router.push(this.localePath({ name: 'index' })),
+				500,
+			);
+		}
 
 		handleScroll(): void {
 			const windowHeight = window.innerHeight;
@@ -313,6 +341,10 @@
 				text-transform: uppercase
 				border-bottom: 2px solid #212121
 
+	.home-link
+		display: flex
+		cursor: pointer
+
 	.preview-section-about
 		height: 97vh !important
 
@@ -367,6 +399,7 @@
 
 	.rotate
 		transform: rotate(90deg)
+
 	.gray
 		color: gray
 
