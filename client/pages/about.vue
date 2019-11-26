@@ -44,7 +44,7 @@
 												"
 												class="py-md-10 py-lg-7"
 											>
-												{{ about[$i18n.locale].slides[stageText] }}
+												{{ isXsOnly ? about[$i18n.locale].slides.join('') : about[$i18n.locale].slides[stageText] }}
 											</TextSlider>
 										</div>
 									</v-col>
@@ -252,39 +252,40 @@
 
 		@Watch('curStage')
 		onChangeCurStage(value: number) {
-			if (value === this.about[this.$i18n.locale].slides.length + 1) {
-				this.changeContactBar(true);
-			} else {
-				this.changeContactBar(false);
-			}
 			this.isTextSliderAnimation = false;
 			if (
 				this.curStage > 0 &&
 				this.curStage < this.about[this.$i18n.locale].slides.length + 2
 			) {
-				if (this.curStage > 1) {
 					setTimeout(() => {
-						this.stageAbout = this.curStage - 1;
-						this.stageText = this.stageAbout;
+						this.stageAbout = (this.curStage > 1 ? this.curStage - 1 : this.curStage);
+						this.stageText = (this.curStage > 1 ? this.stageAbout : this.stageAbout - this.curStage);
 					}, 250);
 					setTimeout(() => {
 						this.isTextSliderAnimation = true;
 					}, 500);
-				} else {
-					setTimeout(() => {
-						this.stageAbout = this.curStage;
-						this.stageText = this.stageAbout - this.curStage;
-					}, 250);
-					setTimeout(() => {
-						this.isTextSliderAnimation = true;
-					}, 500);
-				}
 			} else {
 				this.stageAbout = this.curStage;
 				this.stageText = 0;
 			}
 		}
-
+		@Watch('stageAbout')
+		onChangeStageAbout(value: number) {
+			if (value === this.about[this.$i18n.locale].slides.length ) {
+					this.changeContactBar(true);
+			} else {
+				this.changeContactBar(false);
+			}
+			if (this.$breakpoint.is.xsOnly){
+				this.isTextSliderAnimation = false;
+				setTimeout(() => {
+					this.stageText = 0;
+				}, 250);
+				setTimeout(() => {
+					this.isTextSliderAnimation = true;
+				}, 500);
+			}
+		}
 		created() {
 			this.changePageId(1);
 		}
