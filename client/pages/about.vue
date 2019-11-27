@@ -44,7 +44,7 @@
 												"
 												class="py-md-10 py-lg-7"
 											>
-												{{ isXsOnly ? about[$i18n.locale].slides.join('') : about[$i18n.locale].slides[stageText] }}
+												{{ isSmAndDown ? about[$i18n.locale].slides.join('') : about[$i18n.locale].slides[stageText] }}
 											</TextSlider>
 										</div>
 									</v-col>
@@ -94,7 +94,7 @@
 									justify-md="space-between"
 									align="center"
 								>
-									<v-col sm="10" md="7" class="d-none d-sm-flex">
+									<v-col sm="10" md="7" class="d-none d-md-flex">
 										<v-slider
 											v-model="curStage"
 											:max="about[$i18n.locale].slides.length + 1"
@@ -276,7 +276,7 @@
 			} else {
 				this.changeContactBar(false);
 			}
-			if (this.$breakpoint.is.xsOnly){
+			// if (this.$breakpoint.is.smAndDown){
 				this.isTextSliderAnimation = false;
 				setTimeout(() => {
 					this.stageText = 0;
@@ -284,7 +284,7 @@
 				setTimeout(() => {
 					this.isTextSliderAnimation = true;
 				}, 500);
-			}
+			// }
 		}
 		created() {
 			this.changePageId(1);
