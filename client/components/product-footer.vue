@@ -4,7 +4,7 @@
 			<v-row
 				justify="center"
 				align="center"
-				class="return-section d-lg-none flex-column"
+				class="return-section d-md-none flex-column"
 				@click="scollTop"
 			>
 				<p class="arrowUp">&#8593;</p>
@@ -13,7 +13,7 @@
 				</p>
 			</v-row>
 		</v-col>
-		<p class="d-none d-lg-block rotated-return-bar" @click="scollTop">
+		<p class="d-none d-md-block rotated-return-bar" @click="scollTop">
 			{{ $t('common.backToTop') }}
 		</p>
 		<contact-bar id="contact" :isStatic="true" />

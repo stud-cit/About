@@ -60,9 +60,22 @@
 							</v-col>
 						</v-row>
 					</v-window-item>
-					<v-window-item
-						:class="isXsOnly ? 'slide-container-mobile' : 'slide-container'"
-					></v-window-item>
+					<v-window-item>
+						<v-row justify="center" align="center" class="footer-section-about">
+							<v-col cols="12" sm="10" class="d-flex">
+								<v-row
+									justify="center"
+									align="center"
+									class="return-section d-md-none flex-column"
+									@click="backToStart"
+								>
+									<p :class="!isXsOnly ? 'text-sm' : 'text-xs'">
+										{{ $t('common.backToTop') }}
+									</p>
+								</v-row>
+							</v-col>
+						</v-row>
+					</v-window-item>
 				</v-window>
 
 				<Slogan
@@ -79,7 +92,7 @@
 					{{ $t('common.slogan') }}
 				</Slogan>
 				<p
-					class="font-weight-light rotated-phraze pointer back-to-start"
+					class="d-none d-md-block font-weight-light rotated-phraze pointer back-to-start"
 					:class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
 					v-if="curStage > about[$i18n.locale].slides.length"
 					@click="backToStart"
@@ -403,4 +416,28 @@
 	.footer-padding
 		padding: 6% 12% 0
 		white-space: nowrap
+
+	.footer-section-about
+		position: relative
+		height: 60vh
+		color: white
+
+	.return-section
+		width: 90%
+		height: 40vh
+		background: #282828
+		opacity: .5
+		cursor: pointer
+		font-weight: normal
+		font-style: normal
+
+		p
+			color: #696969
+
+		.text-sm
+			font-size: 30px
+
+		.text-xs
+			font-size: 25px
+
 </style>
