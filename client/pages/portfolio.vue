@@ -58,12 +58,10 @@
 							:ripple="false"
 							depressed
 							class="pr-0 pl-0"
-							@mouseover="borderActive = true"
-							@mouseleave="borderActive = false"
 						>
 							<span
 								class="headline d-none d-md-block pr-3"
-								:class="{ 'border-text-link': borderActive }"
+
 							>
 								{{ $t('portfolio.link') }}
 							</span>
@@ -104,8 +102,6 @@
 		@Getter('PortfolioModule/getStage') portfolio;
 		@Mutation('changePageId') changePageId;
 
-		borderActive: boolean = false;
-
 		get isMdAndUp() {
 			return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
 		}
@@ -141,6 +137,6 @@
 	.v-btn:hover::before
 	  opacity: 0 !important
 
-	.border-text-link
+	.headline:hover
 	  border-bottom: 1px solid white
 </style>
