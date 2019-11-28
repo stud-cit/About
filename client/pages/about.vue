@@ -2,7 +2,15 @@
 	<v-container fluid cdclass="py-0 ma-0">
 		<v-row justify="center">
 			<v-col cols="12" sm="10">
-				<v-window v-model="stageAbout" continuous dark>
+				<v-window 
+					v-model="stageAbout" 
+					continuous 
+					dark
+					:touch="{
+						left: swipeLeft,
+						right: swipeRight
+					}"
+				>
 					<v-window-item>
 						<v-col
 							cols="12"
@@ -18,11 +26,11 @@
 					</v-window-item>
 					<v-window-item>
 						<v-row
-							justify="start"
+							:justify="isSmAndDown ? 'center' : 'start'"
 							align="center"
 							:class="isXsOnly ? 'slide-container-mobile' : 'slide-container'"
 						>
-							<v-col cols="12" md="10" lg="10">
+							<v-col cols="11" md="10" lg="10">
 								<v-row>
 									<v-col col="12">
 										<div
@@ -32,7 +40,7 @@
 											{{ $t('common.companyName') }}
 										</div>
 										<div
-											class="px-xl-12 px-lg-8 px-md-8 px-sm-8 px-xs-8 py-xl-12 py-lg-2 py-md-8 py-sm-8 px-1 py-2 slide-content font-weight-light"
+											class="px-xl-12 px-lg-8 px-md-8 px-sm-8 px-xs-8 py-xl-12 py-lg-2 py-md-8 py-sm-8 px-3 py-4 slide-content font-weight-light"
 											:style="getSlideContentFont"
 											:class="isXsOnly ? '' : 'border-right'"
 										>
@@ -44,7 +52,7 @@
 												"
 												class="py-md-10 py-lg-7"
 											>
-												{{ isSmAndDown ? about[$i18n.locale].slides.join('') : about[$i18n.locale].slides[stageText] }}
+												{{ about[$i18n.locale].slides[stageText] }}
 											</TextSlider>
 										</div>
 									</v-col>
@@ -191,6 +199,20 @@
 		stageText: number = 0;
 		stageAbout: number = 0;
 
+
+
+		swipeLeft() {
+			if (this.curStage < this.about[this.$i18n.locale].slides.length + 1 ) {
+				this.curStage = this.curStage + 1;
+			} else {
+				this.curStage = 0;
+			}
+		}
+		swipeRight() {
+			if (this.curStage > 0 ) {
+				this.curStage = this.curStage - 1;
+			}
+		}
 		showLastStage() {
 			this.curStage = this.about[this.$i18n.locale].slides.length + 1;
 		}
@@ -252,6 +274,11 @@
 
 		@Watch('curStage')
 		onChangeCurStage(value: number) {
+			if (value === this.about[this.$i18n.locale].slides.length + 1) {
+				this.changeContactBar(true);
+			} else {
+				this.changeContactBar(false);
+			}
 			this.isTextSliderAnimation = false;
 			if (
 				this.curStage > 0 &&
@@ -269,23 +296,7 @@
 				this.stageText = 0;
 			}
 		}
-		@Watch('stageAbout')
-		onChangeStageAbout(value: number) {
-			if (value === this.about[this.$i18n.locale].slides.length ) {
-					this.changeContactBar(true);
-			} else {
-				this.changeContactBar(false);
-			}
-			// if (this.$breakpoint.is.smAndDown){
-				this.isTextSliderAnimation = false;
-				setTimeout(() => {
-					this.stageText = 0;
-				}, 250);
-				setTimeout(() => {
-					this.isTextSliderAnimation = true;
-				}, 500);
-			// }
-		}
+
 		created() {
 			this.changePageId(1);
 		}
