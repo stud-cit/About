@@ -69,6 +69,7 @@
 									class="return-section d-md-none flex-column"
 									@click="backToStart"
 								>
+									<p class="arrowLeft">&#8592;</p>
 									<p :class="!isXsOnly ? 'text-sm' : 'text-xs'">
 										{{ $t('common.backToTop') }}
 									</p>
@@ -297,8 +298,8 @@
 				this.curStage > 0 &&
 				this.curStage < this.about[this.$i18n.locale].slides.length + 2
 			) {
+					this.stageAbout = (this.curStage > 1 ? this.curStage - 1 : this.curStage);
 					setTimeout(() => {
-						this.stageAbout = (this.curStage > 1 ? this.curStage - 1 : this.curStage);
 						this.stageText = (this.curStage > 1 ? this.stageAbout : this.stageAbout - this.curStage);
 					}, 250);
 					setTimeout(() => {
@@ -439,5 +440,9 @@
 
 		.text-xs
 			font-size: 25px
+
+	.arrowLeft
+		color: #2f2f2f
+		font-size: 50px
 
 </style>
