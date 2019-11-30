@@ -47,7 +47,7 @@
 										>
 									</v-row>
 								</v-card-title>
-								<div class="fill-height bottom-gradient"></div>
+								<div class="fill-height bottom-gradient"/>
 							</v-img>
 						</v-card>
 					</Slide>
@@ -120,18 +120,21 @@
 			 * 	Move choosed slide on x axis on xs only
 			 */
 			Slide: posed.div({
+
 				hidden: {
-					opacity: 0,
+					applyAtEnd: { display: 'none' },
+					opacity: ({ index, choosedSlide, isMobile }) =>
+						index === choosedSlide && !isMobile ? 1 : 0,
 					x: ({ index, choosedSlide, isMobile }) =>
 						index === choosedSlide && isMobile ? -30 : 0,
-					transition: { duration: 600 },
+					transition: ({ index, choosedSlide, isMobile }) =>
+						({ duration: index === choosedSlide ? 1200 : 400, ease: 'easeOut' }),
 					y: ({ index, choosedSlide, isMobile }) => {
 						if (!isMobile) {
 							return index === choosedSlide ? -30 : 0;
 						}
 						return 0;
 					},
-					applyAtEnd: { display: 'none' },
 					onPoseComplete: ({
 						index,
 						choosedSlide,
@@ -142,9 +145,10 @@
 					}) => {
 						if (index === choosedSlide) {
 							disableHidingAnimation(false);
-							setTimeout(() => router.push(to), !isMobile ? 500 : 100);
+							setTimeout(() => router.push(to), !isMobile ? 1250 : 150);
 						}
 					},
+
 				},
 				default: {
 					opacity: 1,
