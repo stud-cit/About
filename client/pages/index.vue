@@ -127,7 +127,8 @@
 						index === choosedSlide && !isMobile ? 1 : 0,
 					x: ({ index, choosedSlide, isMobile }) =>
 						index === choosedSlide && isMobile ? -30 : 0,
-					transition: { duration: 600 },
+					transition: ({ index, choosedSlide, isMobile }) =>
+						({ duration: index === choosedSlide ? 1200 : 400, ease: 'easeOut' }),
 					y: ({ index, choosedSlide, isMobile }) => {
 						if (!isMobile) {
 							return index === choosedSlide ? -30 : 0;
@@ -144,7 +145,7 @@
 					}) => {
 						if (index === choosedSlide) {
 							disableHidingAnimation(false);
-							setTimeout(() => router.push(to), !isMobile ? 650 : 150);
+							setTimeout(() => router.push(to), !isMobile ? 1250 : 150);
 						}
 					},
 
