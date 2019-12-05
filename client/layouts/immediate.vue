@@ -377,8 +377,7 @@
 		position: fixed !important
 		width: 100vw
 		height: 100vh
-	.theme--light.v-btn::before
-		border-radius: 0 !important
+
 
 	.desktop-link:hover
 		opacity: 0.5
