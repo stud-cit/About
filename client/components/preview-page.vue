@@ -32,7 +32,7 @@
 									: 'hidden'
 							"
 							:delay="getFirstStageAnimationDelay"
-							class="bold-preview"
+							class="bold-preview pb-0"
 							:class="{
 								'text-uppercase': isAboutPage,
 								'title-about': isLgAndUp && isAboutPage,
