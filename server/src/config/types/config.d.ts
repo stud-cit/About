@@ -1,9 +1,9 @@
 /**
- * [description]
+ * [Config description]
  */
-export interface Config {
+export type Config = {
 	[key: string]: string | undefined;
-}
+};
 
 /**
  * [Mode description]

@@ -6,7 +6,7 @@ import { Injectable } from '@nestjs/common';
 import { PagesEntity } from './pages.entity';
 
 /**
- * [Injectable description]
+ * [class description]
  * @return [description]
  */
 @Injectable()

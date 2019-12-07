@@ -16,7 +16,8 @@ import { JWTRequest } from './dto/token.dto';
 export class AuthController {
 	/**
 	 * [constructor description]
-	 * @param readonlyauthService [description]
+	 * @param authService [description]
+	 * @param userService [description]
 	 */
 	constructor(private readonly authService: AuthService) {}
 

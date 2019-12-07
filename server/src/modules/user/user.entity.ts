@@ -4,7 +4,7 @@ import { MinLength, MaxLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 /**
- * [Entity description]
+ * [UserEntity description]
  * @param  'User' [description]
  * @return        [description]
  */

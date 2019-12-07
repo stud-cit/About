@@ -3,7 +3,7 @@ import { readFileSync } from 'fs';
 import { parse } from 'dotenv';
 import { join } from 'path';
 
-import { Config, Mode } from './interfaces/config.interface';
+import { Config, Mode } from './types/config.d';
 
 /**
  * [Injectable description]

@@ -18,7 +18,7 @@ import { PagesEntity } from './pages.entity';
 export class PagesController {
 	/**
 	 * [constructor description]
-	 * @param readonlypagesService [description]
+	 * @param pagesService [description]
 	 */
 	constructor(private readonly pagesService: PagesService) {}
 

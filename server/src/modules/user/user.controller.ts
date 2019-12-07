@@ -19,12 +19,12 @@ import { UserEntity } from './user.entity';
 export class UserController {
 	/**
 	 * [constructor description]
-	 * @param readonlyuserService [description]
+	 * @param userService [description]
 	 */
 	constructor(private readonly userService: UserService) {}
 
 	/**
-	 * [createRoot description]
+	 * [createOne description]
 	 * @param  @Body( [description]
 	 * @return        [description]
 	 */

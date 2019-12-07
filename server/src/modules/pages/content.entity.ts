@@ -11,7 +11,7 @@ import {
 import { PagesEntity } from './pages.entity';
 
 /**
- * [Entity description]
+ * [ContentEntity description]
  * @param  'Pages' [description]
  * @return         [description]
  */
