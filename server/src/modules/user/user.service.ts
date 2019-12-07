@@ -12,6 +12,11 @@ import { UserEntity } from './user.entity';
 @Injectable()
 export class UserService {
 	/**
+	 * [TTL description]
+	 */
+	private readonly TTL: number = 3000;
+
+	/**
 	 * [constructor description]
 	 * @param @InjectRepository(UserEntity [description]
 	 */
@@ -36,8 +41,9 @@ export class UserService {
 	 * @return [description]
 	 */
 	public async selectAll(): Promise<UserEntity[]> {
-		return await this.userRepository.find().catch(() => {
-			throw new NotFoundException('Woops');
+		const options = { where: {}, ttl: this.TTL };
+		return await this.userRepository.find(options).catch(() => {
+			throw new NotFoundException('User not found');
 		});
 	}
 
@@ -46,8 +52,8 @@ export class UserService {
 	 * @param  email [description]
 	 * @return       [description]
 	 */
-	public async selectOne(email: UserEntity['email']): Promise<UserEntity> {
-		const options = { where: { email } };
+	public async selectOne(where: Partial<UserEntity>): Promise<UserEntity> {
+		const options = { where, ttl: this.TTL };
 		return await this.userRepository.findOneOrFail(options).catch(() => {
 			throw new NotFoundException('User not found');
 		});
