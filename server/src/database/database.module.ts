@@ -18,7 +18,7 @@ import { ConfigService } from '../config/config.service';
 				username: configService.get('TYPEORM_USERNAME'),
 				password: configService.get('TYPEORM_PASSWORD'),
 				database: configService.get('TYPEORM_DATABASE'),
-				dropSchema: configService.getMode('development'),
+				dropSchema: !configService.getMode('production'),
 				synchronize: configService.get('TYPEORM_SYNCHRONIZE'),
 				migrationsRun: configService.get('TYPEORM_MIGRATIONS_RUN'),
 				keepConnectionAlive: configService.get('TYPEORM_KEEP_ALIVE'),
