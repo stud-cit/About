@@ -42,11 +42,6 @@ describe('User Controller', () => {
 		expect(userService).toBeDefined();
 	});
 
-	describe('createRoot', () => {
-		it('should be return create root user', () => {});
-		it('should be return exception', () => {});
-	});
-
 	describe('createOne', () => {
 		it('should be return create user', () => {});
 		it('should be return exception', () => {});

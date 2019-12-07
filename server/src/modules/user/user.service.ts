@@ -30,7 +30,7 @@ export class UserService {
 	 * @param  user [description]
 	 * @return      [description]
 	 */
-	public async createOne(user: UserEntity): Promise<UserEntity> {
+	public async createOne(user: Partial<UserEntity>): Promise<UserEntity> {
 		return await this.userRepository.save(user).catch(() => {
 			throw new ConflictException(`User already exists`);
 		});
@@ -49,7 +49,7 @@ export class UserService {
 
 	/**
 	 * [selectOne description]
-	 * @param  email [description]
+	 * @param  where [description]
 	 * @return       [description]
 	 */
 	public async selectOne(where: Partial<UserEntity>): Promise<UserEntity> {
@@ -67,11 +67,11 @@ export class UserService {
 	 */
 	public async updateOne(
 		user: UserEntity,
-		_user: UserEntity,
+		_user: Partial<UserEntity>,
 	): Promise<UserEntity> {
 		const mergeUser = this.userRepository.merge(user, _user);
 		return await this.userRepository.save(mergeUser).catch(() => {
-			throw new NotFoundException('User not found');
+			throw new ConflictException(`User already exists`);
 		});
 	}
 

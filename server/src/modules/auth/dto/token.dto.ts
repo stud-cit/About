@@ -1,4 +1,3 @@
-import { IsPositive, IsBase64 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 /**
@@ -8,15 +7,17 @@ export class JWTRequest {
 	/**
 	 * [expiresIn description]
 	 */
-	@IsPositive()
-	@ApiProperty({ example: 3600 })
+	@ApiProperty({
+		readOnly: true,
+		example: 3600,
+	})
 	public readonly expiresIn: number;
 
 	/**
 	 * [token description]
 	 */
-	@IsBase64()
 	@ApiProperty({
+		readOnly: true,
 		example:
 			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleGFtcGxlIjoiZXhhbXBsZSIsImlhdCI6MTUxNjIzOTAyMn0.ROZtw1j0EWbGm_UhZmnHODifusdpgdRr5PALzF9bHEk',
 	})

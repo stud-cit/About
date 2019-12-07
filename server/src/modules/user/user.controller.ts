@@ -1,10 +1,11 @@
 import { ApiTags, ApiBearerAuth, ApiCreatedResponse } from '@nestjs/swagger';
+import { Controller, UseGuards, ConflictException } from '@nestjs/common';
 import { Post, Get, Patch, Delete, Body } from '@nestjs/common';
-import { Controller, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { DeleteResult } from 'typeorm';
 
 import { User } from '../../common/decorators/user.decorator';
+import { UserRequest } from './dto/user.dto';
 import { UserService } from './user.service';
 import { UserEntity } from './user.entity';
 
@@ -29,23 +30,10 @@ export class UserController {
 	 * @return        [description]
 	 */
 	@Post()
-	@ApiCreatedResponse({ type: UserEntity })
-	public async createRoot(@Body() data: UserEntity): Promise<UserEntity> {
-		const users = await this.userService.selectAll();
-		if (!users.length) return await this.createOne(data);
-		return;
-	}
-
-	/**
-	 * [createOne description]
-	 * @param  @Body( [description]
-	 * @return        [description]
-	 */
-	@Post('invite')
 	@ApiBearerAuth()
 	@UseGuards(AuthGuard('jwt'))
 	@ApiCreatedResponse({ type: UserEntity })
-	public async createOne(@Body() data: UserEntity): Promise<UserEntity> {
+	public async createOne(@Body() data: UserRequest): Promise<UserEntity> {
 		return await this.userService.createOne(data);
 	}
 
@@ -74,7 +62,7 @@ export class UserController {
 	@ApiCreatedResponse({ type: UserEntity })
 	public async updateOne(
 		@User() user: UserEntity,
-		@Body() data: UserEntity,
+		@Body() data: UserRequest,
 	): Promise<UserEntity> {
 		return await this.userService.updateOne(user, data);
 	}

@@ -8,4 +8,9 @@ export type Config = {
 /**
  * [Mode description]
  */
-export type Mode = 'production' | 'development' | 'test';
+export type ConfigMode = 'production' | 'development' | 'test';
+
+/**
+ * [Key description]
+ */
+export type ConfigValue = any;

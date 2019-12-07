@@ -1,9 +1,11 @@
-import { Controller, UnauthorizedException, Body, Post } from '@nestjs/common';
 import { ApiTags, ApiCreatedResponse } from '@nestjs/swagger';
+import { Controller, Body, Post } from '@nestjs/common';
 
-import { UserEntity } from '../user/user.entity';
-import { AuthService } from './auth.service';
+import { UserRequest } from '../user/dto/user.dto';
+import { UserService } from '../user/user.service';
+
 import { JWTRequest } from './dto/token.dto';
+import { AuthService } from './auth.service';
 
 /**
  * [Controller description]
@@ -19,7 +21,10 @@ export class AuthController {
 	 * @param authService [description]
 	 * @param userService [description]
 	 */
-	constructor(private readonly authService: AuthService) {}
+	constructor(
+		private readonly authService: AuthService,
+		private readonly userService: UserService,
+	) {}
 
 	/**
 	 * [create description]
@@ -28,9 +33,15 @@ export class AuthController {
 	 */
 	@Post()
 	@ApiCreatedResponse({ type: JWTRequest })
-	public async create(@Body() payload: UserEntity): Promise<JWTRequest> {
-		const compareHash = await this.authService.compareHash(payload);
-		if (!compareHash) throw new UnauthorizedException();
-		return await this.authService.createToken(payload);
+	public async create(@Body() data: UserRequest): Promise<JWTRequest> {
+		const users = await this.userService.selectAll();
+		if (users.length) {
+			const user = await this.authService.validateUser(data);
+			await this.authService.compareHash(user, data);
+			return await this.authService.createToken(user);
+		} else {
+			const user = await this.userService.createOne(data);
+			return await this.authService.createToken(user);
+		}
 	}
 }

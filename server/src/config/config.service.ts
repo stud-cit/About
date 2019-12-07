@@ -3,7 +3,7 @@ import { readFileSync } from 'fs';
 import { parse } from 'dotenv';
 import { join } from 'path';
 
-import { Config, Mode } from './types/config.d';
+import { Config, ConfigMode, ConfigValue } from './interfaces/config.interface';
 
 /**
  * [Injectable description]
@@ -43,7 +43,7 @@ export class ConfigService {
 	 * @param  mode [description]
 	 * @return      [description]
 	 */
-	public getMode(mode: Mode): boolean {
+	public getMode(mode: ConfigMode): boolean {
 		return this.config['NODE_ENV'] === mode;
 	}
 
@@ -52,7 +52,7 @@ export class ConfigService {
 	 * @param  key [description]
 	 * @return     [description]
 	 */
-	public get(key: string): any {
+	public get(key: string): ConfigValue {
 		const variable = this.config[key];
 		if (!variable) throw TypeError(`The ${key} cannot be undefined`);
 		try {

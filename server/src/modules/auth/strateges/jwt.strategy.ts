@@ -32,7 +32,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 	 * @param  user [description]
 	 * @return         [description]
 	 */
-	public async validate(payload: UserEntity): Promise<UserEntity> {
-		return await this.authService.validateUser(payload);
+	public async validate({ email, password }: UserEntity): Promise<UserEntity> {
+		return await this.authService.validateUser({ email, password });
 	}
 }
