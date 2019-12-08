@@ -1,4 +1,3 @@
-import { IsNotEmpty, IsOptional, MaxLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import {
 	Column,
@@ -8,11 +7,10 @@ import {
 	PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { PagesEntity } from './pages.entity';
+import { PagesEntity } from '../pages/pages.entity';
 
 /**
  * [ContentEntity description]
- * @param  'Pages' [description]
  * @return         [description]
  */
 @Entity('Content')
@@ -22,7 +20,6 @@ export class ContentEntity extends BaseEntity {
 	 */
 	@ApiProperty({
 		readOnly: true,
-		required: false,
 		example: 'b4e19ca1-48ea-482c-81ea-1f646d7f75d9',
 	})
 	@PrimaryGeneratedColumn('uuid')
@@ -32,35 +29,50 @@ export class ContentEntity extends BaseEntity {
 	 * [page description]
 	 */
 	@ManyToOne(() => PagesEntity, page => page.content)
-	public readonly page: PagesEntity;
+	public readonly page: string;
+
+	/**
+	 * [lang description]
+	 */
+	@ApiProperty({
+		default: 'en',
+		example: 'en',
+		maxLength: 2,
+	})
+	@Column('varchar', { default: 'en' })
+	public readonly lang: string;
 
 	/**
 	 * [title description]
 	 */
-	@IsNotEmpty()
-	@MaxLength(255)
-	@ApiProperty({ example: 'example', maxLength: 255 })
-	@Column('varchar')
+	@ApiProperty({
+		default: null,
+		nullable: true,
+		maxLength: 255,
+		example: 'example',
+	})
+	@Column('varchar', { nullable: true })
 	public readonly title: string;
 
 	/**
 	 * [description description]
 	 */
-	@IsNotEmpty()
-	@MaxLength(255)
-	@ApiProperty({ example: 'example', maxLength: 255 })
-	@Column('varchar')
+	@ApiProperty({
+		default: null,
+		nullable: true,
+		maxLength: 255,
+		example: 'example',
+	})
+	@Column('varchar', { nullable: true })
 	public readonly description: string;
 
 	/**
 	 * [cover description]
 	 */
-	@IsOptional()
-	@MaxLength(255)
 	@ApiProperty({
-		maxLength: 255,
+		default: null,
 		nullable: true,
-		required: false,
+		maxLength: 255,
 		example: '/example.jpg',
 	})
 	@Column('varchar', { nullable: true })
@@ -71,7 +83,6 @@ export class ContentEntity extends BaseEntity {
 	 */
 	@ApiProperty({
 		readOnly: true,
-		required: false,
 		type: 'string',
 		format: 'date-time',
 		example: '2019-11-20T21:56:55.000Z',
@@ -84,7 +95,6 @@ export class ContentEntity extends BaseEntity {
 	 */
 	@ApiProperty({
 		readOnly: true,
-		required: false,
 		type: 'string',
 		format: 'date-time',
 		example: '2019-11-20T21:56:55.000Z',

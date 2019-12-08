@@ -1,4 +1,3 @@
-import { IsNotEmpty, IsOptional, MaxLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import {
 	Column,
@@ -8,7 +7,7 @@ import {
 	PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { ContentEntity } from './content.entity';
+import { ContentEntity } from '../content/content.entity';
 
 /**
  * [PagesEntity description]
@@ -21,7 +20,6 @@ export class PagesEntity extends BaseEntity {
 	 */
 	@ApiProperty({
 		readOnly: true,
-		required: false,
 		example: 'b4e19ca1-48ea-482c-81ea-1f646d7f75d9',
 	})
 	@PrimaryGeneratedColumn('uuid')
@@ -33,64 +31,46 @@ export class PagesEntity extends BaseEntity {
 	@OneToMany(() => ContentEntity, content => content.page, {
 		nullable: true,
 		cascade: true,
+		eager: true,
 	})
-	public readonly content: ContentEntity;
+	@ApiProperty({
+		default: [],
+		nullable: true,
+		type: () => [ContentEntity],
+	})
+	public readonly content: ContentEntity[];
 
 	/**
 	 * [title description]
 	 */
-	@IsNotEmpty()
-	@MaxLength(255)
-	@ApiProperty({ example: 'example', maxLength: 255 })
-	@Column('varchar')
+	@ApiProperty({
+		default: null,
+		nullable: true,
+		maxLength: 255,
+		example: 'example',
+	})
+	@Column('varchar', { nullable: true })
 	public readonly title: string;
 
 	/**
-	 * [link description]
+	 * [description description]
 	 */
-	@IsNotEmpty()
-	@MaxLength(255)
-	@ApiProperty({ example: '/example', maxLength: 255 })
-	@Column('varchar')
-	public readonly link: string;
-
-	/**
-	 * [background description]
-	 */
-	@IsOptional()
-	@MaxLength(255)
 	@ApiProperty({
-		maxLength: 255,
+		default: null,
 		nullable: true,
-		required: false,
-		example: '/example.jpg',
+		maxLength: 255,
+		example: 'example',
 	})
 	@Column('varchar', { nullable: true })
-	public readonly background?: string;
-
-	/**
-	 * [lazyBackground description]
-	 */
-	@IsOptional()
-	@MaxLength(255)
-	@ApiProperty({
-		maxLength: 255,
-		nullable: true,
-		required: false,
-		example: '/example.jpg',
-	})
-	@Column('varchar', { nullable: true })
-	public readonly lazyBackground?: string;
+	public readonly description: string;
 
 	/**
 	 * [cover description]
 	 */
-	@IsOptional()
-	@MaxLength(255)
 	@ApiProperty({
-		maxLength: 255,
+		default: null,
 		nullable: true,
-		required: false,
+		maxLength: 255,
 		example: '/example.jpg',
 	})
 	@Column('varchar', { nullable: true })
@@ -101,7 +81,6 @@ export class PagesEntity extends BaseEntity {
 	 */
 	@ApiProperty({
 		readOnly: true,
-		required: false,
 		type: 'string',
 		format: 'date-time',
 		example: '2019-11-20T21:56:55.000Z',
@@ -114,7 +93,6 @@ export class PagesEntity extends BaseEntity {
 	 */
 	@ApiProperty({
 		readOnly: true,
-		required: false,
 		type: 'string',
 		format: 'date-time',
 		example: '2019-11-20T21:56:55.000Z',

@@ -1,10 +1,11 @@
 import { ApiTags, ApiBearerAuth, ApiCreatedResponse } from '@nestjs/swagger';
-import { Controller, UseGuards, ConflictException } from '@nestjs/common';
 import { Post, Get, Patch, Delete, Body } from '@nestjs/common';
+import { Controller, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { DeleteResult } from 'typeorm';
 
 import { User } from '../../common/decorators/user.decorator';
+
 import { UserRequest } from './dto/user.dto';
 import { UserService } from './user.service';
 import { UserEntity } from './user.entity';

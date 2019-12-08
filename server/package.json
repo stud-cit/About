@@ -41,7 +41,7 @@
     "reflect-metadata": "latest",
     "rimraf": "latest",
     "rxjs": "latest",
-    "swagger-ui-express": "latest",
+    "swagger-ui-express": "^4.1.2",
     "typeorm": "^0.2.21",
     "typescript": "^3.7.3"
   },
