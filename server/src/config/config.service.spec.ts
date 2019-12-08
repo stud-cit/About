@@ -1,6 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ConfigService } from './config.service';
 
+process.env = {
+	...process.env,
+	MOK_BOOLEAN: 'false',
+	MOK_NUMBER: '123456',
+	MOK_STRING: 'string',
+	MOC_DEST: '/test/dest',
+};
+
 describe('ConfigService', () => {
 	let configService: ConfigService;
 
@@ -16,19 +24,39 @@ describe('ConfigService', () => {
 		expect(configService).toBeDefined();
 	});
 
-	it('should be return boolean value', () => {
-		expect(configService.get('PASSPORT_SESSION')).toBe(true);
+	describe('getDest', () => {
+		it('should be return destination', () => {
+			expect(configService.getDest('MOC_DEST')).toBe(
+				'/home/helsis/Documents/About/server/test/dest',
+			);
+		});
+
+		it('should be return type error', () => {
+			expect(() => configService.getDest('MOK_TYPEERROR')).toThrow(TypeError);
+		});
 	});
 
-	it('should be return number value', () => {
-		expect(configService.get('PORT')).toBe(8081);
+	describe('getMode', () => {
+		it('should be return boolean value', () => {
+			expect(configService.getMode('test')).toBe(true);
+		});
 	});
 
-	it('should be return string value', () => {
-		expect(configService.get('API_PREFFIX')).toBe('/api');
-	});
+	describe('get', () => {
+		it('should be return boolean value', () => {
+			expect(configService.get('MOK_BOOLEAN')).toBe(false);
+		});
 
-	it('should be return type error', () => {
-		expect(() => configService.get('ANYKEY')).toThrow(TypeError);
+		it('should be return number value', () => {
+			expect(configService.get('MOK_NUMBER')).toBe(123456);
+		});
+
+		it('should be return string value', () => {
+			expect(configService.get('MOK_STRING')).toBe('string');
+		});
+
+		it('should be return type error', () => {
+			expect(() => configService.get('MOK_TYPEERROR')).toThrow(TypeError);
+		});
 	});
 });

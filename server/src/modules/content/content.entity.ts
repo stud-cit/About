@@ -2,19 +2,19 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
 	Column,
 	Entity,
-	OneToMany,
+	ManyToOne,
 	BaseEntity,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { ContentEntity } from '../content/content.entity';
+import { PagesEntity } from '../pages/pages.entity';
 
 /**
- * [PagesEntity description]
+ * [ContentEntity description]
  * @return         [description]
  */
-@Entity('Pages')
-export class PagesEntity extends BaseEntity {
+@Entity('Content')
+export class ContentEntity extends BaseEntity {
 	/**
 	 * [id description]
 	 */
@@ -26,19 +26,21 @@ export class PagesEntity extends BaseEntity {
 	public readonly id: string;
 
 	/**
-	 * [content description]
+	 * [page description]
 	 */
-	@OneToMany(() => ContentEntity, content => content.page, {
-		nullable: true,
-		cascade: true,
-		eager: true,
-	})
+	@ManyToOne(() => PagesEntity, page => page.content)
+	public readonly page: string;
+
+	/**
+	 * [lang description]
+	 */
 	@ApiProperty({
-		default: [],
-		nullable: true,
-		type: () => [ContentEntity],
+		default: 'en',
+		example: 'en',
+		maxLength: 2,
 	})
-	public readonly content: ContentEntity[];
+	@Column('varchar', { default: 'en' })
+	public readonly lang: string;
 
 	/**
 	 * [title description]

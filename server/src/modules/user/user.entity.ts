@@ -1,11 +1,8 @@
 import { PrimaryGeneratedColumn, BaseEntity, Column, Entity } from 'typeorm';
-import { IsEmail, IsOptional, IsUUID } from 'class-validator';
-import { MinLength, MaxLength } from 'class-validator';
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
 /**
- * [Entity description]
- * @param  'User' [description]
+ * [UserEntity description]
  * @return        [description]
  */
 @Entity('User')
@@ -13,9 +10,7 @@ export class UserEntity extends BaseEntity {
 	/**
 	 * [id description]
 	 */
-	@IsUUID()
-	@IsOptional()
-	@ApiModelProperty({
+	@ApiProperty({
 		readOnly: true,
 		required: false,
 		example: 'b4e19ca1-48ea-482c-81ea-1f646d7f75d9',
@@ -26,11 +21,9 @@ export class UserEntity extends BaseEntity {
 	/**
 	 * [email description]
 	 */
-	@IsEmail()
-	@MaxLength(255)
-	@ApiModelProperty({
-		uniqueItems: true,
+	@ApiProperty({
 		maxLength: 255,
+		uniqueItems: true,
 		example: 'example@ex.com',
 	})
 	@Column('varchar', { unique: true })
@@ -39,12 +32,10 @@ export class UserEntity extends BaseEntity {
 	/**
 	 * [password description]
 	 */
-	@MinLength(8)
-	@MaxLength(255)
-	@ApiModelProperty({
+	@ApiProperty({
 		minLength: 8,
 		maxLength: 255,
-		example: '$2b$08$t/.IMs/l9cpEXmnxf73nCu9OwDY82iGE4I24QFhqQlXKNkvC0slJe',
+		example: '$2b$08$t5G2lyRpj.lrx.uyhYaHtukRtIweRV6Nm7kduCZGT0NJfTmXDM5z.',
 	})
 	@Column('varchar')
 	public password: string;
@@ -52,7 +43,7 @@ export class UserEntity extends BaseEntity {
 	/**
 	 * [createAt description]
 	 */
-	@ApiModelProperty({
+	@ApiProperty({
 		readOnly: true,
 		required: false,
 		type: 'string',
@@ -65,7 +56,7 @@ export class UserEntity extends BaseEntity {
 	/**
 	 * [updateAt description]
 	 */
-	@ApiModelProperty({
+	@ApiProperty({
 		readOnly: true,
 		required: false,
 		type: 'string',

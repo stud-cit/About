@@ -1,16 +1,21 @@
 import { ConflictException, NotFoundException } from '@nestjs/common';
-import { Repository, DeleteResult } from 'typeorm';
+import { Repository, DeleteResult, UpdateResult } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 
 import { PagesEntity } from './pages.entity';
 
 /**
- * [Injectable description]
+ * [class description]
  * @return [description]
  */
 @Injectable()
 export class PagesService {
+	/**
+	 * [TTL description]
+	 */
+	private readonly TTL: number = 3000;
+
 	/**
 	 * [constructor description]
 	 * @param @InjectRepository(PagesEntity [description]
@@ -25,7 +30,7 @@ export class PagesService {
 	 * @param  page [description]
 	 * @return      [description]
 	 */
-	public async createOne(page: PagesEntity): Promise<PagesEntity> {
+	public async createOne(page: Partial<PagesEntity>): Promise<PagesEntity> {
 		return await this.pagesRepository.save(page).catch(() => {
 			throw new ConflictException(`Page already exists`);
 		});
@@ -36,18 +41,20 @@ export class PagesService {
 	 * @return [description]
 	 */
 	public async selectAll(): Promise<PagesEntity[]> {
-		return await this.pagesRepository.find().catch(() => {
+		const options = { where: {}, ttl: this.TTL };
+		return await this.pagesRepository.find(options).catch(() => {
 			throw new NotFoundException('Pages not found');
 		});
 	}
 
 	/**
 	 * [selectOne description]
-	 * @param  id [description]
+	 * @param  where [description]
 	 * @return    [description]
 	 */
-	public async selectOne(id: PagesEntity['id']): Promise<PagesEntity> {
-		return await this.pagesRepository.findOneOrFail(id).catch(() => {
+	public async selectOne(where: Partial<PagesEntity>): Promise<PagesEntity> {
+		const options = { where, ttl: this.TTL };
+		return await this.pagesRepository.findOneOrFail(options).catch(() => {
 			throw new NotFoundException('Pages not found');
 		});
 	}
@@ -59,22 +66,21 @@ export class PagesService {
 	 * @return       [description]
 	 */
 	public async updateOne(
-		page: PagesEntity,
-		_page: PagesEntity,
-	): Promise<PagesEntity> {
-		const mergePage = this.pagesRepository.merge(page, _page);
-		return await this.pagesRepository.save(mergePage).catch(() => {
+		id: PagesEntity['id'],
+		_page: Partial<PagesEntity>,
+	): Promise<UpdateResult> {
+		return await this.pagesRepository.update(id, _page).catch(() => {
 			throw new NotFoundException('Pages not found');
 		});
 	}
 
 	/**
 	 * [deleteOne description]
-	 * @param  pages [description]
+	 * @param  id [description]
 	 * @return       [description]
 	 */
-	public async deleteOne(pages: PagesEntity): Promise<DeleteResult> {
-		return await this.pagesRepository.delete(pages).catch(() => {
+	public async deleteOne(id: PagesEntity['id']): Promise<DeleteResult> {
+		return await this.pagesRepository.delete(id).catch(() => {
 			throw new NotFoundException('Pages not found');
 		});
 	}

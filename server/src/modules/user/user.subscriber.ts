@@ -10,11 +10,11 @@ import { ConfigService } from '../../config/config.service';
 import { UserEntity } from './user.entity';
 
 /**
- * [EventSubscriber description]
+ * [UserSubscriber description]
  * @return [description]
  */
 @EventSubscriber()
-export class AdminSubscriber extends ConfigService
+export class UserSubscriber extends ConfigService
 	implements EntitySubscriberInterface<any> {
 	/**
 	 * [listenTo description]
