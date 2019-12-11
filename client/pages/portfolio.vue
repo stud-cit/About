@@ -59,10 +59,7 @@
 							depressed
 							class="pr-0 pl-0"
 						>
-							<span
-								class="headline d-none d-md-block pr-3"
-
-							>
+							<span class="headline d-none d-md-block pr-3">
 								{{ $t('portfolio.link') }}
 							</span>
 							<div class="arrow-right">

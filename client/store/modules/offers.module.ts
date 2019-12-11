@@ -1,7 +1,6 @@
 import { Getters, Mutations, Actions, Module } from 'vuex-smart-module';
 import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { Store } from 'vuex';
-import Vue from 'vue';
 
 interface ReperesentationModel {
 	readonly title: string;
@@ -107,7 +106,7 @@ export class OffersActions extends Actions<
 	OffersGetters,
 	OffersMutations
 > {
-	private store!: Store<NuxtAxiosInstance>;
+	protected store!: Store<NuxtAxiosInstance>;
 
 	$init(store: Store<NuxtAxiosInstance>): void {
 		this.store = store;
