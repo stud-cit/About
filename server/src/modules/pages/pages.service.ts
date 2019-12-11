@@ -41,7 +41,7 @@ export class PagesService {
 	 * @return [description]
 	 */
 	public async selectAll(): Promise<PagesEntity[]> {
-		const options = { where: {}, ttl: this.TTL };
+		const options = { where: {}, cache: this.TTL };
 		return await this.pagesRepository.find(options).catch(() => {
 			throw new NotFoundException('Pages not found');
 		});
@@ -53,7 +53,7 @@ export class PagesService {
 	 * @return    [description]
 	 */
 	public async selectOne(where: Partial<PagesEntity>): Promise<PagesEntity> {
-		const options = { where, ttl: this.TTL };
+		const options = { where, cache: this.TTL };
 		return await this.pagesRepository.findOneOrFail(options).catch(() => {
 			throw new NotFoundException('Pages not found');
 		});

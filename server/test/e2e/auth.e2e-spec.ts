@@ -1,11 +1,7 @@
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { DatabaseModule } from '../../src/database/database.module';
-import { ConfigModule } from '../../src/config/config.module';
-
-import { UserModule } from '../../src/modules/user/user.module';
-import { AuthModule } from '../../src/modules/auth/auth.module';
+import { AppModule } from '../../src/app/app.module';
 
 import { Request } from '../helpers/request.helpers';
 import { User } from '../fixtures/user.fixtures';
@@ -17,7 +13,7 @@ describe('Auth flow (api/auth):', () => {
 
 	beforeAll(async () => {
 		const module: TestingModule = await Test.createTestingModule({
-			imports: [UserModule, AuthModule, DatabaseModule, ConfigModule],
+			imports: [AppModule],
 		}).compile();
 
 		app = await module
@@ -33,23 +29,26 @@ describe('Auth flow (api/auth):', () => {
 		it('[201]: Create', async () => {
 			await majorRequest.setPasport('/auth', 201);
 			await minorRequest.setPasport('/auth', 401);
+			return;
 		});
 
-		it('[400]: Bad-Request', () => {
+		it('[400]: Bad-Request', async () => {
 			const { email, password } = majorRequest.getUser();
-			majorRequest.post('/auth', 400, { password, email: '' });
-			majorRequest.post('/auth', 400, { email, password: '' });
-			minorRequest.post('/auth', 400, { password, email: '' });
-			minorRequest.post('/auth', 400, { email, password: '' });
+			await majorRequest.post('/auth', 400, { password, email: '' });
+			await majorRequest.post('/auth', 400, { email, password: '' });
+			await minorRequest.post('/auth', 400, { password, email: '' });
+			await minorRequest.post('/auth', 400, { email, password: '' });
+			return;
 		});
 
 		it('[401]: Unauthorized', async () => {
 			const { email, password } = majorRequest.getUser();
-			majorRequest.post('/auth', 401, { email, password: '12345678' });
-			majorRequest.post('/auth', 401, { password, email: 'ab@cd.ef' });
-			minorRequest.post('/auth', 401, { email, password: '12345678' });
-			minorRequest.post('/auth', 401, { password, email: 'ab@cd.ef' });
+			await majorRequest.post('/auth', 401, { email, password: '12345678' });
+			await majorRequest.post('/auth', 401, { password, email: 'ab@cd.ef' });
+			await minorRequest.post('/auth', 401, { email, password: '12345678' });
+			await minorRequest.post('/auth', 401, { password, email: 'ab@cd.ef' });
 			await minorRequest.setPasport('/auth', 401);
+			return;
 		});
 	});
 

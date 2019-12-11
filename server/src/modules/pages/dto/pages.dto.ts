@@ -1,28 +1,11 @@
-import { IsUUID, IsOptional, MaxLength } from 'class-validator';
+import { IsOptional, MaxLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 /**
- * [PageRequestId description]
+ * [PagesRequest description]
  * @return         [description]
  */
-export class PageRequestId {
-	/**
-	 * [id description]
-	 */
-	@IsUUID()
-	@ApiProperty({
-		readOnly: true,
-		required: false,
-		example: 'b4e19ca1-48ea-482c-81ea-1f646d7f75d9',
-	})
-	public readonly id: string;
-}
-
-/**
- * [PageRequest description]
- * @return         [description]
- */
-export class PageRequest {
+export class PagesRequest {
 	/**
 	 * [title description]
 	 */

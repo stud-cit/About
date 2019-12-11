@@ -1,11 +1,7 @@
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { DatabaseModule } from '../../src/database/database.module';
-import { ConfigModule } from '../../src/config/config.module';
-
-import { UserModule } from '../../src/modules/user/user.module';
-import { AuthModule } from '../../src/modules/auth/auth.module';
+import { AppModule } from '../../src/app/app.module';
 
 import { Request } from '../helpers/request.helpers';
 import { User } from '../fixtures/user.fixtures';
@@ -17,7 +13,7 @@ describe('User flow (api/user):', () => {
 
 	beforeAll(async () => {
 		const module: TestingModule = await Test.createTestingModule({
-			imports: [UserModule, AuthModule, DatabaseModule, ConfigModule],
+			imports: [AppModule],
 		}).compile();
 
 		app = await module
@@ -34,79 +30,91 @@ describe('User flow (api/user):', () => {
 			await majorRequest.setPasport('/auth', 201);
 			await majorRequest.postAuth('/user', 201, minorRequest.getUser());
 			await minorRequest.setPasport('/auth', 201);
+			return;
 		});
 
-		it('[400]: Bad-Request', () => {
+		it('[400]: Bad-Request', async () => {
 			const { email, password } = majorRequest.getUser();
-			majorRequest.postAuth('/user', 400, { password, email: '' });
-			majorRequest.postAuth('/user', 400, { email, password: '' });
-			minorRequest.postAuth('/user', 400, { password, email: '' });
-			minorRequest.postAuth('/user', 400, { email, password: '' });
+			await majorRequest.postAuth('/user', 400, { password, email: '' });
+			await majorRequest.postAuth('/user', 400, { email, password: '' });
+			await minorRequest.postAuth('/user', 400, { password, email: '' });
+			await minorRequest.postAuth('/user', 400, { email, password: '' });
+			return;
 		});
 
-		it('[401]: Unauthorized', () => {
-			majorRequest.post('/user', 401);
-			minorRequest.post('/user', 401);
+		it('[401]: Unauthorized', async () => {
+			await majorRequest.post('/user', 401);
+			await minorRequest.post('/user', 401);
+			return;
 		});
 
-		it('[409]: Conflict', () => {
-			majorRequest.postAuth('/user', 409, minorRequest.getUser());
-			minorRequest.postAuth('/user', 409, majorRequest.getUser());
+		it('[409]: Conflict', async () => {
+			await majorRequest.postAuth('/user', 409, minorRequest.getUser());
+			await minorRequest.postAuth('/user', 409, majorRequest.getUser());
+			return;
 		});
 	});
 
 	describe('[GET]: Select self', () => {
-		it('[200]: Ok', () => {
-			majorRequest.getAuth('/user', 200);
-			minorRequest.getAuth('/user', 200);
+		it('[200]: Ok', async () => {
+			await majorRequest.getAuth('/user', 200);
+			await minorRequest.getAuth('/user', 200);
+			return;
 		});
 
-		it('[401]: Unauthorized', () => {
-			majorRequest.get('/user', 401);
-			minorRequest.get('/user', 401);
+		it('[401]: Unauthorized', async () => {
+			await majorRequest.get('/user', 401);
+			await minorRequest.get('/user', 401);
+			return;
 		});
 	});
 
 	describe('[PATH]: Update', () => {
-		it('[200]: OK', () => {
+		it('[200]: OK', async () => {
 			majorRequest.setUser({ password: '12345678' });
 			minorRequest.setUser({ password: '87654321' });
-			majorRequest.patchAuth('/user', 200, majorRequest.getUser());
-			minorRequest.patchAuth('/user', 200, minorRequest.getUser());
+			await majorRequest.patchAuth('/user', 200, majorRequest.getUser());
+			await minorRequest.patchAuth('/user', 200, minorRequest.getUser());
+			return;
 		});
 
-		it('[400]: Bad-Request', () => {
+		it('[400]: Bad-Request', async () => {
 			const { email, password } = majorRequest.getUser();
-			majorRequest.patchAuth('/user', 400, { password, email: '' });
-			majorRequest.patchAuth('/user', 400, { email, password: '' });
-			minorRequest.patchAuth('/user', 400, { password, email: '' });
-			minorRequest.patchAuth('/user', 400, { email, password: '' });
+			await majorRequest.patchAuth('/user', 400, { password, email: '' });
+			await majorRequest.patchAuth('/user', 400, { email, password: '' });
+			await minorRequest.patchAuth('/user', 400, { password, email: '' });
+			await minorRequest.patchAuth('/user', 400, { email, password: '' });
+			return;
 		});
 
-		it('[401]: Unauthorized', () => {
-			majorRequest.patch('/user', 401);
-			minorRequest.patch('/user', 401);
+		it('[401]: Unauthorized', async () => {
+			await majorRequest.patch('/user', 401);
+			await minorRequest.patch('/user', 401);
+			return;
 		});
 
-		it('[409]: Conflict', () => {
+		it('[409]: Conflict', async () => {
 			const majorUser = majorRequest.getUser();
 			const minorUser = minorRequest.getUser();
-			majorRequest.patchAuth('/user', 409, minorUser);
-			minorRequest.patchAuth('/user', 409, majorUser);
+			await majorRequest.patchAuth('/user', 409, minorUser);
+			await minorRequest.patchAuth('/user', 409, majorUser);
+			return;
 		});
 	});
 
 	describe('[DELETE]: Delete', () => {
-		it('[200]: OK', () => {
-			majorRequest.deleteAuth('/user', 200);
-			minorRequest.deleteAuth('/user', 200);
+		it('[200]: OK', async () => {
+			await majorRequest.deleteAuth('/user', 200);
+			await minorRequest.deleteAuth('/user', 200);
+			return;
 		});
 
-		it('[401]: Unauthorized', () => {
-			majorRequest.delete('/user', 401);
-			minorRequest.delete('/user', 401);
-			majorRequest.deleteAuth('/user', 401);
-			minorRequest.deleteAuth('/user', 401);
+		it('[401]: Unauthorized', async () => {
+			await majorRequest.delete('/user', 401);
+			await minorRequest.delete('/user', 401);
+			await majorRequest.deleteAuth('/user', 401);
+			await minorRequest.deleteAuth('/user', 401);
+			return;
 		});
 	});
 

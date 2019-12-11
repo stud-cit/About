@@ -4,9 +4,10 @@ import { AuthGuard } from '@nestjs/passport';
 
 import { ApiTags, ApiCreatedResponse, ApiBearerAuth } from '@nestjs/swagger';
 
-import { ContentRequestId, ContentRequest } from './dto/content.dto';
+import { ContentRequest } from './dto/content.dto';
 import { ContentService } from './content.service';
 import { ContentEntity } from './content.entity';
+import { ID } from '../../common/dto/id.dto';
 
 /**
  * [Controller description]
@@ -57,7 +58,7 @@ export class ContentController {
 	@UseGuards(AuthGuard('jwt'))
 	@ApiCreatedResponse({ type: ContentEntity })
 	public async updateOne(
-		@Query() { id }: ContentRequestId,
+		@Query() { id }: ID,
 		@Body() data: ContentRequest,
 	): Promise<ContentEntity> {
 		await this.contentService.updateOne(id, data);
@@ -73,9 +74,7 @@ export class ContentController {
 	@ApiBearerAuth()
 	@UseGuards(AuthGuard('jwt'))
 	@ApiCreatedResponse({ type: ContentEntity })
-	public async deleteOne(@Query() { id }: ContentRequestId): Promise<
-		ContentEntity
-	> {
+	public async deleteOne(@Query() { id }: ID): Promise<ContentEntity> {
 		const content = await this.contentService.selectOne({ id });
 		return await this.contentService.deleteOne(id).then(() => content);
 	}

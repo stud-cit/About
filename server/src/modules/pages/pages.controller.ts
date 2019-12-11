@@ -4,9 +4,10 @@ import { AuthGuard } from '@nestjs/passport';
 
 import { ApiTags, ApiCreatedResponse, ApiBearerAuth } from '@nestjs/swagger';
 
-import { PageRequestId, PageRequest } from './dto/pages.dto';
+import { PagesRequest } from './dto/pages.dto';
 import { PagesService } from './pages.service';
 import { PagesEntity } from './pages.entity';
+import { ID } from '../../common/dto/id.dto';
 
 /**
  * [Controller description]
@@ -32,7 +33,7 @@ export class PagesController {
 	@ApiBearerAuth()
 	@UseGuards(AuthGuard('jwt'))
 	@ApiCreatedResponse({ type: PagesEntity })
-	public async createOne(@Body() data: PageRequest): Promise<PagesEntity> {
+	public async createOne(@Body() data: PagesRequest): Promise<PagesEntity> {
 		return await this.pagesService.createOne(data);
 	}
 
@@ -57,8 +58,8 @@ export class PagesController {
 	@UseGuards(AuthGuard('jwt'))
 	@ApiCreatedResponse({ type: PagesEntity })
 	public async updateOne(
-		@Query() { id }: PageRequestId,
-		@Body() data: PageRequest,
+		@Query() { id }: ID,
+		@Body() data: PagesRequest,
 	): Promise<PagesEntity> {
 		await this.pagesService.updateOne(id, data);
 		return await this.pagesService.selectOne({ id });
@@ -73,7 +74,7 @@ export class PagesController {
 	@ApiBearerAuth()
 	@UseGuards(AuthGuard('jwt'))
 	@ApiCreatedResponse({ type: PagesEntity })
-	public async deleteOne(@Query() { id }: PageRequestId): Promise<PagesEntity> {
+	public async deleteOne(@Query() { id }: ID): Promise<PagesEntity> {
 		const pages = await this.pagesService.selectOne({ id });
 		return await this.pagesService.deleteOne(id).then(() => pages);
 	}
