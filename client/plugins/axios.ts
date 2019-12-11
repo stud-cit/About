@@ -4,7 +4,7 @@ const routingRedirection = {
 	500: '/',
 	409: '/',
 	404: '/',
-	401: '/signin',
+	401: '/dashboard',
 };
 
 export default function({ $axios, redirect }) {

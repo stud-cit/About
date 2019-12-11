@@ -53,7 +53,15 @@ const config: Configuration = {
 		{ src: '~/plugins/swiper', ssr: false },
 		{ src: '~/plugins/vuetify-breakpoints', ssr: false },
 	],
-
+	/*
+	 ** Axios module options
+	 */
+	axios: {
+		baseURL: configService.get('API_ENDPOINT'),
+	},
+	/*
+	 ** Authentication module options
+	 */
 	auth: {
 		strategies: {
 			local: {
@@ -67,10 +75,10 @@ const config: Configuration = {
 			},
 		},
 		redirect: {
-			home: '/',
-			login: '/signin',
-			logout: '/signin',
-			callback: '/signin',
+			home: '/dashboard/home/',
+			login: '/dashboard/home/',
+			logout: '/dashboard/',
+			callback: '/dashboard/home/',
 		},
 	},
 
