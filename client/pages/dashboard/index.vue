@@ -8,7 +8,7 @@
 		>
 			<v-progress-linear :indeterminate="progress" :active="progress" />
 			<v-card-title class="title font-weight-regular justify-center">
-				<span>Sing In</span>
+				<span>Dasboard</span>
 			</v-card-title>
 			<v-card-text>
 				<VTextFieldValidation
@@ -23,8 +23,8 @@
 				/>
 				<VTextFieldValidation
 					v-model="userCredentials.password"
-					:type="show1 ? 'text' : 'password'"
-					:append-icon="changeVisibility(show1)"
+					:type="show ? 'text' : 'password'"
+					:append-icon="changeVisibility(show)"
 					rules="required|min:8"
 					vid="confirm"
 					outlined
@@ -33,15 +33,15 @@
 					label="Password"
 					autocomplete="current-password"
 					prepend-icon="mdi-lock-outline"
-					@click:append="show1 = !show1"
+					@click:append="show = !show"
 				/>
 			</v-card-text>
 			<v-card-actions>
 				<v-btn href="/signup" text>Sign Up</v-btn>
 				<v-spacer />
-				<v-btn :disabled="invalid" @click="onSubmit" depressed color="primary"
-					>Login</v-btn
-				>
+				<v-btn :disabled="invalid" @click="onSubmit" depressed color="primary">
+					Login
+				</v-btn>
 			</v-card-actions>
 		</ValidationObserver>
 	</v-card>
@@ -54,17 +54,16 @@
 
 	@Component({
 		middleware: ['guest'],
-		layout: 'admin',
 		components: {
 			ValidationObserver,
 			VTextFieldValidation: () =>
 				import('~/components/inputs/VTextFieldValidation'),
 		},
 	})
-	export default class SignInPage extends Vue {
+	export default class DashboardPage extends Vue {
 		@Action('authorizationUser') authorizationUser;
 
-		private show1: boolean = false;
+		private show: boolean = false;
 		private progress: boolean = false;
 		private userCredentials = {
 			email: '',
