@@ -3,9 +3,6 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
-import { json } from 'body-parser';
-import { join } from 'path';
-
 import { ConfigService } from './config/config.service';
 import { AppModule } from './app/app.module';
 
@@ -13,32 +10,26 @@ import { AppModule } from './app/app.module';
  * [bootstrap description]
  */
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  const config = await new ConfigService();
-  const options = await new DocumentBuilder()
-    .setTitle('')
-    .setDescription('')
-    .setBasePath(config.getSetting('API_PREFFIX'))
-    .setVersion(config.getSetting('npm_package_version'))
-    .addBearerAuth()
-    .build();
+	const configService = new ConfigService();
+	const app = await NestFactory.create<NestExpressApplication>(AppModule);
+	const options = new DocumentBuilder()
+		.setDescription(configService.get('npm_package_description'))
+		.setVersion(configService.get('npm_package_version'))
+		.setTitle(configService.get('npm_package_name'))
+		.addBearerAuth()
+		.build();
 
-  const document = SwaggerModule.createDocument(app, options);
+	app.setGlobalPrefix(configService.get('PREFFIX'));
 
-  SwaggerModule.setup(config.getSetting('API_DOCS'), app, document);
+	const document = SwaggerModule.createDocument(app, options);
 
-  return await app
-    .use(json())
-    .useStaticAssets(join(__dirname, '..', 'public'))
-    .setBaseViewsDir(join(__dirname, '..', 'public'))
-    .setGlobalPrefix(config.getSetting('API_PREFFIX'))
-    .useGlobalPipes(
-      new ValidationPipe({
-        whitelist: true,
-      }),
-    )
-    .enableCors()
-    .listen(config.getSetting('API_PORT'));
+	SwaggerModule.setup(configService.get('PREFFIX'), app, document);
+
+	return await app
+		.useStaticAssets(configService.getDest('DOC_DEST'))
+		.useGlobalPipes(new ValidationPipe())
+		.enableCors()
+		.listen(configService.get('PORT'));
 }
 
 bootstrap();

@@ -3,7 +3,7 @@ import { createParamDecorator } from '@nestjs/common';
 import { UserEntity } from '../../modules/user/user.entity';
 
 /**
- * [createParamDecorator description]
+ * [User description]
  * @param  (data [description]
  * @return       [description]
  */

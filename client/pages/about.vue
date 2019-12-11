@@ -213,6 +213,9 @@
 		stageText: number = 0;
 		stageAbout: number = 0;
 
+		showLastStage() {
+			this.curStage = this.about[this.$i18n.locale].slides.length + 1;
+		}
 
 
 		swipeLeft() {

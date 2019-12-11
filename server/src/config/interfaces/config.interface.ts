@@ -1,6 +1,16 @@
 /**
- * [description]
+ * [Config description]
  */
-export interface Config {
+export type Config = {
 	[key: string]: string | undefined;
-}
+};
+
+/**
+ * [Mode description]
+ */
+export type ConfigMode = 'production' | 'development' | 'test';
+
+/**
+ * [Key description]
+ */
+export type ConfigValue = any;

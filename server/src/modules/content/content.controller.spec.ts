@@ -2,44 +2,44 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { PagesController } from './pages.controller';
-import { PagesService } from './pages.service';
-import { PagesEntity } from './pages.entity';
+import { ContentController } from './content.controller';
+import { ContentService } from './content.service';
+import { ContentEntity } from './content.entity';
 
-describe('Pages Controller', () => {
-	let pagesRepository: Repository<PagesEntity>;
-	let pagesController: PagesController;
-	let pagesService: PagesService;
+describe('Content Controller', () => {
+	let contentRepository: Repository<ContentEntity>;
+	let contentController: ContentController;
+	let contentService: ContentService;
 
 	beforeEach(async () => {
 		const module: TestingModule = await Test.createTestingModule({
-			controllers: [PagesController],
+			controllers: [ContentController],
 			providers: [
-				PagesService,
+				ContentService,
 				{
-					provide: getRepositoryToken(PagesEntity),
+					provide: getRepositoryToken(ContentEntity),
 					useClass: Repository,
 				},
 			],
 		}).compile();
 
-		pagesService = module.get<PagesService>(PagesService);
-		pagesController = module.get<PagesController>(PagesController);
-		pagesRepository = module.get<Repository<PagesEntity>>(
-			getRepositoryToken(PagesEntity),
+		contentService = module.get<ContentService>(ContentService);
+		contentController = module.get<ContentController>(ContentController);
+		contentRepository = module.get<Repository<ContentEntity>>(
+			getRepositoryToken(ContentEntity),
 		);
 	});
 
 	it('should be defined controller', () => {
-		expect(pagesController).toBeDefined();
+		expect(contentController).toBeDefined();
 	});
 
 	it('should be defined repository', () => {
-		expect(pagesRepository).toBeDefined();
+		expect(contentRepository).toBeDefined();
 	});
 
 	it('should be defined service', () => {
-		expect(pagesService).toBeDefined();
+		expect(contentService).toBeDefined();
 	});
 
 	describe('createOne', () => {

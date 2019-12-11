@@ -1,11 +1,13 @@
-import { ApiCreatedResponse, ApiBearerAuth, ApiUseTags } from '@nestjs/swagger';
-import { Post, Get, Patch, Delete, Body } from '@nestjs/common';
+import { Post, Get, Patch, Delete, Body, Query } from '@nestjs/common';
 import { Controller, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { DeleteResult } from 'typeorm';
 
+import { ApiTags, ApiCreatedResponse, ApiBearerAuth } from '@nestjs/swagger';
+
+import { PagesRequest } from './dto/pages.dto';
 import { PagesService } from './pages.service';
 import { PagesEntity } from './pages.entity';
+import { ID } from '../../common/dto/id.dto';
 
 /**
  * [Controller description]
@@ -13,17 +15,17 @@ import { PagesEntity } from './pages.entity';
  * @param  'pages' [description]
  * @return         [description]
  */
-@ApiUseTags('pages')
+@ApiTags('pages')
 @Controller('pages')
 export class PagesController {
 	/**
 	 * [constructor description]
-	 * @param readonlypagesService [description]
+	 * @param pagesService [description]
 	 */
 	constructor(private readonly pagesService: PagesService) {}
 
 	/**
-	 * [createMultiple description]
+	 * [createOne description]
 	 * @param  @Body( [description]
 	 * @return        [description]
 	 */
@@ -31,7 +33,7 @@ export class PagesController {
 	@ApiBearerAuth()
 	@UseGuards(AuthGuard('jwt'))
 	@ApiCreatedResponse({ type: PagesEntity })
-	public async createMultiple(@Body() data: PagesEntity): Promise<PagesEntity> {
+	public async createOne(@Body() data: PagesRequest): Promise<PagesEntity> {
 		return await this.pagesService.createOne(data);
 	}
 
@@ -47,6 +49,7 @@ export class PagesController {
 
 	/**
 	 * [updateOne description]
+	 * @param  @Param( [description]
 	 * @param  @Body( [description]
 	 * @return        [description]
 	 */
@@ -54,20 +57,25 @@ export class PagesController {
 	@ApiBearerAuth()
 	@UseGuards(AuthGuard('jwt'))
 	@ApiCreatedResponse({ type: PagesEntity })
-	public async updateOne(@Body() data: PagesEntity): Promise<PagesEntity> {
-		const page = await this.pagesService.selectOne(data.id);
-		return await this.pagesService.updateOne(page, data);
+	public async updateOne(
+		@Query() { id }: ID,
+		@Body() data: PagesRequest,
+	): Promise<PagesEntity> {
+		await this.pagesService.updateOne(id, data);
+		return await this.pagesService.selectOne({ id });
 	}
 
 	/**
 	 * [deleteOne description]
-	 * @param  @Body( [description]
+	 * @param  @Query( [description]
 	 * @return        [description]
 	 */
 	@Delete()
 	@ApiBearerAuth()
 	@UseGuards(AuthGuard('jwt'))
-	public async deleteOne(@Body() data: PagesEntity): Promise<DeleteResult> {
-		return await this.pagesService.deleteOne(data);
+	@ApiCreatedResponse({ type: PagesEntity })
+	public async deleteOne(@Query() { id }: ID): Promise<PagesEntity> {
+		const pages = await this.pagesService.selectOne({ id });
+		return await this.pagesService.deleteOne(id).then(() => pages);
 	}
 }

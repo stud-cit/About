@@ -14,8 +14,8 @@ import { AuthService } from '../auth.service';
 export class JwtStrategy extends PassportStrategy(Strategy) {
 	/**
 	 * [constructor description]
-	 * @param readonlyconfigService [description]
-	 * @param readonlyauthService   [description]
+	 * @param configService [description]
+	 * @param authService   [description]
 	 */
 	constructor(
 		readonly configService: ConfigService,
@@ -29,10 +29,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
 	/**
 	 * [validate description]
-	 * @param  payload [description]
+	 * @param  user [description]
 	 * @return         [description]
 	 */
-	public async validate(payload: UserEntity): Promise<UserEntity> {
-		return await this.authService.validateUser(payload);
+	public async validate({ email, password }: UserEntity): Promise<UserEntity> {
+		return await this.authService.validateUser({ email, password });
 	}
 }

@@ -1,8 +1,11 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { classToPlain } from 'class-transformer';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
 
 import { ConfigService } from '../../config/config.service';
+
+import { UserRequest } from '../user/dto/user.dto';
 import { UserService } from '../user/user.service';
 import { UserEntity } from '../user/user.entity';
 
@@ -16,9 +19,9 @@ import { JWTRequest } from './dto/token.dto';
 export class AuthService {
 	/**
 	 * [constructor description]
-	 * @param readonlyconfigService [description]
-	 * @param readonlyuserService   [description]
-	 * @param readonlyjwtService    [description]
+	 * @param configService [description]
+	 * @param userService   [description]
+	 * @param jwtService    [description]
 	 */
 	constructor(
 		private readonly configService: ConfigService,
@@ -28,32 +31,37 @@ export class AuthService {
 
 	/**
 	 * [createToken description]
-	 * @param  payload [description]
-	 * @return         [description]
+	 * @param  user [description]
+	 * @return      [description]
 	 */
-	public async createToken(payload: UserEntity): Promise<JWTRequest> {
+	public async createToken(user: Partial<UserEntity>): Promise<JWTRequest> {
 		const expiresIn = this.configService.get('JWT_EXPIRE');
-		const token = this.jwtService.sign(payload);
+		const token = this.jwtService.sign(classToPlain(user));
 		return { expiresIn, token };
 	}
 
 	/**
 	 * [compareHash description]
-	 * @param  payload [description]
-	 * @return         [description]
+	 * @param  user  [description]
+	 * @param  _user [description]
+	 * @return       [description]
 	 */
-	public async compareHash(payload: UserEntity): Promise<boolean> {
-		const user = await this.validateUser(payload);
-		return await compare(payload.password, user.password);
+	public async compareHash(
+		user: UserRequest,
+		_user: Partial<UserEntity>,
+	): Promise<boolean> {
+		const hash = await compare(_user.password, user.password);
+		if (!hash) throw new UnauthorizedException();
+		return hash;
 	}
 
 	/**
 	 * [validateUser description]
-	 * @param  payload [description]
-	 * @return         [description]
+	 * @param  user [description]
+	 * @return      [description]
 	 */
-	public async validateUser(payload: UserEntity): Promise<UserEntity> {
-		return await this.userService.selectOne(payload.email).catch(() => {
+	public async validateUser(user: Partial<UserRequest>): Promise<UserEntity> {
+		return await this.userService.selectOne({ email: user.email }).catch(() => {
 			throw new UnauthorizedException();
 		});
 	}
