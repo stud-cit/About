@@ -49,6 +49,7 @@
 		position: relative
 		height: 100vh
 		color: white
+		margin: 0
 
 	.return-section
 		width: 90%

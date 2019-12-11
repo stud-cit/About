@@ -73,7 +73,7 @@
 				</v-row>
 			</v-parallax>
 		</v-col>
-		<product-footer />
+		<product-footer class="max-width"/>
 	</v-container>
 </template>
 
@@ -117,23 +117,26 @@
 
 <style lang="sass">
 	#portfolio
-	  .text-underline
-	    line-height: normal
-	    text-decoration: underline
-	    text-underline-position: under
+		.text-underline
+			line-height: normal
+			text-decoration: underline
+			text-underline-position: under
 
-	  .portfolio-link
-	    color: white
+		.portfolio-link
+			color: white
 
 	.arrow-right
-	  border-radius: 50%
-	  padding: 25px
-	  margin: 10px
-	  border: 5px solid white
+		border-radius: 50%
+		padding: 25px
+		margin: 10px
+		border: 5px solid white
 
 	.v-btn:hover::before
-	  opacity: 0 !important
+		opacity: 0 !important
 
 	.headline:hover
-	  border-bottom: 1px solid white
+		border-bottom: 1px solid white
+
+	.max-width
+		max-width: 100vw
 </style>
