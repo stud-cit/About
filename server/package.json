@@ -5,8 +5,8 @@
   "author": "Helsis",
   "license": "MIT",
   "engines": {
-    "node": "10.15.1",
-    "npm": "6.10.2"
+    "node": "12.13.1",
+    "npm": "6.13.3"
   },
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.build.json",
@@ -23,11 +23,11 @@
     "test:e2e": "jest --config ./test/jest-e2e.json --watchAll"
   },
   "dependencies": {
-    "@nestjs/common": "^6.10.7",
-    "@nestjs/core": "^6.10.7",
+    "@nestjs/common": "^6.10.9",
+    "@nestjs/core": "^6.10.9",
     "@nestjs/jwt": "latest",
     "@nestjs/passport": "latest",
-    "@nestjs/platform-express": "^6.10.7",
+    "@nestjs/platform-express": "^6.10.9",
     "@nestjs/swagger": "^4.0.9",
     "@nestjs/typeorm": "latest",
     "@types/bcrypt": "latest",
@@ -36,7 +36,7 @@
     "class-validator": "^0.11.0",
     "dotenv": "latest",
     "mysql": "latest",
-    "passport": "latest",
+    "passport": "^0.4.1",
     "passport-jwt": "latest",
     "reflect-metadata": "latest",
     "rimraf": "latest",
@@ -47,13 +47,13 @@
   },
   "devDependencies": {
     "@compodoc/compodoc": "latest",
-    "@nestjs/testing": "^6.10.7",
+    "@nestjs/testing": "^6.10.9",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.2",
     "@types/faker": "^4.1.8",
     "@types/jest": "^24.0.23",
     "@types/multer": "latest",
-    "@types/node": "^12.12.14",
+    "@types/node": "^12.12.17",
     "@types/passport-jwt": "latest",
     "@types/supertest": "latest",
     "@types/uuid": "latest",
