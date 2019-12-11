@@ -86,12 +86,7 @@ const config: Configuration = {
 		lazy: true,
 		parsePages: false,
 		langDir: 'lang/',
-		defaultLocale: 'ua',
-		detectBrowserLanguage: {
-			useCookie: true,
-			cookieKey: 'i18n_redirected',
-			fallbackLocale: 'ua',
-		},
+		defaultLocale: 'en',
 		locales: [
 			{
 				code: 'en',
