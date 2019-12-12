@@ -28,7 +28,7 @@
 									<v-btn
 										v-model="changeLocale"
 										icon
-										class="pa-0 font-weight-bold locale-button"
+										class="pa-0 font-weight-bold locale-button circle-lang"
 										color="#4A4A4A"
 									>
 										<v-icon
@@ -46,7 +46,7 @@
 									:key="i"
 									:to="switchLocalePath(locale.code)"
 									icon
-									class="pa-0 font-weight-bold"
+									class="pa-0 font-weight-bold circle-lang"
 									size="45"
 									color="#4A4A4A"
 								/>
@@ -63,7 +63,7 @@
 			</v-container>
 		</v-content>
 		<v-btn
-			class="d-flex d-md-none mobile-icon burger-icon"
+			class="d-flex d-md-none mobile-icon burger-icon circle-lang"
 			@click="toggleVisibilityLocales"
 			icon
 			x-large
@@ -74,9 +74,7 @@
 
 		<v-bottom-sheet v-model="isShowMobileLocales">
 			<div class="relative">
-				<v-btn
-					class="mobile-icon close-icon"
-					@click="toggleVisibilityLocales"
+				<v-btn					@click="toggleVisibilityLocales"
 					icon
 					x-large
 				>
@@ -91,7 +89,7 @@
 							v-for="(locale, i) in $i18n.locales"
 							:key="i"
 							:to="switchLocalePath(locale.code)"
-							class="locale-btn"
+							class="locale-btn circle-lang"
 							active-class="active-locale"
 							x-large
 							icon
@@ -166,8 +164,7 @@
 	.locale-button
 	  width: 55px
 	  height: 55px
-	  border-radius: 50%
-	  border: 2px solid #4A4A4A
+	  border: 2px solid #4A4A4A !important
 
 	.v-bottom-sheet
 	    background: #8a8a8a
@@ -175,13 +172,9 @@
 
 	.theme--light.v-btn::before
 	  opacity: 0 !important
-	  border-radius: 50%
-	  border: 2px solid #4A4A4A
 
 	.theme--light.v-btn:hover::before
 	  opacity: 0.18 !important
-	   border-radius: 50%
-	  border: 2px solid #4A4A4A
 
 	.close-icon
 	  z-index: 20
@@ -235,4 +228,9 @@
 
 	.margin-top
 	  margin-top: 5%
+
+
+	.circle-lang
+	  border-radius: 50% !important
+	  overflow: hidden
 </style>

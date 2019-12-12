@@ -145,7 +145,7 @@
 			scrollable
 		>
 			<v-btn
-				class="index"
+				class="index close-menu"
 				@click="toggleVisibilityMobileMenu"
 				icon
 				large
@@ -378,7 +378,17 @@
 		width: 100vw
 		height: 100vh
 
+	.theme--light.v-btn::before	
+		border-radius: 0 !important
+		border: 0 !important
 
+	.theme--light.v-btn:hover::before	
+		border-radius: 0 !important
+		border: 0 !important
+
+	.v-btn--round
+		border-radius: 0 !important
+	
 	.desktop-link:hover
 		opacity: 0.5
 
@@ -391,4 +401,9 @@
 
 	.index
 		z-index: 10
+
+	.close-menu
+		display: flex
+		justify-content: flex-end
+
 </style>
