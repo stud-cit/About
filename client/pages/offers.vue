@@ -3,9 +3,9 @@
 		<v-row justify="center">
 			<v-col cols="12" sm="10">
 				<PreviewPage
-					:title="$t('offers.previewTitle')"
-					:subtitle="$t('offers.previewSubtitle')"
-					:description="$t('offers.previewDescription')"
+					:title="weOffers[$i18n.locale].previewTitle"
+					:subtitle="weOffers[$i18n.locale].previewSubtitle"
+					:description="weOffers[$i18n.locale].previewDescription"
 					:icon-down="false"
 				/>
 				<ScrollBar />

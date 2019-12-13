@@ -3,8 +3,8 @@
 		<v-row justify="center">
 			<v-col cols="12" sm="10">
 				<PreviewPage
-					:title="$t('ourStaff.previewTitle')"
-					:description="$t('ourStaff.previewDescription')"
+					:title="ourStaff[$i18n.locale].previewTitle"
+					:description="ourStaff[$i18n.locale].previewDescription"
 					:icon-down="false"
 				/>
 				<ScrollBar />

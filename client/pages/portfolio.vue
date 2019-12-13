@@ -3,9 +3,9 @@
 		<v-row justify="center">
 			<v-col cols="12" sm="10">
 				<PreviewPage
-					:title="$t('portfolio.previewTitle')"
-					:subtitle="$t('portfolio.previewSubtitle')"
-					:description="$t('portfolio.previewDescription')"
+					:title="portfolio[$i18n.locale].previewTitle"
+					:subtitle="portfolio[$i18n.locale].previewSubtitle"
+					:description="portfolio[$i18n.locale].previewDescription"
 					:icon-down="true"
 				/>
 			</v-col>
@@ -60,7 +60,7 @@
 							class="pr-0 pl-0"
 						>
 							<span class="headline d-none d-md-block pr-3">
-								{{ $t('portfolio.link') }}
+								{{ portfolio[$i18n.locale].link }}
 							</span>
 							<div class="arrow-right">
 								<v-img

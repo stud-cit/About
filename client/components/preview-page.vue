@@ -119,7 +119,7 @@
 							class="gray font-weight-regular"
 							:style="getPreviewInfoFont"
 						>
-							{{ $t(getScrollInfo) }}
+							{{ getScrollInfo }}
 						</ContentBlock>
 					</v-row>
 				</v-col>
@@ -182,6 +182,7 @@
 		props: ['title', 'subtitle', 'description', 'iconDown'],
 	})
 	export default class PreviewPage extends Vue {
+		@Getter('AboutModule/getStage') about;
 		@Getter('getPageByRoute') getPageByRoute;
 		@Getter('getPageId') pageId;
 		@Getter('getPageRouteById') getPageRouteById;
@@ -252,12 +253,13 @@
 		get getScrollInfo() {
 			if (this.isAboutPage) {
 				if (this.isMdAndUp) {
-					return 'about.scrollPointNavigation';
+
+					return this.about[this.$i18n.locale].scrollPointNavigation;
 				} else {
-					return 'common.swipe';
+					return this.$t('common.swipe');
 				}
 			} else {
-				return 'common.scroll';
+				return this.$t('common.scroll');
 			}
 		}
 

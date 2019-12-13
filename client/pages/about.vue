@@ -19,7 +19,7 @@
 						>
 							<PreviewPage
 								:title="$t('common.companyName')"
-								:description="$t('about.previewDescription')"
+								:description="about[$i18n.locale].previewDescription"
 								:icon-down="false"
 							/>
 						</v-col>
@@ -98,7 +98,7 @@
 					v-if="curStage > about[$i18n.locale].slides.length"
 					@click="backToStart"
 				>
-					{{ $t('about.backToStart') }}
+					{{ about[$i18n.locale].backToStart }}
 				</p>
 				<OpacityBox
 					:pose="
