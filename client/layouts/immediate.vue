@@ -179,11 +179,10 @@
 	import posed from 'vue-pose';
 	import { Component, Vue } from 'vue-property-decorator';
 	import { Getter, Mutation } from 'vuex-class';
-	import ContactBar from '@/components/contact-bar.vue';
 
 	@Component({
 		components: {
-			'contact-bar': ContactBar,
+			ContactBar: () => import('~/components/contact-bar'),
 			Navs: posed.div({
 				visible: {
 					beforeChildren: true,

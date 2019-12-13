@@ -75,16 +75,16 @@ const config: Configuration = {
 			},
 		},
 		redirect: {
-			home: '/dashboard/home/',
-			login: '/dashboard/home/',
-			logout: '/dashboard/',
-			callback: '/dashboard/home/',
+			home: '/dashboard',
+			login: '/dashboard',
+			logout: '/',
+			callback: '/dashboard',
 		},
 	},
 
 	i18n: {
 		lazy: true,
-		parsePages: false,
+		parsePages: true,
 		langDir: 'lang/',
 		defaultLocale: 'en',
 		locales: [

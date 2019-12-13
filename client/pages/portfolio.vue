@@ -73,7 +73,7 @@
 				</v-row>
 			</v-parallax>
 		</v-col>
-		<product-footer class="max-width"/>
+		<product-footer class="max-width" />
 	</v-container>
 </template>
 

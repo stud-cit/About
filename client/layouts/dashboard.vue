@@ -27,7 +27,7 @@
 		<v-content>
 			<v-container class="fill-height" fluid>
 				<v-row align="center" justify="center">
-					<v-col xs="12" sm="10" md="6" xl="8">
+					<v-col xs="12" sm="10" md="10" lg="8" xl="6">
 						<nuxt />
 					</v-col>
 				</v-row>
@@ -63,18 +63,21 @@
 		private drawer: boolean = false;
 		private appBackground: string = '';
 		private pages: Pages[] = [
-			{ icon: 'mdi-view-dashboard-outline', attr: { to: 'home', exact: true } },
-			{ icon: 'mdi-domain', attr: { to: '/companies', exact: true } },
+			{
+				icon: 'mdi-view-dashboard-outline',
+				attr: { to: '/dashboard', exact: true },
+			},
 			{
 				icon: 'mdi-account-group-outline',
-				attr: { to: '/employees', exact: true },
+				attr: { to: '/dashboard/accounts', exact: true },
+			},
+			{
+				icon: 'mdi-format-paint',
+				attr: { to: '/dashboard/setting', exact: true },
 			},
 			{
 				icon: 'mdi-github-circle',
-				attr: {
-					href: 'https://github.com/StudCIT/About',
-					target: '_blank',
-				},
+				attr: { href: 'https://github.com/StudCIT/About', target: '_blank' },
 			},
 		];
 
