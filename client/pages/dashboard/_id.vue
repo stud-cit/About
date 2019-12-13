@@ -1,7 +1,7 @@
 <template>
 	<v-row>
 		<v-col v-for="(page, i) in pages" :key="i" md="6">
-			<v-card :href="'dashboard/' + page.id">
+			<v-card :href="'dsahboard/' + page.title">
 				<v-img
 					:src="getDynamicAssets(`/images/covers${page.videoBg.cover}`)"
 					:gradient="imagePageGradient"
@@ -23,22 +23,16 @@
 	</v-row>
 </template>
 
+
 <script lang="ts">
-	import { Component, Vue } from 'vue-property-decorator';
-	import { Getter, Mutation } from 'vuex-class';
+import { Component, Vue } from 'vue-property-decorator';
+import { Getter, Mutation } from 'vuex-class';
 
-	@Component({
-		layout: 'dashboard',
-		head() {
-			return {
-				title: 'Companies',
-			};
-		},
-	})
-	export default class DashboardPage extends Vue {
-		@Getter('getPageStage') pages;
+@Component
+export default class DashboardPage extends Vue {
+	@Getter('getPageStage') pages;
 
-		imagePageGradient: string =
-			'to top right, rgba(115, 115, 115, .33), rgba(32, 32, 72, .7)';
-	}
+	imagePageGradient: string =
+		'to top right, rgba(115, 115, 115, .33), rgba(32, 32, 72, .7)';
+}
 </script>
