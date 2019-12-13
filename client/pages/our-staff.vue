@@ -128,7 +128,7 @@
 				</v-row>
 			</v-col>
 		</v-row>
-		<product-footer />
+		<product-footer class="max-width" />
 	</v-container>
 </template>
 
@@ -247,63 +247,66 @@
 
 <style lang="sass">
 	.card-addition
-	  display: flex
-	  flex-direction: column
-	  color: #ffffff
-	  position: relative
-	  justify-content: center
+		display: flex
+		flex-direction: column
+		color: #ffffff
+		position: relative
+		justify-content: center
 
 	.employee-name
-	  color: white
-	  text-align: center
-	  margin-bottom: 0
-	  display: block
+		color: white
+		text-align: center
+		margin-bottom: 0
+		display: block
 
 	.employee-position-short, .employee-position-full
-	  font-weight: 400
-	  color: #ffffff
-	  text-align: center
+		font-weight: 400
+		color: #ffffff
+		text-align: center
 
 	.card-img-hover
-	  border-radius: 50px !important
-	  filter: brightness(35%)
-	  transition: 1s
+		border-radius: 50px !important
+		filter: brightness(35%)
+		transition: 1s
 
 	.card-img
-	  transition: all 1s
-	  margin: 15px 0
+		transition: all 1s
+		margin: 15px 0
 
 	.employee-position-full
-	  opacity: 0
+		opacity: 0
 
 	.card-img-hover:hover
-	  z-index: 10
-	  transform: scale(1.15)
-	  filter: brightness(100%)
-	  border-radius: 0 !important
-	  transition: 1s
-	  ~ .card-addition
-	    .employee-name
-	      opacity: 0
-	      transition: 0.5s
-	      display: none
-	    .employee-position-full
-	      opacity: 1
-	    .employee-position-short
-	      opacity: 0
+		z-index: 10
+		transform: scale(1.15)
+		filter: brightness(100%)
+		border-radius: 0 !important
+		transition: 1s
+		~ .card-addition
+			.employee-name
+				opacity: 0
+				transition: 0.5s
+				display: none
+			.employee-position-full
+				opacity: 1
+			.employee-position-short
+				opacity: 0
 
 	.staff-slider
-	  height: 70vh
+		height: 70vh
 
 	.staff-slide
-	  height: 65vh
+		height: 65vh
 
 	.line-height-1
-	  line-height: 1
+		line-height: 1
 
 	.line-height-1-2
-	  line-height: 1.2
+		line-height: 1.2
+
+	.max-width
+		max-width: 100vw
 
 	.v-card:not(.v-sheet--tile)
-	  border-radius: 0
+		border-radius: 0
 </style>

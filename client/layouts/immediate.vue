@@ -145,7 +145,7 @@
 			scrollable
 		>
 			<v-btn
-				class="index"
+				class="index close-menu"
 				@click="toggleVisibilityMobileMenu"
 				icon
 				large
@@ -179,11 +179,10 @@
 	import posed from 'vue-pose';
 	import { Component, Vue } from 'vue-property-decorator';
 	import { Getter, Mutation } from 'vuex-class';
-	import ContactBar from '@/components/contact-bar.vue';
 
 	@Component({
 		components: {
-			'contact-bar': ContactBar,
+			ContactBar: () => import('~/components/contact-bar'),
 			Navs: posed.div({
 				visible: {
 					beforeChildren: true,
@@ -377,9 +376,18 @@
 		position: fixed !important
 		width: 100vw
 		height: 100vh
-	.theme--light.v-btn::before
-		border-radius: 0 !important
 
+	.theme--light.v-btn::before	
+		border-radius: 0 !important
+		border: 0 !important
+
+	.theme--light.v-btn:hover::before	
+		border-radius: 0 !important
+		border: 0 !important
+
+	.v-btn--round
+		border-radius: 0 !important
+	
 	.desktop-link:hover
 		opacity: 0.5
 
@@ -392,4 +400,9 @@
 
 	.index
 		z-index: 10
+
+	.close-menu
+		display: flex
+		justify-content: flex-end
+
 </style>

@@ -1,7 +1,6 @@
 import { Getters, Mutations, Actions, Module } from 'vuex-smart-module';
 import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { Store } from 'vuex';
-import Vue from 'vue';
 
 interface ProjectModel {
 	title: string;
@@ -87,7 +86,7 @@ export class PortfolioActions extends Actions<
 	PortfolioGetters,
 	PortfolioMutations
 > {
-	private store!: Store<NuxtAxiosInstance>;
+	protected store!: Store<NuxtAxiosInstance>;
 
 	$init(store: Store<NuxtAxiosInstance>): void {
 		this.store = store;

@@ -53,7 +53,15 @@ const config: Configuration = {
 		{ src: '~/plugins/swiper', ssr: false },
 		{ src: '~/plugins/vuetify-breakpoints', ssr: false },
 	],
-
+	/*
+	 ** Axios module options
+	 */
+	axios: {
+		baseURL: configService.get('API_ENDPOINT'),
+	},
+	/*
+	 ** Authentication module options
+	 */
 	auth: {
 		strategies: {
 			local: {
@@ -67,23 +75,18 @@ const config: Configuration = {
 			},
 		},
 		redirect: {
-			home: '/',
-			login: '/signin',
-			logout: '/signin',
-			callback: '/signin',
+			home: '/dashboard',
+			login: '/dashboard',
+			logout: '/',
+			callback: '/dashboard',
 		},
 	},
 
 	i18n: {
 		lazy: true,
-		parsePages: false,
+		parsePages: true,
 		langDir: 'lang/',
-		defaultLocale: 'ua',
-		detectBrowserLanguage: {
-			useCookie: true,
-			cookieKey: 'i18n_redirected',
-			fallbackLocale: 'ua',
-		},
+		defaultLocale: 'en',
 		locales: [
 			{
 				code: 'en',

@@ -8,8 +8,8 @@ export default {
 	common: {
 		backToTop: 'Back to the top',
 		companyName: 'Student Сenter of Information Technology',
-		scroll: 'Scroll for more information',
-		swipe: 'Swipe for more information',
+		scroll: 'Scroll down for more information',
+		swipe: 'Swipe left for more information',
 		slogan: 'Speed, quality, simplicity',
 	},
 	about: {

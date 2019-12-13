@@ -2,13 +2,13 @@
 	<v-container fluid cdclass="py-0 ma-0">
 		<v-row justify="center">
 			<v-col cols="12" sm="10">
-				<v-window 
-					v-model="stageAbout" 
-					continuous 
+				<v-window
+					v-model="stageAbout"
+					continuous
 					dark
 					:touch="{
 						left: swipeLeft,
-						right: swipeRight
+						right: swipeRight,
 					}"
 				>
 					<v-window-item>
@@ -217,16 +217,15 @@
 			this.curStage = this.about[this.$i18n.locale].slides.length + 1;
 		}
 
-
 		swipeLeft() {
-			if (this.curStage < this.about[this.$i18n.locale].slides.length + 1 ) {
+			if (this.curStage < this.about[this.$i18n.locale].slides.length + 1) {
 				this.curStage = this.curStage + 1;
 			} else {
 				this.curStage = 0;
 			}
 		}
 		swipeRight() {
-			if (this.curStage > 0 ) {
+			if (this.curStage > 0) {
 				this.curStage = this.curStage - 1;
 			}
 		}
@@ -301,13 +300,16 @@
 				this.curStage > 0 &&
 				this.curStage < this.about[this.$i18n.locale].slides.length + 2
 			) {
-					this.stageAbout = (this.curStage > 1 ? this.curStage - 1 : this.curStage);
-					setTimeout(() => {
-						this.stageText = (this.curStage > 1 ? this.stageAbout : this.stageAbout - this.curStage);
-					}, 250);
-					setTimeout(() => {
-						this.isTextSliderAnimation = true;
-					}, 500);
+				this.stageAbout = this.curStage > 1 ? this.curStage - 1 : this.curStage;
+				setTimeout(() => {
+					this.stageText =
+						this.curStage > 1
+							? this.stageAbout
+							: this.stageAbout - this.curStage;
+				}, 250);
+				setTimeout(() => {
+					this.isTextSliderAnimation = true;
+				}, 500);
 			} else {
 				this.stageAbout = this.curStage;
 				this.stageText = 0;
@@ -447,5 +449,4 @@
 	.arrowLeft
 		color: #2f2f2f
 		font-size: 50px
-
 </style>
