@@ -52,6 +52,19 @@ export class UserController {
 	}
 
 	/**
+	 * [selectAll description]
+	 * @param  @User( [description]
+	 * @return        [description]
+	 */
+	@Get('all')
+	@ApiBearerAuth()
+	@UseGuards(AuthGuard('jwt'))
+	@ApiCreatedResponse({ type: UserEntity })
+	public async selectAll(): Promise<UserEntity[]> {
+		return await this.userService.selectAll();
+	}
+
+	/**
 	 * [updateOne description]
 	 * @param  @User( [description]
 	 * @param  @Body( [description]

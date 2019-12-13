@@ -16,6 +16,7 @@
     "start:debug": "nodemon --config nodemon-debug.json",
     "start:prod": "node dist/main",
     "lint": "tslint -p tsconfig.json -c tslint.json",
+		"typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "doc": "npx compodoc",
     "test": "jest -i --coverage",
     "test:cov": "jest --watchAll --coverage",
