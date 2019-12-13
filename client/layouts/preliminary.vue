@@ -74,7 +74,10 @@
 
 		<v-bottom-sheet v-model="isShowMobileLocales">
 			<div class="relative">
-				<v-btn					@click="toggleVisibilityLocales"
+				
+				<v-btn	
+					class="mobile-icon close-icon circle-lang"				
+					@click="toggleVisibilityLocales"
 					icon
 					x-large
 				>
