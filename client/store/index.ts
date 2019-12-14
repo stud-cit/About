@@ -38,7 +38,7 @@ interface ContactsModel {
 
 const mockedPages = [
 	{
-		id: 1,
+		id: '1wscz',
 		title: 'pages.about',
 		link: 'about',
 		videoBg: {
@@ -48,7 +48,7 @@ const mockedPages = [
 		},
 	},
 	{
-		id: 2,
+		id: '2sfpdsokf',
 		title: 'pages.weOffers',
 		link: 'offers',
 		videoBg: {
@@ -58,7 +58,7 @@ const mockedPages = [
 		},
 	},
 	{
-		id: 3,
+		id: '3x[vppor',
 		title: 'pages.ourStaff',
 		link: 'our-staff',
 		videoBg: {
@@ -68,7 +68,7 @@ const mockedPages = [
 		},
 	},
 	{
-		id: 4,
+		id: '4srcl-fdspkf',
 		title: 'pages.portfolio',
 		link: 'portfolio',
 		videoBg: {

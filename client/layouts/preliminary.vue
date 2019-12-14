@@ -142,97 +142,96 @@
 
 <style lang="sass">
 	.app .v-application--wrap
-	  flex-direction: row
-	  flex-wrap: wrap
-	  align-items: flex-start
+		flex-direction: row
+		flex-wrap: wrap
+		align-items: flex-start
 
-	  .app-bar
-	    position: sticky
-	    height: 110px !important
-	    margin-top: 10px !important
-	    background: rgba(250, 250, 250, .85)
-	    .v-toolbar__content
-	      width: 100vw
-	      padding-bottom: 0
+		.app-bar
+			position: sticky
+			height: 110px !important
+			margin-top: 10px !important
+			background: rgba(250, 250, 250, .85)
+			.v-toolbar__content
+				width: 100vw
+				padding-bottom: 0
+
+		.circle-lang
+			border-radius: 50% !important
+			overflow: hidden
 
 	.mobile-icon
-	  background: white
+		background: white
 
 	.burger-icon
-	  position: fixed
-	  left: calc(50vw - 26px)
-	  bottom: 2vh
+		position: fixed
+		left: calc(50vw - 26px)
+		bottom: 2vh
 
 	.locale-button
-	  width: 55px
-	  height: 55px
-	  border: 2px solid #4A4A4A !important
+		width: 55px
+		height: 55px
+		border: 2px solid #4A4A4A !important
 
 	.v-bottom-sheet
-	    background: #8a8a8a
-	    box-shadow: 0px 11px 0px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 50px 8px rgba(0, 0, 0, 0.12)
+			background: #8a8a8a
+			box-shadow: 0px 11px 0px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 50px 8px rgba(0, 0, 0, 0.12)
 
 	.theme--light.v-btn::before
-	  opacity: 0 !important
+		opacity: 0 !important
 
 	.theme--light.v-btn:hover::before
-	  opacity: 0.18 !important
+		opacity: 0.18 !important
 
 	.close-icon
-	  z-index: 20
-	  position: absolute
-	  left: calc(50vw - 26px)
-	  top: -18px
+		z-index: 20
+		position: absolute
+		left: calc(50vw - 26px)
+		top: -18px
 	.relative
-	  position: relative
+		position: relative
 
 	.half-round
-	  width: 100%
-	  height: 30px
-	  background: white
-	  clip-path: ellipse(50% 100% at 50% 100%)
-	  margin-bottom: -1px
+		width: 100%
+		height: 30px
+		background: white
+		clip-path: ellipse(50% 100% at 50% 100%)
+		margin-bottom: -1px
 
 	.locale
-	  font-size: 25px
+		font-size: 25px
 
 	.locales-container
-	  width: 100%
-	  height: 10vh
-	  display: flex
-	  justify-content: center
-	  align-items: center
-	  background: white
+		width: 100%
+		height: 10vh
+		display: flex
+		justify-content: center
+		align-items: center
+		background: white
 
 	.locales-list
-	  width: 60%
-	  display: flex
-	  justify-content: space-between
-	  color: white
+		width: 60%
+		display: flex
+		justify-content: space-between
+		color: white
 
-	  .locale-btn
-	    color: white
+		.locale-btn
+			color: white
 
-	  span
-	    color: black
-	    font-weight: normal
+		span
+			color: black
+			font-weight: normal
 
-	  .active-locale span
-	    font-weight: bold
+		.active-locale span
+			font-weight: bold
 
 	.lang-up
-	  position: absolute
-	  top: -15px
+		position: absolute
+		top: -15px
 
 	.bold-preview
-	  font-weight: 800 !important
-	  font-style: normal
+		font-weight: 800 !important
+		font-style: normal
 
 	.margin-top
-	  margin-top: 5%
-
-
-	.circle-lang
-	  border-radius: 50% !important
-	  overflow: hidden
+		margin-top: 5%
 </style>
