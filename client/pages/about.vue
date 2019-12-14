@@ -198,7 +198,6 @@
 	})
 	export default class AboutPage extends Vue {
 		@Getter('AboutModule/getStage') about;
-		@Getter('getPageRouteById') getPageRouteById;
 		@Getter('getContactBarVisibility') isShowContactBar;
 		@Getter('visibilityLoader') visibilityLoader;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;

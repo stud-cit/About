@@ -155,12 +155,10 @@ class RootGetters extends Getters<RootState> {
 		return this.state.pageId;
 	}
 
-	get getPageRouteById(): (index: number) => string {
+	get getPageRouteByIndex(): (index: number) => string {
 		return (index: number) => {
 			const changedIndex = index > 4 ? 1 : index < 1 ? 4 : index;
-			const currentPage = this.state.pages.find(
-				({ id }: PageModel) => id === changedIndex,
-			);
+			const currentPage = this.state.pages[changedIndex];
 			return currentPage ? currentPage.link : '';
 		};
 	}

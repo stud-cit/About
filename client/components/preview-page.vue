@@ -185,7 +185,7 @@
 		@Getter('AboutModule/getStage') about;
 		@Getter('getPageByRoute') getPageByRoute;
 		@Getter('getPageIndex') pageIndex;
-		@Getter('getPageRouteById') getPageRouteById;
+		@Getter('getPageRouteByIndex') getPageRouteByIndex;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 		@Getter('visibilityLoader') visibilityLoader;
 		@Mutation('changeIsHideAnimationContent') changeIsHideAnimationContent;
@@ -239,7 +239,9 @@
 
 		handleNavigatingPage(toRight: boolean) {
 			const newPageIndex = toRight ? this.pageIndex + 1 : this.pageIndex - 1;
-			const nextPage = this.getPageRouteById(newPageIndex);
+			const nextPage = this.getPageRouteByIndex(newPageIndex);
+
+			console.log(nextPage);
 			this.$router.replace(this.localePath(nextPage));
 		}
 
