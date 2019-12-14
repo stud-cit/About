@@ -184,16 +184,14 @@
 	export default class PreviewPage extends Vue {
 		@Getter('AboutModule/getStage') about;
 		@Getter('getPageByRoute') getPageByRoute;
-		@Getter('getPageId') pageId;
+		@Getter('getPageIndex') pageIndex;
 		@Getter('getPageRouteById') getPageRouteById;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 		@Getter('visibilityLoader') visibilityLoader;
 		@Mutation('changeIsHideAnimationContent') changeIsHideAnimationContent;
 
 		isShowUseContacts: boolean = true;
-		aboutPageId: number = 1;
-		portfolioPageId: number = 4;
-		weofferPageId: number = 2;
+		aboutPageIndex: number = 1;
 
 		// animation
 		isStartAnimation: boolean = false;
@@ -217,13 +215,8 @@
 			const windowHeight = window.innerHeight;
 			const scrollHeight = document.body.scrollHeight;
 			const scrollToFooter = scrollHeight - windowHeight * 2;
-			const isPortfolioPage = this.pageId === this.portfolioPageId;
-			const isWeOfferPage = this.pageId === this.weofferPageId;
 
-			// on porfolio page we have to hide if any scroll we have
-			if (isPortfolioPage && window.scrollY > 0) {
-				this.isShowUseContacts = false;
-			} else if (isWeOfferPage && window.scrollY > 0) {
+			if (window.scrollY > 0) {
 				this.isShowUseContacts = false;
 			} else if (window.scrollY > scrollToFooter) {
 				this.isShowUseContacts = false;
@@ -245,7 +238,7 @@
 		}
 
 		handleNavigatingPage(toRight: boolean) {
-			const newPageIndex = toRight ? this.pageId + 1 : this.pageId - 1;
+			const newPageIndex = toRight ? this.pageIndex + 1 : this.pageIndex - 1;
 			const nextPage = this.getPageRouteById(newPageIndex);
 			this.$router.replace(this.localePath(nextPage));
 		}
@@ -253,7 +246,6 @@
 		get getScrollInfo() {
 			if (this.isAboutPage) {
 				if (this.isMdAndUp) {
-
 					return this.about[this.$i18n.locale].scrollPointNavigation;
 				} else {
 					return this.$t('common.swipe');
@@ -264,8 +256,9 @@
 		}
 
 		get isAboutPage() {
-			return this.pageId === this.aboutPageId;
+			return this.pageIndex === this.aboutPageIndex;
 		}
+
 		get isLgAndUp() {
 			return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
 		}

@@ -28,11 +28,15 @@ export class PagesEntity extends BaseEntity {
 	/**
 	 * [content description]
 	 */
-	@OneToMany(() => ContentEntity, content => content.page, {
-		nullable: true,
-		cascade: true,
-		eager: true,
-	})
+	@OneToMany(
+		() => ContentEntity,
+		content => content.page,
+		{
+			nullable: true,
+			cascade: true,
+			eager: true,
+		},
+	)
 	@ApiProperty({
 		default: [],
 		nullable: true,

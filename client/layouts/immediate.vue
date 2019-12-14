@@ -1,22 +1,8 @@
 <template>
 	<v-app>
-		<!-- shows video on md using sources otherwise using default src -->
-		<!-- TODO: (vadim) change to videoMobile when get proper videos-->
 		<client-only>
 			<video-background
 				id="video-bg"
-				:sources="[
-					{
-						src: videoBg.videoPc
-							? getDynamicAssets(`/videos${videoBg.videoPc}`)
-							: '',
-						res: 600,
-						autoplay: true,
-						poster: videoBg.cover
-							? getDynamicAssets(`/images/covers${videoBg.cover}`)
-							: '',
-					},
-				]"
 				:src="
 					videoBg.videoPc ? getDynamicAssets(`/videos${videoBg.videoPc}`) : ''
 				"
@@ -25,6 +11,7 @@
 						? getDynamicAssets(`/images/covers${videoBg.cover}`)
 						: ''
 				"
+				autoplay
 			/>
 		</client-only>
 		<v-app-bar
@@ -120,7 +107,7 @@
 					:delay="getAnimationDelay"
 				>
 					<p class="bold-italic-preview d-flex mt-md-3">
-						<span :style="getPageIndexFont">0{{ pageId }}</span>
+						<span :style="getPageIndexFont">0{{ pageIndex }}</span>
 						<span
 							class="total-pages mt-1 mt-sm-2"
 							:style="getPageTotalIndexFont"
@@ -205,13 +192,14 @@
 	})
 	export default class ImmediatetLayout extends Vue {
 		@Getter('getPageByRoute') getPageByRoute;
-		@Getter('getPageId') pageId;
+		@Getter('getPageIndex') pageIndex;
 		@Getter('getPageStage') pages;
 		@Getter('getPageVideoBg') videoBg;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 		@Getter('visibilityLoader') visibilityLoader;
 		@Mutation('changeScrollBar') changeScrollBar;
 		@Mutation('changeIsHideAnimationContent') changeIsHideAnimationContent;
+		@Mutation('setPageIdByPath') setPageIdByPath;
 
 		isShowMobileMenu: boolean = false;
 		isStartAnimation: boolean = false;
@@ -272,13 +260,19 @@
 		toggleVisibilityMobileMenu() {
 			this.isShowMobileMenu = !this.isShowMobileMenu;
 		}
+
+		created() {
+			this.setPageIdByPath(this.$router.currentRoute.path);
+		}
 		mounted() {
 			this.isStartAnimation = true;
 
 			// hide scrollBar on any route change
-			this.$router.beforeHooks.push((prevRoute, nextRoute, next) => {
+			this.$router.beforeHooks.push((nextRoute, prevRoute, next) => {
 				this.changeScrollBar(false);
 				setTimeout(() => next(), 25);
+
+				this.setPageIdByPath(nextRoute.path);
 			});
 		}
 	}
@@ -377,17 +371,17 @@
 		width: 100vw
 		height: 100vh
 
-	.theme--light.v-btn::before	
+	.theme--light.v-btn::before
 		border-radius: 0 !important
 		border: 0 !important
 
-	.theme--light.v-btn:hover::before	
+	.theme--light.v-btn:hover::before
 		border-radius: 0 !important
 		border: 0 !important
 
 	.v-btn--round
 		border-radius: 0 !important
-	
+
 	.desktop-link:hover
 		opacity: 0.5
 
@@ -404,5 +398,4 @@
 	.close-menu
 		display: flex
 		justify-content: flex-end
-
 </style>

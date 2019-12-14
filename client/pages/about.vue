@@ -198,12 +198,10 @@
 	})
 	export default class AboutPage extends Vue {
 		@Getter('AboutModule/getStage') about;
-		@Getter('getPageId') pageId;
 		@Getter('getPageRouteById') getPageRouteById;
 		@Getter('getContactBarVisibility') isShowContactBar;
 		@Getter('visibilityLoader') visibilityLoader;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
-		@Mutation('changePageId') changePageId;
 		@Mutation('changeContactBar') changeContactBar;
 
 		curStage: number = 0;
@@ -314,10 +312,6 @@
 				this.stageAbout = this.curStage;
 				this.stageText = 0;
 			}
-		}
-
-		created() {
-			this.changePageId(1);
 		}
 
 		mounted() {

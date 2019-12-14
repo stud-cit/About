@@ -28,7 +28,10 @@ export class ContentEntity extends BaseEntity {
 	/**
 	 * [page description]
 	 */
-	@ManyToOne(() => PagesEntity, page => page.content)
+	@ManyToOne(
+		() => PagesEntity,
+		page => page.content,
+	)
 	public readonly page: string;
 
 	/**

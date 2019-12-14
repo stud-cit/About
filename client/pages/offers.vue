@@ -131,7 +131,6 @@
 	export default class OffersPage extends Vue {
 		@Getter('OffersModule/getStage') weOffers;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
-		@Mutation('changePageId') changePageId;
 
 		observers: IntersectionObserver[] = [];
 		representationToAnimate: number[] = [];
@@ -149,10 +148,6 @@
 		}
 		get getCardContentFont() {
 			return { fontSize: `${this.getAdaptiveSize('cardContentFont')}px` };
-		}
-
-		created() {
-			this.changePageId(2);
 		}
 
 		setAnimation(entry, representationIndex, observer) {

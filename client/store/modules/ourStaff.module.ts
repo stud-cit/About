@@ -60,7 +60,7 @@ class OurStaffState {
 	};
 	ru: OurStaffLocaleModel = {
 		previewTitle:
-		'Те люди, которые могут легко реализовать все то, что вы хотите.',
+			'Те люди, которые могут легко реализовать все то, что вы хотите.',
 		previewDescription: 'Вместе мы можем больше, чем в одиночку.',
 		staff: [
 			{
@@ -102,7 +102,7 @@ class OurStaffState {
 	};
 	en: OurStaffLocaleModel = {
 		previewTitle:
-		'Many people who can easily realize all things which you wish.',
+			'Many people who can easily realize all things which you wish.',
 		previewDescription: 'Together we can more than one by one.',
 		staff: [
 			{

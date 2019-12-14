@@ -97,15 +97,10 @@
 	})
 	export default class PortfolioPage extends Vue {
 		@Getter('PortfolioModule/getStage') portfolio;
-		@Mutation('changePageId') changePageId;
 
 		get isMdAndUp() {
 			return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
 		}
-		created() {
-			this.changePageId(4);
-		}
-
 		get getProjectTitleFont() {
 			return { fontSize: `${this.getAdaptiveSize('projectTitleFont')}px` };
 		}
