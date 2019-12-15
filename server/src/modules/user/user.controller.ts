@@ -5,11 +5,11 @@ import { AuthGuard } from '@nestjs/passport';
 import { DeleteResult } from 'typeorm';
 
 import { User } from '../../common/decorators/user.decorator';
+import { ID } from '../../common/dto';
 
 import { UserRequest } from './dto/user.dto';
 import { UserService } from './user.service';
 import { UserEntity } from './user.entity';
-import { ID } from '../../common/dto/id.dto';
 
 /**
  * [Controller description]

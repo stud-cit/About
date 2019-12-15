@@ -9,7 +9,7 @@ import { PageService } from './page.service';
 import { PageEntity } from './page.entity';
 
 import { I18nInterceptor } from '../../common/interceptors/i18n.interceptor';
-import { ID } from '../../common/dto/id.dto';
+import { ID, Filter } from '../../common/dto';
 
 /**
  * [Controller description]
@@ -47,7 +47,7 @@ export class PageController {
 	@Get()
 	@UseInterceptors(new I18nInterceptor())
 	@ApiCreatedResponse({ type: [PageEntity] })
-	public async selectAll(@Query() filter: ID): Promise<PageEntity[]> {
+	public async selectAll(@Query() filter: Filter): Promise<PageEntity[]> {
 		return await this.pageService.selectAll(filter);
 	}
 
