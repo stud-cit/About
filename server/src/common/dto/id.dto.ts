@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsUUID } from 'class-validator';
+import { IsUUID, IsOptional } from 'class-validator';
 
 /**
  * [ID description]
@@ -10,6 +10,7 @@ export class ID {
 	 * [id description]
 	 */
 	@IsUUID()
+	@IsOptional()
 	@ApiProperty({
 		readOnly: true,
 		required: false,

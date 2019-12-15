@@ -1,4 +1,4 @@
-import { IsUUID, IsOptional, MaxLength, Length } from 'class-validator';
+import { IsOptional, MaxLength, Length } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 /**
@@ -6,16 +6,6 @@ import { ApiProperty } from '@nestjs/swagger';
  * @return         [description]
  */
 export class ContentRequest {
-	/**
-	 * [page description]
-	 */
-	@IsUUID()
-	@ApiProperty({
-		maxLength: 255,
-		example: 'b4e19ca1-48ea-482c-81ea-1f646d7f75d9',
-	})
-	public readonly page: string;
-
 	/**
 	 * [lang description]
 	 */

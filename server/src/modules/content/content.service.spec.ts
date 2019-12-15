@@ -45,12 +45,12 @@ describe('Content Service', () => {
 	});
 
 	describe('selectOne', () => {
-		it('should be return page', () => {});
+		it('should be return content', () => {});
 		it('should be return exception', () => {});
 	});
 
 	describe('updateOne', () => {
-		it('should be return update page', () => {});
+		it('should be return update content', () => {});
 		it('should be return exception', () => {});
 	});
 

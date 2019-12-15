@@ -39,12 +39,13 @@ export class ContentController {
 
 	/**
 	 * [selectAll description]
-	 * @return [description]
+	 * @param  @Query( [description]
+	 * @return         [description]
 	 */
 	@Get()
 	@ApiCreatedResponse({ type: [ContentEntity] })
-	public async selectAll(): Promise<ContentEntity[]> {
-		return await this.contentService.selectAll();
+	public async selectAll(@Query() filter: ID): Promise<ContentEntity[]> {
+		return await this.contentService.selectAll(filter);
 	}
 
 	/**

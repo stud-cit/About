@@ -40,10 +40,13 @@ export class ContentService {
 
 	/**
 	 * [selectAll description]
+	 * @param  where [description]
 	 * @return [description]
 	 */
-	public async selectAll(): Promise<ContentEntity[]> {
-		const options = { where: {}, ttl: this.TTL };
+	public async selectAll(
+		where: Partial<ContentEntity>,
+	): Promise<ContentEntity[]> {
+		const options = { where, ttl: this.TTL };
 		return await this.contentRepository.find(options).catch(() => {
 			throw new NotFoundException('Content not found');
 		});
