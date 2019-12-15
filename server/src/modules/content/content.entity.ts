@@ -2,11 +2,13 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
 	Column,
 	Entity,
+	OneToOne,
 	ManyToOne,
 	BaseEntity,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
 
+import { StorageEntity } from '../storage/storage.entity';
 import { PageEntity } from '../page/page.entity';
 
 /**
@@ -30,6 +32,17 @@ export class ContentEntity extends BaseEntity {
 	 */
 	@ManyToOne(() => PageEntity, page => page.content)
 	public readonly page: string;
+
+	/**
+	 * [cover description]
+	 */
+	@OneToOne(() => StorageEntity)
+	@ApiProperty({
+		default: null,
+		nullable: true,
+	})
+	@Column('varchar', { nullable: true })
+	public readonly cover: Partial<StorageEntity>;
 
 	/**
 	 * [lang description]
@@ -65,18 +78,6 @@ export class ContentEntity extends BaseEntity {
 	})
 	@Column('varchar', { nullable: true })
 	public readonly description: string;
-
-	/**
-	 * [cover description]
-	 */
-	@ApiProperty({
-		default: null,
-		nullable: true,
-		maxLength: 255,
-		example: '/example.jpg',
-	})
-	@Column('varchar', { nullable: true })
-	public readonly cover: string;
 
 	/**
 	 * [createAt description]

@@ -1,5 +1,5 @@
 import { ConflictException, NotFoundException } from '@nestjs/common';
-import { Repository, DeleteResult } from 'typeorm';
+import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 
@@ -27,11 +27,11 @@ export class UserService {
 
 	/**
 	 * [createOne description]
-	 * @param  user [description]
+	 * @param  data [description]
 	 * @return      [description]
 	 */
-	public async createOne(user: Partial<UserEntity>): Promise<UserEntity> {
-		return await this.userRepository.save(user).catch(() => {
+	public async createOne(data: Partial<UserEntity>): Promise<UserEntity> {
+		return await this.userRepository.save(data).catch(() => {
 			throw new ConflictException(`User already exists`);
 		});
 	}
@@ -62,16 +62,15 @@ export class UserService {
 
 	/**
 	 * [updateOne description]
-	 * @param  user  [description]
-	 * @param  _user [description]
+	 * @param  id  [description]
+	 * @param  data [description]
 	 * @return       [description]
 	 */
 	public async updateOne(
-		user: UserEntity,
-		_user: Partial<UserEntity>,
-	): Promise<UserEntity> {
-		const mergeUser = this.userRepository.merge(user, _user);
-		return await this.userRepository.save(mergeUser).catch(() => {
+		id: UserEntity['id'],
+		data: Partial<UserEntity>,
+	): Promise<UpdateResult> {
+		return await this.userRepository.update(id, data).catch(() => {
 			throw new ConflictException(`User already exists`);
 		});
 	}

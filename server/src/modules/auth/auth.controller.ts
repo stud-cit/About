@@ -49,6 +49,11 @@ export class AuthController {
 		}
 	}
 
+	/**
+	 * [updateOne description]
+	 * @param  @User( [description]
+	 * @return        [description]
+	 */
 	@Get()
 	@ApiBearerAuth()
 	@UseGuards(AuthGuard('jwt'))

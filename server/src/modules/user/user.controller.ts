@@ -59,10 +59,11 @@ export class UserController {
 	@Patch()
 	@ApiCreatedResponse({ type: UserEntity })
 	public async updateOne(
-		@User() user: UserEntity,
+		@User() { id }: UserEntity,
 		@Body() data: UserRequest,
 	): Promise<UserEntity> {
-		return await this.userService.updateOne(user, data);
+		await this.userService.updateOne(id, data);
+		return await this.userService.selectOne({ id });
 	}
 
 	/**

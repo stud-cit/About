@@ -3,18 +3,24 @@ import { ApiProperty } from '@nestjs/swagger';
 
 /**
  * [description]
- * @return         [description]
  */
-export class ID {
+export class CoverRequest {
 	/**
-	 * [id description]
+	 * [image description]
 	 */
 	@IsUUID()
 	@IsOptional()
 	@ApiProperty({
-		readOnly: true,
 		required: false,
 		example: 'b4e19ca1-48ea-482c-81ea-1f646d7f75d9',
 	})
-	public readonly id: string;
+	readonly image: string;
+
+	@IsUUID()
+	@IsOptional()
+	@ApiProperty({
+		required: false,
+		example: 'b4e19ca1-48ea-482c-81ea-1f646d7f75d9',
+	})
+	readonly video: string;
 }

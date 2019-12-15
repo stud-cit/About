@@ -1,5 +1,7 @@
-import { IsOptional, MaxLength, Length } from 'class-validator';
+import { IsOptional, MaxLength, Length, ValidateNested } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+
+import { CoverRequest } from '../../../modules/storage/dto/cover.dto';
 
 /**
  * [PageRequest description]
@@ -18,6 +20,18 @@ export class PageRequest {
 		required: false,
 	})
 	public readonly lang: string;
+
+	/**
+	 * [cover description]
+	 */
+	@IsOptional()
+	@ValidateNested()
+	@ApiProperty({
+		default: null,
+		nullable: true,
+		required: false,
+	})
+	public readonly cover: CoverRequest;
 
 	/**
 	 * [title description]
@@ -46,18 +60,4 @@ export class PageRequest {
 		example: 'example',
 	})
 	public readonly description: string;
-
-	/**
-	 * [cover description]
-	 */
-	@IsOptional()
-	@MaxLength(255)
-	@ApiProperty({
-		default: null,
-		nullable: true,
-		maxLength: 255,
-		required: false,
-		example: '/example.jpg',
-	})
-	public readonly cover: string;
 }
