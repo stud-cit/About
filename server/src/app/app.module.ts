@@ -1,9 +1,9 @@
 import { Global, Module } from '@nestjs/common';
 
 import { DatabaseModule } from '../database/database.module';
-import { StorageModule } from '../storage/storage.module';
 import { ConfigModule } from '../config/config.module';
 
+import { StorageModule } from '../modules/storage/storage.module';
 import { ContentModule } from '../modules/content/content.module';
 import { PageModule } from '../modules/page/page.module';
 import { AuthModule } from '../modules/auth/auth.module';
@@ -13,8 +13,8 @@ import { UserModule } from '../modules/user/user.module';
 @Module({
 	imports: [
 		DatabaseModule,
-		StorageModule,
 		ConfigModule,
+		StorageModule,
 		ContentModule,
 		PageModule,
 		AuthModule,
