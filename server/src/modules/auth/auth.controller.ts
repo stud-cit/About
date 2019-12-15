@@ -1,8 +1,12 @@
-import { ApiTags, ApiCreatedResponse } from '@nestjs/swagger';
-import { Controller, Body, Post } from '@nestjs/common';
+import { ApiTags, ApiBearerAuth, ApiCreatedResponse } from '@nestjs/swagger';
+import { Controller, UseGuards, Post, Get, Body } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+
+import { User } from '../../common/decorators/user.decorator';
 
 import { UserRequest } from '../user/dto/user.dto';
 import { UserService } from '../user/user.service';
+import { UserEntity } from '../user/user.entity';
 
 import { JWTRequest } from './dto/token.dto';
 import { AuthService } from './auth.service';
@@ -43,5 +47,13 @@ export class AuthController {
 			const user = await this.userService.createOne(data);
 			return await this.authService.createToken(user);
 		}
+	}
+
+	@Get()
+	@ApiBearerAuth()
+	@UseGuards(AuthGuard('jwt'))
+	@ApiCreatedResponse({ type: UserEntity })
+	public async updateOne(@User() user: UserEntity): Promise<UserEntity> {
+		return user;
 	}
 }

@@ -38,10 +38,11 @@ export class UserService {
 
 	/**
 	 * [selectAll description]
-	 * @return [description]
+	 * @param  where [description]
+	 * @return       [description]
 	 */
-	public async selectAll(): Promise<UserEntity[]> {
-		const options = { where: {}, ttl: this.TTL };
+	public async selectAll(where?: Partial<UserEntity>): Promise<UserEntity[]> {
+		const options = { where, ttl: this.TTL };
 		return await this.userRepository.find(options).catch(() => {
 			throw new NotFoundException('User not found');
 		});
