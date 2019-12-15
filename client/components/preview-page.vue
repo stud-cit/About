@@ -119,7 +119,7 @@
 							class="gray font-weight-regular"
 							:style="getPreviewInfoFont"
 						>
-							{{ $t(getScrollInfo) }}
+							{{ getScrollInfo }}
 						</ContentBlock>
 					</v-row>
 				</v-col>
@@ -182,17 +182,16 @@
 		props: ['title', 'subtitle', 'description', 'iconDown'],
 	})
 	export default class PreviewPage extends Vue {
+		@Getter('AboutModule/getStage') about;
 		@Getter('getPageByRoute') getPageByRoute;
-		@Getter('getPageId') pageId;
-		@Getter('getPageRouteById') getPageRouteById;
+		@Getter('getPageIndex') pageIndex;
+		@Getter('getPageRouteByIndex') getPageRouteByIndex;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 		@Getter('visibilityLoader') visibilityLoader;
 		@Mutation('changeIsHideAnimationContent') changeIsHideAnimationContent;
 
 		isShowUseContacts: boolean = true;
-		aboutPageId: number = 1;
-		portfolioPageId: number = 4;
-		weofferPageId: number = 2;
+		aboutPageIndex: number = 1;
 
 		// animation
 		isStartAnimation: boolean = false;
@@ -216,13 +215,8 @@
 			const windowHeight = window.innerHeight;
 			const scrollHeight = document.body.scrollHeight;
 			const scrollToFooter = scrollHeight - windowHeight * 2;
-			const isPortfolioPage = this.pageId === this.portfolioPageId;
-			const isWeOfferPage = this.pageId === this.weofferPageId;
 
-			// on porfolio page we have to hide if any scroll we have
-			if (isPortfolioPage && window.scrollY > 0) {
-				this.isShowUseContacts = false;
-			} else if (isWeOfferPage && window.scrollY > 0) {
+			if (window.scrollY > 0) {
 				this.isShowUseContacts = false;
 			} else if (window.scrollY > scrollToFooter) {
 				this.isShowUseContacts = false;
@@ -244,26 +238,29 @@
 		}
 
 		handleNavigatingPage(toRight: boolean) {
-			const newPageIndex = toRight ? this.pageId + 1 : this.pageId - 1;
-			const nextPage = this.getPageRouteById(newPageIndex);
+			const newPageIndex = toRight ? this.pageIndex + 1 : this.pageIndex - 1;
+			const nextPage = this.getPageRouteByIndex(newPageIndex);
+
+			console.log(nextPage);
 			this.$router.replace(this.localePath(nextPage));
 		}
 
 		get getScrollInfo() {
 			if (this.isAboutPage) {
 				if (this.isMdAndUp) {
-					return 'about.scrollPointNavigation';
+					return this.about[this.$i18n.locale].scrollPointNavigation;
 				} else {
-					return 'common.swipe';
+					return this.$t('common.swipe');
 				}
 			} else {
-				return 'common.scroll';
+				return this.$t('common.scroll');
 			}
 		}
 
 		get isAboutPage() {
-			return this.pageId === this.aboutPageId;
+			return this.pageIndex === this.aboutPageIndex;
 		}
+
 		get isLgAndUp() {
 			return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
 		}

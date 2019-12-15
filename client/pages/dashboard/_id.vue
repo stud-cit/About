@@ -23,16 +23,15 @@
 	</v-row>
 </template>
 
-
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { Getter, Mutation } from 'vuex-class';
+	import { Component, Vue } from 'vue-property-decorator';
+	import { Getter, Mutation } from 'vuex-class';
 
-@Component
-export default class DashboardPage extends Vue {
-	@Getter('getPageStage') pages;
+	@Component
+	export default class DashboardPage extends Vue {
+		@Getter('getPageStage') pages;
 
-	imagePageGradient: string =
-		'to top right, rgba(115, 115, 115, .33), rgba(32, 32, 72, .7)';
-}
+		imagePageGradient: string =
+			'to top right, rgba(115, 115, 115, .33), rgba(32, 32, 72, .7)';
+	}
 </script>

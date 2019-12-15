@@ -3,11 +3,18 @@ import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { Store } from 'vuex';
 
 interface AboutLocaleModel {
+	readonly previewDescription: string;
+	readonly backToStart: string;
+	readonly scrollPointNavigation: string;
 	readonly slides: string[];
 }
 
 class AboutState {
 	ua: AboutLocaleModel = {
+		previewDescription: 'Ми можемо зробити цей світ краще.',
+		backToStart: 'На початок',
+		scrollPointNavigation:
+			'Використовуйте контрольні точки для переміщення по сторінці',
 		slides: [
 			`СтудЦІТ - це команда з талановитих фахівців, для яких виготовлення сайтів не робота,
 			а частина життя. Можливість постійно вдосконалюватися, вирішувати нетривіальні
@@ -21,6 +28,10 @@ class AboutState {
 		],
 	};
 	ru: AboutLocaleModel = {
+		previewDescription: 'Мы можем сделать этот мир лучше.',
+		backToStart: 'В начало',
+		scrollPointNavigation:
+			'Используйте контрольные точки для навигации по страничке',
 		slides: [
 			`СтудЦИТ – это команда из талантливых специалистов, для которых изготовление сайтов не работа,
 			а часть жизни. Возможность постоянно совершенствоваться,
@@ -35,6 +46,9 @@ class AboutState {
 		],
 	};
 	en: AboutLocaleModel = {
+		previewDescription: 'We can make this world better.',
+		backToStart: 'Back to start',
+		scrollPointNavigation: 'Use scroll point for page navigation',
 		slides: [
 			`Student Center of Information Technologies (StudCIT) is a team of talented
 			professionals for whom website design is not a job but a part of life. There

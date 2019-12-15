@@ -9,11 +9,17 @@ interface ReperesentationModel {
 }
 
 interface OffersLocaleModel {
+	readonly previewTitle: string;
+	readonly previewSubtitle: string;
+	readonly previewDescription: string;
 	readonly offers: ReperesentationModel[];
 }
 
 class OffersState {
 	ua: OffersLocaleModel = {
+		previewTitle: 'Ви знаєте, що ми можемо?',
+		previewSubtitle: 'Що ми робимо? Що ми підтримуємо?',
+		previewDescription: 'Наші можливості обмежені лише нашою уявою.',
 		offers: [
 			{
 				title: 'Розробка веб-сайту для різних цілей',
@@ -40,6 +46,10 @@ class OffersState {
 		],
 	};
 	ru: OffersLocaleModel = {
+		previewTitle: 'Ты знаешь что мы можем?',
+		previewSubtitle: 'Что мы делаем? Что мы поддерживаем?',
+		previewDescription:
+			'Наши возможности ограничены только нашим воображением.',
 		offers: [
 			{
 				title: 'Разработка веб-сайта для различных целей',
@@ -66,6 +76,10 @@ class OffersState {
 		],
 	};
 	en: OffersLocaleModel = {
+		previewTitle: 'Do you know what we can?',
+		previewSubtitle: 'What we do? What we support?',
+		previewDescription:
+			'Our possibilities are limited only by our imagination.',
 		offers: [
 			{
 				title: 'Website development for different purposes',

@@ -19,7 +19,7 @@
 						>
 							<PreviewPage
 								:title="$t('common.companyName')"
-								:description="$t('about.previewDescription')"
+								:description="about[$i18n.locale].previewDescription"
 								:icon-down="false"
 							/>
 						</v-col>
@@ -98,7 +98,7 @@
 					v-if="curStage > about[$i18n.locale].slides.length"
 					@click="backToStart"
 				>
-					{{ $t('about.backToStart') }}
+					{{ about[$i18n.locale].backToStart }}
 				</p>
 				<OpacityBox
 					:pose="
@@ -198,12 +198,9 @@
 	})
 	export default class AboutPage extends Vue {
 		@Getter('AboutModule/getStage') about;
-		@Getter('getPageId') pageId;
-		@Getter('getPageRouteById') getPageRouteById;
 		@Getter('getContactBarVisibility') isShowContactBar;
 		@Getter('visibilityLoader') visibilityLoader;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
-		@Mutation('changePageId') changePageId;
 		@Mutation('changeContactBar') changeContactBar;
 
 		curStage: number = 0;
@@ -314,10 +311,6 @@
 				this.stageAbout = this.curStage;
 				this.stageText = 0;
 			}
-		}
-
-		created() {
-			this.changePageId(1);
 		}
 
 		mounted() {

@@ -36,6 +36,48 @@ interface ContactsModel {
 	en: ContactsLocaleModel;
 }
 
+const mockedPages = [
+	{
+		id: '1wscz',
+		title: 'pages.about',
+		link: 'about',
+		videoBg: {
+			cover: '/about.jpg',
+			videoMobile: '/about-us-mobile.mp4',
+			videoPc: '/about-us-pc.mp4',
+		},
+	},
+	{
+		id: '2sfpdsokf',
+		title: 'pages.weOffers',
+		link: 'offers',
+		videoBg: {
+			cover: '/offers.jpg',
+			videoMobile: '/we-offer-mobile.mp4',
+			videoPc: '/we-offer-pc.mp4',
+		},
+	},
+	{
+		id: '3x[vppor',
+		title: 'pages.ourStaff',
+		link: 'our-staff',
+		videoBg: {
+			cover: '/our-staff.jpg',
+			videoMobile: '/staff-mobile.mp4',
+			videoPc: '/staff-pc.mp4',
+		},
+	},
+	{
+		id: '4srcl-fdspkf',
+		title: 'pages.portfolio',
+		link: 'portfolio',
+		videoBg: {
+			cover: '/portfolio.jpg',
+			videoMobile: '/portfolio-mobile.mp4',
+			videoPc: '/portfolio-pc.mp4',
+		},
+	},
+];
 class RootState {
 	auth!: any;
 	error!: any;
@@ -44,48 +86,7 @@ class RootState {
 	showScrollBar: boolean = false;
 	isHideAnimationContent: boolean = false;
 	pageId = 0;
-	pages: PageModel[] = [
-		{
-			id: 1,
-			title: 'pages.about',
-			link: 'about',
-			videoBg: {
-				cover: '/about.jpg',
-				videoMobile: '/about-us-mobile.mp4',
-				videoPc: '/about-us-pc.mp4',
-			},
-		},
-		{
-			id: 2,
-			title: 'pages.weOffers',
-			link: 'offers',
-			videoBg: {
-				cover: '/offers.jpg',
-				videoMobile: '/we-offer-mobile.mp4',
-				videoPc: '/we-offer-pc.mp4',
-			},
-		},
-		{
-			id: 3,
-			title: 'pages.ourStaff',
-			link: 'our-staff',
-			videoBg: {
-				cover: '/our-staff.jpg',
-				videoMobile: '/staff-mobile.mp4',
-				videoPc: '/staff-pc.mp4',
-			},
-		},
-		{
-			id: 4,
-			title: 'pages.portfolio',
-			link: 'portfolio',
-			videoBg: {
-				cover: '/portfolio.jpg',
-				videoMobile: '/portfolio-mobile.mp4',
-				videoPc: '/portfolio-pc.mp4',
-			},
-		},
-	];
+	pages: PageModel[] = [];
 	contacts: ContactsModel = {
 		ua: {
 			email: 'STUDCITMAIL@GMAIL.COM',
@@ -144,16 +145,20 @@ class RootGetters extends Getters<RootState> {
 		return this.state.pages;
 	}
 
+	get getPageIndex(): number {
+		const matchingIndex = this.state.pages.findIndex(
+			(page: PageModel) => page.id === this.state.pageId,
+		);
+		return matchingIndex + 1;
+	}
 	get getPageId(): number {
 		return this.state.pageId;
 	}
 
-	get getPageRouteById(): (index: number) => string {
+	get getPageRouteByIndex(): (index: number) => string {
 		return (index: number) => {
 			const changedIndex = index > 4 ? 1 : index < 1 ? 4 : index;
-			const currentPage = this.state.pages.find(
-				({ id }: PageModel) => id === changedIndex,
-			);
+			const currentPage = this.state.pages[changedIndex];
 			return currentPage ? currentPage.link : '';
 		};
 	}
@@ -166,11 +171,22 @@ class RootMutations extends Mutations<RootState> {
 	setError(data: any) {
 		return Vue.set(this.state, 'error', data);
 	}
+	setPages(pages: PageModel[]) {
+		return Vue.set(this.state, 'pages', pages);
+	}
 	hideLoader() {
 		return Vue.set(this.state, 'visibilityLoader', false);
 	}
-	changePageId(pageId: number) {
-		return Vue.set(this.state, 'pageId', pageId);
+	setPageIdByPath(path: string) {
+		const pages = this.state.pages;
+
+		const matchingPage = pages.find((page: PageModel) =>
+			path.includes(page.link),
+		);
+
+		if (matchingPage) {
+			Vue.set(this.state, 'pageId', matchingPage.id);
+		}
 	}
 	changeContactBar(visibility: boolean) {
 		return Vue.set(this.state, 'showContactBar', visibility);
@@ -193,6 +209,18 @@ class RootActions extends Actions<
 
 	$init(store: Store<NuxtAxiosInstance>): void {
 		this.store = store;
+	}
+
+	async nuxtServerInit({
+		app: {
+			store: { commit },
+		},
+	}) {
+		return await new Promise(res => {
+			setTimeout(() => {
+				res(commit('setPages', mockedPages));
+			}, 300);
+		});
 	}
 
 	async authorizationUser(data: any): Promise<void> {

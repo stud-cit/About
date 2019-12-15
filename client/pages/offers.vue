@@ -3,9 +3,9 @@
 		<v-row justify="center">
 			<v-col cols="12" sm="10">
 				<PreviewPage
-					:title="$t('offers.previewTitle')"
-					:subtitle="$t('offers.previewSubtitle')"
-					:description="$t('offers.previewDescription')"
+					:title="weOffers[$i18n.locale].previewTitle"
+					:subtitle="weOffers[$i18n.locale].previewSubtitle"
+					:description="weOffers[$i18n.locale].previewDescription"
 					:icon-down="false"
 				/>
 				<ScrollBar />
@@ -131,7 +131,6 @@
 	export default class OffersPage extends Vue {
 		@Getter('OffersModule/getStage') weOffers;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
-		@Mutation('changePageId') changePageId;
 
 		observers: IntersectionObserver[] = [];
 		representationToAnimate: number[] = [];
@@ -149,10 +148,6 @@
 		}
 		get getCardContentFont() {
 			return { fontSize: `${this.getAdaptiveSize('cardContentFont')}px` };
-		}
-
-		created() {
-			this.changePageId(2);
 		}
 
 		setAnimation(entry, representationIndex, observer) {
