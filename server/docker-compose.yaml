@@ -2,26 +2,28 @@ version: '3'
 services:
 
   database:
-    image: mysql:5.7.23
-    container_name: database
+    image: mdillon/postgis:11-alpine
+    container_name: Database
+    environment:
+      POSTGRES_DB: SCIT
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
     ports:
-      - ${TYPEORM_PORT}:3306
+    - 5432:5432
     volumes:
       - /sessions
-    environment:
-      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
-      MYSQL_DATABASE: ${TYPEORM_DATABASE}
-      MYSQL_USER: ${TYPEORM_USERNAME}
-      MYSQL_PASSWORD: ${TYPEORM_PASSWORD}
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: PHPMyAdmin
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: DatabaseAdmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dev
+      PGADMIN_DEFAULT_PASSWORD: dev
+    ports:
+      - 9000:80
+    volumes:
+      - /sessions
     depends_on:
       - database
     links:
       - database
-    ports:
-      - ${MYADMIN_PORT}:80
-    environment:
-      PMA_HOSTS: database
