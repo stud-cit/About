@@ -1,5 +1,5 @@
+import { Controller, UseGuards, UseInterceptors } from '@nestjs/common';
 import { Post, Get, Patch, Delete, Body, Query } from '@nestjs/common';
-import { Controller, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 import { ApiTags, ApiCreatedResponse, ApiBearerAuth } from '@nestjs/swagger';
@@ -7,6 +7,8 @@ import { ApiTags, ApiCreatedResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { ContentRequest } from './dto/content.dto';
 import { ContentService } from './content.service';
 import { ContentEntity } from './content.entity';
+
+import { I18nInterceptor } from '../../common/interceptors/i18n.interceptor';
 import { ID } from '../../common/dto/id.dto';
 
 /**
@@ -43,6 +45,7 @@ export class ContentController {
 	 * @return         [description]
 	 */
 	@Get()
+	@UseInterceptors(new I18nInterceptor())
 	@ApiCreatedResponse({ type: [ContentEntity] })
 	public async selectAll(@Query() filter: ID): Promise<ContentEntity[]> {
 		return await this.contentService.selectAll(filter);

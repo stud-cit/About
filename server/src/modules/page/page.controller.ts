@@ -7,8 +7,9 @@ import { ApiTags, ApiCreatedResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { PageRequest } from './dto/page.dto';
 import { PageService } from './page.service';
 import { PageEntity } from './page.entity';
-import { ID } from '../../common/dto/id.dto';
+
 import { I18nInterceptor } from '../../common/interceptors/i18n.interceptor';
+import { ID } from '../../common/dto/id.dto';
 
 /**
  * [Controller description]
