@@ -44,11 +44,6 @@ describe('User Service', () => {
 		it('should be return exception', async () => {});
 	});
 
-	describe('selectOne', () => {
-		it('should be return select user', () => {});
-		it('should be return exception', () => {});
-	});
-
 	describe('updateOne', () => {
 		it('should be return update user', () => {});
 		it('should be return exception', () => {});
