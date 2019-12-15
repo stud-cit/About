@@ -5,7 +5,7 @@ import { StorageModule } from '../storage/storage.module';
 import { ConfigModule } from '../config/config.module';
 
 import { ContentModule } from '../modules/content/content.module';
-import { PagesModule } from '../modules/pages/pages.module';
+import { PageModule } from '../modules/page/page.module';
 import { AuthModule } from '../modules/auth/auth.module';
 import { UserModule } from '../modules/user/user.module';
 
@@ -16,7 +16,7 @@ import { UserModule } from '../modules/user/user.module';
 		StorageModule,
 		ConfigModule,
 		ContentModule,
-		PagesModule,
+		PageModule,
 		AuthModule,
 		UserModule,
 	],

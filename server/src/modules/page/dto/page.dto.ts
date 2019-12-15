@@ -1,11 +1,24 @@
-import { IsOptional, MaxLength } from 'class-validator';
+import { IsOptional, MaxLength, Length } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 /**
- * [PagesRequest description]
+ * [PageRequest description]
  * @return         [description]
  */
-export class PagesRequest {
+export class PageRequest {
+	/**
+	 * [lang description]
+	 */
+	@Length(2)
+	@IsOptional()
+	@ApiProperty({
+		default: 'en',
+		example: 'en',
+		maxLength: 2,
+		required: false,
+	})
+	public readonly lang: string;
+
 	/**
 	 * [title description]
 	 */

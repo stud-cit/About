@@ -7,7 +7,7 @@ import {
 	PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { PagesEntity } from '../pages/pages.entity';
+import { PageEntity } from '../page/page.entity';
 
 /**
  * [ContentEntity description]
@@ -28,7 +28,7 @@ export class ContentEntity extends BaseEntity {
 	/**
 	 * [page description]
 	 */
-	@ManyToOne(() => PagesEntity, page => page.content)
+	@ManyToOne(() => PageEntity, page => page.content)
 	public readonly page: string;
 
 	/**

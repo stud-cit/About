@@ -10,11 +10,11 @@ import {
 import { ContentEntity } from '../content/content.entity';
 
 /**
- * [PagesEntity description]
+ * [PageEntity description]
  * @return         [description]
  */
-@Entity('Pages')
-export class PagesEntity extends BaseEntity {
+@Entity('Page')
+export class PageEntity extends BaseEntity {
 	/**
 	 * [id description]
 	 */
@@ -31,14 +31,19 @@ export class PagesEntity extends BaseEntity {
 	@OneToMany(() => ContentEntity, content => content.page, {
 		nullable: true,
 		cascade: true,
-		eager: true,
-	})
-	@ApiProperty({
-		default: [],
-		nullable: true,
-		type: () => [ContentEntity],
 	})
 	public readonly content: ContentEntity[];
+
+	/**
+	 * [lang description]
+	 */
+	@ApiProperty({
+		default: 'en',
+		example: 'en',
+		maxLength: 2,
+	})
+	@Column('varchar', { default: 'en' })
+	public readonly lang: string;
 
 	/**
 	 * [title description]

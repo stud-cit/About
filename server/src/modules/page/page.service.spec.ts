@@ -2,45 +2,45 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { PagesService } from './pages.service';
-import { PagesEntity } from './pages.entity';
+import { PageService } from './page.service';
+import { PageEntity } from './page.entity';
 
-describe('Pages Service', () => {
-	let pagesRepository: Repository<PagesEntity>;
-	let pagesService: PagesService;
+describe('Page Service', () => {
+	let pageRepository: Repository<PageEntity>;
+	let pageService: PageService;
 
 	beforeEach(async () => {
 		const module: TestingModule = await Test.createTestingModule({
 			providers: [
-				PagesService,
+				PageService,
 				{
-					provide: getRepositoryToken(PagesEntity),
+					provide: getRepositoryToken(PageEntity),
 					useClass: Repository,
 				},
 			],
 		}).compile();
 
-		pagesService = module.get<PagesService>(PagesService);
-		pagesRepository = module.get<Repository<PagesEntity>>(
-			getRepositoryToken(PagesEntity),
+		pageService = module.get<PageService>(PageService);
+		pageRepository = module.get<Repository<PageEntity>>(
+			getRepositoryToken(PageEntity),
 		);
 	});
 
 	it('should be defined repository', () => {
-		expect(pagesRepository).toBeDefined();
+		expect(pageRepository).toBeDefined();
 	});
 
 	it('should be defined', () => {
-		expect(pagesService).toBeDefined();
+		expect(pageService).toBeDefined();
 	});
 
 	describe('createOne', () => {
-		it('should be return create pages', () => {});
+		it('should be return create page', () => {});
 		it('should be return exception', () => {});
 	});
 
 	describe('selectAll', () => {
-		it('should be return pages', async () => {});
+		it('should be return page', async () => {});
 		it('should be return exception', async () => {});
 	});
 
@@ -55,7 +55,7 @@ describe('Pages Service', () => {
 	});
 
 	describe('deleteOne', () => {
-		it('should be return delete pages', () => {});
+		it('should be return delete page', () => {});
 		it('should be return exception', () => {});
 	});
 });
