@@ -20,7 +20,7 @@ class AboutState {
 			а частина життя. Можливість постійно вдосконалюватися, вирішувати нетривіальні
 			завдання та використовувати здібності на благо клієнта. Спеціалізуємося на розробці
 			інтернет ресурсів варіативного призначення й складності. Також здатні вирішувати
-			нестандартні завдання, в рамках індивідуальних проектів.`,
+			нестандартні завдання.`,
 			`Детально вивчимо кожен випадок, спроектуємо модель рішення, створимо відповідний
 			дизайн і функціональний прототип, реалізуємо замовлення і закінчимо проект презентацією
 			готового продукту. Незвичайний та свіжий підхід до поставленого завдання, гнучка і
@@ -37,7 +37,7 @@ class AboutState {
 			а часть жизни. Возможность постоянно совершенствоваться,
 			решать нетривиальные задачи и использовать способности на благо клиента.
 			Специализируемся на разработке интернет ресурсов вариативного предназначения
-			и сложности. Также способны решать нестандартные задачи, в рамках индивидуальных проектов.`,
+			и сложности. Также способны решать нестандартные задачи.`,
 			`Детально изучим каждый случай, спроектируем модель решения,
 			создадим подходящий дизайн и функциональный прототип, реализуем заказ и
 			закончим проект презентацией готового продукта. Необычный и свежий подход
@@ -54,8 +54,7 @@ class AboutState {
 			professionals for whom website design is not a job but a part of life. There
 			is an opportunity to constantly improve, solve non-trivial tasks and use abilities
 			for the benefit of the client. We specialize in the development of internet resources
-			of different purpose and complexity. We are also capable of solving non-standard tasks
-			within individual projects.`,
+			of different purpose and complexity. We are also capable of solving non-standard tasks.`,
 			`Let us study each case in detail, design a model of the solution, create the
 			appropriate design and a functional prototype, implement the order and finish the
 			project with the presentation of the finished product. An unusual and new approach
