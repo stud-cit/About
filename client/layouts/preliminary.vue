@@ -155,10 +155,6 @@
 				width: 100vw
 				padding-bottom: 0
 
-		.circle-lang
-			border-radius: 50% !important
-			overflow: hidden
-
 	.mobile-icon
 		background: white
 
@@ -234,4 +230,8 @@
 
 	.margin-top
 		margin-top: 5%
+
+	.circle-lang
+		border-radius: 50% !important
+		overflow: hidden
 </style>

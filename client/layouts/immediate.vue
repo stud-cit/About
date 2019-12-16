@@ -379,8 +379,9 @@
 		border-radius: 0 !important
 		border: 0 !important
 
-	.v-btn--round
-		border-radius: 0 !important
+	.v-dialog--fullscreen
+		.v-btn--round
+			border-radius: 0 !important
 
 	.desktop-link:hover
 		opacity: 0.5
