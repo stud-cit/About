@@ -119,7 +119,7 @@
 							class="gray font-weight-regular"
 							:style="getPreviewInfoFont"
 						>
-							{{ getScrollInfo }}
+							{{ $t(getScrollInfo) }}
 						</ContentBlock>
 					</v-row>
 				</v-col>
@@ -248,12 +248,12 @@
 		get getScrollInfo() {
 			if (this.isAboutPage) {
 				if (this.isMdAndUp) {
-					return this.about[this.$i18n.locale].scrollPointNavigation;
+					return 'common.scrollPointNavigation';
 				} else {
-					return this.$t('common.swipe');
+					return 'common.swipe';
 				}
 			} else {
-				return this.$t('common.scroll');
+				return 'common.scroll';
 			}
 		}
 

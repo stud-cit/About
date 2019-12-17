@@ -60,7 +60,7 @@
 							class="pr-0 pl-0"
 						>
 							<span class="headline d-none d-md-block pr-3">
-								{{ portfolio[$i18n.locale].link }}
+								{{ $t('common.showExample') }}
 							</span>
 							<div class="arrow-right">
 								<v-img

@@ -7,10 +7,13 @@ export default {
 	},
 	common: {
 		backToTop: 'Back to the top',
+		backToStart: 'Back to start',
 		companyName: 'Student Сenter of Information Technology',
 		scroll: 'Scroll down for more information',
 		swipe: 'Swipe left for more information',
 		slogan: 'Speed, quality, simplicity',
+		showExample: 'View Case Study',
+		scrollPointNavigation: 'Use scroll point for page navigation',
 	},
 	contact: {
 		subTitle: 'Use our contacts',

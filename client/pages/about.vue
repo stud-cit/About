@@ -98,7 +98,7 @@
 					v-if="curStage > about[$i18n.locale].slides.length"
 					@click="backToStart"
 				>
-					{{ about[$i18n.locale].backToStart }}
+					{{ $t('common.backToStart') }}
 				</p>
 				<OpacityBox
 					:pose="
