@@ -11,13 +11,12 @@ import { extname, join } from 'path';
 import { diskStorage } from 'multer';
 import { v4 } from 'uuid';
 
-import { ConfigService } from '../../config/config.service';
+import { ConfigService } from '../config';
 
 import { StorageEntity } from './storage.entity';
 
 /**
  * [StorageService description]
- * @return [description]
  */
 @Injectable()
 export class StorageService implements MulterOptionsFactory {
@@ -28,6 +27,7 @@ export class StorageService implements MulterOptionsFactory {
 
 	/**
 	 * [constructor description]
+	 * @param @InjectRepository(StorageEntity [description]
 	 * @param configService [description]
 	 */
 	constructor(

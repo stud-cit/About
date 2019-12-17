@@ -4,11 +4,13 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { Repository } from 'typeorm';
 
-import { ConfigService } from '../../config/config.service';
-import { JwtStrategy } from './strateges/jwt.strategy';
-import { AuthController } from './auth.controller';
+import { ConfigService } from '../../config';
+
 import { UserService } from '../user/user.service';
 import { UserEntity } from '../user/user.entity';
+
+import { JwtStrategy } from './strateges/jwt.strategy';
+import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 
 describe('Auth Controller', () => {

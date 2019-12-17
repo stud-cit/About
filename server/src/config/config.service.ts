@@ -6,8 +6,7 @@ import { join } from 'path';
 import { Config, ConfigMode, ConfigValue } from './interfaces/config.interface';
 
 /**
- * [Injectable description]
- * @return [description]
+ * [ConfigService description]
  */
 @Injectable()
 export class ConfigService {

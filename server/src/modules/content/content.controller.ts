@@ -4,7 +4,7 @@ import { AuthGuard } from '@nestjs/passport';
 
 import { ApiTags, ApiCreatedResponse, ApiBearerAuth } from '@nestjs/swagger';
 
-import { I18nInterceptor } from '../../common/interceptors/i18n.interceptor';
+import { I18nInterceptor } from '../../common/interceptors';
 import { ID, Filter } from '../../common/dto';
 
 import { ContentRequest } from './dto/content.dto';
@@ -14,8 +14,6 @@ import { ContentEntity } from './content.entity';
 /**
  * [Controller description]
  * [API]{@link /api/#/content}
- * @param  'content' [description]
- * @return         [description]
  */
 @ApiTags('content')
 @Controller('content')

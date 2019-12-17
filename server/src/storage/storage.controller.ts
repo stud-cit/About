@@ -10,15 +10,13 @@ import {
 	ApiCreatedResponse,
 } from '@nestjs/swagger';
 
-import { StorageRequest } from './dto/storage.dto';
+import { StorageRequest } from './dto';
 import { StorageService } from './storage.service';
 import { StorageEntity } from './storage.entity';
 
 /**
  * [Controller description]
  * [API]{@link /api/#/storage}
- * @param  'storage' [description]
- * @return        [description]
  */
 @ApiTags('storage')
 @ApiBearerAuth()

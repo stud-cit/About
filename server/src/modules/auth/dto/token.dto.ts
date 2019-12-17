@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 /**
- * [description]
+ * [JWTRequest description]
  */
 export class JWTRequest {
 	/**

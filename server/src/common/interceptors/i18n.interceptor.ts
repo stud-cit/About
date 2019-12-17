@@ -1,15 +1,15 @@
+import { Observable } from 'rxjs';
 import {
 	Injectable,
 	NestInterceptor,
 	ExecutionContext,
 	CallHandler,
 } from '@nestjs/common';
-import { Observable } from 'rxjs';
+
 import { map } from 'rxjs/operators';
 
 /**
  * [I18nInterceptor description]
- * @return [description]
  */
 @Injectable()
 export class I18nInterceptor implements NestInterceptor {
@@ -19,10 +19,10 @@ export class I18nInterceptor implements NestInterceptor {
 	 * @param  next    [description]
 	 * @return         [description]
 	 */
-	intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+	intercept(_context: ExecutionContext, next: CallHandler): Observable<any> {
 		return next.handle().pipe(
 			map(data =>
-				data.reduce((agg, item) => {
+				data.reduce((agg: any[], item: any) => {
 					const group = item.lang;
 					agg[group] = [...(agg[group] || []), item];
 					return agg;

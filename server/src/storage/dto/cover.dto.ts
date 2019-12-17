@@ -2,7 +2,7 @@ import { IsUUID, IsOptional } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 /**
- * [description]
+ * [CoverRequest description]
  */
 export class CoverRequest {
 	/**

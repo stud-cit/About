@@ -1,21 +1,20 @@
 import { Controller, UseGuards, UseInterceptors } from '@nestjs/common';
 import { Post, Get, Patch, Delete, Body, Query } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { DeleteResult } from 'typeorm';
 
 import { ApiTags, ApiCreatedResponse, ApiBearerAuth } from '@nestjs/swagger';
+
+import { I18nInterceptor } from '../../common/interceptors';
+import { ID, Filter } from '../../common/dto';
 
 import { PageRequest } from './dto/page.dto';
 import { PageService } from './page.service';
 import { PageEntity } from './page.entity';
 
-import { I18nInterceptor } from '../../common/interceptors/i18n.interceptor';
-import { ID, Filter } from '../../common/dto';
-
 /**
  * [Controller description]
  * [API]{@link /api/#/page}
- * @param  'page' [description]
- * @return         [description]
  */
 @ApiTags('page')
 @Controller('page')
@@ -78,8 +77,7 @@ export class PageController {
 	@ApiBearerAuth()
 	@UseGuards(AuthGuard('jwt'))
 	@ApiCreatedResponse({ type: PageEntity })
-	public async deleteOne(@Query() { id }: ID): Promise<PageEntity> {
-		const page = await this.pageService.selectOne({ id });
-		return await this.pageService.deleteOne(id).then(() => page);
+	public async deleteOne(@Query() { id }: ID): Promise<DeleteResult> {
+		return await this.pageService.deleteOne(id);
 	}
 }

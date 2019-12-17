@@ -6,8 +6,7 @@ import { Injectable } from '@nestjs/common';
 import { ContentEntity } from './content.entity';
 
 /**
- * [class description]
- * @return [description]
+ * [ContentService description]
  */
 @Injectable()
 export class ContentService {
@@ -27,13 +26,11 @@ export class ContentService {
 
 	/**
 	 * [createOne description]
-	 * @param  content [description]
+	 * @param  data [description]
 	 * @return      [description]
 	 */
-	public async createOne(
-		content: Partial<ContentEntity>,
-	): Promise<ContentEntity> {
-		return await this.contentRepository.save(content).catch(() => {
+	public async createOne(data: Partial<ContentEntity>): Promise<ContentEntity> {
+		return await this.contentRepository.save(data).catch(() => {
 			throw new ConflictException(`Content already exists`);
 		});
 	}
@@ -68,15 +65,15 @@ export class ContentService {
 
 	/**
 	 * [updateOne description]
-	 * @param  content  [description]
-	 * @param  _content [description]
-	 * @return       [description]
+	 * @param  id       [description]
+	 * @param  data [description]
+	 * @return          [description]
 	 */
 	public async updateOne(
 		id: ContentEntity['id'],
-		_content: Partial<ContentEntity>,
+		data: Partial<ContentEntity>,
 	): Promise<UpdateResult> {
-		return await this.contentRepository.update(id, _content).catch(() => {
+		return await this.contentRepository.update(id, data).catch(() => {
 			throw new NotFoundException('Content not found');
 		});
 	}

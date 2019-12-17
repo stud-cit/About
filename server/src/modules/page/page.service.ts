@@ -6,8 +6,7 @@ import { Injectable } from '@nestjs/common';
 import { PageEntity } from './page.entity';
 
 /**
- * [class description]
- * @return [description]
+ * [PageService description]
  */
 @Injectable()
 export class PageService {
@@ -62,7 +61,7 @@ export class PageService {
 
 	/**
 	 * [updateOne description]
-	 * @param  page  [description]
+	 * @param  id    [description]
 	 * @param  _page [description]
 	 * @return       [description]
 	 */

@@ -3,17 +3,14 @@ import { classToPlain } from 'class-transformer';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
 
-import { ConfigService } from '../../config/config.service';
+import { ConfigService } from '../../config';
 
-import { UserRequest } from '../user/dto/user.dto';
-import { UserService } from '../user/user.service';
-import { UserEntity } from '../user/user.entity';
+import { UserRequest, UserService, UserEntity } from '../user';
 
 import { JWTRequest } from './dto/token.dto';
 
 /**
- * [Injectable description]
- * @return [description]
+ * [AuthService description]
  */
 @Injectable()
 export class AuthService {
@@ -31,37 +28,37 @@ export class AuthService {
 
 	/**
 	 * [createToken description]
-	 * @param  user [description]
+	 * @param  data [description]
 	 * @return      [description]
 	 */
-	public async createToken(user: Partial<UserEntity>): Promise<JWTRequest> {
+	public async createToken(data: Partial<UserEntity>): Promise<JWTRequest> {
 		const expiresIn = this.configService.get('JWT_EXPIRE');
-		const token = this.jwtService.sign(classToPlain(user));
+		const token = this.jwtService.sign(classToPlain(data));
 		return { expiresIn, token };
 	}
 
 	/**
 	 * [compareHash description]
-	 * @param  user  [description]
-	 * @param  _user [description]
+	 * @param  data  [description]
+	 * @param  _data [description]
 	 * @return       [description]
 	 */
 	public async compareHash(
-		user: UserRequest,
-		_user: Partial<UserEntity>,
+		data: UserRequest,
+		_data: Partial<UserEntity>,
 	): Promise<boolean> {
-		const hash = await compare(_user.password, user.password);
+		const hash = await compare(_data.password, data.password);
 		if (!hash) throw new UnauthorizedException();
 		return hash;
 	}
 
 	/**
 	 * [validateUser description]
-	 * @param  user [description]
+	 * @param  data [description]
 	 * @return      [description]
 	 */
-	public async validateUser(user: Partial<UserRequest>): Promise<UserEntity> {
-		return await this.userService.selectOne({ email: user.email }).catch(() => {
+	public async validateUser(data: Partial<UserRequest>): Promise<UserEntity> {
+		return await this.userService.selectOne({ email: data.email }).catch(() => {
 			throw new UnauthorizedException();
 		});
 	}
