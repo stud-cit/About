@@ -5,7 +5,6 @@ import { ID } from './id.dto';
 
 /**
  * [Filter description]
- * @return         [description]
  */
 export class Filter extends ID {
 	/**

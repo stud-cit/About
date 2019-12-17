@@ -3,7 +3,6 @@ import { ApiProperty } from '@nestjs/swagger';
 
 /**
  * [StorageEntity description]
- * @return        [description]
  */
 @Entity('Storage')
 export class StorageEntity extends BaseEntity {

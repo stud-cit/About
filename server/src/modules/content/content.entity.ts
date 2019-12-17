@@ -9,12 +9,12 @@ import {
 	PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { StorageEntity } from '../storage/storage.entity';
-import { PageEntity } from '../page/page.entity';
+import { StorageEntity } from '../../storage';
+
+import { PageEntity } from '../page';
 
 /**
  * [ContentEntity description]
- * @return         [description]
  */
 @Entity('Content')
 export class ContentEntity extends BaseEntity {
@@ -27,28 +27,6 @@ export class ContentEntity extends BaseEntity {
 	})
 	@PrimaryGeneratedColumn('uuid')
 	public readonly id: string;
-
-	/**
-	 * [page description]
-	 */
-	@ManyToOne(() => PageEntity, page => page.content)
-	public readonly page: string;
-
-	/**
-	 * [cover description]
-	 */
-	@ApiProperty({
-		default: null,
-		nullable: true,
-		type: () => StorageEntity,
-	})
-	@OneToOne(() => StorageEntity, {
-		nullable: true,
-		cascade: true,
-		eager: true,
-	})
-	@JoinColumn()
-	public readonly cover: Partial<StorageEntity>;
 
 	/**
 	 * [lang description]
@@ -111,4 +89,24 @@ export class ContentEntity extends BaseEntity {
 		onUpdate: 'CURRENT_TIMESTAMP',
 	})
 	public readonly updateAt: Date;
+
+	/**
+	 * [cover description]
+	 */
+	@OneToOne(() => StorageEntity)
+	@ApiProperty({
+		default: null,
+		nullable: true,
+		type: () => StorageEntity,
+	})
+	@Column('varchar', { nullable: true })
+	public readonly cover: Partial<StorageEntity>;
+
+	/**
+	 * [page description]
+	 */
+	@ManyToOne(() => PageEntity, page => page.content, {
+		nullable: false,
+	})
+	public readonly page: string;
 }

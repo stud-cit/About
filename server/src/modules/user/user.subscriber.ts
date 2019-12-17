@@ -6,12 +6,11 @@ import {
 	UpdateEvent,
 } from 'typeorm';
 
-import { ConfigService } from '../../config/config.service';
+import { ConfigService } from '../../config';
 import { UserEntity } from './user.entity';
 
 /**
  * [UserSubscriber description]
- * @return [description]
  */
 @EventSubscriber()
 export class UserSubscriber extends ConfigService

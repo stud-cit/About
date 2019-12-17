@@ -1,11 +1,10 @@
 import { IsOptional, MaxLength, Length, ValidateNested } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-import { CoverRequest } from '../../../modules/storage/dto/cover.dto';
+import { CoverRequest } from '../../../storage';
 
 /**
  * [ContentRequest description]
- * @return         [description]
  */
 export class ContentRequest {
 	/**
@@ -22,18 +21,6 @@ export class ContentRequest {
 	public readonly lang: string;
 
 	/**
-	 * [cover description]
-	 */
-	@IsOptional()
-	@ValidateNested()
-	@ApiProperty({
-		default: null,
-		nullable: true,
-		required: false,
-	})
-	public readonly cover: CoverRequest;
-
-	/**
 	 * [title description]
 	 */
 	@IsOptional()
@@ -41,8 +28,8 @@ export class ContentRequest {
 	@ApiProperty({
 		default: null,
 		nullable: true,
-		maxLength: 255,
 		required: false,
+		maxLength: 255,
 		example: 'example',
 	})
 	public readonly title: string;
@@ -60,4 +47,16 @@ export class ContentRequest {
 		example: 'example',
 	})
 	public readonly description: string;
+
+	/**
+	 * [cover description]
+	 */
+	@IsOptional()
+	@ValidateNested()
+	@ApiProperty({
+		default: null,
+		nullable: true,
+		required: false,
+	})
+	public readonly cover: CoverRequest;
 }

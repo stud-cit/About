@@ -2,8 +2,7 @@ import { IsUUID, IsOptional } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 /**
- * [description]
- * @return         [description]
+ * [ID escription]
  */
 export class ID {
 	/**

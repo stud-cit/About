@@ -1,8 +1,9 @@
 import { Module, Global } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+
 import { dirname } from 'path';
 
-import { ConfigService } from '../config/config.service';
+import { ConfigService } from '../config';
 
 @Global()
 @Module({

@@ -1,20 +1,19 @@
-import { Global, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 
-import { DatabaseModule } from '../database/database.module';
-import { ConfigModule } from '../config/config.module';
+import { DatabaseModule } from '../database';
+import { StorageModule } from '../storage';
+import { ConfigModule } from '../config';
 
-import { StorageModule } from '../modules/storage/storage.module';
-import { ContentModule } from '../modules/content/content.module';
-import { PageModule } from '../modules/page/page.module';
-import { AuthModule } from '../modules/auth/auth.module';
-import { UserModule } from '../modules/user/user.module';
+import { ContentModule } from '../modules/content';
+import { PageModule } from '../modules/page';
+import { AuthModule } from '../modules/auth';
+import { UserModule } from '../modules/user';
 
-@Global()
 @Module({
 	imports: [
 		DatabaseModule,
-		ConfigModule,
 		StorageModule,
+		ConfigModule,
 		ContentModule,
 		PageModule,
 		AuthModule,
