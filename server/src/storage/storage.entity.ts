@@ -23,10 +23,9 @@ export class StorageEntity extends BaseEntity {
 	@ApiProperty({
 		maxLength: 40,
 		nullable: true,
-		uniqueItems: true,
 		example: 'b4e19ca1-48ea-482c-81ea-1f646d7f75d9.jpg',
 	})
-	@Column('varchar', { unique: true, nullable: true })
+	@Column('varchar', { nullable: true })
 	public readonly image: string;
 
 	/**
@@ -35,10 +34,9 @@ export class StorageEntity extends BaseEntity {
 	@ApiProperty({
 		maxLength: 40,
 		nullable: true,
-		uniqueItems: true,
 		example: 'b4e19ca1-48ea-482c-81ea-1f646d7f75d9.mp4',
 	})
-	@Column('varchar', { unique: true, nullable: true })
+	@Column('varchar', { nullable: true })
 	public readonly video: string;
 
 	/**

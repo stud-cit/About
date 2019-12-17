@@ -4,6 +4,7 @@ import {
 	Entity,
 	OneToOne,
 	OneToMany,
+	JoinColumn,
 	BaseEntity,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -114,13 +115,17 @@ export class PageEntity extends BaseEntity {
 	/**
 	 * [cover description]
 	 */
-	@OneToOne(() => StorageEntity)
 	@ApiProperty({
 		default: null,
 		nullable: true,
 		type: () => StorageEntity,
 	})
-	@Column('varchar', { nullable: true })
+	@OneToOne(() => StorageEntity, {
+		eager: true,
+		cascade: true,
+		nullable: true,
+	})
+	@JoinColumn()
 	public readonly cover: Partial<StorageEntity>;
 
 	/**

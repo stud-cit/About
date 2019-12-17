@@ -22,13 +22,20 @@ async function bootstrap() {
 	app.setGlobalPrefix(configService.get('PREFFIX'));
 
 	const document = SwaggerModule.createDocument(app, options);
+	const validationPipe = new ValidationPipe({
+		forbidNonWhitelisted: true,
+		whitelist: true,
+		transform: true,
+	});
 
 	SwaggerModule.setup(configService.get('PREFFIX'), app, document);
 
 	return await app
+		.useGlobalPipes(validationPipe)
 		.useStaticAssets(configService.getDest('DOC_DEST'))
-		.useGlobalPipes(new ValidationPipe())
-		.enableCors()
+		.useStaticAssets(configService.getDest('STORE_DEST'), {
+			prefix: configService.get('STORE_DEST'),
+		})
 		.listen(configService.get('PORT'));
 }
 
