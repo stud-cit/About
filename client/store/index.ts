@@ -37,147 +37,6 @@ interface ContactsModel {
 	en: ContactsLocaleModel;
 }
 
-const mockedPages: Record<string, PageModel[]> = {
-	ua: [{
-			id: '1wscz',
-			title: 'About Us',
-			description: 'We can make this world better',
-			name: '',
-			link: 'about',
-			cover: {
-				image: '/about.jpg',
-				video: '/about-us-pc.mp4',
-			},
-		},
-		{
-			id: '2sfpdsokf',
-			title: 'We Offers',
-			description:
-			'Our possibilities are limited only by our imagination.',
-			name: 'Do you know what we can? <br /> What we do? What we support?',
-			link: 'offers',
-			cover: {
-				image: '/offers.jpg',
-				video: '/we-offer-pc.mp4',
-			},
-		},
-		{
-			id: '3x[vppor',
-			title:
-			'Our Staff',
-			description: 'Together we can more than one by one.',
-			name: 'Many people who can easily realize all things which you wish.',
-			link: 'our-staff',
-			cover: {
-				image: '/our-staff.jpg',
-				video: '/staff-pc.mp4',
-			},
-		},
-		{
-			id: '4srcl-fdspkf',
-			title: 'Portfolio',
-			description: 'The fruits of our humble activity.',
-			name: 'Our implemented incredible <br/> projects which we are proud of.',
-			link: 'portfolio',
-			cover: {
-				image: '/portfolio.jpg',
-				video: '/portfolio-pc.mp4',
-			},
-		}],
-	ru: [{
-		id: '1wscz',
-		title: 'About Us',
-		description: 'We can make this world better',
-		name: '',
-		link: 'about',
-		cover: {
-			image: '/about.jpg',
-			video: '/about-us-pc.mp4',
-		},
-	},
-	{
-		id: '2sfpdsokf',
-		title: 'We Offers',
-		description:
-		'Our possibilities are limited only by our imagination.',
-		name: 'Do you know what we can? <br /> What we do? What we support?',
-		link: 'offers',
-		cover: {
-			image: '/offers.jpg',
-			video: '/we-offer-pc.mp4',
-		},
-	},
-	{
-		id: '3x[vppor',
-		title:
-		'Our Staff',
-		description: 'Together we can more than one by one.',
-		name: 'Many people who can easily realize all things which you wish.',
-		link: 'our-staff',
-		cover: {
-			image: '/our-staff.jpg',
-			video: '/staff-pc.mp4',
-		},
-	},
-	{
-		id: '4srcl-fdspkf',
-		title: 'Portfolio',
-		description: 'The fruits of our humble activity.',
-		name: 'Our implemented incredible <br/> projects which we are proud of.',
-		link: 'portfolio',
-		cover: {
-			image: '/portfolio.jpg',
-			video: '/portfolio-pc.mp4',
-		},
-	}],
-	en: [{
-		id: '1wscz',
-		title: 'About Us',
-		description: 'We can make this world better',
-		name: '',
-		link: 'about',
-		cover: {
-			image: '/about.jpg',
-			video: '/about-us-pc.mp4',
-		},
-	},
-	{
-		id: '2sfpdsokf',
-		title: 'We Offers',
-		description:
-		'Our possibilities are limited only by our imagination.',
-		name: 'Do you know what we can? <br /> What we do? What we support?',
-		link: 'offers',
-		cover: {
-			image: '/offers.jpg',
-			video: '/we-offer-pc.mp4',
-		},
-	},
-	{
-		id: '3x[vppor',
-		title:
-		'Our Staff',
-		description: 'Together we can more than one by one.',
-		name: 'Many people who can easily realize all things which you wish.',
-		link: 'our-staff',
-		cover: {
-			image: '/our-staff.jpg',
-			video: '/staff-pc.mp4',
-		},
-	},
-	{
-		id: '4srcl-fdspkf',
-		title: 'Portfolio',
-		description: 'The fruits of our humble activity.',
-		name: 'Our implemented incredible <br/> projects which we are proud of.',
-		link: 'portfolio',
-		cover: {
-			image: '/portfolio.jpg',
-			video: '/portfolio-pc.mp4',
-		},
-	}],
-};
-
 class RootState {
 	auth!: any;
 	error!: any;
@@ -324,16 +183,11 @@ class RootActions extends Actions<
 		this.store = store;
 	}
 
-	async nuxtServerInit({
-		app: {
-			store: { commit },
-		},
-	}) {
-		return await new Promise(res => {
-			setTimeout(() => {
-				res(commit('setPages', mockedPages));
-			}, 300);
-		});
+	async nuxtServerInit() {
+		return await this.store.$axios
+      .$get('page/')
+			.then(data => this.mutations.setPages(data))
+      .catch(err => this.mutations.setError(err));
 	}
 
 	async authorizationUser(data: any): Promise<void> {

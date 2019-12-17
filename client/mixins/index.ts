@@ -3,10 +3,8 @@ import commonFontSizeList from '~/utils/size.models';
 
 Vue.mixin({
 	methods: {
-		getDynamicAssets(src?: string) {
-			if (src) {
-				return require(`~/assets${src}`);
-			}
+		async getDynamicAssets(src?: string) {
+			if (src) return `http://localhost:8081/static/${src}`
 			return require(`~/assets/placeholders/image.svg`);
 		},
 		getAdaptiveSize(elementName: string) {
