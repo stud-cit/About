@@ -14,6 +14,10 @@ export class DefaultPage1576114147308 implements MigrationInterface {
 				link: 'about',
 				title: 'Про нас',
 				name: 'Ми можемо зробити цей світ краще',
+				cover: {
+					image: '/about.jpg',
+					video: '/about-us-pc.mp4',
+				},
 				content: [
 					{
 						lang: 'ua',
@@ -32,6 +36,10 @@ export class DefaultPage1576114147308 implements MigrationInterface {
 				link: 'about',
 				title: 'О нас',
 				name: 'Мы можем сделать этот мир лучше.',
+				cover: {
+					image: '/about.jpg',
+					video: '/about-us-pc.mp4',
+				},
 				content: [
 					{
 						lang: 'ru',
@@ -50,6 +58,10 @@ export class DefaultPage1576114147308 implements MigrationInterface {
 				link: 'about',
 				title: 'About Us',
 				name: 'We can make this world better.',
+				cover: {
+					image: '/about.jpg',
+					video: '/about-us-pc.mp4',
+				},
 				content: [
 					{
 						lang: 'en',
@@ -71,6 +83,10 @@ export class DefaultPage1576114147308 implements MigrationInterface {
 				title: 'Навички',
 				name: 'Ви знаєте, що ми можемо? Що ми робимо? Що ми підтримуємо?',
 				description: 'Наші можливості обмежені лише нашою уявою.',
+				cover: {
+					image: '/offers.jpg',
+					video: '/we-offer-pc.mp4',
+				},
 				content: [
 					{
 						lang: 'ua',
@@ -100,6 +116,10 @@ export class DefaultPage1576114147308 implements MigrationInterface {
 				name: 'Ты знаешь что мы можем?',
 				description:
 					'Что мы делаем? Что мы поддерживаем? Наши возможности ограничены только нашим воображением.',
+				cover: {
+					image: '/offers.jpg',
+					video: '/we-offer-pc.mp4',
+				},
 				content: [
 					{
 						lang: 'ru',
@@ -128,6 +148,10 @@ export class DefaultPage1576114147308 implements MigrationInterface {
 				name: 'Do you know what we can?',
 				description:
 					'What we do? What we support? Our possibilities are limited only by our imagination.',
+				cover: {
+					image: '/offers.jpg',
+					video: '/we-offer-pc.mp4',
+				},
 				content: [
 					{
 						lang: 'en',
@@ -157,6 +181,10 @@ export class DefaultPage1576114147308 implements MigrationInterface {
 				title: 'Персонал',
 				name: 'Ті люди, які можуть легко реалізувати все те, що ви хочете.',
 				description: 'Разом ми можемо більше, ніж кожен окремо.',
+				cover: {
+					image: '/our-staff.jpg',
+					video: '/staff-pc.mp4',
+				},
 			},
 			{
 				lang: 'ru',
@@ -165,6 +193,10 @@ export class DefaultPage1576114147308 implements MigrationInterface {
 				name:
 					'Те люди, которые могут легко реализовать все то, что вы хотите.?',
 				description: 'Вместе мы можем больше, чем в одиночку.',
+				cover: {
+					image: '/our-staff.jpg',
+					video: '/staff-pc.mp4',
+				},
 			},
 			{
 				lang: 'en',
@@ -172,6 +204,10 @@ export class DefaultPage1576114147308 implements MigrationInterface {
 				title: 'Our Staff',
 				name: 'Many people who can easily realize all things which you wish.',
 				description: 'Together we can more than one by one.',
+				cover: {
+					image: '/our-staff.jpg',
+					video: '/staff-pc.mp4',
+				},
 			},
 
 			/* Portfolio page */
@@ -181,6 +217,10 @@ export class DefaultPage1576114147308 implements MigrationInterface {
 				title: 'Портфоліо',
 				name: 'Наші проекти, якими ми пишаємось.',
 				description: 'Плоди нашої діяльності.',
+				cover: {
+					image: '/portfolio.jpg',
+					video: '/portfolio-pc.mp4',
+				},
 				content: [
 					{
 						lang: 'ua',
@@ -206,6 +246,10 @@ export class DefaultPage1576114147308 implements MigrationInterface {
 				title: 'Портфолио',
 				name: 'Наши проекты которыми мы гордимся.',
 				description: 'Плоды нашей скромной деятельности.',
+				cover: {
+					image: '/portfolio.jpg',
+					video: '/portfolio-pc.mp4',
+				},
 				content: [
 					{
 						lang: 'ru',
@@ -231,6 +275,10 @@ export class DefaultPage1576114147308 implements MigrationInterface {
 				title: 'Portfolio',
 				name: 'Our implemented incredible projects which we are proud of.',
 				description: 'The fruits of our humble activity..',
+				cover: {
+					image: '/portfolio.jpg',
+					video: '/portfolio-pc.mp4',
+				},
 				content: [
 					{
 						lang: 'en',
