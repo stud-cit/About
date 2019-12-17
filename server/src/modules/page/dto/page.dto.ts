@@ -4,10 +4,10 @@ import { ApiProperty } from '@nestjs/swagger';
 import { CoverRequest } from '../../../modules/storage/dto/cover.dto';
 
 /**
- * [ContentRequest description]
+ * [PageRequest description]
  * @return         [description]
  */
-export class ContentRequest {
+export class PageRequest {
 	/**
 	 * [lang description]
 	 */

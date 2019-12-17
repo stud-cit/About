@@ -43,22 +43,22 @@ describe('Content Controller', () => {
 	});
 
 	describe('createOne', () => {
-		it('should be return create pages', () => {});
+		it('should be return create content', () => {});
 		it('should be return exception', () => {});
 	});
 
 	describe('selectAll', () => {
-		it('should be return select all pages', () => {});
+		it('should be return select all content', () => {});
 		it('should be return exception', () => {});
 	});
 
 	describe('updateOne', () => {
-		it('should be return update pages', () => {});
+		it('should be return update content', () => {});
 		it('should be return exception', () => {});
 	});
 
 	describe('deleteOne', () => {
-		it('should be return delete pages', () => {});
+		it('should be return delete content', () => {});
 		it('should be return exception', () => {});
 	});
 });

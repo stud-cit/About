@@ -2,19 +2,22 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
 	Column,
 	Entity,
+	OneToOne,
 	OneToMany,
+	JoinColumn,
 	BaseEntity,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
 
+import { StorageEntity } from '../storage/storage.entity';
 import { ContentEntity } from '../content/content.entity';
 
 /**
- * [PagesEntity description]
+ * [PageEntity description]
  * @return         [description]
  */
-@Entity('Pages')
-export class PagesEntity extends BaseEntity {
+@Entity('Page')
+export class PageEntity extends BaseEntity {
 	/**
 	 * [id description]
 	 */
@@ -28,21 +31,38 @@ export class PagesEntity extends BaseEntity {
 	/**
 	 * [content description]
 	 */
-	@OneToMany(
-		() => ContentEntity,
-		content => content.page,
-		{
-			nullable: true,
-			cascade: true,
-			eager: true,
-		},
-	)
-	@ApiProperty({
-		default: [],
+	@OneToMany(() => ContentEntity, content => content.page, {
 		nullable: true,
-		type: () => [ContentEntity],
+		cascade: true,
 	})
 	public readonly content: ContentEntity[];
+
+	/**
+	 * [cover description]
+	 */
+	@ApiProperty({
+		default: null,
+		nullable: true,
+		type: () => StorageEntity,
+	})
+	@OneToOne(() => StorageEntity, {
+		nullable: true,
+		cascade: true,
+		eager: true,
+	})
+	@JoinColumn()
+	public readonly cover: Partial<StorageEntity>;
+
+	/**
+	 * [lang description]
+	 */
+	@ApiProperty({
+		default: 'en',
+		example: 'en',
+		maxLength: 2,
+	})
+	@Column('varchar', { default: 'en' })
+	public readonly lang: string;
 
 	/**
 	 * [title description]
@@ -67,18 +87,6 @@ export class PagesEntity extends BaseEntity {
 	})
 	@Column('varchar', { nullable: true })
 	public readonly description: string;
-
-	/**
-	 * [cover description]
-	 */
-	@ApiProperty({
-		default: null,
-		nullable: true,
-		maxLength: 255,
-		example: '/example.jpg',
-	})
-	@Column('varchar', { nullable: true })
-	public readonly cover: string;
 
 	/**
 	 * [createAt description]

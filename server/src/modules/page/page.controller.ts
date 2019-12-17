@@ -4,27 +4,27 @@ import { AuthGuard } from '@nestjs/passport';
 
 import { ApiTags, ApiCreatedResponse, ApiBearerAuth } from '@nestjs/swagger';
 
+import { PageRequest } from './dto/page.dto';
+import { PageService } from './page.service';
+import { PageEntity } from './page.entity';
+
 import { I18nInterceptor } from '../../common/interceptors/i18n.interceptor';
 import { ID, Filter } from '../../common/dto';
 
-import { ContentRequest } from './dto/content.dto';
-import { ContentService } from './content.service';
-import { ContentEntity } from './content.entity';
-
 /**
  * [Controller description]
- * [API]{@link /api/#/content}
- * @param  'content' [description]
+ * [API]{@link /api/#/page}
+ * @param  'page' [description]
  * @return         [description]
  */
-@ApiTags('content')
-@Controller('content')
-export class ContentController {
+@ApiTags('page')
+@Controller('page')
+export class PageController {
 	/**
 	 * [constructor description]
-	 * @param contentService [description]
+	 * @param pageService [description]
 	 */
-	constructor(private readonly contentService: ContentService) {}
+	constructor(private readonly pageService: PageService) {}
 
 	/**
 	 * [createOne description]
@@ -34,9 +34,9 @@ export class ContentController {
 	@Post()
 	@ApiBearerAuth()
 	@UseGuards(AuthGuard('jwt'))
-	@ApiCreatedResponse({ type: ContentEntity })
-	public async createOne(@Body() data: ContentRequest): Promise<ContentEntity> {
-		return await this.contentService.createOne(data);
+	@ApiCreatedResponse({ type: PageEntity })
+	public async createOne(@Body() data: PageRequest): Promise<PageEntity> {
+		return await this.pageService.createOne(data);
 	}
 
 	/**
@@ -46,9 +46,9 @@ export class ContentController {
 	 */
 	@Get()
 	@UseInterceptors(new I18nInterceptor())
-	@ApiCreatedResponse({ type: [ContentEntity] })
-	public async selectAll(@Query() filter: Filter): Promise<ContentEntity[]> {
-		return await this.contentService.selectAll(filter);
+	@ApiCreatedResponse({ type: [PageEntity] })
+	public async selectAll(@Query() filter: Filter): Promise<PageEntity[]> {
+		return await this.pageService.selectAll(filter);
 	}
 
 	/**
@@ -60,13 +60,13 @@ export class ContentController {
 	@Patch()
 	@ApiBearerAuth()
 	@UseGuards(AuthGuard('jwt'))
-	@ApiCreatedResponse({ type: ContentEntity })
+	@ApiCreatedResponse({ type: PageEntity })
 	public async updateOne(
 		@Query() { id }: ID,
-		@Body() data: ContentRequest,
-	): Promise<ContentEntity> {
-		await this.contentService.updateOne(id, data);
-		return await this.contentService.selectOne({ id });
+		@Body() data: PageRequest,
+	): Promise<PageEntity> {
+		await this.pageService.updateOne(id, data);
+		return await this.pageService.selectOne({ id });
 	}
 
 	/**
@@ -77,9 +77,9 @@ export class ContentController {
 	@Delete()
 	@ApiBearerAuth()
 	@UseGuards(AuthGuard('jwt'))
-	@ApiCreatedResponse({ type: ContentEntity })
-	public async deleteOne(@Query() { id }: ID): Promise<ContentEntity> {
-		const content = await this.contentService.selectOne({ id });
-		return await this.contentService.deleteOne(id).then(() => content);
+	@ApiCreatedResponse({ type: PageEntity })
+	public async deleteOne(@Query() { id }: ID): Promise<PageEntity> {
+		const page = await this.pageService.selectOne({ id });
+		return await this.pageService.deleteOne(id).then(() => page);
 	}
 }

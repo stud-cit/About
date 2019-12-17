@@ -1,10 +1,11 @@
 import { ApiTags, ApiBearerAuth, ApiCreatedResponse } from '@nestjs/swagger';
-import { Post, Get, Patch, Delete, Body } from '@nestjs/common';
+import { Post, Get, Patch, Delete, Body, Query } from '@nestjs/common';
 import { Controller, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { DeleteResult } from 'typeorm';
 
 import { User } from '../../common/decorators/user.decorator';
+import { ID } from '../../common/dto';
 
 import { UserRequest } from './dto/user.dto';
 import { UserService } from './user.service';
@@ -17,7 +18,9 @@ import { UserEntity } from './user.entity';
  * @return        [description]
  */
 @ApiTags('user')
+@ApiBearerAuth()
 @Controller('user')
+@UseGuards(AuthGuard('jwt'))
 export class UserController {
 	/**
 	 * [constructor description]
@@ -31,24 +34,20 @@ export class UserController {
 	 * @return        [description]
 	 */
 	@Post()
-	@ApiBearerAuth()
-	@UseGuards(AuthGuard('jwt'))
 	@ApiCreatedResponse({ type: UserEntity })
 	public async createOne(@Body() data: UserRequest): Promise<UserEntity> {
 		return await this.userService.createOne(data);
 	}
 
 	/**
-	 * [selectOne description]
+	 * [selectAll description]
 	 * @param  @User( [description]
 	 * @return        [description]
 	 */
 	@Get()
-	@ApiBearerAuth()
-	@UseGuards(AuthGuard('jwt'))
 	@ApiCreatedResponse({ type: UserEntity })
-	public async selectOne(@User() data: UserEntity): Promise<UserEntity> {
-		return data;
+	public async selectAll(@Query() filter: ID): Promise<UserEntity[]> {
+		return await this.userService.selectAll(filter);
 	}
 
 	/**
@@ -58,14 +57,13 @@ export class UserController {
 	 * @return        [description]
 	 */
 	@Patch()
-	@ApiBearerAuth()
-	@UseGuards(AuthGuard('jwt'))
 	@ApiCreatedResponse({ type: UserEntity })
 	public async updateOne(
-		@User() user: UserEntity,
+		@User() { id }: UserEntity,
 		@Body() data: UserRequest,
 	): Promise<UserEntity> {
-		return await this.userService.updateOne(user, data);
+		await this.userService.updateOne(id, data);
+		return await this.userService.selectOne({ id });
 	}
 
 	/**
@@ -74,8 +72,6 @@ export class UserController {
 	 * @return        [description]
 	 */
 	@Delete()
-	@ApiBearerAuth()
-	@UseGuards(AuthGuard('jwt'))
 	public async deleteOne(@User() data: UserEntity): Promise<DeleteResult> {
 		return await this.userService.deleteOne(data.id);
 	}

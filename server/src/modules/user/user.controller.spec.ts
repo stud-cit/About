@@ -47,7 +47,7 @@ describe('User Controller', () => {
 		it('should be return exception', () => {});
 	});
 
-	describe('selectOne', () => {
+	describe('selectAll', () => {
 		it('should be return select user', () => {});
 		it('should be return exception', () => {});
 	});
