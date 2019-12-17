@@ -14,8 +14,6 @@ import { AuthService } from './auth.service';
 /**
  * [Controller description]
  * [API]{@link /api/#/auth}
- * @param  'auth' [description]
- * @return        [description]
  */
 @ApiTags('auth')
 @Controller('auth')
@@ -38,15 +36,14 @@ export class AuthController {
 	@Post()
 	@ApiCreatedResponse({ type: JWTRequest })
 	public async create(@Body() data: UserRequest): Promise<JWTRequest> {
-		const users = await this.userService.selectAll();
+		const users = await this.userService.selectAll(null);
 		if (users.length) {
 			const user = await this.authService.validateUser(data);
 			await this.authService.compareHash(user, data);
 			return await this.authService.createToken(user);
-		} else {
-			const user = await this.userService.createOne(data);
-			return await this.authService.createToken(user);
 		}
+		const user = await this.userService.createOne(data);
+		return await this.authService.createToken(user);
 	}
 
 	/**

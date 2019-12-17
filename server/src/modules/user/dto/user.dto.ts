@@ -1,9 +1,8 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, MaxLength, MinLength } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 /**
  * [UserRequest description]
- * @return        [description]
  */
 export class UserRequest {
 	/**

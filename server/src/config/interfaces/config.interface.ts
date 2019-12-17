@@ -6,11 +6,11 @@ export type Config = {
 };
 
 /**
- * [Mode description]
+ * [ConfigMode description]
  */
 export type ConfigMode = 'production' | 'development' | 'test';
 
 /**
- * [Key description]
+ * [ConfigValue description]
  */
 export type ConfigValue = any;

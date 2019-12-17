@@ -17,8 +17,6 @@ import { StorageEntity } from './storage.entity';
 /**
  * [Controller description]
  * [API]{@link /api/#/storage}
- * @param  'storage' [description]
- * @return        [description]
  */
 @ApiTags('storage')
 @ApiBearerAuth()

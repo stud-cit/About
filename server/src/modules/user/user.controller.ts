@@ -14,8 +14,6 @@ import { UserEntity } from './user.entity';
 /**
  * [Controller description]
  * [API]{@link /api/#/user}
- * @param  'user' [description]
- * @return        [description]
  */
 @ApiTags('user')
 @ApiBearerAuth()
@@ -45,7 +43,7 @@ export class UserController {
 	 * @return        [description]
 	 */
 	@Get()
-	@ApiCreatedResponse({ type: UserEntity })
+	@ApiCreatedResponse({ type: [UserEntity] })
 	public async selectAll(@Query() filter: ID): Promise<UserEntity[]> {
 		return await this.userService.selectAll(filter);
 	}

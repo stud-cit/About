@@ -6,8 +6,7 @@ import { Injectable } from '@nestjs/common';
 import { UserEntity } from './user.entity';
 
 /**
- * [Injectable description]
- * @return [description]
+ * [UserService description]
  */
 @Injectable()
 export class UserService {
@@ -41,7 +40,7 @@ export class UserService {
 	 * @param  where [description]
 	 * @return       [description]
 	 */
-	public async selectAll(where?: Partial<UserEntity>): Promise<UserEntity[]> {
+	public async selectAll(where: Partial<UserEntity>): Promise<UserEntity[]> {
 		const options = { where, ttl: this.TTL };
 		return await this.userRepository.find(options).catch(() => {
 			throw new NotFoundException('User not found');

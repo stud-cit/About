@@ -14,8 +14,6 @@ import { ContentEntity } from './content.entity';
 /**
  * [Controller description]
  * [API]{@link /api/#/content}
- * @param  'content' [description]
- * @return         [description]
  */
 @ApiTags('content')
 @Controller('content')

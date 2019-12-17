@@ -17,7 +17,6 @@ import { StorageEntity } from './storage.entity';
 
 /**
  * [StorageService description]
- * @return [description]
  */
 @Injectable()
 export class StorageService implements MulterOptionsFactory {
@@ -28,6 +27,7 @@ export class StorageService implements MulterOptionsFactory {
 
 	/**
 	 * [constructor description]
+	 * @param @InjectRepository(StorageEntity [description]
 	 * @param configService [description]
 	 */
 	constructor(

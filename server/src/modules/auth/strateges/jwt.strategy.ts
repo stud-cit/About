@@ -7,8 +7,7 @@ import { UserEntity } from '../../../modules/user/user.entity';
 import { AuthService } from '../auth.service';
 
 /**
- * [Injectable description]
- * @return [description]
+ * [JwtStrategy description]
  */
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -29,8 +28,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
 	/**
 	 * [validate description]
-	 * @param  user [description]
-	 * @return         [description]
+	 * @param  {email    [description]
+	 * @param  password} [description]
+	 * @return           [description]
 	 */
 	public async validate({ email, password }: UserEntity): Promise<UserEntity> {
 		return await this.authService.validateUser({ email, password });
