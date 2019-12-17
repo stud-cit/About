@@ -3,13 +3,11 @@ import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { Store } from 'vuex';
 
 interface AboutLocaleModel {
-	readonly previewDescription: string;
 	readonly slides: string[];
 }
 
 class AboutState {
 	ua: AboutLocaleModel = {
-		previewDescription: 'Ми можемо зробити цей світ краще.',
 		slides: [
 			`СтудЦІТ - це команда з талановитих фахівців, для яких виготовлення сайтів не робота,
 			а частина життя. Можливість постійно вдосконалюватися, вирішувати нетривіальні
@@ -23,7 +21,6 @@ class AboutState {
 		],
 	};
 	ru: AboutLocaleModel = {
-		previewDescription: 'Мы можем сделать этот мир лучше.',
 		slides: [
 			`СтудЦИТ – это команда из талантливых специалистов, для которых изготовление сайтов не работа,
 			а часть жизни. Возможность постоянно совершенствоваться,
@@ -38,7 +35,6 @@ class AboutState {
 		],
 	};
 	en: AboutLocaleModel = {
-		previewDescription: 'We can make this world better.',
 		slides: [
 			`Student Center of Information Technologies (StudCIT) is a team of talented
 			professionals for whom website design is not a job but a part of life. There

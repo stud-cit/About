@@ -9,17 +9,11 @@ interface ProjectModel {
 }
 
 interface PortfolioLocaleModel {
-	readonly previewTitle: string;
-	readonly previewSubtitle: string;
-	readonly previewDescription: string;
 	readonly projects: ProjectModel[];
 }
 
 class PortfolioState {
 	ua: PortfolioLocaleModel = {
-		previewTitle: 'Наші проекти,',
-		previewSubtitle: 'якими ми пишаємось.',
-		previewDescription: 'Плоди нашої діяльності.',
 		projects: [
 			{
 				title: 'Сайт кафедри соціальної роботи СумДУ',
@@ -39,9 +33,6 @@ class PortfolioState {
 		],
 	};
 	ru: PortfolioLocaleModel = {
-		previewTitle: 'Наши проекты,',
-		previewSubtitle: 'которыми мы гордимся.',
-		previewDescription: 'Плоды нашей скромной деятельности.',
 		projects: [
 			{
 				title: 'Сайт кафедры социальной работы СумГУ',
@@ -61,9 +52,6 @@ class PortfolioState {
 		],
 	};
 	en: PortfolioLocaleModel = {
-		previewTitle: 'Our implemented incredible ',
-		previewSubtitle: 'projects which we are proud of.',
-		previewDescription: 'The fruits of our humble activity.',
 		projects: [
 			{
 				title: 'Department of Social Work of SSU',

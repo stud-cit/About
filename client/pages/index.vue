@@ -7,7 +7,7 @@
 		>
 			<div class="swiper-wrapper">
 				<v-col
-					v-for="(page, i) in pages"
+					v-for="(page, i) in pages($i18n.locale)"
 					:key="i"
 					cols="12"
 					sm="10"
@@ -28,7 +28,7 @@
 					>
 						<v-card class="none-radius">
 							<v-img
-								:src="getDynamicAssets(`/images/covers${page.videoBg.cover}`)"
+								:src="getDynamicAssets(`/images/covers${page.cover.image}`)"
 								:lazy-src="page.lazyImg"
 								:height="isMdAndDown ? '45vh' : '65vh'"
 								:aspect-ratio="16 / 9"
@@ -43,7 +43,7 @@
 										<span
 											class="font-weight-bold text-uppercase slider-title"
 											:style="getSlideTitleFont"
-											>{{ $t(page.title) }}.</span
+											>{{ page.title }}.</span
 										>
 									</v-row>
 								</v-card-title>
@@ -56,7 +56,7 @@
 		</div>
 		<v-row class="d-flex d-sm-none" justify="center">
 			<v-col
-				v-for="(page, i) in pages"
+				v-for="(page, i) in pages($i18n.locale)"
 				:key="i"
 				cols="10"
 				@click="() => choosePage(i)"
@@ -73,7 +73,7 @@
 				>
 					<v-card class="disable-underline" :link="true">
 						<v-img
-							:src="getDynamicAssets(`/images/covers${page.videoBg.cover}`)"
+							:src="getDynamicAssets(`/images/covers${page.cover.image}`)"
 							:gradient="imagePageGradient"
 							:lazy-src="page.lazyImg"
 							height="30vh"
@@ -91,7 +91,7 @@
 										class="font-weight-bold text-uppercase"
 										:style="getSlideTitleFont"
 									>
-										{{ $t(page.title) }}.
+										{{ page.title }}.
 									</span>
 								</v-row>
 							</v-card-title>

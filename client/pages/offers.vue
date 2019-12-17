@@ -3,9 +3,8 @@
 		<v-row justify="center">
 			<v-col cols="12" sm="10">
 				<PreviewPage
-					:title="weOffers[$i18n.locale].previewTitle"
-					:subtitle="weOffers[$i18n.locale].previewSubtitle"
-					:description="weOffers[$i18n.locale].previewDescription"
+					:title="page($i18n.locale).name"
+					:description="page($i18n.locale).description"
 					:icon-down="false"
 				/>
 				<ScrollBar />
@@ -130,6 +129,7 @@
 	})
 	export default class OffersPage extends Vue {
 		@Getter('OffersModule/getStage') weOffers;
+		@Getter('getPageById') page;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 
 		observers: IntersectionObserver[] = [];

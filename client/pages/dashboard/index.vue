@@ -1,9 +1,9 @@
 <template>
 	<v-row>
-		<v-col v-for="(page, i) in pages" :key="i" md="6">
+		<v-col v-for="(page, i) in pages($i18n.locale)" :key="i" md="6">
 			<v-card :href="'dashboard/' + page.id">
 				<v-img
-					:src="getDynamicAssets(`/images/covers${page.videoBg.cover}`)"
+					:src="getDynamicAssets(`/images/covers${page.cover.image}`)"
 					:gradient="imagePageGradient"
 					:lazy-src="page.lazyImg"
 					height="30vh"
@@ -12,7 +12,7 @@
 					<v-card-title class="title white--text fill-height">
 						<v-row justify="center" align="center" class="fill-height">
 							<span class="font-weight-bold text-uppercase">
-								{{ $t(page.title) }}.
+								{{ page.title }}.
 							</span>
 						</v-row>
 					</v-card-title>

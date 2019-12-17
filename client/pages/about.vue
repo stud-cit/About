@@ -19,7 +19,7 @@
 						>
 							<PreviewPage
 								:title="$t('common.companyName')"
-								:description="about[$i18n.locale].previewDescription"
+								:description="page($i18n.locale).description"
 								:icon-down="false"
 							/>
 						</v-col>
@@ -198,6 +198,7 @@
 	})
 	export default class AboutPage extends Vue {
 		@Getter('AboutModule/getStage') about;
+		@Getter('getPageById') page;
 		@Getter('getContactBarVisibility') isShowContactBar;
 		@Getter('visibilityLoader') visibilityLoader;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;

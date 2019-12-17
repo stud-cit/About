@@ -1,10 +1,4 @@
 export default {
-	pages: {
-		about: 'Про нас',
-		weOffers: 'Навички',
-		ourStaff: 'Персонал',
-		portfolio: 'Портфоліо',
-	},
 	common: {
 		backToTop: 'На початок',
 		backToStart: 'На початок',

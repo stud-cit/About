@@ -1,10 +1,4 @@
 export default {
-	pages: {
-		about: 'About Us',
-		weOffers: 'We Offers',
-		ourStaff: 'Our Staff',
-		portfolio: 'Portfolio',
-	},
 	common: {
 		backToTop: 'Back to the top',
 		backToStart: 'Back to start',

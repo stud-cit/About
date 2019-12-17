@@ -3,8 +3,8 @@
 		<v-row justify="center">
 			<v-col cols="12" sm="10">
 				<PreviewPage
-					:title="ourStaff[$i18n.locale].previewTitle"
-					:description="ourStaff[$i18n.locale].previewDescription"
+					:title="page($i18n.locale).name"
+					:description="page($i18n.locale).description"
 					:icon-down="false"
 				/>
 				<ScrollBar />
@@ -165,6 +165,7 @@
 	})
 	export default class OurStaffPage extends Vue {
 		@Getter('OurStaffModule/getStage') ourStaff;
+		@Getter('getPageById') page;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 
 		curStaff: number = 0;

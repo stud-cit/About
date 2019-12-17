@@ -4,11 +4,11 @@
 			<video-background
 				id="video-bg"
 				:src="
-					videoBg.videoPc ? getDynamicAssets(`/videos${videoBg.videoPc}`) : ''
+					cover($i18n.locale).video ? getDynamicAssets(`/videos${cover($i18n.locale).video}`) : ''
 				"
 				:poster="
-					videoBg.cover
-						? getDynamicAssets(`/images/covers${videoBg.cover}`)
+					cover($i18n.locale).image
+						? getDynamicAssets(`/images/covers${cover($i18n.locale).image}`)
 						: ''
 				"
 				autoplay
@@ -57,7 +57,7 @@
 								<v-col
 									class="pa-0 nav-links"
 									cols="auto"
-									v-for="(page, index) in pages"
+									v-for="(page, index) in pages($i18n.locale)"
 									:key="index"
 								>
 									<ContentBox>
@@ -72,7 +72,7 @@
 											text
 										>
 											<span :style="getTotalPagesFont" class="not-uppercase">
-												{{ $t(page.title) }}
+												{{ page.title }}
 											</span>
 										</v-btn>
 									</ContentBox>
@@ -107,7 +107,7 @@
 					:delay="getAnimationDelay"
 				>
 					<p class="bold-italic-preview d-flex mt-md-3">
-						<span :style="getPageIndexFont">0{{ pageIndex }}</span>
+						<span :style="getPageIndexFont">0{{ pageIndex($i18n.locale) }}</span>
 						<span
 							class="total-pages mt-1 mt-sm-2"
 							:style="getPageTotalIndexFont"
@@ -143,7 +143,7 @@
 			</v-btn>
 			<v-list id="pages-list-container">
 				<v-list-item-group class="pages-list">
-					<v-list-item v-for="(page, index) in pages" class="px-0" :key="index">
+					<v-list-item v-for="(page, index) in pages($i18n.locale)" class="px-0" :key="index">
 						<v-btn
 							class="text-center display-2 page-link font-weight-bold"
 							exact-active-class="page-link-active"
@@ -153,7 +153,7 @@
 							exact
 							nuxt
 						>
-							<span class="page-link-title">{{ $t(page.title) }}</span>
+							<span class="page-link-title">{{ page.title }}</span>
 						</v-btn>
 					</v-list-item>
 				</v-list-item-group>
@@ -194,7 +194,7 @@
 		@Getter('getPageByRoute') getPageByRoute;
 		@Getter('getPageIndex') pageIndex;
 		@Getter('getPageStage') pages;
-		@Getter('getPageVideoBg') videoBg;
+		@Getter('getPageCover') cover;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 		@Getter('visibilityLoader') visibilityLoader;
 		@Mutation('changeScrollBar') changeScrollBar;
@@ -262,7 +262,7 @@
 		}
 
 		created() {
-			this.setPageIdByPath(this.$router.currentRoute.path);
+			this.setPageIdByPath({locale: this.$i18n.locale, path: this.$router.currentRoute.path});
 		}
 		mounted() {
 			this.isStartAnimation = true;
@@ -272,7 +272,7 @@
 				this.changeScrollBar(false);
 				setTimeout(() => next(), 25);
 
-				this.setPageIdByPath(nextRoute.path);
+				this.setPageIdByPath({locale: this.$i18n.locale, path: nextRoute.path});
 			});
 		}
 	}

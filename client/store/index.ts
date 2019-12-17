@@ -10,17 +10,18 @@ import { OffersModule } from './modules/offers.module';
 import { OurStaffModule } from './modules/ourStaff.module';
 import { PortfolioModule } from './modules/portfolio.module';
 
-// cover using for showing img during video loading
-interface VideoBgModel {
-	readonly cover: string;
-	readonly videoMobile: string;
-	readonly videoPc: string;
+// image using for showing img during video loading
+interface CoverModel {
+	readonly image: string;
+	readonly video: string;
 }
 interface PageModel {
-	readonly id: number;
+	readonly id: string;
+	readonly name: string;
 	readonly title: string;
+	readonly description: string;
 	readonly link: string;
-	readonly videoBg: VideoBgModel;
+	readonly cover: CoverModel;
 }
 
 interface ContactsLocaleModel {
@@ -36,48 +37,147 @@ interface ContactsModel {
 	en: ContactsLocaleModel;
 }
 
-const mockedPages = [
-	{
+const mockedPages: Record<string, PageModel[]> = {
+	ua: [{
+			id: '1wscz',
+			title: 'About Us',
+			description: 'We can make this world better',
+			name: '',
+			link: 'about',
+			cover: {
+				image: '/about.jpg',
+				video: '/about-us-pc.mp4',
+			},
+		},
+		{
+			id: '2sfpdsokf',
+			title: 'We Offers',
+			description:
+			'Our possibilities are limited only by our imagination.',
+			name: 'Do you know what we can? <br /> What we do? What we support?',
+			link: 'offers',
+			cover: {
+				image: '/offers.jpg',
+				video: '/we-offer-pc.mp4',
+			},
+		},
+		{
+			id: '3x[vppor',
+			title:
+			'Our Staff',
+			description: 'Together we can more than one by one.',
+			name: 'Many people who can easily realize all things which you wish.',
+			link: 'our-staff',
+			cover: {
+				image: '/our-staff.jpg',
+				video: '/staff-pc.mp4',
+			},
+		},
+		{
+			id: '4srcl-fdspkf',
+			title: 'Portfolio',
+			description: 'The fruits of our humble activity.',
+			name: 'Our implemented incredible <br/> projects which we are proud of.',
+			link: 'portfolio',
+			cover: {
+				image: '/portfolio.jpg',
+				video: '/portfolio-pc.mp4',
+			},
+		}],
+	ru: [{
 		id: '1wscz',
-		title: 'pages.about',
+		title: 'About Us',
+		description: 'We can make this world better',
+		name: '',
 		link: 'about',
-		videoBg: {
-			cover: '/about.jpg',
-			videoMobile: '/about-us-mobile.mp4',
-			videoPc: '/about-us-pc.mp4',
+		cover: {
+			image: '/about.jpg',
+			video: '/about-us-pc.mp4',
 		},
 	},
 	{
 		id: '2sfpdsokf',
-		title: 'pages.weOffers',
+		title: 'We Offers',
+		description:
+		'Our possibilities are limited only by our imagination.',
+		name: 'Do you know what we can? <br /> What we do? What we support?',
 		link: 'offers',
-		videoBg: {
-			cover: '/offers.jpg',
-			videoMobile: '/we-offer-mobile.mp4',
-			videoPc: '/we-offer-pc.mp4',
+		cover: {
+			image: '/offers.jpg',
+			video: '/we-offer-pc.mp4',
 		},
 	},
 	{
 		id: '3x[vppor',
-		title: 'pages.ourStaff',
+		title:
+		'Our Staff',
+		description: 'Together we can more than one by one.',
+		name: 'Many people who can easily realize all things which you wish.',
 		link: 'our-staff',
-		videoBg: {
-			cover: '/our-staff.jpg',
-			videoMobile: '/staff-mobile.mp4',
-			videoPc: '/staff-pc.mp4',
+		cover: {
+			image: '/our-staff.jpg',
+			video: '/staff-pc.mp4',
 		},
 	},
 	{
 		id: '4srcl-fdspkf',
-		title: 'pages.portfolio',
+		title: 'Portfolio',
+		description: 'The fruits of our humble activity.',
+		name: 'Our implemented incredible <br/> projects which we are proud of.',
 		link: 'portfolio',
-		videoBg: {
-			cover: '/portfolio.jpg',
-			videoMobile: '/portfolio-mobile.mp4',
-			videoPc: '/portfolio-pc.mp4',
+		cover: {
+			image: '/portfolio.jpg',
+			video: '/portfolio-pc.mp4',
+		},
+	}],
+	en: [{
+		id: '1wscz',
+		title: 'About Us',
+		description: 'We can make this world better',
+		name: '',
+		link: 'about',
+		cover: {
+			image: '/about.jpg',
+			video: '/about-us-pc.mp4',
 		},
 	},
-];
+	{
+		id: '2sfpdsokf',
+		title: 'We Offers',
+		description:
+		'Our possibilities are limited only by our imagination.',
+		name: 'Do you know what we can? <br /> What we do? What we support?',
+		link: 'offers',
+		cover: {
+			image: '/offers.jpg',
+			video: '/we-offer-pc.mp4',
+		},
+	},
+	{
+		id: '3x[vppor',
+		title:
+		'Our Staff',
+		description: 'Together we can more than one by one.',
+		name: 'Many people who can easily realize all things which you wish.',
+		link: 'our-staff',
+		cover: {
+			image: '/our-staff.jpg',
+			video: '/staff-pc.mp4',
+		},
+	},
+	{
+		id: '4srcl-fdspkf',
+		title: 'Portfolio',
+		description: 'The fruits of our humble activity.',
+		name: 'Our implemented incredible <br/> projects which we are proud of.',
+		link: 'portfolio',
+		cover: {
+			image: '/portfolio.jpg',
+			video: '/portfolio-pc.mp4',
+		},
+	}],
+};
+
 class RootState {
 	auth!: any;
 	error!: any;
@@ -85,7 +185,7 @@ class RootState {
 	showContactBar: boolean = false;
 	showScrollBar: boolean = false;
 	isHideAnimationContent: boolean = false;
-	pageId = 0;
+	pageId = '';
 	pages: PageModel[] = [];
 	contacts: ContactsModel = {
 		ua: {
@@ -134,24 +234,37 @@ class RootGetters extends Getters<RootState> {
 		return this.state.isHideAnimationContent;
 	}
 
-	get getPageVideoBg(): VideoBgModel | {} {
-		const currentPage = this.state.pages.find(
-			({ id }: PageModel) => id === this.state.pageId,
-		);
-		return currentPage ? currentPage.videoBg : {};
+	get getPageCover(): CoverModel | {} {
+		return (locale: string) => {
+			const currentPage = this.state.pages[locale].find(
+				({ id }: PageModel) => id === this.state.pageId,
+			);
+			return currentPage ? currentPage.cover : {};
+		};
 	}
 
-	get getPageStage(): PageModel[] {
-		return this.state.pages;
+	get getPageStage(): (locale: string) => PageModel[] {
+		return (locale: string) => this.state.pages[locale];
 	}
 
-	get getPageIndex(): number {
-		const matchingIndex = this.state.pages.findIndex(
-			(page: PageModel) => page.id === this.state.pageId,
-		);
-		return matchingIndex + 1;
+	get getPageIndex(): (locale: string) => number {
+		return (locale: string) => {
+			const matchingIndex = this.state.pages[locale].findIndex(
+				(page: PageModel) => page.id === this.state.pageId,
+			);
+			return matchingIndex + 1;
+		};
 	}
-	get getPageId(): number {
+
+	get getPageById(): (locale: string) => PageModel {
+		return (locale: string) =>
+			this.state.pages[locale].find(
+				(page: PageModel) => page.id === this.state.pageId,
+			);
+
+	}
+
+	get getPageId(): string {
 		return this.state.pageId;
 	}
 
@@ -162,6 +275,7 @@ class RootGetters extends Getters<RootState> {
 			return currentPage ? currentPage.link : '';
 		};
 	}
+
 	get getContactStage(): ContactsModel {
 		return this.state.contacts;
 	}
@@ -177,9 +291,8 @@ class RootMutations extends Mutations<RootState> {
 	hideLoader() {
 		return Vue.set(this.state, 'visibilityLoader', false);
 	}
-	setPageIdByPath(path: string) {
-		const pages = this.state.pages;
-
+	setPageIdByPath({locale, path}: Record<string, string>) {
+		const pages = this.state.pages[locale];
 		const matchingPage = pages.find((page: PageModel) =>
 			path.includes(page.link),
 		);

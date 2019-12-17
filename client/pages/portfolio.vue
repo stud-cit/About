@@ -3,9 +3,8 @@
 		<v-row justify="center">
 			<v-col cols="12" sm="10">
 				<PreviewPage
-					:title="portfolio[$i18n.locale].previewTitle"
-					:subtitle="portfolio[$i18n.locale].previewSubtitle"
-					:description="portfolio[$i18n.locale].previewDescription"
+					:title="page($i18n.locale).name"
+					:description="page($i18n.locale).description"
 					:icon-down="true"
 				/>
 			</v-col>
@@ -97,6 +96,7 @@
 	})
 	export default class PortfolioPage extends Vue {
 		@Getter('PortfolioModule/getStage') portfolio;
+		@Getter('getPageById') page;
 
 		get isMdAndUp() {
 			return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;

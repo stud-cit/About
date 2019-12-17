@@ -39,19 +39,7 @@
 							}"
 							:style="getPreviewTitleFont"
 						>
-							{{ title }}
-						</ContentBlock>
-						<ContentBlock
-							:pose="
-								isStartAnimation && !getIsHideAnimationContent
-									? 'visible'
-									: 'hidden'
-							"
-							:delay="getFirstStageAnimationDelay"
-							class="bold-preview"
-							:style="getPreviewTitleFont"
-						>
-							{{ subtitle }}
+							<span v-html="title" />
 						</ContentBlock>
 					</div>
 				</v-col>
@@ -102,7 +90,7 @@
 							:delay="getFirstStageAnimationDelay"
 							:style="getPreviewSubTitleFont"
 						>
-							{{ description }}
+							<span v-html="description" />
 						</ContentBlock>
 					</v-row>
 					<v-row justify="center" class="d-flex d-sm-none pl-0">
@@ -179,7 +167,7 @@
 				hidden: { opacity: 0, y: 20 },
 			}),
 		},
-		props: ['title', 'subtitle', 'description', 'iconDown'],
+		props: ['title', 'description', 'iconDown'],
 	})
 	export default class PreviewPage extends Vue {
 		@Getter('AboutModule/getStage') about;
@@ -238,10 +226,8 @@
 		}
 
 		handleNavigatingPage(toRight: boolean) {
-			const newPageIndex = toRight ? this.pageIndex + 1 : this.pageIndex - 1;
+			const newPageIndex = toRight ? this.pageIndex(this.$i18n.locale) + 1 : this.pageIndex(this.$i18n.locale) - 1;
 			const nextPage = this.getPageRouteByIndex(newPageIndex);
-
-			console.log(nextPage);
 			this.$router.replace(this.localePath(nextPage));
 		}
 
@@ -258,7 +244,7 @@
 		}
 
 		get isAboutPage() {
-			return this.pageIndex === this.aboutPageIndex;
+			return this.pageIndex(this.$i18n.locale) === this.aboutPageIndex;
 		}
 
 		get isLgAndUp() {
