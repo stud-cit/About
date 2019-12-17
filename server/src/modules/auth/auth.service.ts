@@ -3,11 +3,9 @@ import { classToPlain } from 'class-transformer';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
 
-import { ConfigService } from '../../config/config.service';
+import { ConfigService } from '../../config';
 
-import { UserRequest } from '../user/dto/user.dto';
-import { UserService } from '../user/user.service';
-import { UserEntity } from '../user/user.entity';
+import { UserRequest, UserService, UserEntity } from '../user';
 
 import { JWTRequest } from './dto/token.dto';
 

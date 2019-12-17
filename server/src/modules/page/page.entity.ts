@@ -8,12 +8,12 @@ import {
 	PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { StorageEntity } from '../storage/storage.entity';
-import { ContentEntity } from '../content/content.entity';
+import { StorageEntity } from '../../storage';
+
+import { ContentEntity } from '../content';
 
 /**
  * [PageEntity description]
- * @return         [description]
  */
 @Entity('Page')
 export class PageEntity extends BaseEntity {
@@ -28,26 +28,6 @@ export class PageEntity extends BaseEntity {
 	public readonly id: string;
 
 	/**
-	 * [content description]
-	 */
-	@OneToMany(() => ContentEntity, content => content.page, {
-		nullable: true,
-		cascade: true,
-	})
-	public readonly content: ContentEntity[];
-
-	/**
-	 * [cover description]
-	 */
-	@OneToOne(() => StorageEntity)
-	@ApiProperty({
-		default: null,
-		nullable: true,
-	})
-	@Column('varchar', { nullable: true })
-	public readonly cover: Partial<StorageEntity>;
-
-	/**
 	 * [lang description]
 	 */
 	@ApiProperty({
@@ -57,6 +37,28 @@ export class PageEntity extends BaseEntity {
 	})
 	@Column('varchar', { default: 'en' })
 	public readonly lang: string;
+
+	/**
+	 * [link description]
+	 */
+	@ApiProperty({
+		maxLength: 255,
+		example: 'example',
+	})
+	@Column('varchar', { nullable: false })
+	public readonly link: string;
+
+	/**
+	 * [name description]
+	 */
+	@ApiProperty({
+		default: null,
+		nullable: true,
+		maxLength: 255,
+		example: 'example',
+	})
+	@Column('varchar', { nullable: true })
+	public readonly name: string;
 
 	/**
 	 * [title description]
@@ -108,4 +110,25 @@ export class PageEntity extends BaseEntity {
 		onUpdate: 'CURRENT_TIMESTAMP',
 	})
 	public readonly updateAt: Date;
+
+	/**
+	 * [cover description]
+	 */
+	@OneToOne(() => StorageEntity)
+	@ApiProperty({
+		default: null,
+		nullable: true,
+		type: () => StorageEntity,
+	})
+	@Column('varchar', { nullable: true })
+	public readonly cover: Partial<StorageEntity>;
+
+	/**
+	 * [content description]
+	 */
+	@OneToMany(() => ContentEntity, content => content.page, {
+		nullable: true,
+		cascade: true,
+	})
+	public readonly content: ContentEntity[];
 }

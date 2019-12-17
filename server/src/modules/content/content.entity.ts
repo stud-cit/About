@@ -8,8 +8,9 @@ import {
 	PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { StorageEntity } from '../storage/storage.entity';
-import { PageEntity } from '../page/page.entity';
+import { StorageEntity } from '../../storage';
+
+import { PageEntity } from '../page';
 
 /**
  * [ContentEntity description]
@@ -95,6 +96,7 @@ export class ContentEntity extends BaseEntity {
 	@ApiProperty({
 		default: null,
 		nullable: true,
+		type: () => StorageEntity,
 	})
 	@Column('varchar', { nullable: true })
 	public readonly cover: Partial<StorageEntity>;

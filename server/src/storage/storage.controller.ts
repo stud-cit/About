@@ -10,7 +10,7 @@ import {
 	ApiCreatedResponse,
 } from '@nestjs/swagger';
 
-import { StorageRequest } from './dto/storage.dto';
+import { StorageRequest } from './dto';
 import { StorageService } from './storage.service';
 import { StorageEntity } from './storage.entity';
 

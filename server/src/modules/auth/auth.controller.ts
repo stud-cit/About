@@ -2,11 +2,9 @@ import { ApiTags, ApiBearerAuth, ApiCreatedResponse } from '@nestjs/swagger';
 import { Controller, UseGuards, Post, Get, Body } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
-import { User } from '../../common/decorators/user.decorator';
+import { User } from '../../common/decorators';
 
-import { UserRequest } from '../user/dto/user.dto';
-import { UserService } from '../user/user.service';
-import { UserEntity } from '../user/user.entity';
+import { UserRequest, UserService, UserEntity } from '../user';
 
 import { JWTRequest } from './dto/token.dto';
 import { AuthService } from './auth.service';

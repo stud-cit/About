@@ -5,7 +5,7 @@ import { DeleteResult } from 'typeorm';
 
 import { ApiTags, ApiCreatedResponse, ApiBearerAuth } from '@nestjs/swagger';
 
-import { I18nInterceptor } from '../../common/interceptors/i18n.interceptor';
+import { I18nInterceptor } from '../../common/interceptors';
 import { ID, Filter } from '../../common/dto';
 
 import { PageRequest } from './dto/page.dto';

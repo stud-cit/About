@@ -4,7 +4,7 @@ import { Controller, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { DeleteResult } from 'typeorm';
 
-import { User } from '../../common/decorators/user.decorator';
+import { User } from '../../common/decorators';
 import { ID } from '../../common/dto';
 
 import { UserRequest } from './dto/user.dto';

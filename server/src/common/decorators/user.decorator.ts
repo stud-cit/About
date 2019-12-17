@@ -1,6 +1,6 @@
 import { createParamDecorator } from '@nestjs/common';
 
-import { UserEntity } from '../../modules/user/user.entity';
+import { UserEntity } from '../../modules/user';
 
 /**
  * [UserExpressRequest description]
