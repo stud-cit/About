@@ -6,9 +6,9 @@ import { DeleteResult } from 'typeorm';
 import { ApiTags, ApiCreatedResponse, ApiBearerAuth } from '@nestjs/swagger';
 
 import { I18nInterceptor } from '../../common/interceptors';
-import { ID, Filter } from '../../common/dto';
+import { ID } from '../../common/dto';
 
-import { PageRequest, LinkRequest } from './dto';
+import { PageRequest, PageFilter } from './dto';
 import { PageService } from './page.service';
 import { PageEntity } from './page.entity';
 
@@ -46,9 +46,7 @@ export class PageController {
 	@Get()
 	@UseInterceptors(new I18nInterceptor())
 	@ApiCreatedResponse({ type: [PageEntity] })
-	public async selectAll(
-		@Query() filter: Filter & LinkRequest,
-	): Promise<PageEntity[]> {
+	public async selectAll(@Query() filter: PageFilter): Promise<PageEntity[]> {
 		return await this.pageService.selectAll(filter);
 	}
 

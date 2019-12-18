@@ -1,4 +1,4 @@
-export { PageRequest, LinkRequest } from './dto';
+export { PageRequest, PageFilter } from './dto';
 
 export { PageController } from './page.controller';
 export { PageService } from './page.service';

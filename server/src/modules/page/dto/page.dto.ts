@@ -2,12 +2,11 @@ import { IsOptional, MaxLength, Length, ValidateNested } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 import { CoverRequest } from '../../../storage';
-import { LinkRequest } from './link.dto';
 
 /**
  * [PageRequest description]
  */
-export class PageRequest extends LinkRequest {
+export class PageRequest {
 	/**
 	 * [lang description]
 	 */

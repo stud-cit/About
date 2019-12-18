@@ -20,7 +20,8 @@ async function bootstrap() {
 		.build();
 
 	app.setGlobalPrefix(configService.get('PREFFIX')).enableCors({
-		origin: ['https://localhost:8080', 'http://localhost:8080'],
+		credentials: configService.get('CORS_CREDENTIALS'),
+		origin: configService.get('CORS_ORIGIN'),
 	});
 
 	const document = SwaggerModule.createDocument(app, options);

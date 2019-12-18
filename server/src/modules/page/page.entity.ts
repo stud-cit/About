@@ -44,7 +44,7 @@ export class PageEntity extends BaseEntity {
 	 */
 	@ApiProperty({
 		maxLength: 255,
-		example: 'example',
+		example: 'about',
 	})
 	@Column('varchar', { nullable: false })
 	public readonly link: string;
@@ -121,9 +121,9 @@ export class PageEntity extends BaseEntity {
 		type: () => StorageEntity,
 	})
 	@OneToOne(() => StorageEntity, {
-		eager: true,
-		cascade: true,
 		nullable: true,
+		cascade: true,
+		eager: true,
 	})
 	@JoinColumn()
 	public readonly cover: Partial<StorageEntity>;

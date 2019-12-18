@@ -43,7 +43,7 @@ export class ContentService {
 	public async selectAll(
 		where: Partial<ContentEntity>,
 	): Promise<ContentEntity[]> {
-		const options = { where, ttl: this.TTL };
+		const options = { where, cache: this.TTL };
 		return await this.contentRepository.find(options).catch(() => {
 			throw new NotFoundException('Content not found');
 		});
@@ -57,7 +57,7 @@ export class ContentService {
 	public async selectOne(
 		where: Partial<ContentEntity>,
 	): Promise<ContentEntity> {
-		const options = { where, ttl: this.TTL };
+		const options = { where, cache: this.TTL };
 		return await this.contentRepository.findOneOrFail(options).catch(() => {
 			throw new NotFoundException('Content not found');
 		});

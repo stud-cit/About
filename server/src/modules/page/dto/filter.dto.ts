@@ -1,7 +1,9 @@
 import { IsOptional, MaxLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class LinkRequest {
+import { Filter } from 'src/common/dto';
+
+export class PageFilter extends Filter {
 	/**
 	 * [link description]
 	 */
@@ -10,7 +12,7 @@ export class LinkRequest {
 	@ApiProperty({
 		required: true,
 		maxLength: 255,
-		example: 'example',
+		example: 'about',
 	})
 	public readonly link: string;
 }
