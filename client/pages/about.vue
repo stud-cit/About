@@ -167,7 +167,7 @@
 
 <script lang="ts">
 	import { Component, Vue, Watch } from 'vue-property-decorator';
-	import { Getter, Mutation } from 'vuex-class';
+	import { Action, Getter, Mutation } from 'vuex-class';
 	import posed from 'vue-pose';
 	import PreviewPage from '@/components/preview-page.vue';
 
@@ -197,7 +197,7 @@
 		},
 	})
 	export default class AboutPage extends Vue {
-		// @Getter('AboutModule/getStage') about;
+		@Action('fetchContentByPageId') fetchContentByPageId;
 		@Getter('getPage') page;
 		@Getter('getContactBarVisibility') isShowContactBar;
 		@Getter('visibilityLoader') visibilityLoader;
@@ -210,10 +210,6 @@
 		isTextSliderAnimation: boolean = false;
 		stageText: number = 0;
 		stageAbout: number = 0;
-
-		showLastStage() {
-			this.curStage = this.page.content.length + 1;
-		}
 
 		swipeLeft() {
 			if (this.curStage < this.page.content.length + 1) {
@@ -314,6 +310,11 @@
 			}
 		}
 
+
+
+		created() {
+			this.fetchContentByPageId();
+		}
 		mounted() {
 			this.isSloganAnimation = true;
 			this.isContactAnimation = true;

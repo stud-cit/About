@@ -78,7 +78,7 @@
 
 <script lang="ts">
 	import { Component, Vue } from 'vue-property-decorator';
-	import { Getter, Mutation } from 'vuex-class';
+	import { Action, Getter, Mutation } from 'vuex-class';
 
 	import PreviewPage from '@/components/preview-page.vue';
 	import PruductFooter from '@/components/product-footer.vue';
@@ -95,6 +95,7 @@
 		},
 	})
 	export default class PortfolioPage extends Vue {
+		@Action('fetchContentByPageId') fetchContentByPageId;
 		@Getter('PortfolioModule/getStage') portfolio;
 		@Getter('getPageById') page;
 
@@ -106,6 +107,10 @@
 		}
 		get getParalaxHeight() {
 			return { height: `${this.getAdaptiveSize('paralaxHeight')}vh` };
+		}
+
+		created() {
+			this.fetchContentByPageId();
 		}
 	}
 </script>

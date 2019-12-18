@@ -78,7 +78,6 @@ class RootGetters extends Getters<RootState> {
 	}
 
 	get getPageStage(): (locale: string) => PageModel[] {
-console.log(this.state.i18n)
 		return (locale: string) => this.state.pages[locale];
 	}
 
@@ -137,6 +136,8 @@ class RootMutations extends Mutations<RootState> {
 			path.includes(page.link),
 		);
 
+		console.log(pages);
+
 		if (matchingPage) {
 			Vue.set(this.state, 'pageId', matchingPage.id);
 		}
@@ -169,6 +170,25 @@ class RootActions extends Actions<
       .$get('page/')
 			.then(data => this.mutations.setPages(data))
       .catch(err => this.mutations.setError(err));
+	}
+
+	async fetchContentByPageId() {
+		const params = {
+			id: this.state.pageId,
+			lang: this.store.$i18n.locale,
+		}
+
+
+		const test = await this.store.$axios
+			.$get('content/', { params })
+
+		console.log(params);
+
+
+		// return await this.store.$axios
+    //   .$get('page/')
+		// 	.then(data => this.mutations.setPages(data))
+    //   .catch(err => this.mutations.setError(err));
 	}
 
 	async authorizationUser(data: any): Promise<void> {

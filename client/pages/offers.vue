@@ -85,7 +85,7 @@
 
 <script lang="ts">
 	import { Component, Vue } from 'vue-property-decorator';
-	import { Getter, Mutation } from 'vuex-class';
+	import { Action, Getter, Mutation } from 'vuex-class';
 	import posed from 'vue-pose';
 
 	import PruductFooter from '@/components/product-footer.vue';
@@ -128,7 +128,7 @@
 		},
 	})
 	export default class OffersPage extends Vue {
-		@Getter('OffersModule/getStage') weOffers;
+		@Action('fetchContentByPageId') fetchContentByPageId;
 		@Getter('getPageById') page;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 
@@ -160,6 +160,10 @@
 			}
 		}
 
+
+		created() {
+			this.fetchContentByPageId();
+		}
 		mounted() {
 			const representations: any = this.$refs.representations;
 

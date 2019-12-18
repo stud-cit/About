@@ -192,7 +192,6 @@
 
 		choosePage(page, i: number): void {
 			this.choosedSlide = i - 1;
-			console.log(page)
 			this.setPage(page)
 		}
 

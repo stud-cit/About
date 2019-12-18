@@ -134,7 +134,7 @@
 
 <script lang="ts">
 	import { Component, Vue } from 'vue-property-decorator';
-	import { Getter, Mutation } from 'vuex-class';
+	import { Action, Getter, Mutation } from 'vuex-class';
 	import posed from 'vue-pose';
 
 	import ScrollBar from '@/components/scroll-bar.vue';
@@ -164,7 +164,8 @@
 		},
 	})
 	export default class OurStaffPage extends Vue {
-		@Getter('OurStaffModule/getStage') ourStaff;
+		@Action('fetchContentByPageId') fetchContentByPageId;
+		// @Getter('OurStaffModule/getStage') ourStaff;
 		@Getter('getPageById') page;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 
@@ -220,6 +221,10 @@
 			return { fontSize: `${this.getAdaptiveSize('stackPositionFont')}px` };
 		}
 
+
+		created() {
+			this.fetchContentByPageId();
+		}
 		mounted() {
 			const staff: any = this.$refs.staff;
 

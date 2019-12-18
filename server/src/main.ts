@@ -19,7 +19,9 @@ async function bootstrap() {
 		.addBearerAuth()
 		.build();
 
-	app.setGlobalPrefix(configService.get('PREFFIX'));
+	app.setGlobalPrefix(configService.get('PREFFIX')).enableCors({
+		origin: ['https://localhost:8080', 'http://localhost:8080'],
+	});
 
 	const document = SwaggerModule.createDocument(app, options);
 	const validationPipe = new ValidationPipe({

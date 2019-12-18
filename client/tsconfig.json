@@ -1,4 +1,5 @@
 {
+
 	"compilerOptions": {
 		"baseUrl": ".",
 		"target": "esnext",
@@ -19,5 +20,6 @@
 		"lib": ["esnext", "esnext.asynciterable", "dom"],
 		"types": ["@types/node", "@nuxt/types", "vuetify"]
 	},
+	"include": ["typings"],
 	"exclude": ["node_modules"]
 }
