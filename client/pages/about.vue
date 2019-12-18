@@ -52,7 +52,7 @@
 												"
 												class="py-md-10 py-lg-7"
 											>
-												{{ page.content[stageText] }}
+												{{ stagesLength && (stagesLength > stageText) ? pageContent($i18n.locale)[stageText].description : '' }}
 											</TextSlider>
 										</div>
 									</v-col>
@@ -80,7 +80,7 @@
 				</v-window>
 
 				<Slogan
-					v-if="curStage <= page.content.length"
+					v-if="curStage <= stagesLength"
 					class="d-none d-md-block rotated-phraze font-weight-light"
 					:delay="getFirstStageAnimationDelay"
 					:class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
@@ -93,7 +93,7 @@
 					{{ $t('common.slogan') }}
 				</Slogan>
 				<p
-					v-if="curStage > page.content.length"
+					v-if="curStage > stagesLength"
 					class="d-none d-md-block font-weight-light rotated-phraze pointer back-to-start"
 					:class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
 					@click="backToStart"
@@ -119,7 +119,7 @@
 									<v-col sm="10" md="7" class="d-none d-md-flex">
 										<v-slider
 											v-model="curStage"
-											:max="page.content.length + 1"
+											:max="stagesLength + 1"
 											class="slider"
 											step="1"
 											ticks="always"
@@ -199,6 +199,7 @@
 	export default class AboutPage extends Vue {
 		@Action('fetchContentByPageId') fetchContentByPageId;
 		@Getter('getPage') page;
+		@Getter('getPageContent') pageContent;
 		@Getter('getContactBarVisibility') isShowContactBar;
 		@Getter('visibilityLoader') visibilityLoader;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
@@ -212,7 +213,7 @@
 		stageAbout: number = 0;
 
 		swipeLeft() {
-			if (this.curStage < this.page.content.length + 1) {
+			if (this.curStage < this.stagesLength + 1) {
 				this.curStage = this.curStage + 1;
 			} else {
 				this.curStage = 0;
@@ -224,7 +225,7 @@
 			}
 		}
 		showLastStage() {
-			this.curStage = this.page.content.length + 1;
+			this.curStage = this.stagesLength + 1;
 		}
 
 		backToStart() {
@@ -252,6 +253,11 @@
 		}
 		get isLgAndUp() {
 			return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
+		}
+
+
+		get stagesLength() {
+			return this.pageContent(this.$i18n.locale) ? this.pageContent(this.$i18n.locale).length : 0;
 		}
 
 		get getSlideTitleFont() {
@@ -284,7 +290,7 @@
 
 		@Watch('curStage')
 		onChangeCurStage(value: number) {
-			if (value === this.page.content.length + 1) {
+			if (value === this.stagesLength + 1) {
 				this.changeContactBar(true);
 			} else {
 				this.changeContactBar(false);
@@ -292,7 +298,7 @@
 			this.isTextSliderAnimation = false;
 			if (
 				this.curStage > 0 &&
-				this.curStage < this.page.content.length + 2
+				this.curStage < this.stagesLength + 2
 			) {
 				this.stageAbout = this.curStage > 1 ? this.curStage - 1 : this.curStage;
 				setTimeout(() => {

@@ -17,6 +17,7 @@ class RootState {
 	pageId = '';
 	page!: PageModel;
 	pages: PageModel[] = [];
+	content: {} = {};
 	contacts = {
 		ua: {
 			email: 'STUDCITMAIL@GMAIL.COM',
@@ -43,27 +44,21 @@ class RootGetters extends Getters<RootState> {
 	get getError(): any {
 		return this.state.error;
 	}
-
 	get visibilityLoader(): boolean {
 		return this.state.visibilityLoader;
 	}
-
 	get isAuth(): boolean {
 		return this.state.auth.loggedIn;
 	}
-
 	get getContactBarVisibility(): boolean {
 		return this.state.showContactBar;
 	}
-
 	get getScrollBarVisibility(): boolean {
 		return this.state.showScrollBar;
 	}
-
 	get getIsHideAnimationContent(): boolean {
 		return this.state.isHideAnimationContent;
 	}
-
 	get getPageCover(): CoverModel | {} {
 		return (locale: string) => {
 			const currentPage = this.state.pages[locale].find(
@@ -72,15 +67,15 @@ class RootGetters extends Getters<RootState> {
 			return currentPage ? currentPage.cover : {};
 		};
 	}
-
 	get getPage(): PageModel {
 		return this.state.page;
 	}
-
 	get getPageStage(): (locale: string) => PageModel[] {
 		return (locale: string) => this.state.pages[locale];
 	}
-
+	get getPageContent(): (locale: string) => Record<string, any>[] {
+		return (locale: string) => this.state.content[locale];
+	}
 	get getPageIndex(): (locale: string) => number {
 		return (locale: string) => {
 			const matchingIndex = this.state.pages[locale].findIndex(
@@ -89,19 +84,15 @@ class RootGetters extends Getters<RootState> {
 			return matchingIndex + 1;
 		};
 	}
-
 	get getPageById(): (locale: string) => PageModel {
 		return (locale: string) =>
 			this.state.pages[locale].find(
 				(page: PageModel) => page.id === this.state.pageId,
-			);
-
+		);
 	}
-
 	get getPageId(): string {
 		return this.state.pageId;
 	}
-
 	get getPageRouteByIndex(): (index: number) => string {
 		return (index: number) => {
 			const changedIndex = index > 4 ? 1 : index < 1 ? 4 : index;
@@ -109,7 +100,6 @@ class RootGetters extends Getters<RootState> {
 			return currentPage ? currentPage.link : '';
 		};
 	}
-
 	get getContactStage() {
 		return this.state.contacts;
 	}
@@ -122,11 +112,9 @@ class RootMutations extends Mutations<RootState> {
 	setPages(pages: PageModel[]) {
 		return Vue.set(this.state, 'pages', pages);
 	}
-
 	setPage(page: PageModel) {
 		return Vue.set(this.state, 'page', page);
 	}
-
 	hideLoader() {
 		return Vue.set(this.state, 'visibilityLoader', false);
 	}
@@ -136,11 +124,12 @@ class RootMutations extends Mutations<RootState> {
 			path.includes(page.link),
 		);
 
-		console.log(pages);
-
 		if (matchingPage) {
 			Vue.set(this.state, 'pageId', matchingPage.id);
 		}
+	}
+	setPageContent(content: Record<string, any>) {
+		Vue.set(this.state, 'content', content);
 	}
 	changeContactBar(visibility: boolean) {
 		return Vue.set(this.state, 'showContactBar', visibility);
@@ -166,6 +155,8 @@ class RootActions extends Actions<
 	}
 
 	async nuxtServerInit() {
+
+		// TODO: add checking by page adn fetch page
 		return await this.store.$axios
       .$get('page/')
 			.then(data => this.mutations.setPages(data))
@@ -174,21 +165,13 @@ class RootActions extends Actions<
 
 	async fetchContentByPageId() {
 		const params = {
-			id: this.state.pageId,
-			lang: this.store.$i18n.locale,
-		}
+			page: this.state.pageId,
+		};
 
-
-		const test = await this.store.$axios
+		await this.store.$axios
 			.$get('content/', { params })
-
-		console.log(params);
-
-
-		// return await this.store.$axios
-    //   .$get('page/')
-		// 	.then(data => this.mutations.setPages(data))
-    //   .catch(err => this.mutations.setError(err));
+			.then(pageContent => this.mutations.setPageContent(pageContent))
+      .catch(err => this.mutations.setError(err));
 	}
 
 	async authorizationUser(data: any): Promise<void> {
