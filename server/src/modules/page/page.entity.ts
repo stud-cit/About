@@ -131,9 +131,13 @@ export class PageEntity extends BaseEntity {
 	/**
 	 * [content description]
 	 */
-	@OneToMany(() => ContentEntity, content => content.page, {
-		nullable: true,
-		cascade: true,
-	})
+	@OneToMany(
+		() => ContentEntity,
+		content => content.page,
+		{
+			nullable: true,
+			cascade: true,
+		},
+	)
 	public readonly content: ContentEntity[];
 }

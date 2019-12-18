@@ -52,7 +52,7 @@
 												"
 												class="py-md-10 py-lg-7"
 											>
-												{{ about[$i18n.locale].slides[stageText] }}
+												{{ about[$i18n.locale][stageText] }}
 											</TextSlider>
 										</div>
 									</v-col>
@@ -88,14 +88,14 @@
 					:delay="getFirstStageAnimationDelay"
 					class="d-none d-md-block rotated-phraze font-weight-light"
 					:class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
-					v-if="curStage <= about[$i18n.locale].slides.length"
+					v-if="curStage <= about[$i18n.locale].length"
 				>
 					{{ $t('common.slogan') }}
 				</Slogan>
 				<p
 					class="d-none d-md-block font-weight-light rotated-phraze pointer back-to-start"
 					:class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
-					v-if="curStage > about[$i18n.locale].slides.length"
+					v-if="curStage > about[$i18n.locale].length"
 					@click="backToStart"
 				>
 					{{ $t('common.backToStart') }}
@@ -119,7 +119,7 @@
 									<v-col sm="10" md="7" class="d-none d-md-flex">
 										<v-slider
 											v-model="curStage"
-											:max="about[$i18n.locale].slides.length + 1"
+											:max="about[$i18n.locale].length + 1"
 											class="slider"
 											step="1"
 											ticks="always"
@@ -212,11 +212,11 @@
 		stageAbout: number = 0;
 
 		showLastStage() {
-			this.curStage = this.about[this.$i18n.locale].slides.length + 1;
+			this.curStage = this.about[this.$i18n.locale].length + 1;
 		}
 
 		swipeLeft() {
-			if (this.curStage < this.about[this.$i18n.locale].slides.length + 1) {
+			if (this.curStage < this.about[this.$i18n.locale].length + 1) {
 				this.curStage = this.curStage + 1;
 			} else {
 				this.curStage = 0;
@@ -228,7 +228,7 @@
 			}
 		}
 		showLastStage() {
-			this.curStage = this.about[this.$i18n.locale].slides.length + 1;
+			this.curStage = this.about[this.$i18n.locale].length + 1;
 		}
 
 		backToStart() {
@@ -288,7 +288,7 @@
 
 		@Watch('curStage')
 		onChangeCurStage(value: number) {
-			if (value === this.about[this.$i18n.locale].slides.length + 1) {
+			if (value === this.about[this.$i18n.locale].length + 1) {
 				this.changeContactBar(true);
 			} else {
 				this.changeContactBar(false);
@@ -296,7 +296,7 @@
 			this.isTextSliderAnimation = false;
 			if (
 				this.curStage > 0 &&
-				this.curStage < this.about[this.$i18n.locale].slides.length + 2
+				this.curStage < this.about[this.$i18n.locale].length + 2
 			) {
 				this.stageAbout = this.curStage > 1 ? this.curStage - 1 : this.curStage;
 				setTimeout(() => {

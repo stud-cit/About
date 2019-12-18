@@ -11,7 +11,7 @@
 		</v-row>
 		<v-col class="pa-0">
 			<v-parallax
-				v-for="(project, i) in portfolio[$i18n.locale].projects"
+				v-for="(project, i) in portfolio[$i18n.locale]"
 				:key="i"
 				:src="getDynamicAssets(project.cover)"
 				class="pa-0"

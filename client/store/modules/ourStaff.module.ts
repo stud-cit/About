@@ -3,135 +3,124 @@ import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { Store } from 'vuex';
 
 interface StaffModel {
-	id: number;
-	name: string;
-	position: string;
-	stack: string;
-	img: string;
+	readonly id: number;
+	readonly name: string;
+	readonly position: string;
+	readonly stack: string;
+	readonly img: string;
 }
-
-interface OurStaffLocaleModel {
-	readonly staff: StaffModel[];
-}
-
 class OurStaffState {
-	ua: OurStaffLocaleModel = {
-		staff: [
-			{
-				id: 1,
-				name: 'Андрiй Горiшняк',
-				position: 'Project manager',
-				stack: 'Aglie, SCRUM, Lean',
-				img: '/images/ourStaff/staff-1.jpg',
-			},
-			{
-				id: 2,
-				name: 'Евгенiй Бабiй',
-				position: 'Designer',
-				stack: 'Фахівець з UX/UI',
-				img: '/images/ourStaff/staff-1.jpg',
-			},
-			{
-				id: 3,
-				name: 'Артем Кондратенко',
-				position: 'Fronend developer',
-				stack: 'Фахівець з Vue, React',
-				img: '/images/ourStaff/staff-1.jpg',
-			},
-			{
-				id: 4,
-				name: 'Павло Тiтов',
-				position: 'Frontend developer',
-				stack: 'Фахівець з React, Vue, typescript',
-				img: '/images/ourStaff/staff-1.jpg',
-			},
-			{
-				id: 5,
-				name: 'Марiя Валенкевич',
-				position: 'Backend developer',
-				stack: 'Фахівець з Laravel, NodeJs',
-				img: '/images/ourStaff/staff-2.jpg',
-			},
-		],
-	};
-	ru: OurStaffLocaleModel = {
-		staff: [
-			{
-				id: 1,
-				name: 'Андрей Горишняк',
-				position: 'Project manager',
-				stack: 'Aglie, SCRUM, Lean',
-				img: '/images/ourStaff/staff-1.jpg',
-			},
-			{
-				id: 2,
-				name: 'Евгений Бабий',
-				position: 'Designer',
-				stack: 'Специалист по UX/UI',
-				img: '/images/ourStaff/staff-1.jpg',
-			},
-			{
-				id: 3,
-				name: 'Артем Кондратенко',
-				position: 'Fronend developer',
-				stack: 'Специалист по Vue, React',
-				img: '/images/ourStaff/staff-1.jpg',
-			},
-			{
-				id: 4,
-				name: 'Павел Титов',
-				position: 'Frontend developer',
-				stack: 'Специалист по React, Vue, typescript',
-				img: '/images/ourStaff/staff-1.jpg',
-			},
-			{
-				id: 5,
-				name: 'Мария Валенкевич',
-				position: 'Backend developer',
-				stack: 'Специалист по Laravel, NodeJs',
-				img: '/images/ourStaff/staff-2.jpg',
-			},
-		],
-	};
-	en: OurStaffLocaleModel = {
-		staff: [
-			{
-				id: 1,
-				name: 'Andrey Gorishnyak',
-				position: 'Project manager',
-				stack: 'Aglie, SCRUM, Lean',
-				img: '/images/ourStaff/staff-1.jpg',
-			},
-			{
-				id: 2,
-				name: 'Evgen Babiy',
-				position: 'Designer',
-				stack: 'Proficient in UX/UI',
-				img: '/images/ourStaff/staff-1.jpg',
-			},
-			{
-				id: 3,
-				name: 'Artem Kondatenko',
-				position: 'Fronend developer',
-				stack: 'Proficient in Vue, React',
-				img: '/images/ourStaff/staff-1.jpg',
-			},
-			{
-				id: 4,
-				name: 'Pavlo Tytov',
-				position: 'Frontend developer',
-				stack: 'Proficient in React, Vue, typescript',
-				img: '/images/ourStaff/staff-1.jpg',
-			},
-			{
-				id: 5,
-				name: 'Maria Valenkevich',
-				position: 'Backend developer',
-				stack: 'Proficient in Laravel, NodeJs',
-				img: '/images/ourStaff/staff-2.jpg',
-			},
-		],
-	};
+	ua: StaffModel[] = [
+		{
+			id: 1,
+			name: 'Андрiй Горiшняк',
+			position: 'Project manager',
+			stack: 'Aglie, SCRUM, Lean',
+			img: '/images/ourStaff/staff-1.jpg',
+		},
+		{
+			id: 2,
+			name: 'Евгенiй Бабiй',
+			position: 'Designer',
+			stack: 'Фахівець з UX/UI',
+			img: '/images/ourStaff/staff-1.jpg',
+		},
+		{
+			id: 3,
+			name: 'Артем Кондратенко',
+			position: 'Fronend developer',
+			stack: 'Фахівець з Vue, React',
+			img: '/images/ourStaff/staff-1.jpg',
+		},
+		{
+			id: 4,
+			name: 'Павло Тiтов',
+			position: 'Frontend developer',
+			stack: 'Фахівець з React, Vue, typescript',
+			img: '/images/ourStaff/staff-1.jpg',
+		},
+		{
+			id: 5,
+			name: 'Марiя Валенкевич',
+			position: 'Backend developer',
+			stack: 'Фахівець з Laravel, NodeJs',
+			img: '/images/ourStaff/staff-2.jpg',
+		},
+	];
+	ru: StaffModel[] = [
+		{
+			id: 1,
+			name: 'Андрей Горишняк',
+			position: 'Project manager',
+			stack: 'Aglie, SCRUM, Lean',
+			img: '/images/ourStaff/staff-1.jpg',
+		},
+		{
+			id: 2,
+			name: 'Евгений Бабий',
+			position: 'Designer',
+			stack: 'Специалист по UX/UI',
+			img: '/images/ourStaff/staff-1.jpg',
+		},
+		{
+			id: 3,
+			name: 'Артем Кондратенко',
+			position: 'Fronend developer',
+			stack: 'Специалист по Vue, React',
+			img: '/images/ourStaff/staff-1.jpg',
+		},
+		{
+			id: 4,
+			name: 'Павел Титов',
+			position: 'Frontend developer',
+			stack: 'Специалист по React, Vue, typescript',
+			img: '/images/ourStaff/staff-1.jpg',
+		},
+		{
+			id: 5,
+			name: 'Мария Валенкевич',
+			position: 'Backend developer',
+			stack: 'Специалист по Laravel, NodeJs',
+			img: '/images/ourStaff/staff-2.jpg',
+		},
+	];
+	en: StaffModel[] = [
+		{
+			id: 1,
+			name: 'Andrey Gorishnyak',
+			position: 'Project manager',
+			stack: 'Aglie, SCRUM, Lean',
+			img: '/images/ourStaff/staff-1.jpg',
+		},
+		{
+			id: 2,
+			name: 'Evgen Babiy',
+			position: 'Designer',
+			stack: 'Proficient in UX/UI',
+			img: '/images/ourStaff/staff-1.jpg',
+		},
+		{
+			id: 3,
+			name: 'Artem Kondatenko',
+			position: 'Fronend developer',
+			stack: 'Proficient in Vue, React',
+			img: '/images/ourStaff/staff-1.jpg',
+		},
+		{
+			id: 4,
+			name: 'Pavlo Tytov',
+			position: 'Frontend developer',
+			stack: 'Proficient in React, Vue, typescript',
+			img: '/images/ourStaff/staff-1.jpg',
+		},
+		{
+			id: 5,
+			name: 'Maria Valenkevich',
+			position: 'Backend developer',
+			stack: 'Proficient in Laravel, NodeJs',
+			img: '/images/ourStaff/staff-2.jpg',
+		},
+	];
 }
 
 class OurStaffGetters extends Getters<OurStaffState> {

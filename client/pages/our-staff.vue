@@ -10,7 +10,7 @@
 				<ScrollBar />
 				<v-row justify="start" class="d-none d-md-flex">
 					<v-col
-						v-for="(employee, i) in ourStaff[$i18n.locale].staff"
+						v-for="(employee, i) in ourStaff[$i18n.locale]"
 						:key="i"
 						lg="4"
 						md="4"
@@ -65,7 +65,7 @@
 					<v-col class="staff-slide">
 						<v-window v-model="curStaff">
 							<v-window-item
-								v-for="(employee, i) in ourStaff[$i18n.locale].staff"
+								v-for="(employee, i) in ourStaff[$i18n.locale]"
 								:key="i"
 							>
 								<v-card
@@ -174,7 +174,7 @@
 
 		switchSlide(nextSlide) {
 			const { curStaff, ourStaff } = this;
-			const totalStaff = ourStaff[this.$i18n.locale].staff.length;
+			const totalStaff = ourStaff[this.$i18n.locale].length;
 			let newIndex;
 			if (nextSlide) {
 				newIndex = curStaff + 1 < totalStaff ? curStaff + 1 : 0;
@@ -186,7 +186,7 @@
 
 		get sliderInfo() {
 			return `${this.curStaff + 1} / ${
-				this.ourStaff[this.$i18n.locale].staff.length
+				this.ourStaff[this.$i18n.locale].length
 			}`;
 		}
 

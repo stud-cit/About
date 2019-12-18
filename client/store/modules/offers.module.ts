@@ -8,90 +8,80 @@ interface ReperesentationModel {
 	readonly img: string;
 }
 
-interface OffersLocaleModel {
-	readonly offers: ReperesentationModel[];
-}
-
 class OffersState {
-	ua: OffersLocaleModel = {
-		offers: [
-			{
-				title: 'Розробка веб-сайту для різних цілей',
-				content: `Не кожен, хто замислювався про створення власного ресурсу в мережі, до кінця
-					розуміє, навіщо це потрібно. Саме визначення цілей майбутнього проекту, визначає
-					подальший розвиток та популяризацію.`,
-				img: '/images/weOffer/one.jpg',
-			},
-			{
-				title:
-					'Створення програмного забезпечення для вирішення реально існюючих завдань',
-				content: `Розроблене програмне забезпечення - інструмент для вирішення необхідних завдань.
-					Наприклад, за допомогою веб-додатків, нараховується заробітна плата, ведеться контроль
-					часу роботи, як кожного співробітника, так і частини компанії, виконується перевірка
-					роботи установи.`,
-				img: '/images/weOffer/two.jpg',
-			},
-			{
-				title: 'Проєктування інформаційних систем різної складності',
-				content: `Web-розробка починається з визначення причин і цілей.
-					Ці дві складові напряму впливають на складність виконання.`,
-				img: '/images/weOffer/three.jpg',
-			},
-		],
-	};
-	ru: OffersLocaleModel = {
-		offers: [
-			{
-				title: 'Разработка веб-сайта для различных целей',
-				content: `Не каждый, кто задумывался о создании собственного ресурса в сети, до конца понимает,
-					зачем это нужно. А ведь определение целей будущего проекта, определяет дальнейшее
-					продвижение и популяризацию.`,
-				img: '/images/weOffer/one.jpg',
-			},
-			{
-				title: 'Создание програмного обеспечения для реальных задач',
-				content: `Разработанное программное обеспечение - инструмент для решения необходимых задач.
-					Например, при помощи веб-приложений, начисляется заработная плата, ведется
-					контроль времени работы, как каждого сотрудника, так и части компании,
-					выполняется проверка работы учреждения.`,
-				img: '/images/weOffer/two.jpg',
-			},
-			{
-				title: 'Проектирование информационных систем различной сложности',
-				content: `Web-разработка начинается с определения целей. В зависмости
-					от поставленой цели нами будет выбрана наиболее походящая платформа
-					и функционал. Эти две составляющие напрямую влияют на сложность выполнения.`,
-				img: '/images/weOffer/three.jpg',
-			},
-		],
-	};
-	en: OffersLocaleModel = {
-		offers: [
-			{
-				title: 'Website development for different purposes',
-				content: `Not everyone who has thought about creating their own resource on
-					the network fully understands why it is necessary. It\`s the definition
-					of the goals of the future project that determines the further development
-					and promotion.`,
-				img: '/images/weOffer/one.jpg',
-			},
-			{
-				title: 'Creating software to solve tasks',
-				content: `The developed software is a tool for solving the necessary tasks.
-					For example, with the help of web applications wages are calculated, work
-					time is monitored both for each employee and for part of the company,
-					the work of the institution is checked. `,
-				img: '/images/weOffer/two.jpg',
-			},
-			{
-				title: 'Design of information systems of various complexity',
-				content: `Web development begins by identifying the causes and goals. Depending
-				from the goal we will choose the most suitable platform
-				and functional. These two components directly affect the complexity of execution.`,
-				img: '/images/weOffer/three.jpg',
-			},
-		],
-	};
+	ua: ReperesentationModel[] = [
+		{
+			title: 'Розробка веб-сайту для різних цілей',
+			content: `Не кожен, хто замислювався про створення власного ресурсу в мережі, до кінця
+				розуміє, навіщо це потрібно. Саме визначення цілей майбутнього проекту, визначає
+				подальший розвиток та популяризацію.`,
+			img: '/images/weOffer/one.jpg',
+		},
+		{
+			title:
+				'Створення програмного забезпечення для вирішення реально існюючих завдань',
+			content: `Розроблене програмне забезпечення - інструмент для вирішення необхідних завдань.
+				Наприклад, за допомогою веб-додатків, нараховується заробітна плата, ведеться контроль
+				часу роботи, як кожного співробітника, так і частини компанії, виконується перевірка
+				роботи установи.`,
+			img: '/images/weOffer/two.jpg',
+		},
+		{
+			title: 'Проєктування інформаційних систем різної складності',
+			content: `Web-розробка починається з визначення причин і цілей.
+				Ці дві складові напряму впливають на складність виконання.`,
+			img: '/images/weOffer/three.jpg',
+		},
+	];
+	ru: ReperesentationModel[] = [
+		{
+			title: 'Разработка веб-сайта для различных целей',
+			content: `Не каждый, кто задумывался о создании собственного ресурса в сети, до конца понимает,
+				зачем это нужно. А ведь определение целей будущего проекта, определяет дальнейшее
+				продвижение и популяризацию.`,
+			img: '/images/weOffer/one.jpg',
+		},
+		{
+			title: 'Создание програмного обеспечения для реальных задач',
+			content: `Разработанное программное обеспечение - инструмент для решения необходимых задач.
+				Например, при помощи веб-приложений, начисляется заработная плата, ведется
+				контроль времени работы, как каждого сотрудника, так и части компании,
+				выполняется проверка работы учреждения.`,
+			img: '/images/weOffer/two.jpg',
+		},
+		{
+			title: 'Проектирование информационных систем различной сложности',
+			content: `Web-разработка начинается с определения целей. В зависмости
+				от поставленой цели нами будет выбрана наиболее походящая платформа
+				и функционал. Эти две составляющие напрямую влияют на сложность выполнения.`,
+			img: '/images/weOffer/three.jpg',
+		},
+	];
+	en: ReperesentationModel[] = [
+		{
+			title: 'Website development for different purposes',
+			content: `Not everyone who has thought about creating their own resource on
+				the network fully understands why it is necessary. It\`s the definition
+				of the goals of the future project that determines the further development
+				and promotion.`,
+			img: '/images/weOffer/one.jpg',
+		},
+		{
+			title: 'Creating software to solve tasks',
+			content: `The developed software is a tool for solving the necessary tasks.
+				For example, with the help of web applications wages are calculated, work
+				time is monitored both for each employee and for part of the company,
+				the work of the institution is checked. `,
+			img: '/images/weOffer/two.jpg',
+		},
+		{
+			title: 'Design of information systems of various complexity',
+			content: `Web development begins by identifying the causes and goals. Depending
+			from the goal we will choose the most suitable platform
+			and functional. These two components directly affect the complexity of execution.`,
+			img: '/images/weOffer/three.jpg',
+		},
+	];
 }
 
 class OffersGetters extends Getters<OffersState> {
