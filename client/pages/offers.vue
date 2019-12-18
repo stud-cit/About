@@ -14,7 +14,7 @@
 			<v-col cols="12" md="10" lg="10" xl="10">
 				<v-row
 					class="representation-section"
-					v-for="(offer, index) in weOffers[$i18n.locale].offers"
+					v-for="(offer, index) in weOffers[$i18n.locale]"
 					:key="index"
 					:justify="offer.contentPosition"
 					align="start"
