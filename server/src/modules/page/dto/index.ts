@@ -1,2 +1,2 @@
 export { PageRequest } from './page.dto';
-export { LinkRequest } from './link.dto';
+export { PageFilter } from './filter.dto';
