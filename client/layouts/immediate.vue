@@ -3,14 +3,8 @@
 		<client-only>
 			<video-background
 				id="video-bg"
-				:src="
-					cover($i18n.locale).video ? getDynamicAssets(`/videos${cover($i18n.locale).video}`) : ''
-				"
-				:poster="
-					cover($i18n.locale).image
-						? getDynamicAssets(`/images/covers${cover($i18n.locale).image}`)
-						: ''
-				"
+				:src="getDynamicAssets(page.cover.video)"
+				:poster="getDynamicAssets(page.cover.image)"
 				autoplay
 			/>
 		</client-only>
@@ -191,10 +185,11 @@
 		},
 	})
 	export default class ImmediatetLayout extends Vue {
-		@Getter('getPageByRoute') getPageByRoute;
+		// @Getter('getPageByRoute') getPageByRoute;
 		@Getter('getPageIndex') pageIndex;
 		@Getter('getPageStage') pages;
-		@Getter('getPageCover') cover;
+		// @Getter('getPageCover') cover;
+		@Getter('getPage') page;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 		@Getter('visibilityLoader') visibilityLoader;
 		@Mutation('changeScrollBar') changeScrollBar;

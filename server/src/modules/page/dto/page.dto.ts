@@ -2,11 +2,12 @@ import { IsOptional, MaxLength, Length, ValidateNested } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 import { CoverRequest } from '../../../storage';
+import { LinkRequest } from './link.dto';
 
 /**
  * [PageRequest description]
  */
-export class PageRequest {
+export class PageRequest extends LinkRequest {
 	/**
 	 * [lang description]
 	 */
@@ -19,18 +20,6 @@ export class PageRequest {
 		required: false,
 	})
 	public readonly lang: string;
-
-	/**
-	 * [link description]
-	 */
-	@IsOptional()
-	@MaxLength(255)
-	@ApiProperty({
-		required: true,
-		maxLength: 255,
-		example: 'example',
-	})
-	public readonly link: string;
 
 	/**
 	 * [name description]

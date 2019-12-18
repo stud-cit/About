@@ -5,37 +5,7 @@ import Vue from 'vue';
 
 import { createStore } from 'vuex-smart-module';
 
-import { AboutModule } from './modules/about.module';
-import { OffersModule } from './modules/offers.module';
-import { OurStaffModule } from './modules/ourStaff.module';
-import { PortfolioModule } from './modules/portfolio.module';
-
-// image using for showing img during video loading
-interface CoverModel {
-	readonly image: string;
-	readonly video: string;
-}
-interface PageModel {
-	readonly id: string;
-	readonly name: string;
-	readonly title: string;
-	readonly description: string;
-	readonly link: string;
-	readonly cover: CoverModel;
-}
-
-interface ContactsLocaleModel {
-	email: string;
-	phone: string;
-	street: string;
-	office: string;
-}
-
-interface ContactsModel {
-	ua: ContactsLocaleModel;
-	ru: ContactsLocaleModel;
-	en: ContactsLocaleModel;
-}
+import { PageModel, CoverModel } from './interfaces';
 
 class RootState {
 	auth!: any;
@@ -45,8 +15,9 @@ class RootState {
 	showScrollBar: boolean = false;
 	isHideAnimationContent: boolean = false;
 	pageId = '';
+	page!: PageModel;
 	pages: PageModel[] = [];
-	contacts: ContactsModel = {
+	contacts = {
 		ua: {
 			email: 'STUDCITMAIL@GMAIL.COM',
 			phone: '+380 98 43 70 202',
@@ -102,7 +73,12 @@ class RootGetters extends Getters<RootState> {
 		};
 	}
 
+	get getPage(): PageModel {
+		return this.state.page;
+	}
+
 	get getPageStage(): (locale: string) => PageModel[] {
+console.log(this.state.i18n)
 		return (locale: string) => this.state.pages[locale];
 	}
 
@@ -135,7 +111,7 @@ class RootGetters extends Getters<RootState> {
 		};
 	}
 
-	get getContactStage(): ContactsModel {
+	get getContactStage() {
 		return this.state.contacts;
 	}
 }
@@ -147,6 +123,11 @@ class RootMutations extends Mutations<RootState> {
 	setPages(pages: PageModel[]) {
 		return Vue.set(this.state, 'pages', pages);
 	}
+
+	setPage(page: PageModel) {
+		return Vue.set(this.state, 'page', page);
+	}
+
 	hideLoader() {
 		return Vue.set(this.state, 'visibilityLoader', false);
 	}
@@ -202,12 +183,6 @@ const RootModule = new Module({
 	getters: RootGetters,
 	mutations: RootMutations,
 	actions: RootActions,
-	modules: {
-		AboutModule,
-		OffersModule,
-		OurStaffModule,
-		PortfolioModule,
-	},
 });
 
 export default (): Store<any> =>

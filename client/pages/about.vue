@@ -3,9 +3,9 @@
 		<v-row justify="center">
 			<v-col cols="12" sm="10">
 				<v-window
-					v-model="stageAbout"
-					continuous
 					dark
+					continuous
+					v-model="stageAbout"
 					:touch="{
 						left: swipeLeft,
 						right: swipeRight,
@@ -19,15 +19,15 @@
 						>
 							<PreviewPage
 								:title="$t('common.companyName')"
-								:description="page($i18n.locale).description"
+								:description="page.description"
 								:icon-down="false"
 							/>
 						</v-col>
 					</v-window-item>
 					<v-window-item>
 						<v-row
-							:justify="isSmAndDown ? 'center' : 'start'"
 							align="center"
+							:justify="isSmAndDown ? 'center' : 'start'"
 							:class="isXsOnly ? 'slide-container-mobile' : 'slide-container'"
 						>
 							<v-col cols="11" md="10" lg="10">
@@ -52,7 +52,7 @@
 												"
 												class="py-md-10 py-lg-7"
 											>
-												{{ about[$i18n.locale][stageText] }}
+												{{ page.content[stageText] }}
 											</TextSlider>
 										</div>
 									</v-col>
@@ -80,33 +80,33 @@
 				</v-window>
 
 				<Slogan
+					v-if="curStage <= page.content.length"
+					class="d-none d-md-block rotated-phraze font-weight-light"
+					:delay="getFirstStageAnimationDelay"
+					:class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
 					:pose="
 						isSloganAnimation && !getIsHideAnimationContent
 							? 'visible'
 							: 'hidden'
 					"
-					:delay="getFirstStageAnimationDelay"
-					class="d-none d-md-block rotated-phraze font-weight-light"
-					:class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
-					v-if="curStage <= about[$i18n.locale].length"
 				>
 					{{ $t('common.slogan') }}
 				</Slogan>
 				<p
+					v-if="curStage > page.content.length"
 					class="d-none d-md-block font-weight-light rotated-phraze pointer back-to-start"
 					:class="isLgAndUp ? 'rotated-phraze-lg' : 'rotated-phraze-md'"
-					v-if="curStage > about[$i18n.locale].length"
 					@click="backToStart"
 				>
 					{{ $t('common.backToStart') }}
 				</p>
 				<OpacityBox
+					:delay="getSecondStageAnimationDelay"
 					:pose="
 						isContactAnimation && !getIsHideAnimationContent
 							? 'visible'
 							: 'hidden'
 					"
-					:delay="getSecondStageAnimationDelay"
 				>
 					<v-footer absolute color="transparent" class="pb-0 px-0 px-sm-auto">
 						<v-row justify="center">
@@ -119,7 +119,7 @@
 									<v-col sm="10" md="7" class="d-none d-md-flex">
 										<v-slider
 											v-model="curStage"
-											:max="about[$i18n.locale].length + 1"
+											:max="page.content.length + 1"
 											class="slider"
 											step="1"
 											ticks="always"
@@ -197,8 +197,8 @@
 		},
 	})
 	export default class AboutPage extends Vue {
-		@Getter('AboutModule/getStage') about;
-		@Getter('getPageById') page;
+		// @Getter('AboutModule/getStage') about;
+		@Getter('getPage') page;
 		@Getter('getContactBarVisibility') isShowContactBar;
 		@Getter('visibilityLoader') visibilityLoader;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
@@ -212,11 +212,11 @@
 		stageAbout: number = 0;
 
 		showLastStage() {
-			this.curStage = this.about[this.$i18n.locale].length + 1;
+			this.curStage = this.page.content.length + 1;
 		}
 
 		swipeLeft() {
-			if (this.curStage < this.about[this.$i18n.locale].length + 1) {
+			if (this.curStage < this.page.content.length + 1) {
 				this.curStage = this.curStage + 1;
 			} else {
 				this.curStage = 0;
@@ -228,7 +228,7 @@
 			}
 		}
 		showLastStage() {
-			this.curStage = this.about[this.$i18n.locale].length + 1;
+			this.curStage = this.page.content.length + 1;
 		}
 
 		backToStart() {
@@ -288,7 +288,7 @@
 
 		@Watch('curStage')
 		onChangeCurStage(value: number) {
-			if (value === this.about[this.$i18n.locale].length + 1) {
+			if (value === this.page.content.length + 1) {
 				this.changeContactBar(true);
 			} else {
 				this.changeContactBar(false);
@@ -296,7 +296,7 @@
 			this.isTextSliderAnimation = false;
 			if (
 				this.curStage > 0 &&
-				this.curStage < this.about[this.$i18n.locale].length + 2
+				this.curStage < this.page.content.length + 2
 			) {
 				this.stageAbout = this.curStage > 1 ? this.curStage - 1 : this.curStage;
 				setTimeout(() => {

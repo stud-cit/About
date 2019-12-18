@@ -14,7 +14,7 @@
 					md="10"
 					lg="9"
 					class="swiper-slide"
-					@click="() => choosePage(i)"
+					@click="() => choosePage(page, i)"
 				>
 					<Slide
 						class="slide"
@@ -59,7 +59,7 @@
 				v-for="(page, i) in pages($i18n.locale)"
 				:key="i"
 				cols="10"
-				@click="() => choosePage(i)"
+				@click="() => choosePage(page, i)"
 			>
 				<Slide
 					class="slide"
@@ -160,6 +160,7 @@
 	export default class HomePage extends Vue {
 		@Getter('visibilityLoader') visibilityLoader;
 		@Getter('getPageStage') pages;
+		@Mutation('setPage') setPage;
 		@Mutation('changeIsHideAnimationContent') changeIsHideAnimationContent;
 
 		choosedSlide: number = -1;
@@ -189,8 +190,10 @@
 			}
 		}
 
-		choosePage(index: number): void {
-			this.choosedSlide = index - 1;
+		choosePage(page, i: number): void {
+			this.choosedSlide = i - 1;
+			console.log(page)
+			this.setPage(page)
 		}
 
 		get isStartAnimation() {
