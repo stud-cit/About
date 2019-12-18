@@ -19,7 +19,10 @@ async function bootstrap() {
 		.addBearerAuth()
 		.build();
 
-	app.setGlobalPrefix(configService.get('PREFFIX'));
+	app.setGlobalPrefix(configService.get('PREFFIX')).enableCors({
+		credentials: configService.get('CORS_CREDENTIALS'),
+		origin: configService.get('CORS_ORIGIN'),
+	});
 
 	const document = SwaggerModule.createDocument(app, options);
 	const validationPipe = new ValidationPipe({
