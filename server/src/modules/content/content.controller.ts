@@ -1,13 +1,14 @@
 import { Controller, UseGuards, UseInterceptors } from '@nestjs/common';
 import { Post, Get, Patch, Delete, Body, Query } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { DeleteResult } from 'typeorm';
 
 import { ApiTags, ApiCreatedResponse, ApiBearerAuth } from '@nestjs/swagger';
 
 import { I18nInterceptor } from '../../common/interceptors';
-import { ID, Filter } from '../../common/dto';
+import { ID } from '../../common/dto';
 
-import { ContentRequest } from './dto/content.dto';
+import { ContentRequest, ContentFilter } from './dto';
 import { ContentService } from './content.service';
 import { ContentEntity } from './content.entity';
 
@@ -45,7 +46,9 @@ export class ContentController {
 	@Get()
 	@UseInterceptors(new I18nInterceptor())
 	@ApiCreatedResponse({ type: [ContentEntity] })
-	public async selectAll(@Query() filter: Filter): Promise<ContentEntity[]> {
+	public async selectAll(
+		@Query() filter: ContentFilter,
+	): Promise<ContentEntity[]> {
 		return await this.contentService.selectAll(filter);
 	}
 
@@ -76,8 +79,7 @@ export class ContentController {
 	@ApiBearerAuth()
 	@UseGuards(AuthGuard('jwt'))
 	@ApiCreatedResponse({ type: ContentEntity })
-	public async deleteOne(@Query() { id }: ID): Promise<ContentEntity> {
-		const content = await this.contentService.selectOne({ id });
-		return await this.contentService.deleteOne(id).then(() => content);
+	public async deleteOne(@Query() { id }: ID): Promise<DeleteResult> {
+		return await this.contentService.deleteOne(id);
 	}
 }
