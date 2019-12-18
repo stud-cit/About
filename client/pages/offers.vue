@@ -14,7 +14,7 @@
 			<v-col cols="12" md="10" lg="10" xl="10">
 				<v-row
 					class="representation-section"
-					v-for="(offer, index) in weOffers[$i18n.locale]"
+					v-for="(offer, index) in getPageContent"
 					:key="index"
 					:justify="offer.contentPosition"
 					align="start"
@@ -70,7 +70,7 @@
 										class="font-weight-medium card-content"
 										:style="getCardContentFont"
 									>
-										<span>{{ offer.content }}</span>
+										<span>{{ offer.description }}</span>
 									</v-card-text>
 								</v-card>
 							</RepresentationContent>
@@ -84,7 +84,7 @@
 </template>
 
 <script lang="ts">
-	import { Component, Vue } from 'vue-property-decorator';
+	import { Component, Vue, Watch } from 'vue-property-decorator';
 	import { Action, Getter, Mutation } from 'vuex-class';
 	import posed from 'vue-pose';
 
@@ -130,11 +130,15 @@
 	export default class OffersPage extends Vue {
 		@Action('fetchContentByPageId') fetchContentByPageId;
 		@Getter('getPageById') page;
+		@Getter('getPageContent') pageContent;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 
 		observers: IntersectionObserver[] = [];
 		representationToAnimate: number[] = [];
 
+		get getPageContent() {
+			return this.pageContent(this.$i18n.locale);
+		}
 		get isXsOnly() {
 			return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 		}
@@ -160,14 +164,13 @@
 			}
 		}
 
+		// On change page content add observers to each rendered section
+		@Watch('getPageContent')
+		onChangePageContent() {
+			let refs: any = this.$refs.representations;
+			refs = Boolean(refs) ? refs : [];
 
-		created() {
-			this.fetchContentByPageId();
-		}
-		mounted() {
-			const representations: any = this.$refs.representations;
-
-			this.observers = representations.map((representation, index) => {
+			this.observers = refs.map((representation, index) => {
 				const options = { threshold: 0.65 };
 				const observer = new IntersectionObserver(
 					([entry], observer) => this.setAnimation(entry, index, observer),
@@ -178,6 +181,9 @@
 			});
 		}
 
+		created() {
+			this.fetchContentByPageId();
+		}
 		beforeDestroy() {
 			this.observers.forEach(observer => {
 				observer.disconnect();
