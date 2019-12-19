@@ -1,6 +1,6 @@
 {
   "hooks": {
-    "pre-commit": "lint-staged",
+    "pre-commit": "cd client && npm run format",
 		"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
   }
 }

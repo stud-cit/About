@@ -179,7 +179,6 @@
 				},
 			},
 		};
-
 		showSwiper() {
 			if (!this.visibilityLoader) {
 				this.isShowSwiper = true;
