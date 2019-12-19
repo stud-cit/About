@@ -88,7 +88,7 @@
 				<div class="locales-container">
 					<div class="locales-list">
 						<v-btn
-							v-for="(locale, i) in $i18n.locale"
+							v-for="(locale, i) in $i18n.locales"
 							:key="i"
 							:to="switchLocalePath(locale.code)"
 							class="locale-btn circle-lang"

@@ -49,7 +49,7 @@
 						:class="isMdAndUp ? 'justify-end' : 'justify-center'"
 					>
 						<v-btn
-							:href="project.link"
+							:href="project.description"
 							target="_blank"
 							large
 							dark
