@@ -10,7 +10,7 @@
 				<ScrollBar />
 				<v-row justify="start" class="d-none d-md-flex">
 					<v-col
-						v-for="(employee, i) in ourStaff[$i18n.locale]"
+						v-for="(employee, i) in getPageContent"
 						:key="i"
 						lg="4"
 						md="4"
@@ -65,7 +65,7 @@
 					<v-col class="staff-slide">
 						<v-window v-model="curStaff">
 							<v-window-item
-								v-for="(employee, i) in ourStaff[$i18n.locale]"
+								v-for="(employee, i) in getPageContent"
 								:key="i"
 							>
 								<v-card
@@ -133,7 +133,7 @@
 </template>
 
 <script lang="ts">
-	import { Component, Vue } from 'vue-property-decorator';
+	import { Component, Vue, Watch } from 'vue-property-decorator';
 	import { Action, Getter, Mutation } from 'vuex-class';
 	import posed from 'vue-pose';
 
@@ -165,17 +165,21 @@
 	})
 	export default class OurStaffPage extends Vue {
 		@Action('fetchContentByPageId') fetchContentByPageId;
-		// @Getter('OurStaffModule/getStage') ourStaff;
 		@Getter('getPageById') page;
+		@Getter('getPageContent') pageContent;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 
 		curStaff: number = 0;
 		observers: IntersectionObserver[] = [];
 		staffToAnimate: number[] = [];
 
+		get getPageContent() {
+			return this.pageContent(this.$i18n.locale);
+		}
+
 		switchSlide(nextSlide) {
-			const { curStaff, ourStaff } = this;
-			const totalStaff = ourStaff[this.$i18n.locale].length;
+			const { curStaff, pageContent } = this;
+			const totalStaff = pageContent[this.$i18n.locale].length;
 			let newIndex;
 			if (nextSlide) {
 				newIndex = curStaff + 1 < totalStaff ? curStaff + 1 : 0;
@@ -187,7 +191,7 @@
 
 		get sliderInfo() {
 			return `${this.curStaff + 1} / ${
-				this.ourStaff[this.$i18n.locale].length
+				this.getPageContent.length ? this.getPageContent.length : 0
 			}`;
 		}
 
@@ -222,10 +226,9 @@
 		}
 
 
-		created() {
-			this.fetchContentByPageId();
-		}
-		mounted() {
+		// On change page content add observers to each rendered section
+		@Watch('getPageContent')
+		onChangePageContent() {
 			const staff: any = this.$refs.staff;
 
 			this.observers = staff.map((currStaff, index) => {
@@ -237,6 +240,10 @@
 				observer.observe(currStaff);
 				return observer;
 			});
+		}
+
+		created() {
+			this.fetchContentByPageId();
 		}
 
 		beforeDestroy() {

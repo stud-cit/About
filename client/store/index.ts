@@ -171,7 +171,7 @@ class RootActions extends Actions<
 		await this.store.$axios
 			.$get('content/', { params })
 			.then(pageContent => this.mutations.setPageContent(pageContent))
-      .catch(err => this.mutations.setError(err));
+			.catch(err => this.mutations.setError(err));
 	}
 
 	async authorizationUser(data: any): Promise<void> {
