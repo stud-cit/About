@@ -1,4 +1,5 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
+import { name, image, setLocale } from 'faker';
 
 import { PageEntity } from '../../modules/page';
 
@@ -195,6 +196,13 @@ export class DefaultPage1576114147308 implements MigrationInterface {
 					image: `/our-staff.jpg`,
 					video: `/staff-pc.mp4`,
 				},
+				content: Array.from(Array(25), () => ({
+					title: name.findName(),
+					description: name.jobTitle(),
+					cover: {
+						image: image.avatar(),
+					},
+				})),
 			},
 			{
 				lang: `ru`,
@@ -206,6 +214,13 @@ export class DefaultPage1576114147308 implements MigrationInterface {
 					image: `/our-staff.jpg`,
 					video: `/staff-pc.mp4`,
 				},
+				content: Array.from(Array(25), () => ({
+					title: name.findName(),
+					description: name.jobTitle(),
+					cover: {
+						image: image.avatar(),
+					},
+				})),
 			},
 			{
 				lang: `en`,
@@ -217,6 +232,13 @@ export class DefaultPage1576114147308 implements MigrationInterface {
 					image: `/our-staff.jpg`,
 					video: `/staff-pc.mp4`,
 				},
+				content: Array.from(Array(25), () => ({
+					title: name.findName(),
+					description: name.jobTitle(),
+					cover: {
+						image: image.avatar(),
+					},
+				})),
 			},
 
 			/* Portfolio page */
