@@ -11,7 +11,8 @@
 		"start:prod": "nuxt-ts generate",
 		"prestart:prod": "rimraf dist .nuxt && npm run build",
 		"format": "prettier --write --vue-indent-script-and-style warn \"./**/*.{js,ts,vue,json}\"",
-		"lint": "tslint -p tsconfig.json -c tslint.json"
+		"lint": "tslint -p tsconfig.json -c tslint.json",
+		"lint:css": "stylelint '**/*.vue'"
 	},
 	"dependencies": {
 		"@mdi/font": "^4.3.95",
@@ -44,6 +45,10 @@
 		"prettier": "^1.19.1",
 		"sass": "^1.22.10",
 		"sass-loader": "^7.3.1",
+		"stylelint": "^12.0.0",
+		"stylelint-config-recommended": "^3.0.0",
+		"stylelint-processor-html": "^1.0.0",
+		"stylelint-webpack-plugin": "^1.1.2",
 		"terser-webpack-plugin": "^2.2.1",
 		"tslint": "^5.20.0",
 		"typescript": "^3.6.3"
