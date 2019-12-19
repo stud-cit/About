@@ -10,8 +10,8 @@ export class PageFilter extends Filter {
 	@IsOptional()
 	@MaxLength(255)
 	@ApiProperty({
-		required: true,
 		maxLength: 255,
+		required: false,
 		example: 'about',
 	})
 	public readonly link: string;
