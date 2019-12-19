@@ -43,7 +43,7 @@
 						>
 							<v-img
 								class="pb-12 pb-md-0"
-								:src="getDynamicAssets(offer.img)"
+								:src="getDynamicAssets(offer.cover.image)"
 								:aspect-ratio="3 / 2"
 							/>
 						</v-col>
