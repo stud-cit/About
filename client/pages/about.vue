@@ -17,9 +17,10 @@
 							class="pa-0"
 							:class="isXsOnly ? 'slide-container-mobile' : 'slide-container'"
 						>
+							<!-- TODO: here bug. -->
 							<PreviewPage
 								:title="$t('common.companyName')"
-								:description="page.description"
+								:description="page ? page.description: ''"
 								:icon-down="false"
 							/>
 						</v-col>

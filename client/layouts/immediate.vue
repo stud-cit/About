@@ -261,9 +261,8 @@
 			this.isStartAnimation = true;
 
 			// hide scrollBar on any route change
-			this.$router.afterHooks.push((nextRoute, prevRoute, next) => {
+			this.$router.afterHooks.push((nextRoute, prevRoute) => {
 				this.changeScrollBar(false);
-				setTimeout(() => next(), 25);
 
 				this.setPageIdByPath({locale: this.$i18n.locale, path: nextRoute.path});
 			});
