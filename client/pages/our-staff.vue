@@ -64,10 +64,7 @@
 				>
 					<v-col class="staff-slide">
 						<v-window v-model="curStaff">
-							<v-window-item
-								v-for="(employee, i) in getPageContent"
-								:key="i"
-							>
+							<v-window-item v-for="(employee, i) in getPageContent" :key="i">
 								<v-card
 									class="mx-auto"
 									color="transparent"
@@ -224,7 +221,6 @@
 		get getStackPositionFont() {
 			return { fontSize: `${this.getAdaptiveSize('stackPositionFont')}px` };
 		}
-
 
 		// On change page content add observers to each rendered section
 		@Watch('getPageContent')

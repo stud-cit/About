@@ -11,8 +11,7 @@
 		"start:prod": "nuxt-ts generate",
 		"prestart:prod": "rimraf dist .nuxt && npm run build",
 		"format": "prettier --write --vue-indent-script-and-style warn \"./**/*.{js,ts,vue,json}\"",
-		"lint": "tslint -p tsconfig.json -c tslint.json",
-		"lint:css": "stylelint '**/*.vue'"
+		"lint": "tslint -p tsconfig.json -c tslint.json"
 	},
 	"dependencies": {
 		"@mdi/font": "^4.3.95",

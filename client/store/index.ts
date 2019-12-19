@@ -82,11 +82,9 @@ class RootGetters extends Getters<RootState> {
 			let changedIndex = null;
 			if (index > pages.length - 1) {
 				changedIndex = 0;
-			}
-			else if (index < 0) {
+			} else if (index < 0) {
 				changedIndex = pages.length - 1;
-			}
-			else {
+			} else {
 				changedIndex = index;
 			}
 
@@ -154,9 +152,9 @@ class RootActions extends Actions<
 
 	async nuxtServerInit() {
 		return await this.store.$axios
-      .$get('page/')
+			.$get('page/')
 			.then(data => this.mutations.setPages(data))
-      .catch(err => this.mutations.setError(err));
+			.catch(err => this.mutations.setError(err));
 	}
 
 	async fetchContentByPageId() {

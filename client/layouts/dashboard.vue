@@ -21,7 +21,12 @@
 
 			<v-spacer />
 
-			<PageLink v-for="(page, i) in pages('$i18n.locale')" :key="i" :page="page" icon />
+			<PageLink
+				v-for="(page, i) in pages('$i18n.locale')"
+				:key="i"
+				:page="page"
+				icon
+			/>
 		</v-app-bar>
 
 		<v-content>

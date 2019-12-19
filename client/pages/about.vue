@@ -19,7 +19,7 @@
 						>
 							<PreviewPage
 								:title="$t('common.companyName')"
-								:description="page ? page.description: ''"
+								:description="page ? page.description : ''"
 								:icon-down="false"
 							/>
 						</v-col>
@@ -52,7 +52,11 @@
 												"
 												class="py-md-10 py-lg-7"
 											>
-												{{ stagesLength && (stagesLength > stageText) ? pageContent($i18n.locale)[stageText].description : '' }}
+												{{
+													stagesLength && stagesLength > stageText
+														? pageContent($i18n.locale)[stageText].description
+														: ''
+												}}
 											</TextSlider>
 										</div>
 									</v-col>
@@ -255,9 +259,10 @@
 			return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
 		}
 
-
 		get stagesLength() {
-			return this.pageContent(this.$i18n.locale) ? this.pageContent(this.$i18n.locale).length : 0;
+			return this.pageContent(this.$i18n.locale)
+				? this.pageContent(this.$i18n.locale).length
+				: 0;
 		}
 
 		get getSlideTitleFont() {
@@ -296,10 +301,7 @@
 				this.changeContactBar(false);
 			}
 			this.isTextSliderAnimation = false;
-			if (
-				this.curStage > 0 &&
-				this.curStage < this.stagesLength + 2
-			) {
+			if (this.curStage > 0 && this.curStage < this.stagesLength + 2) {
 				this.stageAbout = this.curStage > 1 ? this.curStage - 1 : this.curStage;
 				setTimeout(() => {
 					this.stageText =
@@ -315,8 +317,6 @@
 				this.stageText = 0;
 			}
 		}
-
-
 
 		created() {
 			this.fetchContentByPageId();

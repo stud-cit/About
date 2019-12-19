@@ -123,14 +123,14 @@ const config: Configuration = {
 		'@nuxtjs/axios',
 	],
 	build: {
-		extend(config: any, {isDev, isClient}) {
+		extend(config: any, { isDev, isClient }) {
 			config.plugins.push(
 				new StyleLintPlugin({
 					files: '**/*.{vue,sass}',
-      		configFile: './stylelint.config.js',
+					configFile: './stylelint.config.js',
 					syntax: 'sass',
 				}),
-			)
+			);
 		},
 		analyze: true,
 		transpile: ['vuetify/lib'],
@@ -146,8 +146,6 @@ const config: Configuration = {
 		typeCheck: false,
 		ignoreNotFoundWarnings: true,
 	},
-
-
 };
 
 export default config;

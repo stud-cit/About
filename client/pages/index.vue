@@ -73,7 +73,7 @@
 				>
 					<v-card class="disable-underline" :link="true">
 						<v-img
-						:src="getDynamicAssets(page.cover.image)"
+							:src="getDynamicAssets(page.cover.image)"
 							:gradient="imagePageGradient"
 							:lazy-src="page.lazyImg"
 							height="30vh"
@@ -192,7 +192,7 @@
 
 		choosePage(page, i: number): void {
 			this.choosedSlide = i - 1;
-			this.setPage(page)
+			this.setPage(page);
 		}
 
 		get isStartAnimation() {

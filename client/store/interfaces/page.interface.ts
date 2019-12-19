@@ -1,4 +1,4 @@
-import { CoverModel } from "./cover.interface";
+import { CoverModel } from './cover.interface';
 
 export interface PageModel {
 	readonly id: string;

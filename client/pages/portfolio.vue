@@ -99,7 +99,6 @@
 		@Getter('getPage') page;
 		@Getter('getPageContent') pageContent;
 
-
 		get isMdAndUp() {
 			return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
 		}
