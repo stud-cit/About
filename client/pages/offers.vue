@@ -135,9 +135,16 @@
 
 		observers: IntersectionObserver[] = [];
 		representationToAnimate: number[] = [];
+		// needs for getting refs after we fetch data and render offers
+		isRenderContent: boolean = false;
 
 		get getPageContent() {
-			return this.pageContent(this.$i18n.locale);
+			const currContent = this.pageContent(this.$i18n.locale);
+
+			if (Boolean(currContent)) {
+				this.isRenderContent = true;
+			}
+			return currContent;
 		}
 		get isXsOnly() {
 			return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
@@ -165,7 +172,7 @@
 		}
 
 		// On change page content add observers to each rendered section
-		@Watch('getPageContent')
+		@Watch('isRenderContent')
 		onChangePageContent() {
 			let refs: any = this.$refs.representations;
 			refs = Boolean(refs) ? refs : [];
