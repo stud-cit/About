@@ -3,8 +3,8 @@
 		<v-row justify="center">
 			<v-col cols="12" sm="10">
 				<PreviewPage
-					:title="page($i18n.locale).name"
-					:description="page($i18n.locale).description"
+					:title="page.name"
+					:description="page.description"
 					:icon-down="true"
 				/>
 			</v-col>
@@ -96,7 +96,7 @@
 	})
 	export default class PortfolioPage extends Vue {
 		@Action('fetchContentByPageId') fetchContentByPageId;
-		@Getter('getPageById') page;
+		@Getter('getPage') page;
 		@Getter('getPageContent') pageContent;
 
 

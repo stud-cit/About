@@ -59,14 +59,6 @@ class RootGetters extends Getters<RootState> {
 	get getIsHideAnimationContent(): boolean {
 		return this.state.isHideAnimationContent;
 	}
-	get getPageCover(): CoverModel | {} {
-		return (locale: string) => {
-			const currentPage = this.state.pages[locale].find(
-				({ id }: PageModel) => id === this.state.pageId,
-			);
-			return currentPage ? currentPage.cover : {};
-		};
-	}
 	get getPage(): PageModel {
 		return this.state.page;
 	}
@@ -83,15 +75,6 @@ class RootGetters extends Getters<RootState> {
 			);
 			return matchingIndex + 1;
 		};
-	}
-	get getPageById(): (locale: string) => PageModel {
-		return (locale: string) =>
-			this.state.pages[locale].find(
-				(page: PageModel) => page.id === this.state.pageId,
-		);
-	}
-	get getPageId(): string {
-		return this.state.pageId;
 	}
 	get getPageRouteByIndex(): (lang: string, index: number) => string {
 		return (lang, index) => {
