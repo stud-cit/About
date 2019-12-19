@@ -155,7 +155,6 @@ class RootActions extends Actions<
 	}
 
 	async nuxtServerInit() {
-
 		// TODO: add checking by page adn fetch page
 		return await this.store.$axios
       .$get('page/')
