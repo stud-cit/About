@@ -11,7 +11,7 @@
 		</v-row>
 		<v-col class="pa-0">
 			<v-parallax
-				v-for="(project, i) in portfolio[$i18n.locale]"
+				v-for="(project, i) in pageContent($i18n.locale)"
 				:key="i"
 				:src="getDynamicAssets(project.cover)"
 				class="pa-0"
@@ -96,8 +96,9 @@
 	})
 	export default class PortfolioPage extends Vue {
 		@Action('fetchContentByPageId') fetchContentByPageId;
-		@Getter('PortfolioModule/getStage') portfolio;
 		@Getter('getPageById') page;
+		@Getter('getPageContent') pageContent;
+
 
 		get isMdAndUp() {
 			return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
