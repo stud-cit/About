@@ -170,9 +170,8 @@
 		props: ['title', 'description', 'iconDown'],
 	})
 	export default class PreviewPage extends Vue {
-		@Getter('AboutModule/getStage') about;
-		@Getter('getPageByRoute') getPageByRoute;
 		@Getter('getPageIndex') pageIndex;
+		@Getter('getPage') page;
 		@Getter('getPageRouteByIndex') getPageRouteByIndex;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 		@Getter('visibilityLoader') visibilityLoader;
@@ -226,8 +225,10 @@
 		}
 
 		handleNavigatingPage(toRight: boolean) {
-			const newPageIndex = toRight ? this.pageIndex(this.$i18n.locale) + 1 : this.pageIndex(this.$i18n.locale) - 1;
-			const nextPage = this.getPageRouteByIndex(newPageIndex);
+			const currPageIndex = this.pageIndex(this.$i18n.locale) - 1;
+			const newPageIndex = toRight ? currPageIndex + 1 : currPageIndex - 1;
+			const nextPage = this.getPageRouteByIndex(this.$i18n.locale, newPageIndex);
+
 			this.$router.replace(this.localePath(nextPage));
 		}
 
@@ -244,7 +245,7 @@
 		}
 
 		get isAboutPage() {
-			return this.pageIndex(this.$i18n.locale) === this.aboutPageIndex;
+			return this.page.link === 'about';
 		}
 
 		get isLgAndUp() {

@@ -255,16 +255,16 @@
 		}
 
 		created() {
-			this.setPageIdByPath({locale: this.$i18n.locale, path: this.$router.currentRoute.path});
+			this.setPageIdByPath(this.$router.currentRoute.path);
 		}
+
 		mounted() {
 			this.isStartAnimation = true;
 
 			// hide scrollBar on any route change
 			this.$router.afterHooks.push((nextRoute, prevRoute) => {
 				this.changeScrollBar(false);
-
-				this.setPageIdByPath({locale: this.$i18n.locale, path: nextRoute.path});
+				this.setPageIdByPath(nextRoute.path);
 			});
 		}
 	}

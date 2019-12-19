@@ -93,11 +93,22 @@ class RootGetters extends Getters<RootState> {
 	get getPageId(): string {
 		return this.state.pageId;
 	}
-	get getPageRouteByIndex(): (index: number) => string {
-		return (index: number) => {
-			const changedIndex = index > 4 ? 1 : index < 1 ? 4 : index;
-			const currentPage = this.state.pages[changedIndex];
-			return currentPage ? currentPage.link : '';
+	get getPageRouteByIndex(): (lang: string, index: number) => string {
+		return (lang, index) => {
+			const pages = this.state.pages[lang];
+			let changedIndex = null;
+			if (index > pages.length - 1) {
+				changedIndex = 0;
+			}
+			else if (index < 0) {
+				changedIndex = pages.length - 1;
+			}
+			else {
+				changedIndex = index;
+			}
+
+			const currentPage = pages[changedIndex];
+			return currentPage ? currentPage.link : null;
 		};
 	}
 	get getContactStage() {
@@ -106,6 +117,7 @@ class RootGetters extends Getters<RootState> {
 }
 
 class RootMutations extends Mutations<RootState> {
+	__ctx__: any;
 	setError(data: any) {
 		return Vue.set(this.state, 'error', data);
 	}
@@ -118,14 +130,17 @@ class RootMutations extends Mutations<RootState> {
 	hideLoader() {
 		return Vue.set(this.state, 'visibilityLoader', false);
 	}
-	setPageIdByPath({locale, path}: Record<string, string>) {
-		const pages = this.state.pages[locale];
+	setPageIdByPath(path: string) {
+		const locale = this.__ctx__.store.app.i18n.locale;
+
+		const pages: any = this.state.pages[locale];
 		const matchingPage = pages.find((page: PageModel) =>
 			path.includes(page.link),
 		);
 
 		if (matchingPage) {
 			Vue.set(this.state, 'pageId', matchingPage.id);
+			Vue.set(this.state, 'page', matchingPage);
 		}
 	}
 	setPageContent(content: Record<string, any>) {
@@ -155,7 +170,6 @@ class RootActions extends Actions<
 	}
 
 	async nuxtServerInit() {
-		// TODO: add checking by page adn fetch page
 		return await this.store.$axios
       .$get('page/')
 			.then(data => this.mutations.setPages(data))
