@@ -1,0 +1,29 @@
+{
+  "name": "about",
+  "version": "1.0.0",
+  "description": "This project consists of two applications: SPA and API. Built on modern and promising technology. The client part is a bunch of Nuxt.js, Vuetify, and other modules ( seriously, there are a lot of them :3 ). The server part is a bunch of Nest.js + TypeORM ( MySQL ) + Swagger + Multer. The impetus for the creation of this project was the lack of our own website from our organization.",
+  "main": "commitlint.config.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StudCIT/About.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StudCIT/About/issues"
+  },
+  "homepage": "https://github.com/StudCIT/About#readme",
+  "devDependencies": {
+    "@commitlint/config-conventional": "^8.2.0",
+    "commitlint": "^8.2.0",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
+    "pretty-quick": "^2.0.1"
+  }
+}

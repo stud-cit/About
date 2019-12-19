@@ -1,0 +1,7 @@
+{
+	"client/**/*.{vue,ts}": [
+			"pretty-quick --staged",
+			"cd client && npm run format",
+			"git add"
+		],
+}
