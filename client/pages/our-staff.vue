@@ -31,7 +31,7 @@
 							>
 								<v-img
 									:height="isLgAndUp ? '300px' : '200px'"
-									:src="getDynamicAssets(employee.img)"
+									:src="employee.cover.image"
 								></v-img>
 							</v-card>
 							<div class="card-addition">
@@ -39,19 +39,19 @@
 									class="employee-name mt-6 mb-4 font-weight-bold line-height-1"
 									:style="getStaffNameFont"
 								>
-									{{ employee.name }}
+									{{ employee.title }}
 								</div>
 								<div
 									class="employee-position-short font-weight-regular line-height-1"
 									:style="getStaffPositionFont"
 								>
-									{{ employee.position }}
+									{{ employee.description }}
 								</div>
 								<div
 									class="employee-position-full font-weight-bold mt-7"
 									:style="getStackPositionFont"
 								>
-									{{ employee.stack }}
+									{{ employee.description }}
 								</div>
 							</div>
 						</Staff>
@@ -74,7 +74,7 @@
 									<v-img
 										height="40%"
 										class="card-img"
-										:src="getDynamicAssets(employee.img)"
+										:src="employee.cover.image"
 										lazy-src="/cover.jpg"
 										:aspect-ratio="4 / 3"
 									/>
@@ -93,13 +93,13 @@
 												class="employee-name mt-3 mb-2 font-weight-bold line-height-1-2"
 												:style="getStaffNameFont"
 											>
-												{{ employee.name }}
+												{{ employee.title }}
 											</div>
 											<div
 												class="employee-position-short"
 												:style="getStaffPositionFont"
 											>
-												{{ employee.stack }}
+												{{ employee.description }}
 											</div>
 											<p
 												class="text-center white--text font-italic"
@@ -169,14 +169,21 @@
 		curStaff: number = 0;
 		observers: IntersectionObserver[] = [];
 		staffToAnimate: number[] = [];
+		// needs for getting refs after we fetch data and render staff
+		isRenderContent: boolean = false;
 
 		get getPageContent() {
-			return this.pageContent(this.$i18n.locale);
+			const currContent = this.pageContent(this.$i18n.locale);
+
+			if (Boolean(currContent)) {
+				this.isRenderContent = true;
+			}
+			return currContent;
 		}
 
 		switchSlide(nextSlide) {
 			const { curStaff, pageContent } = this;
-			const totalStaff = pageContent[this.$i18n.locale].length;
+			const totalStaff = this.getPageContent.length;
 			let newIndex;
 			if (nextSlide) {
 				newIndex = curStaff + 1 < totalStaff ? curStaff + 1 : 0;
@@ -223,7 +230,7 @@
 		}
 
 		// On change page content add observers to each rendered section
-		@Watch('getPageContent')
+		@Watch('isRenderContent')
 		onChangePageContent() {
 			const staff: any = this.$refs.staff;
 
