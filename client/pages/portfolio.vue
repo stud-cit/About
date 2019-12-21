@@ -11,7 +11,7 @@
 		</v-row>
 		<v-col class="pa-0">
 			<v-parallax
-				v-for="(project, i) in pageContent($i18n.locale)"
+				v-for="(project, i) in pageContent"
 				:key="i"
 				:src="getDynamicAssets(project.cover.image)"
 				class="pa-0"

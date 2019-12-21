@@ -51,7 +51,7 @@
 								<v-col
 									class="pa-0 nav-links"
 									cols="auto"
-									v-for="(page, index) in pages($i18n.locale)"
+									v-for="(page, index) in pages"
 									:key="index"
 								>
 									<ContentBox>
@@ -101,9 +101,7 @@
 					:delay="getAnimationDelay"
 				>
 					<p class="bold-italic-preview d-flex mt-md-3">
-						<span :style="getPageIndexFont"
-							>0{{ pageIndex($i18n.locale) }}</span
-						>
+						<span :style="getPageIndexFont">0{{ pageIndex }}</span>
 						<span
 							class="total-pages mt-1 mt-sm-2"
 							:style="getPageTotalIndexFont"
@@ -139,11 +137,7 @@
 			</v-btn>
 			<v-list id="pages-list-container">
 				<v-list-item-group class="pages-list">
-					<v-list-item
-						v-for="(page, index) in pages($i18n.locale)"
-						class="px-0"
-						:key="index"
-					>
+					<v-list-item v-for="(page, index) in pages" class="px-0" :key="index">
 						<v-btn
 							class="text-center display-2 page-link font-weight-bold"
 							exact-active-class="page-link-active"

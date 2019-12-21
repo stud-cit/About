@@ -54,7 +54,7 @@
 											>
 												{{
 													stagesLength && stagesLength > stageText
-														? pageContent($i18n.locale)[stageText].description
+														? pageContent[stageText].description
 														: ''
 												}}
 											</TextSlider>
@@ -260,9 +260,7 @@
 		}
 
 		get stagesLength() {
-			return this.pageContent(this.$i18n.locale)
-				? this.pageContent(this.$i18n.locale).length
-				: 0;
+			return this.pageContent ? this.pageContent.length : 0;
 		}
 
 		get getSlideTitleFont() {

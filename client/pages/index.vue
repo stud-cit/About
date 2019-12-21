@@ -7,7 +7,7 @@
 		>
 			<div class="swiper-wrapper">
 				<v-col
-					v-for="(page, i) in pages($i18n.locale)"
+					v-for="(page, i) in pages"
 					:key="i"
 					cols="12"
 					sm="10"
@@ -56,7 +56,7 @@
 		</div>
 		<v-row class="d-flex d-sm-none" justify="center">
 			<v-col
-				v-for="(page, i) in pages($i18n.locale)"
+				v-for="(page, i) in pages"
 				:key="i"
 				cols="10"
 				@click="() => choosePage(page, i)"

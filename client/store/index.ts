@@ -10,6 +10,7 @@ import { PageModel, CoverModel } from './interfaces';
 class RootState {
 	auth!: any;
 	error!: any;
+	locale: string = 'en';
 	visibilityLoader: boolean = true;
 	showContactBar: boolean = false;
 	showScrollBar: boolean = false;
@@ -62,24 +63,27 @@ class RootGetters extends Getters<RootState> {
 	get getPage(): PageModel {
 		return this.state.page;
 	}
-	get getPageStage(): (locale: string) => PageModel[] {
-		return (locale: string) => this.state.pages[locale];
+	get getPageStage(): PageModel[] {
+		const { locale } = this.state;
+		return this.state.pages[locale];
 	}
-	get getPageContent(): (locale: string) => Record<string, any>[] {
-		return (locale: string) => this.state.content[locale];
+	get getPageContent(): Record<string, any>[] {
+		const { locale } = this.state;
+		return this.state.content[locale];
 	}
-	get getPageIndex(): (locale: string) => number {
-		return (locale: string) => {
-			const matchingIndex = this.state.pages[locale].findIndex(
-				(page: PageModel) => page.id === this.state.pageId,
-			);
-			return matchingIndex + 1;
-		};
+	get getPageIndex(): number {
+		const { locale } = this.state;
+		const matchingIndex = this.state.pages[locale].findIndex(
+			(page: PageModel) => page.id === this.state.pageId,
+		);
+
+		return matchingIndex + 1;
 	}
-	get getPageRouteByIndex(): (lang: string, index: number) => string {
-		return (lang, index) => {
-			const pages = this.state.pages[lang];
-			let changedIndex = null;
+	get getPageRouteByIndex(): (index: number) => string {
+		return index => {
+			const { locale } = this.state;
+			const pages = this.state.pages[locale];
+			let changedIndex: number;
 			if (index > pages.length - 1) {
 				changedIndex = 0;
 			} else if (index < 0) {
@@ -102,6 +106,9 @@ class RootMutations extends Mutations<RootState> {
 	setError(data: any) {
 		return Vue.set(this.state, 'error', data);
 	}
+	setLocale(locale: string) {
+		return Vue.set(this.state, 'locale', locale);
+	}
 	setPages(pages: PageModel[]) {
 		return Vue.set(this.state, 'pages', pages);
 	}
@@ -112,7 +119,7 @@ class RootMutations extends Mutations<RootState> {
 		return Vue.set(this.state, 'visibilityLoader', false);
 	}
 	setPageIdByPath(path: string) {
-		const locale = this.__ctx__.store.app.i18n.locale;
+		const { locale } = this.state;
 
 		const pages: any = this.state.pages[locale];
 		const matchingPage = pages.find((page: PageModel) =>

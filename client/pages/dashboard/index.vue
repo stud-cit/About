@@ -1,6 +1,6 @@
 <template>
 	<v-row>
-		<v-col v-for="(page, i) in pages($i18n.locale)" :key="i" md="6">
+		<v-col v-for="(page, i) in pages" :key="i" md="6">
 			<v-card :href="'dashboard/' + page.id">
 				<v-img
 					:src="getDynamicAssets(`/images/covers${page.cover.image}`)"

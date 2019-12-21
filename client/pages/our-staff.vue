@@ -173,12 +173,10 @@
 		isRenderContent: boolean = false;
 
 		get getPageContent() {
-			const currContent = this.pageContent(this.$i18n.locale);
-
-			if (Boolean(currContent)) {
+			if (Boolean(this.pageContent)) {
 				this.isRenderContent = true;
 			}
-			return currContent;
+			return this.pageContent;
 		}
 
 		switchSlide(nextSlide) {

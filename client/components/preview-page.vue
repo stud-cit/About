@@ -225,12 +225,9 @@
 		}
 
 		handleNavigatingPage(toRight: boolean) {
-			const currPageIndex = this.pageIndex(this.$i18n.locale) - 1;
+			const currPageIndex = this.pageIndex - 1;
 			const newPageIndex = toRight ? currPageIndex + 1 : currPageIndex - 1;
-			const nextPage = this.getPageRouteByIndex(
-				this.$i18n.locale,
-				newPageIndex,
-			);
+			const nextPage = this.getPageRouteByIndex(newPageIndex);
 
 			this.$router.replace(this.localePath(nextPage));
 		}
