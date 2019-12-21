@@ -199,6 +199,7 @@
 		@Mutation('changeScrollBar') changeScrollBar;
 		@Mutation('changeIsHideAnimationContent') changeIsHideAnimationContent;
 		@Mutation('setPageIdByPath') setPageIdByPath;
+		@Mutation('setPageContent') setPageContent;
 
 		isShowMobileMenu: boolean = false;
 		isStartAnimation: boolean = false;
@@ -267,10 +268,12 @@
 		mounted() {
 			this.isStartAnimation = true;
 
-			// hide scrollBar on any route change
-			this.$router.afterHooks.push((nextRoute, prevRoute) => {
+			// before each routing we set current page and reset content
+			this.$router.beforeHooks.push((nextRoute, prevRoute, next) => {
 				this.changeScrollBar(false);
 				this.setPageIdByPath(nextRoute.path);
+				this.setPageContent({});
+				return next();
 			});
 		}
 	}
