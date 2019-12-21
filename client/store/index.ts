@@ -5,7 +5,7 @@ import Vue from 'vue';
 
 import { createStore } from 'vuex-smart-module';
 
-import { PageModel, CoverModel } from './interfaces';
+import { PageModel } from './interfaces';
 
 class RootState {
 	auth!: any;
@@ -160,8 +160,8 @@ class RootActions extends Actions<
 	async nuxtServerInit() {
 		return await this.store.$axios
 			.$get('page/')
-			.then(data => this.mutations.setPages(data))
-			.catch(err => this.mutations.setError(err));
+			.then((data: PageModel[]) => this.mutations.setPages(data))
+			.catch((err: Error) => this.mutations.setError(err));
 	}
 
 	async fetchContentByPageId() {
@@ -171,14 +171,14 @@ class RootActions extends Actions<
 
 		await this.store.$axios
 			.$get('content/', { params })
-			.then(pageContent => this.mutations.setPageContent(pageContent))
-			.catch(err => this.mutations.setError(err));
+			.then((pageContent: Record<string, any>) => this.mutations.setPageContent(pageContent))
+			.catch((err: Error) => this.mutations.setError(err));
 	}
 
 	async authorizationUser(data: any): Promise<void> {
 		return await this.store.$auth
 			.loginWith('local', { data })
-			.catch(err => this.mutations.setError(err));
+			.catch((err: Error) => this.mutations.setError(err));
 	}
 }
 
