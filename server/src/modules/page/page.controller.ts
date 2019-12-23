@@ -47,7 +47,6 @@ export class PageController {
 	@UseInterceptors(new I18nInterceptor())
 	@ApiCreatedResponse({ type: [PageEntity] })
 	public async selectAll(@Query() filter: PageFilter): Promise<PageEntity[]> {
-		console.log(filter);
 		return await this.pageService.selectAll(filter);
 	}
 
