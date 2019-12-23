@@ -283,15 +283,19 @@
 		z-index: 30
 		height: auto !important
 		color: rgba(255, 255, 255, 1)
-		transition: all ease .5s
+		transition: all ease 0.5s
 
 		.desktop-link
 			font-weight: 600
-			&::before
+
+			:hover
+				opacity: 0.5
+
+			::before
 				opacity: 0
 
 		.active-desktop-link
-			border-bottom: 4px solid white
+			border-bottom: 4px solid rgba(255, 255, 255, 1)
 			border-radius: unset
 
 		&.mini-header
@@ -325,8 +329,8 @@
 		width: 100%
 		top: 7vh
 		z-index: 5
-		color: white
-		font-weight: bold
+		color: rgba(255, 255, 255, 1)
+		font-weight: 700
 		font-style: italic
 
 		.total-pages
@@ -350,16 +354,16 @@
 		.page-link
 			width: 100%
 			height: 100%
-			background: white
-			color: white
+			background: rgba(255, 255, 255, 1)
+			color: rgba(255, 255, 255, 1)
 			box-shadow: none
 
 			.page-link-title
 				font-size: 35px
-				color: black
+				color: rgba(0, 0, 0, 1)
 
 		.page-link-active .page-link-title
-			border-bottom: 2px solid black
+			border-bottom: 2px solid rgba(0, 0, 0, 1)
 
 	.imageCover
 		position: fixed !important
@@ -375,17 +379,15 @@
 		border: 0 !important
 
 	.v-dialog--fullscreen
+
 		.v-btn--round
 			border-radius: 0 !important
-
-	.desktop-link:hover
-		opacity: 0.5
 
 	.not-uppercase
 		text-transform: none !important
 
 	.bold-italic-preview
-		font-weight: 800 !important
+		font-weight: 800
 		font-style: italic
 
 	.index

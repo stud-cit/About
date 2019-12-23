@@ -150,15 +150,10 @@
 			position: sticky
 			height: 110px !important
 			margin-top: 10px !important
-			background: rgba(250, 250, 250, .85)
-			.v-toolbar__content
-				width: 100vw
-				padding-bottom: 0
+			background: rgba(250, 250, 250, 0.85)
 
-	.mobile-icon
-		background: white
-
-	.burger-icon
+	.desktop-link:hover
+		opacity: 0.5
 		position: fixed
 		left: calc(50vw - 26px)
 		bottom: 2vh
@@ -166,11 +161,11 @@
 	.locale-button
 		width: 55px
 		height: 55px
-		border: 2px solid #4A4A4A !important
+		border: 2px solid rgba(74, 74, 74, 1) !important
 
 	.v-bottom-sheet
-			background: #8a8a8a
-			box-shadow: 0px 11px 0px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 50px 8px rgba(0, 0, 0, 0.12)
+		background: rgba(138, 138 ,138, 1)
+		box-shadow: 0px 11px 0px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 50px 8px rgba(0, 0, 0, 0.12)
 
 	.theme--light.v-btn::before
 		opacity: 0 !important
@@ -183,13 +178,14 @@
 		position: absolute
 		left: calc(50vw - 26px)
 		top: -18px
+
 	.relative
 		position: relative
 
 	.half-round
 		width: 100%
 		height: 30px
-		background: white
+		background: rgba(255, 255, 255, 1)
 		clip-path: ellipse(50% 100% at 50% 100%)
 		margin-bottom: -1px
 
@@ -202,30 +198,30 @@
 		display: flex
 		justify-content: center
 		align-items: center
-		background: white
+		background: rgba(255, 255, 255, 1)
 
 	.locales-list
 		width: 60%
 		display: flex
 		justify-content: space-between
-		color: white
+		color: rgba(255, 255, 255, 1)
 
 		.locale-btn
-			color: white
+			color: rgba(255, 255, 255, 1)
 
 		span
-			color: black
-			font-weight: normal
+			color: rgba(0 ,0 ,0 ,1)
+			font-weight: 400
 
 		.active-locale span
-			font-weight: bold
+			font-weight: 700
 
 	.lang-up
 		position: absolute
 		top: -15px
 
 	.bold-preview
-		font-weight: 800 !important
+		font-weight: 800
 		font-style: normal
 
 	.margin-top

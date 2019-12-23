@@ -332,24 +332,25 @@
 
 <style lang="sass">
 	.slider
+
 		.v-slider__tick
 			border-radius: 50%
 			background: #363636
 			cursor: pointer
 
 		.v-slider__tick--filled
-			background: white
+			background: rgba(255, 255, 255, 1)
 
 	.preview-section
 		height: 100vh
 
 	.slide-container
 		height: 97vh
-		color: white
+		color: rgba(255, 255, 255, 1)
 
 	.slide-container-mobile
 		height: 90vh
-		color: white
+		color: rgba(255, 255, 255, 1)
 
 	.arrow
 		font-size: 1.8rem
@@ -363,7 +364,7 @@
 		height: 40px
 		width: 40px
 		border-radius: 20%
-		border: 2px solid white
+		border: 2px solid rgba(255, 255, 255, 1)
 
 	.squareOne
 		clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)
@@ -372,13 +373,13 @@
 		clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
 
 	.slide-content
-		border: 5px solid white
+		border: 5px solid rgba(255, 255, 255, 1)
 		background-color: rgba(78, 79, 80, 0.3)
-		color: white
+		color: rgba(255, 255, 255, 1)
 		position: relative
 
 	.border-right
-		border-right: 16px solid white
+		border-right: 16px solid rgba(255, 255, 255, 1)
 
 	.use-contacts-container
 		width: auto
@@ -391,7 +392,7 @@
 	.rotated-phraze
 		position: fixed
 		right: 8vw
-		color: white
+		color: rgba(255, 255, 255, 1)
 		writing-mode: vertical-rl
 		transform: scaleX(-1) scaleY(-1)
 
@@ -425,19 +426,19 @@
 	.footer-section-about
 		position: relative
 		height: 60vh
-		color: white
+		color: rgba(255, 255, 255, 1)
 
 	.return-section
 		width: 90%
 		height: 40vh
 		background: #282828
-		opacity: .5
+		opacity: 0.5
 		cursor: pointer
-		font-weight: normal
+		font-weight: 400
 		font-style: normal
 
 		p
-			color: #696969
+			color: rgba(105, 105, 105,1)
 
 		.text-sm
 			font-size: 30px
@@ -446,6 +447,6 @@
 			font-size: 25px
 
 	.arrowLeft
-		color: #2f2f2f
+		color: rgba(47, 47, 47, 1)
 		font-size: 50px
 </style>

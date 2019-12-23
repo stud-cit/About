@@ -195,31 +195,31 @@
 	#contact
 		position: fixed
 		bottom: 0
-		padding: 0!important
+		padding: 0 !important
 		z-index: 15
 		overflow: hidden
 
 		.contact-bar-section
-			background: white
+			background: rgba(255, 255, 255, 1)
 
 		.color-main
-			color: #2d2d2d
+			color: rgba(45, 45, 45, 1)
 
 	.slogan
 		position: relative
 		top: 7px
 		font-style: normal
-		color: white
+		color: rgba(255, 255, 255, 1)
 		line-height: 2.7rem
 
 	.static
-		position: static!important
+		position: static !important
 
 	.underline
-		border-bottom: 6px solid #2d2d2d
+		border-bottom: 6px solid rgba(45, 45, 45, 1)
 
 	.mobUnderline
-		border-bottom: 2px solid #2d2d2d
+		border-bottom: 2px solid rgba(45, 45, 45, 1)
 
 	.map
 		width: 100%
@@ -228,6 +228,6 @@
 		position: relative
 
 	.bold-preview
-		font-weight: 800 !important
+		font-weight: 800
 		font-style: normal
 </style>
