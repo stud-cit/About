@@ -76,12 +76,6 @@ const config: Configuration = {
 				tokenType: 'Bearer',
 			},
 		},
-		redirect: {
-			home: '/dashboard',
-			login: '/dashboard',
-			logout: '/',
-			callback: '/dashboard',
-		},
 	},
 
 	i18n: {
@@ -124,15 +118,15 @@ const config: Configuration = {
 		'@nuxtjs/axios',
 	],
 	build: {
-		// extend(config: any, { isDev, isClient }) {
-		// 	config.plugins.push(
-		// 		new StyleLintPlugin({
-		// 			files: '**/*.{vue,sass}',
-		// 			configFile: './stylelint.config.js',
-		// 			syntax: 'sass',
-		// 		}),
-		// 	);
-		// },
+		extend(config: any, { isDev, isClient }) {
+			config.plugins.push(
+				new StyleLintPlugin({
+					files: '**/*.{vue,sass}',
+					configFile: './stylelint.config.js',
+					syntax: 'sass',
+				}),
+			);
+		},
 		analyze: true,
 		transpile: ['vuetify/lib'],
 		plugins: [new VuetifyLoaderPlugin()],

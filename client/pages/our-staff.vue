@@ -259,19 +259,19 @@
 	.card-addition
 		display: flex
 		flex-direction: column
-		color: #ffffff
+		color: rgba(255, 255, 255, 1)
 		position: relative
 		justify-content: center
 
 	.employee-name
-		color: white
+		color: rgba(255, 255, 255, 1)
 		text-align: center
 		margin-bottom: 0
 		display: block
 
 	.employee-position-short, .employee-position-full
 		font-weight: 400
-		color: #ffffff
+		color: rgba(255, 255, 255, 1)
 		text-align: center
 
 	.card-img-hover
@@ -292,13 +292,17 @@
 		filter: brightness(100%)
 		border-radius: 0 !important
 		transition: 1s
+
 		~ .card-addition
+
 			.employee-name
 				opacity: 0
 				transition: 0.5s
 				display: none
+
 			.employee-position-full
 				opacity: 1
+
 			.employee-position-short
 				opacity: 0
 

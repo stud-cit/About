@@ -223,20 +223,21 @@
 
 <style lang="sass">
 	#home .swiper-wrapper
-	  width: 75%
+		width: 75%
 
-	  .slide
-	    cursor: pointer
+		.slide
+			cursor: pointer
+
 	.swiper-inactive
-	  transform: translateX(300%)
+		transform: translateX(300%)
 
 	.swiper-active
-	    transform: translateX(0%)
-	    transition: 2s
+		transform: translateX(0%)
+		transition: 2s
 
 	.disable-underline
-	  text-decoration: none
+		text-decoration: none
 
 	.none-radius
-	  border-radius: 0px
+		border-radius: 0px
 </style>

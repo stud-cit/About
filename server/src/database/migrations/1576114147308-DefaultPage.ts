@@ -1,5 +1,5 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
-import { name, image, setLocale } from 'faker';
+import { name, image } from 'faker';
 
 import { PageEntity } from '../../modules/page';
 

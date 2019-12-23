@@ -250,6 +250,6 @@
 		color: rgba(0, 0, 0, 1) !important
 
 	.bold-preview
-		font-weight: 800 !important
+		font-weight: 800
 		font-style: normal
 </style>

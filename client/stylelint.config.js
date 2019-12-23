@@ -13,7 +13,6 @@ module.exports = {
 		'selector-attribute-operator-space-before': 'always',
 		'selector-attribute-operator-space-after': 'always',
 		'selector-attribute-brackets-space-inside': 'never',
-		'declaration-no-important': true,
 		'declaration-colon-space-before': 'never',
 		'declaration-colon-space-after': 'always',
 		'number-leading-zero': 'always',

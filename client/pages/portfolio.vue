@@ -117,25 +117,26 @@
 
 <style lang="sass">
 	#portfolio
+
 		.text-underline
 			line-height: normal
 			text-decoration: underline
 			text-underline-position: under
 
 		.portfolio-link
-			color: white
+			color: rgba(255, 255, 255, 1)
 
 	.arrow-right
 		border-radius: 50%
 		padding: 25px
 		margin: 10px
-		border: 5px solid white
+		border: 5px solid rgba(255, 255, 255, 1)
 
 	.v-btn:hover::before
 		opacity: 0 !important
 
 	.headline:hover
-		border-bottom: 1px solid white
+		border-bottom: 1px solid rgba(255, 255, 255, 1)
 
 	.max-width
 		max-width: 100vw

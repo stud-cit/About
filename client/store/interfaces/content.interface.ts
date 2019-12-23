@@ -1,6 +1,6 @@
 import { StorageEntity } from './cover.interface';
 
-export interface PageEntity {
+export interface ContentEntity {
 	/**
 	 * [id description]
 	 */
@@ -10,16 +10,6 @@ export interface PageEntity {
 	 * [lang description]
 	 */
 	readonly lang: string;
-
-	/**
-	 * [link description]
-	 */
-	readonly link: string;
-
-	/**
-	 * [name description]
-	 */
-	readonly name: string;
 
 	/**
 	 * [title description]
