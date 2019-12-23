@@ -17,40 +17,11 @@
 					@click="() => choosePage(page, i)"
 				>
 					<Slide
-						class="slide"
-						:pose="isStartAnimation ? 'hidden' : 'default'"
+						:isStartAnimation="isStartAnimation"
 						:index="i"
+						:page="page ? page : {}"
 						:choosedSlide="choosedSlide"
-						:to="localePath(page.link, $i18n.locale)"
-						:router="$router"
-						:isMobile="isXsOnly"
-						:disableHidingAnimation="changeIsHideAnimationContent"
-					>
-						<v-card class="none-radius">
-							<v-img
-								:src="getDynamicAssets(page.cover.image)"
-								:lazy-src="page.lazyImg"
-								:height="isMdAndDown ? '45vh' : '65vh'"
-								:aspect-ratio="16 / 9"
-							>
-								<v-card-title class="white--text fill-height">
-									<v-row justify="center" align="center" class="fill-height">
-										<span
-											class="font-weight-bold font-italic pr-4 slider-number"
-											:style="getSlideNumberFont"
-											>0{{ ++i }}</span
-										>
-										<span
-											class="font-weight-bold text-uppercase slider-title"
-											:style="getSlideTitleFont"
-											>{{ page.title }}.</span
-										>
-									</v-row>
-								</v-card-title>
-								<div class="fill-height bottom-gradient" />
-							</v-img>
-						</v-card>
-					</Slide>
+					/>
 				</v-col>
 			</div>
 		</div>
@@ -62,43 +33,11 @@
 				@click="() => choosePage(page, i)"
 			>
 				<Slide
-					class="slide"
-					:pose="isStartAnimation ? 'hidden' : 'default'"
+					:isStartAnimation="isStartAnimation"
 					:index="i"
+					:page="page ? page : {}"
 					:choosedSlide="choosedSlide"
-					:to="localePath(page.link, $i18n.locale)"
-					:router="$router"
-					:isMobile="isXsOnly"
-					:disableHidingAnimation="changeIsHideAnimationContent"
-				>
-					<v-card class="disable-underline" :link="true">
-						<v-img
-							:src="getDynamicAssets(page.cover.image)"
-							:gradient="imagePageGradient"
-							:lazy-src="page.lazyImg"
-							height="30vh"
-							:aspect-ratio="16 / 9"
-						>
-							<v-card-title class="title white--text fill-height">
-								<v-row justify="center" align="center" class="fill-height">
-									<span
-										class="font-weight-bold font-italic pr-4 pr-sm-6 pr-md-7 pr-lg-8"
-										:style="getSlideNumberFont"
-									>
-										0{{ ++i }}
-									</span>
-									<span
-										class="font-weight-bold text-uppercase"
-										:style="getSlideTitleFont"
-									>
-										{{ page.title }}.
-									</span>
-								</v-row>
-							</v-card-title>
-							<div class="fill-height bottom-gradient"></div>
-						</v-img>
-					</v-card>
-				</Slide>
+				/>
 			</v-col>
 		</v-row>
 	</v-container>
@@ -107,7 +46,6 @@
 <script lang="ts">
 	import { Component, Vue } from 'vue-property-decorator';
 	import { Getter, Mutation } from 'vuex-class';
-	import posed from 'vue-pose';
 
 	@Component({
 		layout: 'preliminary',
@@ -115,53 +53,13 @@
 			title: 'Home',
 		},
 		components: {
-			/**
-			 * 	Move choosed slide on y axis on sm and higer
-			 * 	Move choosed slide on x axis on xs only
-			 */
-			Slide: posed.div({
-				hidden: {
-					applyAtEnd: { display: 'none' },
-					opacity: ({ index, choosedSlide, isMobile }) =>
-						index === choosedSlide && !isMobile ? 1 : 0,
-					x: ({ index, choosedSlide, isMobile }) =>
-						index === choosedSlide && isMobile ? -30 : 0,
-					transition: ({ index, choosedSlide, isMobile }) => ({
-						duration: index === choosedSlide ? 1200 : 400,
-						ease: 'easeOut',
-					}),
-					y: ({ index, choosedSlide, isMobile }) => {
-						if (!isMobile) {
-							return index === choosedSlide ? -30 : 0;
-						}
-						return 0;
-					},
-					onPoseComplete: ({
-						index,
-						choosedSlide,
-						isMobile,
-						to,
-						router,
-						disableHidingAnimation,
-					}) => {
-						if (index === choosedSlide) {
-							disableHidingAnimation(false);
-							setTimeout(() => router.push(to), !isMobile ? 1250 : 150);
-						}
-					},
-				},
-				default: {
-					opacity: 1,
-					y: 0,
-				},
-			}),
+			Slide: () => import('~/components/slide'),
 		},
 	})
 	export default class HomePage extends Vue {
 		@Getter('visibilityLoader') visibilityLoader;
 		@Getter('getPageStage') pages;
 		@Mutation('setPage') setPage;
-		@Mutation('changeIsHideAnimationContent') changeIsHideAnimationContent;
 
 		choosedSlide: number = -1;
 		isShowSwiper: boolean = false;
@@ -179,6 +77,7 @@
 				},
 			},
 		};
+
 		showSwiper() {
 			if (!this.visibilityLoader) {
 				this.isShowSwiper = true;
@@ -190,7 +89,7 @@
 		}
 
 		choosePage(page, i: number): void {
-			this.choosedSlide = i - 1;
+			this.choosedSlide = i;
 			this.setPage(page);
 		}
 
@@ -198,26 +97,9 @@
 			return this.choosedSlide !== -1 ? true : false;
 		}
 
-		get isXsOnly() {
-			return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
-		}
-		get isMdAndDown() {
-			return this.$breakpoint ? this.$breakpoint.is.mdAndDown : false;
-		}
-
-		get getSlideTitleFont() {
-			return { fontSize: `${this.getAdaptiveSize('slideTitleFont')}px` };
-		}
-		get getSlideNumberFont() {
-			return { fontSize: `${this.getAdaptiveSize('slideNumberFont')}px` };
-		}
-
 		mounted() {
 			this.showSwiper();
 		}
-
-		imagePageGradient: string =
-			'to top right, rgba(115, 115, 115, .33), rgba(32, 32, 72, .7)';
 	}
 </script>
 
@@ -225,19 +107,10 @@
 	#home .swiper-wrapper
 		width: 75%
 
-		.slide
-			cursor: pointer
-
 	.swiper-inactive
 		transform: translateX(300%)
 
 	.swiper-active
 		transform: translateX(0%)
 		transition: 2s
-
-	.disable-underline
-		text-decoration: none
-
-	.none-radius
-		border-radius: 0px
 </style>

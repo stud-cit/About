@@ -142,7 +142,7 @@
 
 <style lang="sass">
 	.app .v-application--wrap
-		flex-direction: row
+		flex-direction: row!important
 		flex-wrap: wrap
 		align-items: flex-start
 
@@ -151,12 +151,6 @@
 			height: 110px !important
 			margin-top: 10px !important
 			background: rgba(250, 250, 250, 0.85)
-
-	.desktop-link:hover
-		opacity: 0.5
-		position: fixed
-		left: calc(50vw - 26px)
-		bottom: 2vh
 
 	.locale-button
 		width: 55px
@@ -180,7 +174,7 @@
 		top: -18px
 
 	.relative
-		position: relative
+		position: relative!important
 
 	.half-round
 		width: 100%
@@ -210,15 +204,11 @@
 			color: rgba(255, 255, 255, 1)
 
 		span
-			color: rgba(0 ,0 ,0 ,1)
+			color: rgba(0, 0, 0, 1)
 			font-weight: 400
 
 		.active-locale span
 			font-weight: 700
-
-	.lang-up
-		position: absolute
-		top: -15px
 
 	.bold-preview
 		font-weight: 800

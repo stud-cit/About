@@ -1,5 +1,5 @@
 <template>
-	<Slide
+	<SlideWrapper
 		class="slide"
 		:pose="isStartAnimation ? 'hidden' : 'default'"
 		:index="index"
@@ -9,34 +9,35 @@
 		:isMobile="isXsOnly"
 		:disableHidingAnimation="changeIsHideAnimationContent"
 	>
-		<v-card class="disable-underline" :link="true">
+		<v-card link tile>
 			<v-img
 				:src="getDynamicAssets(page.cover.image)"
-				:gradient="imagePageGradient"
 				:lazy-src="page.lazyImg"
-				height="30vh"
+				:height="slideHeight"
 				:aspect-ratio="16 / 9"
 			>
-				<v-card-title class="title white--text fill-height">
+				<v-card-title
+					class="white--text fill-height"
+					:class="{ title: isXsOnly }"
+				>
 					<v-row justify="center" align="center" class="fill-height">
 						<span
 							class="font-weight-bold font-italic pr-4 pr-sm-6 pr-md-7 pr-lg-8"
-							:style="getSlideNumberFont"
+							:style="slideNumberFont"
 						>
-							0{{ ++index }}
+							0{{ index + 1 }}
 						</span>
 						<span
 							class="font-weight-bold text-uppercase"
-							:style="getSlideTitleFont"
+							:style="slideTitleFont"
 						>
 							{{ page.title }}.
 						</span>
 					</v-row>
 				</v-card-title>
-				<div class="fill-height bottom-gradient"></div>
 			</v-img>
 		</v-card>
-	</Slide>
+	</SlideWrapper>
 </template>
 <script lang="ts">
 	import posed from 'vue-pose';
@@ -49,7 +50,7 @@
 			 * 	Move choosed slide on y axis on sm and higer
 			 * 	Move choosed slide on x axis on xs only
 			 */
-			Slide: posed.div({
+			SlideWrapper: posed.div({
 				hidden: {
 					applyAtEnd: { display: 'none' },
 					opacity: ({ index, choosedSlide, isMobile }) =>
@@ -91,20 +92,32 @@
 	export default class Slide extends Vue {
 		@Mutation('changeIsHideAnimationContent') changeIsHideAnimationContent;
 
+		get slideHeight() {
+			let result;
+
+			if (this.isXsOnly) {
+				result = 30;
+			} else if (this.isMdAndDown) {
+				result = 45;
+			} else {
+				result = 65;
+			}
+
+			return `${result}vh`;
+		}
+
 		get isXsOnly() {
 			return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 		}
 
-		get getSlideNumberFont() {
+		get isMdAndDown() {
+			return this.$breakpoint ? this.$breakpoint.is.mdAndDown : false;
+		}
+		get slideNumberFont() {
 			return { fontSize: `${this.getAdaptiveSize('slideNumberFont')}px` };
 		}
-		get getSlideTitleFont() {
+		get slideTitleFont() {
 			return { fontSize: `${this.getAdaptiveSize('slideTitleFont')}px` };
 		}
-
-		imagePageGradient: string =
-			'to top right, rgba(115, 115, 115, .33), rgba(32, 32, 72, .7)';
 	}
 </script>
-
-<style></style>

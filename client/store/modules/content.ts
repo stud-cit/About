@@ -17,7 +17,6 @@ class ContentGetters extends Getters<ContentState> {
 	}
 
 	public get getContent(): ContentEntity {
-		console.log();
 		return this.state.content;
 	}
 
