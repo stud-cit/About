@@ -1,12 +1,12 @@
 <template>
 	<v-row>
-		<v-col v-for="(page, i) in pages" :key="i" md="6">
-			<v-card :href="'dashboard/' + page.id">
+		<v-col v-for="(page, i) in pages[$i18n.locale]" :key="i" md="6">
+			<v-card :to="'dashboard/' + page.link" @click="setPage(page)">
 				<v-img
-					:src="getDynamicAssets(`/images/covers${page.cover.image}`)"
+					height="30vh"
+					:src="getDynamicAssets(page.cover.image)"
 					:gradient="imagePageGradient"
 					:lazy-src="page.lazyImg"
-					height="30vh"
 					:aspect-ratio="16 / 9"
 				>
 					<v-card-title class="title white--text fill-height">
@@ -36,7 +36,8 @@
 		},
 	})
 	export default class DashboardPage extends Vue {
-		@Getter('getPageStage') pages;
+		@Getter('PageModule/getPages') pages;
+		@Mutation('PageModule/setPage') setPage;
 
 		imagePageGradient: string =
 			'to top right, rgba(115, 115, 115, .33), rgba(32, 32, 72, .7)';
