@@ -1,11 +1,20 @@
-import { Getters, Mutations, Actions, Module } from 'vuex-smart-module';
+import {
+	Getters,
+	Mutations,
+	Actions,
+	Module,
+	Context,
+} from 'vuex-smart-module';
 import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { Store } from 'vuex';
 import Vue from 'vue';
 
 import { createStore } from 'vuex-smart-module';
 
-import { PageModel, CoverModel } from './interfaces';
+import { Local, PageEntity, ContentEntity } from './interfaces';
+
+import { ContentModule } from './modules/content';
+import { PageModule } from './modules/pages';
 
 class RootState {
 	auth!: any;
@@ -16,8 +25,8 @@ class RootState {
 	showScrollBar: boolean = false;
 	isHideAnimationContent: boolean = false;
 	pageId = '';
-	page!: PageModel;
-	pages: PageModel[] = [];
+	page!: PageEntity;
+	pages: PageEntity[] = [];
 	content: {} = {};
 	contacts = {
 		ua: {
@@ -60,10 +69,10 @@ class RootGetters extends Getters<RootState> {
 	get getIsHideAnimationContent(): boolean {
 		return this.state.isHideAnimationContent;
 	}
-	get getPage(): PageModel {
+	get getPage(): PageEntity {
 		return this.state.page;
 	}
-	get getPageStage(): PageModel[] {
+	get getPageStage(): PageEntity[] {
 		const { locale } = this.state;
 		return this.state.pages[locale];
 	}
@@ -74,12 +83,12 @@ class RootGetters extends Getters<RootState> {
 	get getPageIndex(): number {
 		const { locale } = this.state;
 		const matchingIndex = this.state.pages[locale].findIndex(
-			(page: PageModel) => page.id === this.state.pageId,
+			(page: PageEntity) => page.id === this.state.pageId,
 		);
 
 		return matchingIndex + 1;
 	}
-	get getPageRouteByIndex(): (index: number) => string {
+	get getPageRouteByIndex(): (index: number) => string | null {
 		return index => {
 			const { locale } = this.state;
 			const pages = this.state.pages[locale];
@@ -109,10 +118,10 @@ class RootMutations extends Mutations<RootState> {
 	setLocale(locale: string) {
 		return Vue.set(this.state, 'locale', locale);
 	}
-	setPages(pages: PageModel[]) {
+	setPages(pages: PageEntity[]) {
 		return Vue.set(this.state, 'pages', pages);
 	}
-	setPage(page: PageModel) {
+	setPage(page: PageEntity) {
 		return Vue.set(this.state, 'page', page);
 	}
 	hideLoader() {
@@ -122,7 +131,7 @@ class RootMutations extends Mutations<RootState> {
 		const { locale } = this.state;
 
 		const pages: any = this.state.pages[locale];
-		const matchingPage = pages.find((page: PageModel) =>
+		const matchingPage = pages.find((page: PageEntity) =>
 			path.includes(page.link),
 		);
 
@@ -151,34 +160,48 @@ class RootActions extends Actions<
 	RootMutations,
 	RootActions
 > {
-	store!: Store<NuxtAxiosInstance> | any;
+	private contentModule!: Context<typeof ContentModule>;
+	private pageModule!: Context<typeof PageModule>;
+	private store!: Store<NuxtAxiosInstance> | any;
 
-	$init(store: Store<NuxtAxiosInstance>): void {
+	public $init(store: Store<NuxtAxiosInstance>): void {
 		this.store = store;
+		this.contentModule = ContentModule.context(store);
+		this.pageModule = PageModule.context(store);
 	}
 
-	async nuxtServerInit() {
-		return await this.store.$axios
-			.$get('page/')
-			.then(data => this.mutations.setPages(data))
-			.catch(err => this.mutations.setError(err));
+	public async nuxtServerInit(): Promise<void> {
+		await this.store.$axios
+			.$get('content')
+			.then(this.contentModule.mutations.setContents)
+			.catch(this.contentModule.mutations.setError);
+
+		await this.store.$axios
+			.$get('page')
+			.then(this.pageModule.mutations.setPages)
+			.catch(this.pageModule.mutations.setError);
+
+		// TODO: Delete after storage refactoring, in favor of atomic storage.
+		//       This is necessary for parallel use by the main pages and the admin panel.
+		this.state.pages = this.pageModule.state.pages;
+		this.state.content = this.contentModule.state.contents;
 	}
 
-	async fetchContentByPageId() {
+	public async fetchContentByPageId() {
 		const params = {
 			page: this.state.pageId,
 		};
 
 		await this.store.$axios
 			.$get('content/', { params })
-			.then(pageContent => this.mutations.setPageContent(pageContent))
-			.catch(err => this.mutations.setError(err));
+			.then(this.mutations.setPageContent)
+			.catch(this.mutations.setError);
 	}
 
-	async authorizationUser(data: any): Promise<void> {
+	public async authorizationUser(data: any): Promise<void> {
 		return await this.store.$auth
 			.loginWith('local', { data })
-			.catch(err => this.mutations.setError(err));
+			.catch(this.mutations.setError);
 	}
 }
 
@@ -187,6 +210,10 @@ const RootModule = new Module({
 	getters: RootGetters,
 	mutations: RootMutations,
 	actions: RootActions,
+	modules: {
+		ContentModule,
+		PageModule,
+	},
 });
 
 export default (): Store<any> =>
