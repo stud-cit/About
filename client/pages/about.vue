@@ -82,7 +82,6 @@
 						</v-row>
 					</v-window-item>
 				</v-window>
-
 				<Slogan
 					v-if="curStage <= stagesLength"
 					class="d-none d-md-block rotated-phraze font-weight-light"
@@ -306,7 +305,7 @@
 						this.curStage > 1
 							? this.curStage - 1
 							: this.stageAbout - this.curStage;
-					console.log(this.stageText)
+					console.log(this.stageText);
 				}, 250);
 				setTimeout(() => {
 					this.isTextSliderAnimation = true;

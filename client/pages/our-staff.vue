@@ -29,31 +29,14 @@
 								class="mx-auto card-img-hover"
 								:width="isLgAndUp ? '425px' : 'auto'"
 							>
-								<v-img
-									:height="isLgAndUp ? '300px' : '200px'"
-									:src="employee.cover ? employee.cover.image : ''"
-								></v-img>
+								<avatar :image="employee.cover ? employee.cover.image : ''" />
 							</v-card>
-							<div class="card-addition">
-								<div
-									class="employee-name mt-6 mb-4 font-weight-bold line-height-1"
-									:style="getStaffNameFont"
-								>
-									{{ employee.title }}
-								</div>
-								<div
-									class="employee-position-short font-weight-regular line-height-1"
-									:style="getStaffPositionFont"
-								>
-									{{ employee.description }}
-								</div>
-								<div
-									class="employee-position-full font-weight-bold mt-7"
-									:style="getStackPositionFont"
-								>
-									{{ employee.description }}
-								</div>
-							</div>
+							<avatar-info
+								:employee="employee"
+								:sliderInfo="sliderInfo"
+								:isXsOnly="isXsOnly"
+								:isMdAndUp="isMdAndUp"
+							/>
 						</Staff>
 					</v-col>
 				</v-row>
@@ -71,13 +54,7 @@
 									:width="isXsOnly ? '90%' : '100%'"
 									flat
 								>
-									<v-img
-										height="40%"
-										class="card-img"
-										:src="employee.cover ? employee.cover.image : ''"
-										lazy-src="/cover.jpg"
-										:aspect-ratio="4 / 3"
-									/>
+									<avatar :image="employee.cover ? employee.cover.image : ''" />
 									<v-row justify="space-around" align="center">
 										<v-btn
 											color="white"
@@ -88,26 +65,12 @@
 										>
 											<v-icon size="20vw">mdi-chevron-left</v-icon>
 										</v-btn>
-										<v-col cols="6" class="pa-0">
-											<div
-												class="employee-name mt-3 mb-2 font-weight-bold line-height-1-2"
-												:style="getStaffNameFont"
-											>
-												{{ employee.title }}
-											</div>
-											<div
-												class="employee-position-short"
-												:style="getStaffPositionFont"
-											>
-												{{ employee.description }}
-											</div>
-											<p
-												class="text-center white--text font-italic"
-												:class="isXsOnly ? 'subtitle-2' : 'heading'"
-											>
-												{{ sliderInfo }}
-											</p>
-										</v-col>
+										<avatar-info
+											:employee="employee"
+											:sliderInfo="sliderInfo"
+											:isXsOnly="isXsOnly"
+											:isMdAndUp="isMdAndUp"
+										/>
 										<v-btn
 											color="white"
 											icon
@@ -134,6 +97,8 @@
 	import { Action, Getter, Mutation } from 'vuex-class';
 	import posed from 'vue-pose';
 
+	import Avatar from '@/components/employee/avatar';
+	import EmployeeInfo from '@/components/employee/employee-info';
 	import ScrollBar from '@/components/scroll-bar.vue';
 	import PreviewPage from '@/components/preview-page.vue';
 	import PruductFooter from '@/components/product-footer.vue';
@@ -145,6 +110,8 @@
 			title: 'Our staff',
 		},
 		components: {
+			avatar: Avatar,
+			'avatar-info': EmployeeInfo,
 			ScrollBar,
 			PreviewPage,
 			'product-footer': PruductFooter,
@@ -217,16 +184,6 @@
 			return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
 		}
 
-		get getStaffNameFont() {
-			return { fontSize: `${this.getAdaptiveSize('staffNameFont')}px` };
-		}
-		get getStaffPositionFont() {
-			return { fontSize: `${this.getAdaptiveSize('staffPositionFont')}px` };
-		}
-		get getStackPositionFont() {
-			return { fontSize: `${this.getAdaptiveSize('stackPositionFont')}px` };
-		}
-
 		// On change page content add observers to each rendered section
 		@Watch('isRenderContent')
 		onChangePageContent() {
@@ -263,28 +220,10 @@
 		position: relative
 		justify-content: center
 
-	.employee-name
-		color: rgba(255, 255, 255, 1)
-		text-align: center
-		margin-bottom: 0
-		display: block
-
-	.employee-position-short, .employee-position-full
-		font-weight: 400
-		color: rgba(255, 255, 255, 1)
-		text-align: center
-
 	.card-img-hover
 		border-radius: 50px !important
 		filter: brightness(35%)
 		transition: 1s
-
-	.card-img
-		transition: all 1s
-		margin: 15px 0
-
-	.employee-position-full
-		opacity: 0
 
 	.card-img-hover:hover
 		z-index: 10
@@ -311,12 +250,6 @@
 
 	.staff-slide
 		height: 65vh
-
-	.line-height-1
-		line-height: 1
-
-	.line-height-1-2
-		line-height: 1.2
 
 	.max-width
 		max-width: 100vw

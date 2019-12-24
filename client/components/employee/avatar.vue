@@ -1,40 +1,36 @@
 <template>
 	<v-img
-		:class="{'card-img': isXsOnly}"
+		:class="{ 'card-img': !isSmAndDown }"
 		:height="avatarHeight"
 		:src="image"
 		lazy-src="/cover.jpg"
-		:aspect-ratio="isXsOnly ? (4 / 3) : 'auto'"
+		:aspect-ratio="isSmAndDown ? 4 / 3 : 'auto'"
 	/>
 </template>
 
-
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
-import { Action, Getter, Mutation } from 'vuex-class';
-import posed from 'vue-pose';
-
+	import { Component, Vue } from 'vue-property-decorator';
 
 	@Component({
-		props: ['image']
+		props: ['image'],
 	})
 	export default class Employee extends Vue {
 		get avatarHeight() {
-			if(this.isXsOnly) {
-				return '40%'
+			if (this.isSmAndDown) {
+				return '40%';
 			}
-			return this.isLgAndUp ? '300px' : '200px'
+			return this.isLgAndUp ? '300px' : '200px';
 		}
 
 		get isLgAndUp() {
 			return this.$breakpoint ? this.$breakpoint.is.lgAndUp : false;
 		}
-		get isXsOnly() {
-			return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+
+		get isSmAndDown() {
+			return this.$breakpoint ? this.$breakpoint.is.smAndDown : false;
 		}
 	}
 </script>
-
 
 <style lang="sass">
 	.card-img

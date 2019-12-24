@@ -390,9 +390,6 @@
 	.line-height
 		line-height: 1.2
 
-	.line-height-1
-		line-height: 1
-
 	.title-about
 		width: 80%
 
