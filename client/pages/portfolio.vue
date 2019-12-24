@@ -126,6 +126,9 @@
 		.portfolio-link
 			color: rgba(255, 255, 255, 1)
 
+		.v-btn:before
+			background-color: transparent
+
 	.arrow-right
 		border-radius: 50%
 		padding: 25px
