@@ -22,13 +22,13 @@
 				>
 					<v-row justify="center" align="center" class="fill-height">
 						<span
-							class="font-weight-bold font-italic pr-4 pr-sm-6 pr-md-7 pr-lg-8"
+							class="font-weight-bold font-italic slider-number pr-4 pr-sm-6 pr-md-7 pr-lg-8"
 							:style="slideNumberFont"
 						>
 							0{{ index + 1 }}
 						</span>
 						<span
-							class="font-weight-bold text-uppercase"
+							class="font-weight-bold text-uppercase slider-title"
 							:style="slideTitleFont"
 						>
 							{{ page.title }}.
