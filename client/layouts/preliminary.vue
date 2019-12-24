@@ -220,4 +220,11 @@
 	.circle-lang
 		border-radius: 50% !important
 		overflow: hidden
+		background-color: rgba(255, 255, 255, 1)
+
+	.burger-icon
+		position: fixed
+		left: 50%
+		transform: translateX(-50%)
+		bottom: 2vh
 </style>
