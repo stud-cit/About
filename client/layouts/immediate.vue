@@ -307,6 +307,9 @@
 		justify-content: space-between
 		width: 100%
 
+		.v-btn:before
+			background-color: transparent
+
 	.logo-img
 		cursor: pointer
 
