@@ -31,7 +31,7 @@
 							>
 								<v-img
 									:height="isLgAndUp ? '300px' : '200px'"
-									:src="employee.cover.image"
+									:src="employee.cover ? employee.cover.image : ''"
 								></v-img>
 							</v-card>
 							<div class="card-addition">
@@ -74,7 +74,7 @@
 									<v-img
 										height="40%"
 										class="card-img"
-										:src="employee.cover.image"
+										:src="employee.cover ? employee.cover.image : ''"
 										lazy-src="/cover.jpg"
 										:aspect-ratio="4 / 3"
 									/>

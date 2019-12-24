@@ -13,7 +13,7 @@
 			<v-parallax
 				v-for="(project, i) in pageContent"
 				:key="i"
-				:src="getDynamicAssets(project.cover.image)"
+				:src="getDynamicAssets(project.cover ? project.cover.image : '')"
 				class="pa-0"
 				:style="getParalaxHeight"
 			>

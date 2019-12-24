@@ -3,6 +3,7 @@ module.exports = {
 	extends: ['stylelint-config-recommended'],
 	rules: {
 		indentation: 'tab',
+		'no-empty-source': null,
 		'string-quotes': 'single',
 		'no-duplicate-selectors': true,
 		'color-hex-case': 'upper',
