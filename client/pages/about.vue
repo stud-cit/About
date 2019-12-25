@@ -201,11 +201,12 @@
 		async fetch({ store, app }) {
 			const currPage = app.context.route.path.replace('/', '');
 
+			// reset content from prev page
+			store.commit('ContentModule/setContent', {});
 			await store.dispatch('PageModule/selectPage', {
 				lang: store.$i18n.locale,
 				link: currPage,
 			});
-
 			await store.dispatch('ContentModule/selectContent', {
 				page: store.getters['PageModule/getPage'].id,
 				lang: store.$i18n.locale,

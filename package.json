@@ -23,7 +23,6 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^8.2.0",
     "commitlint": "^8.2.0",
-    "husky": "^3.1.0",
-    "lint-staged": "^9.5.0"
+    "husky": "^3.1.0"
   }
 }
