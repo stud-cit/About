@@ -7,7 +7,7 @@
 		>
 			<div class="swiper-wrapper">
 				<v-col
-					v-for="(page, i) in pages"
+					v-for="(page, i) in pages[$i18n.locale]"
 					:key="i"
 					cols="12"
 					sm="10"
@@ -27,7 +27,7 @@
 		</div>
 		<v-row class="d-flex d-sm-none" justify="center">
 			<v-col
-				v-for="(page, i) in pages"
+				v-for="(page, i) in pages[$i18n.locale]"
 				:key="i"
 				cols="10"
 				@click="() => choosePage(page, i)"
@@ -58,8 +58,8 @@
 	})
 	export default class HomePage extends Vue {
 		@Getter('visibilityLoader') visibilityLoader;
-		@Getter('getPageStage') pages;
-		@Mutation('setPage') setPage;
+		@Getter('PageModule/getPages') pages;
+		@Mutation('PageModule/setPage') setPage;
 
 		choosedSlide: number = -1;
 		isShowSwiper: boolean = false;

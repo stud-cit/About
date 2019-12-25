@@ -51,7 +51,7 @@
 								<v-col
 									class="pa-0 nav-links"
 									cols="auto"
-									v-for="(page, index) in pages"
+									v-for="(page, index) in pages[$i18n.locale]"
 									:key="index"
 								>
 									<ContentBox>
@@ -101,7 +101,9 @@
 					:delay="getAnimationDelay"
 				>
 					<p class="bold-italic-preview d-flex mt-md-3">
-						<span :style="getPageIndexFont">0{{ pageIndex }}</span>
+						<span :style="getPageIndexFont"
+							>0{{ pageIndex($i18n.locale) }}</span
+						>
 						<span
 							class="total-pages mt-1 mt-sm-2"
 							:style="getPageTotalIndexFont"
@@ -137,7 +139,11 @@
 			</v-btn>
 			<v-list id="pages-list-container">
 				<v-list-item-group class="pages-list">
-					<v-list-item v-for="(page, index) in pages" class="px-0" :key="index">
+					<v-list-item
+						v-for="(page, index) in pages[$i18n.locale]"
+						class="px-0"
+						:key="index"
+					>
 						<v-btn
 							class="text-center display-2 page-link font-weight-bold"
 							exact-active-class="page-link-active"
@@ -185,15 +191,13 @@
 		},
 	})
 	export default class ImmediatetLayout extends Vue {
-		@Getter('getPageIndex') pageIndex;
-		@Getter('getPageStage') pages;
-		@Getter('getPage') page;
+		@Getter('PageModule/getPageIndex') pageIndex;
+		@Getter('PageModule/getPage') page;
+		@Getter('PageModule/getPages') pages;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 		@Getter('visibilityLoader') visibilityLoader;
 		@Mutation('changeScrollBar') changeScrollBar;
 		@Mutation('changeIsHideAnimationContent') changeIsHideAnimationContent;
-		@Mutation('setPageIdByPath') setPageIdByPath;
-		@Mutation('setPageContent') setPageContent;
 
 		isShowMobileMenu: boolean = false;
 		isStartAnimation: boolean = false;
@@ -255,20 +259,8 @@
 			this.isShowMobileMenu = !this.isShowMobileMenu;
 		}
 
-		created() {
-			this.setPageIdByPath(this.$router.currentRoute.path);
-		}
-
 		mounted() {
 			this.isStartAnimation = true;
-
-			// before each routing we set current page and reset content
-			this.$router.beforeHooks.push((nextRoute, prevRoute, next) => {
-				this.changeScrollBar(false);
-				this.setPageIdByPath(nextRoute.path);
-				this.setPageContent({});
-				return next();
-			});
 		}
 	}
 </script>

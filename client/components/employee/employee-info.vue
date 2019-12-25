@@ -1,9 +1,8 @@
 <template>
-
 	<v-col
 		xs="6"
 		md="12"
-		:class="{'card-addition': isMdAndUp, 'pa-0': isMdAndUp}"
+		:class="{ 'card-addition': isMdAndUp, 'pa-0': isMdAndUp }"
 	>
 		<div
 			class="employee-name font-weight-bold line-height-1-2"
@@ -12,10 +11,7 @@
 		>
 			{{ employee.title }}
 		</div>
-		<div
-			class="employee-position-short"
-			:style="getStaffPositionFont"
-		>
+		<div class="employee-position-short" :style="getStaffPositionFont">
 			{{ employee.description }}
 		</div>
 		<div

@@ -126,11 +126,21 @@
 				},
 			}),
 		},
+		async fetch({ store, app }) {
+			const currPage = app.context.route.path.replace('/', '');
+			await store.dispatch('PageModule/selectPage', {
+				lang: store.$i18n.locale,
+				link: currPage,
+			});
+			await store.dispatch('ContentModule/selectContent', {
+				page: store.getters['PageModule/getPage'].id,
+				lang: store.$i18n.locale,
+			});
+		},
 	})
 	export default class OffersPage extends Vue {
-		@Action('fetchContentByPageId') fetchContentByPageId;
-		@Getter('getPage') page;
-		@Getter('getPageContent') pageContent;
+		@Getter('PageModule/getPage') page;
+		@Getter('ContentModule/getContent') pageContent;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 
 		observers: IntersectionObserver[] = [];
@@ -186,9 +196,6 @@
 			});
 		}
 
-		created() {
-			this.fetchContentByPageId();
-		}
 		beforeDestroy() {
 			this.observers.forEach(observer => {
 				observer.disconnect();

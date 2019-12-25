@@ -126,11 +126,23 @@
 				},
 			}),
 		},
+
+		async fetch({ store, app }) {
+			const currPage = app.context.route.path.replace('/', '');
+			await store.dispatch('PageModule/selectPage', {
+				lang: store.$i18n.locale,
+				link: currPage,
+			});
+			await store.dispatch('ContentModule/selectContent', {
+				page: store.getters['PageModule/getPage'].id,
+				lang: store.$i18n.locale,
+			});
+		},
 	})
 	export default class OurStaffPage extends Vue {
-		@Action('fetchContentByPageId') fetchContentByPageId;
-		@Getter('getPage') page;
-		@Getter('getPageContent') pageContent;
+		// @Action('fetchContentByPageId') fetchContentByPageId;
+		@Getter('PageModule/getPage') page;
+		@Getter('ContentModule/getContent') pageContent;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 
 		curStaff: number = 0;
@@ -198,10 +210,6 @@
 				observer.observe(currStaff);
 				return observer;
 			});
-		}
-
-		created() {
-			this.fetchContentByPageId();
 		}
 
 		beforeDestroy() {

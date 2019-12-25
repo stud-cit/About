@@ -170,9 +170,13 @@
 		props: ['title', 'description', 'iconDown'],
 	})
 	export default class PreviewPage extends Vue {
-		@Getter('getPageIndex') pageIndex;
-		@Getter('getPage') page;
-		@Getter('getPageRouteByIndex') getPageRouteByIndex;
+		// @Getter('getPageIndex') pageIndex;
+		// @Getter('getPage') page;
+
+		@Getter('PageModule/getPageIndex') pageIndex;
+		@Getter('PageModule/getPage') page;
+		@Getter('PageModule/getPageRouteByIndex') getPageRouteByIndex;
+
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 		@Getter('visibilityLoader') visibilityLoader;
 		@Mutation('changeIsHideAnimationContent') changeIsHideAnimationContent;
@@ -225,9 +229,12 @@
 		}
 
 		handleNavigatingPage(toRight: boolean) {
-			const currPageIndex = this.pageIndex - 1;
+			const currPageIndex = this.pageIndex(this.$i18n.locale) - 1;
 			const newPageIndex = toRight ? currPageIndex + 1 : currPageIndex - 1;
-			const nextPage = this.getPageRouteByIndex(newPageIndex);
+			const nextPage = this.getPageRouteByIndex(
+				this.$i18n.locale,
+				newPageIndex,
+			);
 
 			this.$router.replace(this.localePath(nextPage));
 		}

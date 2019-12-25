@@ -50,7 +50,6 @@ const config: Configuration = {
 		'~/plugins/vuetify',
 		'~/plugins/vee-validate',
 		'~/plugins/axios',
-		'~/plugins/i18n',
 		{ src: '~/plugins/responsive-video-bg', ssr: false },
 		{ src: '~/plugins/swiper', ssr: false },
 		{ src: '~/plugins/vuetify-breakpoints', ssr: false },

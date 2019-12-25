@@ -93,11 +93,21 @@
 			PreviewPage,
 			'product-footer': PruductFooter,
 		},
+		async fetch({ store, app }) {
+			const currPage = app.context.route.path.replace('/', '');
+			await store.dispatch('PageModule/selectPage', {
+				lang: store.$i18n.locale,
+				link: currPage,
+			});
+			await store.dispatch('ContentModule/selectContent', {
+				page: store.getters['PageModule/getPage'].id,
+				lang: store.$i18n.locale,
+			});
+		},
 	})
 	export default class PortfolioPage extends Vue {
-		@Action('fetchContentByPageId') fetchContentByPageId;
-		@Getter('getPage') page;
-		@Getter('getPageContent') pageContent;
+		@Getter('PageModule/getPage') page;
+		@Getter('ContentModule/getContent') pageContent;
 
 		get isMdAndUp() {
 			return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
@@ -107,10 +117,6 @@
 		}
 		get getParalaxHeight() {
 			return { height: `${this.getAdaptiveSize('paralaxHeight')}vh` };
-		}
-
-		created() {
-			this.fetchContentByPageId();
 		}
 	}
 </script>
