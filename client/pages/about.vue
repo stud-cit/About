@@ -319,7 +319,6 @@
 						this.curStage > 1
 							? this.curStage - 1
 							: this.stageAbout - this.curStage;
-					console.log(this.stageText);
 				}, 250);
 				setTimeout(() => {
 					this.isTextSliderAnimation = true;

@@ -52,7 +52,7 @@
 			 */
 			SlideWrapper: posed.div({
 				hidden: {
-					applyAtEnd: { display: 'none' },
+					applyAtEnd: { opacity: 0 },
 					opacity: ({ index, choosedSlide, isMobile }) =>
 						index === choosedSlide && !isMobile ? 1 : 0,
 					x: ({ index, choosedSlide, isMobile }) =>
@@ -77,7 +77,7 @@
 					}) => {
 						if (index === choosedSlide) {
 							disableHidingAnimation(false);
-							setTimeout(() => router.push(to), !isMobile ? 1250 : 150);
+							setTimeout(() => router.push(to), !isMobile ? 1200 : 150);
 						}
 					},
 				},
