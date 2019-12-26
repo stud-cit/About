@@ -41,7 +41,7 @@
 			const currentScroll = window.scrollY;
 			const windowHeight = window.innerHeight;
 			const scrollHeight = document.body.scrollHeight;
-			const scrollToFooter = scrollHeight - windowHeight * 2;
+			const scrollToFooter = scrollHeight - windowHeight * 1.65;
 			if (currentScroll > scrollToFooter) {
 				this.visibility = false;
 			} else {
