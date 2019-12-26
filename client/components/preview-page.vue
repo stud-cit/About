@@ -344,11 +344,11 @@
 
 	.preview-wrapper
 		height: 80vh
-		color: rgba(255, 255, 255, 1)
+		color: #FFFFFF
 
 	.preview-wrapper-mobile
 		height: 60vh
-		color: rgba(255, 255, 255, 1)
+		color: #FFFFFF
 
 	.preview-margin
 		margin-bottom: 0vh
@@ -366,7 +366,7 @@
 		height: 40px
 		width: 40px
 		border-radius: 20%
-		border: 4px solid rgba(255, 255, 255, 1)
+		border: 4px solid #FFFFFF
 
 	.squareOne
 		clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)
@@ -392,7 +392,7 @@
 		transform: rotate(90deg)
 
 	.gray
-		color: rgba(128, 128, 128, 1)
+		color: #808080
 
 	.line-height
 		line-height: 1.2

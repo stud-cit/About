@@ -43,12 +43,12 @@
 
 		.numbers
 			font-size: 15vw
-			color: rgba(206, 206, 206, 1)
+			color: #CECECE
 
 		.description
 			font-size: 11vw
 			display: inline
-			color: rgba(218, 218, 218, 1)
+			color: #DADADA
 
 		img
 			width: auto
@@ -57,26 +57,26 @@
 
 	.text
 		text-decoration: none
-		color: rgba(227, 227, 227, 1)
+		color: #E3E3E3
 
 		:link
 			text-decoration: none
-			color: rgba(227, 227, 227, 1)
+			color: #E3E3E3
 
 		:visited
 			text-decoration: none
-			color: rgba(227, 227, 227, 1)
+			color: #E3E3E3
 
 		:active
 			text-decoration: none
-			color: rgba(227, 227, 227, 1)
+			color: #E3E3E3
 
 		:hover
 			text-decoration: none
-			color: rgba(227, 227, 227, 1)
+			color: #E3E3E3
 
 	.link-full
-		background: rgba(242, 242, 242, 1)
+		background: #F2F2F2
 		height: 100vh
 		width: 100px
 		position: absolute
@@ -93,7 +93,7 @@
 			top: 50%
 
 	.link-mobile
-		background: rgba(242, 242, 242, 1)
+		background: #F2F2F2
 		width: 100vw
 		height: 8vh
 		position: absolute

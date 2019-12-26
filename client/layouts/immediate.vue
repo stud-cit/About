@@ -274,7 +274,7 @@
 	#header
 		z-index: 30
 		height: auto !important
-		color: rgba(255, 255, 255, 1)
+		color: #FFFFFF
 		transition: all ease 0.5s
 
 		.desktop-link
@@ -287,7 +287,7 @@
 				opacity: 0
 
 		.active-desktop-link
-			border-bottom: 4px solid rgba(255, 255, 255, 1)
+			border-bottom: 4px solid #FFFFFF
 			border-radius: unset
 
 		&.mini-header
@@ -324,7 +324,7 @@
 		width: 100%
 		top: 7vh
 		z-index: 5
-		color: rgba(255, 255, 255, 1)
+		color: #FFFFFF
 		font-weight: 700
 		font-style: italic
 
@@ -349,16 +349,16 @@
 		.page-link
 			width: 100%
 			height: 100%
-			background: rgba(255, 255, 255, 1)
-			color: rgba(255, 255, 255, 1)
+			background: #FFFFFF
+			color: #FFFFFF
 			box-shadow: none
 
 			.page-link-title
 				font-size: 35px
-				color: rgba(0, 0, 0, 1)
+				color: #000000
 
 		.page-link-active .page-link-title
-			border-bottom: 2px solid rgba(0, 0, 0, 1)
+			border-bottom: 2px solid #000000
 
 	.imageCover
 		position: fixed !important

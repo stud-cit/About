@@ -133,7 +133,7 @@
 			text-underline-position: under
 
 		.portfolio-link
-			color: rgba(255, 255, 255, 1)
+			color: #FFFFFF
 
 		.v-btn:before
 			background-color: transparent
@@ -142,13 +142,13 @@
 		border-radius: 50%
 		padding: 25px
 		margin: 10px
-		border: 5px solid rgba(255, 255, 255, 1)
+		border: 5px solid #FFFFFF
 
 	.v-btn:hover::before
 		opacity: 0 !important
 
 	.headline:hover
-		border-bottom: 1px solid rgba(255, 255, 255, 1)
+		border-bottom: 1px solid #FFFFFF
 
 	.max-width
 		max-width: 100vw

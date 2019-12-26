@@ -227,7 +227,7 @@
 	.card-addition
 		display: flex
 		flex-direction: column
-		color: rgba(255, 255, 255, 1)
+		color: #FFFFFF
 		position: relative
 		justify-content: center
 

@@ -257,7 +257,7 @@
 
 	.card-content
 		line-height: 1.25
-		color: rgba(0, 0, 0, 1) !important
+		color: #000000 !important
 
 	.bold-preview
 		font-weight: 800

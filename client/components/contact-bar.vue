@@ -200,16 +200,16 @@
 		overflow: hidden
 
 		.contact-bar-section
-			background: rgba(255, 255, 255, 1)
+			background: #FFFFFF
 
 		.color-main
-			color: rgba(45, 45, 45, 1)
+			color: #2D2D2D
 
 	.slogan
 		position: relative
 		top: 7px
 		font-style: normal
-		color: rgba(255, 255, 255, 1)
+		color: #FFFFFF
 		line-height: 2.7rem
 
 	.static

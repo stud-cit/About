@@ -39,7 +39,7 @@
 		position: fixed
 		top: 0
 		z-index: 500
-		background-color: rgba(255, 255, 255, 1)
+		background-color: #FFFFFF
 		display: flex
 		justify-content: center
 		align-items: center
@@ -88,7 +88,7 @@
 
 	.stud
 		font-size: 2.8rem
-		color: rgba(255, 255, 255, 1)
+		color: #FFFFFF
 		font-weight: 800
 		z-index: 2
 		transform: translateX(-3rem)
@@ -96,7 +96,7 @@
 
 	.circle
 		border-radius: 50%
-		background-color: rgba(255, 255, 255, 1)
+		background-color: #FFFFFF
 		height: 7rem
 		width: 7rem
 		margin: 0 1rem
@@ -116,7 +116,7 @@
 		transition: 1s
 
 	.loading-process
-		background: rgba(0, 128, 0, 1)
+		background: #008000
 		z-index: 1000
 		top: 0
 		position: absolute

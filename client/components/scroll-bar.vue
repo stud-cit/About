@@ -67,7 +67,7 @@
 		right: 50px
 		bottom: 20%
 		width: 3px
-		background-color: rgba(0,0,0,1)
+		background-color: #000000
 
 	.scrollbar-thumb
 		cursor: pointer
@@ -77,5 +77,5 @@
 		height: 12px
 		border-radius: 50%
 		right: -4px
-		background-color: rgba(255,255,255,1)
+		background-color: #FFFFFF
 </style>

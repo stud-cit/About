@@ -350,18 +350,18 @@
 			cursor: pointer
 
 		.v-slider__tick--filled
-			background: rgba(255, 255, 255, 1)
+			background: #FFFFFF
 
 	.preview-section
 		height: 100vh
 
 	.slide-container
 		height: 97vh
-		color: rgba(255, 255, 255, 1)
+		color: #FFFFFF
 
 	.slide-container-mobile
 		height: 90vh
-		color: rgba(255, 255, 255, 1)
+		color: #FFFFFF
 
 	.arrow
 		font-size: 1.8rem
@@ -375,7 +375,7 @@
 		height: 40px
 		width: 40px
 		border-radius: 20%
-		border: 2px solid rgba(255, 255, 255, 1)
+		border: 2px solid #FFFFFF
 
 	.squareOne
 		clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)
@@ -384,13 +384,13 @@
 		clip-path: polygon(50% 0%, 0% 0%, 0% 100%, 50% 100%)
 
 	.slide-content
-		border: 5px solid rgba(255, 255, 255, 1)
+		border: 5px solid #FFFFFF
 		background-color: rgba(78, 79, 80, 0.3)
-		color: rgba(255, 255, 255, 1)
+		color: #FFFFFF
 		position: relative
 
 	.border-right
-		border-right: 16px solid rgba(255, 255, 255, 1)
+		border-right: 16px solid #FFFFFF
 
 	.use-contacts-container
 		width: auto
@@ -403,7 +403,7 @@
 	.rotated-phraze
 		position: fixed
 		right: 8vw
-		color: rgba(255, 255, 255, 1)
+		color: #FFFFFF
 		writing-mode: vertical-rl
 		transform: scaleX(-1) scaleY(-1)
 
@@ -437,7 +437,7 @@
 	.footer-section-about
 		position: relative
 		height: 60vh
-		color: rgba(255, 255, 255, 1)
+		color: #FFFFFF
 
 	.return-section
 		width: 90%
@@ -449,7 +449,7 @@
 		font-style: normal
 
 		p
-			color: rgba(105, 105, 105,1)
+			color: #696969
 
 		.text-sm
 			font-size: 30px
@@ -458,6 +458,6 @@
 			font-size: 25px
 
 	.arrowLeft
-		color: rgba(47, 47, 47, 1)
+		color: #2F2F2F
 		font-size: 50px
 </style>

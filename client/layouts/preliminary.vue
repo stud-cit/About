@@ -179,7 +179,7 @@
 	.half-round
 		width: 100%
 		height: 30px
-		background: rgba(255, 255, 255, 1)
+		background: #FFFFFF
 		clip-path: ellipse(50% 100% at 50% 100%)
 		margin-bottom: -1px
 
@@ -192,19 +192,19 @@
 		display: flex
 		justify-content: center
 		align-items: center
-		background: rgba(255, 255, 255, 1)
+		background: #FFFFFF
 
 	.locales-list
 		width: 60%
 		display: flex
 		justify-content: space-between
-		color: rgba(255, 255, 255, 1)
+		color: #FFFFFF
 
 		.locale-btn
-			color: rgba(255, 255, 255, 1)
+			color: #FFFFFF
 
 		span
-			color: rgba(0, 0, 0, 1)
+			color: #000000
 			font-weight: 400
 
 		.active-locale span
@@ -220,7 +220,7 @@
 	.circle-lang
 		border-radius: 50% !important
 		overflow: hidden
-		background-color: rgba(255, 255, 255, 1)
+		background-color: #FFFFFF
 
 	.burger-icon
 		position: fixed

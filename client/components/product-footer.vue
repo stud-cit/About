@@ -48,7 +48,7 @@
 	.footer-section
 		position: relative
 		height: 100vh
-		color: rgba(255, 255, 255, 1)
+		color: #FFFFFF
 		margin: 0
 
 	.return-section
@@ -83,6 +83,6 @@
 			opacity: 0.8
 
 	.arrowUp
-		color: rgba(47, 47, 47, 1)
+		color: #2F2F2F
 		font-size: 50px
 </style>
