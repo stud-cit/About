@@ -199,24 +199,12 @@
 				hidden: { opacity: 0 },
 			}),
 		},
-		async fetch({ store, route }) {
-			const currPage = route.path.replace('/', '');
-			// reset content from prev page
-			// store.commit('ContentModule/setContent', {});
-			await store.dispatch('PageModule/selectPage', {
-				lang: store.$i18n.locale,
-				link: currPage,
-			});
-			await store.dispatch('ContentModule/selectContent', {
-				page: store.getters['PageModule/getPage'].id,
-				lang: store.$i18n.locale,
-			});
-		},
 	})
 	export default class AboutPage extends Vue {
+		@Action('PageModule/selectPage') selectPage;
+		@Action('ContentModule/selectContent') selectContent;
 		@Getter('PageModule/getPage') page;
 		@Getter('ContentModule/getContent') pageContent;
-
 		@Getter('getContactBarVisibility') isShowContactBar;
 		@Getter('visibilityLoader') visibilityLoader;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
@@ -303,6 +291,7 @@
 				fontSize: `${this.getAdaptiveSize('useContactsAction')}px`,
 			};
 		}
+
 		get windowHeightText() {
 			try {
 				const windowHeight = window.innerHeight;
@@ -342,6 +331,16 @@
 			}
 		}
 
+		async created() {
+			const link = this.$route.path.replace('/', '');
+			const lang = this.$i18n.locale;
+
+			await this.selectPage({ link, lang });
+			await this.selectContent({
+				page: this.page.id,
+				lang,
+			});
+		}
 		mounted() {
 			this.isSloganAnimation = true;
 			this.isContactAnimation = true;

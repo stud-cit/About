@@ -126,22 +126,10 @@
 				},
 			}),
 		},
-		async fetch({ store, route }) {
-			const currPage = route.path.replace('/', '');
-			// reset content from prev page
-			// store.commit('ContentModule/setContent', {});
-
-			await store.dispatch('PageModule/selectPage', {
-				lang: store.$i18n.locale,
-				link: currPage,
-			});
-			await store.dispatch('ContentModule/selectContent', {
-				page: store.getters['PageModule/getPage'].id,
-				lang: store.$i18n.locale,
-			});
-		},
 	})
 	export default class OffersPage extends Vue {
+		@Action('PageModule/selectPage') selectPage;
+		@Action('ContentModule/selectContent') selectContent;
 		@Getter('PageModule/getPage') page;
 		@Getter('ContentModule/getContent') pageContent;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
@@ -199,6 +187,16 @@
 			});
 		}
 
+		async created() {
+			const link = this.$route.path.replace('/', '');
+			const lang = this.$i18n.locale;
+
+			await this.selectPage({ link, lang });
+			await this.selectContent({
+				page: this.page.id,
+				lang,
+			});
+		}
 		beforeDestroy() {
 			this.observers.forEach(observer => {
 				observer.disconnect();

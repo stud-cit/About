@@ -7,7 +7,7 @@ import { PageEntity } from '../interfaces';
 
 class PageState {
 	error!: any;
-	page!: PageEntity;
+	page: PageEntity | {} = {};
 	pages!: PageEntity[];
 }
 
@@ -16,7 +16,7 @@ class PageGetters extends Getters<PageState> {
 		return this.state.error;
 	}
 
-	public get getPage(): PageEntity {
+	public get getPage(): PageEntity | {} {
 		return this.state.page;
 	}
 

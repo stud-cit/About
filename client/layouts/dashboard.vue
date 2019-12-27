@@ -12,11 +12,7 @@
 		>
 			<template v-slot:img>
 				<v-img
-					:src="
-						page && page.cover
-							? getDynamicAssets(page.cover.image)
-							: appBackground
-					"
+					:src="page.cover ? getDynamicAssets(page.cover.image) : appBackground"
 					:gradient="getGradient()"
 				/>
 			</template>

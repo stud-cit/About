@@ -3,8 +3,8 @@
 		<client-only>
 			<video-background
 				id="video-bg"
-				:src="getDynamicAssets(page ? page.cover.video : '')"
-				:poster="getDynamicAssets(page ? page.cover.image : '')"
+				:src="getDynamicAssets(page.cover ? page.cover.video : '')"
+				:poster="getDynamicAssets(page.cover ? page.cover.image : '')"
 				autoplay
 			/>
 		</client-only>
