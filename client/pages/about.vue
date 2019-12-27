@@ -199,11 +199,10 @@
 				hidden: { opacity: 0 },
 			}),
 		},
-		async fetch({ store, app }) {
-			const currPage = app.context.route.path.replace('/', '');
-
+		async fetch({ store, route }) {
+			const currPage = route.path.replace('/', '');
 			// reset content from prev page
-			store.commit('ContentModule/setContent', {});
+			// store.commit('ContentModule/setContent', {});
 			await store.dispatch('PageModule/selectPage', {
 				lang: store.$i18n.locale,
 				link: currPage,

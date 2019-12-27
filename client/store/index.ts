@@ -68,7 +68,6 @@ class RootGetters extends Getters<RootState> {
 }
 
 class RootMutations extends Mutations<RootState> {
-	__ctx__: any;
 	setError(data: any) {
 		return Vue.set(this.state, 'error', data);
 	}
