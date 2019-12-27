@@ -26,7 +26,7 @@
 	export default class ErrorPage extends Vue {
 		@Prop() public error: object;
 
-		public isMdAndUp() {
+		get isMdAndUp() {
 			return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
 		}
 	}
