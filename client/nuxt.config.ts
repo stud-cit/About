@@ -79,7 +79,7 @@ const config: Configuration = {
 			login: '/',
 			logout: '/',
 			home: '/dashboard',
-		}
+		},
 	},
 
 	i18n: {

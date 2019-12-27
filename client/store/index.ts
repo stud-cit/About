@@ -11,6 +11,7 @@ import Vue from 'vue';
 
 import { createStore } from 'vuex-smart-module';
 
+import { ContactsLocaleModel } from './interfaces';
 import { ContentModule } from './modules/content';
 import { PageModule } from './modules/pages';
 
@@ -21,7 +22,7 @@ class RootState {
 	showContactBar: boolean = false;
 	showScrollBar: boolean = false;
 	isHideAnimationContent: boolean = false;
-	contacts = {
+	contacts: Record<string, ContactsLocaleModel> = {
 		ua: {
 			email: 'STUDCITMAIL@GMAIL.COM',
 			phone: '+380 98 43 70 202',
@@ -62,25 +63,25 @@ class RootGetters extends Getters<RootState> {
 	get getIsHideAnimationContent(): boolean {
 		return this.state.isHideAnimationContent;
 	}
-	get getContactStage() {
+	get getContactStage(): Record<string, ContactsLocaleModel> {
 		return this.state.contacts;
 	}
 }
 
 class RootMutations extends Mutations<RootState> {
-	setError(data: any) {
+	setError(data: any): any {
 		return Vue.set(this.state, 'error', data);
 	}
-	hideLoader() {
+	hideLoader(): false {
 		return Vue.set(this.state, 'visibilityLoader', false);
 	}
-	changeContactBar(visibility: boolean) {
+	changeContactBar(visibility: boolean): boolean {
 		return Vue.set(this.state, 'showContactBar', visibility);
 	}
-	changeScrollBar(visibility: boolean) {
+	changeScrollBar(visibility: boolean): boolean {
 		return Vue.set(this.state, 'showScrollBar', visibility);
 	}
-	changeIsHideAnimationContent(isHide: boolean) {
+	changeIsHideAnimationContent(isHide: boolean): boolean {
 		return Vue.set(this.state, 'isHideAnimationContent', isHide);
 	}
 }

@@ -52,17 +52,17 @@ class PageGetters extends Getters<PageState> {
 }
 
 class PageMutations extends Mutations<PageState> {
-	public setError(data: any) {
+	public setError(data: any): any {
 		return Vue.set(this.state, 'error', data);
 	}
 
-	public setPage(data: PageEntity) {
+	public setPage(data: PageEntity): PageEntity {
 		const [lang] = Object.keys(data);
 		const [page] = data[lang];
 		return Vue.set(this.state, 'page', page);
 	}
 
-	public setPages(data: PageEntity[]) {
+	public setPages(data: PageEntity[]): PageEntity[] {
 		return Vue.set(this.state, 'pages', data);
 	}
 }

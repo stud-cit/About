@@ -1,4 +1,4 @@
-interface ContactsLocaleModel {
+export interface ContactsLocaleModel {
 	email: string;
 	phone: string;
 	street: string;
