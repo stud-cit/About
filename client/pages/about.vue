@@ -293,17 +293,11 @@
 		}
 
 		get windowHeightText() {
-			try {
+			if (process.client) {
 				const windowHeight = window.innerHeight;
-				if (windowHeight < 770 && this.$breakpoint.is.lgAndUp) {
-					return true;
-				} else {
-					return false;
-				}
-				console.log(windowHeight);
-			} catch (oError) {
-				console.log(oError);
+				return windowHeight < 770 && this.$breakpoint.is.lgAndUp;
 			}
+			return false;
 		}
 
 		@Watch('curStage')
