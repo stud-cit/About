@@ -24,7 +24,7 @@
 					class="pa-0 line-height"
 					:class="{ 'text-center': isXsOnly }"
 				>
-					<div class="d-block">
+					<div class="d-block" :class="{ 'px-2': !isMdAndUp }">
 						<ContentBlock
 							:pose="
 								isStartAnimation && !getIsHideAnimationContent
