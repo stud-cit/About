@@ -1,5 +1,10 @@
 <template>
-	<v-row justify="center" align="end" class="footer-section">
+	<v-row
+		justify="center"
+		align="end"
+		class="footer-section"
+		:class="isSmAndDown ? 'footer-mobile' : 'footer-full'"
+	>
 		<v-col cols="12" sm="10" class="d-flex">
 			<v-row
 				justify="center"
@@ -39,7 +44,7 @@
 		}
 
 		get isSmAndDown() {
-			return this.$breakpoint ? this.$breakpoint.is.sm : false;
+			return this.$breakpoint ? this.$breakpoint.is.smAndDown : false;
 		}
 	}
 </script>
@@ -47,9 +52,14 @@
 <style lang="sass">
 	.footer-section
 		position: relative
-		height: 100vh
 		color: #FFFFFF
 		margin: 0
+
+	.footer-full
+		height: 100vh
+
+	.footer-mobile
+		height: 90vh
 
 	.return-section
 		width: 90%

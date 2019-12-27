@@ -66,7 +66,7 @@
 						</v-row>
 					</v-window-item>
 					<v-window-item>
-						<v-row justify="center" align="center" class="footer-section-about">
+						<v-row justify="center" align="end" class="footer-section-about">
 							<v-col cols="12" sm="10" class="d-flex">
 								<v-row
 									justify="center"
@@ -449,7 +449,7 @@
 
 	.footer-section-about
 		position: relative
-		height: 60vh
+		height: 56vh
 		color: #FFFFFF
 
 	.return-section
