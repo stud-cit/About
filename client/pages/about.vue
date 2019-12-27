@@ -51,6 +51,7 @@
 														: 'hidden'
 												"
 												class="py-md-10 py-lg-7"
+												:class="{ lineHeight: windowHeightText }"
 											>
 												{{
 													stagesLength && stagesLength > stageText
@@ -198,11 +199,10 @@
 				hidden: { opacity: 0 },
 			}),
 		},
-		async fetch({ store, app }) {
-			const currPage = app.context.route.path.replace('/', '');
-
+		async fetch({ store, route }) {
+			const currPage = route.path.replace('/', '');
 			// reset content from prev page
-			store.commit('ContentModule/setContent', {});
+			// store.commit('ContentModule/setContent', {});
 			await store.dispatch('PageModule/selectPage', {
 				lang: store.$i18n.locale,
 				link: currPage,
@@ -302,6 +302,19 @@
 			return {
 				fontSize: `${this.getAdaptiveSize('useContactsAction')}px`,
 			};
+		}
+		get windowHeightText() {
+			try {
+				const windowHeight = window.innerHeight;
+				if (windowHeight < 770 && this.$breakpoint.is.lgAndUp) {
+					return true;
+				} else {
+					return false;
+				}
+				console.log(windowHeight);
+			} catch (oError) {
+				console.log(oError);
+			}
 		}
 
 		@Watch('curStage')
@@ -459,4 +472,7 @@
 	.arrowLeft
 		color: #2F2F2F
 		font-size: 50px
+
+	.lineHeight
+		line-height: 1.1
 </style>
