@@ -3,11 +3,12 @@ import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { Store } from 'vuex';
 import Vue from 'vue';
 
-import { PageEntity } from '../interfaces';
+import { PageEntity, StorageEntity } from '../interfaces';
 
 class PageState {
 	error!: any;
-	page!: PageEntity;
+	cover!: StorageEntity;
+	page: PageEntity | {} = {};
 	pages!: PageEntity[];
 }
 
@@ -16,20 +17,22 @@ class PageGetters extends Getters<PageState> {
 		return this.state.error;
 	}
 
-	public get getPage(): PageEntity {
+	public get getCover(): StorageEntity | {} {
+		return this.state.cover;
+	}
+
+	public get getPage(): PageEntity | {} {
 		return this.state.page;
 	}
 
 	public get getPages(): PageEntity[] {
 		return this.state.pages;
 	}
-
 	get getPageIndex(): (locale: string) => number {
 		return locale => {
 			const matchingIndex = this.state.pages[locale].findIndex(
 				(page: PageEntity) => page.id === this.state.page.id,
 			);
-
 			return matchingIndex + 1;
 		};
 	}
@@ -52,18 +55,29 @@ class PageGetters extends Getters<PageState> {
 }
 
 class PageMutations extends Mutations<PageState> {
-	public setError(data: any) {
+	public setError(data: any): any {
 		return Vue.set(this.state, 'error', data);
 	}
 
-	public setPage(data: PageEntity) {
+	public setPage(data: PageEntity): PageEntity {
 		const [lang] = Object.keys(data);
 		const [page] = data[lang];
 		return Vue.set(this.state, 'page', page);
 	}
 
-	public setPages(data: PageEntity[]) {
+	public setPages(data: PageEntity[]): PageEntity[] {
 		return Vue.set(this.state, 'pages', data);
+	}
+
+	/**
+	 * 1. Find page by route in state
+	 * 2. Set page cover
+	 */
+	public setPageCover({ lang, link }: Record<string, string>): StorageEntity {
+		const matchingPage = this.state.pages[lang].find((page: PageEntity) =>
+			link.includes(page.link),
+		);
+		return Vue.set(this.state, 'cover', matchingPage.cover);
 	}
 }
 

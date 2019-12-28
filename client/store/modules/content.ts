@@ -3,7 +3,7 @@ import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { Store } from 'vuex';
 import Vue from 'vue';
 
-import { ContentEntity } from '../interfaces';
+import { ContentEntity, ContentFiltersModel } from '../interfaces';
 
 class ContentState {
 	error!: any;
@@ -26,15 +26,15 @@ class ContentGetters extends Getters<ContentState> {
 }
 
 class ContentMutations extends Mutations<ContentState> {
-	public setError(data: any) {
+	public setError(data: any): void {
 		return Vue.set(this.state, 'error', data);
 	}
 
-	public setContents(data: ContentEntity[]) {
+	public setContents(data: ContentEntity[]): ContentEntity[] {
 		return Vue.set(this.state, 'contents', data);
 	}
 
-	public setContent(data: ContentEntity) {
+	public setContent(data: ContentEntity): ContentEntity[] {
 		const [lang] = Object.keys(data);
 		return Vue.set(this.state, 'content', data[lang]);
 	}
@@ -59,7 +59,7 @@ class ContentActions extends Actions<
 			.catch(this.mutations.setError);
 	}
 
-	public async selectContent(params: any): Promise<void> {
+	public async selectContent(params: ContentFiltersModel): Promise<void> {
 		return await this.store.$axios
 			.$get('content/', { params })
 			.then(this.mutations.setContent)

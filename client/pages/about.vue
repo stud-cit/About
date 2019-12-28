@@ -199,25 +199,22 @@
 				hidden: { opacity: 0 },
 			}),
 		},
-		async fetch({ store, app }) {
-			const currPage = app.context.route.path.replace('/', '');
-
-			// reset content from prev page
-			store.commit('ContentModule/setContent', {});
-			await store.dispatch('PageModule/selectPage', {
+		asyncData({ store, route }) {
+			/**
+			 * Set cover to get load video
+			 * before the fetching data
+			 */
+			store.commit('PageModule/setPageCover', {
 				lang: store.$i18n.locale,
-				link: currPage,
-			});
-			await store.dispatch('ContentModule/selectContent', {
-				page: store.getters['PageModule/getPage'].id,
-				lang: store.$i18n.locale,
+				link: route.path,
 			});
 		},
 	})
 	export default class AboutPage extends Vue {
+		@Action('PageModule/selectPage') selectPage;
+		@Action('ContentModule/selectContent') selectContent;
 		@Getter('PageModule/getPage') page;
 		@Getter('ContentModule/getContent') pageContent;
-
 		@Getter('getContactBarVisibility') isShowContactBar;
 		@Getter('visibilityLoader') visibilityLoader;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
@@ -304,18 +301,13 @@
 				fontSize: `${this.getAdaptiveSize('useContactsAction')}px`,
 			};
 		}
+
 		get windowHeightText() {
-			try {
+			if (process.client) {
 				const windowHeight = window.innerHeight;
-				if (windowHeight < 770 && this.$breakpoint.is.lgAndUp) {
-					return true;
-				} else {
-					return false;
-				}
-				console.log(windowHeight);
-			} catch (oError) {
-				console.log(oError);
+				return windowHeight < 770 && this.$breakpoint.is.lgAndUp;
 			}
+			return false;
 		}
 
 		@Watch('curStage')
@@ -343,6 +335,16 @@
 			}
 		}
 
+		async created() {
+			const link = this.$route.path.replace('/', '');
+			const lang = this.$i18n.locale;
+
+			await this.selectPage({ link, lang });
+			await this.selectContent({
+				page: this.page.id,
+				lang,
+			});
+		}
 		mounted() {
 			this.isSloganAnimation = true;
 			this.isContactAnimation = true;

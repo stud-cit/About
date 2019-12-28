@@ -75,6 +75,11 @@ const config: Configuration = {
 				tokenType: 'Bearer',
 			},
 		},
+		redirect: {
+			login: '/',
+			logout: '/',
+			home: '/dashboard',
+		},
 	},
 
 	i18n: {
