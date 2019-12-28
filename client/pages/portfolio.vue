@@ -93,6 +93,16 @@
 			PreviewPage,
 			'product-footer': PruductFooter,
 		},
+		asyncData({ store, route }) {
+			/**
+			 * Set cover to get load video
+			 * before the fetching data
+			 */
+			store.commit('PageModule/setPageCover', {
+				lang: store.$i18n.locale,
+				link: route.path,
+			});
+		},
 	})
 	export default class PortfolioPage extends Vue {
 		@Action('PageModule/selectPage') selectPage;

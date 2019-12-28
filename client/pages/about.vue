@@ -199,6 +199,16 @@
 				hidden: { opacity: 0 },
 			}),
 		},
+		asyncData({ store, route }) {
+			/**
+			 * Set cover to get load video
+			 * before the fetching data
+			 */
+			store.commit('PageModule/setPageCover', {
+				lang: store.$i18n.locale,
+				link: route.path,
+			});
+		},
 	})
 	export default class AboutPage extends Vue {
 		@Action('PageModule/selectPage') selectPage;
