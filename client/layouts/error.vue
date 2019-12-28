@@ -90,7 +90,7 @@
 			font-size: 60px
 			right: -15rem
 			white-space: nowrap
-			top: 50%
+			top: 45%
 
 	.link-mobile
 		background: #F2F2F2
@@ -108,4 +108,12 @@
 			font-size: 5vw
 			left: 50%
 			transform: translate(-50%)
+
+	.nuxt-link-active
+
+		&:hover
+			background: #C1C1C1
+
+			.text
+				color: #9E9E9E
 </style>
