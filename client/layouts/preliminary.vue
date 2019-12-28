@@ -67,7 +67,7 @@
 			@click="toggleVisibilityLocales"
 			icon
 			x-large
-			:class="{ 'locale-button': isSmOnly }"
+			:class="{ 'locale-button': isSmOnly, 'shadow-menu': isXsOnly }"
 		>
 			<v-icon size="35" color="black">mdi-menu</v-icon>
 		</v-btn>
@@ -153,8 +153,8 @@
 			background: rgba(250, 250, 250, 0.85)
 
 	.locale-button
-		width: 55px
-		height: 55px
+		width: 52px
+		height: 52px
 		border: 2px solid rgba(74, 74, 74, 1) !important
 
 	.v-bottom-sheet
@@ -227,4 +227,11 @@
 		left: 50%
 		transform: translateX(-50%)
 		bottom: 2vh
+
+	.v-btn--icon .v-size--x-large
+		min-height: 52px
+		min-width: 52px
+
+	.shadow-menu
+		box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.35)
 </style>

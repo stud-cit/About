@@ -1,5 +1,5 @@
 <template>
-	<v-container fluid class="pa-0" id="home">
+	<v-container fluid class="pa-0" id="home" :class="{ 'mb-9 pb-9': isXsOnly }">
 		<div
 			v-swiper:mySwiper="swiperOption"
 			class="swiper-inactive d-none d-sm-flex"
@@ -96,7 +96,9 @@
 		get isStartAnimation() {
 			return this.choosedSlide !== -1 ? true : false;
 		}
-
+		get isXsOnly() {
+			return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+		}
 		mounted() {
 			this.showSwiper();
 		}
