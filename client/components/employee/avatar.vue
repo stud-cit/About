@@ -1,10 +1,10 @@
 <template>
 	<v-img
+		lazy-src="/cover.jpg"
+		:aspect-ratio="isSmAndDown ? 4 / 3 : 'auto'"
 		:class="{ 'card-img': !isSmAndDown }"
 		:height="avatarHeight"
 		:src="image"
-		lazy-src="/cover.jpg"
-		:aspect-ratio="isSmAndDown ? 4 / 3 : 'auto'"
 	/>
 </template>
 
