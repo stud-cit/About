@@ -104,7 +104,7 @@ export class ContentEntity extends BaseEntity {
 		nullable: true,
 	})
 	@JoinColumn()
-	public readonly cover: Partial<StorageEntity>;
+	public readonly cover: StorageEntity | string;
 
 	/**
 	 * [page description]

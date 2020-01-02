@@ -1,5 +1,6 @@
 import { ConflictException, NotFoundException } from '@nestjs/common';
 import { Repository, DeleteResult, UpdateResult } from 'typeorm';
+import { FindOneOptions, FindManyOptions } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 
@@ -41,7 +42,7 @@ export class ContentService {
 	 * @return [description]
 	 */
 	public async selectAll(
-		where: Partial<ContentEntity>,
+		where: FindManyOptions['where'],
 	): Promise<ContentEntity[]> {
 		const options = { where, cache: this.TTL };
 		return await this.contentRepository.find(options).catch(() => {
@@ -55,7 +56,7 @@ export class ContentService {
 	 * @return    [description]
 	 */
 	public async selectOne(
-		where: Partial<ContentEntity>,
+		where: FindOneOptions['where'],
 	): Promise<ContentEntity> {
 		const options = { where, cache: this.TTL };
 		return await this.contentRepository.findOneOrFail(options).catch(() => {
