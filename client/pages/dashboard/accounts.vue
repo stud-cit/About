@@ -1,58 +1,64 @@
 <template>
-	<v-row justiy="center">
-		<v-col xs="12" sm="10" md="8" lg="6" xl="4">
-			<v-banner sticky elevation="2" width="auto">
+	<v-row justify="center">
+		<v-col md="12" xl="8">
+			<v-card>
 				<ValidationObserver
-					v-slot="{ invalid }"
 					ref="observer"
-					tag="form"
+					tag="div"
+					v-slot="{ invalid }"
 					@submit.prevent="onSubmit"
 				>
-					<v-progress-linear :indeterminate="progress" :active="progress" />
-					<VTextFieldValidation
-						v-model="userCredentials.email"
-						type="email"
-						rules="required|email"
-						outlined
-						label="Email"
-						autocomplete="email"
-						prepend-icon="mdi-email-outline"
-					/>
-					<VTextFieldValidation
-						v-model="userCredentials.password"
-						:type="show ? 'text' : 'password'"
-						:append-icon="changeVisibility(show)"
-						rules="required|min:8"
-						vid="confirm"
-						outlined
-						counter
-						label="Password"
-						autocomplete="current-password"
-						prepend-icon="mdi-lock-outline"
-						@click:append="show = !show"
-					/>
-					<v-btn :disabled="invalid" @click="onSubmit" outlined>
-						Add
-					</v-btn>
+					<v-row align="center" justify="center">
+						<!-- <v-progress-linear :indeterminate="progress" :active="progress" /> -->
+						<v-col xs="1" align="center" cols="1">
+							Amdins
+						</v-col>
+						<v-divider class="mx-2" inset vertical></v-divider>
+						<v-col xs="5">
+							<VTextFieldValidation
+								v-model="userCredentials.email"
+								type="email"
+								rules="required|email"
+								label="Email"
+							/>
+						</v-col>
+						<v-col xs="5">
+							<VTextFieldValidation
+								v-model="userCredentials.password"
+								rules="required|min:8"
+								vid="confirm"
+								counter
+								label="Password"
+								@click:append="show = !show"
+								:append-icon="changeVisibility(show)"
+								:type="show ? 'text' : 'password'"
+							/>
+						</v-col>
+						<v-col xs="1">
+							<v-btn :disabled="invalid" @click="onSubmit" text>
+								Add
+							</v-btn>
+						</v-col>
+					</v-row>
 				</ValidationObserver>
-			</v-banner>
-		</v-col>
-
-		<v-col xs="12" sm="10" md="8" lg="6" xl="4">
-			<v-card class="mx-auto" max-width="300" tile>
-				<v-list flat>
-					<v-subheader>Accounts</v-subheader>
-					<v-list-item-group color="primary">
-						<v-list-item v-for="(item, i) in items" :key="i">
-							<v-list-item-icon>
-								<v-icon>mdi-account</v-icon>
-							</v-list-item-icon>
-							<v-list-item-content>
-								<v-list-item-title v-text="item.text"></v-list-item-title>
-							</v-list-item-content>
-						</v-list-item>
-					</v-list-item-group>
-				</v-list>
+				<v-data-table
+					sort-by="email"
+					:items="items"
+					:headers="headers"
+					:search="userCredentials.email"
+				>
+					<template v-slot:item.action="{ item }">
+						<v-icon small class="mr-2">
+							account-edit-outline
+						</v-icon>
+						<v-icon small>
+							account-off-outline
+						</v-icon>
+					</template>
+					<template v-slot:no-data>
+						<v-btn color="primary" @click="initialize">Reset</v-btn>
+					</template>
+				</v-data-table>
 			</v-card>
 		</v-col>
 	</v-row>
@@ -86,22 +92,17 @@
 			password: '',
 		};
 
-		private items = [
-			{ text: 'Real-Time' },
-			{ text: 'Audience' },
-			{ text: 'Conversions' },
-			{ text: 'Conversions' },
-			{ text: 'Conversions' },
-			{ text: 'Conversions' },
-			{ text: 'Conversions' },
-			{ text: 'Conversions' },
-			{ text: 'Conversions' },
-			{ text: 'Conversions' },
-			{ text: 'Conversions' },
-			{ text: 'Conversions' },
-			{ text: 'Conversions' },
-			{ text: 'Conversions' },
+		private headers = [
+			{ text: 'Email', align: 'center', value: 'email' },
+			{ text: 'Create', align: 'center', value: 'createAt' },
+			{ text: 'Update', align: 'center', value: 'updateAt' },
 		];
+
+		private items = Array.from(new Array(5), () => ({
+			email: 'Real-Time',
+			createAt: new Date(),
+			updateAt: new Date(),
+		}));
 
 		private changeVisibility(condition) {
 			return condition ? 'mdi-eye-outline' : 'mdi-eye-off-outline';
