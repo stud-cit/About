@@ -104,13 +104,13 @@ export class ContentEntity extends BaseEntity {
 		nullable: true,
 	})
 	@JoinColumn()
-	public readonly cover: Partial<StorageEntity>;
+	public readonly cover: StorageEntity | string;
 
-	/**
-	 * [page description]
-	 */
-	@ManyToOne(() => PageEntity, page => page.content, {
-		nullable: false,
-	})
-	public readonly page: string;
+	// /**
+	//  * [page description]
+	//  */
+	// @ManyToOne(() => PageEntity, page => page.content, {
+	// 	nullable: false,
+	// })
+	// public readonly page: string;
 }
