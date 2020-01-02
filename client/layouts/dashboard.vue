@@ -8,7 +8,6 @@
 			shrink-on-scroll
 			elevate-on-scroll
 			fade-img-on-scroll
-			extension-height="60"
 		>
 			<template v-slot:img>
 				<v-img
@@ -21,54 +20,44 @@
 				<v-icon>mdi-logout</v-icon>
 			</v-app-bar-nav-icon>
 
-			<v-app-bar-nav-icon v-if="page" @click="logout">
-				<v-icon>mdi-logout</v-icon>
-			</v-app-bar-nav-icon>
+			<v-row align="end" justify="start" class="fill-height">
+				<v-col md="2" cols="6">
+					StudCIT
+				</v-col>
 
-			<v-app-bar-nav-icon v-if="page" @click="logout">
-				<v-icon>mdi-logout</v-icon>
-			</v-app-bar-nav-icon>
-
-			<template v-slot:extension>
-				<v-speed-dial
-					v-model="changeLocale"
-					direction="right"
-					transition="slide-x-reverse-transition"
-					class="d-flex mx-12"
-				>
-					<template v-slot:activator color="red">
-						StudCIT
-
-						<v-divider class="mx-4" vertical></v-divider>
-						<v-btn icon v-model="changeLocale">
-							<v-icon v-if="changeLocale">mdi-close</v-icon>
-							<span v-else>{{ $i18n.locale }}</span>
-						</v-btn>
-					</template>
-					<v-btn
-						icon
-						v-for="(locale, i) in availableLocales()"
-						v-text="locale.code"
-						:key="i"
-						:to="switchLocalePath(locale.code)"
-					/>
-				</v-speed-dial>
-			</template>
+				<v-col md="2" cols="1" class="my-n1">
+					<v-speed-dial
+						v-model="changeLocale"
+						direction="right"
+						transition="slide-x-reverse-transition"
+					>
+						<template v-slot:activator color="red">
+							<v-btn icon v-model="changeLocale">
+								<v-icon v-if="changeLocale">mdi-close</v-icon>
+								<span v-else>{{ $i18n.locale }}</span>
+							</v-btn>
+						</template>
+						<v-btn
+							icon
+							v-for="(locale, i) in availableLocales()"
+							v-text="locale.code"
+							:key="i"
+							:to="switchLocalePath(locale.code)"
+						/>
+					</v-speed-dial>
+				</v-col>
+			</v-row>
 
 			<v-spacer />
 
 			<PageLink icon v-for="(page, i) in pages" :key="i" :page="page" />
 		</v-app-bar>
 
+			<v-container class="fill-height">
 		<v-content>
-			<v-container class="fill-height" fluid>
-				<v-row align="center" justify="center">
-					<v-col xs="12" sm="10" md="10" lg="8" xl="6">
-						<nuxt />
-					</v-col>
-				</v-row>
-			</v-container>
+				<nuxt />
 		</v-content>
+			</v-container>
 	</v-app>
 </template>
 
