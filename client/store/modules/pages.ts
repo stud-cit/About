@@ -95,28 +95,28 @@ class PageActions extends Actions<
 
 	public async createPage(data: PageEntity): Promise<void> {
 		return await this.store.$axios
-			.$post('page/', data)
+			.$post('page', data)
 			.then(this.mutations.setPages)
 			.catch(this.mutations.setError);
 	}
 
 	public async selectPage(params: any): Promise<void> {
 		return await this.store.$axios
-			.$get('page/', { params })
+			.$get('page', { params })
 			.then(this.mutations.setPage)
 			.catch(this.mutations.setError);
 	}
 
-	public async updatePage(data: PageEntity): Promise<void> {
+	public async updatePage({ params, ...data }): Promise<void> {
 		return await this.store.$axios
-			.$patch('page/', data)
+			.$patch('page', data, { params })
 			.then(this.mutations.setPage)
 			.catch(this.mutations.setError);
 	}
 
 	public async deletePage(data: any): Promise<void> {
 		return await this.store.$axios
-			.$patch('page/', data)
+			.$patch('page', data)
 			.then(this.mutations.setPage)
 			.catch(this.mutations.setError);
 	}

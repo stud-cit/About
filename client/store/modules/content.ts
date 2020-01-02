@@ -30,13 +30,13 @@ class ContentMutations extends Mutations<ContentState> {
 		return Vue.set(this.state, 'error', data);
 	}
 
-	public setContents(data: ContentEntity[]): ContentEntity[] {
-		return Vue.set(this.state, 'contents', data);
+	public setContents(data: ContentEntity[]) {
+		const [lang] = Object.keys(data);
+		return Vue.set(this.state, 'contents', data[lang]);
 	}
 
-	public setContent(data: ContentEntity): ContentEntity[] {
-		const [lang] = Object.keys(data);
-		return Vue.set(this.state, 'content', data[lang]);
+	public setContent(data: ContentEntity) {
+		return Vue.set(this.state, 'content', data);
 	}
 }
 
@@ -54,28 +54,28 @@ class ContentActions extends Actions<
 
 	public async createContent(data: ContentEntity): Promise<void> {
 		return await this.store.$axios
-			.$post('content/', data)
+			.$post('content', data)
 			.then(this.mutations.setContents)
 			.catch(this.mutations.setError);
 	}
 
 	public async selectContent(params: ContentFiltersModel): Promise<void> {
 		return await this.store.$axios
-			.$get('content/', { params })
-			.then(this.mutations.setContent)
+			.$get('content', { params })
+			.then(this.mutations.setContents)
 			.catch(this.mutations.setError);
 	}
 
-	public async updateContent(data: ContentEntity): Promise<void> {
+	public async updateContent({ params, ...data }): Promise<void> {
 		return await this.store.$axios
-			.$patch('content/', data)
+			.$patch('content', data, { params })
 			.then(this.mutations.setContent)
 			.catch(this.mutations.setError);
 	}
 
 	public async deleteContent(data: any): Promise<void> {
 		return await this.store.$axios
-			.$patch('content/', data)
+			.$patch('content', data)
 			.then(this.mutations.setContent)
 			.catch(this.mutations.setError);
 	}

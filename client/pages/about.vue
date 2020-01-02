@@ -214,7 +214,7 @@
 		@Action('PageModule/selectPage') selectPage;
 		@Action('ContentModule/selectContent') selectContent;
 		@Getter('PageModule/getPage') page;
-		@Getter('ContentModule/getContent') pageContent;
+		@Getter('ContentModule/getContents') pageContent;
 		@Getter('getContactBarVisibility') isShowContactBar;
 		@Getter('visibilityLoader') visibilityLoader;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;

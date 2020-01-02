@@ -108,7 +108,7 @@
 		@Action('PageModule/selectPage') selectPage;
 		@Action('ContentModule/selectContent') selectContent;
 		@Getter('PageModule/getPage') page;
-		@Getter('ContentModule/getContent') pageContent;
+		@Getter('ContentModule/getContents') pageContent;
 
 		get isMdAndUp() {
 			return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
