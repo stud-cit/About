@@ -12,6 +12,7 @@ import Vue from 'vue';
 import { createStore } from 'vuex-smart-module';
 
 import { ContactsLocaleModel } from './interfaces';
+import { StorageModule } from './modules/storage';
 import { ContentModule } from './modules/content';
 import { PageModule } from './modules/pages';
 
@@ -113,6 +114,7 @@ class RootActions extends Actions<
 			.then(this.pageModule.mutations.setPages)
 			.catch(this.pageModule.mutations.setError);
 	}
+
 	public async authorizationUser(data: any): Promise<void> {
 		return await this.store.$auth
 			.loginWith('local', { data })
@@ -126,6 +128,7 @@ const RootModule = new Module({
 	mutations: RootMutations,
 	actions: RootActions,
 	modules: {
+		StorageModule,
 		ContentModule,
 		PageModule,
 	},
