@@ -18,7 +18,19 @@
 						<v-icon large>mdi-camera</v-icon>
 					</v-btn>
 				</content-cover>
-				<v-card-text>
+				<v-card-text style="position: relative">
+					<v-btn
+						absolute
+						dark
+						fab
+						top
+						right
+						small
+						color="red"
+						@click="onChangeDelete(item)"
+					>
+						<v-icon>mdi-delete-outline</v-icon>
+					</v-btn>
 					<v-textarea
 						counter
 						rows="6"
@@ -36,7 +48,7 @@
 		<input
 			ref="file"
 			type="file"
-			accept="image/*"
+			accept="image/* video/* "
 			style="display:none"
 			@change="onFileInputChange()"
 		/>
@@ -79,12 +91,13 @@
 
 		@Action('ContentModule/updateContent') private readonly updateContent;
 		@Action('ContentModule/selectContent') private readonly selectContent;
+		@Action('ContentModule/deleteContent') private readonly deleteContent;
 		@Action('StorageModule/createStore') private readonly createStore;
 
 		private async onChangeTitleInput({ target }) {
 			await this.updateContent({
 				title: target.value,
-				params: { id: target.id }
+				params: { id: target.id },
 			});
 		}
 
@@ -95,9 +108,17 @@
 			});
 		}
 
-		private async onChangeContentCover(item) {
+		private onChangeContentCover(item) {
 			this.$refs.file.click();
-			return this.setContent(item);
+			this.setContent(item);
+		}
+
+		private async onChangeDelete(item) {
+			await this.deleteContent(item);
+			await this.selectContent({
+				page: this.page.id,
+				lang: this.$i18n.locale,
+			});
 		}
 
 		private async onFileInputChange(fieldName, file) {
@@ -106,7 +127,7 @@
 			formData.append('file', imageFile);
 			await this.createStore(formData);
 			await this.updateContent({
-				cover: this.storage.id,
+				cover: this.storage,
 				params: { id: this.content.id },
 			});
 			await this.selectContent({

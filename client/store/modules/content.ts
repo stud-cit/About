@@ -6,9 +6,9 @@ import Vue from 'vue';
 import { ContentEntity, ContentFiltersModel } from '../interfaces';
 
 class ContentState {
-	error!: any;
-	content!: ContentEntity;
 	contents!: ContentEntity;
+	content!: ContentEntity;
+	error!: any;
 }
 
 class ContentGetters extends Getters<ContentState> {
@@ -52,14 +52,14 @@ class ContentActions extends Actions<
 		this.store = store;
 	}
 
-	public async createContent(data: ContentEntity): Promise<void> {
+	public async createContent({ params, data }): Promise<void> {
 		return await this.store.$axios
-			.$post('content', data)
-			.then(this.mutations.setContents)
+			.$post('content', data, { params })
+			.then(this.mutations.setContent)
 			.catch(this.mutations.setError);
 	}
 
-	public async selectContent(params: ContentFiltersModel): Promise<void> {
+	public async selectContent(params?: ContentFiltersModel): Promise<void> {
 		return await this.store.$axios
 			.$get('content', { params })
 			.then(this.mutations.setContents)
@@ -73,9 +73,9 @@ class ContentActions extends Actions<
 			.catch(this.mutations.setError);
 	}
 
-	public async deleteContent(data: any): Promise<void> {
+	public async deleteContent({ id }: ContentEntity): Promise<void> {
 		return await this.store.$axios
-			.$delete('content', data)
+			.$delete('content', { params: { id } })
 			.then(this.mutations.setContent)
 			.catch(this.mutations.setError);
 	}

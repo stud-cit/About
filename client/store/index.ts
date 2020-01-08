@@ -104,15 +104,8 @@ class RootActions extends Actions<
 	}
 
 	public async nuxtServerInit(): Promise<void> {
-		await this.store.$axios
-			.$get('content')
-			.then(this.contentModule.mutations.setContents)
-			.catch(this.contentModule.mutations.setError);
-
-		await this.store.$axios
-			.$get('page')
-			.then(this.pageModule.mutations.setPages)
-			.catch(this.pageModule.mutations.setError);
+		await this.contentModule.actions.selectContent();
+		await this.pageModule.actions.selectPages();
 	}
 
 	public async authorizationUser(data: any): Promise<void> {
