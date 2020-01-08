@@ -73,12 +73,6 @@ class PageMutations extends Mutations<PageState> {
 		return Vue.set(this.state, 'pages', data);
 	}
 
-	public deletePages({ id, lang }: PageEntity): PageEntity[] {
-		const { pages } = this.state
-		const _pages = pages[lang].filter((page:PageEntity) => page.id !== id)
-		return this.setPages({ ...pages, [lang]: _pages })
-	}
-
 	/**
 	 * 1. Find page by route in state
 	 * 2. Set page cover
@@ -110,6 +104,13 @@ class PageActions extends Actions<
 			.catch(this.mutations.setError);
 	}
 
+	public async selectPages(): Promise<void> {
+		return await this.store.$axios
+			.$get('page')
+			.then(this.mutations.setPages)
+			.catch(this.mutations.setError);
+	}
+
 	public async selectPage(params?: any): Promise<void> {
 		return await this.store.$axios
 			.$get('page', { params })
@@ -118,16 +119,16 @@ class PageActions extends Actions<
 	}
 
 	public async updatePage({ params, ...data }): Promise<void> {
-return await this.store.$axios
+		return await this.store.$axios
 			.$patch('page', data, { params })
 			.then(this.mutations.setPage)
 			.catch(this.mutations.setError);
 	}
 
-	public async deletePage({ id, lang }: PageEntity): Promise<void> {
+	public async deletePage({ id }: PageEntity): Promise<void> {
 		await this.store.$axios
 			.$delete('page', { params: { id } })
-			.then(this.mutations.deletePages({ id, lang }))
+			.then(this.mutations.setPage)
 			.catch(this.mutations.setError);
 	}
 }

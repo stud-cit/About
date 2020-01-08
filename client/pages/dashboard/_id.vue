@@ -123,7 +123,8 @@
 
 		private async onFileInputChange(fieldName, file) {
 			const formData = new FormData();
-			const imageFile = this.$refs.file.files[0];
+			const [imageFile] = this.$refs.file.files;
+			if (!imageFile) return
 			formData.append('file', imageFile);
 			await this.createStore(formData);
 			await this.updateContent({

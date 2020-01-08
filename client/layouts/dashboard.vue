@@ -11,7 +11,11 @@
 		>
 			<template v-slot:img>
 				<v-img
-					:src="page.cover ? getDynamicAssets(page.cover.image) : appBackground"
+					:src="
+						selectedPage.cover
+							? getDynamicAssets(selectedPage.cover.image)
+							: appBackground
+					"
 					:gradient="getGradient()"
 				/>
 			</template>
@@ -53,17 +57,23 @@
 			<PageLink icon v-for="(page, i) in pages" :key="i" :page="page" />
 		</v-app-bar>
 
-			<v-container class="fill-height">
-		<v-content>
+		<v-container class="fill-height">
+			<v-content>
 				<nuxt />
-		</v-content>
-			</v-container>
+			</v-content>
+		</v-container>
+
+		<v-fab-transition>
+			<v-btn fixed right dark bottom fab color="primary" @click="createSmth()">
+				<v-icon>mdi-plus</v-icon>
+			</v-btn>
+		</v-fab-transition>
 	</v-app>
 </template>
 
 <script lang="ts">
 	import { Component, Vue } from 'vue-property-decorator';
-	import { Getter } from 'vuex-class';
+	import { Getter, Action } from 'vuex-class';
 
 	interface PagesAttr {
 		to?: string;
@@ -85,7 +95,11 @@
 		},
 	})
 	export default class DashboardLayout extends Vue {
-		@Getter('PageModule/getPage') page;
+		@Getter('ContentModule/getContent') private readonly content;
+		@Getter('PageModule/getPage') private readonly selectedPage;
+
+		@Action('ContentModule/createContent') private readonly createContent;
+		@Action('ContentModule/selectContent') private readonly selectContent;
 
 		private drawer: boolean = false;
 		private changeLocale: boolean = false;
@@ -109,9 +123,12 @@
 			},
 		];
 
-		mounted() {
-			const { innerWidth } = window;
-			this.appBackground = `//picsum.photos/${innerWidth}/?random`;
+		private async createSmth() {
+			if (!this.$route.params.id) return;
+			const params = { id: this.selectedPage.id };
+			const data = { lang: this.$i18n.locale };
+			await this.createContent({ params, data });
+			await this.selectContent({ page: params.id, ...data });
 		}
 
 		private availableLocales() {

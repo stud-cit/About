@@ -8,70 +8,82 @@
 			md="6"
 			lg="4"
 		>
+			<v-card outlined>
+				<content-cover :src="item.cover && item.cover.image">
+					<template #title>
+						<v-text-field
+							dark
+							label="Title"
+							counter="255"
+							maxlength="255"
+							:id="item.id"
+							:value="item.title"
+							@blur="onChangeTitleInput"
+						/>
+					</template>
 
-		<v-card outlined>
-			<content-cover :src="item.cover && item.cover.image">
-				<template #title>
-					<v-text-field
+					<v-btn
 						dark
-						label="Title"
-						counter="255"
-						maxlength="255"
-						:id="item.id"
-						:value="item.title"
-						@blur="onChangeTitleInput"
-					/>
-				</template>
+						icon
+						large
+						:to="'dashboard/' + item.link"
+						@click="setPlainPage(item)"
+					>
+						<v-icon medium>mdi-open-in-app</v-icon>
+					</v-btn>
 
-				<v-btn dark icon large :to="'dashboard/' + item.link" @click="setPlainPage(item)">
-					<v-icon medium >mdi-open-in-app</v-icon>
-				</v-btn>
-
-				<v-btn dark large icon @click="onChangeContentCover(item)">
-					<v-icon medium >mdi-camera</v-icon>
-				</v-btn>
-
-				<!-- <v-btn dark icon large @click="deletePage({ id: item.id, lang: $i18n.locale})">
-					<v-icon medium >mdi-delete-outline</v-icon>
-				</v-btn> -->
-
-			</content-cover>
-			<v-card-text>
-				<v-row dense >
-					<v-col xs="12" sm="6" cols="12" >
-						<v-text-field
-							label="Name"
-							counter="255"
-							maxlength="255"
-							:id="item.id"
-							:value="item.name"
-							@blur="onChangeNameInput"
-						/>
-					</v-col>
-					<v-col xs="12" sm="6" cols="12" >
-						<v-text-field
-							label="Link"
-							counter="255"
-							maxlength="255"
-							:id="item.id"
-							:value="item.link"
-							@blur="onChangeLinkInput"
-						/>
-					</v-col>
-					<v-col cols="12">
-						<v-textarea
-							rows="6"
-							counter="255"
-							maxlength="255"
-							label="Description"
-							:value="item.description"
-							:id="item.id"
-							@blur="onChangeDescriptionInput"
-						/>
-					</v-col>
-				</v-row>
-			</v-card-text>
-		</v-card>
+					<v-btn dark large icon @click="onChangeContentCover(item)">
+						<v-icon medium>mdi-camera</v-icon>
+					</v-btn>
+				</content-cover>
+				<v-card-text style="position: relative">
+					<v-btn
+						absolute
+						dark
+						fab
+						top
+						right
+						small
+						color="red"
+						@click="onChangeDelete(item)"
+					>
+						<v-icon>mdi-delete-outline</v-icon>
+					</v-btn>
+					<v-row dense>
+						<v-col xs="12" sm="6" cols="12">
+							<v-text-field
+								label="Name"
+								counter="255"
+								maxlength="255"
+								:id="item.id"
+								:value="item.name"
+								@blur="onChangeNameInput"
+							/>
+						</v-col>
+						<v-col xs="12" sm="6" cols="12">
+							<v-text-field
+								label="Link"
+								counter="255"
+								maxlength="255"
+								:id="item.id"
+								:value="item.link"
+								@blur="onChangeLinkInput"
+							/>
+						</v-col>
+						<v-col cols="12">
+							<v-textarea
+								rows="6"
+								counter="255"
+								maxlength="255"
+								label="Description"
+								:value="item.description"
+								:id="item.id"
+								@blur="onChangeDescriptionInput"
+							/>
+						</v-col>
+					</v-row>
+				</v-card-text>
+			</v-card>
 		</v-col>
 
 		<input
@@ -107,51 +119,55 @@
 		@Mutation('PageModule/setPlainPage') private readonly setPlainPage;
 
 		@Action('StorageModule/createStore') private readonly createStore;
-		@Action('PageModule/selectPage') private readonly selectPage;
+		@Action('PageModule/selectPages') private readonly selectPages;
 		@Action('PageModule/updatePage') private readonly updatePage;
-		// @Action('PageModule/deletePage') private readonly deletePage;
+		@Action('PageModule/deletePage') private readonly deletePage;
 
 		private onChangeLinkInput({ target }): void {
-			const link = target.value
-			const params = { id: target.id }
-			return this.updatePage({ link, params });
+			const link = target.value;
+			const params = { id: target.id };
+			this.updatePage({ link, params });
 		}
 
 		private onChangeNameInput({ target }): void {
-			const name = target.value
-			const params = { id: target.id }
-			return this.updatePage({ name, params });
+			const name = target.value;
+			const params = { id: target.id };
+			this.updatePage({ name, params });
 		}
 
 		private onChangeTitleInput({ target }): void {
-			const title = target.value
-			const params = { id: target.id }
-			return this.updatePage({ title, params });
+			const title = target.value;
+			const params = { id: target.id };
+			this.updatePage({ title, params });
 		}
 
 		private onChangeDescriptionInput({ target }): void {
-			const description = target.value
-			const params = { id: target.id }
-			return this.updatePage({ description, params });
+			const description = target.value;
+			const params = { id: target.id };
+			this.updatePage({ description, params });
 		}
 
-		private async onChangeContentCover(item: any): void {
+		private onChangeContentCover(item: any): void {
 			this.$refs.file.click();
-			return this.setPlainPage(item);
+			this.setPlainPage(item);
+		}
+
+		private async onChangeDelete(item) {
+			await this.deletePage(item);
+			await this.selectPages();
 		}
 
 		private async onFileInputChange(fieldName, file) {
 			const formData = new FormData();
-			const imageFile = this.$refs.file.files[0];
+			const [imageFile] = this.$refs.file.files;
+			if (!imageFile) return
 			formData.append('file', imageFile);
 			await this.createStore(formData);
 			await this.updatePage({
 				cover: this.storage,
 				params: { id: this.page.id },
 			});
-			await this.selectPage({
-				page: this.page.id,
-			});
+			await this.selectPages();
 		}
 	}
 </script>
