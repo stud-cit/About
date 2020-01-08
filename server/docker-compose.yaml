@@ -27,3 +27,15 @@ services:
       - database
     links:
       - database
+
+  server:
+    image: registry.gitlab.com/reshetnyakov.slava/kula-be-nodejs:latest
+    container_name: AboutAPI
+    ports:
+      - 8081:8081
+    volumes:
+      - /sessions
+    depends_on:
+      - database
+    links:
+      - database
