@@ -1,13 +1,6 @@
 <template>
 	<v-app>
-		<client-only>
-			<video-background
-				id="video-bg"
-				:src="getDynamicAssets(cover.video)"
-				:poster="getDynamicAssets(cover.image)"
-				autoplay
-			/>
-		</client-only>
+		<BackgroundVideo />
 		<v-app-bar
 			id="header"
 			:class="isShowNormalHeader ? 'pt-5 pt-lg-7' : 'pt-2 pb-1 mini-header'"
@@ -169,6 +162,7 @@
 
 	@Component({
 		components: {
+			BackgroundVideo: () => import('~/components/background-video'),
 			ContactBar: () => import('~/components/contact-bar'),
 			Navs: posed.div({
 				visible: {

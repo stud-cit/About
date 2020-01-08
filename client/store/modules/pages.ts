@@ -70,9 +70,9 @@ class PageMutations extends Mutations<PageState> {
 	}
 
 	public deletePages({ id, lang }: PageEntity): PageEntity[] {
-		const { pages } = this.state
-		const _pages = pages[lang].filter((page:PageEntity) => page.id !== id)
-		return this.setPages({ ...pages, [lang]: _pages })
+		const { pages } = this.state;
+		const _pages = pages[lang].filter((page: PageEntity) => page.id !== id);
+		return this.setPages({ ...pages, [lang]: _pages });
 	}
 
 	/**

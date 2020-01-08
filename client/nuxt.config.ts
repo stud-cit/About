@@ -123,13 +123,13 @@ const config: Configuration = {
 	],
 	build: {
 		extend(config: any) {
-			config.plugins.push(
-				new StyleLintPlugin({
-					files: '**/*.vue',
-					configFile: './stylelint.config.js',
-					syntax: 'sass',
-				}),
-			);
+			// config.plugins.push(
+			// 	new StyleLintPlugin({
+			// 		files: '**/*.vue',
+			// 		configFile: './stylelint.config.js',
+			// 		syntax: 'sass',
+			// 	}),
+			// );
 		},
 		analyze: true,
 		transpile: ['vuetify/lib'],

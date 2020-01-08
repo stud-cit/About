@@ -53,11 +53,11 @@
 			<PageLink icon v-for="(page, i) in pages" :key="i" :page="page" />
 		</v-app-bar>
 
-			<v-container class="fill-height">
-		<v-content>
+		<v-container class="fill-height">
+			<v-content>
 				<nuxt />
-		</v-content>
-			</v-container>
+			</v-content>
+		</v-container>
 	</v-app>
 </template>
 

@@ -84,7 +84,7 @@
 		private async onChangeTitleInput({ target }) {
 			await this.updateContent({
 				title: target.value,
-				params: { id: target.id }
+				params: { id: target.id },
 			});
 		}
 
