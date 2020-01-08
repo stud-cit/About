@@ -1,5 +1,8 @@
-import { IsOptional, IsUUID, MaxLength, Length } from 'class-validator';
+import { IsOptional, MaxLength, Length, ValidateNested } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
+
+import { CoverRequest } from '../../../storage';
 
 /**
  * [ContentRequest description]
@@ -49,12 +52,12 @@ export class ContentRequest {
 	/**
 	 * [cover description]
 	 */
-	@IsUUID()
-	@IsOptional()
+	@ValidateNested()
+	@Type(() => CoverRequest)
 	@ApiProperty({
 		default: null,
 		nullable: true,
 		required: false,
 	})
-	public readonly cover: string;
+	public cover: CoverRequest;
 }

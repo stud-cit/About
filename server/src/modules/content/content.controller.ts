@@ -5,6 +5,8 @@ import { DeleteResult } from 'typeorm';
 
 import { ApiTags, ApiCreatedResponse, ApiBearerAuth } from '@nestjs/swagger';
 
+import { StorageService } from '../../storage';
+
 import { I18nInterceptor } from '../../common/interceptors';
 import { ID } from '../../common/dto';
 
@@ -21,9 +23,13 @@ import { ContentEntity } from './content.entity';
 export class ContentController {
 	/**
 	 * [constructor description]
+	 * @param storageService [description]
 	 * @param contentService [description]
 	 */
-	constructor(private readonly contentService: ContentService) {}
+	constructor(
+		private readonly storageService: StorageService,
+		private readonly contentService: ContentService,
+	) {}
 
 	/**
 	 * [createOne description]
@@ -34,8 +40,11 @@ export class ContentController {
 	@ApiBearerAuth()
 	@UseGuards(AuthGuard('jwt'))
 	@ApiCreatedResponse({ type: ContentEntity })
-	public async createOne(@Body() data: ContentRequest): Promise<ContentEntity> {
-		return await this.contentService.createOne(data);
+	public async createOne(
+		@Query() page: ID,
+		@Body() data: ContentRequest,
+	): Promise<ContentEntity> {
+		return await this.contentService.createOne({ ...data, page });
 	}
 
 	/**
@@ -64,10 +73,11 @@ export class ContentController {
 	@ApiCreatedResponse({ type: ContentEntity })
 	public async updateOne(
 		@Query() { id }: ID,
-		@Body() data: ContentRequest,
+		@Body() { cover, ..._data }: ContentRequest,
 	): Promise<ContentEntity> {
-		await this.contentService.updateOne(id, data);
-		return await this.contentService.selectOne({ id });
+		const data = await this.contentService.selectOne({ id });
+		if (cover) cover = await this.storageService.updateOne(data.cover, cover);
+		return await this.contentService.updateOne(data, { ..._data, cover });
 	}
 
 	/**
