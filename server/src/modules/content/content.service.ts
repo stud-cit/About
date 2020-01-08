@@ -1,8 +1,13 @@
 import { ConflictException, NotFoundException } from '@nestjs/common';
-import { Repository, DeleteResult, UpdateResult } from 'typeorm';
-import { FindOneOptions, FindManyOptions } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
+import {
+	Repository,
+	DeepPartial,
+	DeleteResult,
+	FindOneOptions,
+	FindManyOptions,
+} from 'typeorm';
 
 import { ContentEntity } from './content.entity';
 
@@ -11,11 +16,6 @@ import { ContentEntity } from './content.entity';
  */
 @Injectable()
 export class ContentService {
-	/**
-	 * [TTL description]
-	 */
-	private readonly TTL: number = 3000;
-
 	/**
 	 * [constructor description]
 	 * @param @InjectRepository(ContentEntity [description]
@@ -30,7 +30,9 @@ export class ContentService {
 	 * @param  data [description]
 	 * @return      [description]
 	 */
-	public async createOne(data: Partial<ContentEntity>): Promise<ContentEntity> {
+	public async createOne(
+		data: DeepPartial<ContentEntity>,
+	): Promise<ContentEntity> {
 		return await this.contentRepository.save(data).catch(() => {
 			throw new ConflictException(`Content already exists`);
 		});
@@ -44,8 +46,7 @@ export class ContentService {
 	public async selectAll(
 		where: FindManyOptions['where'],
 	): Promise<ContentEntity[]> {
-		const options = { where, cache: this.TTL };
-		return await this.contentRepository.find(options).catch(() => {
+		return await this.contentRepository.find({ where }).catch(() => {
 			throw new NotFoundException('Content not found');
 		});
 	}
@@ -58,23 +59,23 @@ export class ContentService {
 	public async selectOne(
 		where: FindOneOptions['where'],
 	): Promise<ContentEntity> {
-		const options = { where, cache: this.TTL };
-		return await this.contentRepository.findOneOrFail(options).catch(() => {
+		return await this.contentRepository.findOneOrFail({ where }).catch(() => {
 			throw new NotFoundException('Content not found');
 		});
 	}
 
 	/**
 	 * [updateOne description]
-	 * @param  id       [description]
-	 * @param  data [description]
+	 * @param  data    [description]
+	 * @param  _data [description]
 	 * @return          [description]
 	 */
 	public async updateOne(
-		id: ContentEntity['id'],
-		data: Partial<ContentEntity>,
-	): Promise<UpdateResult> {
-		return await this.contentRepository.update(id, data).catch(() => {
+		data: ContentEntity,
+		_data: DeepPartial<ContentEntity>,
+	): Promise<ContentEntity> {
+		const content = this.contentRepository.merge(data, _data);
+		return await this.contentRepository.save(content).catch(() => {
 			throw new NotFoundException('Content not found');
 		});
 	}
