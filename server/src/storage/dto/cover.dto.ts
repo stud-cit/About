@@ -1,4 +1,4 @@
-import { IsUUID, IsOptional } from 'class-validator';
+import { IsOptional, IsNotEmpty, MaxLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 /**
@@ -8,19 +8,28 @@ export class CoverRequest {
 	/**
 	 * [image description]
 	 */
-	@IsUUID()
 	@IsOptional()
+	@IsNotEmpty()
+	@MaxLength(42)
 	@ApiProperty({
+		default: null,
+		maxLength: 42,
 		required: false,
-		example: 'b4e19ca1-48ea-482c-81ea-1f646d7f75d9',
+		example: 'd3c0044f-1ee4-4532-a482-211a5b5d8b9e.gif',
 	})
-	readonly image: string;
+	public readonly image: string;
 
-	@IsUUID()
+	/**
+	 * [video description]
+	 */
 	@IsOptional()
+	@IsNotEmpty()
+	@MaxLength(42)
 	@ApiProperty({
+		default: null,
+		maxLength: 42,
 		required: false,
-		example: 'b4e19ca1-48ea-482c-81ea-1f646d7f75d9',
+		example: 'd3c0044f-1ee4-4532-a482-211a5b5d8b9e.gif',
 	})
-	readonly video: string;
+	public readonly video: string;
 }

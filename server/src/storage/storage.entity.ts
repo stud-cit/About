@@ -21,7 +21,7 @@ export class StorageEntity extends BaseEntity {
 	 * [image description]
 	 */
 	@ApiProperty({
-		maxLength: 40,
+		maxLength: 42,
 		nullable: true,
 		example: 'b4e19ca1-48ea-482c-81ea-1f646d7f75d9.jpg',
 	})
@@ -32,7 +32,7 @@ export class StorageEntity extends BaseEntity {
 	 * [video description]
 	 */
 	@ApiProperty({
-		maxLength: 40,
+		maxLength: 42,
 		nullable: true,
 		example: 'b4e19ca1-48ea-482c-81ea-1f646d7f75d9.mp4',
 	})

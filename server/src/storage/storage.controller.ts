@@ -1,12 +1,12 @@
 import { Controller, UseGuards, UseInterceptors } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
 import { UploadedFile, Post } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthGuard } from '@nestjs/passport';
 import {
 	ApiTags,
-	ApiBearerAuth,
-	ApiConsumes,
 	ApiBody,
+	ApiConsumes,
+	ApiBearerAuth,
 	ApiCreatedResponse,
 } from '@nestjs/swagger';
 
@@ -18,8 +18,8 @@ import { StorageEntity } from './storage.entity';
  * [Controller description]
  * [API]{@link /api/#/storage}
  */
-@ApiTags('storage')
 @ApiBearerAuth()
+@ApiTags('storage')
 @Controller('storage')
 @UseGuards(AuthGuard('jwt'))
 export class StorageController {
@@ -41,8 +41,8 @@ export class StorageController {
 	@UseInterceptors(FileInterceptor('file'))
 	public async createOne(
 		@UploadedFile() file: Express.Multer.File,
-	): Promise<StorageEntity> {
+	): Promise<any> {
 		const [type] = file.mimetype.split('/');
-		return await this.storageService.createOne({ [type]: file.filename });
+		return { [type]: file.filename };
 	}
 }

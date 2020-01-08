@@ -1,7 +1,13 @@
 import { Injectable, UnsupportedMediaTypeException } from '@nestjs/common';
 import { ConflictException, NotFoundException } from '@nestjs/common';
-import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import {
+	Repository,
+	DeepPartial,
+	DeleteResult,
+	FindOneOptions,
+	FindManyOptions,
+} from 'typeorm';
 import {
 	MulterModuleOptions,
 	MulterOptionsFactory,
@@ -21,11 +27,6 @@ import { StorageEntity } from './storage.entity';
 @Injectable()
 export class StorageService implements MulterOptionsFactory {
 	/**
-	 * [TTL description]
-	 */
-	private readonly TTL: number = 3000;
-
-	/**
 	 * [constructor description]
 	 * @param @InjectRepository(StorageEntity [description]
 	 * @param configService [description]
@@ -41,9 +42,11 @@ export class StorageService implements MulterOptionsFactory {
 	 * @param  data [description]
 	 * @return      [description]
 	 */
-	public async createOne(data: Partial<StorageEntity>): Promise<StorageEntity> {
+	public async createOne(
+		data: DeepPartial<StorageEntity>,
+	): Promise<StorageEntity> {
 		return await this.storageRepository.save(data).catch(() => {
-			throw new ConflictException(`User already exists`);
+			throw new ConflictException(`Resource already exists`);
 		});
 	}
 
@@ -53,11 +56,10 @@ export class StorageService implements MulterOptionsFactory {
 	 * @return       [description]
 	 */
 	public async selectAll(
-		where?: Partial<StorageEntity>,
+		where: FindManyOptions['where'],
 	): Promise<StorageEntity[]> {
-		const options = { where, ttl: this.TTL };
-		return await this.storageRepository.find(options).catch(() => {
-			throw new NotFoundException('User not found');
+		return await this.storageRepository.find({ where }).catch(() => {
+			throw new NotFoundException('Resource not found');
 		});
 	}
 
@@ -67,26 +69,27 @@ export class StorageService implements MulterOptionsFactory {
 	 * @return       [description]
 	 */
 	public async selectOne(
-		where: Partial<StorageEntity>,
+		where: FindOneOptions['where'],
 	): Promise<StorageEntity> {
-		const options = { where, ttl: this.TTL };
-		return await this.storageRepository.findOneOrFail(options).catch(() => {
-			throw new NotFoundException('User not found');
+		return await this.storageRepository.findOneOrFail({ where }).catch(() => {
+			throw new NotFoundException('Resource not found');
 		});
 	}
 
 	/**
 	 * [updateOne description]
-	 * @param  id  [description]
-	 * @param  data [description]
+	 * @param  data  [description]
+	 * @param  _data [description]
 	 * @return       [description]
 	 */
 	public async updateOne(
-		id: StorageEntity['id'],
-		data: Partial<StorageEntity>,
-	): Promise<UpdateResult> {
-		return await this.storageRepository.update(id, data).catch(() => {
-			throw new ConflictException(`User already exists`);
+		data: StorageEntity,
+		_data: DeepPartial<StorageEntity>,
+	): Promise<StorageEntity> {
+		if (!data) data = new StorageEntity();
+		const temp = this.storageRepository.merge(data, _data);
+		return await this.storageRepository.save(temp).catch(() => {
+			throw new NotFoundException('Resource not found');
 		});
 	}
 
@@ -97,7 +100,7 @@ export class StorageService implements MulterOptionsFactory {
 	 */
 	public async deleteOne(id: StorageEntity['id']): Promise<DeleteResult> {
 		return await this.storageRepository.delete(id).catch(() => {
-			throw new NotFoundException('User not found');
+			throw new NotFoundException('Resource not found');
 		});
 	}
 
