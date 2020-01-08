@@ -121,11 +121,11 @@
 			});
 		}
 
-		private async onFileInputChange(fieldName, file) {
+		private async onFileInputChange(fieldName) {
 			const formData = new FormData();
-			const [imageFile] = this.$refs.file.files;
-			if (!imageFile) return
-			formData.append('file', imageFile);
+			const [file] = this.$refs.file.files;
+			if (!file) return
+			formData.append('file', file);
 			await this.createStore(formData);
 			await this.updateContent({
 				cover: this.storage,
@@ -135,6 +135,7 @@
 				page: this.page.id,
 				lang: this.$i18n.locale,
 			});
+			this.$refs.file.value = null
 		}
 	}
 </script>

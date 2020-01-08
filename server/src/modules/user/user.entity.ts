@@ -1,4 +1,5 @@
-import { PrimaryGeneratedColumn, BaseEntity, Column, Entity } from 'typeorm';
+import { PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, BaseEntity, Index } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 
 /**
@@ -25,6 +26,7 @@ export class UserEntity extends BaseEntity {
 		uniqueItems: true,
 		example: 'example@ex.com',
 	})
+	@Index()
 	@Column('varchar', { unique: true })
 	public readonly email: string;
 

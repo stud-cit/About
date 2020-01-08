@@ -1,7 +1,13 @@
 import { ConflictException, NotFoundException } from '@nestjs/common';
-import { Repository, DeleteResult, UpdateResult } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
+import {
+	Repository,
+	DeepPartial,
+	DeleteResult,
+	FindOneOptions,
+	FindManyOptions,
+} from 'typeorm';
 
 import { PageEntity } from './page.entity';
 
@@ -10,11 +16,6 @@ import { PageEntity } from './page.entity';
  */
 @Injectable()
 export class PageService {
-	/**
-	 * [TTL description]
-	 */
-	private readonly TTL: number = 3000;
-
 	/**
 	 * [constructor description]
 	 * @param @InjectRepository(PageEntity [description]
@@ -29,7 +30,7 @@ export class PageService {
 	 * @param  page [description]
 	 * @return      [description]
 	 */
-	public async createOne(page: Partial<PageEntity>): Promise<PageEntity> {
+	public async createOne(page: DeepPartial<PageEntity>): Promise<PageEntity> {
 		return await this.pageRepository.save(page).catch(() => {
 			throw new ConflictException(`Page already exists`);
 		});
@@ -40,9 +41,10 @@ export class PageService {
 	 * @param  where [description]
 	 * @return [description]
 	 */
-	public async selectAll(where: Partial<PageEntity>): Promise<PageEntity[]> {
-		const options = { where, cache: this.TTL };
-		return await this.pageRepository.find(options).catch(() => {
+	public async selectAll(
+		where: FindManyOptions['where'],
+	): Promise<PageEntity[]> {
+		return await this.pageRepository.find({ where }).catch(() => {
 			throw new NotFoundException('Page not found');
 		});
 	}
@@ -52,24 +54,24 @@ export class PageService {
 	 * @param  where [description]
 	 * @return    [description]
 	 */
-	public async selectOne(where: Partial<PageEntity>): Promise<PageEntity> {
-		const options = { where, cache: this.TTL };
-		return await this.pageRepository.findOneOrFail(options).catch(() => {
+	public async selectOne(where: FindOneOptions['where']): Promise<PageEntity> {
+		return await this.pageRepository.findOneOrFail({ where }).catch(() => {
 			throw new NotFoundException('Page not found');
 		});
 	}
 
 	/**
 	 * [updateOne description]
-	 * @param  id    [description]
-	 * @param  _page [description]
+	 * @param  data    [description]
+	 * @param  _data [description]
 	 * @return       [description]
 	 */
 	public async updateOne(
-		id: PageEntity['id'],
-		_page: Partial<PageEntity>,
-	): Promise<UpdateResult> {
-		return await this.pageRepository.update(id, _page).catch(() => {
+		data: PageEntity,
+		_data: DeepPartial<PageEntity>,
+	): Promise<PageEntity> {
+		const page = this.pageRepository.merge(data, _data);
+		return await this.pageRepository.save(page).catch(() => {
 			throw new NotFoundException('Page not found');
 		});
 	}

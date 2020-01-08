@@ -157,12 +157,13 @@
 			await this.selectPages();
 		}
 
-		private async onFileInputChange(fieldName, file) {
+		private async onFileInputChange(fieldName) {
 			const formData = new FormData();
-			const [imageFile] = this.$refs.file.files;
-			if (!imageFile) return
-			formData.append('file', imageFile);
+			const [file] = this.$refs.file.files;
+			if (!file) return
+			formData.append('file', file);
 			await this.createStore(formData);
+			this.$refs.file.value = null
 			await this.updatePage({
 				cover: this.storage,
 				params: { id: this.page.id },
