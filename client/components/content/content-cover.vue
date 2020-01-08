@@ -14,6 +14,8 @@
 		<v-row align="center" justify="center" class="fill-height">
 			<slot />
 		</v-row>
+
+		<slot name="footer" />
 	</v-img>
 </template>
 

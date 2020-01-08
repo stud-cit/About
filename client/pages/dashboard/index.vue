@@ -3,12 +3,13 @@
 		<v-col
 			v-for="item in pages[$i18n.locale]"
 			:key="item.index"
-			sm="12"
-			md="8"
-			lg="6"
+			xs="12"
+			sm="8"
+			md="6"
+			lg="4"
 		>
 
-		<v-card outlined :to="'dashboard/' + item.link" @click="setPage(item)" >
+		<v-card outlined>
 			<content-cover :src="item.cover && item.cover.image">
 				<template #title>
 					<v-text-field
@@ -21,9 +22,15 @@
 						@blur="onChangeTitleInput"
 					/>
 				</template>
-				<v-btn dark x-large icon @click="onChangeCntentCover(item)">
-					<v-icon large>mdi-camera</v-icon>
+
+				<v-btn dark icon large :to="'dashboard/' + item.link" @click="setPage(item)">
+					<v-icon medium >mdi-open-in-app</v-icon>
 				</v-btn>
+
+				<v-btn dark icon large @click="deletePage({ id: item.id, lang: $i18n.locale})">
+					<v-icon medium >mdi-delete-outline</v-icon>
+				</v-btn>
+
 			</content-cover>
 			<v-card-text>
 				<v-textarea
@@ -38,25 +45,6 @@
 				/>
 			</v-card-text>
 		</v-card>
-
-			<!-- <v-card :to="'dashboard/' + page.link" @click="setPage(page)">
-				<v-img
-					height="30vh"
-					:src="getDynamicAssets(page.cover && page.cover.image)"
-					:lazy-src="getDynamicAssets(page.cover && page.cover.image)"
-					:gradient="imagePageGradient"
-					:aspect-ratio="16 / 9"
-				>
-					<v-card-title class="title white--text fill-height">
-						<v-row justify="center" align="center" class="fill-height">
-							<span class="font-weight-bold text-uppercase">
-								{{ page.title }}.
-							</span>
-						</v-row>
-					</v-card-title>
-					<div class="fill-height bottom-gradient"></div>
-				</v-img>
-			</v-card> -->
 		</v-col>
 	</v-row>
 </template>
@@ -80,21 +68,22 @@
 		@Getter('StorageModule/getStorage') private readonly storage;
 		@Getter('PageModule/getPages') private readonly pages;
 
-		@Mutation('PageModule/setPage') setPage;
+		@Mutation('PageModule/setPage') private readonly setPage;
 
 		@Action('StorageModule/createStore') private readonly createStore;
-		@Action('PageModule/updatePage') private readonly updatePage;
 		@Action('PageModule/selectPage') private readonly selectPage;
+		@Action('PageModule/updatePage') private readonly updatePage;
+		@Action('PageModule/deletePage') private readonly deletePage;
 
 		private onChangeTitleInput({ target }) {
-			this.updatePage({
+			return this.updatePage({
 				title: target.value,
 				params: { id: target.id }
 			});
 		}
 
 		private onChangeDescriptionInput({ target }) {
-			this.updatePage({
+			return this.updatePage({
 				description: target.value,
 				params: { id: target.id },
 			});
