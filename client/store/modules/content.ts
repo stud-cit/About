@@ -75,7 +75,7 @@ class ContentActions extends Actions<
 
 	public async deleteContent(data: any): Promise<void> {
 		return await this.store.$axios
-			.$patch('content', data)
+			.$delete('content', data)
 			.then(this.mutations.setContent)
 			.catch(this.mutations.setError);
 	}

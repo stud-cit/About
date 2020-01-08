@@ -17,35 +17,70 @@
 						label="Title"
 						counter="255"
 						maxlength="255"
-						:value="item.title"
 						:id="item.id"
+						:value="item.title"
 						@blur="onChangeTitleInput"
 					/>
 				</template>
 
-				<v-btn dark icon large :to="'dashboard/' + item.link" @click="setPage(item)">
+				<v-btn dark icon large :to="'dashboard/' + item.link" @click="setPlainPage(item)">
 					<v-icon medium >mdi-open-in-app</v-icon>
 				</v-btn>
 
-				<v-btn dark icon large @click="deletePage({ id: item.id, lang: $i18n.locale})">
-					<v-icon medium >mdi-delete-outline</v-icon>
+				<v-btn dark large icon @click="onChangeContentCover(item)">
+					<v-icon medium >mdi-camera</v-icon>
 				</v-btn>
+
+				<!-- <v-btn dark icon large @click="deletePage({ id: item.id, lang: $i18n.locale})">
+					<v-icon medium >mdi-delete-outline</v-icon>
+				</v-btn> -->
 
 			</content-cover>
 			<v-card-text>
-				<v-textarea
-					counter
-					rows="6"
-					counter="255"
-					maxlength="255"
-					label="Description"
-					:value="item.description"
-					:id="item.id"
-					@blur="onChangeDescriptionInput"
-				/>
+				<v-row dense >
+					<v-col xs="12" sm="6" cols="12" >
+						<v-text-field
+							label="Name"
+							counter="255"
+							maxlength="255"
+							:id="item.id"
+							:value="item.name"
+							@blur="onChangeNameInput"
+						/>
+					</v-col>
+					<v-col xs="12" sm="6" cols="12" >
+						<v-text-field
+							label="Link"
+							counter="255"
+							maxlength="255"
+							:id="item.id"
+							:value="item.link"
+							@blur="onChangeLinkInput"
+						/>
+					</v-col>
+					<v-col cols="12">
+						<v-textarea
+							rows="6"
+							counter="255"
+							maxlength="255"
+							label="Description"
+							:value="item.description"
+							:id="item.id"
+							@blur="onChangeDescriptionInput"
+						/>
+					</v-col>
+				</v-row>
 			</v-card-text>
 		</v-card>
 		</v-col>
+
+		<input
+			ref="file"
+			type="file"
+			accept="image/* video/*"
+			style="display:none"
+			@change="onFileInputChange()"
+		/>
 	</v-row>
 </template>
 
@@ -67,25 +102,55 @@
 	export default class DashboardPage extends Vue {
 		@Getter('StorageModule/getStorage') private readonly storage;
 		@Getter('PageModule/getPages') private readonly pages;
+		@Getter('PageModule/getPage') private readonly page;
 
-		@Mutation('PageModule/setPage') private readonly setPage;
+		@Mutation('PageModule/setPlainPage') private readonly setPlainPage;
 
 		@Action('StorageModule/createStore') private readonly createStore;
 		@Action('PageModule/selectPage') private readonly selectPage;
 		@Action('PageModule/updatePage') private readonly updatePage;
-		@Action('PageModule/deletePage') private readonly deletePage;
+		// @Action('PageModule/deletePage') private readonly deletePage;
 
-		private onChangeTitleInput({ target }) {
-			return this.updatePage({
-				title: target.value,
-				params: { id: target.id }
-			});
+		private onChangeLinkInput({ target }): void {
+			const link = target.value
+			const params = { id: target.id }
+			return this.updatePage({ link, params });
 		}
 
-		private onChangeDescriptionInput({ target }) {
-			return this.updatePage({
-				description: target.value,
-				params: { id: target.id },
+		private onChangeNameInput({ target }): void {
+			const name = target.value
+			const params = { id: target.id }
+			return this.updatePage({ name, params });
+		}
+
+		private onChangeTitleInput({ target }): void {
+			const title = target.value
+			const params = { id: target.id }
+			return this.updatePage({ title, params });
+		}
+
+		private onChangeDescriptionInput({ target }): void {
+			const description = target.value
+			const params = { id: target.id }
+			return this.updatePage({ description, params });
+		}
+
+		private async onChangeContentCover(item: any): void {
+			this.$refs.file.click();
+			return this.setPlainPage(item);
+		}
+
+		private async onFileInputChange(fieldName, file) {
+			const formData = new FormData();
+			const imageFile = this.$refs.file.files[0];
+			formData.append('file', imageFile);
+			await this.createStore(formData);
+			await this.updatePage({
+				cover: this.storage,
+				params: { id: this.page.id },
+			});
+			await this.selectPage({
+				page: this.page.id,
 			});
 		}
 	}

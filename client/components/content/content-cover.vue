@@ -5,7 +5,7 @@
 		:gradient="getGradient()"
 		:aspect-ratio="16 / 9"
 	>
-		<v-col xs="12" :style="{ position: 'absolute' }">
+		<v-col xs="12" style="position:absolute">
 			<v-row class="lightbox white--text px-2">
 				<slot name="title" />
 			</v-row>

@@ -65,6 +65,10 @@ class PageMutations extends Mutations<PageState> {
 		return Vue.set(this.state, 'page', page);
 	}
 
+	public setPlainPage(data: PageEntity): PageEntity {
+		return Vue.set(this.state, 'page', data);
+	}
+
 	public setPages(data: PageEntity[]): PageEntity[] {
 		return Vue.set(this.state, 'pages', data);
 	}
@@ -114,7 +118,7 @@ class PageActions extends Actions<
 	}
 
 	public async updatePage({ params, ...data }): Promise<void> {
-		return await this.store.$axios
+return await this.store.$axios
 			.$patch('page', data, { params })
 			.then(this.mutations.setPage)
 			.catch(this.mutations.setError);
