@@ -1,13 +1,7 @@
+import { OneToOne, ManyToOne, JoinColumn } from 'typeorm';
+import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, BaseEntity, Index } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import {
-	Column,
-	Entity,
-	OneToOne,
-	ManyToOne,
-	JoinColumn,
-	BaseEntity,
-	PrimaryGeneratedColumn,
-} from 'typeorm';
 
 import { StorageEntity } from '../../storage';
 
@@ -36,6 +30,7 @@ export class ContentEntity extends BaseEntity {
 		example: 'en',
 		maxLength: 2,
 	})
+	@Index()
 	@Column('varchar', { default: 'en' })
 	public readonly lang: string;
 
@@ -99,18 +94,19 @@ export class ContentEntity extends BaseEntity {
 		type: () => StorageEntity,
 	})
 	@OneToOne(() => StorageEntity, {
-		eager: true,
-		cascade: true,
 		nullable: true,
+		cascade: true,
+		eager: true,
 	})
 	@JoinColumn()
-	public readonly cover: StorageEntity | string;
+	public readonly cover: StorageEntity;
 
-	// /**
-	//  * [page description]
-	//  */
-	// @ManyToOne(() => PageEntity, page => page.content, {
-	// 	nullable: false,
-	// })
-	// public readonly page: string;
+	/**
+	 * [page description]
+	 */
+	@Index()
+	@ManyToOne(() => PageEntity, page => page.content, {
+		nullable: false,
+	})
+	public readonly page: PageEntity;
 }
