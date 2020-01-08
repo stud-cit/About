@@ -5,6 +5,8 @@ import { DeleteResult } from 'typeorm';
 
 import { ApiTags, ApiCreatedResponse, ApiBearerAuth } from '@nestjs/swagger';
 
+import { StorageService } from '../../storage';
+
 import { I18nInterceptor } from '../../common/interceptors';
 import { ID } from '../../common/dto';
 
@@ -21,9 +23,13 @@ import { PageEntity } from './page.entity';
 export class PageController {
 	/**
 	 * [constructor description]
+	 * @param storageService [description]
 	 * @param pageService [description]
 	 */
-	constructor(private readonly pageService: PageService) {}
+	constructor(
+		private readonly storageService: StorageService,
+		private readonly pageService: PageService,
+	) {}
 
 	/**
 	 * [createOne description]
@@ -62,10 +68,11 @@ export class PageController {
 	@ApiCreatedResponse({ type: PageEntity })
 	public async updateOne(
 		@Query() { id }: ID,
-		@Body() data: PageRequest,
+		@Body() { cover, ..._data }: PageRequest,
 	): Promise<PageEntity> {
-		await this.pageService.updateOne(id, data);
-		return await this.pageService.selectOne({ id });
+		const data = await this.pageService.selectOne({ id });
+		if (cover) cover = await this.storageService.updateOne(data.cover, cover);
+		return await this.pageService.updateOne(data, { ..._data, cover });
 	}
 
 	/**
