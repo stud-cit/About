@@ -124,7 +124,7 @@
 		private async onFileInputChange(fieldName) {
 			const formData = new FormData();
 			const [file] = this.$refs.file.files;
-			if (!file) return
+			if (!file) return;
 			formData.append('file', file);
 			await this.createStore(formData);
 			await this.updateContent({
@@ -135,7 +135,7 @@
 				page: this.page.id,
 				lang: this.$i18n.locale,
 			});
-			this.$refs.file.value = null
+			this.$refs.file.value = null;
 		}
 	}
 </script>

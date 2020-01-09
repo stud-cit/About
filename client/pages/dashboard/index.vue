@@ -160,10 +160,10 @@
 		private async onFileInputChange(fieldName) {
 			const formData = new FormData();
 			const [file] = this.$refs.file.files;
-			if (!file) return
+			if (!file) return;
 			formData.append('file', file);
 			await this.createStore(formData);
-			this.$refs.file.value = null
+			this.$refs.file.value = null;
 			await this.updatePage({
 				cover: this.storage,
 				params: { id: this.page.id },
