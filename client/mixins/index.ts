@@ -4,7 +4,7 @@ import commonFontSizeList from '~/utils/size.models';
 Vue.mixin({
 	methods: {
 		getDynamicAssets(src?: string) {
-			if (src) return `http://localhost:8081/static/${src}`;
+			if (src) return `${process.env.staticPath}/${src}`;
 			return require(`~/assets/placeholders/image.svg`);
 		},
 		getAdaptiveSize(elementName: string) {

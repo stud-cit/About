@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 /**
- * [StorageRequest description]
+ * [description]
  */
 export class StorageRequest {
 	/**

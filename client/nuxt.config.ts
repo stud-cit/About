@@ -58,7 +58,7 @@ const config: Configuration = {
 	 ** Axios module options
 	 */
 	axios: {
-		baseURL: configService.get('API_ENDPOINT'),
+		baseURL: `${configService.get('BASE_URL')}/api`,
 	},
 	/*
 	 ** Authentication module options
@@ -123,13 +123,13 @@ const config: Configuration = {
 	],
 	build: {
 		extend(config: any) {
-			// config.plugins.push(
-			// 	new StyleLintPlugin({
-			// 		files: '**/*.vue',
-			// 		configFile: './stylelint.config.js',
-			// 		syntax: 'sass',
-			// 	}),
-			// );
+			config.plugins.push(
+				new StyleLintPlugin({
+					files: '**/*.vue',
+					configFile: './stylelint.config.js',
+					syntax: 'sass',
+				}),
+			);
 		},
 		analyze: true,
 		transpile: ['vuetify/lib'],
@@ -144,6 +144,9 @@ const config: Configuration = {
 	typescript: {
 		typeCheck: false,
 		ignoreNotFoundWarnings: true,
+	},
+	env: {
+		staticPath: `${configService.get('BASE_URL')}/static`,
 	},
 };
 
