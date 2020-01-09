@@ -29,7 +29,7 @@ services:
       - database
 
   server:
-    image: registry.gitlab.com/reshetnyakov.slava/kula-be-nodejs:latest
+    image: docker.pkg.github.com/stud-cit/about/server:latest
     container_name: AboutAPI
     ports:
       - 8081:8081

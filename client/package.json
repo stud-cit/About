@@ -8,7 +8,7 @@
 		"build": "nuxt-ts build",
 		"start": "nuxt-ts start",
 		"start:dev": "nuxt-ts",
-		"start:prod": "nuxt-ts generate",
+		"start:prod": "NODE_ENV=production nuxt-ts generate",
 		"prestart:prod": "rimraf dist .nuxt && npm run build",
 		"format": "prettier --write --vue-indent-script-and-style warn \"./**/*.{js,ts,vue,json}\"",
 		"lint": "tslint -p tsconfig.json -c tslint.json"
