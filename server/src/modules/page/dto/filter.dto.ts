@@ -1,7 +1,7 @@
 import { IsOptional, MaxLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-import { Filter } from 'src/common/dto';
+import { Filter } from '../../../common/dto';
 
 export class PageFilter extends Filter {
 	/**
