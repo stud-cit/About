@@ -74,3 +74,4 @@ dist
 
 # Compiled documentation
 public/
+server/.env.production

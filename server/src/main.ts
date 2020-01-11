@@ -3,6 +3,8 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
+import * as helmet from 'helmet';
+
 import { ConfigService } from './config';
 import { AppModule } from './app/app.module';
 
@@ -19,10 +21,18 @@ async function bootstrap() {
 		.addBearerAuth()
 		.build();
 
-	app.setGlobalPrefix(configService.get('PREFFIX')).enableCors({
-		credentials: configService.get('CORS_CREDENTIALS'),
-		origin: configService.get('CORS_ORIGIN'),
-	});
+	app
+		.setGlobalPrefix(configService.get('PREFFIX'))
+		.use(
+			helmet({
+				permittedCrossDomainPolicies: true,
+				referrerPolicy: true,
+			}),
+		)
+		.enableCors({
+			credentials: configService.get('CORS_CREDENTIALS'),
+			origin: configService.get('CORS_ORIGIN'),
+		});
 
 	const document = SwaggerModule.createDocument(app, options);
 	const validationPipe = new ValidationPipe({
