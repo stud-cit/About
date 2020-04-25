@@ -30,9 +30,8 @@ class ContentMutations extends Mutations<ContentState> {
 		return Vue.set(this.state, 'error', data);
 	}
 
-	public setContents(data: ContentEntity[]) {
-		const [lang] = Object.keys(data);
-		return Vue.set(this.state, 'contents', data[lang]);
+	public setContents({ data }: { data: ContentEntity[] }) {
+		return Vue.set(this.state, 'contents', data);
 	}
 
 	public setContent(data: ContentEntity) {

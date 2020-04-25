@@ -1,6 +1,6 @@
 <template>
 	<v-container fluid cdclass="py-0 ma-0">
-		<v-row justify="center">
+		<!-- <v-row justify="center">
 			<v-col cols="12" sm="10">
 				<v-window
 					dark
@@ -165,7 +165,7 @@
 					</v-footer>
 				</OpacityBox>
 			</v-col>
-		</v-row>
+		</v-row> -->
 	</v-container>
 </template>
 

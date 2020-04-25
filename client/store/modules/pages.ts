@@ -59,9 +59,10 @@ class PageMutations extends Mutations<PageState> {
 		return Vue.set(this.state, 'error', data);
 	}
 
-	public setPage(data: PageEntity): PageEntity {
+	public setPage(data: PageEntity): any {
 		const [lang] = Object.keys(data);
 		const [page] = data[lang];
+
 		return Vue.set(this.state, 'page', page);
 	}
 
@@ -69,7 +70,7 @@ class PageMutations extends Mutations<PageState> {
 		return Vue.set(this.state, 'page', data);
 	}
 
-	public setPages(data: PageEntity[]): PageEntity[] {
+	public setPages({ data }: { data: PageEntity[] }): PageEntity[] {
 		return Vue.set(this.state, 'pages', data);
 	}
 

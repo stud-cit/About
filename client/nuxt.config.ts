@@ -58,7 +58,7 @@ const config: Configuration = {
 	 ** Axios module options
 	 */
 	axios: {
-		baseURL: `${configService.get('BASE_URL')}/api`,
+		baseURL: `${configService.get('BASE_URL')}/`,
 	},
 	/*
 	 ** Authentication module options
@@ -146,7 +146,7 @@ const config: Configuration = {
 		ignoreNotFoundWarnings: true,
 	},
 	env: {
-		staticPath: `${configService.get('BASE_URL')}/static`,
+		baseUrl: configService.get('BASE_URL'),
 	},
 };
 
