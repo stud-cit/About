@@ -4,7 +4,7 @@ export interface PageEntity {
 	/**
 	 * [id description]
 	 */
-	readonly id: string;
+	readonly page_id: string;
 
 	/**
 	 * [lang description]

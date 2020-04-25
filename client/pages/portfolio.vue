@@ -126,7 +126,7 @@
 
 			await this.selectPage({ link, lang });
 			await this.selectContent({
-				page: this.page.id,
+				page: this.page.page_id,
 				lang,
 			});
 		}

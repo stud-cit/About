@@ -116,7 +116,7 @@
 		private async onChangeDelete(item) {
 			await this.deleteContent(item);
 			await this.selectContent({
-				page: this.page.id,
+				page: this.page.page_id,
 				lang: this.$i18n.locale,
 			});
 		}
@@ -132,7 +132,7 @@
 				params: { id: this.content.id },
 			});
 			await this.selectContent({
-				page: this.page.id,
+				page: this.page.page_id,
 				lang: this.$i18n.locale,
 			});
 			this.$refs.file.value = null;

@@ -166,7 +166,7 @@
 			this.$refs.file.value = null;
 			await this.updatePage({
 				cover: this.storage,
-				params: { id: this.page.id },
+				params: { id: this.page.page_id },
 			});
 			await this.selectPages();
 		}
