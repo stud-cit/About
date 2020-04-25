@@ -33,8 +33,10 @@ The following steps may cause difficulties, feel free to ask questions. You need
 ```bash
 # Install dependencies
 $ npm i
-# Deployment the database for development
-$ npm run database:up
+# Run database
+$ docker-compose run database
+# Run pgadmin
+$ docker-compose run pgadmin
 # Run the project in development mode
 $ npm run start:dev
 ```
