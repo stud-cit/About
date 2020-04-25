@@ -57,8 +57,14 @@ const config: Configuration = {
 	/*
 	 ** Axios module options
 	 */
-	axios: {
-		baseURL: `${configService.get('BASE_URL')}/`,
+	axios: {},
+	proxy: {
+		'/api': {
+			target: `${configService.get('BASE_URL')}/`,
+			pathRewrite: {
+				'^/api': '',
+			},
+		},
 	},
 	/*
 	 ** Authentication module options
@@ -120,6 +126,7 @@ const config: Configuration = {
 		'nuxt-i18n',
 		'@nuxtjs/auth',
 		'@nuxtjs/axios',
+		'@nuxtjs/proxy',
 	],
 	build: {
 		extend(config: any) {

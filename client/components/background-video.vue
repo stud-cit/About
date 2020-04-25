@@ -16,10 +16,6 @@
 	@Component
 	export default class BackgroundVideo extends Vue {
 		@Getter('PageModule/getCover') cover;
-
-		mounted() {
-			console.log(this.cover);
-		}
 	}
 </script>
 

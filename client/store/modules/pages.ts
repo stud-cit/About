@@ -59,10 +59,7 @@ class PageMutations extends Mutations<PageState> {
 		return Vue.set(this.state, 'error', data);
 	}
 
-	public setPage(data: PageEntity): any {
-		const [lang] = Object.keys(data);
-		const [page] = data[lang];
-
+	public setPage(page: PageEntity): PageEntity {
 		return Vue.set(this.state, 'page', page);
 	}
 
@@ -100,35 +97,35 @@ class PageActions extends Actions<
 
 	public async createPage(data: PageEntity): Promise<void> {
 		return await this.store.$axios
-			.$post('page', data)
+			.$post('/api/page', data)
 			.then(this.mutations.setPages)
 			.catch(this.mutations.setError);
 	}
 
 	public async selectPages(): Promise<void> {
 		return await this.store.$axios
-			.$get('page')
+			.$get('/api/page')
 			.then(this.mutations.setPages)
 			.catch(this.mutations.setError);
 	}
 
 	public async selectPage(params?: any): Promise<void> {
 		return await this.store.$axios
-			.$get('page', { params })
-			.then(this.mutations.setPage)
+			.$get('/api/page', { params })
+			.then((request: any) => this.mutations.setPage(request.data))
 			.catch(this.mutations.setError);
 	}
 
 	public async updatePage({ params, ...data }): Promise<void> {
 		return await this.store.$axios
-			.$patch('page', data, { params })
+			.$patch('/api/page', data, { params })
 			.then(this.mutations.setPage)
 			.catch(this.mutations.setError);
 	}
 
 	public async deletePage({ id }: PageEntity): Promise<void> {
 		await this.store.$axios
-			.$delete('page', { params: { id } })
+			.$delete('/api/page', { params: { id } })
 			.then(this.mutations.setPage)
 			.catch(this.mutations.setError);
 	}

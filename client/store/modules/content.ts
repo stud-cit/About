@@ -53,28 +53,28 @@ class ContentActions extends Actions<
 
 	public async createContent({ params, data }): Promise<void> {
 		return await this.store.$axios
-			.$post('content', data, { params })
+			.$post('/api/content', data, { params })
 			.then(this.mutations.setContent)
 			.catch(this.mutations.setError);
 	}
 
 	public async selectContent(params?: ContentFiltersModel): Promise<void> {
 		return await this.store.$axios
-			.$get('content', { params })
+			.$get('/api/content', { params })
 			.then(this.mutations.setContents)
 			.catch(this.mutations.setError);
 	}
 
 	public async updateContent({ params, ...data }): Promise<void> {
 		return await this.store.$axios
-			.$patch('content', data, { params })
+			.$patch('/api/content', data, { params })
 			.then(this.mutations.setContent)
 			.catch(this.mutations.setError);
 	}
 
 	public async deleteContent({ id }: ContentEntity): Promise<void> {
 		return await this.store.$axios
-			.$delete('content', { params: { id } })
+			.$delete('/api/content', { params: { id } })
 			.then(this.mutations.setContent)
 			.catch(this.mutations.setError);
 	}
