@@ -73,8 +73,16 @@ const config: Configuration = {
 		strategies: {
 			local: {
 				endpoints: {
-					login: { url: '/auth', method: 'post', propertyName: 'token' },
-					user: { url: '/user', method: 'get', propertyName: '' },
+					login: {
+						url: `${configService.get('BASE_URL')}/auth/login`,
+						method: 'post',
+						propertyName: 'access_token',
+					},
+					user: {
+						url: `${configService.get('BASE_URL')}/admin/user`,
+						method: 'get',
+						propertyName: '',
+					},
 					logout: false,
 				},
 				tokenRequired: true,

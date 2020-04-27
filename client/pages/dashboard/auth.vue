@@ -24,7 +24,7 @@
 					v-model="userCredentials.password"
 					:type="show ? 'text' : 'password'"
 					:append-icon="changeVisibility(show)"
-					rules="required|min:8"
+					rules="required|min:6"
 					vid="confirm"
 					outlined
 					counter
