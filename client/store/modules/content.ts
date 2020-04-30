@@ -37,6 +37,10 @@ class ContentMutations extends Mutations<ContentState> {
 	public setContent(data: ContentEntity) {
 		return Vue.set(this.state, 'content', data);
 	}
+
+	public setContentFromServer({ data }: { data: ContentEntity }) {
+		return Vue.set(this.state, 'content', data);
+	}
 }
 
 class ContentActions extends Actions<
@@ -51,30 +55,62 @@ class ContentActions extends Actions<
 		this.store = store;
 	}
 
-	public async createContent({ params, data }): Promise<void> {
+	public async createContent({
+		id,
+		lang,
+	}: {
+		id: string;
+		lang: string;
+	}): Promise<void> {
+		// create initial content record
+		const contentToCreate = {
+			page_id: id,
+			title: 'Title',
+			description: 'Description',
+			image: null,
+			lang,
+		};
+
 		return await this.store.$axios
-			.$post('/api/content', data, { params })
-			.then(this.mutations.setContent)
+			.$post('/api/admin/content', contentToCreate)
+			.then(this.mutations.setContentFromServer)
 			.catch(this.mutations.setError);
 	}
 
 	public async selectContent(params?: ContentFiltersModel): Promise<void> {
 		return await this.store.$axios
-			.$get('/api/content', { params })
+			.$get('/api/admin/content', { params })
 			.then(this.mutations.setContents)
 			.catch(this.mutations.setError);
 	}
 
-	public async updateContent({ params, ...data }): Promise<void> {
+	public async updateContent({ id, lang, ...data }): Promise<void> {
 		return await this.store.$axios
-			.$patch('/api/content', data, { params })
-			.then(this.mutations.setContent)
+			.$post(`/api/admin/content/${lang}/${id}`, data)
+			.then(this.mutations.setContentFromServer)
 			.catch(this.mutations.setError);
 	}
 
-	public async deleteContent({ id }: ContentEntity): Promise<void> {
+	public async updateContentCover({
+		id,
+		lang,
+		formData,
+	}: {
+		id: string;
+		lang: string;
+		formData: any;
+	}): Promise<void> {
+		const headers = { 'Content-Type': 'multipart/form-data' };
+		return await this.store.$axios.$post(
+			`/api/admin/content/${lang}/${id}`,
+			formData,
+			{ headers },
+		);
+	}
+
+	public async deleteContent({ content_id }: ContentEntity): Promise<void> {
 		return await this.store.$axios
-			.$delete('/api/content', { params: { id } })
+			.$delete(`/api/admin/content/${content_id}`)
 			.then(this.mutations.setContent)
 			.catch(this.mutations.setError);
 	}

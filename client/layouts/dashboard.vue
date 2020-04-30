@@ -62,7 +62,6 @@
 				<nuxt />
 			</v-content>
 		</v-container>
-
 		<v-fab-transition>
 			<v-btn fixed right dark bottom fab color="primary" @click="createSmth()">
 				<v-icon>mdi-plus</v-icon>
@@ -125,10 +124,10 @@
 
 		private async createSmth() {
 			if (!this.$route.params.id) return;
-			const params = { id: this.selectedPage.id };
-			const data = { lang: this.$i18n.locale };
-			await this.createContent({ params, data });
-			await this.selectContent({ page: params.id, ...data });
+			const data = { id: this.selectedPage.page_id, lang: this.$i18n.locale };
+
+			await this.createContent(data);
+			await this.selectContent({ page: data.id, lang: this.$i18n.locale });
 		}
 
 		private availableLocales() {

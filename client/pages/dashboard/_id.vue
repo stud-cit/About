@@ -10,7 +10,7 @@
 							counter="255"
 							maxlength="255"
 							:value="item.title"
-							:id="item.id"
+							:id="item.content_id.toString()"
 							@blur="onChangeTitleInput"
 						/>
 					</template>
@@ -32,13 +32,12 @@
 						<v-icon>mdi-delete-outline</v-icon>
 					</v-btn>
 					<v-textarea
-						counter
 						rows="6"
 						counter="255"
 						maxlength="255"
 						label="Description"
 						:value="item.description"
-						:id="item.id"
+						:id="item.content_id.toString()"
 						@blur="onChangeDescriptionInput"
 					/>
 				</v-card-text>
@@ -76,7 +75,7 @@
 			});
 
 			await store.dispatch('ContentModule/selectContent', {
-				page: store.getters['PageModule/getPage'].id,
+				page: store.getters['PageModule/getPage'].page_id,
 				lang: store.$i18n.locale,
 			});
 		},
@@ -90,6 +89,8 @@
 		@Mutation('ContentModule/setContent') private readonly setContent;
 
 		@Action('ContentModule/updateContent') private readonly updateContent;
+		@Action('ContentModule/updateContentCover')
+		private readonly updateContentCover;
 		@Action('ContentModule/selectContent') private readonly selectContent;
 		@Action('ContentModule/deleteContent') private readonly deleteContent;
 		@Action('StorageModule/createStore') private readonly createStore;
@@ -97,14 +98,16 @@
 		private async onChangeTitleInput({ target }) {
 			await this.updateContent({
 				title: target.value,
-				params: { id: target.id },
+				id: target.id,
+				lang: this.$i18n.locale,
 			});
 		}
 
 		private async onChangeDescriptionInput({ target }) {
 			await this.updateContent({
 				description: target.value,
-				params: { id: target.id },
+				id: target.id,
+				lang: this.$i18n.locale,
 			});
 		}
 
@@ -125,12 +128,19 @@
 			const formData = new FormData();
 			const [file] = this.$refs.file.files;
 			if (!file) return;
-			formData.append('file', file);
-			await this.createStore(formData);
-			await this.updateContent({
-				cover: this.storage,
-				params: { id: this.content.id },
+
+			if (file.type !== 'image/jpeg') {
+				alert('invalid file type. Supported file types: jpg');
+				return;
+			}
+			formData.append('image', file);
+
+			await this.updateContentCover({
+				formData,
+				id: this.content.content_id,
+				lang: this.$i18n.locale,
 			});
+
 			await this.selectContent({
 				page: this.page.page_id,
 				lang: this.$i18n.locale,

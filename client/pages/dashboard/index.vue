@@ -168,7 +168,6 @@
 				return;
 			}
 			const fileKey = file.type === 'image/jpeg' ? 'image' : 'video';
-
 			formData.append(fileKey, file);
 
 			await this.updatePageCover({

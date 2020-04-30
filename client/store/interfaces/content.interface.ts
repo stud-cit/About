@@ -4,8 +4,11 @@ export interface ContentEntity {
 	/**
 	 * [id description]
 	 */
-	readonly id: string;
-
+	readonly page_id: string;
+	/**
+	 * [id description]
+	 */
+	readonly content_id: string;
 	/**
 	 * [lang description]
 	 */
