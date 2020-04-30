@@ -21,12 +21,16 @@
 							@blur="onChangeTitleInput"
 						/>
 					</template>
-
 					<v-btn
 						dark
 						icon
 						large
-						:to="'dashboard/' + item.link"
+						replace
+						:to="
+							($i18n.locale !== 'en' ? '/' + $i18n.locale : '') +
+								'/dashboard/' +
+								item.link
+						"
 						@click="setPlainPage(item)"
 					>
 						<v-icon medium>mdi-open-in-app</v-icon>
