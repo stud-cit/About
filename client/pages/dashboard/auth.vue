@@ -19,6 +19,7 @@
 					label="Email"
 					autocomplete="email"
 					prepend-icon="mdi-email-outline"
+					:error="error"
 				/>
 				<VTextFieldValidation
 					v-model="userCredentials.password"
@@ -32,6 +33,7 @@
 					autocomplete="current-password"
 					prepend-icon="mdi-lock-outline"
 					@click:append="show = !show"
+					:error="error"
 				/>
 			</v-card-text>
 			<v-card-actions>
@@ -62,6 +64,7 @@
 
 		private show: boolean = false;
 		private progress: boolean = false;
+		private error: boolean = false;
 		private userCredentials = {
 			email: '',
 			password: '',
@@ -75,7 +78,14 @@
 			const validation = await this.$refs.observer.validate();
 			if (!validation) return;
 			this.progress = !this.progress;
-			return await this.authorizationUser(this.userCredentials);
+			this.error = false;
+
+			const result = await this.authorizationUser(this.userCredentials);
+
+			if (!result) {
+				this.progress = false;
+				this.error = true;
+			}
 		}
 	}
 </script>
