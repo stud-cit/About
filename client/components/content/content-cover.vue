@@ -1,7 +1,7 @@
 <template>
 	<v-img
-		:src="getDynamicAssets(value)"
-		:lazy-src="getDynamicAssets(value)"
+		:src="getStaticAssetUrl(value)"
+		:lazy-src="getStaticAssetUrl(value)"
 		:gradient="getGradient()"
 		:aspect-ratio="16 / 9"
 	>

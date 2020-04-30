@@ -101,6 +101,22 @@ class PageActions extends Actions<
 			.then(this.mutations.setPages)
 			.catch(this.mutations.setError);
 	}
+	public async updatePageCover({
+		id,
+		lang,
+		formData,
+	}: {
+		id: string;
+		lang: string;
+		formData: any;
+	}): Promise<void> {
+		const headers = { 'Content-Type': 'multipart/form-data' };
+		return await this.store.$axios.$post(
+			`/api/admin/page/${lang}/${id}`,
+			formData,
+			{ headers },
+		);
+	}
 
 	public async selectPages(): Promise<void> {
 		return await this.store.$axios
@@ -116,16 +132,16 @@ class PageActions extends Actions<
 			.catch(this.mutations.setError);
 	}
 
-	public async updatePage({ params, ...data }): Promise<void> {
+	public async updatePage({ lang, id, ...data }): Promise<void> {
 		return await this.store.$axios
-			.$patch('/api/page', data, { params })
+			.$post(`/api/admin/page/${lang}/${id}`, data)
 			.then(this.mutations.setPage)
 			.catch(this.mutations.setError);
 	}
 
-	public async deletePage({ id }: PageEntity): Promise<void> {
+	public async deletePage({ page_id }: PageEntity): Promise<void> {
 		await this.store.$axios
-			.$delete('/api/page', { params: { id } })
+			.$delete('/api/page', { params: { page_id } })
 			.then(this.mutations.setPage)
 			.catch(this.mutations.setError);
 	}

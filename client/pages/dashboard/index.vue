@@ -16,7 +16,7 @@
 							label="Title"
 							counter="255"
 							maxlength="255"
-							:id="item.id"
+							:id="item.page_id.toString()"
 							:value="item.title"
 							@blur="onChangeTitleInput"
 						/>
@@ -37,7 +37,7 @@
 					</v-btn>
 				</content-cover>
 				<v-card-text style="position: relative">
-					<v-btn
+					<!-- <v-btn
 						absolute
 						dark
 						fab
@@ -48,14 +48,14 @@
 						@click="onChangeDelete(item)"
 					>
 						<v-icon>mdi-delete-outline</v-icon>
-					</v-btn>
+					</v-btn> -->
 					<v-row dense>
 						<v-col xs="12" sm="6" cols="12">
 							<v-text-field
 								label="Name"
 								counter="255"
 								maxlength="255"
-								:id="item.id"
+								:id="item.page_id.toString()"
 								:value="item.name"
 								@blur="onChangeNameInput"
 							/>
@@ -65,7 +65,7 @@
 								label="Link"
 								counter="255"
 								maxlength="255"
-								:id="item.id"
+								:id="item.page_id.toString()"
 								:value="item.link"
 								@blur="onChangeLinkInput"
 							/>
@@ -77,7 +77,7 @@
 								maxlength="255"
 								label="Description"
 								:value="item.description"
-								:id="item.id"
+								:id="item.page_id.toString()"
 								@blur="onChangeDescriptionInput"
 							/>
 						</v-col>
@@ -89,7 +89,7 @@
 		<input
 			ref="file"
 			type="file"
-			accept="image/* video/*"
+			accept="image/jpeg video/mp4"
 			style="display:none"
 			@change="onFileInputChange()"
 		/>
@@ -121,30 +121,29 @@
 		@Action('StorageModule/createStore') private readonly createStore;
 		@Action('PageModule/selectPages') private readonly selectPages;
 		@Action('PageModule/updatePage') private readonly updatePage;
+		@Action('PageModule/updatePageCover') private readonly updatePageCover;
 		@Action('PageModule/deletePage') private readonly deletePage;
 
 		private onChangeLinkInput({ target }): void {
 			const link = target.value;
-			const params = { id: target.id };
-			this.updatePage({ link, params });
+			this.updatePage({ link, id: target.id, lang: this.$i18n.locale });
 		}
 
 		private onChangeNameInput({ target }): void {
 			const name = target.value;
-			const params = { id: target.id };
-			this.updatePage({ name, params });
+			this.updatePage({ name, id: target.id, lang: this.$i18n.locale });
 		}
 
 		private onChangeTitleInput({ target }): void {
 			const title = target.value;
-			const params = { id: target.id };
-			this.updatePage({ title, params });
+
+			this.updatePage({ title, id: target.id, lang: this.$i18n.locale });
 		}
 
 		private onChangeDescriptionInput({ target }): void {
 			const description = target.value;
-			const params = { id: target.id };
-			this.updatePage({ description, params });
+
+			this.updatePage({ description, id: target.id, lang: this.$i18n.locale });
 		}
 
 		private onChangeContentCover(item: any): void {
@@ -160,14 +159,24 @@
 		private async onFileInputChange(fieldName) {
 			const formData = new FormData();
 			const [file] = this.$refs.file.files;
+
+			const allowedFileExt = ['image/jpeg', 'video/mp4'];
 			if (!file) return;
-			formData.append('file', file);
-			await this.createStore(formData);
-			this.$refs.file.value = null;
-			await this.updatePage({
-				cover: this.storage,
-				params: { id: this.page.page_id },
+
+			if (!allowedFileExt.includes(file.type)) {
+				alert('invalid file type. Supported file types: jpg and mp4');
+				return;
+			}
+			const fileKey = file.type === 'image/jpeg' ? 'image' : 'video';
+
+			formData.append(fileKey, file);
+
+			await this.updatePageCover({
+				id: this.page.page_id,
+				lang: this.$i18n.locale,
+				formData,
 			});
+
 			await this.selectPages();
 		}
 	}
