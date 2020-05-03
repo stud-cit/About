@@ -139,7 +139,7 @@
 	})
 	export default class OurStaffPage extends Vue {
 		@Action('PageModule/selectPage') selectPage;
-		@Action('ContentModule/selectContent') selectContent;
+		@Action('ContentModule/selectClientContent') selectClientContent;
 		@Getter('PageModule/getPage') page;
 		@Getter('ContentModule/getContents') pageContent;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
@@ -216,7 +216,7 @@
 			const link = this.$route.path.replace(`/${lang}`, '').replace('/', '');
 
 			await this.selectPage({ link, lang });
-			await this.selectContent({
+			await this.selectClientContent({
 				page: this.page.page_id,
 				lang,
 			});

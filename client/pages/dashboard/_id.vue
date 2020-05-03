@@ -74,7 +74,7 @@
 				link: params.id,
 			});
 
-			await store.dispatch('ContentModule/selectContent', {
+			await store.dispatch('ContentModule/selectAdminContent', {
 				page: store.getters['PageModule/getPage'].page_id,
 				lang: store.$i18n.locale,
 			});
@@ -91,7 +91,8 @@
 		@Action('ContentModule/updateContent') private readonly updateContent;
 		@Action('ContentModule/updateContentCover')
 		private readonly updateContentCover;
-		@Action('ContentModule/selectContent') private readonly selectContent;
+		@Action('ContentModule/selectAdminContent')
+		private readonly selectAdminContent;
 		@Action('ContentModule/deleteContent') private readonly deleteContent;
 		@Action('StorageModule/createStore') private readonly createStore;
 
@@ -118,7 +119,7 @@
 
 		private async onChangeDelete(item) {
 			await this.deleteContent(item);
-			await this.selectContent({
+			await this.selectAdminContent({
 				page: this.page.page_id,
 				lang: this.$i18n.locale,
 			});
@@ -141,7 +142,7 @@
 				lang: this.$i18n.locale,
 			});
 
-			await this.selectContent({
+			await this.selectAdminContent({
 				page: this.page.page_id,
 				lang: this.$i18n.locale,
 			});
