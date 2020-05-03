@@ -29,7 +29,11 @@
 								class="mx-auto card-img-hover"
 								:width="isLgAndUp ? '425px' : 'auto'"
 							>
-								<avatar :image="employee.cover ? employee.cover.image : ''" />
+								<avatar
+									:image="
+										getDynamicAssets(employee.cover ? employee.cover.image : '')
+									"
+								/>
 							</v-card>
 							<avatar-info
 								:employee="employee"
@@ -54,7 +58,13 @@
 									:width="isXsOnly ? '90%' : '100%'"
 									flat
 								>
-									<avatar :image="employee.cover ? employee.cover.image : ''" />
+									<avatar
+										:image="
+											getDynamicAssets(
+												employee.cover ? employee.cover.image : '',
+											)
+										"
+									/>
 									<v-row justify="space-around" align="center">
 										<v-btn
 											color="white"

@@ -9,7 +9,6 @@ const routingRedirection = {
 
 export default function({ $axios, redirect }) {
 	$axios.onError((error: AxiosError<AxiosResponse> | any) => {
-		console.log(error);
 		return redirect(routingRedirection[error.response.status]);
 	});
 }
