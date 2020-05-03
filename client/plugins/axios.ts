@@ -4,12 +4,12 @@ const routingRedirection = {
 	500: '/',
 	409: '/',
 	404: '/',
-	401: '/',
-	// dashboard/auth
+	401: '/dashboard/auth',
 };
 
 export default function({ $axios, redirect }) {
 	$axios.onError((error: AxiosError<AxiosResponse> | any) => {
+		console.log(error);
 		return redirect(routingRedirection[error.response.status]);
 	});
 }

@@ -98,7 +98,8 @@
 		@Getter('PageModule/getPage') private readonly selectedPage;
 
 		@Action('ContentModule/createContent') private readonly createContent;
-		@Action('ContentModule/selectContent') private readonly selectContent;
+		@Action('ContentModule/selectAdminContent')
+		private readonly selectAdminContent;
 
 		private drawer: boolean = false;
 		private changeLocale: boolean = false;
@@ -127,7 +128,7 @@
 			const data = { id: this.selectedPage.page_id, lang: this.$i18n.locale };
 
 			await this.createContent(data);
-			await this.selectContent({ page: data.id, lang: this.$i18n.locale });
+			await this.selectAdminContent({ page: data.id, lang: this.$i18n.locale });
 		}
 
 		private availableLocales() {

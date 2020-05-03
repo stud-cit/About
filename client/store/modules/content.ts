@@ -77,7 +77,16 @@ class ContentActions extends Actions<
 			.catch(this.mutations.setError);
 	}
 
-	public async selectContent(params?: ContentFiltersModel): Promise<void> {
+	public async selectClientContent(
+		params?: ContentFiltersModel,
+	): Promise<void> {
+		return await this.store.$axios
+			.$get('/api/content', { params })
+			.then(this.mutations.setContents)
+			.catch(this.mutations.setError);
+	}
+
+	public async selectAdminContent(params?: ContentFiltersModel): Promise<void> {
 		return await this.store.$axios
 			.$get('/api/admin/content', { params })
 			.then(this.mutations.setContents)
