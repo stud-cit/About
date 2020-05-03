@@ -198,8 +198,8 @@
 		}
 
 		async created() {
-			const link = this.$route.path.replace('/', '');
 			const lang = this.$i18n.locale;
+			const link = this.$route.path.replace(`/${lang}`, '').replace('/', '');
 
 			await this.selectPage({ link, lang });
 			await this.selectContent({

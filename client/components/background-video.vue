@@ -1,12 +1,12 @@
 <template>
-	<client-only>
+	<no-ssr>
 		<video-background
 			id="video-bg"
 			:src="getDynamicAssets(cover.video)"
 			:poster="getDynamicAssets(cover.image)"
 			autoplay
 		/>
-	</client-only>
+	</no-ssr>
 </template>
 
 <script lang="ts">

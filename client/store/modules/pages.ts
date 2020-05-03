@@ -31,7 +31,7 @@ class PageGetters extends Getters<PageState> {
 	get getPageIndex(): (locale: string) => number {
 		return locale => {
 			const matchingIndex = this.state.pages[locale].findIndex(
-				(page: PageEntity) => page.id === this.state.page.id,
+				(page: PageEntity) => page.page_id === this.state.page.page_id,
 			);
 			return matchingIndex + 1;
 		};
