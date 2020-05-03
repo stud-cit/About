@@ -6,6 +6,8 @@ The following steps may cause difficulties, feel free to ask questions. You need
 ```bash
 # Install dependencies
 $ npm i
+# Install client deps
+$ cd client && npm i
 # Run the project in development mode
 $ npm run client:start:dev
 ```
