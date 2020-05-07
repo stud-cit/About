@@ -54,7 +54,7 @@
 						<v-icon>mdi-delete-outline</v-icon>
 					</v-btn> -->
 					<v-row dense>
-						<v-col xs="12" sm="6" cols="12">
+						<v-col cols="12">
 							<v-text-field
 								label="Name"
 								counter="255"
@@ -64,7 +64,7 @@
 								@blur="onChangeNameInput"
 							/>
 						</v-col>
-						<v-col xs="12" sm="6" cols="12">
+						<!-- <v-col xs="12" sm="6" cols="12">
 							<v-text-field
 								label="Link"
 								counter="255"
@@ -73,7 +73,7 @@
 								:value="item.link"
 								@blur="onChangeLinkInput"
 							/>
-						</v-col>
+						</v-col> -->
 						<v-col cols="12">
 							<v-textarea
 								rows="6"
@@ -174,9 +174,6 @@
 			const fileKey = file.type === 'image/jpeg' ? 'image' : 'video';
 			formData.append(fileKey, file);
 
-			console.log(this.page.page_id, formData);
-
-			return;
 			await this.updatePageCover({
 				id: this.page.page_id,
 				lang: this.$i18n.locale,
