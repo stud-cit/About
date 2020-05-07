@@ -26,7 +26,9 @@
 
 			<v-row align="end" justify="start" class="fill-height">
 				<v-col md="2" cols="6">
-					StudCIT
+					<nuxt-link class="back-link" to="/dashboard">
+						StudCIT
+					</nuxt-link>
 				</v-col>
 
 				<v-col md="2" cols="1" class="my-n1">
@@ -144,3 +146,9 @@
 		}
 	}
 </script>
+<style lang="sass">
+	.back-link
+		text-decoration: none
+		color: #FFF!important
+		background: none!important
+</style>

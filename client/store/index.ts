@@ -104,7 +104,6 @@ class RootActions extends Actions<
 	}
 
 	public async nuxtServerInit(): Promise<void> {
-		await this.contentModule.actions.selectClientContent();
 		await this.pageModule.actions.selectPages();
 	}
 

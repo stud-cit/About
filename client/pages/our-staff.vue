@@ -153,6 +153,7 @@
 		@Getter('PageModule/getPage') page;
 		@Getter('ContentModule/getContents') pageContent;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
+		@Mutation('ContentModule/setContents') setContents;
 
 		curStaff: number = 0;
 		observers: IntersectionObserver[] = [];
@@ -235,6 +236,8 @@
 			this.observers.forEach(observer => {
 				observer.disconnect();
 			});
+
+			this.setContents([]);
 		}
 	}
 </script>

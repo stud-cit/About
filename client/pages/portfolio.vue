@@ -109,6 +109,7 @@
 		@Action('ContentModule/selectClientContent') selectClientContent;
 		@Getter('PageModule/getPage') page;
 		@Getter('ContentModule/getContents') pageContent;
+		@Mutation('ContentModule/setContents') setContents;
 
 		get isMdAndUp() {
 			return this.$breakpoint ? this.$breakpoint.is.mdAndUp : false;
@@ -129,6 +130,10 @@
 				page: this.page.page_id,
 				lang,
 			});
+		}
+
+		beforeDestroy() {
+			this.setContents([]);
 		}
 	}
 </script>

@@ -143,6 +143,7 @@
 		@Getter('PageModule/getPage') page;
 		@Getter('ContentModule/getContents') pageContent;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
+		@Mutation('ContentModule/setContents') setContents;
 
 		observers: IntersectionObserver[] = [];
 		representationToAnimate: number[] = [];
@@ -211,6 +212,7 @@
 			this.observers.forEach(observer => {
 				observer.disconnect();
 			});
+			this.setContents([]);
 		}
 	}
 </script>

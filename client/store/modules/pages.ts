@@ -79,6 +79,7 @@ class PageMutations extends Mutations<PageState> {
 		const matchingPage = this.state.pages[lang].find((page: PageEntity) =>
 			link.includes(page.link),
 		);
+
 		return Vue.set(this.state, 'cover', matchingPage.cover);
 	}
 }
