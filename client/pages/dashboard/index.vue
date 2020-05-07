@@ -174,6 +174,9 @@
 			const fileKey = file.type === 'image/jpeg' ? 'image' : 'video';
 			formData.append(fileKey, file);
 
+			console.log(this.page.page_id, formData);
+
+			return;
 			await this.updatePageCover({
 				id: this.page.page_id,
 				lang: this.$i18n.locale,
