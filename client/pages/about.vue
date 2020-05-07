@@ -318,9 +318,12 @@
 			} else {
 				this.changeContactBar(false);
 			}
+
 			this.isTextSliderAnimation = false;
+
 			if (this.curStage > 0 && this.curStage < this.stagesLength + 2) {
-				this.stageAbout = this.curStage > 1 ? this.curStage - 1 : this.curStage;
+				this.stageAbout = this.curStage < this.stagesLength + 1 ? 1 : 2;
+
 				setTimeout(() => {
 					this.stageText =
 						this.curStage > 1

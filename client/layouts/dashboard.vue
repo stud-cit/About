@@ -150,4 +150,5 @@
 	.back-link
 		text-decoration: none
 		color: #FFF!important
+		background: none!important
 </style>
