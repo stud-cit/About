@@ -219,6 +219,7 @@
 		@Getter('visibilityLoader') visibilityLoader;
 		@Getter('getIsHideAnimationContent') getIsHideAnimationContent;
 		@Mutation('changeContactBar') changeContactBar;
+		@Mutation('ContentModule/setContents') setContents;
 
 		curStage: number = 0;
 		isSloganAnimation: boolean = false;
@@ -353,6 +354,7 @@
 
 		beforeDestroy() {
 			this.changeContactBar(false);
+			this.setContents([]);
 		}
 	}
 </script>
