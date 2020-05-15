@@ -62,7 +62,9 @@
 								:id="item.page_id.toString()"
 								:value="item.name"
 								@blur="onChangeNameInput"
+								v-if="item.link !== 'about'"
 							/>
+							<div v-else class="empty-block" />
 						</v-col>
 						<!-- <v-col xs="12" sm="6" cols="12">
 							<v-text-field
@@ -184,3 +186,8 @@
 		}
 	}
 </script>
+
+<style lang="sass">
+	.empty-block
+		height: 66px
+</style>
