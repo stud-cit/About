@@ -1,9 +1,0 @@
-{
-  "verbose": true,
-	"rootDir": "./e2e",
-	"testRegex": "/e2e/.*\\.e2e-spec.ts$",
-	"collectCoverageFrom": ["!**/node_modules/**"],
-  "transform": {
-    "^.+\\.(t|j)s$": "ts-jest"
-  }
-}
