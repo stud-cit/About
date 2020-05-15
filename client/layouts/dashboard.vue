@@ -64,7 +64,7 @@
 				<nuxt />
 			</v-content>
 		</v-container>
-		<v-fab-transition>
+		<v-fab-transition v-if="getIsShowAddEntity">
 			<v-btn fixed right dark bottom fab color="primary" @click="createSmth()">
 				<v-icon>mdi-plus</v-icon>
 			</v-btn>
@@ -139,6 +139,10 @@
 
 		private getGradient() {
 			return `to top right, rgba(81, 176, 255, .7), rgba(63, 81, 181, .7)`;
+		}
+
+		get getIsShowAddEntity() {
+			return this.$route.params.id;
 		}
 
 		private logout() {
