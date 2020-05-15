@@ -2,7 +2,9 @@
 	<v-row align="center" justify="center">
 		<v-col v-for="item in contents" :key="item.id" sm="12" md="6" lg="4">
 			<v-card outlined>
-				<content-cover :src="item.cover && item.cover.image">
+				<content-cover
+					:src="getAssetWithFallback(item.cover && item.cover.image)"
+				>
 					<template #title>
 						<v-text-field
 							dark

@@ -4,10 +4,12 @@ import commonFontSizeList from '~/utils/size.models';
 Vue.mixin({
 	methods: {
 		getDynamicAssets(src?: string) {
-			if (src) {
-				return `${process.env.baseUrl}/${src}`;
-			}
-			return require(`~/assets/placeholders/image.svg`);
+			return src
+				? `${process.env.baseUrl}/${src}`
+				: `${process.env.baseUrl}/storage/default/fallback/notfound.svg`;
+		},
+		getAssetWithFallback(src?: string) {
+			return src ? src : `storage/default/fallback/notfound.svg`;
 		},
 		getAdaptiveSize(elementName: string) {
 			if (Object.keys(commonFontSizeList).includes(elementName)) {
@@ -16,11 +18,8 @@ Vue.mixin({
 				if (currentBreakpoint === 'xl') return currentFontDimensions.lg;
 				return currentFontDimensions[currentBreakpoint];
 			}
-			return null;
-		},
 
-		getStaticAssetUrl(url: string) {
-			return `${process.env.baseUrl}/${url}`;
+			return null;
 		},
 	},
 });

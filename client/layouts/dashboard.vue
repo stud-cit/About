@@ -13,7 +13,7 @@
 				<v-img
 					:src="
 						selectedPage.cover
-							? getStaticAssetUrl(selectedPage.cover.image)
+							? getDynamicAssets(selectedPage.cover.image)
 							: appBackground
 					"
 					:gradient="getGradient()"

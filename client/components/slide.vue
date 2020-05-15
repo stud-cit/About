@@ -11,7 +11,7 @@
 	>
 		<v-card link tile>
 			<v-img
-				:src="getStaticAssetUrl(page.cover && page.cover.image)"
+				:src="getDynamicAssets(page.cover && page.cover.image)"
 				:lazy-src="page.lazyImg"
 				:height="slideHeight"
 				:aspect-ratio="16 / 9"
