@@ -14,6 +14,8 @@ $ cp .env.development .env
 $ npm run client:start:dev
 ```
 
+### Admin path - /dashboard/auth
+
 #### If You are a Back-end developer:
 The following steps may cause difficulties, feel free to ask questions. You need a docker, installed dependencies and an environment file.
 ```bash
@@ -38,15 +40,8 @@ $ php artisan config:cache
 $ re-rerun migrations
 
 # Versions for back-end deploy
-   libs - fideloper/proxy: ^4.0,
-        fruitcake/laravel-cors: ^1.0,
-        laravel/framework: ^6.2,
-        laravel/passport: ^8.4,
-        laravel/tinker: ^2.0
-
-	HTTP - Apache_2.4-PHP_7.2-7.3-x64
-	PHP - 7.2-x64
-	MySQL - 5.6-x64
-	phpMyAdmin - 4.8.5
+	PHP - 7.2
+	MySQL - 5.6
+	Composer - 1.10
 ```
 
