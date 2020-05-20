@@ -35,8 +35,8 @@
 					</v-btn>
 					<v-textarea
 						rows="6"
-						counter="255"
-						maxlength="255"
+						counter="500"
+						maxlength="500"
 						label="Description"
 						:value="item.description"
 						:id="item.content_id.toString()"
