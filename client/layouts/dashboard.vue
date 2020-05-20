@@ -26,7 +26,7 @@
 
 			<v-row align="end" justify="start" class="fill-height">
 				<v-col md="2" cols="6">
-					<nuxt-link class="back-link" to="/dashboard">
+					<nuxt-link class="back-link" to="/">
 						StudCIT
 					</nuxt-link>
 				</v-col>
@@ -111,14 +111,14 @@
 				icon: 'mdi-view-dashboard-outline',
 				attr: { to: '/dashboard', exact: true },
 			},
-			{
-				icon: 'mdi-account-group-outline',
-				attr: { to: '/dashboard/accounts', exact: true },
-			},
-			{
-				icon: 'mdi-format-paint',
-				attr: { to: '/dashboard/setting', exact: true },
-			},
+			// {
+			// 	icon: 'mdi-account-group-outline',
+			// 	attr: { to: '/dashboard/accounts', exact: true },
+			// },
+			// {
+			// 	icon: 'mdi-format-paint',
+			// 	attr: { to: '/dashboard/setting', exact: true },
+			// },
 			{
 				icon: 'mdi-github-circle',
 				attr: { href: '//github.com/StudCIT/About', target: '_blank' },

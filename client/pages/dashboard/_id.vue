@@ -5,7 +5,7 @@
 				<content-cover
 					:src="getAssetWithFallback(item.cover && item.cover.image)"
 				>
-					<template #title>
+					<template #title v-if="$route.params.id !== 'about'">
 						<v-text-field
 							dark
 							label="Title"
@@ -16,7 +16,13 @@
 							@blur="onChangeTitleInput"
 						/>
 					</template>
-					<v-btn dark x-large icon @click="onChangeContentCover(item)">
+					<v-btn
+						dark
+						x-large
+						icon
+						@click="onChangeContentCover(item)"
+						v-if="$route.params.id !== 'about'"
+					>
 						<v-icon large>mdi-camera</v-icon>
 					</v-btn>
 				</content-cover>
