@@ -4,6 +4,7 @@ This project consists of two applications: SPA and API. Built on modern and prom
 #### If You are a Front-end developer:
 The following steps may cause difficulties, feel free to ask questions. You need a installed dependencies and an environment file.
 ```bash
+# Node version - v12.16.1
 # Install dependencies
 $ npm i
 # Install client deps
