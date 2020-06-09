@@ -2,7 +2,6 @@
 	"name": "StudCIT",
 	"version": "0.0.0",
 	"description": "Nuxt.js TypeScript project",
-	"author": "H6LSIS",
 	"private": true,
 	"scripts": {
 		"build": "nuxt-ts build",

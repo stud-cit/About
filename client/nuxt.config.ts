@@ -57,14 +57,8 @@ const config: Configuration = {
 	/*
 	 ** Axios module options
 	 */
-	axios: {},
-	proxy: {
-		'/api': {
-			target: `${configService.get('BASE_URL')}/`,
-			pathRewrite: {
-				'^/api': '',
-			},
-		},
+	axios: {
+		baseURL: `${configService.get('BASE_URL')}/`,
 	},
 	/*
 	 ** Authentication module options
