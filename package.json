@@ -10,7 +10,7 @@
 		"start:prod": "NODE_ENV=production nuxt-ts generate",
 		"generate": "nuxt-ts generate",
 		"prestart:prod": "rimraf dist .nuxt && npm run build",
-		"format": "prettier --write --vue-indent-script-and-style warn \"./**/*.{js,ts,vue,json}\"",
+		"prettier": "prettier --write --vue-indent-script-and-style warn \"./**/*.{js,ts,vue}\"",
 		"lint": "tslint -p tsconfig.json -c tslint.json"
 	},
 	"repository": {

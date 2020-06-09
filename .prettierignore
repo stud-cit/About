@@ -1,0 +1,10 @@
+# Ignore vscode settings
+.vscode/
+
+# Ignore folder
+dist/
+.nuxt/
+
+# Ignore specific files
+commitlint.config.js
+stylelint.config.js
