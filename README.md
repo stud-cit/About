@@ -7,8 +7,6 @@ The following steps may cause difficulties, feel free to ask questions. You need
 # Node version - v12.16.1
 # Install dependencies
 $ npm i
-# Install client deps
-$ cd client && npm i
 # Clone env.development to .env
 $ cp .env.development .env
 # Run the project in development mode

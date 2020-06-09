@@ -35,7 +35,6 @@ build/Release
 
 # Dependency directories
 node_modules/
-client/node_modules/
 jspm_packages/
 
 # TypeScript v1 declaration files
@@ -74,4 +73,3 @@ dist
 
 # Compiled documentation
 public/
-server/.env.production

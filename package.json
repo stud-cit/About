@@ -1,24 +1,70 @@
 {
-  "name": "about",
-  "version": "1.0.0",
-  "description": "This project consists of two applications: SPA and API. Built on modern and promising technology. The client part is a bunch of Nuxt.js, Vuetify, and other modules ( seriously, there are a lot of them :3 ). The server part is a bunch of Nest.js + TypeORM ( MySQL ) + Swagger + Multer. The impetus for the creation of this project was the lack of our own website from our organization.",
-  "main": "commitlint.config.js",
-  "scripts": {
-    "start:dev": "cd ./client && npm run start:dev"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/StudCIT/About.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/StudCIT/About/issues"
-  },
-  "homepage": "https://github.com/StudCIT/About#readme",
-  "devDependencies": {
-    "@commitlint/config-conventional": "^8.2.0",
-    "commitlint": "^8.2.0",
-    "husky": "^3.1.0"
-  }
+	"name": "StudCIT",
+	"version": "1.0.0",
+	"description": "This project consists of two applications: SPA and API. Built on modern and promising technology. The client part is a bunch of Nuxt.js, Vuetify, and other modules ( seriously, there are a lot of them :3 ). The server part is a bunch of Nest.js + TypeORM ( MySQL ) + Swagger + Multer. The impetus for the creation of this project was the lack of our own website from our organization.",
+	"main": "commitlint.config.js",
+	"scripts": {
+		"build": "nuxt-ts build",
+		"start": "nuxt-ts start",
+		"start:dev": "nuxt-ts",
+		"start:prod": "NODE_ENV=production nuxt-ts generate",
+		"generate": "nuxt-ts generate",
+		"prestart:prod": "rimraf dist .nuxt && npm run build",
+		"format": "prettier --write --vue-indent-script-and-style warn \"./**/*.{js,ts,vue,json}\"",
+		"lint": "tslint -p tsconfig.json -c tslint.json"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/StudCIT/About.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/StudCIT/About/issues"
+	},
+	"homepage": "http://studcit.sumdu.edu.ua",
+	"dependencies": {
+		"@mdi/font": "^4.3.95",
+		"@nuxt/typescript-runtime": "^0.1.5",
+		"@nuxtjs/auth": "^4.8.2",
+		"@nuxtjs/axios": "^5.6.0",
+		"@nuxtjs/proxy": "^1.3.3",
+		"dotenv": "^8.1.0",
+		"nuxt": "^2.9.2",
+		"nuxt-i18n": "^6.1.3",
+		"nuxt-validate": "^1.0.1",
+		"vee-validate": "^2.2.12",
+		"vue-awesome-swiper": "^3.1.3",
+		"vue-pose": "^0.5.1",
+		"vue-property-decorator": "^8.2.2",
+		"vue-responsive-video-background-player": "^1.0.4",
+		"vuetify": "^2.0.15",
+		"vuetify-loader": "^1.3.0",
+		"vuex": "^3.1.1",
+		"vuex-class": "^0.3.2",
+		"vuex-smart-module": "^0.3.2"
+	},
+	"devDependencies": {
+		"@nuxt/typescript-build": "^0.2.6",
+		"@types/dotenv": "^6.1.1",
+		"@types/fibers": "0.0.30",
+		"@types/sass": "^1.16.0",
+		"deepmerge": "^4.0.0",
+		"fibers": "^4.0.1",
+		"node-sass": "^4.12.0",
+		"nuxt-ts": "^2.8.1",
+		"prettier": "^1.19.1",
+		"sass": "^1.22.10",
+		"sass-loader": "^7.3.1",
+		"stylelint": "^12.0.0",
+		"stylelint-config-recommended": "^3.0.0",
+		"stylelint-processor-html": "^1.0.0",
+		"stylelint-webpack-plugin": "^1.1.2",
+		"terser-webpack-plugin": "^2.2.1",
+		"tslint": "^5.20.0",
+		"typescript": "^3.6.3",
+		"@commitlint/config-conventional": "^8.2.0",
+		"commitlint": "^8.2.0",
+		"husky": "^3.1.0"
+	}
 }
