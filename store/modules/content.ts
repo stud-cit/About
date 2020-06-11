@@ -72,7 +72,7 @@ class ContentActions extends Actions<
 		};
 
 		return await this.store.$axios
-			.$post('/api/admin/content', contentToCreate)
+			.$post('admin/content', contentToCreate)
 			.then(this.mutations.setContentFromServer)
 			.catch(this.mutations.setError);
 	}
@@ -81,21 +81,21 @@ class ContentActions extends Actions<
 		params?: ContentFiltersModel,
 	): Promise<void> {
 		return await this.store.$axios
-			.$get('/api/content', { params })
+			.$get('content', { params })
 			.then(this.mutations.setContents)
 			.catch(this.mutations.setError);
 	}
 
 	public async selectAdminContent(params?: ContentFiltersModel): Promise<void> {
 		return await this.store.$axios
-			.$get('/api/admin/content', { params })
+			.$get('admin/content', { params })
 			.then(this.mutations.setContents)
 			.catch(this.mutations.setError);
 	}
 
 	public async updateContent({ id, lang, ...data }): Promise<void> {
 		return await this.store.$axios
-			.$post(`/api/admin/content/${lang}/${id}`, data)
+			.$post(`admin/content/${lang}/${id}`, data)
 			.then(this.mutations.setContentFromServer)
 			.catch(this.mutations.setError);
 	}
@@ -111,7 +111,7 @@ class ContentActions extends Actions<
 	}): Promise<void> {
 		const headers = { 'Content-Type': 'multipart/form-data' };
 		return await this.store.$axios.$post(
-			`/api/admin/content/${lang}/${id}`,
+			`admin/content/${lang}/${id}`,
 			formData,
 			{ headers },
 		);
@@ -119,7 +119,7 @@ class ContentActions extends Actions<
 
 	public async deleteContent({ content_id }: ContentEntity): Promise<void> {
 		return await this.store.$axios
-			.$delete(`/api/admin/content/${content_id}`)
+			.$delete(`admin/content/${content_id}`)
 			.then(this.mutations.setContent)
 			.catch(this.mutations.setError);
 	}

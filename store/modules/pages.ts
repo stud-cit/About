@@ -98,7 +98,7 @@ class PageActions extends Actions<
 
 	public async createPage(data: PageEntity): Promise<void> {
 		return await this.store.$axios
-			.$post('/api/page', data)
+			.$post('page', data)
 			.then(this.mutations.setPages)
 			.catch(this.mutations.setError);
 	}
@@ -112,37 +112,35 @@ class PageActions extends Actions<
 		formData: any;
 	}): Promise<void> {
 		const headers = { 'Content-Type': 'multipart/form-data' };
-		return await this.store.$axios.$post(
-			`/api/admin/page/${lang}/${id}`,
-			formData,
-			{ headers },
-		);
+		return await this.store.$axios.$post(`admin/page/${lang}/${id}`, formData, {
+			headers,
+		});
 	}
 
 	public async selectPages(): Promise<void> {
 		return await this.store.$axios
-			.$get('/api/page')
+			.$get('page')
 			.then(this.mutations.setPages)
 			.catch(this.mutations.setError);
 	}
 
 	public async selectPage(params?: any): Promise<void> {
 		return await this.store.$axios
-			.$get('/api/page', { params })
+			.$get('page', { params })
 			.then((request: any) => this.mutations.setPage(request.data))
 			.catch(this.mutations.setError);
 	}
 
 	public async updatePage({ lang, id, ...data }): Promise<void> {
 		return await this.store.$axios
-			.$post(`/api/admin/page/${lang}/${id}`, data)
+			.$post(`admin/page/${lang}/${id}`, data)
 			.then(this.mutations.setPage)
 			.catch(this.mutations.setError);
 	}
 
 	public async deletePage({ page_id }: PageEntity): Promise<void> {
 		await this.store.$axios
-			.$delete('/api/page', { params: { page_id } })
+			.$delete('page', { params: { page_id } })
 			.then(this.mutations.setPage)
 			.catch(this.mutations.setError);
 	}

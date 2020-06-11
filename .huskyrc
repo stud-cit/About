@@ -1,6 +1,6 @@
 {
   "hooks": {
-    "pre-commit": "cd client && npm run format && git add .",
+    "pre-commit": "npm run prettier && git add .",
 		"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
   }
 }
