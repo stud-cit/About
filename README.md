@@ -10,7 +10,7 @@ $ npm i
 # Clone env.development to .env
 $ cp .env.development .env
 # Run the project in development mode
-$ npm run client:start:dev
+$ npm run start:dev
 ```
 
 ### Admin path - /dashboard/auth
@@ -26,6 +26,8 @@ $ Create database studcit
 $ Copy and fill env.example files with appropriate data
 # Install dependencies
 $ composer install
+# Link storage
+$ php artisan storage:link
 # Migrate db
 $ php artisan migrate:fresh —seed
 # Install passport
