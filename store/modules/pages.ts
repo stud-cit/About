@@ -125,6 +125,11 @@ class PageActions extends Actions<
 	}
 
 	public async selectPage(params?: any): Promise<void> {
+		// remove slashes from link
+		if (params.link) {
+			params.link = params.link.replace('/', '');
+		}
+
 		return await this.store.$axios
 			.$get('page', { params })
 			.then((request: any) => this.mutations.setPage(request.data))
