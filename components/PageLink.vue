@@ -1,5 +1,10 @@
 <template>
-	<v-btn v-bind="{ ...$attrs, ...page.attr }" v-on="$listeners" class="mx-3">
+	<v-btn
+		v-bind="{ ...$attrs, ...page.attr }"
+		@click="page.click ? page.click() : null"
+		v-on="$listeners"
+		class="mx-3"
+	>
 		<v-icon v-html="page.icon" />
 	</v-btn>
 </template>

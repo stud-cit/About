@@ -20,8 +20,8 @@
 				/>
 			</template>
 
-			<v-app-bar-nav-icon @click="logout">
-				<v-icon>mdi-logout</v-icon>
+			<v-app-bar-nav-icon to="/dashboard" exact>
+				<v-icon>mdi-arrow-left</v-icon>
 			</v-app-bar-nav-icon>
 
 			<v-row align="end" justify="start" class="fill-height">
@@ -87,6 +87,7 @@
 		icon: string;
 		title?: string;
 		attr?: PagesAttr;
+		click?: () => void;
 	}
 
 	@Component({
@@ -108,8 +109,8 @@
 		private appBackground: string = '';
 		private pages: Pages[] = [
 			{
-				icon: 'mdi-view-dashboard-outline',
-				attr: { to: '/dashboard', exact: true },
+				icon: 'mdi-github-circle',
+				attr: { href: '//github.com/StudCIT/About', target: '_blank' },
 			},
 			// {
 			// 	icon: 'mdi-account-group-outline',
@@ -120,8 +121,9 @@
 			// 	attr: { to: '/dashboard/setting', exact: true },
 			// },
 			{
-				icon: 'mdi-github-circle',
-				attr: { href: '//github.com/StudCIT/About', target: '_blank' },
+				icon: 'mdi-logout',
+				attr: {},
+				click: this.logout,
 			},
 		];
 
