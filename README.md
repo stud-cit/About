@@ -24,6 +24,8 @@ $ git clone https://bitbucket.org/dkd13/studcit-backend/src/master/
 $ Run openserver
 $ Create database studcit
 $ Copy and fill env.example files with appropriate data
+# Generate key
+$ php artisan key:generate
 # Install dependencies
 $ composer install
 # Link storage
