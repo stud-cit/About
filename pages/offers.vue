@@ -35,8 +35,7 @@
 					>
 						<v-col
 							cols="12"
-							xs="8"
-							md="8"
+							md="9"
 							lg="8"
 							class="mb-12 mb-md-0 px-0"
 							:class="{ 'representation-image': isMdAndDown }"
@@ -50,7 +49,8 @@
 
 						<v-col
 							cols="12"
-							md="5"
+							md="4"
+							lg="5"
 							class="representation-card px-0"
 							:class="
 								index % 2 === 0
@@ -59,7 +59,7 @@
 							"
 						>
 							<RepresentationContent>
-								<v-card class="pa-4 px-lg-8 py-lg-12">
+								<v-card class="px-4 px-sm-3 py-5 px-lg-8 py-lg-12">
 									<v-card-title
 										class="bold-preview card-title mb-3"
 										:style="getCardTitleFont"

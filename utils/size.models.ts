@@ -95,13 +95,13 @@ export default {
 	cardTitleFont: {
 		xs: 20,
 		sm: 20,
-		md: 20,
+		md: 22,
 		lg: 30,
 	},
 	cardContentFont: {
-		xs: 12,
+		xs: 14,
 		sm: 18,
-		md: 12,
+		md: 16,
 		lg: 22,
 	},
 	staffNameFont: {
