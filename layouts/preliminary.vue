@@ -150,7 +150,7 @@
 			position: sticky
 			height: 110px !important
 			margin-top: 10px !important
-			background: rgba(250, 250, 250, 0.85)
+			background: rgba(255, 255, 255, 1) !important
 
 	.locale-button
 		width: 52px
