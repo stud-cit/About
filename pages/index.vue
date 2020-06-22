@@ -42,9 +42,7 @@
 		</v-row>
 		<v-row class="logo-main">
 			<v-col cols="12" class="px-8 py-3 d-none d-md-flex">
-				<router-link to="/dashboard/auth">
-					<v-img width="110px" src="/logo-main-page.svg" />
-				</router-link>
+				<v-img width="110px" src="/logo-main-page.svg" />
 			</v-col>
 		</v-row>
 	</v-container>
