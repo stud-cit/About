@@ -22,7 +22,7 @@
 						<v-card dark flat color="transparent">
 							<v-list-item>
 								<v-list-item-content v-if="!isMdAndUp">
-									<a :href="project.link">
+									<a :href="project.description">
 										<v-list-item-title
 											v-text="project.title"
 											class="font-weight-medium text-underline text-wrap text-center portfolio-link"
