@@ -41,9 +41,9 @@
 			</v-col>
 		</v-row>
 		<v-row class="logo-main">
-			<v-col cols="12" class="px-8 d-none d-md-flex">
+			<v-col cols="12" class="px-8 py-3 d-none d-md-flex">
 				<router-link to="/dashboard/auth">
-					<v-img src="/logo-main-page.svg" />
+					<v-img width="110px" src="/logo-main-page.svg" />
 				</router-link>
 			</v-col>
 		</v-row>
@@ -126,6 +126,4 @@
 	.logo-main
 		position: fixed
 		bottom: 0
-		height: 100px
-		width: auto
 </style>
