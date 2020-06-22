@@ -12,7 +12,7 @@
 					cols="12"
 					sm="10"
 					md="10"
-					lg="9"
+					lg="8"
 					class="swiper-slide"
 					@click="() => choosePage(page, i)"
 				>
@@ -38,6 +38,13 @@
 					:page="page ? page : {}"
 					:choosedSlide="choosedSlide"
 				/>
+			</v-col>
+		</v-row>
+		<v-row class="logo-main">
+			<v-col cols="12" class="px-8 d-none d-md-flex">
+				<router-link to="/dashboard/auth">
+					<v-img src="/logo-main-page.svg" />
+				</router-link>
 			</v-col>
 		</v-row>
 	</v-container>
@@ -115,4 +122,10 @@
 	.swiper-active
 		transform: translateX(0%)
 		transition: 2s
+
+	.logo-main
+		position: fixed
+		bottom: 0
+		height: 100px
+		width: auto
 </style>

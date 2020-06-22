@@ -100,7 +100,7 @@
 			} else if (this.isMdAndDown) {
 				result = 45;
 			} else {
-				result = 65;
+				result = 55;
 			}
 
 			return `${result}vh`;
