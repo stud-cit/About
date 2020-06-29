@@ -69,27 +69,38 @@
 				<v-icon>mdi-plus</v-icon>
 			</v-btn>
 		</v-fab-transition>
+		<v-dialog v-model="loading">
+			<v-row justify="center" align="center">
+				<v-progress-circular
+					indeterminate
+					size="200"
+					width="8"
+					color="light-blue"
+				>
+					<v-avatar width="192px" height="192px">
+						<img src="/logo-admin.jpg" />
+					</v-avatar>
+				</v-progress-circular>
+			</v-row>
+		</v-dialog>
 	</v-app>
 </template>
 
 <script lang="ts">
 	import { Component, Vue } from 'vue-property-decorator';
 	import { Getter, Action } from 'vuex-class';
-
 	interface PagesAttr {
 		to?: string;
 		exact?: boolean;
 		href?: string;
 		target?: string;
 	}
-
 	export interface Pages {
 		icon: string;
 		title?: string;
 		attr?: PagesAttr;
 		click?: () => void;
 	}
-
 	@Component({
 		middleware: ['auth'],
 		components: {
@@ -99,14 +110,15 @@
 	export default class DashboardLayout extends Vue {
 		@Getter('ContentModule/getContent') private readonly content;
 		@Getter('PageModule/getPage') private readonly selectedPage;
-
 		@Action('ContentModule/createContent') private readonly createContent;
 		@Action('ContentModule/selectAdminContent')
 		private readonly selectAdminContent;
-
 		private drawer: boolean = false;
 		private changeLocale: boolean = false;
 		private appBackground: string = '';
+
+		private loading: boolean = false;
+
 		private pages: Pages[] = [
 			{
 				icon: 'mdi-github-circle',
@@ -126,27 +138,23 @@
 				click: this.logout,
 			},
 		];
-
 		private async createSmth() {
+			this.loading = true;
 			if (!this.$route.params.id) return;
 			const data = { id: this.selectedPage.page_id, lang: this.$i18n.locale };
-
 			await this.createContent(data);
 			await this.selectAdminContent({ page: data.id, lang: this.$i18n.locale });
+			setTimeout(() => (this.loading = false), 500);
 		}
-
 		private availableLocales() {
 			return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale);
 		}
-
 		private getGradient() {
 			return `to top right, rgba(81, 176, 255, .7), rgba(63, 81, 181, .7)`;
 		}
-
 		get getIsShowAddEntity() {
 			return this.$route.params.id;
 		}
-
 		private logout() {
 			return this.$auth.logout();
 		}
@@ -157,4 +165,7 @@
 		text-decoration: none
 		color: #FFF!important
 		background: none!important
+
+	.v-dialog
+		box-shadow: none !important
 </style>

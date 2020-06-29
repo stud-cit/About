@@ -9,8 +9,9 @@
 						<v-text-field
 							dark
 							label="Title"
-							counter="255"
-							maxlength="255"
+							counter="150"
+							maxlength="150"
+							:rules="[rules.required]"
 							:value="item.title"
 							:id="item.content_id.toString()"
 							@blur="onChangeTitleInput"
@@ -43,6 +44,7 @@
 						rows="6"
 						counter="500"
 						maxlength="500"
+						:rules="[rules.required]"
 						label="Description"
 						:value="item.description"
 						:id="item.content_id.toString()"
@@ -59,6 +61,22 @@
 			style="display:none"
 			@change="onFileInputChange()"
 		/>
+		<div></div>
+
+		<v-dialog v-model="loading">
+			<v-row justify="center" align="center">
+				<v-progress-circular
+					indeterminate
+					size="200"
+					width="8"
+					color="light-blue"
+				>
+					<v-avatar width="192px" height="192px">
+						<img src="/logo-admin.jpg" />
+					</v-avatar>
+				</v-progress-circular>
+			</v-row>
+		</v-dialog>
 	</v-row>
 </template>
 
@@ -104,6 +122,8 @@
 		@Action('ContentModule/deleteContent') private readonly deleteContent;
 		@Action('StorageModule/createStore') private readonly createStore;
 
+		private loading: boolean = false;
+
 		private async onChangeTitleInput({ target }) {
 			await this.updateContent({
 				title: target.value,
@@ -126,11 +146,13 @@
 		}
 
 		private async onChangeDelete(item) {
+			this.loading = true;
 			await this.deleteContent(item);
 			await this.selectAdminContent({
 				page: this.page.page_id,
 				lang: this.$i18n.locale,
 			});
+			setTimeout(() => (this.loading = false), 500);
 		}
 
 		private async onFileInputChange(fieldName) {
@@ -156,5 +178,8 @@
 			});
 			this.$refs.file.value = null;
 		}
+		private rules = {
+			required: value => !!value || 'Required.',
+		};
 	}
 </script>

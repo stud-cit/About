@@ -14,8 +14,9 @@
 						<v-text-field
 							dark
 							label="Title"
-							counter="255"
-							maxlength="255"
+							counter="15"
+							maxlength="15"
+							:rules="[rules.require, rules.minTitle]"
 							:id="item.page_id.toString()"
 							:value="item.title"
 							@blur="onChangeTitleInput"
@@ -57,8 +58,9 @@
 						<v-col cols="12">
 							<v-text-field
 								label="Name"
-								counter="255"
-								maxlength="255"
+								counter="100"
+								maxlength="100"
+								:rules="[rules.required, rules.minNameDescription]"
 								:id="item.page_id.toString()"
 								:value="item.name"
 								@blur="onChangeNameInput"
@@ -77,10 +79,11 @@
 							/>
 						</v-col> -->
 						<v-col cols="12">
-							<v-textarea
+							<v-text-field
 								rows="6"
-								counter="255"
-								maxlength="255"
+								counter="100"
+								maxlength="100"
+								:rules="[rules.required, rules.minNameDescription]"
 								label="Description"
 								:value="item.description"
 								:id="item.page_id.toString()"
@@ -184,6 +187,12 @@
 
 			await this.selectPages();
 		}
+		private rules = {
+			required: value => !!value || 'Required.',
+			minTitle: value => (value && value.length >= 4) || 'Min 4 characters',
+			minNameDescription: value =>
+				(value && value.length >= 20) || 'Min 20 characters',
+		};
 	}
 </script>
 
