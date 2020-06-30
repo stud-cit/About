@@ -22,24 +22,33 @@
 							@blur="onChangeTitleInput"
 						/>
 					</template>
-					<v-btn
-						dark
-						icon
-						large
-						replace
-						:to="
-							($i18n.locale !== 'en' ? '/' + $i18n.locale : '') +
-								'/dashboard/' +
-								item.link
-						"
-						@click="setPlainPage(item)"
-					>
-						<v-icon medium>mdi-open-in-app</v-icon>
-					</v-btn>
+					<v-row align="center" justify="center">
+						<v-btn
+							dark
+							icon
+							large
+							replace
+							:to="
+								($i18n.locale !== 'en' ? '/' + $i18n.locale : '') +
+									'/dashboard/' +
+									item.link
+							"
+							@click="setPlainPage(item)"
+						>
+							<v-icon medium>mdi-open-in-app</v-icon>
+						</v-btn>
 
-					<v-btn dark large icon @click="onChangeContentCover(item)">
-						<v-icon medium>mdi-camera</v-icon>
-					</v-btn>
+						<v-btn dark large icon @click="onChangeContentCover(item)">
+							<v-icon medium>mdi-camera</v-icon>
+						</v-btn>
+					</v-row>
+					<v-row
+						justify="center"
+						class="error-position"
+						v-show="item.link == errorFile"
+					>
+						<label> Please choose .jpeg or .mp4</label>
+					</v-row>
 				</content-cover>
 				<v-card-text style="position: relative">
 					<!-- <v-btn
@@ -133,6 +142,8 @@
 		@Action('PageModule/updatePageCover') private readonly updatePageCover;
 		@Action('PageModule/deletePage') private readonly deletePage;
 
+		private errorFile: string = '';
+
 		private onChangeLinkInput({ target }): void {
 			const link = target.value;
 			this.updatePage({ link, id: target.id, lang: this.$i18n.locale });
@@ -173,8 +184,11 @@
 			if (!file) return;
 
 			if (!allowedFileExt.includes(file.type)) {
-				alert('invalid file type. Supported file types: jpg and mp4');
+				// alert('invalid file type. Supported file types: jpg and mp4');
+				this.errorFile = this.page.link;
 				return;
+			} else {
+				this.errorFile = '';
 			}
 			const fileKey = file.type === 'image/jpeg' ? 'image' : 'video';
 			formData.append(fileKey, file);
@@ -199,4 +213,9 @@
 <style lang="sass">
 	.empty-block
 		height: 66px
+
+	.error-position
+		position: absolute
+		bottom: 30%
+		color: #FF0000
 </style>

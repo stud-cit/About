@@ -26,6 +26,13 @@
 					>
 						<v-icon large>mdi-camera</v-icon>
 					</v-btn>
+					<v-row
+						justify="center"
+						class="error-position"
+						v-show="item.content_id == errorFile"
+					>
+						<label> Please choose .jpeg </label>
+					</v-row>
 				</content-cover>
 				<v-card-text style="position: relative">
 					<v-btn
@@ -123,6 +130,7 @@
 		@Action('StorageModule/createStore') private readonly createStore;
 
 		private loading: boolean = false;
+		private errorFile: string = '';
 
 		private async onChangeTitleInput({ target }) {
 			await this.updateContent({
@@ -161,8 +169,11 @@
 			if (!file) return;
 
 			if (file.type !== 'image/jpeg') {
-				alert('invalid file type. Supported file types: jpg');
+				// alert('invalid file type. Supported file types: jpg');
+				this.errorFile = this.content.content_id;
 				return;
+			} else {
+				this.errorFile = '';
 			}
 			formData.append('image', file);
 
@@ -183,3 +194,9 @@
 		};
 	}
 </script>
+<style lang="sass">
+	.error-position
+		position: absolute
+		bottom: 30%
+		color: #FF0000
+</style>
