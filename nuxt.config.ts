@@ -84,7 +84,7 @@ const config: Configuration = {
 			},
 		},
 		redirect: {
-			login: '/',
+			login: '/dashboard/auth',
 			logout: '/',
 			home: '/dashboard',
 		},
