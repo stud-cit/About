@@ -18,7 +18,7 @@
 							:class="isXsOnly ? 'slide-container-mobile' : 'slide-container'"
 						>
 							<PreviewPage
-								:title="$t('common.companyName')"
+								:title="page.name"
 								:description="page ? page.description : ''"
 								:icon-down="false"
 							/>
