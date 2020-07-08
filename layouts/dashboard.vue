@@ -116,7 +116,7 @@
 		private drawer: boolean = false;
 		private changeLocale: boolean = false;
 		private appBackground: string = '';
-		private dashboardPage: boolean = true;
+		private dashboardPage: boolean = false;
 
 		private loading: boolean = false;
 
