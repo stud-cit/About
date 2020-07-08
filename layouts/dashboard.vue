@@ -8,6 +8,7 @@
 			shrink-on-scroll
 			elevate-on-scroll
 			fade-img-on-scroll
+			class="header-height"
 		>
 			<template v-slot:img>
 				<v-img
@@ -24,14 +25,14 @@
 				<v-icon>mdi-arrow-left</v-icon>
 			</v-app-bar-nav-icon>
 
-			<v-row align="end" justify="start" class="fill-height">
-				<v-col md="2" cols="6">
+			<v-row align="center" justify="start" class="ml-3">
+				<v-col md="2" sm="4" cols="6" class="py-1 mr-2">
 					<nuxt-link class="back-link" to="/">
 						StudCIT
 					</nuxt-link>
 				</v-col>
 
-				<v-col md="2" cols="1" class="my-n1">
+				<v-col md="2" cols="1" class="my-n1 py-1">
 					<v-speed-dial
 						v-model="changeLocale"
 						direction="right"
@@ -173,6 +174,12 @@
 	}
 </script>
 <style lang="sass">
+	.header-height
+		height: 56px !important
+
+		.v-toolbar__content
+			height: 56px !important
+
 	.back-link
 		text-decoration: none
 		color: #FFF!important
