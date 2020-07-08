@@ -160,7 +160,7 @@
 		private logout() {
 			return this.$auth.logout();
 		}
-		updated() {
+		private onCheckCurrentPage() {
 			if (
 				(this.$i18n.locale !== 'en' ? '/' + this.$i18n.locale : '') +
 					'/dashboard' ===
@@ -170,6 +170,12 @@
 			} else {
 				this.dashboardPage = false;
 			}
+		}
+		mounted() {
+			this.onCheckCurrentPage();
+		}
+		updated() {
+			this.onCheckCurrentPage();
 		}
 	}
 </script>
