@@ -20,7 +20,7 @@
 				/>
 			</template>
 
-			<v-app-bar-nav-icon to="/dashboard" exact>
+			<v-app-bar-nav-icon to="/dashboard" v-show="!dashboardPage">
 				<v-icon>mdi-arrow-left</v-icon>
 			</v-app-bar-nav-icon>
 
@@ -116,6 +116,7 @@
 		private drawer: boolean = false;
 		private changeLocale: boolean = false;
 		private appBackground: string = '';
+		private dashboardPage: boolean = true;
 
 		private loading: boolean = false;
 
@@ -157,6 +158,17 @@
 		}
 		private logout() {
 			return this.$auth.logout();
+		}
+		updated() {
+			if (
+				(this.$i18n.locale !== 'en' ? '/' + this.$i18n.locale : '') +
+					'/dashboard' ===
+				this.$route.path
+			) {
+				this.dashboardPage = true;
+			} else {
+				this.dashboardPage = false;
+			}
 		}
 	}
 </script>
