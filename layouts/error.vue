@@ -86,11 +86,12 @@
 
 		.text
 			position: absolute
-			transform: rotate(-90deg)
+			transform: rotate(-90deg) translateX(50%)
 			font-size: 60px
-			right: -15rem
+			right: 3rem
 			white-space: nowrap
 			top: 45%
+			transform-origin: right
 
 	.link-mobile
 		background: #F2F2F2
@@ -108,6 +109,7 @@
 			font-size: 5vw
 			left: 50%
 			transform: translate(-50%)
+			white-space: nowrap
 
 	.nuxt-link-active
 
