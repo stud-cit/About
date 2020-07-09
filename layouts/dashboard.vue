@@ -27,9 +27,12 @@
 
 			<v-row align="center" justify="start" class="ml-3">
 				<v-col md="2" sm="4" cols="6" class="py-1 mr-2">
-					<nuxt-link class="back-link" to="/">
+					<div
+						class="back-link"
+						@click="$router.push(localePath({ name: 'index' }))"
+					>
 						StudCIT
-					</nuxt-link>
+					</div>
 				</v-col>
 
 				<v-col md="2" cols="1" class="my-n1 py-1">
@@ -190,6 +193,8 @@
 		text-decoration: none
 		color: #FFF!important
 		background: none!important
+		display: flex
+		cursor: pointer
 
 	.v-dialog
 		box-shadow: none !important

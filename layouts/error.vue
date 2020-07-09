@@ -7,9 +7,13 @@
 			</div>
 		</section>
 		<section v-else>{{ $t('errors.errorOccured') }}</section>
-		<nuxt-link to="/" :class="isMdAndUp ? 'link-full' : 'link-mobile'">
+		<div
+			@click="$router.push(localePath({ name: 'index' }))"
+			:class="isMdAndUp ? 'link-full' : 'link-mobile'"
+			class="home-page"
+		>
 			<div class="text">{{ $t('errors.returnToHome') }}</div>
-		</nuxt-link>
+		</div>
 	</v-container>
 </template>
 
@@ -111,7 +115,9 @@
 			transform: translate(-50%)
 			white-space: nowrap
 
-	.nuxt-link-active
+	.home-page
+		display: flex
+		cursor: pointer
 
 		&:hover
 			background: #C1C1C1
