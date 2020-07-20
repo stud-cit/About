@@ -15,6 +15,7 @@
 				:lazy-src="page.lazyImg"
 				:height="slideHeight"
 				:aspect-ratio="16 / 9"
+				class="slide-blur"
 			>
 				<v-card-title
 					class="white--text fill-height"
@@ -121,3 +122,9 @@
 		}
 	}
 </script>
+<style lang="sass">
+	.slide-blur
+
+		.v-responsive__content
+			background-color: rgba(0,0,0,0.5)
+</style>
