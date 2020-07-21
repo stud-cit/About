@@ -253,14 +253,17 @@
 	.card-img-hover
 		border-radius: 50px !important
 		filter: brightness(35%)
-		transition: 1s
+		transition: 0.5s
+
+		.card-img
+			transition: none !important
 
 	.card-img-hover:hover
 		z-index: 10
 		transform: scale(1.15)
 		filter: brightness(100%)
 		border-radius: 0 !important
-		transition: 1s
+		transition: 0.5s
 
 		~ .card-addition
 
@@ -274,6 +277,8 @@
 
 			.employee-position-short
 				opacity: 0
+
+
 
 	.staff-slider
 		height: 70vh
