@@ -37,7 +37,7 @@
 											class="font-weight-bold ma-2 white--text text-uppercase"
 											:style="getSlideTitleFont"
 										>
-											{{ $t('common.companyName') }}
+											{{ page.name }}
 										</div>
 										<div
 											class="px-xl-12 px-lg-8 px-md-8 px-sm-8 px-xs-8 py-xl-12 py-lg-2 py-md-8 py-sm-8 px-3 py-4 slide-content font-weight-light"
