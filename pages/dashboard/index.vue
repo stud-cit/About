@@ -69,7 +69,7 @@
 								label="Name"
 								counter="100"
 								maxlength="100"
-								:rules="[rules.required, rules.minNameDescription]"
+								:rules="[rules.required]"
 								:id="item.page_id.toString()"
 								:value="item.name"
 								@blur="onChangeNameInput"
@@ -90,7 +90,7 @@
 								rows="6"
 								counter="100"
 								maxlength="100"
-								:rules="[rules.required, rules.minNameDescription]"
+								:rules="[rules.required]"
 								label="Description"
 								:value="item.description"
 								:id="item.page_id.toString()"
@@ -202,8 +202,6 @@
 		private rules = {
 			required: value => !!value || 'Required.',
 			minTitle: value => (value && value.length >= 4) || 'Min 4 characters',
-			minNameDescription: value =>
-				(value && value.length >= 20) || 'Min 20 characters',
 		};
 	}
 </script>
