@@ -1,32 +1,33 @@
 <template>
 	<v-container fluid class="pa-0" id="home" :class="{ 'mb-9 pb-9': isXsOnly }">
-		<div
-			v-if="isSmAndUp"
-			v-swiper:mySwiper="swiperOption"
-			class="swiper-inactive d-flex"
-			:class="isShowSwiper && 'swiper-active'"
-		>
-			<div class="swiper-wrapper">
-				<v-col
-					v-for="(page, i) in pages[$i18n.locale]"
-					:key="i"
-					cols="12"
-					sm="10"
-					md="10"
-					lg="8"
-					class="swiper-slide"
-					@click="() => choosePage(page, i)"
-				>
-					<Slide
-						:isStartAnimation="isStartAnimation"
-						:index="i"
-						:page="page ? page : {}"
-						:choosedSlide="choosedSlide"
-					/>
-				</v-col>
+		<div v-if="isSmAndUp">
+			<div
+				v-swiper:mySwiper="swiperOption"
+				class="swiper-inactive d-flex"
+				:class="isShowSwiper && 'swiper-active'"
+			>
+				<div class="swiper-wrapper">
+					<v-col
+						v-for="(page, i) in pages[$i18n.locale]"
+						:key="i"
+						cols="12"
+						sm="10"
+						md="10"
+						lg="8"
+						class="swiper-slide"
+						@click="() => choosePage(page, i)"
+					>
+						<Slide
+							:isStartAnimation="isStartAnimation"
+							:index="i"
+							:page="page ? page : {}"
+							:choosedSlide="choosedSlide"
+						/>
+					</v-col>
+				</div>
 			</div>
 		</div>
-		<v-row class="d-flex" v-if="!isSmAndUp" justify="center">
+		<v-row class="d-flex" v-else justify="center">
 			<v-col
 				v-for="(page, i) in pages[$i18n.locale]"
 				:key="i"
@@ -96,7 +97,7 @@
 
 		choosePage(page, i: number): void {
 			this.choosedSlide = i;
-			// this.setPage(page);
+			this.setPage(page);
 		}
 
 		get isStartAnimation() {
