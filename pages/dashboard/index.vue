@@ -16,8 +16,7 @@
 							label="Title"
 							counter="15"
 							maxlength="15"
-							:rules="[rules.require, rules.minTitle]"
-							:id="item.page_id.toString()"
+							:rules="[rules.required, rules.minTitle]"
 							:value="item.title"
 							@blur="onChangeTitleInput"
 						/>
@@ -51,18 +50,6 @@
 					</v-row>
 				</content-cover>
 				<v-card-text style="position: relative">
-					<!-- <v-btn
-						absolute
-						dark
-						fab
-						top
-						right
-						small
-						color="red"
-						@click="onChangeDelete(item)"
-					>
-						<v-icon>mdi-delete-outline</v-icon>
-					</v-btn> -->
 					<v-row dense>
 						<v-col cols="12">
 							<v-text-field
@@ -70,21 +57,10 @@
 								counter="100"
 								maxlength="100"
 								:rules="[rules.required]"
-								:id="item.page_id.toString()"
 								:value="item.name"
 								@blur="onChangeNameInput"
 							/>
 						</v-col>
-						<!-- <v-col xs="12" sm="6" cols="12">
-							<v-text-field
-								label="Link"
-								counter="255"
-								maxlength="255"
-								:id="item.page_id.toString()"
-								:value="item.link"
-								@blur="onChangeLinkInput"
-							/>
-						</v-col> -->
 						<v-col cols="12">
 							<v-text-field
 								rows="6"
@@ -93,7 +69,6 @@
 								:rules="[rules.required]"
 								label="Description"
 								:value="item.description"
-								:id="item.page_id.toString()"
 								@blur="onChangeDescriptionInput"
 							/>
 						</v-col>
