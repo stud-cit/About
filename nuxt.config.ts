@@ -140,6 +140,13 @@ const config: Configuration = {
 				}),
 			);
 		},
+		terser: {
+			terserOptions: {
+				compress: {
+					drop_console: configService.get('NODE_ENV') === 'production',
+				},
+			},
+		},
 		analyze: true,
 		transpile: ['vuetify/lib'],
 		plugins: [new VuetifyLoaderPlugin()],
