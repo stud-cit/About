@@ -1,8 +1,9 @@
 <template>
 	<v-container fluid class="pa-0" id="home" :class="{ 'mb-9 pb-9': isXsOnly }">
 		<div
+			v-if="isSmAndUp"
 			v-swiper:mySwiper="swiperOption"
-			class="swiper-inactive d-none d-sm-flex"
+			class="swiper-inactive d-flex"
 			:class="isShowSwiper && 'swiper-active'"
 		>
 			<div class="swiper-wrapper">
@@ -25,7 +26,7 @@
 				</v-col>
 			</div>
 		</div>
-		<v-row class="d-flex d-sm-none" justify="center">
+		<v-row class="d-flex" v-if="!isSmAndUp" justify="center">
 			<v-col
 				v-for="(page, i) in pages[$i18n.locale]"
 				:key="i"
@@ -95,7 +96,7 @@
 
 		choosePage(page, i: number): void {
 			this.choosedSlide = i;
-			this.setPage(page);
+			// this.setPage(page);
 		}
 
 		get isStartAnimation() {
@@ -103,6 +104,9 @@
 		}
 		get isXsOnly() {
 			return this.$breakpoint ? this.$breakpoint.is.xsOnly : false;
+		}
+		get isSmAndUp() {
+			return this.$breakpoint ? this.$breakpoint.is.smAndUp : false;
 		}
 		mounted() {
 			this.showSwiper();
